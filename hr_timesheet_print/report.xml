@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <report id="timesheet_hours_report"
+               string="Timesheet report"
+               model="hr.analytic.timesheet"
+               name="hr.analytic.timesheet.report"
+               rml="hr_timesheet_print/report/timesheet_report.rml"/>
+
+         <report id="timesheet_hours_report_aal"
+               string="Timesheet report"
+               model="account.analytic.line"
+               name="analytic.line.timesheet.report"
+               rml="hr_timesheet_print/report/timesheet_report.rml"/>
+
+    </data>
+</openerp>
