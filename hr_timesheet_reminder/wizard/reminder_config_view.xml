@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_hr_timesheet_reminder_config_form" model="ir.ui.view">
+            <field name="name">hr.timesheet.reminder.config.form</field>
+            <field name="model">hr.timesheet.reminder.config</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Timesheet Reminder">
+                    <group colspan="4" col="4" string="Periodicity" >
+                        <field name="reminder_active" />
+                        <newline/>
+                        <field name="nextcall" attrs="{'required':[('reminder_active','==',True)]}"/>
+                        <newline/>
+                        <field name="interval_number" string="Then send message every" attrs="{'required':[('reminder_active','==',True)]}"/>
+                        <field name="interval_type" nolabel="1" attrs="{'required':[('reminder_active','==',True)]}"/>
+                    </group>
+
+                    <group colspan="4" col="2" string="Message">
+                        <field name="reply_to"/>
+                        <field name="subject"/>
+                        <field name="message" height="200"/>
+                    </group>
+
+                    <group colspan="4" col="6">
+                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                        <button icon="gtk-ok" string="Save configuration" name="save" type="object"/>
+                        <button icon="gtk-ok" string="Run now" name="run" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_timesheet_reminder_config" model="ir.actions.act_window">
+            <field name="name">Timesheet Reminder</field>
+            <field name="res_model">hr.timesheet.reminder.config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_hr_timesheet_reminder_config_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_hr_timesheet_reminder_config"
+                icon="STOCK_PRINT"
+                action="action_hr_timesheet_reminder_config"
+                parent="hr.menu_hr_configuration"
+                name="Timesheet Reminder"
+                groups="base.group_hr_manager"/>
+
+</data>
+</openerp>

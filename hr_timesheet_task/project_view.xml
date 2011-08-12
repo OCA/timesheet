@@ -1,0 +1,63 @@
+<openerp>
+    <data>
+        #---------------------------------------------------------------------------------------------------------
+        #   Add indicators on the Project view
+        #---------------------------------------------------------------------------------------------------------
+        <record model="ir.ui.view" id="edit_project_indicators">
+            <field name="name">project.project.form.indicators</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="planned_hours" position="after">
+                        <field name="total_hours" widget="float_time"/>
+                    </field>
+                    <field name="currency_id" position="before">
+                        <field name="amount_max"/>
+                    </field>
+                    <xpath expr="/form/notebook/page[@string='Administration']/group[1]/separator[@string='Performance']" position="replace">
+                        <separator colspan="2" string="Performance on tasks only"/>
+                    </xpath>
+                    <xpath expr="/form/notebook/page[@string='Administration']/group[1]" position="inside">
+                        <separator colspan="2" string="Performance including timesheets"/>
+                        <field name="quantity_max" widget="float_time"/>
+                        <field name="hours_quantity" widget="float_time" string="Total Time Spent"/>
+                        <field name="remaining_hours" widget="float_time"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+
+        #---------------------------------------------------------------------------------------------------------
+        #   Add task filter on search hr.analytic.timesheet
+        #---------------------------------------------------------------------------------------------------------
+        <record id="hr_timesheet_line_search_task_filter" model="ir.ui.view">
+            <field name="name">hr.analytic.timesheet.search.task.filter</field>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <xpath expr="/search/group[1]/filter[@name='today']" position="after">
+                    <separator orientation="vertical"/>
+                    <filter name="with_task" icon="terp-stock_align_left_24" domain="[('task_id', '!=', False)]" string="With Task"/>
+                    <filter name="without_task" icon="terp-gdu-smart-failing" domain="[('task_id', '=', False)]" string="Without Task"/>
+                </xpath>
+            </field>
+        </record>
+
+        #---------------------------------------------------------------------------------------------------------
+        #   Link to timesheet lines
+        #---------------------------------------------------------------------------------------------------------
+
+        <act_window
+            domain="[('account_id.project_ids', '=', active_id)]"
+            id="act_timesheet_from_project"
+            name="Timesheet Lines"
+            res_model="hr.analytic.timesheet"
+            src_model="project.project"
+            view_mode="tree,form"
+            view_type="form"/>
+
+    </data>
+</openerp>

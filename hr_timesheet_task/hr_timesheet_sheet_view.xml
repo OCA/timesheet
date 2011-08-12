@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_hr_timesheet_sheet_filter_custom" model="ir.ui.view">
+            <field name="name">hr_timesheet_sheet.sheet.filter</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <xpath expr="/search/group[@col=10]/filter[@string='To Approve']" position="after">
+                    <separator orientation="vertical"/>
+                    <filter icon="terp-go-year" string="  Year  "
+                            domain="[('date_from','&lt;=', time.strftime('%%Y-%%m-%%d')),('date_from','&gt;=',time.strftime('%%Y-01-01'))]"
+                            help="Current Year"/>
+                    <filter icon="terp-go-month" string="   Month   "
+                            name="month"
+                            domain="[('date_from','&lt;=',(datetime.date.today()+relativedelta(day=31)).strftime('%%Y-%%m-%%d')),('date_from','&gt;=',(datetime.date.today()-relativedelta(day=1)).strftime('%%Y-%%m-%%d'))]"
+                            help="Current Month"/>
+                    <filter icon="terp-go-week"
+                            string="    Week    "
+                            separator="1"
+                            name="week"
+                            domain="[('date_from','&lt;=', (datetime.date.today() + relativedelta(weeks=0,day=7, weekday=-1)).strftime('%%Y-%%m-%%d')),('date_from','&gt;=',(datetime.date.today() - relativedelta(weeks=1, weekday=0)).strftime('%%Y-%%m-%%d'))]"
+                            help="Current week"/>
+                </xpath>
+                
+            </field>
+        </record>
+
+        <record id="hr_timesheet_sheet.act_hr_timesheet_sheet_form" model="ir.actions.act_window">
+            <field name="context">{'search_default_my_timesheet':1, 'search_default_week':1}</field>
+        </record>
+
+	</data>
+</openerp>
+

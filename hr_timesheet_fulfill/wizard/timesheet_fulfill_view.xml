@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_hr_timesheet_fulfill_form" model="ir.ui.view">
+            <field name="name">hr.timesheet.fulfill.form</field>
+            <field name="model">hr.timesheet.fulfill</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Enter the dates : ALL days between those dates will be completed.">
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="analytic_account_id"/>
+                    <field name="task_id" domain="[('state','!=','cancel'),('state','!=','done')" context="{'account_id':analytic_account_id}"/>
+                    <field name="nb_hours" widget="float_time"/>
+                    <field name="description" colspan="4"/>
+                    <group colspan="4" col="6">
+                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                        <button icon="gtk-ok" string="Fill in Timesheet" name="fulfill_timesheet" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_timesheet_fulfill" model="ir.actions.act_window">
+            <field name="name">Fill in Timesheet</field>
+            <field name="res_model">hr.timesheet.fulfill</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_hr_timesheet_fulfill_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="ir_action_hr_timesheet_fulfill_wizard" model="ir.values">
+            <field name="key2">client_action_multi</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="name">Fill in Timesheet</field>
+            <field eval="'ir.actions.act_window,%d'%action_hr_timesheet_fulfill" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
+</data>
+</openerp>
