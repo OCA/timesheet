@@ -58,8 +58,9 @@ class timesheet_status(report_sxw.rml_parse):
            - objects are companies
         """
         #init the data array
-        self.data = {}.fromkeys([o.id for o in objects], {})
-
+        self.data = {}
+        for o in objects:
+            self.data[o.id] = {}
         #get the list of employees ids to treat
         for o in objects:
             self.data[o.id]['employees'] = self._compute_employees_list(o)
