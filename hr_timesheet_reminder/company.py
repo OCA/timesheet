@@ -30,9 +30,9 @@
 #
 ##############################################################################
 
-import time
 
-from mx import DateTime
+from datetime import date, datetime
+from dateutil.relativedelta import *
 from osv import fields, osv
 from tools.translate import _
 
@@ -55,7 +55,7 @@ class res_company(osv.osv):
             employees = employee_obj.browse(cr, uid, employee_ids, context=context)
 
             #periods
-            periods = self.compute_timesheet_periods(cr, uid, company, time.gmtime(), context=context)
+            periods = self.compute_timesheet_periods(cr, uid, company, datetime.now(), context=context)
             #remove the first one because it's the current one
             del periods[0]
 
@@ -81,11 +81,11 @@ class res_company(osv.osv):
         for cpt in range(periods_number):
             #find the delta between last_XXX_date to XXX_date
             if company.timesheet_range == 'month':
-                delta = DateTime.RelativeDateTime(months=-cpt)
+                delta = relativedelta(months=-cpt)
             elif company.timesheet_range == 'week':
-                delta = DateTime.RelativeDateTime(weeks=-cpt)
+                delta = relativedelta(weeks=-cpt)
             elif company.timesheet_range == 'year':
-                delta = DateTime.RelativeDateTime(years=-cpt)
+                delta = relativedelta(years=-cpt)
             else:
                 raise osv.except_osv(_('Error'), _('Unknow timesheet range: %s') % (company.timesheet_range,))
 
@@ -97,18 +97,24 @@ class res_company(osv.osv):
 
     def get_last_period_dates(self, cr, uid, company, date, context=None):
         """ return the start date and end date of the last period to display """
+        
         # return the first day and last day of the month
         if company.timesheet_range == 'month':
-            start_date = DateTime.Date(date.tm_year, date.tm_mon, 1)
-            end_date = start_date + DateTime.RelativeDateTime(months=+1)
+            start_date = date
+            end_date = start_date + relativedelta(months = +1)
+
         #return the first and last days of the week
         elif company.timesheet_range == 'week':
-            start_date = DateTime.Date(date.tm_year, date.tm_mon, date.tm_mday) + DateTime.RelativeDateTime(weekday=(DateTime.Monday, 0))
-            end_date = DateTime.Date(date.tm_year, date.tm_mon, date.tm_mday) + DateTime.RelativeDateTime(weekday=(DateTime.Sunday, 0))
+            # get monday of current week
+            start_date = date + relativedelta(weekday=MO(-1))
+            # get sunday of current week 
+            end_date = date + relativedelta(weekday=SU(+1))
+
         # return the first and last days of the year
         else:
-            start_date = DateTime.Date(date.tm_year, 1, 1)
-            end_date = DateTime.Date(date.tm_year, 12, 31)
+            start_date = datetime(date.year, 1, 1) 
+            end_date = datetime(date.year, 12, 31)
+
 
         return start_date, end_date
 

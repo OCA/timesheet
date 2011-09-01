@@ -33,14 +33,15 @@
 
 from osv import fields, osv
 from tools.translate import _
-from mx import DateTime
+from datetime import datetime, timedelta
 
 
 def get_number_days_between_dates(date_from, date_to):
-    datetime_from = DateTime.strptime(date_from, '%Y-%m-%d')
-    datetime_to = DateTime.strptime(date_to, '%Y-%m-%d')
-    difference = datetime_to + 1 - datetime_from
-    return int(difference.days)
+    datetime_from = datetime.strptime(date_from, '%Y-%m-%d')
+    datetime_to = datetime.strptime(date_to, '%Y-%m-%d')
+    difference = datetime_to - datetime_from
+    # return result and add a day
+    return difference.days + 1
 
 
 class FulfillTimesheet(osv.osv_memory):
@@ -96,8 +97,8 @@ class FulfillTimesheet(osv.osv_memory):
             raise osv.except_osv(_('UserError'), _('Your date_to must be in timesheet dates !'))
 
         for day in range(get_number_days_between_dates(wizard.date_from, wizard.date_to)):
-            datetime_current = (DateTime.strptime(wizard.date_from, '%Y-%m-%d')
-                                + DateTime.RelativeDateTime(days=day)).strftime('%Y-%m-%d')
+            datetime_current = (datetime.strptime(wizard.date_from, '%Y-%m-%d')
+                                + timedelta(days=day)).strftime('%Y-%m-%d')
 
             unit_id = al_ts_obj._getEmployeeUnit(cr, uid, context)
             product_id = al_ts_obj._getEmployeeProduct(cr, uid, context)
@@ -136,7 +137,7 @@ class FulfillTimesheet(osv.osv_memory):
             if not existing_attendances:
                 att_date_start = datetime_current + " 00:00:00"
                 att_start = {
-                    'name': DateTime.strptime(att_date_start,
+                    'name': datetime.strptime(att_date_start,
                                               '%Y-%m-%d %H:%M:%S'),
                     'action': 'sign_in',
                     'employee_id': employee_id,
@@ -145,7 +146,7 @@ class FulfillTimesheet(osv.osv_memory):
                 # hh_mm is a tuple (hours, minutes)
                 date_end = " %d:%d:00" % (hh_mm[0], hh_mm[1])
                 att_end = {
-                    'name': DateTime.strptime(datetime_current + date_end,
+                    'name': datetime.strptime(datetime_current + date_end,
                                               '%Y-%m-%d %H:%M:%S'),
                     'action': 'sign_out',
                     'employee_id': employee_id,

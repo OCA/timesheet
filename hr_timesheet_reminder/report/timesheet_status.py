@@ -29,7 +29,10 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 ##############################################################################
+
 import time
+
+from datetime import datetime
 from report import report_sxw
 
 
@@ -68,7 +71,7 @@ class timesheet_status(report_sxw.rml_parse):
         #get the time range for each company
         for o in objects:
             self.data[o.id]['time_ranges'] = \
-            self._compute_periods(o, time.strptime(self.end_date, "%Y-%m-%d"))
+            self._compute_periods(o, datetime.strptime(self.end_date, "%Y-%m-%d"))
 
         #get the status of each timesheet for each employee
         for o in objects:
@@ -97,11 +100,11 @@ class timesheet_status(report_sxw.rml_parse):
         """ return the title of the main table """
         last_id = len(self.data[obj.id]['time_ranges']) - 1
         start_date = time.strptime(str(self.data[obj.id]['time_ranges'][last_id][0]),
-                                   "%Y-%m-%d %H:%M:%S.00")
+                                   "%Y-%m-%d %H:%M:%S")
         start_date = time.strftime("%d.%m.%Y", start_date)
 
         end_date = time.strptime(str(self.data[obj.id]['time_ranges'][0][1]),
-                                 "%Y-%m-%d %H:%M:%S.00")
+                                 "%Y-%m-%d %H:%M:%S")
         end_date = time.strftime("%d.%m.%Y", end_date)
 
         return obj.name + ", " + start_date + " to " + end_date
@@ -109,11 +112,11 @@ class timesheet_status(report_sxw.rml_parse):
     def get_timerange_title(self, obj, cpt):
         """ return a header text for a periods column """
         start_date = self.data[obj.id]['time_ranges'][cpt][0]
-        start_date = time.strptime(str(start_date), "%Y-%m-%d %H:%M:%S.00")
+        start_date = time.strptime(str(start_date), "%Y-%m-%d %H:%M:%S")
         start_date = time.strftime("%d.%m.%Y", start_date)
 
         end_date = self.data[obj.id]['time_ranges'][cpt][1]
-        end_date = time.strptime(str(end_date), "%Y-%m-%d %H:%M:%S.00")
+        end_date = time.strptime(str(end_date), "%Y-%m-%d %H:%M:%S")
         end_date = time.strftime("%d.%m.%Y", end_date)
 
         return start_date + "\n " + end_date

@@ -32,14 +32,15 @@
 
 from osv import fields, osv
 from tools.translate import _
-from mx import DateTime
+from datetime import datetime, timedelta
 
 
 def get_number_days_between_dates(date_from, date_to):
-    datetime_from = DateTime.strptime(date_from, '%Y-%m-%d %H:%M:%S')
-    datetime_to = DateTime.strptime(date_to, '%Y-%m-%d %H:%M:%S')
-    difference = datetime_to + 1 - datetime_from
-    return int(difference.days)
+    datetime_from = datetime.strptime(date_from, '%Y-%m-%d %H:%M:%S')
+    datetime_to = datetime.strptime(date_to, '%Y-%m-%d %H:%M:%S')
+    difference = datetime_to - datetime_from
+    # return result and add a day
+    return difference.days + 1
 
 
 class HolidaysImport(osv.osv_memory):
@@ -80,10 +81,10 @@ class HolidaysImport(osv.osv_memory):
 
             nb_days = get_number_days_between_dates(h_date_from, h_date_to)
             for day in range(nb_days):
-                datetime_current = (DateTime.strptime(h_date_from, '%Y-%m-%d %H:%M:%S')
-                                    + DateTime.RelativeDateTime(days=day)).strftime('%Y-%m-%d')
+                str_datetime_current = (datetime.strptime(h_date_from, '%Y-%m-%d %H:%M:%S')
+                                    + timedelta(days=day)).strftime('%Y-%m-%d')
                 line_ids = line_obj.search(cr, uid,
-                                [('date', '=', datetime_current),
+                                [('date', '=', str_datetime_current),
                                  ('name', '=', h_name),
                                  ('user_id', '=', uid)], context=context)
                 if line_ids:
@@ -143,10 +144,11 @@ class HolidaysImport(osv.osv_memory):
 
             nb_days = get_number_days_between_dates(holiday.date_from, holiday.date_to)
             for day in range(nb_days):
-                datetime_current = (DateTime.strptime(holiday.date_from, '%Y-%m-%d %H:%M:%S')
-                                    + DateTime.RelativeDateTime(days=day)).strftime('%Y-%m-%d')
+                dt_current = (datetime.strptime(holiday.date_from, '%Y-%m-%d %H:%M:%S')
+                                    + timedelta(days=day))
+                str_dt_current = dt_current.strftime('%Y-%m-%d')
 
-                day_of_the_week = DateTime.strptime(datetime_current, '%Y-%m-%d').iso_week[2]
+                day_of_the_week = dt_current.isoweekday()
 
                 # skip the non work days
                 if day_of_the_week in (6, 7):
@@ -154,7 +156,7 @@ class HolidaysImport(osv.osv_memory):
 
                 # Create timesheet lines
                 existing_ts_ids = al_ts_obj.search(cr, uid,
-                                [('date', '=', datetime_current),
+                                [('date', '=', str_dt_current),
                                  ('name', '=', holiday.name),
                                  ('user_id', '=', uid)])
                 if not existing_ts_ids:
@@ -164,7 +166,7 @@ class HolidaysImport(osv.osv_memory):
 
                     holiday_day = {
                         'name': holiday.name or _('Holidays'),
-                        'date': datetime_current,
+                        'date': str_dt_current,
                         'unit_amount': hours_per_day,
                         'product_uom_id': unit_id,
                         'product_id': product_id,
@@ -184,26 +186,27 @@ class HolidaysImport(osv.osv_memory):
                         holiday_day.update(on_change_values['value'])
                         al_ts_obj.create(cr, uid, holiday_day, context)
                 else:
-                    errors.append('%s: There already is an analytic line.' % (str(datetime_current)))
+                    errors.append('%s: There already is an analytic line.' % (str_dt_current))
 
                 # Create attendances
-                existing_attendances = attendance_obj.\
-                search(cr, uid, [('name', '=', datetime_current),
-                                 ('employee_id', '=', employee_id)])
+                existing_attendances = \
+                    attendance_obj.search(cr, uid, [('name', '=', str_dt_current),
+                                                    ('employee_id', '=', employee_id)])
 
                 if not existing_attendances:
                     # get hours and minutes (tuple) from a float time
                     hours = divmod(hours_per_day * 60, 60)
-                    date_end = " %d:%d:00" % (hours[0], hours[1])
+
+                    date_end = dt_current.replace(hour=hours[0],minute=hours[1])
+                    str_date_end = date_end.strftime('%Y-%m-%d %H:%M:%S')
                     start = {
-                        'name': str(datetime_current),
+                        'name': str_dt_current,
                         'action': 'sign_in',
                         'employee_id': employee_id,
                         'sheet_id': timesheet.id,
                     }
                     end = {
-                        'name': DateTime.strptime(datetime_current
-                                                  + date_end, '%Y-%m-%d %H:%M:%S'),
+                        'name': str_date_end,
                         'action': 'sign_out',
                         'employee_id': employee_id,
                         'sheet_id': timesheet.id,
@@ -211,7 +214,7 @@ class HolidaysImport(osv.osv_memory):
                     attendance_obj.create(cr, uid, start, context)
                     attendance_obj.create(cr, uid, end, context)
                 else:
-                    errors.append('%s: There already is an attendance.' % (str(datetime_current)),)
+                    errors.append('%s: There already is an attendance.' % (str_dt_current),)
         if errors:
             errors_str = "\n".join(errors)
             raise osv.except_osv(_('Errors'), errors_str)

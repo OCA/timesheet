@@ -29,7 +29,7 @@
         </record>
 
         <record id="hr_timesheet_sheet.act_hr_timesheet_sheet_form" model="ir.actions.act_window">
-            <field name="context">{'search_default_my_timesheet':1, 'search_default_week':1}</field>
+            <field name="context">{'search_default_my_timesheet':1}</field>
         </record>
 
 	</data>

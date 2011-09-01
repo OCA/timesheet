@@ -29,7 +29,7 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 ##############################################################################
-import time
+from datetime import *
 
 from osv import fields, osv
 
@@ -54,20 +54,20 @@ class hr_employee(osv.osv):
 
         employee = self.browse(cr, uid, ids, context=context)
 
-        time_from = time.strptime(str(period[0]), "%Y-%m-%d %H:%M:%S.00")
-        time_to = time.strptime(str(period[1]), "%Y-%m-%d %H:%M:%S.00")
+        time_from = period[0]
+        time_to = period[1]
         
         # does the timesheet exsists in db and what is its status?
         timeformat = "%Y-%m-%d"
-        date_from = time.strftime(timeformat, time_from)
-        date_to = time.strftime(timeformat, time_to)
+        str_date_from = time_from.strftime(timeformat)
+        str_date_to = time_to.strftime(timeformat)
 
         cr.execute("""SELECT state, date_from, date_to
                    FROM hr_timesheet_sheet_sheet
                    WHERE employee_id = %s
                    AND date_from >= %s
                    AND date_to <= %s""",
-            (employee.id, date_from, date_to))
+            (employee.id, str_date_from, str_date_to))
         sheets = cr.dictfetchall()
 
         #the timesheet does not exists in db

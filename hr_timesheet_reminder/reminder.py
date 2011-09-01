@@ -30,8 +30,8 @@
 #
 ##############################################################################
 
-import time
 import tools
+import time
 
 from datetime import datetime, timedelta
 from osv import fields, osv
