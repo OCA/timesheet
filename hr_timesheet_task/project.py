@@ -30,7 +30,7 @@
 ##############################################################################
 
 import time
-from mx import DateTime
+from datetime import datetime
 import netsvc
 from osv import fields
 from osv import osv
