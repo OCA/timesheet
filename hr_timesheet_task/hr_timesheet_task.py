@@ -30,7 +30,7 @@
 ##############################################################################
 
 import time
-from datetime import datetime
+
 import netsvc
 from osv import fields
 from osv import osv
@@ -244,6 +244,9 @@ class hr_analytic_timesheet(osv.osv):
 
     def unlink(self, cr, uid, ids, *args, **kwargs):
         self._onunlink_manage_proj_indicators(cr,uid,ids,*args,**kwargs)
+        context = kwargs.get('context', {})
+        context['preserve_aa_lines'] = True
+        kwargs['context'] = context
         return super(hr_analytic_timesheet,self).unlink(cr, uid, ids,*args, **kwargs)
 
 hr_analytic_timesheet()

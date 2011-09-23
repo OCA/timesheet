@@ -30,7 +30,7 @@
 ##############################################################################
 
 import time
-from datetime import datetime
+
 import netsvc
 from osv import fields
 from osv import osv
@@ -48,7 +48,7 @@ class analytic_account_line(osv.osv):
 
     _inherit = "account.analytic.line"
     
-    def _get_hr_analytic_ids(self,cr,uid,ids,context=None):
+    def _get_hr_analytic_ids(self, cr, uid, ids, context=None):
         """Take an id list of AAL and return a dict with :
             {    
                 aal : ids of analytic_line without hr.analytic.timesheet 
@@ -68,8 +68,9 @@ class analytic_account_line(osv.osv):
             # We add all hr.analytic ts
             hral.append(ts_line.id)
             aal.append(ts_line.line_id.id)
-        # We keep in aal only aal (remove aal from ids and take it)
-        aal = list(set(ids).difference(aal))
+        if not context.get('preserve_aa_lines', False):
+            # We keep in aal only aal (remove aal from ids and take it)
+            aal = list(set(ids).difference(aal))
         return {'aal':aal,'hral':hral}
                 
     def write(self, cr, uid, ids, vals, context=None):
@@ -85,7 +86,8 @@ class analytic_account_line(osv.osv):
  
     def unlink(self, cr, uid, ids, *args, **kwargs):
         ts_line = self.pool.get('hr.analytic.timesheet')
-        res_dict = self._get_hr_analytic_ids(cr,uid,ids)
+        
+        res_dict = self._get_hr_analytic_ids(cr, uid, ids)
         # Check if we have related hr.analytic.timesheet, launch
         # the unlink method of hr.analytic.timesheet instead
         if res_dict['hral']:
@@ -94,4 +96,3 @@ class analytic_account_line(osv.osv):
         return res
 
 analytic_account_line()
-
