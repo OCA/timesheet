@@ -62,7 +62,17 @@ class task(osv.osv):
                         
         return super(task, self).search(cr, uid, args, offset, limit,
                 order, context=context, count=count)
-
+        
+    def name_search(self, cr, user, name, args=None, operator='ilike', context=None, limit=100):
+        if not args:
+            args = []
+        if context is None:
+            context = {}
+        ids = []
+        if not ids:
+            ids = self.search(cr, user, [('name',operator,name)] + args, limit=limit, context=context)
+        return self.name_get(cr, user, ids, context)
+    
     # Compute: effective_hours, total_hours, progress
     def _hours_get(self, cr, uid, ids, field_names, args, context=None):
     # FIXME : Here, we're also not doing the UoM conversion. We consider all is hours...
