@@ -38,7 +38,7 @@ class reminder_status(osv.osv_memory):
     _name = 'hr.timesheet.reminder.status'
 
     _columns = {
-        'company_ids': fields.many2many('res.company', 'reminder_company_rel', 'id', 'id', 'Company'),
+        'company_ids': fields.many2many('res.company', 'reminder_company_rel', 'wid', 'rid', 'Company'),
         'date': fields.date('End Date', required=True),
         }
 
