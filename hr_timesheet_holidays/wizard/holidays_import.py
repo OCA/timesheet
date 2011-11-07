@@ -97,7 +97,7 @@ class HolidaysImport(osv.osv_memory):
         return res
 
     _columns = {
-        'holidays_ids': fields.many2many('hr.holidays', 'hr_holidays_rel', 'id', 'id', 'Holidays', domain="[('state', '=', 'validate'),('user_id','=',uid)]"),
+        'holidays_ids': fields.many2many('hr.holidays', 'hr_holidays_rel', 'wid', 'hid', 'Holidays', domain="[('state', '=', 'validate'),('user_id','=',uid)]"),
     }
 
     _defaults = {
