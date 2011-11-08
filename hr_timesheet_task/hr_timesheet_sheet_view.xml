@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"/>
             <field name="type">search</field>
             <field name="arch" type="xml">
-                <xpath expr="/search/group[@col=10]/filter[@string='To Approve']" position="after">
+                <xpath expr="/search/group/filter[@string='To Approve']" position="after">
                     <separator orientation="vertical"/>
                     <filter icon="terp-go-year" string="  Year  "
                             domain="[('date_from','&lt;=', time.strftime('%%Y-%%m-%%d')),('date_from','&gt;=',time.strftime('%%Y-01-01'))]"
