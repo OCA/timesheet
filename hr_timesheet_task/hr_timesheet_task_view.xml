@@ -9,10 +9,10 @@
             <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
             <field name="arch" type="xml">
                 <xpath expr="/form/notebook/page[@string='Daily']/field[@name='timesheet_ids']/tree[@string='Timesheet Lines']/field[@name='account_id']" position="after">
-                     <field name="task_id" context="account_id=account_id" domain="[('state','=','open')]"/>
+                     <field name="task_id" context="{'account_id' : account_id}" domain="[('state','=','open')]"/>
                 </xpath>
                 <xpath expr="/form/notebook/page[@string='Daily']/field[@name='timesheet_ids']/form[@string='Timesheet Lines']/field[@name='account_id']" position="after">
-                     <field name="task_id" context="account_id=account_id" domain="[('state','=','open')]"/>
+                     <field name="task_id" context="{'account_id' : account_id}" domain="[('state','=','open')]"/>
                 </xpath>
             </field>
         </record>  
@@ -27,7 +27,7 @@
             <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
             <field name="arch" type="xml">
                 <xpath expr="/form/group/field[@name='user_id']" position="after">
-                    <field name="task_id" context="account_id=account_id" domain="[('state','=','open')]"/>
+                    <field name="task_id" context="{ 'account_id' : account_id}" domain="[('state','=','open')]"/>
                 </xpath>
             </field>
         </record>
@@ -41,7 +41,7 @@
                 <tree editable="top" string="Timesheet Lines">
                     <field name="date" on_change="on_change_date(date)"/>
                     <field domain="[('type','=','normal')]" name="account_id"/>
-                    <field name="task_id" context="account_id=account_id" domain="[('state','=','open')]"/>
+                    <field name="task_id" context="{'account_id' : account_id}" domain="[('state','=','open')]"/>
                     <field name="name"/>
                     <field name="unit_amount" on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id,journal_id)" sum="Total time" widget="float_time"/>
                     <field name="user_id" on_change="on_change_user_id(user_id)" required="1"/>
