@@ -153,7 +153,7 @@ class project(osv.osv):
         lines = hr_ts_obj.read(cr, uid, ids, ['id','account_id'], context=context)
         for line in lines:
             if line.get('account_id'):
-                proj_id = proj_obj.search(cr, uid, [('analytic_account_id','=',line['account_id'])], context=context)
+                proj_id = proj_obj.search(cr, uid, [('analytic_account_id', '=', line['account_id'][0])], context=context)
                 if proj_id:
                     result[proj_id[0]] = True
         return result.keys()
