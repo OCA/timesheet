@@ -8,10 +8,10 @@
             <field name="model">hr_timesheet_sheet.sheet</field>
             <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
             <field name="arch" type="xml">
-                <xpath expr="/form/notebook/page[@string='Daily View']/field[@name='timesheet_ids']/tree[@string='Timesheet']/field[@name='account_id']" position="after">
+                <xpath expr="/form/notebook/page[@string='Daily']/field[@name='timesheet_ids']/tree[@string='Timesheet']/field[@name='account_id']" position="after">
                      <field name="task_id" context="account_id=account_id" domain="[('state','=','open')]"/>
                 </xpath>
-                <xpath expr="/form/notebook/page[@string='Daily View']/field[@name='timesheet_ids']/form[@string='Timesheet']/field[@name='account_id']" position="after">
+                <xpath expr="/form/notebook/page[@string='Daily']/field[@name='timesheet_ids']/form[@string='Timesheet']/field[@name='account_id']" position="after">
                      <field name="task_id" context="account_id=account_id" domain="[('state','=','open')]"/>
                 </xpath>
             </field>
