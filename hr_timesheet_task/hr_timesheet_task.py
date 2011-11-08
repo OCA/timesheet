@@ -144,8 +144,10 @@ class hr_analytic_timesheet(osv.osv):
         if account_id:
             task_obj = self.pool.get('project.task')
             proj_obj = self.pool.get('project.project')
-            proj_ids = proj_obj.search(cr,uid,[('analytic_account_id','=',account_id)])
-            task_ids = task_obj.search(cr,uid,[('project_id','=',proj_ids),('state','=','open')])
+            proj_ids = proj_obj.search(cr,uid,[('analytic_account_id','=', account_id)])
+            if not proj_ids:
+                return res
+            task_ids = task_obj.search(cr,uid,[('project_id', '=', proj_ids[0]),('state', '=', 'open')])
             if len(task_ids) == 1:
                 res['value']['task_id'] = task_ids[0]
         return res
