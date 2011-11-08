@@ -148,12 +148,14 @@ class project(osv.osv):
         but directly on the analytical account.
         This trigger should be trigged only when a analytic line is made without task_id."""
         result = {}
-        lines = self.pool.get('hr.analytic.timesheet').read(cr, uid, ids, ['id','account_id'], context=context)
+        hr_ts_obj = self.pool.get('hr.analytic.timesheet')
+        proj_obj = self.pool.get('project.project')
+        lines = hr_ts_obj.read(cr, uid, ids, ['id','account_id'], context=context)
         for line in lines:
-            if 'account_id' in line and line['account_id']:
-                proj_id = self.pool.get('project.project').search(cr, uid, [('analytic_account_id','=',line['account_id'][0])], context=context)[0]
+            if line.get('account_id'):
+                proj_id = proj_obj.search(cr, uid, [('analytic_account_id','=',line['account_id'])], context=context)
                 if proj_id:
-                    result[proj_id] = True
+                    result[proj_id[0]] = True
         return result.keys()
 
     def _progress_rate(self, cr, uid, ids, names, arg, context=None):
