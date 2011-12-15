@@ -159,10 +159,35 @@ class project(osv.osv):
         return result.keys()
 
     def _progress_rate(self, cr, uid, ids, names, arg, context=None):
-        return super(project, self)._progress_rate(cr, uid, ids, names, arg, context)
+        res = {}.fromkeys(ids, 0.0)
+        if not ids:
+            return res
+        cr.execute('''SELECT
+                project_id, sum(planned_hours), sum(total_hours), sum(effective_hours), SUM(remaining_hours)
+            FROM
+                project_task
+            WHERE
+                project_id in %s AND
+                state<>'cancelled'
+            GROUP BY
+                project_id''', (tuple(ids),))
+        progress = dict(map(lambda x: (x[0], (x[1],x[2],x[3],x[4])), cr.fetchall()))
+        for project in self.browse(cr, uid, ids, context=context):
+            s = progress.get(project.id, (0.0,0.0,0.0,0.0))
+            res[project.id] = {
+                'planned_hours': s[0],
+                'effective_hours': s[2],
+                'total_hours': s[1],
+                'progress_rate': s[1] and round(100.0*s[2]/s[1],2) or 0.0
+            }
+        return res
 
     def _get_project_task(self, cr, uid, ids, context=None):
-        return super(project, self)._get_project_task(cr, uid, ids, context)
+        result = {}
+        for task in self.pool.get('project.task').browse(cr, uid, ids, context=context):
+            if task.project_id: result[task.project_id.id] = True
+        return result.keys()
+
         
     def _get_analytic_line(self,cr,uid,ids,context=None):
         ts_line_obj = self.pool.get('hr.analytic.timesheet')
