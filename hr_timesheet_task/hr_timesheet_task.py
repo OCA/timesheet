@@ -47,32 +47,38 @@ class hr_analytic_timesheet(osv.osv):
     
     def _check(self, cr, uid, ids, *args, **kwargs):
         """Used by the unlink method to allow the deletion on unconfirmed TS."""
-        return super(hr_analytic_timesheet,self)._check(cr, uid, ids,*args, **kwargs)    
+        return super(hr_analytic_timesheet,self)._check(cr, uid, ids,*args, **kwargs)
         
-    def _check_authorized_field(self, cr, uid, ids, vals,context=None):
+    def _check_date_validity(self, cr, uid, att, vals, context=None):
+        context = context or {}
+        if 'date' in vals:
+            ts = self.pool.get('hr_timesheet_sheet.sheet')
+            date = vals['date']
+            ids2 = ts.search(cr, 
+                             uid, 
+                             [('user_id', '=', att.user_id.id),
+                              ('date_from', '<=', date),
+                              ('date_to', '>=', date),
+                              ('state', 'in', ['confirm','done'])],
+                             context=context)
+            if ids2:
+                raise osv.except_osv(_('Error !'), 
+                                     _('You can not change the date for' 
+                                       ' the Confirmed/Done timesheet line %s!') % (att.name,))
+        
+    def _check_authorized_field(self, cr, uid, ids, vals, context=None):
         """Raise an error if the field are not in the dict of allowed
         field when TS is confirmed. Used in the write method to allow project manager
         to change some values."""
         # Check if we have other fields than allowed ones
-        if len(set(vals).difference(self.ALLOWED_FIELD)):
-        # if len(set(self.ALLOWED_FIELD).intersection(vals)) > len(vals) or :
-            # If yes, then check the TS state => if confirmed, raise an error
+        context = context or {}
+        if set(vals.keys()).issubset(self.ALLOWED_FIELD):
             for att in self.browse(cr, uid, ids):
                 if att.sheet_id and att.sheet_id.state not in ('draft', 'new'):
-                    raise osv.except_osv(_('Error !'), _("Only the following field can be modified on a confirmed timesheet : %s !"%(str(self.ALLOWED_FIELD))))
-        # If we change the date, check that the new TS isn't confirm
-        if 'date' in vals:
-            ts = self.pool.get('hr_timesheet_sheet.sheet')
-            if context is None:
-                context = {}
-            date = vals['date']
-            users=[]
-            # For all concerned user:
-            for inst in self.browse(cr,uid,ids):
-                users.append(inst.user_id.id)
-            ids2 = ts.search(cr, uid, [('user_id','in',users),('date_from','<=',date), ('date_to','>=',date), ('state','in',['confirm','done'])], context=context)
-            if ids2:
-                raise osv.except_osv(_('Error !'), _('You can not change the date for a Confirmed/Done timesheet !'))
+                    raise osv.except_osv(_('Error !'), 
+                                         _("Only the following field can be modified"
+                                           " on a confirmed timesheet : %s !" ) % (str(self.ALLOWED_FIELD)))
+                self._check_date_validity(cr, uid, att, vals, context=context)
         
         return True
     
@@ -90,9 +96,16 @@ class hr_analytic_timesheet(osv.osv):
             context = {}
         date = vals['date']
         user = vals['user_id']
-        ids = ts.search(cr, uid, [('user_id','=',user),('date_from','<=',date), ('date_to','>=',date), ('state','in',['confirm','done'])], context=context)
+        ids = ts.search(cr, 
+                        uid, 
+                        [('user_id','=',user),
+                         ('date_from','<=',date),
+                         ('date_to','>=',date),
+                         ('state','in',['confirm','done'])],
+                        context=context)
         if ids:
-            raise osv.except_osv(_('Error !'), _('You can not create an entry in a Confirmed/Done timesheet !'))
+            raise osv.except_osv(_('Error !'),
+                                 _('You can not create an entry in a Confirmed/Done timesheet !'))
         return True
         
     _constraints = [
@@ -106,32 +119,25 @@ class hr_analytic_timesheet(osv.osv):
         # 'hours':              unit_amount         Warning, here in a specific UoM
         # 'user_id':            user_id
         # 'company_id':         company_id
-    def _compute_proj_unit(self, cr, uid, product_uom_id, unit_amount, context=None):
-        """Compute the unit_amount entred by the user in project default unit if not the same.
-        Store the value in 'hours' field like it was before with project_task_work"""
-        default_uom = self.pool.get('res.users').browse(cr, uid, uid).company_id.project_time_mode_id.id
-        uom_obj = self.pool.get('product.uom')
-        res = 0.00
-        if product_uom_id != default_uom:
-            res = uom_obj._compute_qty(cr, uid, product_uom_id, unit_amount, default_uom)
-        else:
-            res = unit_amount
-        return res
 
     _columns={
         'task_id':fields.many2one('project.task','Task', ondelete='set null'),
         # This field will always be computed regarding the project default UoM info's
         # I don't make a function field because OpenERP SA didn't do it in project timesheet
         # module, so I keep the same philosophy (but IMHO it is not good...).
-        'hours': fields.float('Time Spent', readonly=True),
+        # 'hours': fields.float('Time Spent', readonly=True),
     }
 
-    def on_change_unit_amount(self, cr, uid, id, prod_id, unit_amount, company_id, unit=False, journal_id=False, task_id=False,context=None):
-        res = super(hr_analytic_timesheet,self).on_change_unit_amount(cr, uid, id, prod_id, unit_amount, company_id, unit, journal_id, context)
+    def on_change_unit_amount(self, cr, uid, id, prod_id, unit_amount, company_id, 
+                              unit=False, journal_id=False, task_id=False, 
+                              to_invoice=False, context=None):
+        res = super(hr_analytic_timesheet, self).on_change_unit_amount(cr, uid, id, prod_id, 
+                                                                       unit_amount, company_id,
+                                                                       unit, journal_id, context)
         if 'value' in res and task_id:
-            aa = self.pool.get('project.task').browse(cr,uid,task_id).project_id.analytic_account_id
+            aa = self.pool.get('project.task').browse(cr, uid, task_id).project_id.analytic_account_id
             res['value']['account_id'] = aa.id
-            if aa.to_invoice:
+            if aa.to_invoice and not to_invoice:
                 res['value']['to_invoice'] = aa.to_invoice.id
         return res
     
@@ -155,101 +161,105 @@ class hr_analytic_timesheet(osv.osv):
     # I'm not sure about this way to do this, but OpenERP SA do it this way for project_timesheet
     # so I keep the same philosophy
     def create(self, cr, uid, vals, *args, **kwargs):
-        self._check_creation_allowed(cr, uid, vals, context=None)
         context = kwargs.get('context', {})
+        self._check_creation_allowed(cr, uid, vals, context)
         task_pool = self.pool.get('project.task')
-        value = 0.0
-        if 'unit_amount' in vals and (not vals['unit_amount']):
-            vals['unit_amount'] = 0.00
-        # In any possible case update the hours vals
-        if 'product_uom_id' in vals and vals['product_uom_id'] and 'unit_amount' in vals:
-            # We need to update the work done and the hours field
-            value = self._compute_proj_unit(cr,uid,vals['product_uom_id'],vals['unit_amount'])
-            vals['hours'] = value
+        res = super(hr_analytic_timesheet,self).create(cr, uid, vals, *args, **kwargs)
+        hr_ts_line = self.browse(cr,uid,res)
         # If possible update the remaining hours in related task
         if 'task_id' in vals and vals['task_id']:
-            task_remaining_hours = task_pool.read(cr, uid, vals['task_id'],
+            task_remaining_hours = task_pool.read(cr,
+                                                  uid,
+                                                  vals['task_id'],
                                                   ['remaining_hours'],
                                                   context=context)['remaining_hours']
             task_pool.write(cr, uid,
                             vals['task_id'],
-                            {'remaining_hours': task_remaining_hours - value},
+                            {'remaining_hours': task_remaining_hours - hr_ts_line.hours_to_inv},
                             context=context)
-        return super(hr_analytic_timesheet,self).create(cr, uid, vals, *args, **kwargs)
+        return 
 
-    def _onwrite_manage_proj_indicators(self,cr,uid,ids,vals,context=None):
+    def _onwrite_manage_proj_indicators(self, cr, uid, ids, vals, context=None):
         """Manage and write the needed value for all projects/tasks indicators. We'll
         use it also in aal."""
+        context = context or {}
+        old_vals = context.get('old_vals', {})
         if context is None:
             context = {}
         if isinstance(ids, (int, long)):
             ids = [ids]
-        self._check_authorized_field(cr,uid,ids,vals)
-        if 'unit_amount' in vals and (not vals['unit_amount']):
-            vals['unit_amount'] = 0.00
+        self._check_authorized_field(cr, uid, ids, vals)
         task_pool = self.pool.get('project.task')
+        aal_obj = self.pool.get('account.analytic.line')
         for line in self.browse(cr, uid, ids, context=context):
-            # Re-compute hours field and write it
+            # take the new value and compute with factor
             unit_amount = vals.get('unit_amount', line.unit_amount)
             uom = vals.get('product_uom_id', line.product_uom_id.id)
-            new_value = self._compute_proj_unit(cr, uid, uom, unit_amount)
-            vals['hours'] = new_value
+            to_invoice_id = vals.get('to_invoice', line.to_invoice.id)
+            amount_project_uom = aal_obj._compute_proj_unit(cr, uid, uom, unit_amount)
+            new_value = aal_obj._compute_hours_factor_from_inv(cr, uid, amount_project_uom, to_invoice_id)
+            old_value = line.hours_to_inv or 0.0
             # If task id exists => update the remaining_hours fields of the related task
-            old_task = new_task = False
-            amount_difference = 0.0
-            # Add a new or modify a task on a line
-            if vals.get('task_id',False) and vals['task_id']:
-                new_task = task_pool.browse(cr,uid,vals['task_id'])
-                old_task = line.task_id
-                amount_difference = new_value
-            # Set null on task_id
-            elif 'task_id' in vals and not vals['task_id']:
-                old_task = line.task_id
-            # We doesn't change task, but unit_amount or uom
-            elif line.task_id:
-                new_task = line.task_id
-                amount_difference = new_value - line.hours
-            if new_task:
-                task_pool.write(cr, uid, new_task.id,
-                                {'remaining_hours': new_task.remaining_hours - amount_difference},
+            old_task_to_compute = new_task_to_compute = False
+            # amount_difference = new_value - old_value
+            # Add a new task on existing line
+            old_task =  old_vals.get(line.id, {}).get('task_id', False)
+            if not old_task and line.task_id: #we add a new task
+                new_task_to_compute = line.task_id
+            elif old_task and line.task_id: #we change task
+                new_task_to_compute = line.task_id
+                old_task_to_compute =  task_pool.browse(cr, uid, old_task)
+            elif old_task and not line.task_id: #we set task to null
+                old_task_to_compute = task_pool.browse(cr, uid, old_task)
+            elif line.id in old_vals and not old_task: #use if write is triggered from 
+                # In that particular case, new_value is equal to the difference
+                # We doesn't change task, but unit_amount or uom
+                new_task_to_compute = line.task_id
+                new_value = new_value - old_value
+                
+            if new_task_to_compute:
+                task_pool.write(cr, uid, new_task_to_compute.id,
+                                {'remaining_hours': new_task_to_compute.remaining_hours - new_value},
                                 context=context)
-            if old_task:
-                task_pool.write(cr, uid, old_task.id,
-                                {'remaining_hours': old_task.remaining_hours + line.hours},
+            if old_task_to_compute:
+                task_pool.write(cr, uid, old_task_to_compute.id,
+                                {'remaining_hours': old_task_to_compute.remaining_hours + old_value},
                                 context=context)
             
             # To ensure 'hours' field is written from AAL
-            if context.get('active_model',False) != 'hr.analytic.timesheet':
+            if context.get('active_model', False) != 'hr.analytic.timesheet':
                 context['stop_write'] = True
-                self.write(cr,uid,line.id,{'hours':new_value},context=context)
-        return vals['hours']
+        # return vals['hours']
+        return True
 
     def write(self, cr, uid, ids, vals, context=None):
-        if not context.get('stop_write',False):
-            vals['hours'] = self._onwrite_manage_proj_indicators(cr,uid,ids,vals,context)            
-        return super(hr_analytic_timesheet,self).write(cr, uid, ids, vals, context)
+        # Keep old recorded values
+        old_vals={}
+        if isinstance(ids, (int, long)):
+            ids = [ids]
+        for ts_line in self.browse(cr, uid, ids):
+            old_vals[ts_line.id] = {}
+            # We have an old value, different from the new one
+            if vals.get('task_id'):
+                if ts_line.task_id and (ts_line.task_id.id != vals['task_id']):
+                    old_vals[ts_line.id] = {'task_id' : ts_line.task_id.id}
+        context['old_vals'] = old_vals
+        return super(hr_analytic_timesheet, self).write(cr, uid, ids, vals, context=context)
 
-    def _onunlink_manage_proj_indicators(self,cr,uid,ids,*args,**kwargs):
+    def _onunlink_manage_proj_indicators(self,cr,uid,ids,context):
         """Manage and write the needed value for all projects/tasks indicators. We'll
         use it also in aal."""
         if isinstance(ids, (int, long)):
             ids = [ids]
         self._check(cr, uid, ids)
-        context = kwargs.get('context', {})
         task_pool = self.pool.get('project.task')
         for line in self.browse(cr, uid, ids):
             if line.task_id:
-                new_value = self._compute_proj_unit(cr,uid,line.product_uom_id.id,line.unit_amount)
+                # new_value = self._compute_proj_unit(cr,uid,line.product_uom_id.id,line.unit_amount)
                 task_pool.write(cr, uid, line.task_id.id,
-                                {'remaining_hours': line.task_id.remaining_hours + new_value},
+                                {'remaining_hours': line.task_id.remaining_hours + line.hours_to_inv},
                                 context=context)
-
-    def unlink(self, cr, uid, ids, *args, **kwargs):
-        self._onunlink_manage_proj_indicators(cr,uid,ids,*args,**kwargs)
-        context = kwargs.get('context', {})
-        context['preserve_aa_lines'] = True
-        kwargs['context'] = context
-        return super(hr_analytic_timesheet,self).unlink(cr, uid, ids,*args, **kwargs)
+        return True
 
 hr_analytic_timesheet()
 

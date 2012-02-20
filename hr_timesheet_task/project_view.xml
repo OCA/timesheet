@@ -12,6 +12,9 @@
                     <field name="planned_hours" position="after">
                         <field name="total_hours" widget="float_time"/>
                     </field>
+                    <field name="effective_hours" position="after">
+                        <field name="deduced_hours" widget="float_time"/>
+                    </field>
                     <field name="currency_id" position="before">
                         <field name="amount_max"/>
                     </field>
