@@ -18,18 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name' : 'Task in time sheet',
+{'name' : 'Analytic Task',
  'version' : '0.1',
  'author' : 'Camptocamp',
  'maintainer': 'Camptocamp',
  'category': 'Human Resources',
  'complexity': "normal", #easy, normal, expert
- 'depends' : ['timesheet_task', 'hr_timesheet_sheet'],
+ 'depends' : ['hr_timesheet', 'project', 'hr_timesheet_invoice'],
  'description': """Replace project.task.work items linked to task
                    with hr.analytic.timesheet""",
  'website': 'http://www.camptocamp.com',
  'init_xml': [],
- 'update_xml': ['hr_timesheet_sheet_view.xml', 'hr_analytic_timesheet_view.xml'],
+ 'update_xml': ['project_task_view.xml'],
  'demo_xml': [],
  'tests': [],
  'installable': True,
@@ -37,3 +37,5 @@
  'auto_install': False,
  'license': 'AGPL-3',
  'application': True}
+ #'icon': '/MODULE_NAME/static/src/images/XXX.png',
+ 
