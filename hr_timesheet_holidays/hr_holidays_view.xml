@@ -1,33 +1,33 @@
 <?xml version="1.0"?>
 <terp>
-	<data>
+    <data>
 
-	    <!-- add analytic account on holidays status -->
-		<record model="ir.ui.view" id="edit_holiday_status_form1">
-		    <field name="name">hr.holidays.status.form</field>
-		    <field name="model">hr.holidays.status</field>
-		    <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
-			<field name="priority" eval="20"/>
-		    <field name="type">form</field>
-		    <field name="arch" type="xml">
+        <!-- add analytic account on holidays status -->
+        <record model="ir.ui.view" id="edit_holiday_status_form1">
+            <field name="name">hr.holidays.status.form</field>
+            <field name="model">hr.holidays.status</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+            <field name="priority" eval="20"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
                 <field name="active" position="after">
                     <field name="analytic_account_id" />
                 </field>
-		    </field>
-		</record>
+            </field>
+        </record>
 
-		<record model="ir.ui.view" id="view_holiday_status_tree1">
-		    <field name="name">hr.holidays.status.tree</field>
-		    <field name="model">hr.holidays.status</field>
-		    <field name="inherit_id" ref="hr_holidays.view_holiday_status_tree"/>
-			<field name="priority" eval="20"/>
-		    <field name="type">tree</field>
-		    <field name="arch" type="xml">
+        <record model="ir.ui.view" id="view_holiday_status_tree1">
+            <field name="name">hr.holidays.status.tree</field>
+            <field name="model">hr.holidays.status</field>
+            <field name="inherit_id" ref="hr_holidays.view_holiday_status_tree"/>
+            <field name="priority" eval="20"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
                 <field name="remaining_leaves" position="after">
                     <field name="analytic_account_id" />
                 </field>
-		    </field>
-		</record>
-	</data>
+            </field>
+        </record>
+    </data>
 </terp>
 
