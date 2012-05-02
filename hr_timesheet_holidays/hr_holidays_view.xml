@@ -23,7 +23,7 @@
 			<field name="priority" eval="20"/>
 		    <field name="type">tree</field>
 		    <field name="arch" type="xml">
-                <field name="limit" position="after">
+                <field name="remaining_leaves" position="after">
                     <field name="analytic_account_id" />
                 </field>
 		    </field>
