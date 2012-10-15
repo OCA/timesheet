@@ -30,7 +30,7 @@
 from osv import osv, fields
 
 TASK_WATCHERS = ['work_ids', 'remaining_hours', 'planned_hours']
-AA_WATCHERS = ['unit_amount','product_uom_id','account_id','to_invoice']
+AA_WATCHERS = ['unit_amount', 'product_uom_id', 'account_id', 'to_invoice', 'task_id']
 
 class ProjectTask(osv.osv):
     _inherit = "project.task"
