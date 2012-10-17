@@ -13,9 +13,6 @@
                     <field name="task_id" context="{ 'account_id' : account_id}"
                         domain="[('state','=','open')]"/>
                 </xpath>
-                <xpath expr="/form/notebook/group/field[@name='unit_amount']" position="after">
-                    <field name="hours_to_inv"/>
-                </xpath>
             </field>
         </record>
         <record id="hr_timesheet.hr_timesheet_line_tree" model="ir.ui.view">

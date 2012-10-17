@@ -106,12 +106,12 @@ class HrAnalyticTimesheet(osv.osv):
                                                                      journal_id,
                                                                      context)
         if 'value' in res and task_id:
-            proj_obj = self.pool.get('project.task')
-            aa = proj_obj.browse(cr, uid, task_id).project_id
-            if aa:
-                res['value']['account_id'] = aa.id
-            if aa.to_invoice and not to_invoice:
-                res['value']['to_invoice'] = aa.to_invoice.id
+            task_obj = self.pool.get('project.task')
+            p = task_obj.browse(cr, uid, task_id).project_id
+            if p:
+                res['value']['account_id'] = p.analytic_account_id.id
+                if p.to_invoice and not to_invoice:
+                    res['value']['to_invoice'] = p.to_invoice.id
         return res
 
 HrAnalyticTimesheet()
