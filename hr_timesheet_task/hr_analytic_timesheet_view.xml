@@ -70,7 +70,7 @@
                         domain="[('date','&lt;=',(datetime.date.today()+relativedelta(day=31)).strftime('%%Y-%%m-%%d')),('date','&gt;=',(datetime.date.today()-relativedelta(day=1)).strftime('%%Y-%%m-%%d'))]"
                         help="Current Month"/>
                     <filter icon="terp-go-week" string="    Week    " separator="1" name="week"
-                        domain="[('date','&lt;=', (datetime.date.today() + relativedelta(weeks=0,day=7, weekday=-1)).strftime('%%Y-%%m-%%d')),('date','&gt;=',(datetime.date.today() - relativedelta(weeks=1, weekday=0)).strftime('%%Y-%%m-%%d'))]"
+                        domain="[('date','&gt;=',(datetime.date.today()+relativedelta(days=-6,weekday=0)).strftime('%%Y-%%m-%%d')),('date','&lt;=',(datetime.date.today()+relativedelta(weekday=6)).strftime('%%Y-%%m-%%d'))]"
                         help="Current week"/>
                 </xpath>
 

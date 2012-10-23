@@ -30,7 +30,7 @@
 from osv import osv, fields
 
 TASK_WATCHERS = ['work_ids', 'remaining_hours', 'planned_hours']
-AA_WATCHERS = ['unit_amount', 'product_uom_id', 'account_id', 'to_invoice', 'task_id']
+AA_WATCHERS = ['unit_amount','product_uom_id','account_id','to_invoice']
 
 class ProjectTask(osv.osv):
     _inherit = "project.task"
@@ -158,13 +158,13 @@ class AccountAnalyticLine(osv.osv):
                 if new_task_id:
                     data = {'task_id': new_task_id,
                             'to_invoice': vals.get('to_invoice',
-                                               line.to_invoice and line.to_invoice.id or False),
+                                               line.to_invoice and line.to_invoice.id or false),
                             'unit_amount': vals.get('unit_amount', line.unit_amount)}
                     self._set_remaining_hours_create(cr, uid, data, context)
                 return ids
             if new_task_id:
                 hours = vals.get('unit_amount', line.unit_amount)
-                factor_id = vals.get('to_invoice', line.to_invoice and line.to_invoice.id or False)
+                factor_id = vals.get('to_invoice', line.to_invoice.id)
                 comp_hours = self._compute_hours_with_factor(cr, uid, hours, factor_id, context)
                 old_factor = line.to_invoice and line.to_invoice.id or False
                 old_comp_hours = self._compute_hours_with_factor(cr, uid, line.unit_amount,
