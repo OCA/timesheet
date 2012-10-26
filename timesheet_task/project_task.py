@@ -87,6 +87,17 @@ class ProjectTask(osv.osv):
                                      help="Percent of tasks closed according to the total of tasks todo.",
                                      store = {'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
                                               'account.analytic.line': (_get_analytic_line, AA_WATCHERS, 20)})}
+    
+    def write(self, cr, uid, ids, vals, context=None):
+        res = super(ProjectTask, self).write(cr, uid, ids, vals, context=context)
+        if 'project_id' in vals:
+            ts_obj = self.pool.get('hr.analytic.timesheet')
+            project_obj = self.pool.get('project.project')
+            project = project_obj.browse(cr, uid, vals['project_id'], context)
+            account_id = project.analytic_account_id.id
+            for task in self.browse(cr, uid, ids, context=context):
+                ts_obj.write(cr, uid, [w.id for w in task.work_ids], {'account_id': account_id}, context=context)
+        return res
 
 ProjectTask()
 
