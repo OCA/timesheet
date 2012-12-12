@@ -58,7 +58,7 @@ class timesheet_report(report_sxw.rml_parse):
                 tot += (line.unit_amount / factor)
                 deduced += ((line.unit_amount / factor) * factor_invoicing)
 
-        return {'total':tot, 'deduced':deduced}
+        return {'total': tot, 'deduced': deduced}
 
     def _get_and_change_date_format_for_swiss(self, date_to_format):
         date_formatted = ''
