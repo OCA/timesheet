@@ -3,7 +3,7 @@
 #
 #    Author: Arnaud Wüst (Camptocamp)
 #    Author: Nicolas Bessi (Camptocamp)
-#    Author: Guewen Baconnier (Camptocamp)
+#    Author: Guewen Baconnier (Camptocamp) (port to v7)
 #    Copyright 2011-2012 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,22 +22,31 @@
 ##############################################################################
 
 {
-    "name" : "Timesheet Reminder",
-    "version" : "2.0",
-    "author" : "Camptocamp",
-    "category" : "",
-    "website" : "http://www.camptocamp.com",
+    "name": "Timesheet Reminder",
+    "version": "2.0",
+    "author": "Camptocamp",
+    "license": 'AGPL-3',
+    "category": "",
+    "website": "http://www.camptocamp.com",
     "description": """
-Timesheet Reports Module:
-    * Add a menu in Human Resources / Configuration / Timesheet Reminder. It allows to send automatic emails to those who did not complete their timesheet in the last 5 weeks.
-    * Per employee, you can choose to send the reminder or not.
-    * Add a report in Human Resources / Reporting / Timesheet / Timesheet Status which displays the state of the last 5 timesheets for all users per company.
+Timesheet Reports Module
+========================
 
-This module replaces the modules c2c_timesheet_reports in TinyERP 4 and OpenERP 5.
+ * Add a menu in `Human Resources / Configuration
+   / Timesheet Reminder`.
+   It allows to send automatic emails to those who did
+   not complete their timesheet in the last 5 weeks.
+ * Per employee, you can choose to send the reminder or not.
+ * Add a report in `Human Resources / Reporting / Timesheet
+   / Timesheet Status` which displays the state of the last
+   5 timesheets for all users per company.
+
+This module replaces the modules c2c_timesheet_reports
+of TinyERP 4 and OpenERP 5.
     """,
-    "depends" : ["hr_timesheet_sheet"],
-    "init_xml" : [],
-    "update_xml" : [
+    "depends": ["hr_timesheet_sheet"],
+    "init_xml": [],
+    "update_xml": [
         'security/ir.model.access.csv',
         'wizard/reminder_config_view.xml',
         'wizard/reminder_status_view.xml',

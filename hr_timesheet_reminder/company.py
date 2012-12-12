@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from datetime import date, datetime
-from dateutil.relativedelta import *
-from openerp.osv import fields, osv, orm
-from tools.translate import _
+from datetime import datetime
+from dateutil.relativedelta import relativedelta, MO, SU
+from openerp.osv import osv, orm
+from openerp.tools.translate import _
 
 
 class res_company(orm.Model):
@@ -51,8 +51,7 @@ class res_company(orm.Model):
             # for each employee
             for employee in employees:
                 # is timesheet for a period not confirmed ?
-                for p_index in range(len(periods)):
-                    period = periods[p_index]
+                for period in periods:
                     status = employee_obj.compute_timesheet_status(cr, uid, employee.id, period, context)
 
                     # if there is a missing sheet or a draft sheet
@@ -60,15 +59,18 @@ class res_company(orm.Model):
                     # then we must alert the user
                     if status in ['Missing', 'Draft'] and employee.receive_timesheet_alerts:
                         res[company.id].append(employee)
-                        break  # no need to go further for this user, he is now added in the list, go to the next one
+                        # no need to go further for this user,
+                        # he is now added in the list, go to the next one
+                        break
         return res
 
     def compute_timesheet_periods(self, cr, uid, company, date, periods_number=5, context=None):
         """ return the timeranges to display. This is the 5 last timesheets"""
         periods = []
-        last_start_date, last_end_date = self.get_last_period_dates(cr, uid, company, date, context=context)
+        last_start_date, last_end_date = self.get_last_period_dates(
+                cr, uid, company, date, context=context)
         for cpt in range(periods_number):
-            #find the delta between last_XXX_date to XXX_date
+            # find the delta between last_XXX_date to XXX_date
             if company.timesheet_range == 'month':
                 delta = relativedelta(months=-cpt)
             elif company.timesheet_range == 'week':
@@ -76,7 +78,9 @@ class res_company(orm.Model):
             elif company.timesheet_range == 'year':
                 delta = relativedelta(years=-cpt)
             else:
-                raise osv.except_osv(_('Error'), _('Unknow timesheet range: %s') % (company.timesheet_range,))
+                raise osv.except_osv(
+                        _('Error'),
+                        _('Unknow timesheet range: %s') % company.timesheet_range)
 
             start_date = last_start_date + delta
             end_date = last_end_date + delta
@@ -86,26 +90,22 @@ class res_company(orm.Model):
 
     def get_last_period_dates(self, cr, uid, company, date, context=None):
         """ return the start date and end date of the last period to display """
-        
+
         # return the first day and last day of the month
         if company.timesheet_range == 'month':
             start_date = date
-            end_date = start_date + relativedelta(months = +1)
+            end_date = start_date + relativedelta(months=+1)
 
         #return the first and last days of the week
         elif company.timesheet_range == 'week':
             # get monday of current week
             start_date = date + relativedelta(weekday=MO(-1))
-            # get sunday of current week 
+            # get sunday of current week
             end_date = date + relativedelta(weekday=SU(+1))
 
         # return the first and last days of the year
         else:
-            start_date = datetime(date.year, 1, 1) 
+            start_date = datetime(date.year, 1, 1)
             end_date = datetime(date.year, 12, 31)
 
-
         return start_date, end_date
-
-
-res_company()

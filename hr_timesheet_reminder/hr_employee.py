@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Author: Arnaud Wüst (Camptocamp)
-#    Author: Guewen Baconnier (Camptocamp)
+#    Author: Guewen Baconnier (Camptocamp) (port to v7)
 #    Copyright 2011-2012 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,19 +20,19 @@
 #
 ##############################################################################
 
-from datetime import *
+from openerp.osv import fields, orm
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
-from osv import fields, osv
 
-
-class hr_employee(osv.osv):
+class hr_employee(orm.Model):
     _inherit = 'hr.employee'
+
     _columns = {
-            'receive_timesheet_alerts': fields.boolean('Receive Timesheet Alerts'),
+        'receive_timesheet_alerts': fields.boolean('Receive Timesheet Alerts'),
     }
 
     _defaults = {
-            'receive_timesheet_alerts': lambda *a: True,
+        'receive_timesheet_alerts': lambda *a: True,
     }
 
     def compute_timesheet_status(self, cr, uid, ids, period, context):
@@ -41,35 +41,33 @@ class hr_employee(osv.osv):
         status = 'Error'
 
         if isinstance(ids, list):
+            assert len(ids) == 1, "Only 1 ID expected"
             ids = ids[0]
 
         employee = self.browse(cr, uid, ids, context=context)
 
-        time_from = period[0]
-        time_to = period[1]
-        
-        # does the timesheet exsists in db and what is its status?
-        timeformat = "%Y-%m-%d"
-        str_date_from = time_from.strftime(timeformat)
-        str_date_to = time_to.strftime(timeformat)
+        time_from, time_to = period
 
-        cr.execute("""SELECT state, date_from, date_to
-                   FROM hr_timesheet_sheet_sheet
-                   WHERE employee_id = %s
-                   AND date_from >= %s
-                   AND date_to <= %s""",
+        # does the timesheet exists in db and what is its status?
+        str_date_from = time_from.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        str_date_to = time_to.strftime(DEFAULT_SERVER_DATE_FORMAT)
+
+        cr.execute(
+            """SELECT state, date_from, date_to
+               FROM hr_timesheet_sheet_sheet
+               WHERE employee_id = %s
+               AND date_from >= %s
+               AND date_to <= %s""",
             (employee.id, str_date_from, str_date_to))
         sheets = cr.dictfetchall()
 
-        #the timesheet does not exists in db
+        # the timesheet does not exists in db
         if not sheets:
             status = 'Missing'
 
-        if len(sheets) > 0:
+        else:
             status = 'Confirmed'
-            for s in sheets:
-                if s['state'] == 'draft':
+            for sheet in sheets:
+                if sheet['state'] == 'draft':
                     status = 'Draft'
         return status
-
-hr_employee()

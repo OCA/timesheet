@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Guewen Baconnier (Camptocamp)
+#    Author: Arnaud Wüst (Camptocamp)
+#    Author: Guewen Baconnier (Camptocamp) (port to v7)
 #    Copyright 2011-2012 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,37 +22,39 @@
 
 import time
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 
 
-class reminder_status(osv.osv_memory):
+class reminder_status(orm.TransientModel):
     _name = 'hr.timesheet.reminder.status'
 
     _columns = {
-        'company_ids': fields.many2many('res.company', 'reminder_company_rel', 'wid', 'rid', 'Company'),
+        'company_ids': fields.many2many(
+            'res.company',
+            'reminder_company_rel',
+            'wid',
+            'rid',
+            string='Company'),
         'date': fields.date('End Date', required=True),
         }
 
     _defaults = {
-        'date': lambda *a: time.strftime('%Y-%m-%d'),
+        'date': time.strftime('%Y-%m-%d'),
     }
 
-    def print_report(self, cr, uid, ids, context):
-        if context is None:
-            context = {}
+    def print_report(self, cr, uid, ids, context=None):
+        form_values = self.read(
+                cr, uid, ids[0], ['company_ids',  'date'], context=context)
 
-        form_values = self.read(cr, uid, ids, ['company_ids',  'date'])[0]
-
+        # when no company is selected, select them all
         if not form_values['company_ids']:
             form_values['company_ids'] = self.pool.get('res.company').\
-            search(cr, uid, [], context=context)
+                search(cr, uid, [], context=context)
+
         data = {'ids': form_values['company_ids'],
                 'model': 'res.company',
-                'form': {}}
-        data['form'].update(form_values)
+                'form': form_values}
 
         return {'type': 'ir.actions.report.xml',
                 'report_name': 'timesheet.reminder.status',
                 'datas': data}
-
-reminder_status()
