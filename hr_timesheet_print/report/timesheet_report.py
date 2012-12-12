@@ -19,14 +19,12 @@
 ##############################################################################
 
 import time
-from datetime import *
-from report import report_sxw
-
-#import xml.dom.minidom
-#import re
+from datetime import datetime, time
+from openerp.report import report_sxw
 
 
 class timesheet_report(report_sxw.rml_parse):
+
     def __init__(self, cr, uid, name, context=None):
         super(timesheet_report, self).__init__(cr, uid, name, context)
         self.localcontext.update({
@@ -36,10 +34,10 @@ class timesheet_report(report_sxw.rml_parse):
         self.context = context
 
     def set_context(self, objects, data, ids, report_type = None):
-        super(timesheet_report,self).set_context(objects,data,ids,report_type)
+        super(timesheet_report, self).set_context(objects, data, ids, report_type)
         self.localcontext['ts_lines'] = objects
         self.localcontext['tot_hours'] = self._get_tot_hours(objects)
-        
+
     def _get_tot_hours(self, ts_lines):
         tot = 0.0
         deduced = 0.0
@@ -53,22 +51,19 @@ class timesheet_report(report_sxw.rml_parse):
             factor_invoicing = 1.0
             if line.to_invoice and line.to_invoice.factor != 0.0:
                 factor_invoicing = 1.0 - line.to_invoice.factor / 100
-            # deduced += ((line.unit_amount / factor) * factor_invoicing)
             if factor_invoicing > 1.0:
                 deduced += ((line.unit_amount / factor) * factor_invoicing)
                 tot += ((line.unit_amount / factor) * factor_invoicing)
             elif factor_invoicing <= 1.0:
                 tot += (line.unit_amount / factor)
                 deduced += ((line.unit_amount / factor) * factor_invoicing)
-                
-                
-        return {'total':tot,'deduced':deduced}
-    
+
+        return {'total':tot, 'deduced':deduced}
 
     def _get_and_change_date_format_for_swiss(self, date_to_format):
         date_formatted = ''
         if date_to_format:
-            date_formatted = strptime(date_to_format, '%Y-%m-%d').strftime('%d.%m.%Y')
+            date_formatted = datetime.strptime(date_to_format, '%Y-%m-%d').strftime('%d.%m.%Y')
         return date_formatted
 
 report_sxw.report_sxw('report.hr.analytic.timesheet.report', 'hr.analytic.timesheet', 'addons/hr_timesheet_print/report/timesheet_report.rml', parser=timesheet_report)
