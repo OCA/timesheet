@@ -22,25 +22,25 @@
 
 from datetime import date, datetime
 from dateutil.relativedelta import *
-from osv import fields, osv
+from openerp.osv import fields, osv, orm
 from tools.translate import _
 
 
-class res_company(osv.osv):
+class res_company(orm.Model):
     _inherit = 'res.company'
 
     def get_reminder_recipients(self, cr, uid, ids, context=None):
         """Return the list of users that must receive the email"""
-        res = {}.fromkeys(ids, [])
+        res = dict((company_id, []) for company_id in ids)
+
         employee_obj = self.pool.get('hr.employee')
 
-        companies = self.browse(cr, uid, ids, context=context)
-
-        for company in companies:
-            employee_ids = employee_obj.search(cr, uid,
-                                [('company_id', '=', company.id),
-                                 ('active', '=', True)],
-                                context=context)
+        for company in self.browse(cr, uid, ids, context=context):
+            employee_ids = employee_obj.search(
+                    cr, uid,
+                    [('company_id', '=', company.id),
+                     ('active', '=', True)],
+                    context=context)
             employees = employee_obj.browse(cr, uid, employee_ids, context=context)
 
             #periods
