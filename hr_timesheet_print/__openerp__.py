@@ -26,7 +26,7 @@ This module adds a report on timesheet lines (hr.analytic.timesheet) to print ou
 detailed of hours passed.
 
  """,
-    "version" : "1.2",
+    "version" : "1.3",
     "author" : "Camptocamp",
     "category" : "Generic Modules/Projects & Services",
     "website": "http://www.camptocamp.com",

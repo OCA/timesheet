@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <document filename="test.pdf">
-  <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
+  <template pageSize="(595.0,842.0)" title="Timesheet Report" author="" allowSplitting="20">
     <pageTemplate id="first">
       <frame id="first" x1="35.0" y1="35.0" width="525" height="772"/>
       <pageGraphics>
@@ -16,7 +16,7 @@
         <lineMode width="0.7"/>
         <lines>0.6cm 27.9cm 20.3cm 27.9cm</lines>
         <setFont name="Helvetica" size="8"/>
-      </pageGraphics>   
+      </pageGraphics>
 
     </pageTemplate>
   </template>
@@ -164,7 +164,7 @@
     <blockTable colWidths="258.0,259.0" style="Table1" repeatRows="1">
       <tr>
         <td>
-          <para style="P12a">Report Date : </para>
+          <para style="P12a">Report Date: </para>
         </td>
         <td>
           <para style="P2">[[ time.strftime("%d.%m.%Y", time.localtime()) ]]</para>
@@ -172,8 +172,7 @@
       </tr>
       <tr>
         <td>
-          <!-- <para style="P12a">[[ o.type == 'hours' and "Quantity of hours" or "Amount"]] used : </para> -->
-          <para style="P12a">Total hours : </para>
+          <para style="P12a">Total hours: </para>
         </td>
         <td>
           <para style="P2">[[ round(tot_hours['total'],2) ]]</para>
@@ -181,11 +180,10 @@
       </tr>
       <tr>
         <td>
-          <!-- <para style="P12a">[[ o.type == 'hours' and "Quantity of hours" or "Amount"]] used : </para> -->
-          <para style="P12a">Invoiced hours : </para>
+          <para style="P12a">Invoiced hours: </para>
         </td>
         <td>
-          <para style="P2">[[ round(tot_hours['deduced'],2) or '0.0' ]]</para>
+          <para style="P2">[[ round(tot_hours['deduced'], 2) or '0.0' ]]</para>
         </td>
       </tr>
     </blockTable>
@@ -212,7 +210,7 @@
       </tr>
 
       <tr>
-        [[ repeatIn(objects,'l') ]]
+        [[ repeatIn(objects, 'l') ]]
         <td>
           <para style="P2">[[ l.date and format_date(l.date) or '' ]]</para>
         </td>
@@ -220,13 +218,13 @@
           <para style="P2">[[ l.name or '' ]]</para>
         </td>
         <td>
-          <para style="P2c">[[ round(l.to_invoice.factor &gt;= 0.0 and l.unit_amount or l.to_invoice.factor &lt;= -0.01 and l.unit_amount and ((l.unit_amount and l.to_invoice) and (l.unit_amount - (l.unit_amount * l.to_invoice.factor) / 100 ) or '0.0') or '0.0',2) ]]</para>
+          <para style="P2c">[[ round(l.to_invoice.factor &gt;= 0.0 and l.unit_amount or l.to_invoice.factor &lt;= -0.01 and l.unit_amount and ((l.unit_amount and l.to_invoice) and (l.unit_amount - (l.unit_amount * l.to_invoice.factor) / 100 ) or 0.0), 2) or '0.0' ]]</para>
         </td>
         <td>
           <para style="P2c">[[ l.to_invoice.factor &gt;= 0.0 and l.to_invoice.customer_name or l.to_invoice.factor &lt;= -0.01 and '100%' ]]</para>
         </td>
         <td>
-          <para style="P2c">[[ round((l.unit_amount and l.to_invoice) and (l.unit_amount - (l.unit_amount * l.to_invoice.factor) / 100 ) or '0.0', 2) ]]</para>
+          <para style="P2c">[[ round((l.unit_amount and l.to_invoice) and (l.unit_amount - (l.unit_amount * l.to_invoice.factor) / 100 ) or 0.0, 2) or '0.0' ]]</para>
         </td>
       </tr>
     </blockTable>
