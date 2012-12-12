@@ -19,7 +19,7 @@
 ##############################################################################
 
 import time
-from datetime import datetime, time
+from datetime import datetime
 from openerp.report import report_sxw
 
 
@@ -33,10 +33,10 @@ class timesheet_report(report_sxw.rml_parse):
         })
         self.context = context
 
-    def set_context(self, objects, data, ids, report_type = None):
-        super(timesheet_report, self).set_context(objects, data, ids, report_type)
+    def set_context(self, objects, data, ids, report_type=None):
         self.localcontext['ts_lines'] = objects
         self.localcontext['tot_hours'] = self._get_tot_hours(objects)
+        super(timesheet_report, self).set_context(objects, data, ids, report_type)
 
     def _get_tot_hours(self, ts_lines):
         tot = 0.0
