@@ -37,7 +37,7 @@ detailed of hours passed.
     "website": "http://www.camptocamp.com",
     "depends" : [
         "analytic",
-        "hr_timesheet",
+        "hr_timesheet_invoice",
         ],
     "init_xml" : [],
     "update_xml" : [
