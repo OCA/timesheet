@@ -36,11 +36,11 @@
         </record>
 
         <menuitem id="menu_hr_timesheet_reminder_status"
-                icon="STOCK_PRINT"
-                action="action_hr_timesheet_reminder_status"
-                parent="hr_timesheet.menu_hr_reporting_timesheet"
-                name="Timesheet Status"
-                groups="base.group_hr_manager"/>
+            icon="STOCK_PRINT"
+            action="action_hr_timesheet_reminder_status"
+            parent="hr_timesheet.menu_hr_reporting_timesheet"
+            name="Timesheet Status"
+            groups="base.group_hr_manager"/>
 
-</data>
+    </data>
 </openerp>

@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <openerp>
-	<data>
-		<report
-			id="timesheet_status"
-			string="Timesheet Status"
-			model="res.company"
-			name="timesheet.reminder.status"
-			rml="hr_timesheet_reminder/report/timesheet_status.rml"
-			auto="False"
+    <data>
+        <report
+            id="timesheet_status"
+            string="Timesheet Status"
+            model="res.company"
+            name="timesheet.reminder.status"
+            rml="hr_timesheet_reminder/report/timesheet_status.rml"
+            auto="False"
             header="True"
             menu="False"/>
-        
-	</data>
+
+    </data>
 </openerp>

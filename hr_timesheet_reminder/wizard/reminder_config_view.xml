@@ -42,11 +42,11 @@
         </record>
 
         <menuitem id="menu_hr_timesheet_reminder_config"
-                icon="STOCK_PRINT"
-                action="action_hr_timesheet_reminder_config"
-                parent="hr.menu_hr_configuration"
-                name="Timesheet Reminder"
-                groups="base.group_hr_manager"/>
+            icon="STOCK_PRINT"
+            action="action_hr_timesheet_reminder_config"
+            parent="hr.menu_hr_configuration"
+            name="Timesheet Reminder"
+            groups="base.group_hr_manager"/>
 
-</data>
+    </data>
 </openerp>
