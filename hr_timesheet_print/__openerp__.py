@@ -33,7 +33,7 @@ detailed of hours passed.
     "license": 'AGPL-3',
     "depends" : [
         "analytic",
-        "hr_timesheet",
+        "hr_timesheet_invoice",
         ],
     "init_xml" : [],
     "update_xml" : [
