@@ -20,8 +20,6 @@
 #
 ##############################################################################
 
-import time
-
 from datetime import datetime, timedelta
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
@@ -115,10 +113,8 @@ class reminder(orm.Model):
 
     @staticmethod
     def _cron_nextcall():
-        now = datetime.today() + timedelta(days=1)
-        return time.strftime(
-                DEFAULT_SERVER_DATETIME_FORMAT,
-                now.timetuple())
+        tomorrow = datetime.today() + timedelta(days=1)
+        return tomorrow.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
 
     def get_message_id(self, cr, uid, context=None):
         """ return the message's id. create one if the message does not exists """
