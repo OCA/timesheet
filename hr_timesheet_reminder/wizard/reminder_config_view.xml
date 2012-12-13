@@ -7,27 +7,38 @@
             <field name="model">hr.timesheet.reminder.config</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Timesheet Reminder">
-                    <group colspan="4" col="4" string="Periodicity" >
-                        <field name="reminder_active" />
-                        <newline/>
-                        <field name="nextcall" attrs="{'required':[('reminder_active','==',True)]}"/>
-                        <newline/>
-                        <field name="interval_number" string="Then send message every" attrs="{'required':[('reminder_active','==',True)]}"/>
-                        <field name="interval_type" nolabel="1" attrs="{'required':[('reminder_active','==',True)]}"/>
-                    </group>
+                <form string="Timesheet Reminder" version="7.0">
+                    <sheet>
+                        <group>
+                            <separator string="Periodicity" colspan="4"/>
+                            <field name="reminder_active" />
+                            <newline/>
+                            <field name="nextcall" attrs="{'required':[('reminder_active','==',True)]}"/>
+                            <newline/>
+                            <label for="interval_number" string="Then send message every"/>
+                            <div>
+                                <field name="interval_number" class="oe_inline"
+                                    attrs="{'required':[('reminder_active','==',True)]}"/>
+                                <field name="interval_type" nolabel="1" class="oe_inline"
+                                    attrs="{'required':[('reminder_active','==',True)]}"/>
+                            </div>
+                        </group>
 
-                    <group colspan="4" col="2" string="Message">
-                        <field name="reply_to"/>
-                        <field name="subject"/>
-                        <field name="message" height="200"/>
-                    </group>
+                        <group col="2">
+                            <separator string="Message" colspan="4"/>
+                            <field name="reply_to"/>
+                            <field name="subject"/>
+                            <field name="message" height="200"/>
+                        </group>
+                    </sheet>
 
-                    <group colspan="4" col="6">
-                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                        <button icon="gtk-ok" string="Save configuration" name="save" type="object"/>
-                        <button icon="gtk-ok" string="Run now" name="run" type="object"/>
-                    </group>
+                    <footer>
+                        <button name="save" string="Save configuration" colspan="1"
+                            type="object" class="oe_highlight"/> or
+                        <button name="run" string="Run now" colspan="1"
+                            type="object" class="oe_highlight"/> or
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
                 </form>
             </field>
         </record>

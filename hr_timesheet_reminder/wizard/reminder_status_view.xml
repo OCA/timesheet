@@ -7,21 +7,23 @@
             <field name="model">hr.timesheet.reminder.status</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Reminder Status">
-                    <group colspan="4" col="4" string="Parameter">
-                        <separator string="End Date (display the 5 timesheets previous to this date)" colspan="4"/>
-                        <field name="date" colspan="4" nolabel="1" width="400" />
-                    </group>
+                <form string="Reminder Status" version="7.0">
+                    <sheet>
+                        <group>
+                            <label for="date" string="End Date (display the 5 timesheets previous to this date)"/>
+                            <field name="date" colspan="4" nolabel="1" width="400" />
+                        </group>
 
-                    <group colspan="4" col="4" string="Filter">
-                        <separator string="Filter by a Company (leave empty to select all companies)" colspan="4"/>
-                        <field name="company_ids" colspan="4" nolabel="1"/>
-                        <newline/>
-                    </group>
-                    <group colspan="4" col="6">
-                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                        <button icon="gtk-print" string="Print" name="print_report" type="object" colspan="2" default_focus="1" />
-                    </group>
+                        <group>
+                            <separator string="Companies" colspan="4"/>
+                            <label for="company_ids" colspan="4" string="Filter by a Company (leave empty to select all companies)"/>
+                            <field name="company_ids" colspan="4" nolabel="1"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="print_report" string="Print" colspan="1" type="object" class="oe_highlight"/> or
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
                 </form>
             </field>
         </record>
