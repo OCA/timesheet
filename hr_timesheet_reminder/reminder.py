@@ -21,7 +21,6 @@
 ##############################################################################
 
 import time
-import openerp.tools
 
 from datetime import datetime, timedelta
 from openerp.osv import fields, orm
@@ -73,12 +72,18 @@ class reminder(orm.Model):
         message_data = self.browse(cr, uid, message_id, context=context)
 
         # send them email if they have an email defined
-        emails = [employee.work_email for employee
-                    in recipients if employee.work_email]
+        for employee in recipients:
+            if not employee.work_email:
+                continue
+            vals = {
+                'state': 'outgoing',
+                'subject': message_data.subject,
+                'body_html': '<pre>%s</pre>' % message_data.message,
+                'email_to': employee.work_email,
+                'email_from': message_data.reply_to,
+            }
+            self.pool.get('mail.mail').create(cr, uid, vals, context=context)
 
-        if emails:
-            # TODO replace by ir.mail_server.send_email()
-            openerp.tools.email_send(message_data.reply_to, [], message_data.subject, message_data.message, email_bcc=emails)
         return True
 
     def get_cron_id(self, cr, uid, context=None):
