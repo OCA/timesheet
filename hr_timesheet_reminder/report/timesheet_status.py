@@ -101,28 +101,17 @@ class timesheet_status(report_sxw.rml_parse):
 
     def get_title(self, obj):
         """ return the title of the main table """
-        last_id = len(self.data[obj.id]['time_ranges']) - 1
-        start_date = time.strptime(
-                self.data[obj.id]['time_ranges'][last_id][0],
-                DEFAULT_SERVER_DATETIME_FORMAT)
-        start_date = self.formatLang(start_date, date=True)
-
-        end_date = time.strptime(
-                self.data[obj.id]['time_ranges'][0][1],
-                DEFAULT_SERVER_DATETIME_FORMAT)
-        end_date = self.formatLang(end_date, date=True)
+        timerange = self.data[obj.id]['time_ranges']
+        start_date = self.formatLang(timerange[-1][0], date=True)
+        end_date = self.formatLang(timerange[0][1], date=True)
 
         return obj.name + ", " + start_date + _(" to ") + end_date
 
     def get_timerange_title(self, obj, cpt):
         """ return a header text for a periods column """
-        start_date = self.data[obj.id]['time_ranges'][cpt][0]
-        start_date = time.strptime(start_date, DEFAULT_SERVER_DATETIME_FORMAT)
-        start_date = self.formatLang(start_date, date=True)
-
-        end_date = self.data[obj.id]['time_ranges'][cpt][1]
-        end_date = time.strptime(end_date, DEFAULT_SERVER_DATETIME_FORMAT)
-        end_date = self.formatLang(end_date, date=True)
+        timerange = self.data[obj.id]['time_ranges'][cpt]
+        start_date = self.formatLang(timerange[0], date=True)
+        end_date = self.formatLang(timerange[1], date=True)
 
         return start_date + "\n " + end_date
 
