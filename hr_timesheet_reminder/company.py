@@ -39,8 +39,12 @@ class res_company(orm.Model):
             employee_ids = employee_obj.search(
                     cr, uid,
                     [('company_id', '=', company.id),
-                     ('active', '=', True)],
+                     ('receive_timesheet_alerts', '=', True)],
                     context=context)
+
+            if not employee_ids:
+                continue
+
             employees = employee_obj.browse(cr, uid, employee_ids, context=context)
 
             #periods
@@ -57,7 +61,7 @@ class res_company(orm.Model):
                     # if there is a missing sheet or a draft sheet
                     # and the user can receive alerts
                     # then we must alert the user
-                    if status in ['Missing', 'Draft'] and employee.receive_timesheet_alerts:
+                    if status in ['Missing', 'Draft']:
                         res[company.id].append(employee)
                         # no need to go further for this user,
                         # he is now added in the list, go to the next one
