@@ -32,7 +32,7 @@ class reminder(orm.Model):
 
     _columns = {
             'reply_to': fields.char('Reply To'),
-            'message': fields.text('Message'),
+            'message': fields.html('Message'),
             'subject': fields.char('Subject'),
     }
 
@@ -76,7 +76,7 @@ class reminder(orm.Model):
             vals = {
                 'state': 'outgoing',
                 'subject': message_data.subject,
-                'body_html': '<pre>%s</pre>' % message_data.message,
+                'body_html': message_data.message,
                 'email_to': employee.work_email,
                 'email_from': message_data.reply_to,
             }

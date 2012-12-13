@@ -35,7 +35,7 @@ class reminder_config(orm.TransientModel):
             'Periodicity Unit'),
         'interval_number': fields.integer('Periodicity Quantity'),
         'nextcall': fields.datetime('Next Run'),
-        'message': fields.text('Message', required=True),
+        'message': fields.html('Message', required=True),
         'subject': fields.char('Subject', required=True),
         'reply_to': fields.char('Reply To', required=True),
     }
