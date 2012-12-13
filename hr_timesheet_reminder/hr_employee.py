@@ -32,7 +32,7 @@ class hr_employee(orm.Model):
     }
 
     _defaults = {
-        'receive_timesheet_alerts': lambda *a: True,
+        'receive_timesheet_alerts': True,
     }
 
     def compute_timesheet_status(self, cr, uid, ids, period, context):

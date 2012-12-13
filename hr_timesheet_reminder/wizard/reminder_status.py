@@ -20,8 +20,6 @@
 #
 ##############################################################################
 
-import time
-
 from openerp.osv import orm, fields
 
 
@@ -39,7 +37,7 @@ class reminder_status(orm.TransientModel):
         }
 
     _defaults = {
-        'date': time.strftime('%Y-%m-%d'),
+        'date': lambda *a: fields.date.today(),
     }
 
     def print_report(self, cr, uid, ids, context=None):
