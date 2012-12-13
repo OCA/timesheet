@@ -32,7 +32,7 @@
  'update_xml': ['hr_timesheet_sheet_view.xml', 'hr_analytic_timesheet_view.xml'],
  'demo_xml': [],
  'tests': [],
- 'installable': True,
+ 'installable': False,
  'images' : [],
  'auto_install': False,
  'license': 'AGPL-3',
