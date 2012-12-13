@@ -56,5 +56,5 @@ This module replaces the modules c2c_timesheet_reports in TinyERP 4 and OpenERP 
         'timesheet_report.xml',
     ],
     "active": False,
-    "installable": True
+    'installable': False
 }

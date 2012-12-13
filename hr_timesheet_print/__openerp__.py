@@ -40,5 +40,5 @@ detailed of hours passed.
         "report.xml",
     ],
     "active": False,
-    "installable": True
+    'installable': False
 }
