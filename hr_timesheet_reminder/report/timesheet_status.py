@@ -24,7 +24,7 @@ import time
 
 from datetime import datetime
 from openerp.report import report_sxw
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from openerp.tools.translate import _
 
 
