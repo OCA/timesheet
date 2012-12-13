@@ -1,33 +1,27 @@
 <?xml version="1.0"?>
 <document filename="timesheet_status.pdf">
+    <!--
     ##############################################################################
     #
-    # Copyright (c) Camptocamp SA
-    # Author: Arnaud Wüst
+    #    Author: Arnaud Wüst (Camptocamp)
+    #    Copyright 2011-2012 Camptocamp SA
     #
+    #    This program is free software: you can redistribute it and/or modify
+    #    it under the terms of the GNU Affero General Public License as
+    #    published by the Free Software Foundation, either version 3 of the
+    #    License, or (at your option) any later version.
     #
-    # WARNING: This program as such is intended to be used by professional
-    # programmers who take the whole responsability of assessing all potential
-    # consequences resulting from its eventual inadequacies and bugs
-    # End users who are looking for a ready-to-use solution with commercial
-    # garantees and support are strongly adviced to contract a Free Software
-    # Service Company
+    #    This program is distributed in the hope that it will be useful,
+    #    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    #    GNU Affero General Public License for more details.
     #
-    # This program is Free Software; you can redistribute it and/or
-    # modify it under the terms of the GNU General Public License
-    # as published by the Free Software Foundation; either version 2
-    # of the License, or (at your option) any later version.
-    #
-    # This program is distributed in the hope that it will be useful,
-    # but WITHOUT ANY WARRANTY; without even the implied warranty of
-    # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    # GNU General Public License for more details.
-    #
-    # You should have received a copy of the GNU General Public License
-    # along with this program; if not, write to the Free Software
-    # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+    #    You should have received a copy of the GNU Affero General Public License
+    #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #
     ##############################################################################
+    -->
+
 
     <!-- Process all datas -->
     <template pageSize="(21cm,29.7cm)" title="Timesheet Status" author="Camptocamp" allowSplitting="20">
@@ -129,12 +123,12 @@
 
     </stylesheet>
 
-    <story>  
+    <story>
 
         [[repeatIn(objects, 'o')]]
         <blockTable style="std" repeatRows="2" colWidths="0,5cm,2.7cm,2.7cm,2.7cm,2.7cm,2.7cm" >
 
-            <tr>     
+            <tr>
                 <td/>
                 <td>[[get_title(o)]]</td>
             </tr>
@@ -152,11 +146,11 @@
             <tr> 
                 <td>[[repeatIn(get_user_list(o),'u')]]</td>
                 <td><para style="std">[[ u.name ]]</para></td>
-                <td><para>[[ setTag('para','para',{'style':get_timesheet_status(o, u, 4)}) ]][[ get_timesheet_status(o, u, 4) ]]</para></td>
-                <td><para>[[ setTag('para','para',{'style':get_timesheet_status(o, u, 3)}) ]][[ get_timesheet_status(o, u, 3) ]]</para></td>
-                <td><para>[[ setTag('para','para',{'style':get_timesheet_status(o, u, 2)}) ]][[ get_timesheet_status(o, u, 2) ]]</para></td>
-                <td><para>[[ setTag('para','para',{'style':get_timesheet_status(o, u, 1)}) ]][[ get_timesheet_status(o, u, 1) ]]</para></td>
-                <td><para>[[ setTag('para','para',{'style':get_timesheet_status(o, u, 0)}) ]][[ get_timesheet_status(o, u, 0) ]]</para></td>
+                <td><para>[[ setTag('para', 'para', {'style': get_timesheet_status(o, u, 4)}) ]][[ get_timesheet_status(o, u, 4) ]]</para></td>
+                <td><para>[[ setTag('para', 'para', {'style': get_timesheet_status(o, u, 3)}) ]][[ get_timesheet_status(o, u, 3) ]]</para></td>
+                <td><para>[[ setTag('para', 'para', {'style': get_timesheet_status(o, u, 2)}) ]][[ get_timesheet_status(o, u, 2) ]]</para></td>
+                <td><para>[[ setTag('para', 'para', {'style': get_timesheet_status(o, u, 1)}) ]][[ get_timesheet_status(o, u, 1) ]]</para></td>
+                <td><para>[[ setTag('para', 'para', {'style': get_timesheet_status(o, u, 0)}) ]][[ get_timesheet_status(o, u, 0) ]]</para></td>
             </tr>
 
         </blockTable>
