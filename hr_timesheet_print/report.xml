@@ -3,13 +3,13 @@
     <data>
 
         <report id="timesheet_hours_report"
-               string="Timesheet report"
+               string="Timesheet Report"
                model="hr.analytic.timesheet"
                name="hr.analytic.timesheet.report"
                rml="hr_timesheet_print/report/timesheet_report.rml"/>
 
          <report id="timesheet_hours_report_aal"
-               string="Timesheet report"
+               string="Timesheet Report"
                model="account.analytic.line"
                name="analytic.line.timesheet.report"
                rml="hr_timesheet_print/report/timesheet_report.rml"/>
