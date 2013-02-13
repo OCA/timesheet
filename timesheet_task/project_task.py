@@ -29,7 +29,7 @@
 
 from osv import osv, fields
 
-TASK_WATCHERS = ['work_ids', 'remaining_hours', 'planned_hours']
+TASK_WATCHERS = ['aa_ids', 'remaining_hours', 'planned_hours']
 AA_WATCHERS = ['unit_amount', 'product_uom_id', 'account_id', 'to_invoice', 'task_id']
 
 class ProjectTask(osv.osv):
@@ -66,7 +66,8 @@ class ProjectTask(osv.osv):
         return result
 
 
-    _columns = {'work_ids': fields.one2many('hr.analytic.timesheet', 'task_id', 'Work done'),
+    _columns = {'aa_ids': fields.one2many('hr.analytic.timesheet', 'task_id', 'Work done'),
+                
 
     'effective_hours': fields.function(_progress_rate, multi="progress", method=True, string='Time Spent',
                                        help="Sum of spent hours of all tasks related to this project and its child projects.",
@@ -96,7 +97,7 @@ class ProjectTask(osv.osv):
             project = project_obj.browse(cr, uid, vals['project_id'], context)
             account_id = project.analytic_account_id.id
             for task in self.browse(cr, uid, ids, context=context):
-                ts_obj.write(cr, uid, [w.id for w in task.work_ids], {'account_id': account_id}, context=context)
+                ts_obj.write(cr, uid, [w.id for w in task.aa_ids], {'account_id': account_id}, context=context)
         return res
 
 ProjectTask()

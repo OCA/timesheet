@@ -32,7 +32,7 @@
  'update_xml': ['project_task_view.xml'],
  'demo_xml': [],
  'tests': [],
- 'installable': False,
+ 'installable': True,
  'images' : [],
  'auto_install': False,
  'license': 'AGPL-3',
