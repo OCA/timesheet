@@ -5,7 +5,6 @@
         <record id="wizard_calendar_report" model="ir.ui.view">
             <field name="name">Attendances Analysis Calendar</field>
             <field name="model">attendance_analysis.wizard.calendar_report</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Attendances Analysis Calendar">
                     <group colspan="4" height="400">

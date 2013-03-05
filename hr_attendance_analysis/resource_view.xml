@@ -5,7 +5,6 @@
         <record id="view_resource_calendar_attendance_form" model="ir.ui.view">
             <field name="name">resource.calendar.attendance.form</field>
             <field name="model">resource.calendar.attendance</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="resource.view_resource_calendar_attendance_form"></field>
             <field name="arch" type="xml">
                 <field name="hour_from" position="after">
@@ -19,7 +18,6 @@
         <record id="resource_calendar_form" model="ir.ui.view">
             <field name="name">resource.calendar.form</field>
             <field name="model">resource.calendar</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="resource.resource_calendar_form"></field>
             <field name="arch" type="xml">
                 <field name="attendance_ids" position="after">

@@ -6,7 +6,6 @@
             <field name="name">hr.attendance.form</field>
             <field name="model">hr.attendance</field>
             <field name="inherit_id" ref="hr_attendance.view_attendance_form"></field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="action_desc" position="after">
                     <field name="duration"   widget="float_time"/>
@@ -19,7 +18,6 @@
         <record id="view_attendance_analysis" model="ir.ui.view">
             <field name="name">hr.attendance.analysis</field>
             <field name="model">hr.attendance</field>
-            <field name="type">tree</field>
             <field name="priority" eval="17"/>
             <field name="arch" type="xml">
                 <tree string="Employee attendances analysis">
@@ -37,7 +35,6 @@
         <record model="ir.ui.view" id="view_hr_attendance_filter">
             <field name="name">view_hr_attendance_filter</field>
             <field name="model">hr.attendance</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Hr Attendance Search">
                     <filter icon="terp-go-today" string="Today" name="today" domain="[('name::date','=',current_date)]" />
@@ -58,7 +55,6 @@
         <record model="ir.ui.view" id="view_hr_attendance_calendar">
             <field name="name">view_hr_attendance.calendar</field>
             <field name="model">hr.attendance</field>
-            <field name="type">calendar</field>
             <field name="arch" type="xml">
                 <calendar string="Calendar View" date_start="name" date_stop="end_datetime" color="employee_id">
                     <field name="duration"   />
