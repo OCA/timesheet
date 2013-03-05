@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_attendance_form" model="ir.ui.view">
+            <field name="name">hr.attendance.form</field>
+            <field name="model">hr.attendance</field>
+            <field name="inherit_id" ref="hr_attendance.view_attendance_form"></field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="action_desc" position="after">
+                    <field name="duration"   widget="float_time"/>
+                    <field name="outside_calendar_duration"   widget="float_time"/>
+                    <field name="inside_calendar_duration"  widget="float_time" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_attendance_analysis" model="ir.ui.view">
+            <field name="name">hr.attendance.analysis</field>
+            <field name="model">hr.attendance</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="17"/>
+            <field name="arch" type="xml">
+                <tree string="Employee attendances analysis">
+                    <field name="employee_id"  />
+                    <field name="name" string="Start date time"/>
+                    <field name="end_datetime"/>
+                    <field name="duration"  sum="Total hours" widget="float_time"/>
+                    <field name="outside_calendar_duration" sum="Overtime"  widget="float_time"/>
+                    <field name="inside_calendar_duration" sum="Within working schedule" widget="float_time" />
+                    <field name="day" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_hr_attendance_filter">
+            <field name="name">view_hr_attendance_filter</field>
+            <field name="model">hr.attendance</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Hr Attendance Search">
+                    <filter icon="terp-go-today" string="Today" name="today" domain="[('name::date','=',current_date)]" />
+                    <separator orientation="vertical"/>
+                    <field name="employee_id"/>
+                    <field name="name" string="Start date time"/>
+                    <field name="end_datetime"/>
+                    <newline/>
+                    <group expand="0" string="Group By...">
+                        <filter name="employee" string="Employee" icon="terp-personal" domain="[]" context="{'group_by':'employee_id'}"/>
+                        <separator orientation="vertical"/>
+                        <filter string="Day" icon="terp-go-today" domain="[]" context="{'group_by':'day'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_hr_attendance_calendar">
+            <field name="name">view_hr_attendance.calendar</field>
+            <field name="model">hr.attendance</field>
+            <field name="type">calendar</field>
+            <field name="arch" type="xml">
+                <calendar string="Calendar View" date_start="name" date_stop="end_datetime" color="employee_id">
+                    <field name="duration"   />
+                    <field name="outside_calendar_duration"   />
+                    <field name="inside_calendar_duration"  />
+                </calendar>
+            </field>
+        </record>
+
+        <record id="open_view_attendance" model="ir.actions.act_window">
+            <field name="name">Attendances analysis</field>
+            <field name="res_model">hr.attendance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="domain">[('action', '=', 'sign_in')]</field>
+            <field name="view_id" ref="view_attendance_analysis"/>
+            <field name="search_view_id" ref="view_hr_attendance_filter" />
+        </record>
+        <menuitem action="open_view_attendance" id="menu_open_view_attendance" parent="hr_attendance.menu_hr_attendance" groups="base.group_hr_manager"/>
+        <menuitem action="resource.action_resource_calendar_form" id="menu_view_resource_calendar" parent="hr_contract.next_id_56" sequence="1"/>
+
+    </data>
+</openerp>
