@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp.osv import fields, orm
 from tools.translate import _
 import time
 from datetime import *
@@ -28,7 +28,7 @@ import math
 
 import pytz
 
-class res_company(osv.osv):
+class res_company(orm.Model):
 
     _inherit = 'res.company'
 
@@ -40,9 +40,8 @@ class res_company(osv.osv):
         'working_time_precision': 0.016666667
         }
 
-res_company()
 
-class hr_attendance(osv.osv):
+class hr_attendance(orm.Model):
 
     # ref: https://bugs.launchpad.net/openobject-client/+bug/887612
     # test: 0.9853 - 0.0085
@@ -380,5 +379,4 @@ class hr_attendance(osv.osv):
                 }),
     }
 
-hr_attendance()
 

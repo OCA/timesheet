@@ -20,9 +20,9 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp.osv import fields, orm
 
-class resource_calendar_attendance(osv.osv):
+class resource_calendar_attendance(orm.Model):
     _inherit = "resource.calendar.attendance"
     _columns = {
         'tolerance_from': fields.float('Tolerance from', size=8,
@@ -31,9 +31,8 @@ class resource_calendar_attendance(osv.osv):
             help='Sign in done in the interval "Work from + Tolerance to" will be considered done at "Work from"'),
         }
     
-resource_calendar_attendance()
 
-class resource_calendar(osv.osv):
+class resource_calendar(orm.Model):
     _inherit = "resource.calendar"
     _columns = {
         'attendance_rounding': fields.selection([
@@ -89,9 +88,8 @@ class resource_calendar(osv.osv):
             help='On the contrary of overtime rounding, using rounding = 15 minutes, a leave of 1 minute will be considered as 15 minutes, 16 minutes as 30 minutes and so on'),
         'overtime_type_ids': fields.one2many('resource.calendar.overtime.type', 'calendar_id', 'Overtime types'),
         }
-resource_calendar()
 
-class resource_calendar_overtime_range(osv.osv):
+class resource_calendar_overtime_range(orm.Model):
     _name = 'resource.calendar.overtime.type'
     _description = 'Overtime type'
     _order = 'sequence'
@@ -102,4 +100,3 @@ class resource_calendar_overtime_range(osv.osv):
         'limit': fields.float('Limit', size=8,
             help='Limit, in hours, of overtime that can be imputed to this type of overtime in a day. The surplus is imputed to the subsequent type')
         }
-resource_calendar_overtime_range()
