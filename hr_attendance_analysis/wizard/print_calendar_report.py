@@ -312,4 +312,3 @@ class wizard_calendar_report(orm.TransientModel):
             'datas': datas,
         }
 
-wizard_calendar_report()
