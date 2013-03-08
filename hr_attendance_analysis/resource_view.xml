@@ -23,10 +23,12 @@
                 <field name="attendance_ids" position="after">
                     <notebook colspan="4">
                         <page string="Roundings">
-                            <field name="attendance_rounding"/>
-                            <field name="leave_rounding"/>
-                            <field name="overtime_rounding"/>
-                            <field name="overtime_rounding_tolerance" widget="float_time"/>
+                            <group colspan="4">
+                                <field name="attendance_rounding"/>
+                                <field name="leave_rounding"/>
+                                <field name="overtime_rounding"/>
+                                <field name="overtime_rounding_tolerance" widget="float_time"/>
+                            </group>
                         </page>
                         <page string="Overtime types">
                             <field name="overtime_type_ids" colspan="4" nolabel="1">
