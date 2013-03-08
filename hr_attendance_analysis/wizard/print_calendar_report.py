@@ -20,13 +20,13 @@
 #
 ##############################################################################
 
-from osv import fields,osv
+from openerp.osv import fields, orm
 from tools.translate import _
 from datetime import *
 import math
 import calendar
 
-class wizard_calendar_report(osv.osv_memory):
+class wizard_calendar_report(orm.TransientModel):
     
     _columns = {
         'month': fields.selection([
