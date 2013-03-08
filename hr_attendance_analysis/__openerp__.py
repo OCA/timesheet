@@ -40,8 +40,7 @@ This module requires python 2.7 or later
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends" : ['hr_attendance', 'hr_contract', 'hr_holidays', 'report_webkit'],
-    "init_xml" : [],
-    "update_xml" : [
+    "data" : [
         'company_view.xml',
         'hr_attendance_view.xml',
         'reports.xml',
@@ -49,7 +48,7 @@ This module requires python 2.7 or later
         'resource_view.xml',
         'security/ir.model.access.csv',
         ],
-    "demo_xml" : [],
+    "demo" : [],
     "active": False,
     "installable": True
 }
