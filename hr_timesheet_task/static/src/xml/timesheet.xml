@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+    <t t-extend="hr_timesheet_sheet.WeeklyTimesheet">
+	   
+       <!-- Add a task column -->
+       <t t-jquery="th.oe_timesheet_first_col" t-operation="after">
+            <th class="oe_timesheet_task_col">Task</th>
+        </t>
+
+        <!-- Replace all line created with the foreach to take account of task -->
+        <t t-jquery="tr:not([class]):nth-child(n+2)" t-operation="replace">
+            <tr t-foreach="widget.accounts" t-as="account">
+                <td class="oe_timesheet_weekly_account"><a href="javascript:void(0)" t-att-data-id="JSON.stringify(account.account)"><t t-esc="widget.account_names[account.account]"/></a></td>
+                <td class="oe_timesheet_weekly_task"><a href="javascript:void(0)" t-att-data-task-id="JSON.stringify(account.task)"><t t-esc="widget.task_names[account.task]" /></a></td>
+                <t t-set="day_count" t-value="0"/>
+                <t t-foreach="account.days" t-as="day">
+                    <td t-att-class="(Date.compare(day.day, Date.today()) === 0 ? 'oe_timesheet_weekly_today' : '')">
+                        <input t-if="!widget.get('effective_readonly')" class="oe_timesheet_weekly_input" 
+                            t-att-data-account-task="account.account_task" t-att-data-day-count="day_count" type="text"/>
+                        <span t-if="widget.get('effective_readonly')" class="oe_timesheet_weekly_box" 
+                            t-att-data-account-task="account.account_task" t-att-data-day-count="day_count"/>
+                        <t t-set="day_count" t-value="day_count + 1"/>
+                    </td>
+                </t>
+                <td t-att-data-account-task-total="account.account_task" class="oe_timesheet_total"> </td>
+            </tr>
+        </t>
+
+        <!-- Add line in the last tr before the first element -->
+        <t t-jquery="tr.oe_timesheet_total > td:first-child" t-operation="after">
+            <td> </td>
+        </t>
+    </t>
+</templates>

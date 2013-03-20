@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        <!-- I don't know how to migrate these filter - http://stackoverflow.com/questions/14537302/want-to-show-data-group-by-year-month-week-in-openerp-7
+        
         <record id="view_hr_timesheet_sheet_filter_custom" model="ir.ui.view">
             <field name="name">hr_timesheet_sheet.sheet.filter</field>
             <field name="model">hr_timesheet_sheet.sheet</field>
             <field name="inherit_id" ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"/>
             <field name="type">search</field>
             <field name="arch" type="xml">
-                <xpath expr="/search/group/filter[@string='To Approve']" position="after">
+                <filter name="to_approve" position="after">
                     <separator orientation="vertical"/>
                     <filter icon="terp-go-year" string="  Year  "
                         domain="[('date_from','&lt;=', time.strftime('%%Y-%%m-%%d')),('date_from','&gt;=',time.strftime('%%Y-01-01'))]"
@@ -18,10 +20,11 @@
                     <filter icon="terp-go-week" string="    Week    " separator="1" name="week"
                         domain="[('date_from','&gt;=',(datetime.date.today()+relativedelta(days=-6,weekday=0)).strftime('%%Y-%%m-%%d')),('date_from','&lt;=',(datetime.date.today()+relativedelta(weekday=6)).strftime('%%Y-%%m-%%d'))]"
                         help="Current week"/>
-                </xpath>
+                </filter>
 
             </field>
         </record>
+        -->
         <record id="hr_timesheet_sheet.act_hr_timesheet_sheet_form" model="ir.actions.act_window">
             <field name="context">{'search_default_my_timesheet':1}</field>
         </record>
@@ -32,16 +35,16 @@
             <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
             <field name="arch" type="xml">
                 <xpath
-                    expr="/form/notebook/page[@string='Daily']/field[@name='timesheet_ids']/tree[@string='Timesheet Lines']/field[@name='account_id']"
+                    expr="/form/sheet/notebook/page[@string='Details']/field[@name='timesheet_ids']/tree[@string='Timesheet Activities']/field[@name='account_id']"
                     position="after">
                     <field name="task_id" context="{'account_id' : account_id}"
-                        domain="[('state','=','open')]"/>
+                        domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
                 </xpath>
                 <xpath
-                    expr="/form/notebook/page[@string='Daily']/field[@name='timesheet_ids']/form[@string='Timesheet Lines']/field[@name='account_id']"
+                    expr="/form/sheet/notebook/page[@string='Details']/field[@name='timesheet_ids']/form[@string='Timesheet Activities']/field[@name='account_id']"
                     position="after">
                     <field name="task_id" context="{'account_id' : account_id}"
-                        domain="[('state','=','open')]"/>
+                        domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
                 </xpath>
             </field>
         </record>

@@ -9,9 +9,9 @@
             <field name="type">form</field>
             <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
             <field name="arch" type="xml">
-                <xpath expr="/form/group/field[@name='user_id']" position="after">
+                <xpath expr="/form/sheet/group/group/field[@name='user_id']" position="after">
                     <field name="task_id" context="{ 'account_id' : account_id}"
-                        domain="[('state','=','open')]"/>
+                        domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
                 </xpath>
             </field>
         </record>
@@ -25,7 +25,7 @@
                     <field name="date" on_change="on_change_date(date)"/>
                     <field domain="[('type','=','normal')]" name="account_id"/>
                     <field name="task_id" context="{'account_id' : account_id}"
-                        domain="[('state','=','open')]"/>
+                        domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
                     <field name="name"/>
                     <field name="unit_amount"
                         on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id, journal_id)"
@@ -52,7 +52,7 @@
             <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
             <field name="type">search</field>
             <field name="arch" type="xml">
-                <xpath expr="/search/group/field[@name='date']" position="after">
+                <xpath expr="/search/field[@name='date']" position="after">
                     <field name="task_id"/>
                 </xpath>
                 <xpath
@@ -62,7 +62,8 @@
                     />
                 </xpath>
                 <!-- Add dates filter -->
-                <xpath expr="/search/group/filter[@name='today']" position="before">
+                <!-- I don't know how to migrate these filter - http://stackoverflow.com/questions/14537302/want-to-show-data-group-by-year-month-week-in-openerp-7
+                <xpath expr="/search/group/filter[@string='Date']" position="before">
                     <filter icon="terp-go-year" string="  Year  "
                         domain="[('date','&lt;=', time.strftime('%%Y-%%m-%%d')),('date','&gt;=',time.strftime('%%Y-01-01'))]"
                         help="Current Year"/>
@@ -73,26 +74,13 @@
                         domain="[('date','&gt;=',(datetime.date.today()+relativedelta(days=-6,weekday=0)).strftime('%%Y-%%m-%%d')),('date','&lt;=',(datetime.date.today()+relativedelta(weekday=6)).strftime('%%Y-%%m-%%d'))]"
                         help="Current week"/>
                 </xpath>
+                -->
 
             </field>
         </record>
         <!-- Add default filter on week ! -->
         <record id="hr_timesheet.act_hr_timesheet_line_evry1_all_form" model="ir.actions.act_window">
             <field name="context">{"search_default_user_id":uid, "search_default_week":1}</field>
-        </record>
-        <record id="hr_timesheet_line_search_to_invoice_filter" model="ir.ui.view">
-            <field name="name">hr.analytic.timesheet.search.toinvoice.filter</field>
-            <field name="model">hr.analytic.timesheet</field>
-            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
-            <field name="type">search</field>
-            <field name="arch" type="xml">
-                <xpath expr="/search/group[1]/filter[@name='today']" position="after">
-                    <separator orientation="vertical"/>
-                    <filter name="to_invoice" string="To Invoice" context="{'to_invoice': 1}"
-                        domain="[('invoice_id','=',False),('to_invoice','&lt;&gt;',False)]"
-                        icon="terp-dolar"/>
-                </xpath>
-            </field>
         </record>
     </data>
 </openerp>
