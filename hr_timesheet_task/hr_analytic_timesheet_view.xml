@@ -62,19 +62,18 @@
                     />
                 </xpath>
                 <!-- Add dates filter -->
-                <!-- I don't know how to migrate these filter - http://stackoverflow.com/questions/14537302/want-to-show-data-group-by-year-month-week-in-openerp-7
-                <xpath expr="/search/group/filter[@string='Date']" position="before">
-                    <filter icon="terp-go-year" string="  Year  "
+                <xpath expr="/search/group" position="before">
+                    <separator orientation="vertical"/>
+                    <filter icon="terp-go-year" string="Current Year"
                         domain="[('date','&lt;=', time.strftime('%%Y-%%m-%%d')),('date','&gt;=',time.strftime('%%Y-01-01'))]"
                         help="Current Year"/>
-                    <filter icon="terp-go-month" string="   Month   " name="month"
-                        domain="[('date','&lt;=',(datetime.date.today()+relativedelta(day=31)).strftime('%%Y-%%m-%%d')),('date','&gt;=',(datetime.date.today()-relativedelta(day=1)).strftime('%%Y-%%m-%%d'))]"
+                    <filter icon="terp-go-month" string="Current Month" name="month"
+                        domain="[('date','&lt;=',(context_today()+relativedelta(day=31)).strftime('%%Y-%%m-%%d')),('date','&gt;=',(context_today()-relativedelta(day=1)).strftime('%%Y-%%m-%%d'))]"
                         help="Current Month"/>
-                    <filter icon="terp-go-week" string="    Week    " separator="1" name="week"
-                        domain="[('date','&gt;=',(datetime.date.today()+relativedelta(days=-6,weekday=0)).strftime('%%Y-%%m-%%d')),('date','&lt;=',(datetime.date.today()+relativedelta(weekday=6)).strftime('%%Y-%%m-%%d'))]"
+                    <filter icon="terp-go-week" string="Current Week" separator="1" name="week"
+                        domain="[('date','&gt;=',(context_today()+relativedelta(days=-6,weekday=0)).strftime('%%Y-%%m-%%d')),('date','&lt;=',(context_today()+relativedelta(weekday=6)).strftime('%%Y-%%m-%%d'))]"
                         help="Current week"/>
                 </xpath>
-                -->
 
             </field>
         </record>
