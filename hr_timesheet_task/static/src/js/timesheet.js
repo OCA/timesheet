@@ -1,14 +1,14 @@
 openerp.hr_timesheet_task = function(instance) { 
-	
-	var module = instance.hr_timesheet_sheet
+
+    var module = instance.hr_timesheet_sheet
 
     module.WeeklyTimesheet.include({
-		events: {
-			"click .oe_timesheet_weekly_account a": "go_to",
-			"click .oe_timesheet_weekly_task a": "go_to_task",
+        events: {
+            "click .oe_timesheet_weekly_account a": "go_to",
+            "click .oe_timesheet_weekly_task a": "go_to_task",
         },
         go_to_task : function(event) {
-        	var id = JSON.parse($(event.target).data("task-id"));
+            var id = JSON.parse($(event.target).data("task-id"));
             this.do_action({
                 type: 'ir.actions.act_window',
                 res_model: "project.task",
@@ -44,7 +44,7 @@ openerp.hr_timesheet_task = function(instance) {
                     dates.push(start);
                     start = start.clone().addDays(1);
                 }
-                
+
                 timesheet_lines = _(self.get("sheets")).chain()
                 .map(function(el) {
                     // much simpler to use only the id in all cases
@@ -160,37 +160,37 @@ openerp.hr_timesheet_task = function(instance) {
                     name: "task",
                     type: "many2one",
                     domain: [
-                     	// at this moment, it is always an empty list 
-                     	['project_id.analytic_account_id','=',self.account_m2o.get_value()]
+                        // at this moment, it is always an empty list 
+                        ['project_id.analytic_account_id','=',self.account_m2o.get_value()]
                     ],
                 },
             });
             self.task_m2o.prependTo(self.$(".oe_timesheet_weekly_add_row td"));
             self.account_m2o.prependTo(self.$(".oe_timesheet_weekly_add_row td"));
-            
-            // when account_m2o loose focus, value can be changed, update task_m2o
+
+            // when account_m2o loses focus, value can be changed, 
+            // update task_m2o to show only tasks related to the selected project
             self.account_m2o.$input.focusout(function(){
-            	var id = self.account_m2o.get_value();
-                if (id === false) { return;}
-                // if the account_m2o have a selected value, reinitialize task_m2o with this value
-            	self.task_m2o.init(self.dfm, {
+                var account_id = self.account_m2o.get_value();
+                if (account_id === false) { return; }
+                self.task_m2o.init(self.dfm, {
                     attrs: {
                         name: "task",
                         type: "many2one",
                         domain: [
-                         	['state','=','open'],
-                         	// get only task link to the selected project
-                         	['project_id.analytic_account_id','=',id],
-                         	// use to avoid duplicate
-                         	['id', 'not in', _.pluck(self.accounts, "task")],
-                        ],            
+                            ['state','=','open'],
+                            // show only tasks linked to the selected project
+                            ['project_id.analytic_account_id','=',account_id],
+                            // ignore tasks already in the timesheet
+                            ['id', 'not in', _.pluck(self.accounts, "task")],
+                        ],
                         context: {
-                            'account_id': id,
+                            'account_id': account_id,
                         },
                     },
                 });
-                
-        	});
+            });
+
             self.$(".oe_timesheet_weekly_add_row button").click(function() {
                 var id = self.account_m2o.get_value();
                 if (id === false) {
@@ -249,6 +249,4 @@ openerp.hr_timesheet_task = function(instance) {
             return ops;
         },
     });
-	
-	
 };
