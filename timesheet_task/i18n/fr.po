@@ -29,12 +29,12 @@ msgstr "Ligne analytique"
 #. module: timesheet_task
 #: view:project.task:0
 msgid "Total time"
-msgstr "Temps Total"
+msgstr "Temps total"
 
 #. module: timesheet_task
 #: view:project.task:0
-msgid "Travail effectué"
-msgstr ""
+msgid "Task Work"
+msgstr "Travail effectué"
 
 #. module: timesheet_task
 #: code:addons/timesheet_task/project_task.py:42
@@ -55,5 +55,5 @@ msgstr "Ligne de prestation"
 #. module: timesheet_task
 #: view:project.task:0
 msgid "Total cost"
-msgstr "Total du coût"
+msgstr "Coût total"
 

@@ -21,7 +21,7 @@
 {'name' : 'Task in time sheet',
  'version' : '0.2',
  'author' : 'Camptocamp',
- 'maintainer': 'Camptocamp/Acsone SA/NV',
+ 'maintainer': 'Camptocamp - Acsone SA/NV',
  'category': 'Human Resources',
  'depends' : ['timesheet_task', 'hr_timesheet_sheet'],
  'description': """Replace project.task.work items linked to task
