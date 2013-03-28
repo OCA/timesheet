@@ -9,10 +9,10 @@
             <field name="type">form</field>
             <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
             <field name="arch" type="xml">
-                <xpath expr="/form/sheet/group/group/field[@name='user_id']" position="after">
+                <field name="user_id" position="after">
                     <field name="task_id" context="{ 'account_id' : account_id}"
                         domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
-                </xpath>
+                </field>
             </field>
         </record>
         <record id="hr_timesheet.hr_timesheet_line_tree" model="ir.ui.view">
@@ -52,9 +52,9 @@
             <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
             <field name="type">search</field>
             <field name="arch" type="xml">
-                <xpath expr="/search/field[@name='date']" position="after">
+                <field name="date" position="after">
                     <field name="task_id"/>
-                </xpath>
+                </field>
                 <xpath
                     expr="/search/group[@string='Group By...']/filter[@string='Analytic account']"
                     position="after">
@@ -72,7 +72,7 @@
                         help="Current Month"/>
                     <filter icon="terp-go-week" string="Current Week" separator="1" name="week"
                         domain="[('date','&gt;=',(context_today()+relativedelta(days=-6,weekday=0)).strftime('%%Y-%%m-%%d')),('date','&lt;=',(context_today()+relativedelta(weekday=6)).strftime('%%Y-%%m-%%d'))]"
-                        help="Current week"/>
+                        help="Current Week"/>
                 </xpath>
 
             </field>

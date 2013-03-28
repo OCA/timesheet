@@ -19,24 +19,25 @@
 #
 ##############################################################################
 {'name' : 'Task in time sheet',
- 'version' : '0.1',
+ 'version' : '0.2',
  'author' : 'Camptocamp',
- 'maintainer': 'Camptocamp',
+ 'maintainer': 'Camptocamp/Acsone SA/NV',
  'category': 'Human Resources',
- 'complexity': "normal", #easy, normal, expert
  'depends' : ['timesheet_task', 'hr_timesheet_sheet'],
  'description': """Replace project.task.work items linked to task
                    with hr.analytic.timesheet""",
  'website': 'http://www.camptocamp.com',
- 'init_xml': [],
- 'update_xml': ['hr_timesheet_sheet_view.xml', 'hr_analytic_timesheet_view.xml'],
+ 'data': ['hr_timesheet_sheet_view.xml', 'hr_analytic_timesheet_view.xml'],
  'js' : ['static/src/js/timesheet.js'],
  'css': ['static/src/css/timesheet.css',],
  'qweb': ['static/src/xml/timesheet.xml'],
- 'demo_xml': [],
- 'tests': [],
+ 'demo': [],
+ 'test': [],
  'installable': True,
  'images' : [],
  'auto_install': False,
  'license': 'AGPL-3',
- 'application': True}
+ 'application': True,
+}
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

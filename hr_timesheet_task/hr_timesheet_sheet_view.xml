@@ -18,7 +18,7 @@
                         help="Current Month"/>
                     <filter icon="terp-go-week" string="Current Week" separator="1" name="week"
                         domain="[('date_from','&gt;=',(context_today()+relativedelta(days=-6,weekday=0)).strftime('%%Y-%%m-%%d')),('date_from','&lt;=',(context_today()+relativedelta(weekday=6)).strftime('%%Y-%%m-%%d'))]"
-                        help="Current week"/>
+                        help="Current Week"/>
                 </filter>
 
             </field>
