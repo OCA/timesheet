@@ -19,12 +19,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 
 TASK_WATCHERS = ['work_ids', 'remaining_hours', 'planned_hours']
 TIMESHEET_WATCHERS = ['unit_amount', 'product_uom_id', 'account_id', 'to_invoice', 'task_id']
 
-class ProjectTask(osv.Model):
+class ProjectTask(orm.Model):
     _inherit = "project.task"
     _name = "project.task"
 
@@ -92,7 +92,7 @@ class ProjectTask(osv.Model):
                 ts_obj.write(cr, uid, [w.id for w in task.work_ids], {'account_id': account_id}, context=context)
         return res
 
-class HrAnalyticTimesheet(osv.Model):
+class HrAnalyticTimesheet(orm.Model):
     _inherit = "hr.analytic.timesheet"
     _name = "hr.analytic.timesheet"
 
@@ -116,7 +116,7 @@ class HrAnalyticTimesheet(osv.Model):
                     res['value']['to_invoice'] = p.to_invoice.id
         return res
 
-class AccountAnalyticLine(osv.Model):
+class AccountAnalyticLine(orm.Model):
     """We add task_id on AA and manage update of linked task indicators"""
     _inherit = "account.analytic.line"
     _name = "account.analytic.line"
