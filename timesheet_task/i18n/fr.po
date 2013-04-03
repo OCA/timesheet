@@ -37,12 +37,6 @@ msgid "Task Work"
 msgstr "Travail effectué"
 
 #. module: timesheet_task
-#: code:addons/timesheet_task/project_task.py:42
-#, python-format
-msgid "work_ids seems to be not present in project.project"
-msgstr "La colonne work_ids ne semble pas être présente dans le modèle project.project."
-
-#. module: timesheet_task
 #: field:project.task,timesheet_ids:0
 msgid "Work done"
 msgstr "Travail effectué"

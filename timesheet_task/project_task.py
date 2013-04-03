@@ -28,19 +28,9 @@
 ##############################################################################
 
 from osv import osv, fields
-from openerp.tools.translate import _
-from openerp.addons.project import project
 
-TASK_WATCHERS = ['timesheet_ids', 'remaining_hours', 'planned_hours']
+TASK_WATCHERS = ['work_ids', 'remaining_hours', 'planned_hours']
 TIMESHEET_WATCHERS = ['unit_amount', 'product_uom_id', 'account_id', 'to_invoice', 'task_id']
-
-
-class Project(project.project):
-    _inherit = "project.project"
-    
-    for col in ['effective_hours', 'planned_hours', 'total_hours', 'progress_rate']:
-        assert project.project._columns[col].store['project.task'][1][2] == 'work_ids', _('work_ids seems to be not present in project.project')
-        project.project._columns[col].store['project.task'][1][2] = 'timesheet_ids'
 
 class ProjectTask(osv.osv):
     _inherit = "project.task"
@@ -76,7 +66,7 @@ class ProjectTask(osv.osv):
         return result
 
 
-    _columns = {'timesheet_ids': fields.one2many('hr.analytic.timesheet', 'task_id', 'Work done'),
+    _columns = {'work_ids': fields.one2many('hr.analytic.timesheet', 'task_id', 'Work done'),
                 
 
     'effective_hours': fields.function(_progress_rate, multi="progress", method=True, string='Time Spent',
@@ -107,15 +97,8 @@ class ProjectTask(osv.osv):
             project = project_obj.browse(cr, uid, vals['project_id'], context)
             account_id = project.analytic_account_id.id
             for task in self.browse(cr, uid, ids, context=context):
-                ts_obj.write(cr, uid, [w.id for w in task.timesheet_ids], {'account_id': account_id}, context=context)
+                ts_obj.write(cr, uid, [w.id for w in task.work_ids], {'account_id': account_id}, context=context)
         return res
-    
-    def copy_data(self, cr, uid, id, default=None, context=None):
-        if default is None:
-            default = {}
-        default = default or {}
-        default.update({'timesheet_ids':[]})
-        return super(ProjectTask, self).copy_data(cr, uid, id, default, context)
 
 class HrAnalyticTimesheet(osv.osv):
     _inherit = "hr.analytic.timesheet"
