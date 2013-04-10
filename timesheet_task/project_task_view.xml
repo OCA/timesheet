@@ -73,7 +73,7 @@
                                         editable="top">
                                         <field name="user_id"
                                             on_change="on_change_user_id(user_id)"
-                                            required="1" invisible="1" />
+                                            required="1" />
                                         <field name="name" />
                                         <field name="unit_amount"
                                             on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id,journal_id, parent.id, to_invoice)"
