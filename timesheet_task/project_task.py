@@ -1,38 +1,30 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# author Nicolas Bessi
-# Copyright Camptocamp 2012
+#    Author: Nicolas Bessi
+#    Copyright 2013 Camptocamp SA
 #
-# WARNING: This program as such is intended to be used by professional
-# programmers who take the whole responsability of assessing all potential
-# consequences resulting from its eventual inadequacies and bugs
-# End users who are looking for a ready-to-use solution with commercial
-# garantees and support are strongly adviced to contract a Free Software
-# Service Company
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
 #
-# This program is Free Software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 
 TASK_WATCHERS = ['work_ids', 'remaining_hours', 'planned_hours']
-AA_WATCHERS = ['unit_amount', 'product_uom_id', 'account_id', 'to_invoice', 'task_id']
+TIMESHEET_WATCHERS = ['unit_amount', 'product_uom_id', 'account_id', 'to_invoice', 'task_id']
 
-class ProjectTask(osv.osv):
+class ProjectTask(orm.Model):
     _inherit = "project.task"
     _name = "project.task"
 
@@ -53,8 +45,8 @@ class ProjectTask(osv.osv):
             res[task.id]['delay_hours'] = res[task.id]['total_hours'] - task.planned_hours
             res[task.id]['progress'] = 0.0
             if (task.remaining_hours + hours.get(task.id, 0.0)):
-                res[task.id]['progress'] = round(min(100.0 * hours.get(task.id, 0.0) / res[task.id]['total_hours'], 99.99),2)
-            if task.state in ('done','cancelled'):
+                res[task.id]['progress'] = round(min(100.0 * hours.get(task.id, 0.0) / res[task.id]['total_hours'], 99.99), 2)
+            if task.state in ('done', 'cancelled'):
                 res[task.id]['progress'] = 100.0
         return res
 
@@ -67,26 +59,27 @@ class ProjectTask(osv.osv):
 
 
     _columns = {'work_ids': fields.one2many('hr.analytic.timesheet', 'task_id', 'Work done'),
+                
 
     'effective_hours': fields.function(_progress_rate, multi="progress", method=True, string='Time Spent',
                                        help="Sum of spent hours of all tasks related to this project and its child projects.",
-                                       store = {'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
-                                                'account.analytic.line': (_get_analytic_line, AA_WATCHERS, 20)}),
+                                       store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
+                                                'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
 
     'delay_hours': fields.function(_progress_rate, multi="progress", method=True, string='Deduced Hours',
                                     help="Sum of spent hours with invoice factor of all tasks related to this project and its child projects.",
-                                    store = {'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
-                                             'account.analytic.line': (_get_analytic_line, AA_WATCHERS, 20)}),
+                                    store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
+                                             'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
 
     'total_hours': fields.function(_progress_rate, multi="progress", method=True, string='Total Time',
                                    help="Sum of total hours of all tasks related to this project and its child projects.",
-                                   store = {'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
-                                            'account.analytic.line': (_get_analytic_line, AA_WATCHERS, 20)}),
+                                   store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
+                                            'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
 
     'progress': fields.function(_progress_rate, multi="progress", method=True, string='Progress', type='float', group_operator="avg",
                                      help="Percent of tasks closed according to the total of tasks todo.",
-                                     store = {'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
-                                              'account.analytic.line': (_get_analytic_line, AA_WATCHERS, 20)})}
+                                     store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
+                                              'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)})}
     
     def write(self, cr, uid, ids, vals, context=None):
         res = super(ProjectTask, self).write(cr, uid, ids, vals, context=context)
@@ -99,9 +92,7 @@ class ProjectTask(osv.osv):
                 ts_obj.write(cr, uid, [w.id for w in task.work_ids], {'account_id': account_id}, context=context)
         return res
 
-ProjectTask()
-
-class HrAnalyticTimesheet(osv.osv):
+class HrAnalyticTimesheet(orm.Model):
     _inherit = "hr.analytic.timesheet"
     _name = "hr.analytic.timesheet"
 
@@ -125,9 +116,7 @@ class HrAnalyticTimesheet(osv.osv):
                     res['value']['to_invoice'] = p.to_invoice.id
         return res
 
-HrAnalyticTimesheet()
-
-class AccountAnalyticLine(osv.osv):
+class AccountAnalyticLine(orm.Model):
     """We add task_id on AA and manage update of linked task indicators"""
     _inherit = "account.analytic.line"
     _name = "account.analytic.line"
@@ -142,7 +131,7 @@ class AccountAnalyticLine(osv.osv):
             return 0.0
         fact_obj = self.pool.get('hr_timesheet_invoice.factor')
         factor = 100.0 - float(fact_obj.browse(cr, uid, factor_id).factor)
-        return (float(hours)/100.00)*factor
+        return (float(hours) / 100.00) * factor
 
     def _set_remaining_hours_create(self, cr, uid, vals, context=None):
         if not vals.get('task_id'):
@@ -161,9 +150,9 @@ class AccountAnalyticLine(osv.osv):
         for line in self.browse(cr, uid, ids):
             # in OpenERP if we set a value to nil vals become False
             old_task_id = line.task_id and line.task_id.id or None
-            new_task_id = vals.get('task_id', old_task_id) #if no task_id in vals we assume it is equal to old
+            new_task_id = vals.get('task_id', old_task_id)  # if no task_id in vals we assume it is equal to old
 
-            #we look if value has changed
+            # we look if value has changed
             if (new_task_id != old_task_id) and old_task_id:
                 self._set_remaining_hours_unlink(cr, uid, [line.id], context)
                 if new_task_id:
@@ -205,14 +194,12 @@ class AccountAnalyticLine(osv.osv):
     def create(self, cr, uid, vals, context=None):
         if vals.get('task_id'):
             self._set_remaining_hours_create(cr, uid, vals, context)
-        return super(AccountAnalyticLine,self).create(cr, uid, vals, context=context)
+        return super(AccountAnalyticLine, self).create(cr, uid, vals, context=context)
 
     def write(self, cr, uid, ids, vals, context=None):
-        self. _set_remaining_hours_write(cr, uid, ids, vals, context=context)
+        self._set_remaining_hours_write(cr, uid, ids, vals, context=context)
         return super(AccountAnalyticLine, self).write(cr, uid, ids, vals, context=context)
 
     def unlink(self, cr, uid, ids, context=None):
         self._set_remaining_hours_unlink(cr, uid, ids, context)
         return super(AccountAnalyticLine, self).unlink(cr, uid, ids, context=context)
-
-AccountAnalyticLine()

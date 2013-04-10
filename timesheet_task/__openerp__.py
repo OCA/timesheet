@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Author: Nicolas Bessi
-#    Copyright 2012 Camptocamp SA
+#    Copyright 2013 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,23 +19,22 @@
 #
 ##############################################################################
 {'name' : 'Analytic Task',
- 'version' : '0.1',
+ 'version' : '0.2',
  'author' : 'Camptocamp',
- 'maintainer': 'Camptocamp',
+ 'maintainer': 'Camptocamp - Acsone SA/NV',
  'category': 'Human Resources',
- 'complexity': "normal", #easy, normal, expert
- 'depends' : ['hr_timesheet', 'project', 'hr_timesheet_invoice'],
+ 'depends' : ['project', 'hr_timesheet_invoice'],
  'description': """Replace project.task.work items linked to task
                    with hr.analytic.timesheet""",
  'website': 'http://www.camptocamp.com',
- 'init_xml': [],
- 'update_xml': ['project_task_view.xml'],
- 'demo_xml': [],
- 'tests': [],
- 'installable': False,
+ 'data': ['project_task_view.xml'],
+ 'demo': [],
+ 'test': [],
+ 'installable': True,
  'images' : [],
  'auto_install': False,
  'license': 'AGPL-3',
- 'application': True}
- #'icon': '/MODULE_NAME/static/src/images/XXX.png',
+ 'application': True,
+}
  
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
