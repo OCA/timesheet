@@ -96,7 +96,7 @@ class hr_attendance(orm.Model):
             res.append((start_datetime, duration))
         return res
     
-    def _split_norecurse_attendance(self, start_datetime, duration, precision=025):
+    def _split_no_recursive_attendance(self, start_datetime, duration, precision=0.25):
         # start_datetime: datetime, duration: hours, precision: hours
         # returns [(datetime, hours)]
         res = []
@@ -226,7 +226,7 @@ class hr_attendance(orm.Model):
 
                     # split attendance in intervals = precision
                     # 2012.10.16 LF FIX : no recursion in split attendance
-                    splitted_attendances = self._split_norecurse_attendance(attendance_start, duration, precision)
+                    splitted_attendances = self._split_no_recursive_attendance(attendance_start, duration, precision)
                     counter = 0
                     for atomic_attendance in splitted_attendances:
                         counter += 1
