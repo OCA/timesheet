@@ -74,7 +74,7 @@ class hr_attendance(orm.Model):
             raise osv.except_osv(_('Error'), _('End time %s < start time %s')
                 % (str(float_end_time),str(float_start_time)))
         delta = self.float_to_datetime(float_end_time) - self.float_to_datetime(float_start_time)
-        return delta.total_seconds() / 60.0 / 60.0
+        return delta.total_seconds() / 60.0 / 60.0 # python 2.7
 
     def time_sum(self, float_first_time, float_second_time):
         str_first_time = self.float_time_convert(float_first_time)
@@ -83,7 +83,7 @@ class hr_attendance(orm.Model):
         str_second_time = self.float_time_convert(float_second_time)
         second_timedelta = timedelta(0, int(str_second_time.split(':')[0]) * 60.0*60.0 +
             int(str_second_time.split(':')[1]) * 60.0)
-        return (first_timedelta + second_timedelta).total_seconds() / 60.0 / 60.0
+        return (first_timedelta + second_timedelta).total_seconds() / 60.0 / 60.0 # python 2.7
 
     def _split_long_attendances(self, start_datetime, duration):
         # start_datetime: datetime, duration: hours
@@ -185,7 +185,7 @@ class hr_attendance(orm.Model):
                 # 2012.10.16 LF FIX : Attendance in context timezone
                 attendance_stop = datetime.strptime(next_attendance_date, '%Y-%m-%d %H:%M:%S').replace(tzinfo=pytz.utc).astimezone(active_tz)
                 duration_delta = attendance_stop - attendance_start
-                duration = duration_delta.total_seconds() / 60.0 / 60.0
+                duration = duration_delta.total_seconds() / 60.0 / 60.0 # python 2.7
                 duration = round(duration / precision) * precision
             res[attendance.id]['duration'] = duration
             res[attendance.id]['end_datetime'] = next_attendance_date
@@ -216,7 +216,7 @@ class hr_attendance(orm.Model):
                         
                         # again
                         duration_delta = attendance_stop - attendance_start
-                        duration = duration_delta.total_seconds() / 60.0 / 60.0
+                        duration = duration_delta.total_seconds() / 60.0 / 60.0 # python 2.7
                         duration = round(duration / precision) * precision
                         res[attendance.id]['duration'] = duration
                         
