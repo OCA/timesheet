@@ -144,13 +144,13 @@ class hr_attendance(orm.Model):
         return active_contract_ids
 
     def _ceil_rounding(self, rounding, datetime):
-        minutes = datetime.minute / 60.0 \
-            + datetime.second / 60.0 / 60.0
+        minutes = (datetime.minute / 60.0
+            + datetime.second / 60.0 / 60.0)
         return math.ceil(minutes * rounding) / rounding
 
     def _floor_rounding(self, rounding, datetime):
-        minutes = datetime.minute / 60.0 \
-            + datetime.second / 60.0 / 60.0
+        minutes = (datetime.minute / 60.0
+            + datetime.second / 60.0 / 60.0)
         return math.floor(minutes * rounding) / rounding
 
     def _get_attendance_duration(self, cr, uid, ids, field_name, arg, context=None):
