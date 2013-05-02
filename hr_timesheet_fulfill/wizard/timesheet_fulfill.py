@@ -35,7 +35,6 @@ from osv import fields, osv
 from tools.translate import _
 from datetime import datetime, timedelta
 
-
 def get_number_days_between_dates(date_from, date_to):
     datetime_from = datetime.strptime(date_from, '%Y-%m-%d')
     datetime_to = datetime.strptime(date_to, '%Y-%m-%d')
@@ -52,16 +51,19 @@ class FulfillTimesheet(osv.osv_memory):
         'date_from': fields.date('Date From', required=True),
         'date_to': fields.date('Date To', required=True),
         'description': fields.char('Description', size=100, required=True),
-        'nb_hours': fields.float('Hours per day', digits=(2, 2), required=True),
+        'nb_hours': fields.float('Hours per Day', digits=(2, 2), required=True),
         'analytic_account_id': fields.many2one('account.analytic.account',
                                'Analytic Account', required=True,
                                domain="[('type', '=', 'normal'),"
                                       "('state', '!=', 'pending'),"
                                       "('state', '!=', 'close')]"),
-        'task_id':fields.many2one('project.task','Task', required=False)
+        'task_id':fields.many2one('project.task', 'Task', required=False)
     }
 
-    def fulfill_timesheet(self, cr, uid, ids, context):
+    def fulfill_timesheet(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+
         employee_obj = self.pool.get('hr.employee')
         timesheet_obj = self.pool.get('hr_timesheet_sheet.sheet')
         al_ts_obj = self.pool.get('hr.analytic.timesheet')
@@ -117,23 +119,23 @@ class FulfillTimesheet(osv.osv_memory):
                 'sheet_id': timesheet.id,
                 'journal_id': journal_id,
             }
-
             on_change_values = al_ts_obj.\
                 on_change_unit_amount(cr, uid, False, product_id,
                                       wizard.nb_hours, employee.company_id.id,
-                                      task_id=wizard.task_id.id,
+#                                      task_id=wizard.task_id.id,
                                       unit=unit_id, journal_id=journal_id,
                                       context=context)
             if on_change_values:
                 res.update(on_change_values['value'])
             al_ts_obj.create(cr, uid, res, context)
-
             # If there is no other attendances, create it
             # create the attendances:
-            existing_attendances = attendance_obj\
-                .search(cr, uid, [('name', '=', datetime_current),
-                                  ('employee_id', '=', employee_id)])
-
+#            print attendance_obj.read(cr,uid,['name'])
+            existing_attendances=0
+            att_id= attendance_obj.search(cr, uid, [('employee_id', '=', employee_id)])
+            for record in attendance_obj.read(cr,uid,att_id,['name']):
+                if record['name'].startswith( datetime_current ):
+                    existing_attendances=1
             if not existing_attendances:
                 att_date_start = datetime_current + " 00:00:00"
                 att_start = {
@@ -154,6 +156,9 @@ class FulfillTimesheet(osv.osv_memory):
                 }
                 attendance_obj.create(cr, uid, att_start, context)
                 attendance_obj.create(cr, uid, att_end, context)
+            
         return {'type': 'ir.actions.act_window_close'}
 
 FulfillTimesheet()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
