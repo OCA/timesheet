@@ -30,7 +30,7 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from osv import orm, fields, osv
 from tools.translate import _
 from datetime import datetime, timedelta
 
@@ -43,7 +43,7 @@ def get_number_days_between_dates(date_from, date_to):
     return difference.days + 1
 
 
-class HolidaysImport(osv.osv_memory):
+class HolidaysImport(orm.TransientModel):
     _name = 'hr.timesheet.holidays.import'
     _description = 'Wizard to import holidays in a timesheet'
 
@@ -98,11 +98,11 @@ class HolidaysImport(osv.osv_memory):
 
     _columns = {
         'holidays_ids': fields.many2many('hr.holidays', 'hr_holidays_rel', 'id', 'holiday_id', 'Holidays', domain="[('state', '=', 'validate'),('user_id','=',uid)]"),
-    }
+        }
 
     _defaults = {
         'holidays_ids': _get_default_holidays,
-    }
+        }
 
     def import_holidays(self, cr, uid, ids, context=None):
         if context is None:
@@ -178,7 +178,7 @@ class HolidaysImport(osv.osv_memory):
                         'to_invoice': anl_account.to_invoice.id,
                         'sheet_id': timesheet.id,
                         'journal_id':  journal_id,
-                    }
+                        }
 
                     on_change_values = al_ts_obj.\
                         on_change_unit_amount(cr, uid, False, product_id,
@@ -206,13 +206,13 @@ class HolidaysImport(osv.osv_memory):
                         'action': 'sign_in',
                         'employee_id': employee_id,
                         'sheet_id': timesheet.id,
-                    }
+                        }
                     end = {
                         'name': str_date_end,
                         'action': 'sign_out',
                         'employee_id': employee_id,
                         'sheet_id': timesheet.id,
-                    }
+                        }
                     attendance_obj.create(cr, uid, start, context)
                     attendance_obj.create(cr, uid, end, context)
                 else:
@@ -223,6 +223,5 @@ class HolidaysImport(osv.osv_memory):
 
         return {'type': 'ir.actions.act_window_close'}
 
-HolidaysImport()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -29,18 +29,16 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from osv import orm, fields
 
-class res_company(osv.osv):
+class ResCompany(orm.Model):
     _inherit = 'res.company'
     _columns = {
         'timesheet_hours_per_day': fields.float('Timesheet Hours Per Day', digits=(2,2))
-    }
+        }
 
     _defaults = {
         'timesheet_hours_per_day': 8.0
-    }
-
-res_company()
+        }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

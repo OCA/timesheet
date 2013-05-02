@@ -27,16 +27,14 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp.osv import orm, fields
 
 
-class hr_holidays_status(osv.osv):
+class HrHolidaysStatus(orm.Model):
     """Add analytic account to holiday status"""
     _inherit = 'hr.holidays.status'
     _columns = {
         'analytic_account_id': fields.many2one('account.analytic.account', 'Analytic Account'),
-    }
-
-hr_holidays_status()
+        }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
