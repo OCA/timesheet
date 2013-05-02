@@ -97,14 +97,17 @@ class HolidaysImport(osv.osv_memory):
         return res
 
     _columns = {
-        'holidays_ids': fields.many2many('hr.holidays', 'hr_holidays_rel', 'wid', 'hid', 'Holidays', domain="[('state', '=', 'validate'),('user_id','=',uid)]"),
+        'holidays_ids': fields.many2many('hr.holidays', 'hr_holidays_rel', 'id', 'holiday_id', 'Holidays', domain="[('state', '=', 'validate'),('user_id','=',uid)]"),
     }
 
     _defaults = {
         'holidays_ids': _get_default_holidays,
     }
 
-    def import_holidays(self, cr, uid, ids, context):
+    def import_holidays(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+
         timesheet_obj = self.pool.get('hr_timesheet_sheet.sheet')
         employee_obj = self.pool.get('hr.employee')
         al_ts_obj = self.pool.get('hr.analytic.timesheet')
@@ -146,7 +149,7 @@ class HolidaysImport(osv.osv_memory):
             for day in range(nb_days):
                 dt_current = (datetime.strptime(holiday.date_from, '%Y-%m-%d %H:%M:%S')
                                     + timedelta(days=day))
-                str_dt_current = dt_current.strftime('%Y-%m-%d')
+                str_dt_current = dt_current.strftime('%Y-%m-%d 00:00:00')
 
                 day_of_the_week = dt_current.isoweekday()
 
@@ -196,8 +199,7 @@ class HolidaysImport(osv.osv_memory):
                 if not existing_attendances:
                     # get hours and minutes (tuple) from a float time
                     hours = divmod(hours_per_day * 60, 60)
-
-                    date_end = dt_current.replace(hour=hours[0],minute=hours[1])
+                    date_end = dt_current.replace(hour=int(hours[0]), minute=int(hours[1]))
                     str_date_end = date_end.strftime('%Y-%m-%d %H:%M:%S')
                     start = {
                         'name': str_dt_current,
@@ -222,3 +224,5 @@ class HolidaysImport(osv.osv_memory):
         return {'type': 'ir.actions.act_window_close'}
 
 HolidaysImport()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -5,7 +5,6 @@
         <record id="view_hr_timesheet_holidays_import" model="ir.ui.view">
               <field name="name">hr.timesheet.holidays.import</field>
               <field name="model">hr.timesheet.holidays.import</field>
-              <field name="type">form</field>
               <field name="arch" type="xml">
                   <form string="Select holidays to import">
                       <field name="holidays_ids" nolabel="1" />
@@ -34,5 +33,5 @@
 			<field eval="True" name="object"/>
 		</record>
 
-</data>
+	</data>
 </openerp>

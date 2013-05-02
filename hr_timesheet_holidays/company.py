@@ -31,11 +31,8 @@
 
 from osv import osv, fields
 
-
 class res_company(osv.osv):
-
     _inherit = 'res.company'
-
     _columns = {
         'timesheet_hours_per_day': fields.float('Timesheet Hours Per Day', digits=(2,2))
     }
@@ -45,3 +42,5 @@ class res_company(osv.osv):
     }
 
 res_company()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

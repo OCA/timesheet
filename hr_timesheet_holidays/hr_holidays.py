@@ -32,12 +32,11 @@ from osv import osv, fields
 
 class hr_holidays_status(osv.osv):
     """Add analytic account to holiday status"""
-
     _inherit = 'hr.holidays.status'
-
     _columns = {
-        'analytic_account_id': fields.many2one("account.analytic.account",
-                                               "Analytic Account"),
+        'analytic_account_id': fields.many2one('account.analytic.account', 'Analytic Account'),
     }
 
 hr_holidays_status()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
