@@ -31,7 +31,7 @@
 ##############################################################################
 
 
-from osv import fields, osv
+from openerp.osv import fields, osv, orm
 from tools.translate import _
 from datetime import datetime, timedelta
 
@@ -43,7 +43,7 @@ def get_number_days_between_dates(date_from, date_to):
     return difference.days + 1
 
 
-class FulfillTimesheet(osv.osv_memory):
+class HrTimesheetFulfill(orm.TransientModel):
     _name = 'hr.timesheet.fulfill'
     _description = "Wizard to fill-in timesheet for many days"
 
@@ -58,7 +58,7 @@ class FulfillTimesheet(osv.osv_memory):
                                       "('state', '!=', 'pending'),"
                                       "('state', '!=', 'close')]"),
         'task_id':fields.many2one('project.task', 'Task', required=False)
-    }
+        }
 
     def fulfill_timesheet(self, cr, uid, ids, context=None):
         if context is None:
@@ -156,9 +156,7 @@ class FulfillTimesheet(osv.osv_memory):
                 }
                 attendance_obj.create(cr, uid, att_start, context)
                 attendance_obj.create(cr, uid, att_end, context)
-            
-        return {'type': 'ir.actions.act_window_close'}
 
-FulfillTimesheet()
+        return {'type': 'ir.actions.act_window_close'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
