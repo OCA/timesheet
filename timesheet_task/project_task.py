@@ -125,6 +125,16 @@ class AccountAnalyticLine(orm.Model):
 
     _columns = {'task_id': fields.many2one('project.task', 'Task')}
 
+    def _check_task_project(self, cr, uid, ids):
+        for line in self.browse(cr, uid, ids):
+            if line.task_id and line.account_id:
+                if line.task_id.project_id.analytic_account_id.id != line.account_id.id:
+                    return False
+        return True
+
+    _constraints = [
+        (_check_task_project, 'Error! Task must belong to the project.', ['task_id','account_id']),
+    ]
 
     def _compute_hours_with_factor(self, cr, uid, hours, factor_id, context=None):
         if not hours or not factor_id:

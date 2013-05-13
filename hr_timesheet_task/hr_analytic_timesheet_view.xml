@@ -23,7 +23,7 @@
             <field name="arch" type="xml">
                 <tree editable="top" string="Timesheet Lines">
                     <field name="date" on_change="on_change_date(date)"/>
-                    <field domain="[('type','=','normal')]" name="account_id"/>
+                    <field domain="[('type','=','normal'), ('state','=','open')]" name="account_id"/>
                     <field name="task_id" context="{'account_id' : account_id}"
                         domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
                     <field name="name"/>
