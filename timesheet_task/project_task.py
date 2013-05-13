@@ -124,9 +124,8 @@ class AccountAnalyticLine(orm.Model):
 
 
     _columns = {'task_id': fields.many2one('project.task', 'Task')}
-    
+
     def _check_task_project(self, cr, uid, ids):
-        project_obj = self.pool.get('project.project')
         for line in self.browse(cr, uid, ids):
             if line.task_id and line.account_id:
                 if line.task_id.project_id.analytic_account_id.id != line.account_id.id:
