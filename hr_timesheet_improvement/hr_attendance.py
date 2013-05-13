@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Yannick Vaucher
+#    Author : Yannick Vaucher (Camptocamp)
 #    Copyright 2013 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,29 +18,34 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name' : 'Timesheet improvements',
- 'version' : '0.1',
- 'author' : 'Camptocamp',
- 'maintainer': 'Camptocamp',
- 'category': 'Human Resources',
- 'depends' : ['hr_timesheet_sheet'],
- 'description': """
- Modifies timesheet behavior:
- - Ensure a DESC order on timesheet lines
- - Set default date for manually entering attendance to max attendance date
- """,
- 'website': 'http://www.camptocamp.com',
- 'data': ['hr_timesheet_view.xml'],
- 'js' : [],
- 'css': [],
- 'qweb': [],
- 'demo': [],
- 'test': [],
- 'installable': True,
- 'images' : [],
- 'auto_install': False,
- 'license': 'AGPL-3',
- 'application': True,
-}
+import time
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+from openerp.osv import orm
+
+
+class HrAttendance(orm.Model):
+    """
+    Alter the default date for manual setting
+    """
+    _inherit = "hr.attendance"
+
+    def _default_date(self, cr, uid, context=None):
+        sheet_id = context.get('sheet_id')
+        if not sheet_id:
+            return time.strftime('%Y-%m-%d %H:%M:%S')
+
+        ts_obj = self.pool.get('hr_timesheet_sheet.sheet')
+        timesheet = ts_obj.browse(cr, uid, sheet_id, context=context)
+
+        dates = [a.name for a in timesheet.attendances_ids]
+
+        if not dates:
+            return timesheet.date_from
+
+        return max(dates)
+
+
+    _defaults = {
+        'name': _default_date,
+        }
+
