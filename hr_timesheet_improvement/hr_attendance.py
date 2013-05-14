@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author : Yannick Vaucher (Camptocamp)
+#    Author : Yannick Vaucher & Vincent Renaville (Camptocamp)
 #    Copyright 2013 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -43,7 +43,29 @@ class HrAttendance(orm.Model):
             return timesheet.date_from
 
         return max(dates)
+    """
+    Check sign in signout in the same timesheet only
+    """
 
+    def _altern_si_so(self, cr, uid, ids, context=None):
+        """ Alternance sign_in/sign_out check.
+            Previous (if exists) must be of opposite action.
+            Next (if exists) must be of opposite action.
+        """
+        for att in self.browse(cr, uid, ids, context=context):
+            # search and browse for first previous and first next records
+            prev_att_ids = self.search(cr, uid, [('employee_id', '=', att.employee_id.id),('sheet_id','=',att.sheet_id.id), ('name', '<', att.name), ('action', 'in', ('sign_in', 'sign_out'))], limit=1, order='name DESC')
+            next_add_ids = self.search(cr, uid, [('employee_id', '=', att.employee_id.id),('sheet_id','=',att.sheet_id.id),('name', '>', att.name), ('action', 'in', ('sign_in', 'sign_out'))], limit=1, order='name ASC')
+            prev_atts = self.browse(cr, uid, prev_att_ids, context=context)
+            next_atts = self.browse(cr, uid, next_add_ids, context=context)
+            # check for alternance, return False if at least one condition is not satisfied
+            if prev_atts and prev_atts[0].action == att.action: # previous exists and is same action
+                return False
+            if next_atts and next_atts[0].action == att.action: # next exists and is same action
+                return False
+            if (not prev_atts) and (not next_atts) and att.action != 'sign_in': # first attendance must be sign_in
+                return False
+        return True
 
     _defaults = {
         'name': _default_date,
