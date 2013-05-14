@@ -21,6 +21,7 @@
 import time
 
 from openerp.osv import orm
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class HrAttendance(orm.Model):
@@ -32,7 +33,7 @@ class HrAttendance(orm.Model):
     def _default_date(self, cr, uid, context=None):
         sheet_id = context.get('sheet_id')
         if not sheet_id:
-            return time.strftime('%Y-%m-%d %H:%M:%S')
+            return time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
 
         ts_obj = self.pool.get('hr_timesheet_sheet.sheet')
         timesheet = ts_obj.browse(cr, uid, sheet_id, context=context)
