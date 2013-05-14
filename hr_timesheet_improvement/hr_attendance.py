@@ -53,15 +53,25 @@ class HrAttendance(orm.Model):
             Previous (if exists) must be of opposite action.
             Next (if exists) must be of opposite action.
         """
+        sheet_obj = self.pool.get('hr_timesheet_sheet.sheet')
         for att in self.browse(cr, uid, ids, context=context):
+            sheet_id = sheet_obj.search(
+                    cr, uid, [
+                        ('employee_id', '=', att.employee_id.id),
+                        ('date_from', '<', att.name),
+                        ('date_to', '>', att.name),
+                        ],
+                    context=context)
+
+
             # search and browse for first previous and first next records
             prev_att_ids = self.search(cr, uid, [('employee_id', '=', att.employee_id.id),
-                                                 ('sheet_id', '=', att.sheet_id.id),
+                                                 ('sheet_id', '=', sheet_id),
                                                  ('name', '<', att.name),
                                                  ('action', 'in', ('sign_in', 'sign_out'))],
                                        limit=1, order='name DESC')
             next_add_ids = self.search(cr, uid, [('employee_id', '=', att.employee_id.id),
-                                                 ('sheet_id', '=', att.sheet_id.id),
+                                                 ('sheet_id', '=', sheet_id),
                                                  ('name', '>', att.name),
                                                  ('action', 'in', ('sign_in', 'sign_out'))],
                                        limit=1, order='name ASC')
