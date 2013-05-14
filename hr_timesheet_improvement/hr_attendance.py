@@ -61,20 +61,23 @@ class HrAttendance(orm.Model):
                         ('date_from', '<', att.name),
                         ('date_to', '>', att.name),
                         ],
+                    limit=1,
                     context=context)
-
+            sheet_id = sheet_id and sheet_id[0] or False
 
             # search and browse for first previous and first next records
             prev_att_ids = self.search(cr, uid, [('employee_id', '=', att.employee_id.id),
                                                  ('sheet_id', '=', sheet_id),
                                                  ('name', '<', att.name),
                                                  ('action', 'in', ('sign_in', 'sign_out'))],
-                                       limit=1, order='name DESC')
+                                       limit=1, order='name DESC',
+                                       context=context)
             next_add_ids = self.search(cr, uid, [('employee_id', '=', att.employee_id.id),
                                                  ('sheet_id', '=', sheet_id),
                                                  ('name', '>', att.name),
                                                  ('action', 'in', ('sign_in', 'sign_out'))],
-                                       limit=1, order='name ASC')
+                                       limit=1, order='name ASC',
+                                       context=context)
             prev_atts = self.browse(cr, uid, prev_att_ids, context=context)
             next_atts = self.browse(cr, uid, next_add_ids, context=context)
             # check for alternance, return False if at least one condition is not satisfied
