@@ -58,8 +58,8 @@ class HrAttendance(orm.Model):
             sheet_id = sheet_obj.search(
                     cr, uid, [
                         ('employee_id', '=', att.employee_id.id),
-                        ('date_from', '<', att.name),
-                        ('date_to', '>', att.name),
+                        ('date_from', '<=', att.name),
+                        ('date_to', '>=', att.name),
                         ],
                     limit=1,
                     context=context)
