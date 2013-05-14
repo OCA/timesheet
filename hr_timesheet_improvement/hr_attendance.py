@@ -75,6 +75,8 @@ class HrAttendance(orm.Model):
                 return False
         return True
 
+    _constraints = [(_altern_si_so, 'Error ! Sign in (resp. Sign out) must follow Sign out (resp. Sign in)', ['action'])]
+
     _defaults = {
         'name': _default_date,
         }
