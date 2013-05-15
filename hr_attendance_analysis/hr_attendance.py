@@ -34,7 +34,7 @@ class res_company(orm.Model):
     _inherit = 'res.company'
 
     _columns = {
-        'working_time_precision': fields.float('Working time precision', help='The precision used to analyse working times over working schedule', required=True)
+        'working_time_precision': fields.float('Working time precision', help='The precision used to analyse working times over working schedule (hours)', required=True)
         }
 
     _defaults = {
