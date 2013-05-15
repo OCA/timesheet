@@ -38,7 +38,7 @@ class res_company(orm.Model):
         }
 
     _defaults = {
-        'working_time_precision': 1.0 / 60
+        'working_time_precision': 1.0 / 60 # hours
         }
 
 
