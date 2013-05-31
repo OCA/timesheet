@@ -31,10 +31,6 @@ Several analysis settings can be configured, like:
  - Tolerance for sign-in and sign-out
  - Attendances and overtimes roundings
  - Diffrent types of overtime, according to the overtime amount
-
-This module requires python 2.7 or later
-----------------------------------------
-
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
