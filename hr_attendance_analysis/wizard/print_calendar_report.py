@@ -111,7 +111,8 @@ class wizard_calendar_report(orm.TransientModel):
                     'signout_4': '',
                     }
                 current_date_beginning = datetime.combine(current_date, time())
-                str_current_date_beginning = current_date_beginning.strftime('%Y-%m-%d %H:%M:%S')
+                str_current_date_beginning = current_date_beginning.strftime(
+                    '%Y-%m-%d %H:%M:%S')
                 current_date_end = datetime.combine(current_date, time())+ timedelta(1)
                 str_current_date_end = current_date_end.strftime('%Y-%m-%d %H:%M:%S')
                 
@@ -123,11 +124,12 @@ class wizard_calendar_report(orm.TransientModel):
                     ])
                 # computing attendance totals
                 for attendance in attendance_pool.browse(cr, uid, attendance_ids):
-                    current_total_attendances = attendance_pool.time_sum(current_total_attendances,
-                        attendance.duration)
+                    current_total_attendances = attendance_pool.time_sum(
+                        current_total_attendances,attendance.duration)
                     current_total_overtime = attendance_pool.time_sum(current_total_overtime,
                         attendance.outside_calendar_duration)
-                    current_total_inside_calendar = attendance_pool.time_sum(current_total_inside_calendar,
+                    current_total_inside_calendar = attendance_pool.time_sum(
+                        current_total_inside_calendar,
                         attendance.inside_calendar_duration)
                     
                 #printing up to 4 attendances
@@ -143,8 +145,12 @@ class wizard_calendar_report(orm.TransientModel):
                     if len(attendance_ids) > max_number_of_attendances_per_day:
                         max_number_of_attendances_per_day = len(attendance_ids)
                     
-                days_by_employee[employee_id][str_current_date]['attendances'] = current_total_attendances
-                days_by_employee[employee_id][str_current_date]['overtime'] = current_total_overtime
+                days_by_employee[employee_id][str_current_date][
+                    'attendances'
+                    ] = current_total_attendances
+                days_by_employee[employee_id][str_current_date][
+                    'overtime'
+                    ] = current_total_overtime
                 
                 active_contract_ids = attendance_pool.get_active_contracts(
                     cr, uid, int(employee_id), date=str_current_date)
@@ -154,15 +160,21 @@ class wizard_calendar_report(orm.TransientModel):
                     if contract.working_hours and contract.working_hours.attendance_ids:
                         current_total_due = 0.0
                         for calendar_attendance in contract.working_hours.attendance_ids:
-                            if (not calendar_attendance.dayofweek
-                                or int(calendar_attendance.dayofweek) == current_date.weekday()) \
-                                and (not calendar_attendance.date_from or 
-                                datetime.strptime(calendar_attendance.date_from,'%Y-%m-%d') <= current_date):
+                            if ((
+                                not calendar_attendance.dayofweek
+                                or int(calendar_attendance.dayofweek) == current_date.weekday()
+                                )
+                                and (
+                                not calendar_attendance.date_from or 
+                                datetime.strptime(calendar_attendance.date_from,'%Y-%m-%d')
+                                <= current_date
+                                )):
                                 calendar_attendance_duration = attendance_pool.time_difference(
                                     calendar_attendance.hour_from, calendar_attendance.hour_to)
                                 if calendar_attendance_duration < 0:
                                     raise osv.except_osv(_('Error'),
-                                        _("%s: 'Work to' is < 'Work from'") % calendar_attendance.name)
+                                        _("%s: 'Work to' is < 'Work from'")
+                                        % calendar_attendance.name)
                                 current_total_due = attendance_pool.time_sum(current_total_due, 
                                     calendar_attendance_duration)
                                 
@@ -198,27 +210,36 @@ class wizard_calendar_report(orm.TransientModel):
                     # if ends after today
                     if date_to > current_date_end:
                         date_to = current_date_end
-                    current_total_leaves = attendance_pool.time_sum(current_total_leaves, 
+                    current_total_leaves = attendance_pool.time_sum(
+                        current_total_leaves,
                         (date_to - date_from).total_seconds() / 60.0 / 60.0)
 
                 days_by_employee[employee_id][str_current_date]['leaves'] = current_total_leaves
-                if current_total_leaves > days_by_employee[employee_id][str_current_date]['due']:
-                    days_by_employee[employee_id][str_current_date]['leaves'] = \
-                        days_by_employee[employee_id][str_current_date]['due']
-                due_minus_leaves = attendance_pool.time_difference(current_total_leaves, current_total_due)
+                if current_total_leaves > days_by_employee[employee_id][
+                    str_current_date]['due']:
+                    days_by_employee[employee_id][str_current_date][
+                        'leaves'
+                        ] = days_by_employee[employee_id][str_current_date]['due']
+                due_minus_leaves = attendance_pool.time_difference(
+                    current_total_leaves, current_total_due)
                 if due_minus_leaves < current_total_inside_calendar:
                     days_by_employee[employee_id][str_current_date]['negative'] = 0.0
                 else:
-                    days_by_employee[employee_id][str_current_date]['negative'] = \
-                        attendance_pool.time_difference(current_total_inside_calendar, due_minus_leaves)
+                    days_by_employee[employee_id][str_current_date][
+                        'negative'
+                        ] = attendance_pool.time_difference(
+                        current_total_inside_calendar, due_minus_leaves)
 
                 if active_contract_ids:
                     contract = contract_pool.browse(cr, uid, active_contract_ids[0])
                     if contract.working_hours and contract.working_hours.leave_rounding:
                         float_rounding = float(contract.working_hours.leave_rounding)
-                        days_by_employee[employee_id][str_current_date]['negative'] = math.floor(
+                        days_by_employee[employee_id][str_current_date][
+                            'negative'
+                            ] = math.floor(
                             days_by_employee[employee_id][str_current_date]['negative'] *
-                            float_rounding) / float_rounding
+                            float_rounding
+                            ) / float_rounding
                 
                 day_count += 1
 
@@ -256,48 +277,79 @@ class wizard_calendar_report(orm.TransientModel):
                 if active_contract_ids:
                     contract = contract_pool.browse(cr, uid, active_contract_ids[0])                
                     if contract.working_hours and contract.working_hours.overtime_type_ids:
-                        sorted_types = sorted(contract.working_hours.overtime_type_ids, key=lambda k: k.sequence)
-                        current_overtime = days_by_employee[employee_id][str_date]['overtime']
+                        sorted_types = sorted(
+                            contract.working_hours.overtime_type_ids,
+                            key=lambda k: k.sequence)
+                        current_overtime = days_by_employee[employee_id][
+                            str_date]['overtime']
                         for overtime_type in sorted_types:
-                            if not totals_by_employee[employee_id]['total_types'].get(overtime_type.name, False):
-                                totals_by_employee[employee_id]['total_types'][overtime_type.name] = 0.0
+                            if not totals_by_employee[employee_id]['total_types'].get(
+                                overtime_type.name, False):
+                                totals_by_employee[employee_id]['total_types'][
+                                    overtime_type.name] = 0.0
                             if current_overtime:
                                 if current_overtime <= overtime_type.limit or not overtime_type.limit:
                                     totals_by_employee[employee_id]['total_types'][
-                                        overtime_type.name] = attendance_pool.time_sum(totals_by_employee[
-                                        employee_id]['total_types'][overtime_type.name], current_overtime)
+                                        overtime_type.name] = attendance_pool.time_sum(
+                                        totals_by_employee[employee_id]
+                                        ['total_types'][overtime_type.name],
+                                        current_overtime)
                                     current_overtime = 0.0
                                 else:
                                     totals_by_employee[employee_id]['total_types'][
-                                        overtime_type.name] = attendance_pool.time_sum(totals_by_employee[
-                                        employee_id]['total_types'][overtime_type.name], overtime_type.limit)
+                                        overtime_type.name] = attendance_pool.time_sum(
+                                        totals_by_employee[employee_id]['total_types']
+                                        [overtime_type.name], overtime_type.limit)
                                     current_overtime = attendance_pool.time_difference(overtime_type.limit,
                                         current_overtime)
 
-                days_by_employee[employee_id][str_date]['attendances'] = attendance_pool.float_time_convert(
+                days_by_employee[employee_id][str_date][
+                    'attendances'
+                    ] = attendance_pool.float_time_convert(
                     days_by_employee[employee_id][str_date]['attendances'])
-                days_by_employee[employee_id][str_date]['overtime'] = attendance_pool.float_time_convert(
+                days_by_employee[employee_id][str_date][
+                    'overtime'
+                    ] = attendance_pool.float_time_convert(
                     days_by_employee[employee_id][str_date]['overtime'])
-                days_by_employee[employee_id][str_date]['negative'] = attendance_pool.float_time_convert(
+                days_by_employee[employee_id][str_date][
+                    'negative'
+                    ] = attendance_pool.float_time_convert(
                     days_by_employee[employee_id][str_date]['negative'])
-                days_by_employee[employee_id][str_date]['leaves'] = attendance_pool.float_time_convert(
+                days_by_employee[employee_id][str_date][
+                    'leaves'
+                    ] = attendance_pool.float_time_convert(
                     days_by_employee[employee_id][str_date]['leaves'])
-                days_by_employee[employee_id][str_date]['due'] = attendance_pool.float_time_convert(
+                days_by_employee[employee_id][str_date][
+                    'due'
+                    ] = attendance_pool.float_time_convert(
                     days_by_employee[employee_id][str_date]['due'])
 
-            totals_by_employee[employee_id]['total_attendances'] = attendance_pool.float_time_convert(
+            totals_by_employee[employee_id][
+                'total_attendances'
+                ] = attendance_pool.float_time_convert(
                 totals_by_employee[employee_id]['total_attendances'])
-            totals_by_employee[employee_id]['total_overtime'] = attendance_pool.float_time_convert(
+            totals_by_employee[employee_id][
+                'total_overtime'
+                ] = attendance_pool.float_time_convert(
                 totals_by_employee[employee_id]['total_overtime'])
-            totals_by_employee[employee_id]['total_negative'] = attendance_pool.float_time_convert(
+            totals_by_employee[employee_id][
+                'total_negative'
+                ] = attendance_pool.float_time_convert(
                 totals_by_employee[employee_id]['total_negative'])
-            totals_by_employee[employee_id]['total_leaves'] = attendance_pool.float_time_convert(
+            totals_by_employee[employee_id][
+                'total_leaves'
+                ] = attendance_pool.float_time_convert(
                 totals_by_employee[employee_id]['total_leaves'])
-            totals_by_employee[employee_id]['total_due'] = attendance_pool.float_time_convert(
+            totals_by_employee[employee_id][
+                'total_due'
+                ] = attendance_pool.float_time_convert(
                 totals_by_employee[employee_id]['total_due'])
                 
             for overtime_type in totals_by_employee[employee_id]['total_types']:
-                totals_by_employee[employee_id]['total_types'][overtime_type] = attendance_pool.float_time_convert(totals_by_employee[employee_id]['total_types'][overtime_type])
+                totals_by_employee[employee_id]['total_types'][
+                    overtime_type
+                    ] = attendance_pool.float_time_convert(
+                    totals_by_employee[employee_id]['total_types'][overtime_type])
 
         datas = {'ids': employee_ids}
         datas['model'] = 'hr.employee'

@@ -68,7 +68,8 @@ class hr_attendance(orm.Model):
 
     def float_to_timedelta(self, float_val):
         str_time = self.float_time_convert(float_val)
-        return timedelta(0, int(str_time.split(':')[0]) * 60.0*60.0 + int(str_time.split(':')[1]) * 60.0)
+        return timedelta(0, int(str_time.split(':')[0]) * 60.0*60.0
+            + int(str_time.split(':')[1]) * 60.0)
     
     def total_seconds(self, td):
         return (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) / 10**6
@@ -77,7 +78,8 @@ class hr_attendance(orm.Model):
         if float_end_time < float_start_time:
             raise osv.except_osv(_('Error'), _('End time %s < start time %s')
                 % (str(float_end_time),str(float_start_time)))
-        delta = self.float_to_datetime(float_end_time) - self.float_to_datetime(float_start_time)
+        delta = self.float_to_datetime(float_end_time) - self.float_to_datetime(
+            float_start_time)
         return self.total_seconds(delta) / 60.0 / 60.0
 
     def time_sum(self, float_first_time, float_second_time):
@@ -95,7 +97,8 @@ class hr_attendance(orm.Model):
         res = []
         if duration > 24:
             res.append((start_datetime, 24))
-            res.extend(self._split_long_attendances(start_datetime + timedelta(1), duration - 24))
+            res.extend(self._split_long_attendances(
+                start_datetime + timedelta(1), duration - 24))
         else:
             res.append((start_datetime, duration))
         return res
@@ -144,7 +147,9 @@ class hr_attendance(orm.Model):
             ('trial_date_end', '>=', date),
             ])
         if len(active_contract_ids) > 1:
-            raise osv.except_osv(_('Error'), _('Too many active contracts for employee %s') % attendance.employee_id.name)
+            raise osv.except_osv(_('Error'), _(
+                'Too many active contracts for employee %s'
+                ) % attendance.employee_id.name)
         return active_contract_ids
 
     def _ceil_rounding(self, rounding, datetime):
@@ -173,7 +178,9 @@ class hr_attendance(orm.Model):
             attendance = self.browse(cr, uid, attendance_id)
             res[attendance.id] = {}
             # 2012.10.16 LF FIX : Attendance in context timezone
-            attendance_start = datetime.strptime(attendance.name, '%Y-%m-%d %H:%M:%S').replace(tzinfo=pytz.utc).astimezone(active_tz)
+            attendance_start = datetime.strptime(
+                attendance.name, '%Y-%m-%d %H:%M:%S'
+                ).replace(tzinfo=pytz.utc).astimezone(active_tz)
             next_attendance_date = str_now
             # should we compute for sign out too?
             if attendance.action == 'sign_in':
@@ -184,10 +191,14 @@ class hr_attendance(orm.Model):
                     next_attendance = self.browse(cr, uid, next_attendance_ids[0])
                     if next_attendance.action == 'sign_in':
                          # 2012.10.16 LF FIX : Attendance in context timezone
-                         raise osv.except_osv(_('Error'), _('Incongruent data: sign-in %s is followed by another sign-in') % attendance_start)
+                         raise osv.except_osv(_('Error'), _(
+                            'Incongruent data: sign-in %s is followed by another sign-in'
+                            ) % attendance_start)
                     next_attendance_date = next_attendance.name
                 # 2012.10.16 LF FIX : Attendance in context timezone
-                attendance_stop = datetime.strptime(next_attendance_date, '%Y-%m-%d %H:%M:%S').replace(tzinfo=pytz.utc).astimezone(active_tz)
+                attendance_stop = datetime.strptime(
+                    next_attendance_date, '%Y-%m-%d %H:%M:%S'
+                    ).replace(tzinfo=pytz.utc).astimezone(active_tz)
                 duration_delta = attendance_stop - attendance_start
                 duration = self.total_seconds(duration_delta) / 60.0 / 60.0
                 duration = round(duration / precision) * precision
@@ -197,7 +208,8 @@ class hr_attendance(orm.Model):
             res[attendance.id]['inside_calendar_duration'] = duration
             res[attendance.id]['outside_calendar_duration'] = 0.0
 
-            active_contract_ids = self.get_active_contracts(cr, uid, attendance.employee_id.id, date=str_now[:10])
+            active_contract_ids = self.get_active_contracts(
+                cr, uid, attendance.employee_id.id, date=str_now[:10])
 
             if active_contract_ids:
                 contract = contract_pool.browse(cr, uid, active_contract_ids[0])
@@ -205,8 +217,10 @@ class hr_attendance(orm.Model):
                     # TODO applicare prima arrotondamento o tolleranza?
                     if contract.working_hours.attendance_rounding:
                         float_attendance_rounding = float(contract.working_hours.attendance_rounding)
-                        rounded_start_hour = self._ceil_rounding(float_attendance_rounding, attendance_start)
-                        rounded_stop_hour = self._floor_rounding(float_attendance_rounding, attendance_stop)
+                        rounded_start_hour = self._ceil_rounding(
+                            float_attendance_rounding, attendance_start)
+                        rounded_stop_hour = self._floor_rounding(
+                            float_attendance_rounding, attendance_stop)
                             
                         if abs(1- rounded_start_hour) < 0.01: # if shift == 1 hour
                             attendance_start = datetime(attendance_start.year, attendance_start.month,
@@ -216,7 +230,8 @@ class hr_attendance(orm.Model):
                                 attendance_start.day, attendance_start.hour, int(round(rounded_start_hour * 60.0)))
                                 
                         attendance_stop = datetime(attendance_stop.year, attendance_stop.month,
-                            attendance_stop.day, attendance_stop.hour, int(round(rounded_stop_hour * 60.0)))
+                            attendance_stop.day, attendance_stop.hour,
+                            int(round(rounded_stop_hour * 60.0)))
                         
                         # again
                         duration_delta = attendance_stop - attendance_start
@@ -231,13 +246,17 @@ class hr_attendance(orm.Model):
 
                     # split attendance in intervals = precision
                     # 2012.10.16 LF FIX : no recursion in split attendance
-                    splitted_attendances = self._split_no_recursive_attendance(attendance_start, duration, precision)
+                    splitted_attendances = self._split_no_recursive_attendance(
+                        attendance_start, duration, precision)
                     counter = 0
                     for atomic_attendance in splitted_attendances:
                         counter += 1
-                        centered_attendance = atomic_attendance[0] + timedelta(0,0,0,0,0, atomic_attendance[1] / 2.0)
-                        centered_attendance_hour = centered_attendance.hour + centered_attendance.minute / 60.0 \
+                        centered_attendance = atomic_attendance[0] + timedelta(
+                            0,0,0,0,0, atomic_attendance[1] / 2.0)
+                        centered_attendance_hour = (
+                            centered_attendance.hour + centered_attendance.minute / 60.0
                             + centered_attendance.second / 60.0 / 60.0
+                            )
                         # check if centered_attendance is within a working schedule                        
                         # 2012.10.16 LF FIX : weekday must be single character not int
                         weekday_char = str(unichr(centered_attendance.weekday() + 48))
@@ -261,11 +280,15 @@ class hr_attendance(orm.Model):
                             # sign in tolerance
                             if intervals_within == 1:
                                 calendar_attendance = attendance_pool.browse(cr, uid, matched_schedule_ids[0])
-                                attendance_start_hour = attendance_start.hour + attendance_start.minute / 60.0 \
+                                attendance_start_hour = (
+                                    attendance_start.hour + attendance_start.minute / 60.0
                                     + attendance_start.second / 60.0 / 60.0
-                                if attendance_start_hour >= calendar_attendance.hour_from and \
+                                    )
+                                if attendance_start_hour >= (
+                                    calendar_attendance.hour_from and
                                     (attendance_start_hour - (calendar_attendance.hour_from +
-                                    calendar_attendance.tolerance_to)) < 0.01: # handling float roundings (<=)
+                                    calendar_attendance.tolerance_to)) < 0.01
+                                    ): # handling float roundings (<=)
                                     additional_intervals = round(
                                         (attendance_start_hour - calendar_attendance.hour_from) / precision)
                                     intervals_within += additional_intervals
@@ -273,12 +296,16 @@ class hr_attendance(orm.Model):
                                         res[attendance.id]['duration'], additional_intervals * precision)
                             # sign out tolerance
                             if len(splitted_attendances) == counter:
-                                attendance_stop_hour = attendance_stop.hour + attendance_stop.minute / 60.0 \
+                                attendance_stop_hour = (
+                                    attendance_stop.hour + attendance_stop.minute / 60.0
                                     + attendance_stop.second / 60.0 / 60.0
+                                    )
                                 calendar_attendance = attendance_pool.browse(cr, uid, matched_schedule_ids[0])
-                                if attendance_stop_hour <= calendar_attendance.hour_to and \
+                                if attendance_stop_hour <= (
+                                    calendar_attendance.hour_to and
                                     (attendance_stop_hour - (calendar_attendance.hour_to -
-                                    calendar_attendance.tolerance_from)) > -0.01: # handling float roundings (>=)
+                                    calendar_attendance.tolerance_from)) > -0.01
+                                    ): # handling float roundings (>=)
                                     additional_intervals = round(
                                         (calendar_attendance.hour_to - attendance_stop_hour) / precision)
                                     intervals_within += additional_intervals
@@ -289,7 +316,8 @@ class hr_attendance(orm.Model):
                     # make difference using time in order to avoid rounding errors
                     # inside_calendar_duration can't be > duration
                     res[attendance.id]['outside_calendar_duration'] = self.time_difference(
-                        res[attendance.id]['inside_calendar_duration'], res[attendance.id]['duration'])
+                        res[attendance.id]['inside_calendar_duration'],
+                        res[attendance.id]['duration'])
 
                     if contract.working_hours.overtime_rounding:
                         if res[attendance.id]['outside_calendar_duration']:
