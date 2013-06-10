@@ -83,7 +83,7 @@ class ProjectTask(orm.Model):
     
     def write(self, cr, uid, ids, vals, context=None):
         res = super(ProjectTask, self).write(cr, uid, ids, vals, context=context)
-        if 'project_id' in vals:
+        if 'project_id' in vals and vals['project_id']:
             ts_obj = self.pool.get('hr.analytic.timesheet')
             project_obj = self.pool.get('project.project')
             project = project_obj.browse(cr, uid, vals['project_id'], context)
