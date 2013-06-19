@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Yannick Vaucher
+#    Authors: Yannick Vaucher (Camptocamp)
+#             Vincent Renaville (Camptocamp)
 #    Copyright 2013 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -28,6 +29,9 @@
  Modifies timesheet behavior:
  - Ensure a DESC order on timesheet lines
  - Set default date for manually entering attendance to max attendance date
+ - Redefine constraint on timesheets to check alternation of 'sign in' and
+   'sign out' only on current timesheet instead of doing it on all timesheets
+   of the employee
  """,
  'website': 'http://www.camptocamp.com',
  'data': ['hr_timesheet_view.xml'],

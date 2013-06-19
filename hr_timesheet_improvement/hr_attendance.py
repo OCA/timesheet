@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author : Yannick Vaucher & Vincent Renaville (Camptocamp)
+#    Authors: Yannick Vaucher (Camptocamp)
+#             Vincent Renaville (Camptocamp)
 #    Copyright 2013 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
