@@ -1,0 +1,568 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* hr_attendance_analysis
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-12-23 10:04+0000\n"
+"PO-Revision-Date: 2011-12-23 11:18+0100\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: hr_attendance_analysis
+#: code:addons/hr_attendance_analysis/hr_attendance.py:123
+#, python-format
+msgid "Incongruent data: sign-in %s is followed by another sign-in"
+msgstr "Dati incongruenti: l'entrata %s è seguita da un'altra entrata"
+
+#. module: hr_attendance_analysis
+#: code:addons/hr_attendance_analysis/hr_attendance.py:87
+#: code:addons/hr_attendance_analysis/hr_attendance.py:123
+#: code:addons/hr_attendance_analysis/hr_attendance.py:189
+#: code:addons/hr_attendance_analysis/wizard/print_calendar_report.py:58
+#: code:addons/hr_attendance_analysis/wizard/print_calendar_report.py:129
+#, python-format
+msgid "Error"
+msgstr "Errore"
+
+#. module: hr_attendance_analysis
+#: help:res.company,working_time_precision:0
+msgid "The precision used to analyse working times over working schedule"
+msgstr "La precisione utilizzata per analizzare le ore lavorative rispetto al calendario di lavoro"
+
+#. module: hr_attendance_analysis
+#: view:hr.attendance:0
+msgid "Group By..."
+msgstr "Raggruppa per..."
+
+#. module: hr_attendance_analysis
+#: code:addons/hr_attendance_analysis/report/calendar_report.py:47
+#, python-format
+msgid "Sunday"
+msgstr "Domenica"
+
+#. module: hr_attendance_analysis
+#: field:hr.attendance,end_datetime:0
+msgid "End date time"
+msgstr "Data e ora di fine"
+
+#. module: hr_attendance_analysis
+#: view:hr.attendance:0
+msgid "Today"
+msgstr "Oggi"
+
+#. module: hr_attendance_analysis
+#: view:hr.attendance:0
+msgid "Within working schedule"
+msgstr "All'interno del calendario di lavoro"
+
+#. module: hr_attendance_analysis
+#: selection:resource.calendar,attendance_rounding:0
+#: selection:resource.calendar,leave_rounding:0
+#: selection:resource.calendar,overtime_rounding:0
+msgid "20"
+msgstr "20"
+
+#. module: hr_attendance_analysis
+#: code:addons/hr_attendance_analysis/report/calendar_report.py:43
+#, python-format
+msgid "Friday"
+msgstr "Venerdì"
+
+#. module: hr_attendance_analysis
+#: model:ir.model,name:hr_attendance_analysis.model_attendance_analysis_wizard_calendar_report
+msgid "attendance_analysis.wizard.calendar_report"
+msgstr "attendance_analysis.wizard.calendar_report"
+
+#. module: hr_attendance_analysis
+#: selection:resource.calendar,attendance_rounding:0
+#: selection:resource.calendar,leave_rounding:0
+#: selection:resource.calendar,overtime_rounding:0
+msgid "8"
+msgstr "8"
+
+#. module: hr_attendance_analysis
+#: view:hr.attendance:0
+msgid "Day"
+msgstr "Giorno"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:36
+msgid "Leave"
+msgstr "Assenza"
+
+#. module: hr_attendance_analysis
+#: field:resource.calendar.overtime.type,limit:0
+msgid "Limit"
+msgstr "Limite"
+
+#. module: hr_attendance_analysis
+#: selection:resource.calendar,attendance_rounding:0
+#: selection:resource.calendar,leave_rounding:0
+#: selection:resource.calendar,overtime_rounding:0
+msgid "15"
+msgstr "15"
+
+#. module: hr_attendance_analysis
+#: help:resource.calendar,attendance_rounding:0
+msgid "For instance, using rounding = 15 minutes, every sign in will be rounded to the following quarter hour and every sign out to the previous quarter hour"
+msgstr "Per esempio, utilizzando un arrotondamento = 15 minuti, ogni entrata verrà arrotondata al quarto d'ora successivo ed ogni uscita al quarto d'ora precedente"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:80
+msgid "Totals"
+msgstr "Totali"
+
+#. module: hr_attendance_analysis
+#: help:resource.calendar.attendance,tolerance_to:0
+msgid "Sign in done in the interval \"Work from + Tolerance to\" will be considered done at \"Work from\""
+msgstr "Le entrate effettuate nell'intervallo \"Lavoro da + Tolleranza a\" saranno considerate come fatte in \"Lavoro da\""
+
+#. module: hr_attendance_analysis
+#: field:resource.calendar.attendance,tolerance_from:0
+msgid "Tolerance from"
+msgstr "Tolleranza da"
+
+#. module: hr_attendance_analysis
+#: field:attendance_analysis.wizard.calendar_report,from_date:0
+msgid "From date"
+msgstr "Dalla data"
+
+#. module: hr_attendance_analysis
+#: code:addons/hr_attendance_analysis/hr_attendance.py:87
+#, python-format
+msgid "Too many active contracts for employee %s"
+msgstr "Troppi contratti attivi per il dipendente %s"
+
+#. module: hr_attendance_analysis
+#: view:hr.attendance:0
+msgid "Calendar View"
+msgstr "Vista calendario"
+
+#. module: hr_attendance_analysis
+#: view:resource.calendar:0
+msgid "Roundings"
+msgstr "Arrotondamenti"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:25
+msgid "Third Sign In"
+msgstr "Terza entrata"
+
+#. module: hr_attendance_analysis
+#: model:ir.model,name:hr_attendance_analysis.model_hr_attendance
+msgid "Attendance"
+msgstr "Presenze"
+
+#. module: hr_attendance_analysis
+#: constraint:res.company:0
+msgid "Error! You can not create recursive companies."
+msgstr "Errore! Non è possibile creare aziende ricorsive."
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:35
+msgid "Negative"
+msgstr "Negativo"
+
+#. module: hr_attendance_analysis
+#: view:hr.attendance:0
+msgid "Employee"
+msgstr "Dipendente"
+
+#. module: hr_attendance_analysis
+#: view:resource.calendar:0
+msgid "Type"
+msgstr "Tipo"
+
+#. module: hr_attendance_analysis
+#: view:hr.attendance:0
+msgid "Hr Attendance Search"
+msgstr "HR cerca presenza"
+
+#. module: hr_attendance_analysis
+#: view:hr.attendance:0
+msgid "Start date time"
+msgstr "Data e ora di inizio"
+
+#. module: hr_attendance_analysis
+#: help:resource.calendar,overtime_rounding:0
+msgid "Setting rounding = 30 minutes, an overtime of 29 minutes will be considered as 0 minutes, 31 minutes as 30 minutes, 61 minutes as 1 hour and so on"
+msgstr "Impostando un arrotondamento = 30 minuti, uno straordinario di 29 minuti sarà considerato come 0 minuti, 31 minuti come 30 minuti, 61 minuti come un'ora e così via"
+
+#. module: hr_attendance_analysis
+#: field:resource.calendar,attendance_rounding:0
+msgid "Attendance rounding"
+msgstr "Arrotondamento presenza"
+
+#. module: hr_attendance_analysis
+#: selection:resource.calendar,attendance_rounding:0
+#: selection:resource.calendar,leave_rounding:0
+#: selection:resource.calendar,overtime_rounding:0
+msgid "3"
+msgstr "3"
+
+#. module: hr_attendance_analysis
+#: constraint:hr.attendance:0
+msgid "Error: Sign in (resp. Sign out) must follow Sign out (resp. Sign in)"
+msgstr "Errore: una operazione di Entrata (Uscita) deve essere seguito da una Uscita (Entrata)"
+
+#. module: hr_attendance_analysis
+#: view:res.company:0
+msgid "Configuration"
+msgstr "Configurazione"
+
+#. module: hr_attendance_analysis
+#: code:addons/hr_attendance_analysis/wizard/print_calendar_report.py:58
+#, python-format
+msgid "From date must be < to date"
+msgstr "\"Dalla data\" deve essere < di \"alla data\""
+
+#. module: hr_attendance_analysis
+#: view:hr.attendance:0
+msgid "Total hours"
+msgstr "Ore totali"
+
+#. module: hr_attendance_analysis
+#: field:res.company,working_time_precision:0
+msgid "Working time precision"
+msgstr "Precisione orario lavorativo"
+
+#. module: hr_attendance_analysis
+#: view:hr.attendance:0
+msgid "Employee attendances analysis"
+msgstr "Analisi presenze dipendente"
+
+#. module: hr_attendance_analysis
+#: field:resource.calendar.attendance,tolerance_to:0
+msgid "Tolerance to"
+msgstr "Tolleranza a"
+
+#. module: hr_attendance_analysis
+#: help:resource.calendar,leave_rounding:0
+msgid "On the contrary of overtime rounding, using rounding = 15 minutes, a leave of 1 minute will be considered as 15 minutes, 16 minutes as 30 minutes and so on"
+msgstr "Al contrario dell'arrotondamento straordinari, utilizzando un arrotondamento = 15 minuti, un'assenza di 1 minuto verrà considerata come di 15 minuti, 16 minuti come 30 minuti e così via"
+
+#. module: hr_attendance_analysis
+#: model:ir.actions.report.xml,name:hr_attendance_analysis.attendance_analysis_report_id
+msgid "Attendances Analysis"
+msgstr "Analisi presenze"
+
+#. module: hr_attendance_analysis
+#: selection:resource.calendar,attendance_rounding:0
+#: selection:resource.calendar,leave_rounding:0
+#: selection:resource.calendar,overtime_rounding:0
+msgid "30"
+msgstr "30"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:110
+#: model:ir.model,name:hr_attendance_analysis.model_resource_calendar_overtime_type
+msgid "Overtime type"
+msgstr "Tipo di straordinario"
+
+#. module: hr_attendance_analysis
+#: field:hr.attendance,inside_calendar_duration:0
+msgid "Duration within working schedule"
+msgstr "Durata all'interno del calendario lavorativo"
+
+#. module: hr_attendance_analysis
+#: field:resource.calendar,leave_rounding:0
+msgid "Leave rounding"
+msgstr "Arrotonamento assenza"
+
+#. module: hr_attendance_analysis
+#: field:resource.calendar.overtime.type,calendar_id:0
+msgid "Calendar"
+msgstr "Calendario"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:32
+msgid "Due"
+msgstr "Dovuto"
+
+#. module: hr_attendance_analysis
+#: view:attendance_analysis.wizard.calendar_report:0
+#: model:ir.actions.act_window,name:hr_attendance_analysis.action_wizard_calendar_report
+#: model:ir.ui.menu,name:hr_attendance_analysis.menu_action_wizard_calendar_report
+msgid "Attendances Analysis Calendar"
+msgstr "Calendario di analisi presenze"
+
+#. module: hr_attendance_analysis
+#: selection:resource.calendar,attendance_rounding:0
+#: selection:resource.calendar,leave_rounding:0
+#: selection:resource.calendar,overtime_rounding:0
+msgid "60"
+msgstr "60"
+
+#. module: hr_attendance_analysis
+#: view:resource.calendar:0
+#: field:resource.calendar,overtime_type_ids:0
+msgid "Overtime types"
+msgstr "Tipi di straordinario"
+
+#. module: hr_attendance_analysis
+#: code:addons/hr_attendance_analysis/report/calendar_report.py:35
+#, python-format
+msgid "Monday"
+msgstr "Lunedì"
+
+#. module: hr_attendance_analysis
+#: field:attendance_analysis.wizard.calendar_report,employee_ids:0
+msgid "unknown"
+msgstr "sconosciuto"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:18
+msgid "First Sign Out"
+msgstr "Prima uscita"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:15
+msgid "Day of week"
+msgstr "Giorno della settimana"
+
+#. module: hr_attendance_analysis
+#: field:resource.calendar,overtime_rounding_tolerance:0
+msgid "Overtime rounding tolerance"
+msgstr "Tolleranza arrotondamento straordinari"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:29
+msgid "Fourth Sign In"
+msgstr "Quarta entrata"
+
+#. module: hr_attendance_analysis
+#: code:addons/hr_attendance_analysis/wizard/print_calendar_report.py:130
+#, python-format
+msgid "%s: 'Work to' is < 'Work from'"
+msgstr "%s: 'Lavoro a' è < 'Lavoro da'"
+
+#. module: hr_attendance_analysis
+#: selection:resource.calendar,attendance_rounding:0
+#: selection:resource.calendar,leave_rounding:0
+#: selection:resource.calendar,overtime_rounding:0
+msgid "2"
+msgstr "2"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:10
+msgid "Employee: "
+msgstr "Dipendente:"
+
+#. module: hr_attendance_analysis
+#: selection:resource.calendar,attendance_rounding:0
+#: selection:resource.calendar,leave_rounding:0
+#: selection:resource.calendar,overtime_rounding:0
+msgid "6"
+msgstr "6"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:14
+msgid "Date"
+msgstr "Data"
+
+#. module: hr_attendance_analysis
+#: model:ir.module.module,shortdesc:hr_attendance_analysis.module_meta_information
+msgid "HR - Attendance Analysis"
+msgstr "HR - Analisi presenze"
+
+#. module: hr_attendance_analysis
+#: code:addons/hr_attendance_analysis/hr_attendance.py:190
+#, python-format
+msgid "Wrongly configured working schedule with id %s"
+msgstr "Calendario lavorativo con id %s configurato in modo scorretto"
+
+#. module: hr_attendance_analysis
+#: model:ir.model,name:hr_attendance_analysis.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: hr_attendance_analysis
+#: code:addons/hr_attendance_analysis/report/calendar_report.py:39
+#, python-format
+msgid "Wednesday"
+msgstr "Mercoledì"
+
+#. module: hr_attendance_analysis
+#: field:resource.calendar.overtime.type,name:0
+msgid "Type Description"
+msgstr "Descrizione tipo"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:17
+msgid "First Sign In"
+msgstr "Prima entrata"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:30
+msgid "Fourth Sign Out"
+msgstr "Quarta uscita"
+
+#. module: hr_attendance_analysis
+#: model:ir.module.module,description:hr_attendance_analysis.module_meta_information
+msgid ""
+"\n"
+"Dynamic reports based on employee's attendances and contract's calendar.\n"
+"Among other things, it lets you see the amount of working hours outside and inside the contract's working schedule (overtime).\n"
+"It also provides a daily based report, showing the detailed and total hours compared to calendar hours.\n"
+msgstr ""
+"\n"
+"Dynamic reports based on employee's attendances and contract's calendar.\n"
+"Among other things, it lets you see the amount of working hours outside and inside the contract's working schedule (overtime).\n"
+"It also provides a daily based report, showing the detailed and total hours compared to calendar hours.\n"
+
+#. module: hr_attendance_analysis
+#: selection:resource.calendar,attendance_rounding:0
+#: selection:resource.calendar,leave_rounding:0
+#: selection:resource.calendar,overtime_rounding:0
+msgid "10"
+msgstr "10"
+
+#. module: hr_attendance_analysis
+#: selection:resource.calendar,attendance_rounding:0
+#: selection:resource.calendar,leave_rounding:0
+#: selection:resource.calendar,overtime_rounding:0
+msgid "12"
+msgstr "12"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:22
+msgid "Second Sign Out"
+msgstr "Seconda uscita"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:34
+#: view:hr.attendance:0
+#: field:hr.attendance,outside_calendar_duration:0
+msgid "Overtime"
+msgstr "Straordinario"
+
+#. module: hr_attendance_analysis
+#: model:ir.model,name:hr_attendance_analysis.model_resource_calendar_attendance
+msgid "Work Detail"
+msgstr "Dettagli del lavoro"
+
+#. module: hr_attendance_analysis
+#: help:resource.calendar.attendance,tolerance_from:0
+msgid "Sign out done in the interval \"Work to - Tolerance from\" will be considered done at \"Work to\""
+msgstr "Le uscite effettuate nell'intervallo \"Lavoro a - Tolleranza da\" saranno considerate come fatte in \"Lavoro a\""
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:21
+msgid "Second Sign In"
+msgstr "Seconda entrata"
+
+#. module: hr_attendance_analysis
+#: view:attendance_analysis.wizard.calendar_report:0
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: hr_attendance_analysis
+#: code:addons/hr_attendance_analysis/report/calendar_report.py:37
+#, python-format
+msgid "Tuesday"
+msgstr "Martedì"
+
+#. module: hr_attendance_analysis
+#: model:ir.actions.act_window,name:hr_attendance_analysis.open_view_attendance
+#: model:ir.ui.menu,name:hr_attendance_analysis.menu_open_view_attendance
+msgid "Attendances analysis"
+msgstr "Analisi presenze"
+
+#. module: hr_attendance_analysis
+#: code:addons/hr_attendance_analysis/report/calendar_report.py:41
+#, python-format
+msgid "Thursday"
+msgstr "Giovedì"
+
+#. module: hr_attendance_analysis
+#: view:attendance_analysis.wizard.calendar_report:0
+msgid "Print"
+msgstr "Stampa"
+
+#. module: hr_attendance_analysis
+#: model:ir.model,name:hr_attendance_analysis.model_resource_calendar
+msgid "Resource Calendar"
+msgstr "Calendario risorse"
+
+#. module: hr_attendance_analysis
+#: field:hr.attendance,duration:0
+msgid "Attendance duration"
+msgstr "Durata presenza"
+
+#. module: hr_attendance_analysis
+#: selection:resource.calendar,attendance_rounding:0
+#: selection:resource.calendar,leave_rounding:0
+#: selection:resource.calendar,overtime_rounding:0
+msgid "1"
+msgstr "1"
+
+#. module: hr_attendance_analysis
+#: field:attendance_analysis.wizard.calendar_report,to_date:0
+msgid "To date"
+msgstr "Alla data"
+
+#. module: hr_attendance_analysis
+#: selection:resource.calendar,attendance_rounding:0
+#: selection:resource.calendar,leave_rounding:0
+#: selection:resource.calendar,overtime_rounding:0
+msgid "5"
+msgstr "5"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:33
+msgid "Working Hours"
+msgstr "Ore lavorative"
+
+#. module: hr_attendance_analysis
+#: view:resource.calendar:0
+msgid "Types"
+msgstr "Tipi"
+
+#. module: hr_attendance_analysis
+#: field:resource.calendar,overtime_rounding:0
+msgid "Overtime rounding"
+msgstr "Arrotondamento straordinario"
+
+#. module: hr_attendance_analysis
+#: view:attendance_analysis.wizard.calendar_report:0
+msgid "Employees"
+msgstr "Dipendenti"
+
+#. module: hr_attendance_analysis
+#: help:resource.calendar.overtime.type,limit:0
+msgid "Limit, in hours, of overtime that can be imputed to this type of overtime in a day. The surplus is imputed to the subsequent type"
+msgstr "Limite, in ore, dello straordinario che può essere attribuito a questo tipo di straordinario in un giorno. L'eccedenza è attribuita al tipo successivo."
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:26
+msgid "Third Sign Out"
+msgstr "Terza uscita"
+
+#. module: hr_attendance_analysis
+#: help:resource.calendar,overtime_rounding_tolerance:0
+msgid "Overtime can be rounded using a tolerance. Using tolerance = 3 minutes and rounding = 15 minutes, if employee does overtime of 12 minutes, it will be considered as 15 minutes."
+msgstr "Lo straordinario può essere arrotondato usando una tolleranza. Con una tolleranza = 3 minuti e arrotondamento = 15 minuti, se il dipendente fa uno straordinario di 12 minuti, sarà considerato come 15 minuti."
+
+#. module: hr_attendance_analysis
+#: field:resource.calendar.overtime.type,sequence:0
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: hr_attendance_analysis
+#: report:addons/hr_attendance_analysis/report/calendar_report.mako:111
+msgid "Total"
+msgstr "Totale"
+
+#. module: hr_attendance_analysis
+#: code:addons/hr_attendance_analysis/report/calendar_report.py:45
+#, python-format
+msgid "Saturday"
+msgstr "Sabato"
+
