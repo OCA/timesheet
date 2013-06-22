@@ -1,40 +1,28 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2011 Camptocamp SA (http://www.camptocamp.com)
-# All Right Reserved
+#    Author: Guewen Baconnier (Camptocamp)
+#    Author: Vincent Renaville
+#    Copyright 2012 Camptocamp SA
 #
-# Author : Guewen Baconnier (Camptocamp)
-# Author : Vincent Renaville
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
 #
-# WARNING: This program as such is intended to be used by professional
-# programmers who take the whole responsability of assessing all potential
-# consequences resulting from its eventual inadequacies and bugs
-# End users who are looking for a ready-to-use solution with commercial
-# garantees and support are strongly adviced to contract a Free Software
-# Service Company
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
 #
-# This program is Free Software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
-
-from osv import fields, osv
+from openerp.osv import fields, osv, orm
 from tools.translate import _
 from datetime import datetime, timedelta
-
 
 def get_number_days_between_dates(date_from, date_to):
     datetime_from = datetime.strptime(date_from, '%Y-%m-%d')
@@ -44,7 +32,7 @@ def get_number_days_between_dates(date_from, date_to):
     return difference.days + 1
 
 
-class FulfillTimesheet(osv.osv_memory):
+class HrTimesheetFulfill(orm.TransientModel):
     _name = 'hr.timesheet.fulfill'
     _description = "Wizard to fill-in timesheet for many days"
 
@@ -52,16 +40,19 @@ class FulfillTimesheet(osv.osv_memory):
         'date_from': fields.date('Date From', required=True),
         'date_to': fields.date('Date To', required=True),
         'description': fields.char('Description', size=100, required=True),
-        'nb_hours': fields.float('Hours per day', digits=(2, 2), required=True),
+        'nb_hours': fields.float('Hours per Day', digits=(2, 2), required=True),
         'analytic_account_id': fields.many2one('account.analytic.account',
                                'Analytic Account', required=True,
                                domain="[('type', '=', 'normal'),"
                                       "('state', '!=', 'pending'),"
                                       "('state', '!=', 'close')]"),
-        'task_id':fields.many2one('project.task','Task', required=False)
-    }
+        'task_id':fields.many2one('project.task', 'Task', required=False)
+        }
 
-    def fulfill_timesheet(self, cr, uid, ids, context):
+    def fulfill_timesheet(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+
         employee_obj = self.pool.get('hr.employee')
         timesheet_obj = self.pool.get('hr_timesheet_sheet.sheet')
         al_ts_obj = self.pool.get('hr.analytic.timesheet')
@@ -117,23 +108,23 @@ class FulfillTimesheet(osv.osv_memory):
                 'sheet_id': timesheet.id,
                 'journal_id': journal_id,
             }
-
             on_change_values = al_ts_obj.\
                 on_change_unit_amount(cr, uid, False, product_id,
                                       wizard.nb_hours, employee.company_id.id,
-                                      task_id=wizard.task_id.id,
+#                                      task_id=wizard.task_id.id,
                                       unit=unit_id, journal_id=journal_id,
                                       context=context)
             if on_change_values:
                 res.update(on_change_values['value'])
             al_ts_obj.create(cr, uid, res, context)
-
             # If there is no other attendances, create it
             # create the attendances:
-            existing_attendances = attendance_obj\
-                .search(cr, uid, [('name', '=', datetime_current),
-                                  ('employee_id', '=', employee_id)])
-
+#            print attendance_obj.read(cr,uid,['name'])
+            existing_attendances=0
+            att_id= attendance_obj.search(cr, uid, [('employee_id', '=', employee_id)])
+            for record in attendance_obj.read(cr,uid,att_id,['name']):
+                if record['name'].startswith( datetime_current ):
+                    existing_attendances=1
             if not existing_attendances:
                 att_date_start = datetime_current + " 00:00:00"
                 att_start = {
@@ -154,6 +145,7 @@ class FulfillTimesheet(osv.osv_memory):
                 }
                 attendance_obj.create(cr, uid, att_start, context)
                 attendance_obj.create(cr, uid, att_end, context)
+
         return {'type': 'ir.actions.act_window_close'}
 
-FulfillTimesheet()
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
