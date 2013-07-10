@@ -21,7 +21,7 @@
 ##############################################################################
 
 from __future__ import division
-from openerp.osv import fields, orm
+from openerp.osv import fields, orm, osv
 from openerp.tools.translate import _
 import time
 from datetime import *
@@ -64,7 +64,7 @@ class hr_attendance(orm.Model):
         if hours / 24 > 0:
             days += hours / 24
             hours = hours % 24
-        return datetime(1900, 1, days, hours, minutes)
+        return datetime(1900, 1, int(days), hours, minutes)
 
     def float_to_timedelta(self, float_val):
         str_time = self.float_time_convert(float_val)
@@ -147,9 +147,10 @@ class hr_attendance(orm.Model):
             ('trial_date_end', '>=', date),
             ])
         if len(active_contract_ids) > 1:
+            employee = self.pool.get('hr.employee').browse(cr,uid,employee_id)
             raise osv.except_osv(_('Error'), _(
                 'Too many active contracts for employee %s'
-                ) % attendance.employee_id.name)
+                ) % employee.name)
         return active_contract_ids
 
     def _ceil_rounding(self, rounding, datetime):
