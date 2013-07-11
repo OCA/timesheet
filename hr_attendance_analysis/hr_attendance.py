@@ -139,10 +139,10 @@ class hr_attendance(orm.Model):
             ('date_end', '>=', date),
             ('date_end', '=', False),
             '&',
-            '|',
+            '&',
             ('trial_date_start', '=', False),
             ('trial_date_start', '<=', date),
-            '|',
+            '&',
             ('trial_date_end', '=', False),
             ('trial_date_end', '>=', date),
             ])
