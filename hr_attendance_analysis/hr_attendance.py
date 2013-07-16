@@ -21,7 +21,7 @@
 ##############################################################################
 
 from __future__ import division
-from openerp.osv import fields, orm, osv
+from openerp.osv import fields, orm
 from openerp.tools.translate import _
 import time
 from datetime import *
@@ -76,7 +76,7 @@ class hr_attendance(orm.Model):
 
     def time_difference(self, float_start_time, float_end_time):
         if float_end_time < float_start_time:
-            raise osv.except_osv(_('Error'), _('End time %s < start time %s')
+            raise orm.except_orm(_('Error'), _('End time %s < start time %s')
                 % (str(float_end_time),str(float_start_time)))
         delta = self.float_to_datetime(float_end_time) - self.float_to_datetime(
             float_start_time)
@@ -148,7 +148,7 @@ class hr_attendance(orm.Model):
             ])
         if len(active_contract_ids) > 1:
             employee = self.pool.get('hr.employee').browse(cr,uid,employee_id)
-            raise osv.except_osv(_('Error'), _(
+            raise orm.except_orm(_('Error'), _(
                 'Too many active contracts for employee %s'
                 ) % employee.name)
         return active_contract_ids
@@ -192,7 +192,7 @@ class hr_attendance(orm.Model):
                     next_attendance = self.browse(cr, uid, next_attendance_ids[0])
                     if next_attendance.action == 'sign_in':
                          # 2012.10.16 LF FIX : Attendance in context timezone
-                         raise osv.except_osv(_('Error'), _(
+                         raise orm.except_orm(_('Error'), _(
                             'Incongruent data: sign-in %s is followed by another sign-in'
                             ) % attendance_start)
                     next_attendance_date = next_attendance.name
@@ -274,7 +274,7 @@ class hr_attendance(orm.Model):
                             ('hour_from','<=',centered_attendance_hour),
                             ])
                         if len(matched_schedule_ids) > 1:
-                            raise osv.except_osv(_('Error'),
+                            raise orm.except_orm(_('Error'),
                                 _('Wrongly configured working schedule with id %s') % str(calendar_id))
                         if matched_schedule_ids:
                             intervals_within += 1
