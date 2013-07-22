@@ -1,8 +1,16 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    Authors: Stéphane Bidoul & Laetitia Gangloff
+#    Copyright (c) 2013 Acsone SA/NV (http://www.acsone.eu)
+#    All Rights Reserved
+#
+#    WARNING: This program as such is intended to be used by professional
+#    programmers who take the whole responsibility of assessing all potential
+#    consequences resulting from its eventual inadequacies and bugs.
+#    End users who are looking for a ready-to-use solution with commercial
+#    guarantees and support are strongly advised to contact a Free Software
+#    Service Company.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,19 +28,19 @@
 ##############################################################################
 import datetime
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, orm
 
 
-class hr_contract(osv.osv):
+class hr_contract(orm.Model):
     _inherit = 'hr.contract'
 
     def copy(self, cr, uid, id, defaults, context=None):
         """
         When duplicate a contract set the start date to the last end date + 1 day.
-        If the last end date is False, do nothing 
+        If the last end date is False, do nothing
         """
         contract = self.browse(cr, uid, id, context=context)
-        end_date_contract_id = self.search(cr, uid, [('employee_id','=',contract.employee_id.id),], limit=1, order='date_end desc', context=context)
+        end_date_contract_id = self.search(cr, uid, [('employee_id', '=', contract.employee_id.id), ], limit=1, order='date_end desc', context=context)
         last_end_date = False
         if end_date_contract_id:
             contract = self.browse(cr, uid, end_date_contract_id, context=context)
@@ -43,6 +51,6 @@ class hr_contract(osv.osv):
             defaults['date_end'] = False
             defaults['trial_date_start'] = False
             defaults['trial_date_end'] = False
-        return super(hr_contract,self).copy(cr, uid, id, defaults, context=context)
+        return super(hr_contract, self).copy(cr, uid, id, defaults, context=context)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
