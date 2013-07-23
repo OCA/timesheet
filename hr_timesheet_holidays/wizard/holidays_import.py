@@ -22,7 +22,7 @@
 from datetime import datetime, timedelta
 
 from openerp.osv import orm, fields, osv
-from tools.translate import _
+from openerp.tools.translate import _
 
 def get_number_days_between_dates(date_from, date_to):
     datetime_from = datetime.strptime(date_from, '%Y-%m-%d %H:%M:%S')
