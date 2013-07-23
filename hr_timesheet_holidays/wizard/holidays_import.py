@@ -23,10 +23,11 @@ from datetime import datetime, timedelta
 
 from openerp.osv import orm, fields, osv
 from openerp.tools.translate import _
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 
 def get_number_days_between_dates(date_from, date_to):
-    datetime_from = datetime.strptime(date_from, '%Y-%m-%d %H:%M:%S')
-    datetime_to = datetime.strptime(date_to, '%Y-%m-%d %H:%M:%S')
+    datetime_from = datetime.strptime(date_from, DEFAULT_SERVER_DATETIME_FORMAT)
+    datetime_to = datetime.strptime(date_to, DEFAULT_SERVER_DATETIME_FORMAT)
     difference = datetime_to - datetime_from
     # return result and add a day
     return difference.days + 1
@@ -70,8 +71,8 @@ class HolidaysImport(orm.TransientModel):
 
             nb_days = get_number_days_between_dates(h_date_from, h_date_to)
             for day in range(nb_days):
-                str_datetime_current = (datetime.strptime(h_date_from, '%Y-%m-%d %H:%M:%S')
-                                    + timedelta(days=day)).strftime('%Y-%m-%d')
+                str_datetime_current = (datetime.strptime(h_date_from, DEFAULT_SERVER_DATETIME_FORMAT)
+                                    + timedelta(days=day)).strftime(DEFAULT_SERVER_DATE_FORMAT)
                 line_ids = line_obj.search(cr, uid,
                                 [('date', '=', str_datetime_current),
                                  ('name', '=', h_name),
@@ -136,9 +137,10 @@ class HolidaysImport(orm.TransientModel):
 
             nb_days = get_number_days_between_dates(holiday.date_from, holiday.date_to)
             for day in range(nb_days):
-                dt_current = (datetime.strptime(holiday.date_from, '%Y-%m-%d %H:%M:%S')
+                dt_current = (datetime.strptime(holiday.date_from, DEFAULT_SERVER_DATETIME_FORMAT)
                                     + timedelta(days=day))
-                str_dt_current = dt_current.strftime('%Y-%m-%d 00:00:00')
+                # datetime as date at midnight
+                str_dt_current = dt_current.date().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
 
                 day_of_the_week = dt_current.isoweekday()
 
@@ -189,7 +191,7 @@ class HolidaysImport(orm.TransientModel):
                     # get hours and minutes (tuple) from a float time
                     hours = divmod(hours_per_day * 60, 60)
                     date_end = dt_current.replace(hour=int(hours[0]), minute=int(hours[1]))
-                    str_date_end = date_end.strftime('%Y-%m-%d %H:%M:%S')
+                    str_date_end = date_end.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
                     start = {
                         'name': str_dt_current,
                         'action': 'sign_in',
