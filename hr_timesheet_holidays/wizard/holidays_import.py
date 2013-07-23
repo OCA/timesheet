@@ -20,6 +20,8 @@
 #
 ##############################################################################
 from datetime import datetime, timedelta
+from pytz import timezone
+import pytz
 
 from openerp.osv import orm, fields, osv
 from openerp.tools.translate import _
@@ -32,6 +34,23 @@ def get_number_days_between_dates(date_from, date_to):
     # return result and add a day
     return difference.days + 1
 
+def get_start_of_day(date_str):
+    dt_start = datetime.strptime(date_str, DEFAULT_SERVER_DATE_FORMAT)
+    return dt_start.replace(hour=0, minute=0, second=0)
+
+def get_end_of_day(date_str):
+    dt_end = datetime.strptime(date_str, DEFAULT_SERVER_DATE_FORMAT)
+    return dt_end.replace(hour=23, minute=59, second=59)
+
+def get_utc_datetime(date, local_tz):
+    local_dt = local_tz.localize(date)
+    return local_dt.astimezone(pytz.utc)
+
+def get_utc_start_of_day(date_str, local_tz):
+    return get_utc_datetime(get_start_of_day(date_str), local_tz)
+
+def get_utc_end_of_day(date_str, local_tz):
+    return get_utc_datetime(get_end_of_day(date_str), local_tz)
 
 class HolidaysImport(orm.TransientModel):
     _name = 'hr.timesheet.holidays.import'
@@ -44,18 +63,26 @@ class HolidaysImport(orm.TransientModel):
 
         timesheet_id = context['active_id']
         timesheet = timesheet_obj.browse(cr, uid, timesheet_id, context=context)
-        date_from = timesheet.date_from + ' 00:00:00'
-        date_to = timesheet.date_to + ' 23:59:59'
+
+        local_tz = timezone(context.get('tz'))
+        date_from = get_start_of_day(timesheet.date_from)
+        date_from_str = date_from.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        date_utc_from = get_utc_datetime(date_from, local_tz).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+
+        date_to = get_end_of_day(timesheet.date_to)
+        date_to_str = date_to.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        date_utc_to = get_utc_datetime(date_to, local_tz).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+
         cr.execute("select id, date_from, date_to, name from hr_holidays where\
         (\
             ((date_from <= %s and date_to >= %s and date_to <= %s) or\
             (date_from >= %s and date_from <= %s and date_to >= %s) or\
             (date_from >= %s and date_from <= %s and date_to >= %s and date_to <= %s) or\
             (date_from <= %s and date_to >= %s)) and user_id = %s and state = 'validate'\
-        )", (date_from, date_from, date_to,
-            date_from, date_to, date_to,
-            date_from, date_to, date_from, date_to,
-            date_from, date_to, uid))
+        )", (date_utc_from, date_utc_from, date_utc_to,
+            date_utc_from, date_utc_to, date_utc_to,
+            date_utc_from, date_utc_to, date_utc_from, date_utc_to,
+            date_utc_from, date_utc_to, uid))
         holidays = cr.fetchall()
         if not holidays:
             raise osv.except_osv(_('Information'), _('No holidays for the current timesheet.'))
@@ -64,9 +91,9 @@ class HolidaysImport(orm.TransientModel):
             valid = True
             h_id = holiday[0]
             h_date_from = holiday[1] < timesheet.date_from \
-                          and date_from or holiday[1]
+                          and date_from_str or holiday[1]
             h_date_to = holiday[2] > timesheet.date_to \
-                        and date_to or holiday[2]
+                        and date_to_str or holiday[2]
             h_name = holiday[3]
 
             nb_days = get_number_days_between_dates(h_date_from, h_date_to)
@@ -123,6 +150,7 @@ class HolidaysImport(orm.TransientModel):
         if not wizard.holidays_ids:
             raise osv.except_osv(_('Information'), _('No holidays to import.'))
 
+        local_tz = timezone(context.get('tz'))
         errors = []
         for holiday in wizard.holidays_ids:
             if not holiday.holiday_status_id.analytic_account_id.id:
@@ -131,17 +159,22 @@ class HolidaysImport(orm.TransientModel):
             anl_account = anl_account_obj.browse(cr, uid, analytic_account_id, context)
 
             if holiday.date_from < timesheet.date_from:
-                holiday.date_from = timesheet.date_from + ' 00:00:00'
+                dt_ts_from = get_utc_start_of_day(timesheet.date_from, local_tz)
+                holiday.date_from = dt_ts_from.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
             if holiday.date_to > timesheet.date_to:
-                holiday.date_to = timesheet.date_to + ' 23:59:59'
+                dt_ts_to = get_utc_end_of_day(timesheet.date_to, local_tz)
+                holiday.date_to = dt_ts_to.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
 
             nb_days = get_number_days_between_dates(holiday.date_from, holiday.date_to)
             for day in range(nb_days):
                 dt_current = (datetime.strptime(holiday.date_from, DEFAULT_SERVER_DATETIME_FORMAT)
                                     + timedelta(days=day))
                 # datetime as date at midnight
-                str_dt_current = dt_current.date().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+                str_dt_current = dt_current.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+                dt_utc_current = get_utc_datetime(dt_current.replace(hour=0, minute=0, second=0), local_tz)
+                str_dt_utc_current = dt_utc_current.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
 
+                # Test if is week day in local tz
                 day_of_the_week = dt_current.isoweekday()
 
                 # skip the non work days
@@ -184,16 +217,16 @@ class HolidaysImport(orm.TransientModel):
 
                 # Create attendances
                 existing_attendances = \
-                    attendance_obj.search(cr, uid, [('name', '=', str_dt_current),
+                    attendance_obj.search(cr, uid, [('name', '=', str_dt_utc_current),
                                                     ('employee_id', '=', employee_id)])
 
                 if not existing_attendances:
                     # get hours and minutes (tuple) from a float time
                     hours = divmod(hours_per_day * 60, 60)
-                    date_end = dt_current.replace(hour=int(hours[0]), minute=int(hours[1]))
+                    date_end = dt_utc_current + timedelta(hours=int(hours[0]), minutes=int(hours[1]))
                     str_date_end = date_end.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
                     start = {
-                        'name': str_dt_current,
+                        'name': str_dt_utc_current,
                         'action': 'sign_in',
                         'employee_id': employee_id,
                         'sheet_id': timesheet.id,
