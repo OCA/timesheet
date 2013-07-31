@@ -116,6 +116,20 @@ class HrAnalyticTimesheet(orm.Model):
                     res['value']['to_invoice'] = p.to_invoice.id
         return res
 
+    def _get_dummy_hr_analytic_timesheet_id(self, cr, uid, ids, names, arg, context=None):
+        """
+        Return False values as in project.task we replace work_ids
+        to a relation on hr.analytic.timesheet so hr_analytic_timesheet_id
+        must exists in hr.analytic.timesheet to be readable in write
+        function of project.task so write method in project_timesheet
+        is callable when writing project_id or name of project.task
+        """
+        return dict.fromkeys(ids, False)
+
+    _columns = {
+            'hr_analytic_timesheet_id': fields.function(_get_dummy_hr_analytic_timesheet_id, method=True, string='Related Timeline Id', type='boolean')
+            }
+
 class AccountAnalyticLine(orm.Model):
     """We add task_id on AA and manage update of linked task indicators"""
     _inherit = "account.analytic.line"
