@@ -223,7 +223,7 @@ openerp.hr_timesheet_task = function(instance) {
 
             _.each(self.accounts, function(account) {
                 var auth_keys = _.extend(_.clone(account.account_defaults), {
-                    name: true, unit_amount: true, date: true, account_id: true, task_id: true,
+                    name: true, amount:true, unit_amount: true, date: true, account_id:true, task_id: true,
                 });
                 _.each(account.days, function(day) {
                     _.each(day.lines, function(line) {
