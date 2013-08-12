@@ -20,6 +20,7 @@
 #
 ##############################################################################
 import hr_attendance
+import hr_contract
 import report
 import wizard
 import resource
