@@ -372,7 +372,9 @@ class hr_attendance(orm.Model):
             elif attendance.action == 'sign_out':
                 previous_attendance_ids = self.search(cr, uid, [
                     ('employee_id', '=', attendance.employee_id.id),
-                    ('name', '<', attendance.name)], order='name')
+                    ('name', '<', attendance.name),
+                    ('action', '=', 'sign_in'),
+                    ], order='name')
                 if previous_attendance_ids and previous_attendance_ids[len(previous_attendance_ids) - 1] not in attendance_ids:
                     attendance_ids.append(previous_attendance_ids[len(previous_attendance_ids) - 1])    
         return attendance_ids
