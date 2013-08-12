@@ -83,7 +83,7 @@ class wizard_calendar_report(orm.TransientModel):
         from_date = datetime.strptime(form['from_date'], '%Y-%m-%d')
         to_date = datetime.strptime(form['to_date'], '%Y-%m-%d')
         if from_date > to_date:
-            raise osv.except_osv(_('Error'), _('From date must be < to date'))
+            raise orm.except_orm(_('Error'), _('From date must be < to date'))
         employee_ids=form['employee_ids']
         delta = to_date - from_date
         max_number_of_attendances_per_day = 0
@@ -172,7 +172,7 @@ class wizard_calendar_report(orm.TransientModel):
                                 calendar_attendance_duration = attendance_pool.time_difference(
                                     calendar_attendance.hour_from, calendar_attendance.hour_to)
                                 if calendar_attendance_duration < 0:
-                                    raise osv.except_osv(_('Error'),
+                                    raise orm.except_orm(_('Error'),
                                         _("%s: 'Work to' is < 'Work from'")
                                         % calendar_attendance.name)
                                 current_total_due = attendance_pool.time_sum(current_total_due, 
