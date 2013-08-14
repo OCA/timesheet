@@ -61,22 +61,22 @@ class ProjectTask(orm.Model):
     _columns = {'work_ids': fields.one2many('hr.analytic.timesheet', 'task_id', 'Work done'),
                 
 
-    'effective_hours': fields.function(_progress_rate, multi="progress", method=True, string='Time Spent',
+    'effective_hours': fields.function(_progress_rate, multi="progress", string='Time Spent',
                                        help="Sum of spent hours of all tasks related to this project and its child projects.",
                                        store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
                                                 'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
 
-    'delay_hours': fields.function(_progress_rate, multi="progress", method=True, string='Deduced Hours',
+    'delay_hours': fields.function(_progress_rate, multi="progress", string='Deduced Hours',
                                     help="Sum of spent hours with invoice factor of all tasks related to this project and its child projects.",
                                     store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
                                              'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
 
-    'total_hours': fields.function(_progress_rate, multi="progress", method=True, string='Total Time',
+    'total_hours': fields.function(_progress_rate, multi="progress", string='Total Time',
                                    help="Sum of total hours of all tasks related to this project and its child projects.",
                                    store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
                                             'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
 
-    'progress': fields.function(_progress_rate, multi="progress", method=True, string='Progress', type='float', group_operator="avg",
+    'progress': fields.function(_progress_rate, multi="progress", string='Progress', type='float', group_operator="avg",
                                      help="Percent of tasks closed according to the total of tasks todo.",
                                      store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
                                               'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)})}
@@ -127,7 +127,7 @@ class HrAnalyticTimesheet(orm.Model):
         return dict.fromkeys(ids, False)
 
     _columns = {
-            'hr_analytic_timesheet_id': fields.function(_get_dummy_hr_analytic_timesheet_id, method=True, string='Related Timeline Id', type='boolean')
+            'hr_analytic_timesheet_id': fields.function(_get_dummy_hr_analytic_timesheet_id, string='Related Timeline Id', type='boolean')
             }
 
 class AccountAnalyticLine(orm.Model):
