@@ -93,6 +93,32 @@ class ProjectTask(orm.Model):
         return res
 
 class HrAnalyticTimesheet(orm.Model):
+    """
+    Add field:
+    - hr_analytic_timesheet_id:
+    This field is added to make sure a hr.analytic.timesheet can be used
+    instead of a project.task.work.
+
+    This field will always return false as we want to by pass next operations
+    in project.task write method.
+
+    Without this field, it is impossible to write a project.task in which
+    work_ids is empty as a check on it would raise an AttributeError.
+
+    This is because, in project_timesheet module, project.task's write method
+    checks if there is an hr_analytic_timesheet_id on each work_ids.
+
+        (project_timesheet.py, line 250, in write)
+        if not task_work.hr_analytic_timesheet_id:
+            continue
+
+    But as we redefine work_ids to be a relation to hr_analytic_timesheet
+    instead of project.task.work, hr_analytic_timesheet doesn't exists
+    in hr_analytic_timesheet... so it fails.
+
+    An other option would be to monkey patch the project.task's write method...
+    As this method doesn't fit with the change of work_ids relation in model.
+    """
     _inherit = "hr.analytic.timesheet"
     _name = "hr.analytic.timesheet"
 
@@ -118,11 +144,7 @@ class HrAnalyticTimesheet(orm.Model):
 
     def _get_dummy_hr_analytic_timesheet_id(self, cr, uid, ids, names, arg, context=None):
         """
-        Return False values as in project.task we replace work_ids
-        to a relation on hr.analytic.timesheet so hr_analytic_timesheet_id
-        must exists in hr.analytic.timesheet to be readable in write
-        function of project.task so write method in project_timesheet
-        is callable when writing project_id or name of project.task
+        Ensure all hr_analytic_timesheet_id is always False
         """
         return dict.fromkeys(ids, False)
 
