@@ -23,6 +23,7 @@
     'name': "HR - Attendance Analysis",
     'version': '0.1',
     'category': 'Generic Modules/Human Resources',
+    'summary': "Dynamic reports based on employee's attendances and contract's calendar",
     'description': """
 Dynamic reports based on employee's attendances and contract's calendar.
 Among other things, it lets you see the amount of working hours outside and inside the contract's working schedule (overtime).
