@@ -61,22 +61,22 @@ class ProjectTask(orm.Model):
     _columns = {'work_ids': fields.one2many('hr.analytic.timesheet', 'task_id', 'Work done'),
                 
 
-    'effective_hours': fields.function(_progress_rate, multi="progress", method=True, string='Time Spent',
+    'effective_hours': fields.function(_progress_rate, multi="progress", string='Time Spent',
                                        help="Sum of spent hours of all tasks related to this project and its child projects.",
                                        store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
                                                 'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
 
-    'delay_hours': fields.function(_progress_rate, multi="progress", method=True, string='Deduced Hours',
+    'delay_hours': fields.function(_progress_rate, multi="progress", string='Deduced Hours',
                                     help="Sum of spent hours with invoice factor of all tasks related to this project and its child projects.",
                                     store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
                                              'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
 
-    'total_hours': fields.function(_progress_rate, multi="progress", method=True, string='Total Time',
+    'total_hours': fields.function(_progress_rate, multi="progress", string='Total Time',
                                    help="Sum of total hours of all tasks related to this project and its child projects.",
                                    store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
                                             'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
 
-    'progress': fields.function(_progress_rate, multi="progress", method=True, string='Progress', type='float', group_operator="avg",
+    'progress': fields.function(_progress_rate, multi="progress", string='Progress', type='float', group_operator="avg",
                                      help="Percent of tasks closed according to the total of tasks todo.",
                                      store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
                                               'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)})}
@@ -93,6 +93,32 @@ class ProjectTask(orm.Model):
         return res
 
 class HrAnalyticTimesheet(orm.Model):
+    """
+    Add field:
+    - hr_analytic_timesheet_id:
+    This field is added to make sure a hr.analytic.timesheet can be used
+    instead of a project.task.work.
+
+    This field will always return false as we want to by pass next operations
+    in project.task write method.
+
+    Without this field, it is impossible to write a project.task in which
+    work_ids is empty as a check on it would raise an AttributeError.
+
+    This is because, in project_timesheet module, project.task's write method
+    checks if there is an hr_analytic_timesheet_id on each work_ids.
+
+        (project_timesheet.py, line 250, in write)
+        if not task_work.hr_analytic_timesheet_id:
+            continue
+
+    But as we redefine work_ids to be a relation to hr_analytic_timesheet
+    instead of project.task.work, hr_analytic_timesheet doesn't exists
+    in hr_analytic_timesheet... so it fails.
+
+    An other option would be to monkey patch the project.task's write method...
+    As this method doesn't fit with the change of work_ids relation in model.
+    """
     _inherit = "hr.analytic.timesheet"
     _name = "hr.analytic.timesheet"
 
@@ -115,6 +141,16 @@ class HrAnalyticTimesheet(orm.Model):
                 if p.to_invoice and not to_invoice:
                     res['value']['to_invoice'] = p.to_invoice.id
         return res
+
+    def _get_dummy_hr_analytic_timesheet_id(self, cr, uid, ids, names, arg, context=None):
+        """
+        Ensure all hr_analytic_timesheet_id is always False
+        """
+        return dict.fromkeys(ids, False)
+
+    _columns = {
+            'hr_analytic_timesheet_id': fields.function(_get_dummy_hr_analytic_timesheet_id, string='Related Timeline Id', type='boolean')
+            }
 
 class AccountAnalyticLine(orm.Model):
     """We add task_id on AA and manage update of linked task indicators"""
