@@ -183,6 +183,7 @@ class hr_attendance(orm.Model):
                 attendance.name, '%Y-%m-%d %H:%M:%S'
                 ).replace(tzinfo=pytz.utc).astimezone(active_tz)
             next_attendance_date = str_now
+            next_attendance_ids = False
             # should we compute for sign out too?
             if attendance.action == 'sign_in':
                 next_attendance_ids = self.search(cr, uid, [
@@ -212,7 +213,7 @@ class hr_attendance(orm.Model):
             active_contract_ids = self.get_active_contracts(
                 cr, uid, attendance.employee_id.id, date=str_now[:10])
 
-            if active_contract_ids:
+            if active_contract_ids and next_attendance_ids:
                 contract = contract_pool.browse(cr, uid, active_contract_ids[0])
                 if contract.working_hours:
                     # TODO applicare prima arrotondamento o tolleranza?
