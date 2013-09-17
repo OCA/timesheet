@@ -99,6 +99,7 @@
       'date': !eval time.strftime('%Y-%m-%d'),
       'account_id': project.analytic_account_id.id,
       'unit_amount': 10.0,
+      'to_invoice': ref('hr_timesheet_invoice.timesheet_invoice_factor2'),
     }
     ts = self.create(cr, uid, ts_line)
     assert ts, "Timesheet has not been recorded correctly"
@@ -119,7 +120,8 @@
       'date': !eval time.strftime('%Y-%m-%d'),
       'account_id': project.analytic_account_id.id,
       'unit_amount': 10.0,
-      'task_id': ref('project_task_testtimesheetrecords0')
+      'task_id': ref('project_task_testtimesheetrecords0'),
+      'to_invoice': ref('hr_timesheet_invoice.timesheet_invoice_factor2'),
     }
     ts = self.create(cr, uid, ts_line)
     assert ts, "Timesheet has not been recorded correctly"
@@ -150,6 +152,7 @@
       'date': !eval time.strftime('%Y-%m-%d'),
       'account_id': project.analytic_account_id.id,
       'unit_amount': 10.0,
+      'to_invoice': ref('hr_timesheet_invoice.timesheet_invoice_factor2'),
     }
     ts = self.create(cr, uid, ts_line)
     assert ts, "Timesheet has not been recorded correctly"
@@ -185,7 +188,8 @@
       'date': !eval time.strftime('%Y-%m-%d'),
       'account_id': project.analytic_account_id.id,
       'unit_amount': 10.0,
-      'task_id': ref('project_task_testtimesheetrecords0')
+      'task_id': ref('project_task_testtimesheetrecords0'),
+      'to_invoice': ref('hr_timesheet_invoice.timesheet_invoice_factor2'),
     }
     ts = self.create(cr, uid, ts_line)
     assert ts, "Timesheet has not been recorded correctly"
@@ -226,7 +230,8 @@
       'date': !eval time.strftime('%Y-%m-%d'),
       'account_id': project.analytic_account_id.id,
       'unit_amount': 10.0,
-      'task_id': ref('project_task_testtimesheetrecords0')
+      'task_id': ref('project_task_testtimesheetrecords0'),
+      'to_invoice': ref('hr_timesheet_invoice.timesheet_invoice_factor2'),
     }
     ts = self.create(cr, uid, ts_line)
     assert ts, "Timesheet has not been recorded correctly"
