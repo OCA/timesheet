@@ -29,7 +29,7 @@
  'website': 'http://www.camptocamp.com',
  'data': ['project_task_view.xml'],
  'demo': [],
- 'test': [],
+ 'test': ['test/task_timesheet_indicators.yml'],
  'installable': True,
  'images' : [],
  'auto_install': False,
