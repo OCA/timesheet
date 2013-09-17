@@ -57,6 +57,7 @@
   !record {model: project.project, id: project_project_timesheettest0}:
     company_id: base.main_company
     name: Timesheet task and indicator tests
+    to_invoice: ref('hr_timesheet_invoice.timesheet_invoice_factor1')
 -
   Create a task 'Test timesheet records'
 -
