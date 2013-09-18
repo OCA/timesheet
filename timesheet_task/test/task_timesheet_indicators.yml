@@ -61,17 +61,7 @@
     name: Test timesheet records
     planned_hours: 200.0
     project_id: project_project_timesheettest0
-    remaining_hours: 200.0
-    state: draft
     user_id: res_users_hrtester0
--
-  Open the task
--
-  !python {model: project.task}: |
-    self.do_open(cr, uid, [ref("project_task_testtimesheetrecords0")], {"lang":
-      "en_US", "active_ids": [ref("project_project_timesheettest0")], "tz":
-      False, "active_model": "project.project", "department_id": False, "project_id":
-      False, "active_id": ref("project_project_timesheettest0"), })
 -
   The planned time on project should then be 200
 -
