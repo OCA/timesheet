@@ -62,22 +62,22 @@ class ProjectTask(orm.Model):
                 
 
     'effective_hours': fields.function(_progress_rate, multi="progress", string='Time Spent',
-                                       help="Sum of spent hours of all tasks related to this project and its child projects.",
+                                       help="Computed using the sum of the task work done (timesheet lines associated on this task).",
                                        store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
                                                 'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
 
     'delay_hours': fields.function(_progress_rate, multi="progress", string='Deduced Hours',
-                                    help="Sum of spent hours with invoice factor of all tasks related to this project and its child projects.",
+                                    help="Computed as difference between planned hours by the project manager and the total hours of the task.",
                                     store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
                                              'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
 
     'total_hours': fields.function(_progress_rate, multi="progress", string='Total Time',
-                                   help="Sum of total hours of all tasks related to this project and its child projects.",
+                                   help="Computed as: Time Spent + Remaining Time.",
                                    store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
                                             'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
 
     'progress': fields.function(_progress_rate, multi="progress", string='Progress', type='float', group_operator="avg",
-                                     help="Percent of tasks closed according to the total of tasks todo.",
+                                     help="If the task has a progress of 99.99% you should close the task if it's finished or reevaluate the time",
                                      store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
                                               'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)})}
     
