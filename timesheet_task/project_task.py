@@ -22,7 +22,7 @@
 from openerp.osv import orm, fields
 
 TASK_WATCHERS = ['work_ids', 'remaining_hours', 'planned_hours']
-TIMESHEET_WATCHERS = ['unit_amount', 'product_uom_id', 'account_id', 'to_invoice', 'task_id']
+TIMESHEET_WATCHERS = ['unit_amount', 'product_uom_id', 'account_id', 'task_id']
 
 class ProjectTask(orm.Model):
     _inherit = "project.task"
@@ -172,22 +172,12 @@ class AccountAnalyticLine(orm.Model):
         (_check_task_project, 'Error! Task must belong to the project.', ['task_id','account_id']),
     ]
 
-    def _compute_hours_with_factor(self, cr, uid, hours, factor_id, context=None):
-        if not hours or not factor_id:
-            return 0.0
-        fact_obj = self.pool.get('hr_timesheet_invoice.factor')
-        factor = 100.0 - float(fact_obj.browse(cr, uid, factor_id).factor)
-        return (float(hours) / 100.00) * factor
-
     def _set_remaining_hours_create(self, cr, uid, vals, context=None):
         if not vals.get('task_id'):
             return
         hours = vals.get('unit_amount', 0.0)
-        factor_id = vals.get('to_invoice')
-        comp_hours = self._compute_hours_with_factor(cr, uid, hours, factor_id, context)
-        if comp_hours:
-            cr.execute('update project_task set remaining_hours=remaining_hours - %s where id=%s',
-                       (comp_hours, vals['task_id']))
+        cr.execute('update project_task set remaining_hours=remaining_hours - %s where id=%s',
+                       (hours, vals['task_id']))
         return vals
 
     def _set_remaining_hours_write(self, cr, uid, ids, vals, context=None):
@@ -210,16 +200,11 @@ class AccountAnalyticLine(orm.Model):
                 return ids
             if new_task_id:
                 hours = vals.get('unit_amount', line.unit_amount)
-                factor_id = vals.get('to_invoice', line.to_invoice and line.to_invoice.id or False)
-                comp_hours = self._compute_hours_with_factor(cr, uid, hours, factor_id, context)
-                old_factor = line.to_invoice and line.to_invoice.id or False
-                old_comp_hours = self._compute_hours_with_factor(cr, uid, line.unit_amount,
-                                                                 old_factor, context)
+                old_hours = line.unit_amount
                 # we always execute request because invoice factor can be set to gratis
                 cr.execute('update project_task set remaining_hours=remaining_hours - %s + (%s) where id=%s',
-                               (comp_hours, old_comp_hours, new_task_id))
+                               (hours, old_hours, new_task_id))
         return ids
-
 
     def _set_remaining_hours_unlink(self, cr, uid, ids, context=None):
         if isinstance(ids, (int, long)):
@@ -228,14 +213,9 @@ class AccountAnalyticLine(orm.Model):
             if not line.task_id:
                 continue
             hours = line.unit_amount or 0.0
-            factor_id = line.to_invoice and line.to_invoice.id or False
-            comp_hours = self._compute_hours_with_factor(cr, uid, hours, factor_id, context)
-            if comp_hours:
-                cr.execute('update project_task set remaining_hours=remaining_hours + %s where id=%s',
-                           (comp_hours, line.task_id.id))
+            cr.execute('update project_task set remaining_hours=remaining_hours + %s where id=%s',
+                        (hours, line.task_id.id))
         return ids
-
-
 
     def create(self, cr, uid, vals, context=None):
         if vals.get('task_id'):
