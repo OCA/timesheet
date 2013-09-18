@@ -18,16 +18,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name' : 'Analytic Task',
+{'name' : 'Analytic Timesheet In Task',
  'version' : '0.2',
  'author' : 'Camptocamp',
  'maintainer': 'Camptocamp - Acsone SA/NV',
  'category': 'Human Resources',
  'depends' : ['project', 'hr_timesheet_invoice'],
  'description': """
-    Replace task work items (project.task.work) linked to task with timesheet lines (hr.analytic.timesheet). 
-    This allow to have only one single object that handle and record time spent by employees, making more coherence
-    for the end user. This way, time entred through timesheet lines or task is the same. As long as a timesheet lines
+    Replace task work items (project.task.work) linked to task with timesheet lines (hr.analytic.timesheet). Unless
+    the module project_timesheet, this allow to have only one single object that handle and record 
+    time spent by employees, making more coherence for the end user. 
+    This way, time entred through timesheet lines or task is the same. As long as a timesheet lines
     has an associated task, it will compute the related indicators.
     Used with the module hr_timesheet_task, it also allow users to complete task information through the 
     timesheet sheet (hr.timesheet.sheet).
