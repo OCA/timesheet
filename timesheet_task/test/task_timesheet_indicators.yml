@@ -196,10 +196,10 @@
     }
     ts = self.create(cr, uid, ts_line)
     assert ts, "Timesheet has not been recorded correctly"
-    task = project_obj.browse(cr, uid, ref('project_task_testtimesheetrecords0'))
+    task = task_obj.browse(cr, uid, ref('project_task_testtimesheetrecords0'))
     assert task.effective_hours == 30.0, "Effective hours on task is not correct"
     assert task.remaining_hours == 170.0, "Remaining hours on task is not correct"
-    project = project_obj.browse(cr, uid, ref('project_project_timesheettest0'))
+    project.refresh()
     assert project.effective_hours == 30.0, "Effective hours on project is not correct"
     vals = {
         'task_id': False
@@ -240,10 +240,10 @@
     }
     ts = self.create(cr, uid, ts_line)
     assert ts, "Timesheet has not been recorded correctly"
-    task = project_obj.browse(cr, uid, ref('project_task_testtimesheetrecords0'))
+    task = task_obj.browse(cr, uid, ref('project_task_testtimesheetrecords0'))
     assert task.effective_hours == 30.0, "Effective hours on task is not correct"
     assert task.remaining_hours == 170.0, "Remaining hours on task is not correct"
-    project = project_obj.browse(cr, uid, ref('project_project_timesheettest0'))
+    project.refresh()
     assert project.effective_hours == 30.0, "Effective hours on project is not correct"
     result = self.unlink(cr, uid, ts)
 -  
@@ -265,14 +265,11 @@
   Change the remaining hours of the task to 200.0
 -
   !python {model: project.task}: |
-    import time
-    project_obj = self.pool.get('project.project')
-    project = project_obj.browse(cr, uid, ref('project_project_timesheettest0'))
     task = self.browse(cr, uid, ref('project_task_testtimesheetrecords0'))
     vals = {
         'remaining_hours': 200.0,
     }
-    result = self.write(cr, uid, task, vals)
+    result = self.write(cr, uid, [task.id], vals)
 -  
   The time spent on the task should still be 20.0
 -
