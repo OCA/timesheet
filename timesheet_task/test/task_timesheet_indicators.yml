@@ -235,7 +235,7 @@
     assert task.remaining_hours == 170.0, "Remaining hours on task is not correct"
     project.refresh()
     assert project.effective_hours == 30.0, "Effective hours on project is not correct"
-    result = self.unlink(cr, uid, ts)
+    result = self.unlink(cr, uid, [ts])
 -
   The time spent on the task should be 20.0
 -
