@@ -49,28 +49,3 @@ class HrAnalyticTimesheet(orm.Model):
                 }
             ),
         }
-
-    def _check_sheet_state(self, cr, uid, ids, context=None):
-        ## Deactivate contraint to allow modification of timesheet by project manager
-        return True
-
-    _constraints = [
-        (_check_sheet_state, 'You cannot modify an entry in a Confirmed/Done timesheet !', ['state']),
-    ]
-
-    
-class HrTimesheetsheet(orm.Model):
-    """
-    Set order by line date and analytic account name instead of id
-    We create related stored values as _order cannot be used on inherited columns
-    """
-    _inherit = "hr_timesheet_sheet.sheet"
-
-    def button_confirm(self, cr, uid, ids, context=None):
-        attendances_obj = self.pool.get('hr.attendance')
-        for sheet in self.browse(cr, uid, ids, context=context):
-            ids_attendances = attendances_obj.search(cr,uid,[('sheet_id', '=', sheet.id)])
-            attendances_obj.check_alter_si_so(cr,uid,ids_attendances,context=context)
-        return super(HrTimesheetsheet,self).button_confirm(cr, uid, ids, context=context)
-            
-

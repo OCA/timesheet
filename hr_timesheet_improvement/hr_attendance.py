@@ -21,10 +21,8 @@
 ##############################################################################
 import time
 
-from openerp.osv import orm, osv
+from openerp.osv import orm
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
-from openerp.tools.translate import _
-
 
 
 class HrAttendance(orm.Model):
@@ -56,15 +54,6 @@ class HrAttendance(orm.Model):
             Previous (if exists) must be of opposite action.
             Next (if exists) must be of opposite action.
         """
-        return True
-
-    _constraints = [(_altern_si_so, 'Error ! Sign in (resp. Sign out) must follow Sign out (resp. Sign in)', ['action'])]
-
-    _defaults = {
-        'name': _default_date,
-        }
-
-    def check_alter_si_so(self, cr, uid, ids, context=None):
         sheet_obj = self.pool.get('hr_timesheet_sheet.sheet')
         for att in self.browse(cr, uid, ids, context=context):
             sheet_id = sheet_obj.search(
@@ -76,7 +65,8 @@ class HrAttendance(orm.Model):
                     limit=1,
                     context=context)
             sheet_id = sheet_id and sheet_id[0] or False
-             # search and browse for first previous and first next records
+
+            # search and browse for first previous and first next records
             prev_att_ids = self.search(cr, uid, [('employee_id', '=', att.employee_id.id),
                                                  ('sheet_id', '=', sheet_id),
                                                  ('name', '<', att.name),
@@ -89,15 +79,20 @@ class HrAttendance(orm.Model):
                                                  ('action', 'in', ('sign_in', 'sign_out'))],
                                        limit=1, order='name ASC',
                                        context=context)
-            
-            
             prev_atts = self.browse(cr, uid, prev_att_ids, context=context)
             next_atts = self.browse(cr, uid, next_add_ids, context=context)
-             # check for alternance, return False if at least one condition is not satisfied
+            # check for alternance, return False if at least one condition is not satisfied
             if prev_atts and prev_atts[0].action == att.action: # previous exists and is same action
-               raise osv.except_osv(_('UserError'),_('%s and %s are both a %s')%(prev_atts[0].name,att.name,att.action)) 
+                return False
             if next_atts and next_atts[0].action == att.action: # next exists and is same action
-               raise osv.except_osv(_('UserError'),_('%s and %s are both a %s')%(next_atts[0].name,att.name,att.action)) 
-            if (not prev_atts) and att.action != 'sign_in': # first attendance must be sign_in
-               raise osv.except_osv(_('UserError'),_('%s does not have a previous Sign in, please Sign in before Sign out')%(att.name)) 
+                return False
+            if (not prev_atts) and (not next_atts) and att.action != 'sign_in': # first attendance must be sign_in
+                return False
         return True
+
+    _constraints = [(_altern_si_so, 'Error ! Sign in (resp. Sign out) must follow Sign out (resp. Sign in)', ['action'])]
+
+    _defaults = {
+        'name': _default_date,
+        }
+
