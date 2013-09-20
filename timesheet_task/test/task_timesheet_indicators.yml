@@ -90,7 +90,7 @@
     }
     ts = self.create(cr, uid, ts_line)
     assert ts, "Timesheet has not been recorded correctly"
--  
+-
   The time spent on project should still be 0 as no task has been set
 -
   !assert {model: project.project, id: project_project_timesheettest0}:
@@ -114,17 +114,17 @@
     }
     ts = self.create(cr, uid, ts_line)
     assert ts, "Timesheet has not been recorded correctly"
--  
+-
   The time spent on the task should be 10.0
 -
   !assert {model: project.task, id: project_task_testtimesheetrecords0, string: time_spent_on_task_01}:
     - effective_hours == 10.0
--  
+-
   The remaining time on the task should be 190.0
 -
   !assert {model: project.task, id: project_task_testtimesheetrecords0, string: remaining_time_on_task_01}:
     - remaining_hours == 190.0
--  
+-
   The time spent on project should be 10.0
 -
   !assert {model: project.project, id: project_project_timesheettest0, string: time_spent_on_project_02}:
@@ -151,17 +151,17 @@
         'task_id': ref('project_task_testtimesheetrecords0')
     }
     result = self.write(cr, uid, ts, vals)
--  
+-
   The time spent on the task should be 20.0
 -
   !assert {model: project.task, id: project_task_testtimesheetrecords0, string: time_spent_on_task_02}:
     - effective_hours == 20.0
--  
+-
   The remaining time on the task should be 180.0
 -
   !assert {model: project.task, id: project_task_testtimesheetrecords0, string: remaining_time_on_task_02}:
     - remaining_hours == 180.0
--  
+-
   The time spent on project should be 20.0
 -
   !assert {model: project.project, id: project_project_timesheettest0, string: time_spent_on_project_03}:
@@ -195,17 +195,17 @@
         'task_id': False
     }
     result = self.write(cr, uid, ts, vals)
--  
+-
   The time spent on the task should be 20.0
 -
   !assert {model: project.task, id: project_task_testtimesheetrecords0, string: time_spent_on_task_03}:
     - effective_hours == 20.0
--  
+-
   The remaining time on the task should be 180.0
 -
   !assert {model: project.task, id: project_task_testtimesheetrecords0, string: remaining_time_on_task_03}:
     - remaining_hours == 180.0
--  
+-
   The time spent on project should be 20.0
 -
   !assert {model: project.project, id: project_project_timesheettest0, string: time_spent_on_project_04}:
@@ -236,17 +236,17 @@
     project.refresh()
     assert project.effective_hours == 30.0, "Effective hours on project is not correct"
     result = self.unlink(cr, uid, ts)
--  
+-
   The time spent on the task should be 20.0
 -
   !assert {model: project.task, id: project_task_testtimesheetrecords0, string: time_spent_on_task_04}:
     - effective_hours == 20.0
--  
+-
   The remaining time on the task should be 180.0
 -
   !assert {model: project.task, id: project_task_testtimesheetrecords0, string: remaining_time_on_task_04}:
     - remaining_hours == 180.0
--  
+-
   The time spent on project should be 20.0
 -
   !assert {model: project.project, id: project_project_timesheettest0, string: time_spent_on_project_05}:
@@ -260,22 +260,22 @@
         'remaining_hours': 200.0,
     }
     result = self.write(cr, uid, [task.id], vals)
--  
+-
   The time spent on the task should still be 20.0
 -
   !assert {model: project.task, id: project_task_testtimesheetrecords0, string: time_spent_on_task_05}:
     - effective_hours == 20.0
--  
+-
   The remaining time on the task should be 200.0
 -
   !assert {model: project.task, id: project_task_testtimesheetrecords0, string: remaining_time_on_task_05}:
     - remaining_hours == 200.0
--  
+-
   The delay in hours on the task should be 20.0
 -
   !assert {model: project.task, id: project_task_testtimesheetrecords0, string: delay_on_task_01}:
     - delay_hours == 20.0
--  
+-
   The total on the task should be 220.0
 -
   !assert {model: project.task, id: project_task_testtimesheetrecords0, string: total_time_on_task_01}:
