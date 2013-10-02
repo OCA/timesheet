@@ -52,10 +52,10 @@ class ProjectTask(orm.Model):
 
 
     def _store_set_values(self, cr, uid, ids, fields, context):
-        # Hack to avoid redefining most of function field of project.project model
-        # This is mainly to to the fact that orm _store_set_values use direct access to database.
-        # So when modifiy aa line the _store_set_values uses cursor directly to update tasks
-        # In concequence project trigger on task are not called
+        # Hack to avoid redefining most of function fields of project.project model
+        # This is mainly due to the fact that orm _store_set_values use direct access to database.
+        # So when modifiy aa line the _store_set_values as it uses cursor directly to update tasks
+        # project triggers on task are not called
         res = super(ProjectTask, self)._store_set_values(cr, uid, ids, fields, context=context)
         for row in self.browse(cr, SUPERUSER_ID, ids, context=context):
             project = row.project_id
