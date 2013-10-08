@@ -200,7 +200,7 @@ class AccountAnalyticLine(orm.Model):
         hours = vals.get('unit_amount', 0.0)
         # We can not do a write else we will have a recursion error
         cr.execute('update project_task set remaining_hours=remaining_hours - %s where id=%s',
-                       (hours, vals['task_id']))
+                   (hours, vals['task_id']))
         self._trigger_projects(cr, uid, [vals['task_id']], context=context)
         return vals
 
@@ -229,7 +229,7 @@ class AccountAnalyticLine(orm.Model):
                 old_hours = line.unit_amount if old_task_id else 0.0
                 # We can not do a write else we will have a recursion error
                 cr.execute('update project_task set remaining_hours=remaining_hours - %s + (%s) where id=%s',
-                               (hours, old_hours, new_task_id))
+                           (hours, old_hours, new_task_id))
                 self._trigger_projects(cr, uid, [new_task_id], context=context)
 
         return ids
@@ -242,7 +242,7 @@ class AccountAnalyticLine(orm.Model):
                 continue
             hours = line.unit_amount or 0.0
             cr.execute('update project_task set remaining_hours=remaining_hours + %s where id=%s',
-                        (hours, line.task_id.id))
+                       (hours, line.task_id.id))
         return ids
 
     def create(self, cr, uid, vals, context=None):
