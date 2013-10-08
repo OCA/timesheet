@@ -51,7 +51,7 @@ class ProjectTask(orm.Model):
         return res
 
 
-    def _store_set_values(self, cr, uid, ids, fields, context):
+    def _store_set_values(self, cr, uid, ids, fields, context=None):
         # Hack to avoid redefining most of function fields of project.project model
         # This is mainly due to the fact that orm _store_set_values use direct access to database.
         # So when modifiy aa line the _store_set_values as it uses cursor directly to update tasks
@@ -74,21 +74,21 @@ class ProjectTask(orm.Model):
         'effective_hours': fields.function(_progress_rate, multi="progress", string='Time Spent',
                                            help="Computed using the sum of the task work done (timesheet lines "
                                                 "associated on this task).",
-                                           store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
+                                           store={'project.task': (lambda self, cr, uid, ids, c=None: ids, TASK_WATCHERS, 20),
                                                   'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
         'delay_hours': fields.function(_progress_rate, multi="progress", string='Deduced Hours',
                                        help="Computed as difference between planned hours by the project manager "
                                             "and the total hours of the task.",
-                                       store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
+                                       store={'project.task': (lambda self, cr, uid, ids, c=None: ids, TASK_WATCHERS, 20),
                                               'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
         'total_hours': fields.function(_progress_rate, multi="progress", string='Total Time',
                                        help="Computed as: Time Spent + Remaining Time.",
-                                       store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
+                                       store={'project.task': (lambda self, cr, uid, ids, c=None: ids, TASK_WATCHERS, 20),
                                               'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)}),
         'progress': fields.function(_progress_rate, multi="progress", string='Progress', type='float', group_operator="avg",
                                     help="If the task has a progress of 99.99% you should close the task if it's "
                                          "finished or reevaluate the time",
-                                    store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
+                                    store={'project.task': (lambda self, cr, uid, ids, c=None: ids, TASK_WATCHERS, 20),
                                            'account.analytic.line': (_get_analytic_line, TIMESHEET_WATCHERS, 20)})
     }
 
@@ -97,7 +97,7 @@ class ProjectTask(orm.Model):
         if vals.get('project_id'):
             ts_obj = self.pool.get('hr.analytic.timesheet')
             project_obj = self.pool.get('project.project')
-            project = project_obj.browse(cr, uid, vals['project_id'], context)
+            project = project_obj.browse(cr, uid, vals['project_id'], context=context)
             account_id = project.analytic_account_id.id
             for task in self.browse(cr, uid, ids, context=context):
                 ts_obj.write(cr, uid, [w.id for w in task.work_ids], {'account_id': account_id}, context=context)
