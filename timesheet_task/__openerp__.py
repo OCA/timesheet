@@ -18,18 +18,29 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name' : 'Analytic Task',
+{'name' : 'Analytic Timesheet In Task',
  'version' : '0.2',
  'author' : 'Camptocamp',
- 'maintainer': 'Camptocamp - Acsone SA/NV',
+ 'maintainer': 'Camptocamp, Acsone SA/NV',
  'category': 'Human Resources',
  'depends' : ['project', 'hr_timesheet_invoice'],
- 'description': """Replace project.task.work items linked to task
-                   with hr.analytic.timesheet""",
+ 'description': """
+Replace task work items (project.task.work) linked to task with
+timesheet lines (hr.analytic.timesheet).
+
+Unless the module project_timesheet, it allows to have only one single
+object that handles and records time spent by employees, making more
+coherence for the end user. This way, time entered through timesheet
+lines or tasks is the same. As long as a timesheet lines has an
+associated task, it will compute the related indicators.
+
+Used with the module hr_timesheet_task, it also allows users to complete
+task information through the timesheet sheet (hr.timesheet.sheet).
+    """,
  'website': 'http://www.camptocamp.com',
  'data': ['project_task_view.xml'],
  'demo': [],
- 'test': [],
+ 'test': ['test/task_timesheet_indicators.yml'],
  'installable': True,
  'images' : [],
  'auto_install': False,
