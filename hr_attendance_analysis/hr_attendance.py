@@ -127,7 +127,9 @@ class hr_attendance(orm.Model):
             res.append((start_datetime, precision))
         return res   
         
-    def get_active_contracts(self, cr, uid, employee_id, date=datetime.now().strftime('%Y-%m-%d')):
+    def get_reference_calendar(self, cr, uid, employee_id, date=None, context=None):
+        if date is None:
+            date = fields.date.context_today(self, cr, uid, context=context)
         contract_pool = self.pool.get('hr.contract')
         active_contract_ids= contract_pool.search(cr, uid, [
             '&',
@@ -145,12 +147,15 @@ class hr_attendance(orm.Model):
             '&',
             ('trial_date_end', '!=', False),
             ('trial_date_end', '>=', date),
-            ])
+            ], context=context)
         if len(active_contract_ids) > 1:
-            employee = self.pool.get('hr.employee').browse(cr,uid,employee_id)
+            employee = self.pool.get('hr.employee').browse(cr,uid,employee_id, context=context)
             raise orm.except_orm(_('Error'), _(
                 'Too many active contracts for employee %s'
                 ) % employee.name)
+        if active_contract_ids:
+            contract = contract_pool.browse(cr, uid, active_contract_ids[0], context=context)
+            return contract.working_hours
         return active_contract_ids
 
     def _ceil_rounding(self, rounding, datetime):
@@ -165,10 +170,9 @@ class hr_attendance(orm.Model):
 
     def _get_attendance_duration(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
-        contract_pool = self.pool.get('hr.contract')
         resource_pool = self.pool.get('resource.resource')
         attendance_pool = self.pool.get('resource.calendar.attendance')
-        precision = self.pool.get('res.users').browse(cr, uid, uid).company_id.working_time_precision
+        precision = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id.working_time_precision
         # 2012.10.16 LF FIX : Get timezone from context
         active_tz = pytz.timezone(context.get("tz","UTC") if context else "UTC")
         str_now = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
@@ -176,7 +180,7 @@ class hr_attendance(orm.Model):
             duration = 0.0
             outside_calendar_duration = 0.0
             inside_calendar_duration = 0.0
-            attendance = self.browse(cr, uid, attendance_id)
+            attendance = self.browse(cr, uid, attendance_id, context=context)
             res[attendance.id] = {}
             # 2012.10.16 LF FIX : Attendance in context timezone
             attendance_start = datetime.strptime(
@@ -188,9 +192,9 @@ class hr_attendance(orm.Model):
             if attendance.action == 'sign_in':
                 next_attendance_ids = self.search(cr, uid, [
                     ('employee_id', '=', attendance.employee_id.id),
-                    ('name', '>', attendance.name)], order='name')
+                    ('name', '>', attendance.name)], order='name', context=context)
                 if next_attendance_ids:
-                    next_attendance = self.browse(cr, uid, next_attendance_ids[0])
+                    next_attendance = self.browse(cr, uid, next_attendance_ids[0], context=context)
                     if next_attendance.action == 'sign_in':
                          # 2012.10.16 LF FIX : Attendance in context timezone
                          raise orm.except_orm(_('Error'), _(
@@ -206,19 +210,18 @@ class hr_attendance(orm.Model):
                 duration = round(duration / precision) * precision
             res[attendance.id]['duration'] = duration
             res[attendance.id]['end_datetime'] = next_attendance_date
-            # If contract is not specified: working days = 24/7
+            # If calendar is not specified: working days = 24/7
             res[attendance.id]['inside_calendar_duration'] = duration
             res[attendance.id]['outside_calendar_duration'] = 0.0
 
-            active_contract_ids = self.get_active_contracts(
-                cr, uid, attendance.employee_id.id, date=str_now[:10])
+            reference_calendar = self.get_reference_calendar(
+                cr, uid, attendance.employee_id.id, date=str_now[:10], context=context)
 
-            if active_contract_ids and next_attendance_ids:
-                contract = contract_pool.browse(cr, uid, active_contract_ids[0])
-                if contract.working_hours:
+            if reference_calendar and next_attendance_ids:
+                if reference_calendar:
                     # TODO applicare prima arrotondamento o tolleranza?
-                    if contract.working_hours.attendance_rounding:
-                        float_attendance_rounding = float(contract.working_hours.attendance_rounding)
+                    if reference_calendar.attendance_rounding:
+                        float_attendance_rounding = float(reference_calendar.attendance_rounding)
                         rounded_start_hour = self._ceil_rounding(
                             float_attendance_rounding, attendance_start)
                         rounded_stop_hour = self._floor_rounding(
@@ -243,7 +246,7 @@ class hr_attendance(orm.Model):
                         
                     res[attendance.id]['inside_calendar_duration'] = 0.0
                     res[attendance.id]['outside_calendar_duration'] = 0.0
-                    calendar_id = contract.working_hours.id
+                    calendar_id = reference_calendar.id
                     intervals_within = 0
 
                     # split attendance in intervals = precision
@@ -273,7 +276,7 @@ class hr_attendance(orm.Model):
                             ('calendar_id','=',calendar_id),
                             ('hour_to','>=',centered_attendance_hour),
                             ('hour_from','<=',centered_attendance_hour),
-                            ])
+                            ], context=context)
                         if len(matched_schedule_ids) > 1:
                             raise orm.except_orm(_('Error'),
                                 _('Wrongly configured working schedule with id %s') % str(calendar_id))
@@ -281,7 +284,7 @@ class hr_attendance(orm.Model):
                             intervals_within += 1
                             # sign in tolerance
                             if intervals_within == 1:
-                                calendar_attendance = attendance_pool.browse(cr, uid, matched_schedule_ids[0])
+                                calendar_attendance = attendance_pool.browse(cr, uid, matched_schedule_ids[0], context=context)
                                 attendance_start_hour = (
                                     attendance_start.hour + attendance_start.minute / 60.0
                                     + attendance_start.second / 60.0 / 60.0
@@ -302,7 +305,7 @@ class hr_attendance(orm.Model):
                                     attendance_stop.hour + attendance_stop.minute / 60.0
                                     + attendance_stop.second / 60.0 / 60.0
                                     )
-                                calendar_attendance = attendance_pool.browse(cr, uid, matched_schedule_ids[0])
+                                calendar_attendance = attendance_pool.browse(cr, uid, matched_schedule_ids[0], context=context)
                                 if attendance_stop_hour <= (
                                     calendar_attendance.hour_to and
                                     (attendance_stop_hour - (calendar_attendance.hour_to -
@@ -321,13 +324,13 @@ class hr_attendance(orm.Model):
                         res[attendance.id]['inside_calendar_duration'],
                         res[attendance.id]['duration'])
 
-                    if contract.working_hours.overtime_rounding:
+                    if reference_calendar.overtime_rounding:
                         if res[attendance.id]['outside_calendar_duration']:
                             overtime = res[attendance.id]['outside_calendar_duration']
-                            if contract.working_hours.overtime_rounding_tolerance:
+                            if reference_calendar.overtime_rounding_tolerance:
                                 overtime = self.time_sum(overtime,
-                                    contract.working_hours.overtime_rounding_tolerance)
-                            float_overtime_rounding = float(contract.working_hours.overtime_rounding)
+                                    reference_calendar.overtime_rounding_tolerance)
+                            float_overtime_rounding = float(reference_calendar.overtime_rounding)
                             res[attendance.id]['outside_calendar_duration'] = math.floor(
                                 overtime * float_overtime_rounding) / float_overtime_rounding
 
@@ -337,7 +340,7 @@ class hr_attendance(orm.Model):
         attendance_ids = []
         attendance_pool = self.pool.get('hr.attendance')
         for contract in self.pool.get('hr.contract').browse(cr, uid, ids, context=context):
-            att_ids = attendance_pool.search(cr, uid, [('employee_id', '=', contract.employee_id.id)])
+            att_ids = attendance_pool.search(cr, uid, [('employee_id', '=', contract.employee_id.id)], context=context)
             for att_id in att_ids:
                 if att_id not in attendance_ids:
                     attendance_ids.append(att_id)
@@ -348,7 +351,7 @@ class hr_attendance(orm.Model):
         attendance_pool = self.pool.get('hr.attendance')
         contract_pool = self.pool.get('hr.contract')
         for calendar in self.pool.get('resource.calendar').browse(cr, uid, ids, context=context):
-            contract_ids = contract_pool.search(cr, uid, [('working_hours', '=', calendar.id)])
+            contract_ids = contract_pool.search(cr, uid, [('working_hours', '=', calendar.id)], context=context)
             att_ids = attendance_pool._get_by_contracts(cr, uid, contract_ids, context=None)
             for att_id in att_ids:
                 if att_id not in attendance_ids:
@@ -375,45 +378,31 @@ class hr_attendance(orm.Model):
                     ('employee_id', '=', attendance.employee_id.id),
                     ('name', '<', attendance.name),
                     ('action', '=', 'sign_in'),
-                    ], order='name')
+                    ], order='name', context=context)
                 if previous_attendance_ids and previous_attendance_ids[len(previous_attendance_ids) - 1] not in attendance_ids:
                     attendance_ids.append(previous_attendance_ids[len(previous_attendance_ids) - 1])    
         return attendance_ids
 
     _inherit = "hr.attendance"
 
+    _store_rules = {
+                    'hr.attendance': (_get_attendances, ['name', 'action', 'employee_id'], 20),
+                    'hr.contract': (_get_by_contracts, ['employee_id', 'date_start', 'date_end', 'trial_date_start', 'trial_date_end', 'working_hours'], 20),
+                    'resource.calendar': (_get_by_calendars, ['attendance_ids'], 20),
+                    'resource.calendar.attendance': (_get_by_calendar_attendances, ['dayofweek', 'date_from', 'hour_from', 'hour_to', 'calendar_id'], 20),
+                    }
+
     _columns = {
         'duration': fields.function(_get_attendance_duration, method=True, multi='duration', string="Attendance duration",
-            store={
-                'hr.attendance': (_get_attendances, ['name', 'action', 'employee_id'], 20),
-                'hr.contract': (_get_by_contracts, ['employee_id', 'date_start', 'date_end', 'trial_date_start', 'trial_date_end', 'working_hours'], 20),
-                'resource.calendar': (_get_by_calendars, ['attendance_ids'], 20),
-                'resource.calendar.attendance': (_get_by_calendar_attendances, ['dayofweek', 'date_from', 'hour_from', 'hour_to', 'calendar_id'], 20),
-                }
-            ),
+            store=_store_rules),
         'end_datetime': fields.function(_get_attendance_duration, method=True, multi='duration', type="datetime", string="End date time",
-            store={
-                'hr.attendance': (_get_attendances, ['name', 'action', 'employee_id'], 20),
-                'hr.contract': (_get_by_contracts, ['employee_id', 'date_start', 'date_end', 'trial_date_start', 'trial_date_end', 'working_hours'], 20),
-                'resource.calendar': (_get_by_calendars, ['attendance_ids'], 20),
-                'resource.calendar.attendance': (_get_by_calendar_attendances, ['dayofweek', 'date_from', 'hour_from', 'hour_to', 'calendar_id'], 20),
-                }),
+            store=_store_rules),
         'outside_calendar_duration': fields.function(_get_attendance_duration, method=True, multi='duration',
             string="Overtime",
-            store={
-                'hr.attendance': (_get_attendances, ['name', 'action', 'employee_id'], 20),
-                'hr.contract': (_get_by_contracts, ['employee_id', 'date_start', 'date_end', 'trial_date_start', 'trial_date_end', 'working_hours'], 20),
-                'resource.calendar': (_get_by_calendars, ['attendance_ids'], 20),
-                'resource.calendar.attendance': (_get_by_calendar_attendances, ['dayofweek', 'date_from', 'hour_from', 'hour_to', 'calendar_id'], 20),
-                }),
+            store=_store_rules),
         'inside_calendar_duration': fields.function(_get_attendance_duration, method=True, multi='duration',
             string="Duration within working schedule",
-            store={
-                'hr.attendance': (_get_attendances, ['name', 'action', 'employee_id'], 20),
-                'hr.contract': (_get_by_contracts, ['employee_id', 'date_start', 'date_end', 'trial_date_start', 'trial_date_end', 'working_hours'], 20),
-                'resource.calendar': (_get_by_calendars, ['attendance_ids'], 20),
-                'resource.calendar.attendance': (_get_by_calendar_attendances, ['dayofweek', 'date_from', 'hour_from', 'hour_to', 'calendar_id'], 20),
-                }),
+            store=_store_rules),
     }
 
 
