@@ -149,7 +149,7 @@ class hr_attendance(orm.Model):
             ('trial_date_end', '>=', date),
             ], context=context)
         if len(active_contract_ids) > 1:
-            employee = self.pool.get('hr.employee').browse(cr,uid,employee_id, context=context)
+            employee = self.pool.get('hr.employee').browse(cr, uid, employee_id, context=context)
             raise orm.except_orm(_('Error'), _(
                 'Too many active contracts for employee %s'
                 ) % employee.name)
