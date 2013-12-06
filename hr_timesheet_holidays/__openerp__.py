@@ -22,19 +22,37 @@
 {'name' : 'Import holidays in timesheets',
  'version' : '1.0',
  'category' : 'Generic Modules/Human Resources',
- 'description':
-     '''
-     Wizard to import holidays in the current timesheet.
-     This module adds a relation between the Leave Types and the Analytic Accounts.
-     The Timesheet lines are created on the Analytic Account defined on the Leave Type.
+ 'description': """
+Wizard to import holidays in the current timesheet
+==================================================
 
-     The hours to input per day is configurable at company level.
+This module adds a relation between the Leave Types and the Analytic Accounts.
+The Timesheet lines are created on the Analytic Account defined on the Leave
+Type.
 
-     Limitations:
-       - Consider that the work days are Monday to Friday
-       - The wizard creates the attendances each day with Sign-ins at 00:00 and Sign-outs at (00:00 + configured timesheet hours per day).
+The hours to input per day is configurable at company level.
 
-     ''',
+Limitations:
+
+- Consider that the work days are Monday to Friday
+- The wizard creates the attendances each day with Sign-ins at 00:00 and
+  Sign-outs at (00:00 + configured timesheet hours per day).
+
+.. warning::
+    If you are using official addons instead of OCB addons.
+    In order to avoid timezone issues, please ensure the
+    following fix is installed on your system `Fix for Bug #1179893`_
+
+.. _Fix for Bug #1179893: https://code.launchpad.net/~camptocamp/openobject-addons/7.0-fix-hr_timesheet_sheet-timezone-20130723/+merge/176459
+
+Contributors
+------------
+
+* Jean-Baptiste Aubort <jean-baptiste.aubort@camptocamp.com>
+* Guewen Baconnier <guewen.baconnier@camptocamp.com>
+* Yannick Vaucher <yannick.vaucher@camptocamp.com>
+
+""",
  'author' : 'Camptocamp',
  'website': 'http://www.camptocamp.com',
  'depends' : [
