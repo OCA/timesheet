@@ -26,6 +26,7 @@ from openerp.tools.translate import _
 import time
 from datetime import *
 import math
+from openerp.tools import float_is_zero
 
 import pytz
 
@@ -76,8 +77,13 @@ class hr_attendance(orm.Model):
 
     def time_difference(self, float_start_time, float_end_time):
         if float_end_time < float_start_time:
-            raise orm.except_orm(_('Error'), _('End time %s < start time %s')
-                % (str(float_end_time),str(float_start_time)))
+            if not float_is_zero(
+                float_start_time - float_end_time, precision_rounding=0.0000001
+                # that means a difference smaller than 0.36 milliseconds
+            ):
+                raise orm.except_orm(
+                    _('Error'), _('End time %s < start time %s')
+                    % (str(float_end_time),str(float_start_time)))
         delta = self.float_to_datetime(float_end_time) - self.float_to_datetime(
             float_start_time)
         return self.total_seconds(delta) / 60.0 / 60.0
