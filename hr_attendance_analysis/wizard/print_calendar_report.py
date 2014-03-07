@@ -55,7 +55,7 @@ class wizard_calendar_report(orm.TransientModel):
         'year': lambda * a: datetime.now().year,
         'from_date': lambda * a: (datetime.now()-timedelta(30)).strftime('%Y-%m-%d'),
         'to_date': lambda * a: datetime.now().strftime('%Y-%m-%d'),
-        'employee_ids': lambda s, cr, uid, c: s.pool.get('hr.employee').search(cr, uid, []),        
+        'employee_ids': lambda s, cr, uid, c: s.pool.get('hr.employee').search(cr, uid, [], context=None),
     }
 
     _name = "attendance_analysis.wizard.calendar_report"
@@ -74,12 +74,11 @@ class wizard_calendar_report(orm.TransientModel):
         if context is None:
             context = {}
         attendance_pool = self.pool.get('hr.attendance')
-        contract_pool = self.pool.get('hr.contract')
         holidays_pool = self.pool.get('hr.holidays')
 
         days_by_employee = {}
         
-        form = self.read(cr, uid, ids)[0]
+        form = self.read(cr, uid, ids, context=context)[0]
         from_date = datetime.strptime(form['from_date'], '%Y-%m-%d')
         to_date = datetime.strptime(form['to_date'], '%Y-%m-%d')
         if from_date > to_date:
@@ -97,7 +96,7 @@ class wizard_calendar_report(orm.TransientModel):
                 current_total_attendances = 0.0
                 current_total_overtime = 0.0
                 current_total_leaves = 0.0
-                current_total_due = 24.0 # If contract is not specified: working days = 24/7
+                current_total_due = 24.0 # If calendar is not specified: working days = 24/7
                 current_total_inside_calendar = 0.0
                 str_current_date = current_date.strftime('%Y-%m-%d')
                 days_by_employee[employee_id][str_current_date] = {
@@ -121,9 +120,9 @@ class wizard_calendar_report(orm.TransientModel):
                     ('name','>=',str_current_date_beginning),
                     ('name','<=',str_current_date_end),
                     ('action','=','sign_in'),
-                    ])
+                    ], context=context)
                 # computing attendance totals
-                for attendance in attendance_pool.browse(cr, uid, attendance_ids):
+                for attendance in attendance_pool.browse(cr, uid, attendance_ids, context=context):
                     current_total_attendances = attendance_pool.time_sum(
                         current_total_attendances,attendance.duration)
                     current_total_overtime = attendance_pool.time_sum(current_total_overtime,
@@ -135,7 +134,7 @@ class wizard_calendar_report(orm.TransientModel):
                 #printing up to 4 attendances
                 if len(attendance_ids) < 5:
                     count = 1
-                    for attendance in sorted(attendance_pool.browse(cr, uid, attendance_ids),
+                    for attendance in sorted(attendance_pool.browse(cr, uid, attendance_ids, context=context),
                         key=lambda x: x['name']):
                         days_by_employee[employee_id][str_current_date][
                             'signin_'+str(count)] = attendance.name[11:16]
@@ -152,14 +151,13 @@ class wizard_calendar_report(orm.TransientModel):
                     'overtime'
                     ] = current_total_overtime
                 
-                active_contract_ids = attendance_pool.get_active_contracts(
-                    cr, uid, int(employee_id), date=str_current_date)
+                reference_calendar = attendance_pool.get_reference_calendar(
+                    cr, uid, int(employee_id), date=str_current_date, context=context)
                 # computing due total
-                if active_contract_ids:
-                    contract = contract_pool.browse(cr, uid, active_contract_ids[0])
-                    if contract.working_hours and contract.working_hours.attendance_ids:
+                if reference_calendar:
+                    if reference_calendar.attendance_ids:
                         current_total_due = 0.0
-                        for calendar_attendance in contract.working_hours.attendance_ids:
+                        for calendar_attendance in reference.attendance_ids:
                             if ((
                                 not calendar_attendance.dayofweek
                                 or int(calendar_attendance.dayofweek) == current_date.weekday()
@@ -200,8 +198,8 @@ class wizard_calendar_report(orm.TransientModel):
                     ('date_to', '>', str_current_date_end),
                     ('state', '=', 'validate'),
                     ('employee_id', '=', int(employee_id)),
-                    ])
-                for holiday in holidays_pool.browse(cr, uid, holidays_ids):
+                    ], context=context)
+                for holiday in holidays_pool.browse(cr, uid, holidays_ids, context=context):
                     date_from = datetime.strptime(holiday.date_from, '%Y-%m-%d %H:%M:%S')
                     date_to = datetime.strptime(holiday.date_to, '%Y-%m-%d %H:%M:%S')
                     # if beginned before today
@@ -230,10 +228,9 @@ class wizard_calendar_report(orm.TransientModel):
                         ] = attendance_pool.time_difference(
                         current_total_inside_calendar, due_minus_leaves)
 
-                if active_contract_ids:
-                    contract = contract_pool.browse(cr, uid, active_contract_ids[0])
-                    if contract.working_hours and contract.working_hours.leave_rounding:
-                        float_rounding = float(contract.working_hours.leave_rounding)
+                if reference_calendar:
+                    if reference_calendar.leave_rounding:
+                        float_rounding = float(reference_calendar.leave_rounding)
                         days_by_employee[employee_id][str_current_date][
                             'negative'
                             ] = math.floor(
@@ -272,13 +269,12 @@ class wizard_calendar_report(orm.TransientModel):
                     days_by_employee[employee_id][str_date]['due'])
                 
                 # computing overtime types
-                active_contract_ids = attendance_pool.get_active_contracts(
-                    cr, uid, int(employee_id), date=str_date)
-                if active_contract_ids:
-                    contract = contract_pool.browse(cr, uid, active_contract_ids[0])                
-                    if contract.working_hours and contract.working_hours.overtime_type_ids:
+                reference_calendar = attendance_pool.get_reference_calendar(
+                    cr, uid, int(employee_id), date=str_date, context=context)
+                if reference_calendar:
+                    if reference_calendar.overtime_type_ids:
                         sorted_types = sorted(
-                            contract.working_hours.overtime_type_ids,
+                            reference_calendar.overtime_type_ids,
                             key=lambda k: k.sequence)
                         current_overtime = days_by_employee[employee_id][
                             str_date]['overtime']
