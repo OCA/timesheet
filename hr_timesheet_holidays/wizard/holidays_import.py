@@ -1,49 +1,58 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2011 Camptocamp SA (http://www.camptocamp.com)
-# All Right Reserved
+#    Author: JB Aubort (Camptocamp)
+#    Author: Guewen Baconnier (Camptocamp)
+#    Copyright 2011 Camptocamp SA
 #
-# Author : JB Aubort (Camptocamp)
-# Author : Guewen Baconnier (Camptocamp)
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
 #
-# WARNING: This program as such is intended to be used by professional
-# programmers who take the whole responsability of assessing all potential
-# consequences resulting from its eventual inadequacies and bugs
-# End users who are looking for a ready-to-use solution with commercial
-# garantees and support are strongly adviced to contract a Free Software
-# Service Company
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
 #
-# This program is Free Software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from osv import fields, osv
-from tools.translate import _
 from datetime import datetime, timedelta
+from pytz import timezone
+import pytz
 
+from openerp.osv import orm, fields, osv
+from openerp.tools.translate import _
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 
 def get_number_days_between_dates(date_from, date_to):
-    datetime_from = datetime.strptime(date_from, '%Y-%m-%d %H:%M:%S')
-    datetime_to = datetime.strptime(date_to, '%Y-%m-%d %H:%M:%S')
+    datetime_from = datetime.strptime(date_from, DEFAULT_SERVER_DATETIME_FORMAT)
+    datetime_to = datetime.strptime(date_to, DEFAULT_SERVER_DATETIME_FORMAT)
     difference = datetime_to - datetime_from
     # return result and add a day
     return difference.days + 1
 
+def get_start_of_day(date_str):
+    dt_start = datetime.strptime(date_str, DEFAULT_SERVER_DATE_FORMAT)
+    return dt_start.replace(hour=0, minute=0, second=0)
 
-class HolidaysImport(osv.osv_memory):
+def get_end_of_day(date_str):
+    dt_end = datetime.strptime(date_str, DEFAULT_SERVER_DATE_FORMAT)
+    return dt_end.replace(hour=23, minute=59, second=59)
+
+def get_utc_datetime(date, local_tz):
+    local_dt = local_tz.localize(date)
+    return local_dt.astimezone(pytz.utc)
+
+def get_utc_start_of_day(date_str, local_tz):
+    return get_utc_datetime(get_start_of_day(date_str), local_tz)
+
+def get_utc_end_of_day(date_str, local_tz):
+    return get_utc_datetime(get_end_of_day(date_str), local_tz)
+
+class HolidaysImport(orm.TransientModel):
     _name = 'hr.timesheet.holidays.import'
     _description = 'Wizard to import holidays in a timesheet'
 
@@ -54,18 +63,26 @@ class HolidaysImport(osv.osv_memory):
 
         timesheet_id = context['active_id']
         timesheet = timesheet_obj.browse(cr, uid, timesheet_id, context=context)
-        date_from = timesheet.date_from + ' 00:00:00'
-        date_to = timesheet.date_to + ' 23:59:59'
+
+        local_tz = timezone(context.get('tz'))
+        date_from = get_start_of_day(timesheet.date_from)
+        date_from_str = date_from.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        date_utc_from = get_utc_datetime(date_from, local_tz).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+
+        date_to = get_end_of_day(timesheet.date_to)
+        date_to_str = date_to.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        date_utc_to = get_utc_datetime(date_to, local_tz).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+
         cr.execute("select id, date_from, date_to, name from hr_holidays where\
         (\
             ((date_from <= %s and date_to >= %s and date_to <= %s) or\
             (date_from >= %s and date_from <= %s and date_to >= %s) or\
             (date_from >= %s and date_from <= %s and date_to >= %s and date_to <= %s) or\
             (date_from <= %s and date_to >= %s)) and user_id = %s and state = 'validate'\
-        )", (date_from, date_from, date_to,
-            date_from, date_to, date_to,
-            date_from, date_to, date_from, date_to,
-            date_from, date_to, uid))
+        )", (date_utc_from, date_utc_from, date_utc_to,
+            date_utc_from, date_utc_to, date_utc_to,
+            date_utc_from, date_utc_to, date_utc_from, date_utc_to,
+            date_utc_from, date_utc_to, uid))
         holidays = cr.fetchall()
         if not holidays:
             raise osv.except_osv(_('Information'), _('No holidays for the current timesheet.'))
@@ -74,15 +91,15 @@ class HolidaysImport(osv.osv_memory):
             valid = True
             h_id = holiday[0]
             h_date_from = holiday[1] < timesheet.date_from \
-                          and date_from or holiday[1]
+                          and date_from_str or holiday[1]
             h_date_to = holiday[2] > timesheet.date_to \
-                        and date_to or holiday[2]
+                        and date_to_str or holiday[2]
             h_name = holiday[3]
 
             nb_days = get_number_days_between_dates(h_date_from, h_date_to)
             for day in range(nb_days):
-                str_datetime_current = (datetime.strptime(h_date_from, '%Y-%m-%d %H:%M:%S')
-                                    + timedelta(days=day)).strftime('%Y-%m-%d')
+                str_datetime_current = (datetime.strptime(h_date_from, DEFAULT_SERVER_DATETIME_FORMAT)
+                                    + timedelta(days=day)).strftime(DEFAULT_SERVER_DATE_FORMAT)
                 line_ids = line_obj.search(cr, uid,
                                 [('date', '=', str_datetime_current),
                                  ('name', '=', h_name),
@@ -97,14 +114,17 @@ class HolidaysImport(osv.osv_memory):
         return res
 
     _columns = {
-        'holidays_ids': fields.many2many('hr.holidays', 'hr_holidays_rel', 'wid', 'hid', 'Holidays', domain="[('state', '=', 'validate'),('user_id','=',uid)]"),
-    }
+        'holidays_ids': fields.many2many('hr.holidays', 'hr_holidays_rel', 'id', 'holiday_id', 'Holidays', domain="[('state', '=', 'validate'),('user_id','=',uid)]"),
+        }
 
     _defaults = {
         'holidays_ids': _get_default_holidays,
-    }
+        }
 
-    def import_holidays(self, cr, uid, ids, context):
+    def import_holidays(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+
         timesheet_obj = self.pool.get('hr_timesheet_sheet.sheet')
         employee_obj = self.pool.get('hr.employee')
         al_ts_obj = self.pool.get('hr.analytic.timesheet')
@@ -130,6 +150,7 @@ class HolidaysImport(osv.osv_memory):
         if not wizard.holidays_ids:
             raise osv.except_osv(_('Information'), _('No holidays to import.'))
 
+        local_tz = timezone(context.get('tz'))
         errors = []
         for holiday in wizard.holidays_ids:
             if not holiday.holiday_status_id.analytic_account_id.id:
@@ -138,16 +159,22 @@ class HolidaysImport(osv.osv_memory):
             anl_account = anl_account_obj.browse(cr, uid, analytic_account_id, context)
 
             if holiday.date_from < timesheet.date_from:
-                holiday.date_from = timesheet.date_from + ' 00:00:00'
+                dt_ts_from = get_utc_start_of_day(timesheet.date_from, local_tz)
+                holiday.date_from = dt_ts_from.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
             if holiday.date_to > timesheet.date_to:
-                holiday.date_to = timesheet.date_to + ' 23:59:59'
+                dt_ts_to = get_utc_end_of_day(timesheet.date_to, local_tz)
+                holiday.date_to = dt_ts_to.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
 
             nb_days = get_number_days_between_dates(holiday.date_from, holiday.date_to)
             for day in range(nb_days):
-                dt_current = (datetime.strptime(holiday.date_from, '%Y-%m-%d %H:%M:%S')
+                dt_current = (datetime.strptime(holiday.date_from, DEFAULT_SERVER_DATETIME_FORMAT)
                                     + timedelta(days=day))
-                str_dt_current = dt_current.strftime('%Y-%m-%d')
+                # datetime as date at midnight
+                str_dt_current = dt_current.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+                dt_utc_current = get_utc_datetime(dt_current.replace(hour=0, minute=0, second=0), local_tz)
+                str_dt_utc_current = dt_utc_current.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
 
+                # Test if is week day in local tz
                 day_of_the_week = dt_current.isoweekday()
 
                 # skip the non work days
@@ -175,7 +202,7 @@ class HolidaysImport(osv.osv_memory):
                         'to_invoice': anl_account.to_invoice.id,
                         'sheet_id': timesheet.id,
                         'journal_id':  journal_id,
-                    }
+                        }
 
                     on_change_values = al_ts_obj.\
                         on_change_unit_amount(cr, uid, False, product_id,
@@ -190,27 +217,26 @@ class HolidaysImport(osv.osv_memory):
 
                 # Create attendances
                 existing_attendances = \
-                    attendance_obj.search(cr, uid, [('name', '=', str_dt_current),
+                    attendance_obj.search(cr, uid, [('name', '=', str_dt_utc_current),
                                                     ('employee_id', '=', employee_id)])
 
                 if not existing_attendances:
                     # get hours and minutes (tuple) from a float time
                     hours = divmod(hours_per_day * 60, 60)
-
-                    date_end = dt_current.replace(hour=hours[0],minute=hours[1])
-                    str_date_end = date_end.strftime('%Y-%m-%d %H:%M:%S')
+                    date_end = dt_utc_current + timedelta(hours=int(hours[0]), minutes=int(hours[1]))
+                    str_date_end = date_end.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
                     start = {
-                        'name': str_dt_current,
+                        'name': str_dt_utc_current,
                         'action': 'sign_in',
                         'employee_id': employee_id,
                         'sheet_id': timesheet.id,
-                    }
+                        }
                     end = {
                         'name': str_date_end,
                         'action': 'sign_out',
                         'employee_id': employee_id,
                         'sheet_id': timesheet.id,
-                    }
+                        }
                     attendance_obj.create(cr, uid, start, context)
                     attendance_obj.create(cr, uid, end, context)
                 else:
@@ -221,4 +247,5 @@ class HolidaysImport(osv.osv_memory):
 
         return {'type': 'ir.actions.act_window_close'}
 
-HolidaysImport()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
