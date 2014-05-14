@@ -135,7 +135,8 @@ class HrAnalyticTimesheet(orm.Model):
     _name = "hr.analytic.timesheet"
 
     def on_change_unit_amount(self, cr, uid, sheet_id, prod_id, unit_amount, company_id,
-                              unit=False, journal_id=False, task_id=False, to_invoice=False,
+                              unit=False, journal_id=False, task_id=False,
+                              to_invoice=False, project_id=False,
                               context=None):
         res = super(HrAnalyticTimesheet, self).on_change_unit_amount(cr,
                                                                      uid,
@@ -146,9 +147,14 @@ class HrAnalyticTimesheet(orm.Model):
                                                                      unit,
                                                                      journal_id,
                                                                      context)
-        if 'value' in res and task_id:
-            task_obj = self.pool.get('project.task')
-            p = task_obj.browse(cr, uid, task_id).project_id
+        if 'value' in res and (task_id or project_id):
+            if task_id:
+                task_obj = self.pool.get('project.task')
+                p = task_obj.browse(
+                    cr, uid, task_id, context=context).project_id
+            elif project_id:
+                p = self.pool['project.project'].browse(
+                    cr, uid, project_id, context=context)
             if p:
                 res['value']['account_id'] = p.analytic_account_id.id
                 if p.to_invoice and not to_invoice:
