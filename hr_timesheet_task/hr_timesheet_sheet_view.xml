@@ -36,13 +36,13 @@
                     expr="/form/sheet/notebook/page[@string='Details']/field[@name='timesheet_ids']/tree[@string='Timesheet Activities']/field[@name='account_id']"
                     position="after">
                     <field name="task_id" context="{'account_id' : account_id}"
-                        domain="['|', ('state', '!=', 'done'), ('state', '=', False), ('project_id.analytic_account_id','=',account_id)]"/>
+                        domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
                 </xpath>
                 <xpath
                     expr="/form/sheet/notebook/page[@string='Details']/field[@name='timesheet_ids']/form[@string='Timesheet Activities']/field[@name='account_id']"
                     position="after">
                     <field name="task_id" context="{'account_id' : account_id}"
-                        domain="['|', ('state', '!=', 'done'), ('state', '=', False), ('project_id.analytic_account_id','=',account_id)]"/>
+                        domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
                 </xpath>
             </field>
         </record>
