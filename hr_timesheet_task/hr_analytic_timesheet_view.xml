@@ -1,56 +1,35 @@
 <openerp>
     <data>
-        #---------------------------------------------------------------------------------------------------------
-        # Add task on hr.analytic.timesheet
-        #---------------------------------------------------------------------------------------------------------
-            <record id="hr_timesheet_line_form" model="ir.ui.view">
+        <!-- Add task on hr.analytic.timesheet -->
+        <record id="hr_timesheet_line_form" model="ir.ui.view">
             <field name="name">hr.analytic.timesheet.form</field>
             <field name="model">hr.analytic.timesheet</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
             <field name="arch" type="xml">
                 <field name="user_id" position="after">
-                    <field name="task_id" context="{ 'account_id' : account_id}"
-                        domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
+                    <field name="task_id"
+                            context="{'account_id': account_id}"
+                            domain="['|', ('state', '!=', 'done'), ('state', '=', False), ('project_id.analytic_account_id','=',account_id)]"/>
                 </field>
             </field>
         </record>
-        <record id="hr_timesheet.hr_timesheet_line_tree" model="ir.ui.view">
+        <record id="hr_timesheet_line_tree" model="ir.ui.view">
             <field name="name">hr.analytic.timesheet.tree</field>
             <field name="model">hr.analytic.timesheet</field>
-            <field name="type">tree</field>
-            <field name="priority">2</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
             <field name="arch" type="xml">
-                <tree editable="top" string="Timesheet Lines">
-                    <field name="date" on_change="on_change_date(date)"/>
-                    <field domain="[('type','=','normal'), ('state','=','open')]" name="account_id"/>
-                    <field name="task_id" context="{'account_id' : account_id}"
-                        domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
-                    <field name="name"/>
-                    <field name="unit_amount"
-                        on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id, journal_id)"
-                        sum="Total time" widget="float_time"/>
-                    <field name="user_id" on_change="on_change_user_id(user_id)" required="1"/>
-                    <field name="journal_id" invisible="1"/>
-                    <field name="product_id"
-                        on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id, journal_id)"
-                        required="1" domain="[('type','=','service')]" invisible="1"/>
-                    <field name="product_uom_id"
-                        on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id, journal_id)"
-                        invisible="1"/>
-                    <field name="amount" sum="Total cost" invisible="1"/>
-                    <field name="general_account_id" invisible="1"/>
-                </tree>
+                <field name="account_id" position="after">
+                    <field name="task_id"
+                            context="{'account_id': account_id}"
+                            domain="['|', ('state', '!=', 'done'), ('state', '=', False), ('project_id.analytic_account_id','=',account_id)]"/>
+                </field>
             </field>
         </record>
-        #---------------------------------------------------------------------------------------------------------
-        # Add task on search hr.analytic.timesheet
-        #---------------------------------------------------------------------------------------------------------
-            <record id="hr_timesheet_line_search" model="ir.ui.view">
+        <!-- Add task on search hr.analytic.timesheet -->
+        <record id="hr_timesheet_line_search" model="ir.ui.view">
             <field name="name">hr.analytic.timesheet.search</field>
             <field name="model">hr.analytic.timesheet</field>
             <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <field name="date" position="after">
                     <field name="task_id"/>

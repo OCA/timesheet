@@ -6,7 +6,6 @@
             <field name="name">hr_timesheet_sheet.sheet.filter</field>
             <field name="model">hr_timesheet_sheet.sheet</field>
             <field name="inherit_id" ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"/>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <filter name="to_approve" position="after">
                     <separator orientation="vertical"/>
@@ -37,13 +36,13 @@
                     expr="/form/sheet/notebook/page[@string='Details']/field[@name='timesheet_ids']/tree[@string='Timesheet Activities']/field[@name='account_id']"
                     position="after">
                     <field name="task_id" context="{'account_id' : account_id}"
-                        domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
+                        domain="['|', ('state', '!=', 'done'), ('state', '=', False), ('project_id.analytic_account_id','=',account_id)]"/>
                 </xpath>
                 <xpath
                     expr="/form/sheet/notebook/page[@string='Details']/field[@name='timesheet_ids']/form[@string='Timesheet Activities']/field[@name='account_id']"
                     position="after">
                     <field name="task_id" context="{'account_id' : account_id}"
-                        domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
+                        domain="['|', ('state', '!=', 'done'), ('state', '=', False), ('project_id.analytic_account_id','=',account_id)]"/>
                 </xpath>
             </field>
         </record>

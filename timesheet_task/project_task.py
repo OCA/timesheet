@@ -58,8 +58,9 @@ class ProjectTask(orm.Model):
         # project triggers on task are not called
         res = super(ProjectTask, self)._store_set_values(cr, uid, ids, fields, context=context)
         for row in self.browse(cr, SUPERUSER_ID, ids, context=context):
-            project = row.project_id
-            project.write({'parent_id': project.parent_id.id})
+            if row.project_id:
+                project = row.project_id
+                project.write({'parent_id': project.parent_id.id})
         return res
 
 
