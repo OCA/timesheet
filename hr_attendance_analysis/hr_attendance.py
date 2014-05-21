@@ -82,9 +82,13 @@ class hr_attendance(orm.Model):
                 # that means a difference smaller than 0.36 milliseconds
             ):
                 raise orm.except_orm(
-                    _('Error'), _('End time %s < start time %s')
-                    % (str(float_end_time),str(float_start_time)))
-        delta = self.float_to_datetime(float_end_time) - self.float_to_datetime(
+                    _('Error'),
+                    _('End time %s < start time %s') % (
+                        str(float_end_time), str(float_start_time)
+                    )
+                )
+        delta = self.float_to_datetime(
+            float_end_time) - self.float_to_datetime(
             float_start_time)
         return self.total_seconds(delta) / 60.0 / 60.0
 
