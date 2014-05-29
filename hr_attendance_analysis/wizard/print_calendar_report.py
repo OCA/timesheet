@@ -25,6 +25,7 @@ from openerp.tools.translate import _
 from datetime import date, time, datetime, timedelta
 import math
 import calendar
+import pytz
 
 
 class wizard_calendar_report(orm.TransientModel):
@@ -91,6 +92,8 @@ class wizard_calendar_report(orm.TransientModel):
         employee_ids = form['employee_ids']
         delta = to_date - from_date
         max_number_of_attendances_per_day = 0
+        active_tz = pytz.timezone(
+            context.get("tz","UTC") if context else "UTC")
         for employee_id in employee_ids:
             employee_id = str(employee_id)
             days_by_employee[employee_id] = {}
@@ -141,18 +144,30 @@ class wizard_calendar_report(orm.TransientModel):
                 # printing up to 4 attendances
                 if len(attendance_ids) < 5:
                     count = 1
-                    attendances = attendance_pool.browse(
-                        cr, uid, attendance_ids, context=context)
-                    for attendance in sorted(attendances,
-                                             key=lambda x: x['name']):
+                    for attendance in sorted(
+                        attendance_pool.browse(
+                            cr, uid, attendance_ids, context=context
+                        ),
+                        key=lambda x: x['name']
+                    ):
+
+                        attendance_start = datetime.strptime(
+                            attendance.name, '%Y-%m-%d %H:%M:%S'
+                            ).replace(tzinfo=pytz.utc).astimezone(active_tz)
+                        attendance_end = datetime.strptime(
+                            attendance.end_datetime, '%Y-%m-%d %H:%M:%S'
+                            ).replace(tzinfo=pytz.utc).astimezone(active_tz)
+
                         days_by_employee[employee_id][str_current_date][
-                            'signin_' + str(count)] = attendance.name[11:16]
+                            'signin_'+str(count)] = '%s:%s' % (
+                            attendance_start.hour, attendance_start.minute)
                         days_by_employee[employee_id][str_current_date][
-                            'signout_' + str(count)] = \
-                            attendance.end_datetime[11:16]
+                            'signout_'+str(count)] = '%s:%s' % (
+                            attendance_end.hour, attendance_end.minute)
                         count += 1
                     if len(attendance_ids) > max_number_of_attendances_per_day:
                         max_number_of_attendances_per_day = len(attendance_ids)
+
                 days_by_employee[employee_id][str_current_date][
                     'attendances'
                 ] = current_total_attendances
