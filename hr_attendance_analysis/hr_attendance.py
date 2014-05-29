@@ -42,6 +42,12 @@ class res_company(orm.Model):
         'working_time_precision': 1.0 / 60 # hours
         }
 
+    def update_attendance_data(self, cr, uid, ids, context=None):
+        attendance_pool = self.pool.get('hr.attendance')
+        att_ids = attendance_pool.search(cr, uid, [], context=context)
+        attendance_pool.button_dummy(cr, uid, att_ids, context=context)
+        return True
+
 
 class hr_attendance(orm.Model):
 
