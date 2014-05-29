@@ -159,10 +159,10 @@ class wizard_calendar_report(orm.TransientModel):
                             ).replace(tzinfo=pytz.utc).astimezone(active_tz)
 
                         days_by_employee[employee_id][str_current_date][
-                            'signin_'+str(count)] = '%s:%s' % (
+                            'signin_'+str(count)] = '%02d:%02d' % (
                             attendance_start.hour, attendance_start.minute)
                         days_by_employee[employee_id][str_current_date][
-                            'signout_'+str(count)] = '%s:%s' % (
+                            'signout_'+str(count)] = '%02d:%02d' % (
                             attendance_end.hour, attendance_end.minute)
                         count += 1
                     if len(attendance_ids) > max_number_of_attendances_per_day:
