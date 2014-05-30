@@ -113,10 +113,16 @@ class wizard_calendar_report(orm.TransientModel):
                     'signout_4': '',
                     }
                 current_date_beginning = datetime.combine(current_date, time())
-                str_current_date_beginning = current_date_beginning.strftime(
-                    '%Y-%m-%d %H:%M:%S')
-                current_date_end = datetime.combine(current_date, time())+ timedelta(1)
-                str_current_date_end = current_date_end.strftime('%Y-%m-%d %H:%M:%S')
+                current_date_beginning_utc = current_date_beginning.replace(
+                    tzinfo=active_tz).astimezone(pytz.utc)
+                str_current_date_beginning = (
+                    current_date_beginning_utc.strftime('%Y-%m-%d %H:%M:%S'))
+                current_date_end = datetime.combine(
+                    current_date, time()) + timedelta(1)
+                current_date_end_utc = current_date_end.replace(
+                    tzinfo=active_tz).astimezone(pytz.utc)
+                str_current_date_end = (
+                    current_date_end_utc.strftime('%Y-%m-%d %H:%M:%S'))
                 
                 attendance_ids = attendance_pool.search(cr, uid, [
                     ('employee_id','=',int(employee_id)),
