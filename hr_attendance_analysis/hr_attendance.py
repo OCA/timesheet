@@ -422,6 +422,7 @@ class hr_attendance(orm.Model):
 
     def button_dummy(self, cr, uid, ids, context=None):
         for att in self.browse(cr, uid, ids, context=context):
-            #  Force recomputing stored values
+            #  By writing the 'action' field without changing it,
+            #  I'm forcing the '_get_attendance_duration' to be executed
             att.write({'action': att.action})
         return True
