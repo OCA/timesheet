@@ -479,3 +479,10 @@ class HrAttendance(orm.Model):
             _get_attendance_duration, method=True, multi='duration',
             string="Duration within working schedule", store=_store_rules),
     }
+
+    def button_dummy(self, cr, uid, ids, context=None):
+        for att in self.browse(cr, uid, ids, context=context):
+            #  By writing the 'action' field without changing it,
+            #  I'm forcing the '_get_attendance_duration' to be executed
+            att.write({'action': att.action})
+        return True
