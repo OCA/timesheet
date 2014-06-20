@@ -6,7 +6,6 @@
             <field name="name">hr_timesheet_sheet.sheet.filter</field>
             <field name="model">hr_timesheet_sheet.sheet</field>
             <field name="inherit_id" ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"/>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <filter name="to_approve" position="after">
                     <separator orientation="vertical"/>
