@@ -225,7 +225,9 @@ class wizard_calendar_report(orm.TransientModel):
                         'leaves'
                         ] = days_by_employee[employee_id][str_current_date]['due']
                 due_minus_leaves = attendance_pool.time_difference(
-                    current_total_leaves, current_total_due)
+                    current_total_leaves, current_total_due,
+                    help_message='Employee ID %s. Date %s' % (
+                        employee_id, str_current_date))
                 if due_minus_leaves < current_total_inside_calendar:
                     days_by_employee[employee_id][str_current_date]['negative'] = 0.0
                 else:
