@@ -86,7 +86,7 @@ class HrAttendance(orm.Model):
         ) == -1:
             # that means a difference smaller than 0.36 milliseconds
             message = _('End time %s < start time %s') % (
-                str(float_end_time), str(float_start_time)
+                str(float_end_time), str(float_start_time))
             if attendance_id:
                 message = _(
                     'End time %s < start time %s (attendance ID: %s)'
