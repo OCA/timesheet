@@ -76,22 +76,17 @@ class hr_attendance(orm.Model):
         return (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) / 10**6
 
     def time_difference(
-        self, float_start_time, float_end_time, attendance_id=False
+        self, float_start_time, float_end_time, help_message=False
     ):
         if float_compare(
             float_end_time, float_start_time, precision_rounding=0.0000001
         ) == -1:
             # that means a difference smaller than 0.36 milliseconds
-            message = _('End time %s < start time %s') % (
-                str(float_end_time), str(float_start_time))
-            if attendance_id:
-                message = _(
-                    'End time %s < start time %s (attendance ID: %s)'
-                    ) % (
-                    str(float_end_time),
-                    str(float_start_time),
-                    str(attendance_id)
-                    )
+            message = _('End time %s < start time %s %s') % (
+                str(float_end_time),
+                str(float_start_time),
+                help_message and '(' + help_message + ')' or ''
+                )
             raise orm.except_orm(
                 _('Error'),
                 message
@@ -344,7 +339,7 @@ class hr_attendance(orm.Model):
                         ] = self.time_difference(
                         res[attendance.id]['inside_calendar_duration'],
                         res[attendance.id]['duration'],
-                        attendance_id = attendance.id)
+                        help_message='Attendance ID %s' % attendance.id)
 
                     if reference_calendar.overtime_rounding:
                         if res[attendance.id]['outside_calendar_duration']:

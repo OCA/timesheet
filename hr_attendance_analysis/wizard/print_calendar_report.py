@@ -167,8 +167,14 @@ class wizard_calendar_report(orm.TransientModel):
                                 datetime.strptime(calendar_attendance.date_from,'%Y-%m-%d')
                                 <= current_date
                                 )):
-                                calendar_attendance_duration = attendance_pool.time_difference(
-                                    calendar_attendance.hour_from, calendar_attendance.hour_to)
+                                calendar_attendance_duration = (
+                                    attendance_pool.time_difference(
+                                        calendar_attendance.hour_from,
+                                        calendar_attendance.hour_to,
+                                        help_message=(
+                                            'Calendar attendance ID %s'
+                                            % calendar_attendance.id))
+                                    )
                                 if calendar_attendance_duration < 0:
                                     raise orm.except_orm(_('Error'),
                                         _("%s: 'Work to' is < 'Work from'")
@@ -226,7 +232,9 @@ class wizard_calendar_report(orm.TransientModel):
                     days_by_employee[employee_id][str_current_date][
                         'negative'
                         ] = attendance_pool.time_difference(
-                        current_total_inside_calendar, due_minus_leaves)
+                        current_total_inside_calendar, due_minus_leaves,
+                        help_message='Employee ID %s. Date %s' % (
+                            employee_id, str_current_date))
 
                 if reference_calendar:
                     if reference_calendar.leave_rounding:
