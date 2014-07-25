@@ -149,8 +149,23 @@ class HrAttendance(orm.Model):
             res.append((start_datetime, precision))
         return res
 
-    def get_reference_calendar(self, cr, uid, employee_id, date=None,
-                               context=None):
+    def attendance_to_hour(self, attendance):
+        attendance_hour = (
+            attendance.hour + attendance.minute / 60.0
+            + attendance.second / 3600.0
+        )
+        return attendance_hour
+
+    def centered_attendance(self, attendance_start, delta):
+        return attendance_start + timedelta(hours=delta / 2.0)
+
+    def centered_attendance_hour(self, attendance_start, delta):
+        centered_attendance = self.centered_attendance(attendance_start, delta)
+        return self.attendance_to_hour(centered_attendance)
+      
+    def get_reference_calendar(
+        self, cr, uid, employee_id, date=None, context=None
+    ):
         if date is None:
             date = fields.date.context_today(self, cr, uid, context=context)
         contract_pool = self.pool.get('hr.contract')
@@ -287,31 +302,33 @@ class HrAttendance(orm.Model):
                     counter = 0
                     for atomic_attendance in splitted_attendances:
                         counter += 1
-                        centered_attendance = atomic_attendance[0] + timedelta(
-                            0, 0, 0, 0, 0, atomic_attendance[1] / 2.0)
-                        centered_attendance_hour = (
-                            centered_attendance.hour +
-                            centered_attendance.minute / 60.0
-                            + centered_attendance.second / 3600.0
+                        centered_attendance = (
+                            self.centered_attendance(
+                                atomic_attendance[0],
+                                delta=atomic_attendance[1],
+                            )
                         )
+                        centered_attendance_hour = self.attendance_to_hour(
+                            centered_attendance)
                         # check if centered_attendance is within a working
-                        # schedule 2012.10.16 LF FIX : weekday must be single
-                        # character not int
-                        weekday_char = unicode(
+                        # schedule          
+                        # 2012.10.16 LF FIX : weekday must be single character
+                        # not int
+                        weekday_char = str(
                             unichr(centered_attendance.weekday() + 48))
                         matched_schedule_ids = attendance_pool.search(
-                            cr, uid,
-                            ['&',
-                             '|',
-                             ('date_from', '=', False),
-                             ('date_from', '<=', centered_attendance.date()),
-                             '|',
-                             ('dayofweek', '=', False),
-                             ('dayofweek', '=', weekday_char),
-                             ('calendar_id', '=', calendar_id),
-                             ('hour_to', '>=', centered_attendance_hour),
-                             ('hour_from', '<=', centered_attendance_hour)],
-                            context=context)
+                            cr, uid, [
+                                '&',
+                                '|',
+                                ('date_from', '=', False),
+                                ('date_from', '<=', centered_attendance.date()),
+                                '|',
+                                ('dayofweek', '=', False),
+                                ('dayofweek', '=', weekday_char),
+                                ('calendar_id', '=', calendar_id),
+                                ('hour_to', '>=', centered_attendance_hour),
+                                ('hour_from', '<=', centered_attendance_hour),
+                            ], context=context)
                         if len(matched_schedule_ids) > 1:
                             raise orm.except_orm(
                                 _('Error'),
@@ -323,12 +340,11 @@ class HrAttendance(orm.Model):
                             if intervals_within == 1:
                                 calendar_attendance = attendance_pool.browse(
                                     cr, uid, matched_schedule_ids[0],
-                                    context=context)
+                                    context=context
+                                )
                                 attendance_start_hour = (
-                                    attendance_start.hour
-                                    + attendance_start.minute / 60.0
-                                    + attendance_start.second / 60.0 / 60.0
-                                    )
+                                    self.attendance_to_hour(attendance_start)
+                                )
                                 if attendance_start_hour >= (
                                     calendar_attendance.hour_from
                                     and
@@ -348,11 +364,8 @@ class HrAttendance(orm.Model):
                                             additional_intervals * precision)
                             # sign out tolerance
                             if len(splitted_attendances) == counter:
-                                attendance_stop_hour = (
-                                    attendance_stop.hour
-                                    + attendance_stop.minute / 60.0
-                                    + attendance_stop.second / 60.0 / 60.0
-                                    )
+                                attendance_stop_hour = self.attendance_to_hour(
+                                    attendance_stop)
                                 calendar_attendance = attendance_pool.browse(
                                     cr, uid, matched_schedule_ids[0],
                                     context=context)
