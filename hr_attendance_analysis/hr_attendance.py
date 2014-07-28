@@ -118,9 +118,7 @@ class HrAttendance(orm.Model):
         res = []
         while (duration > precision):
             res.append((start_datetime, precision))
-            start_datetime += timedelta(
-                days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0,
-                hours=precision)
+            start_datetime += timedelta(hours=precision)
             duration -= precision
         if duration > precision / 2.0:
             res.append((start_datetime, precision))
