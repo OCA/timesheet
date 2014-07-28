@@ -157,7 +157,7 @@ class wizard_calendar_report(orm.TransientModel):
                 if reference_calendar:
                     if reference_calendar.attendance_ids:
                         current_total_due = 0.0
-                        for calendar_attendance in reference.attendance_ids:
+                        for calendar_attendance in reference_calendar.attendance_ids:
                             if ((
                                 not calendar_attendance.dayofweek
                                 or int(calendar_attendance.dayofweek) == current_date.weekday()
