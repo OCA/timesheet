@@ -311,7 +311,6 @@ class hr_attendance(orm.Model):
 
                     # split attendance in intervals = precision
                     # 2012.10.16 LF FIX : no recursion in split attendance
-                    import pdb; pdb.set_trace()
                     splitted_attendances = self._split_no_recursive_attendance(
                         attendance_start, duration, precision)
                     counter = 0
