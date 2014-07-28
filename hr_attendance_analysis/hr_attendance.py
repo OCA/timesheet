@@ -86,8 +86,8 @@ class HrAttendance(orm.Model):
         ) == -1:
             # that means a difference smaller than 0.36 milliseconds
             message = _('End time %s < start time %s %s') % (
-                str(float_end_time),
-                str(float_start_time),
+                unicode(float_end_time),
+                unicode(float_start_time),
                 help_message and '(' + help_message + ')' or ''
                 )
             raise orm.except_orm(
@@ -162,6 +162,32 @@ class HrAttendance(orm.Model):
     def centered_attendance_hour(self, attendance_start, delta):
         centered_attendance = self.centered_attendance(attendance_start, delta)
         return self.attendance_to_hour(centered_attendance)
+
+    def get_matched_schedule(
+            self, cr, uid,
+            centered_attendance, weekday_char, calendar_id,
+            context=None
+    ):
+        attendance_pool = self.pool.get('resource.calendar.attendance')
+        centered_attendance_hour = self.attendance_to_hour(centered_attendance)
+        matched_schedule_ids = attendance_pool.search(
+            cr,
+            uid,
+            [
+                '&',
+                '|',
+                ('date_from', '=', False),
+                ('date_from','<=', centered_attendance.date()),
+                '|',
+                ('dayofweek', '=', False),
+                ('dayofweek','=', weekday_char),
+                ('calendar_id','=', calendar_id),
+                ('hour_to','>=', centered_attendance_hour),
+                ('hour_from','<=', centered_attendance_hour),
+            ],
+            context=context
+        )
+        return matched_schedule_ids
       
     def get_reference_calendar(
         self, cr, uid, employee_id, date=None, context=None
@@ -297,6 +323,7 @@ class HrAttendance(orm.Model):
                     intervals_within = 0
                     # split attendance in intervals = precision
                     # 2012.10.16 LF FIX : no recursion in split attendance
+                    import pdb; pdb.set_trace()
                     splitted_attendances = self._split_no_recursive_attendance(
                         attendance_start, duration, precision)
                     counter = 0
@@ -311,24 +338,18 @@ class HrAttendance(orm.Model):
                         centered_attendance_hour = self.attendance_to_hour(
                             centered_attendance)
                         # check if centered_attendance is within a working
-                        # schedule          
+                        # schedule
                         # 2012.10.16 LF FIX : weekday must be single character
                         # not int
-                        weekday_char = str(
+                        weekday_char = unicode(
                             unichr(centered_attendance.weekday() + 48))
-                        matched_schedule_ids = attendance_pool.search(
-                            cr, uid, [
-                                '&',
-                                '|',
-                                ('date_from', '=', False),
-                                ('date_from', '<=', centered_attendance.date()),
-                                '|',
-                                ('dayofweek', '=', False),
-                                ('dayofweek', '=', weekday_char),
-                                ('calendar_id', '=', calendar_id),
-                                ('hour_to', '>=', centered_attendance_hour),
-                                ('hour_from', '<=', centered_attendance_hour),
-                            ], context=context)
+                        matched_schedule_ids = self.get_matched_schedule(
+                            cr, uid,
+                            centered_attendance,
+                            weekday_char,
+                            calendar_id,
+                            context=context
+                        )
                         if len(matched_schedule_ids) > 1:
                             raise orm.except_orm(
                                 _('Error'),
