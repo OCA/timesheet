@@ -42,6 +42,12 @@ class res_company(orm.Model):
         'working_time_precision': 1.0 / 60 # hours
         }
 
+    def update_attendance_data(self, cr, uid, ids, context=None):
+        attendance_pool = self.pool.get('hr.attendance')
+        att_ids = attendance_pool.search(cr, uid, [], context=context)
+        attendance_pool.button_dummy(cr, uid, att_ids, context=context)
+        return True
+
 
 class hr_attendance(orm.Model):
 
@@ -298,7 +304,7 @@ class hr_attendance(orm.Model):
                                     attendance_start.hour + attendance_start.minute / 60.0
                                     + attendance_start.second / 60.0 / 60.0
                                     )
-                                if attendance_start_hour >= (
+                                if (attendance_start_hour >=
                                     calendar_attendance.hour_from and
                                     (attendance_start_hour - (calendar_attendance.hour_from +
                                     calendar_attendance.tolerance_to)) < 0.01
@@ -315,7 +321,7 @@ class hr_attendance(orm.Model):
                                     + attendance_stop.second / 60.0 / 60.0
                                     )
                                 calendar_attendance = attendance_pool.browse(cr, uid, matched_schedule_ids[0], context=context)
-                                if attendance_stop_hour <= (
+                                if (attendance_stop_hour <=
                                     calendar_attendance.hour_to and
                                     (attendance_stop_hour - (calendar_attendance.hour_to -
                                     calendar_attendance.tolerance_from)) > -0.01
@@ -414,4 +420,9 @@ class hr_attendance(orm.Model):
             store=_store_rules),
     }
 
-
+    def button_dummy(self, cr, uid, ids, context=None):
+        for att in self.browse(cr, uid, ids, context=context):
+            #  By writing the 'action' field without changing it,
+            #  I'm forcing the '_get_attendance_duration' to be executed
+            att.write({'action': att.action})
+        return True
