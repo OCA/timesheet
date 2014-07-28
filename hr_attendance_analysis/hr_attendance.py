@@ -110,19 +110,7 @@ class hr_attendance(orm.Model):
         second_timedelta = timedelta(0, int(str_second_time.split(':')[0]) * 60.0*60.0 +
             int(str_second_time.split(':')[1]) * 60.0)
         return self.total_seconds(first_timedelta + second_timedelta) / 60.0 / 60.0
-
-    def _split_long_attendances(self, start_datetime, duration):
-        # start_datetime: datetime, duration: hours
-        # returns [(datetime, hours)]
-        res = []
-        if duration > 24:
-            res.append((start_datetime, 24))
-            res.extend(self._split_long_attendances(
-                start_datetime + timedelta(1), duration - 24))
-        else:
-            res.append((start_datetime, duration))
-        return res
-    
+ 
     def _split_no_recursive_attendance(self, start_datetime, duration, precision=0.25):
         # start_datetime: datetime, duration: hours, precision: hours
         # returns [(datetime, hours)]
@@ -136,17 +124,6 @@ class hr_attendance(orm.Model):
             res.append((start_datetime, precision))
         return res        
 
-    def _split_attendance(self, start_datetime, duration, precision=0.25):
-        # start_datetime: datetime, duration: hours, precision: hours
-        # returns [(datetime, hours)]
-        res = []
-        if duration > precision:
-            res.append((start_datetime, precision))
-            res.extend(self._split_attendance(start_datetime + timedelta(0,0,0,0,0,precision), duration - precision, precision))
-        elif duration > precision / 2.0:
-            res.append((start_datetime, precision))
-        return res
-
     def attendance_to_hour(self, attendance):
         attendance_hour = (
             attendance.hour + attendance.minute / 60.0
@@ -156,10 +133,6 @@ class hr_attendance(orm.Model):
 
     def centered_attendance(self, attendance_start, delta):
         return attendance_start + timedelta(hours=delta / 2.0)
-
-    def centered_attendance_hour(self, attendance_start, delta):
-        centered_attendance = self.centered_attendance(attendance_start, delta)
-        return self.attendance_to_hour(centered_attendance)
 
     def get_matched_schedule(
             self, cr, uid,
