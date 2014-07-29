@@ -181,15 +181,19 @@ class wizard_calendar_report(orm.TransientModel):
                     if reference_calendar.attendance_ids:
                         current_total_due = 0.0
                         for calendar_attendance in reference_calendar.attendance_ids:
-                            if ((
-                                not calendar_attendance.dayofweek
-                                or int(calendar_attendance.dayofweek) == current_date.weekday()
+                            if (
+                                (
+                                    not calendar_attendance.dayofweek or
+                                    int(calendar_attendance.dayofweek)
+                                    == current_date.weekday()
                                 )
-                                and (
-                                not calendar_attendance.date_from or 
-                                datetime.strptime(calendar_attendance.date_from,'%Y-%m-%d')
-                                <= current_date
-                                )):
+                                and
+                                (
+                                    not calendar_attendance.date_from or 
+                                    datetime.strptime(calendar_attendance.date_from,'%Y-%m-%d')
+                                    <= current_date
+                                )
+                            ):
                                 calendar_attendance_duration = (
                                     attendance_pool.time_difference(
                                         calendar_attendance.hour_from,
