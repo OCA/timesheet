@@ -76,6 +76,10 @@ class wizard_calendar_report(orm.TransientModel):
             context = {}
         attendance_pool = self.pool.get('hr.attendance')
         holidays_pool = self.pool.get('hr.holidays')
+        precision = self.pool.get('res.users').browse(
+            cr, uid, uid, context=context).company_id.working_time_precision
+        active_tz = pytz.timezone(
+            context.get("tz","UTC") if context else "UTC")
 
         days_by_employee = {}
         
@@ -225,17 +229,58 @@ class wizard_calendar_report(orm.TransientModel):
                     ('employee_id', '=', int(employee_id)),
                     ], context=context)
                 for holiday in holidays_pool.browse(cr, uid, holidays_ids, context=context):
-                    date_from = datetime.strptime(holiday.date_from, '%Y-%m-%d %H:%M:%S')
-                    date_to = datetime.strptime(holiday.date_to, '%Y-%m-%d %H:%M:%S')
+                    date_from = datetime.strptime(
+                        holiday.date_from, '%Y-%m-%d %H:%M:%S')
+                    date_to = datetime.strptime(
+                        holiday.date_to, '%Y-%m-%d %H:%M:%S')
                     # if beginned before today
                     if date_from < current_date_beginning:
                         date_from = current_date_beginning
                     # if ends after today
                     if date_to > current_date_end:
                         date_to = current_date_end
-                    current_total_leaves = attendance_pool.time_sum(
-                        current_total_leaves,
-                        (date_to - date_from).total_seconds() / 60.0 / 60.0)
+                    date_from = date_from.replace(
+                        tzinfo=pytz.utc).astimezone(active_tz)
+                    date_to = date_to.replace(
+                        tzinfo=pytz.utc).astimezone(active_tz)
+                    duration_delta = date_to - date_from
+                    duration = (
+                        attendance_pool.total_seconds(duration_delta)
+                        / 60.0 / 60.0
+                    )
+                    intervals_within = 0
+                    splitted_holidays = (
+                        attendance_pool.split_interval_time_by_precision(
+                            date_from, duration, precision)
+                    )
+                    counter = 0
+                    for atomic_holiday in splitted_holidays:
+                        counter += 1
+                        centered_holiday = (
+                            attendance_pool.mid_time_interval(
+                                atomic_holiday[0],
+                                delta=atomic_holiday[1],
+                            )
+                        )
+                        centered_holiday_hour = attendance_pool.datetime_to_hour(
+                            centered_holiday)
+                        # check if centered_holiday is within a working schedule                        
+                        weekday_char = str(
+                            unichr(centered_holiday.weekday() + 48))
+                        matched_schedule_ids = attendance_pool.matched_schedule(
+                            cr, uid,
+                            centered_holiday,
+                            weekday_char,
+                            reference_calendar.id,
+                            context=context
+                        )
+                        if len(matched_schedule_ids) > 1:
+                            raise orm.except_orm(_('Error'),
+                                _('Wrongly configured working schedule with id %s') % str(calendar_id))
+                        if matched_schedule_ids:
+                            intervals_within += 1
+
+                    current_total_leaves = intervals_within * precision
 
                 days_by_employee[employee_id][str_current_date]['leaves'] = current_total_leaves
                 if current_total_leaves > days_by_employee[employee_id][
