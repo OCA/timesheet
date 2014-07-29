@@ -111,7 +111,9 @@ class hr_attendance(orm.Model):
             int(str_second_time.split(':')[1]) * 60.0)
         return self.total_seconds(first_timedelta + second_timedelta) / 60.0 / 60.0
  
-    def _split_no_recursive_attendance(self, start_datetime, duration, precision=0.25):
+    def split_interval_time_by_precision(
+            self, start_datetime, duration, precision=0.25
+    ):
         # start_datetime: datetime, duration: hours, precision: hours
         # returns [(datetime, hours)]
         res = []
@@ -123,37 +125,38 @@ class hr_attendance(orm.Model):
             res.append((start_datetime, precision))
         return res        
 
-    def attendance_to_hour(self, attendance):
-        attendance_hour = (
-            attendance.hour + attendance.minute / 60.0
-            + attendance.second / 3600.0
+    def datetime_to_hour(self, datetime):
+        hour = (
+            datetime.hour + datetime.minute / 60.0
+            + datetime.second / 3600.0
         )
-        return attendance_hour
+        return hour
 
-    def centered_attendance(self, attendance_start, delta):
-        return attendance_start + timedelta(hours=delta / 2.0)
+    def mid_time_interval(self, datetime_start, delta):
+        return datetime_start + timedelta(hours=delta / 2.0)
 
-    def get_matched_schedule(
+    def matched_schedule(
             self, cr, uid,
-            centered_attendance, weekday_char, calendar_id,
+            datetime, weekday_char, calendar_id,
             context=None
     ):
-        attendance_pool = self.pool.get('resource.calendar.attendance')
-        centered_attendance_hour = self.attendance_to_hour(centered_attendance)
-        matched_schedule_ids = attendance_pool.search(
+        calendar_attendance_pool = self.pool.get(
+            'resource.calendar.attendance')
+        datetime_hour = self.datetime_to_hour(datetime)
+        matched_schedule_ids = calendar_attendance_pool.search(
             cr,
             uid,
             [
                 '&',
                 '|',
                 ('date_from', '=', False),
-                ('date_from','<=', centered_attendance.date()),
+                ('date_from','<=', datetime.date()),
                 '|',
                 ('dayofweek', '=', False),
                 ('dayofweek','=', weekday_char),
                 ('calendar_id','=', calendar_id),
-                ('hour_to','>=', centered_attendance_hour),
-                ('hour_from','<=', centered_attendance_hour),
+                ('hour_to','>=', datetime_hour),
+                ('hour_from','<=', datetime_hour),
             ],
             context=context
         )
@@ -283,23 +286,23 @@ class hr_attendance(orm.Model):
 
                     # split attendance in intervals = precision
                     # 2012.10.16 LF FIX : no recursion in split attendance
-                    splitted_attendances = self._split_no_recursive_attendance(
+                    splitted_attendances = self.split_interval_time_by_precision(
                         attendance_start, duration, precision)
                     counter = 0
                     for atomic_attendance in splitted_attendances:
                         counter += 1
                         centered_attendance = (
-                            self.centered_attendance(
+                            self.mid_time_interval(
                                 atomic_attendance[0],
                                 delta=atomic_attendance[1],
                             )
                         )
-                        centered_attendance_hour = self.attendance_to_hour(
+                        centered_attendance_hour = self.datetime_to_hour(
                             centered_attendance)
                         # check if centered_attendance is within a working schedule                        
                         # 2012.10.16 LF FIX : weekday must be single character not int
                         weekday_char = str(unichr(centered_attendance.weekday() + 48))
-                        matched_schedule_ids = self.get_matched_schedule(
+                        matched_schedule_ids = self.matched_schedule(
                             cr, uid,
                             centered_attendance,
                             weekday_char,
@@ -318,7 +321,7 @@ class hr_attendance(orm.Model):
                                     context=context
                                 )
                                 attendance_start_hour = (
-                                    self.attendance_to_hour(attendance_start)
+                                    self.datetime_to_hour(attendance_start)
                                 )
                                 if attendance_start_hour >= (
                                     calendar_attendance.hour_from and
@@ -332,7 +335,7 @@ class hr_attendance(orm.Model):
                                         res[attendance.id]['duration'], additional_intervals * precision)
                             # sign out tolerance
                             if len(splitted_attendances) == counter:
-                                attendance_stop_hour = self.attendance_to_hour(
+                                attendance_stop_hour = self.datetime_to_hour(
                                     attendance_stop)
                                 calendar_attendance = attendance_pool.browse(
                                     cr, uid, matched_schedule_ids[0],
