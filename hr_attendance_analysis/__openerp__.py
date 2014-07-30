@@ -2,7 +2,7 @@
 ##############################################################################
 #    
 #    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-2013 Agile Business Group sagl
+#    Copyright (C) 2011-2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -36,8 +36,8 @@ Several analysis settings can be configured, like:
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends" : ['hr_attendance', 'hr_contract', 'hr_holidays', 'report_webkit'],
-    "data" : [
+    "depends": ['hr_attendance', 'hr_contract', 'hr_holidays', 'report_webkit'],
+    "data": [
         'company_view.xml',
         'hr_attendance_view.xml',
         'reports.xml',
@@ -45,7 +45,12 @@ Several analysis settings can be configured, like:
         'resource_view.xml',
         'security/ir.model.access.csv',
         ],
-    "demo" : [],
+    "demo": [
+        'hr_attendance_demo.xml',
+        ],
+    "test": [
+        'test/attendances.yml',
+        ],
     "active": False,
     "installable": True
 }
