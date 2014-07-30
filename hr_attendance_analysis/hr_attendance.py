@@ -323,7 +323,7 @@ class hr_attendance(orm.Model):
                                 attendance_start_hour = (
                                     self.datetime_to_hour(attendance_start)
                                 )
-                                if attendance_start_hour >= (
+                                if (attendance_start_hour >=
                                     calendar_attendance.hour_from and
                                     (attendance_start_hour - (calendar_attendance.hour_from +
                                     calendar_attendance.tolerance_to)) < 0.01
@@ -340,7 +340,7 @@ class hr_attendance(orm.Model):
                                 calendar_attendance = attendance_pool.browse(
                                     cr, uid, matched_schedule_ids[0],
                                     context=context)
-                                if attendance_stop_hour <= (
+                                if (attendance_stop_hour <=
                                     calendar_attendance.hour_to and
                                     (attendance_stop_hour - (calendar_attendance.hour_to -
                                     calendar_attendance.tolerance_from)) > -0.01
