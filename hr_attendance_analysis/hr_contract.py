@@ -27,8 +27,7 @@
 #
 ##############################################################################
 import datetime
-
-from openerp.osv import fields, orm
+from openerp.osv import orm
 
 
 class hr_contract(orm.Model):

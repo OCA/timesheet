@@ -23,7 +23,6 @@
 from __future__ import division
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
-import time
 from datetime import datetime, timedelta
 import math
 from openerp.tools import float_compare

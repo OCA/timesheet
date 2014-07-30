@@ -20,10 +20,9 @@
 ##############################################################################
 
 import time
-from report import report_sxw
-from osv import osv
 from datetime import datetime
-from tools.translate import _
+from openerp.report import report_sxw
+from openerp.tools.translate import _
 
 
 class Parser(report_sxw.rml_parse):
