@@ -16,10 +16,13 @@
   I check the attendance data.
 -
    !python {model: hr.attendance}: |
+     import time
      att_0 = self.browse(cr, uid, ref('hr_attendance_0'), context=context)
      assert att_0.duration == 4.25, "Attendance duration must be 4:15, but it's %s" % att_0.duration
+     end_datetime = time.strftime('%Y-%m-%d 12:15:00')
+     assert att_0.end_datetime == end_datetime, "Attendance end must be 11:50:00, but it's %s" % att_0.end_datetime
      assert att_0.outside_calendar_duration == 0.25, "Overtime must be 0:15, but it's %s" % att_0.outside_calendar_duration
-     assert att_0.inside_calendar_duration == 4, "Overtime must be 4, but it's %s" % att_0.inside_calendar_duration
+     assert att_0.inside_calendar_duration == 4, "Inside calendar be 4, but it's %s" % att_0.inside_calendar_duration
 -
   I assign the dates in the holiday request.
 -
@@ -48,5 +51,53 @@
   !python {model: attendance_analysis.wizard.calendar_report}: |
     wizard = self.browse(cr, uid, ref('calendar_report_1'), context=context)
     action = self.print_calendar(cr, uid, [ref('calendar_report_1')], context=context)
-    fp_leaves = action['datas']['form']['totals_by_employee'][str(ref('hr.employee_fp'))]['total_leaves']
-    assert fp_leaves == '05:00', "Total leaves must be 5, %s found" % fp_leaves
+    fp_data = action['datas']['form']['totals_by_employee'][str(ref('hr.employee_fp'))]
+    assert fp_data['total_leaves'] == '05:00', "Total leaves must be 05:00, %s found" % fp_data['total_leaves']
+    assert fp_data['total_overtime'] == '00:15', "Total overtime must be 00:15, %s found" % fp_data['total_overtime']
+    assert fp_data['total_due'] == '09:00', "Total due must be 09:00, %s found" % fp_data['total_due']
+    assert fp_data['total_negative'] == '05:00', "Total negative must be 05:00, %s found" % fp_data['total_negative']
+-
+  I sign in the second day (morning)
+-
+  !record {model: hr.attendance, id: hr_attendance_2}:
+    employee_id: hr.employee_fp
+    name: !eval (datetime.now().date() + timedelta(days=1)).strftime('%Y-%m-%d 08:00:00')
+    action: 'sign_in'
+-
+  I sign out the second day (morning)
+-
+  !record {model: hr.attendance, id: hr_attendance_3}:
+    employee_id: hr.employee_fp
+    name: !eval (datetime.now().date() + timedelta(days=1)).strftime('%Y-%m-%d 11:50:00')
+    action: 'sign_out'
+-
+  I sign in the second day (afternoon)
+-
+  !record {model: hr.attendance, id: hr_attendance_4}:
+    employee_id: hr.employee_fp
+    name: !eval (datetime.now().date() + timedelta(days=1)).strftime('%Y-%m-%d 12:45:00')
+    action: 'sign_in'
+-
+  I sign out the second day (afternoon)
+-
+  !record {model: hr.attendance, id: hr_attendance_5}:
+    employee_id: hr.employee_fp
+    name: !eval (datetime.now().date() + timedelta(days=1)).strftime('%Y-%m-%d 18:00:00')
+    action: 'sign_out'
+-
+  I check the attendance data.
+-
+   !python {model: hr.attendance}: |
+     from datetime import datetime, timedelta
+     att_2 = self.browse(cr, uid, ref('hr_attendance_2'), context=context)
+     assert att_2.duration == 3.83, "Attendance duration must be 3:50, but it's %s" % att_2.duration
+     end_datetime = (datetime.now().date() + timedelta(days=1)).strftime('%Y-%m-%d 11:50:00')
+     assert att_2.end_datetime == end_datetime, "Attendance end must be 11:50:00, but it's %s" % att_2.end_datetime
+     assert att_2.outside_calendar_duration == 0, "Overtime must be 0:00, but it's %s" % att_2.outside_calendar_duration
+     assert att_2.inside_calendar_duration == 3.83, "Inside calendar must be 3:50, but it's %s" % att_2.inside_calendar_duration
+     att_4 = self.browse(cr, uid, ref('hr_attendance_4'), context=context)
+     assert att_4.duration == 5.25, "Attendance duration must be 5:15, but it's %s" % att_4.duration
+     end_datetime = (datetime.now().date() + timedelta(days=1)).strftime('%Y-%m-%d 18:00:00')
+     assert att_4.end_datetime == end_datetime, "Attendance end must be 18:00:00, but it's %s" % att_4.end_datetime
+     assert att_4.outside_calendar_duration == 0.25, "Overtime must be 0:15, but it's %s" % att_4.outside_calendar_duration
+     assert att_4.inside_calendar_duration == 5, "Inside calendar must be 5:00, but it's %s" % att_4.inside_calendar_duration
