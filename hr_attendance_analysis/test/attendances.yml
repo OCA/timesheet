@@ -1,0 +1,20 @@
+-
+  First of all, Employee Sign's In.
+-
+  !record {model: hr.attendance, id: hr_attendance_0}:
+    employee_id: hr.employee_al
+    name: !eval time.strftime('%Y-%m-%d 08:00:00')
+    action: 'sign_in'
+-
+  After two hours, Employee Sign's Out.
+-
+  !record {model: hr.attendance, id: hr_attendance_1}:
+    employee_id: hr.employee_al
+    name: !eval time.strftime('%Y-%m-%d 12:15:00')
+    action: 'sign_out'
+-
+  I check the attendance data.
+-
+   !python {model: hr.attendance}: |
+     att_0 = self.browse(cr, uid, ref('hr_attendance_0'), context=context)
+     assert att_0.duration == 4.25, "Attendance duration must be 4:15, but it's %s" % att_0.duration
