@@ -5,7 +5,6 @@ python:
 
 env:
   - VERSION="6.1" ODOO_REPO="odoo/odoo"
-  - VERSION="6.1" ODOO_REPO="OCA/OCB"
 
 virtualenv:
   system_site_packages: true
