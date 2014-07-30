@@ -46,9 +46,12 @@
     from_date: !eval time.strftime('%Y-%m-%d')
     to_date: !eval time.strftime('%Y-%m-%d')
 -
-  I run the calendar analysis report
+  I run the calendar analysis report with timezone
 -
   !python {model: attendance_analysis.wizard.calendar_report}: |
+    if context is None:
+      context = {}
+    context['tz'] = 'Europe/Brussels'
     wizard = self.browse(cr, uid, ref('calendar_report_1'), context=context)
     action = self.print_calendar(cr, uid, [ref('calendar_report_1')], context=context)
     fp_data = action['datas']['form']['totals_by_employee'][str(ref('hr.employee_fp'))]
@@ -110,9 +113,12 @@
     from_date: !eval (datetime.now().date() + timedelta(days=1)).strftime('%Y-%m-%d')
     to_date: !eval (datetime.now().date() + timedelta(days=1)).strftime('%Y-%m-%d')
 -
-  I run the calendar analysis report
+  I run the calendar analysis report with timezone
 -
   !python {model: attendance_analysis.wizard.calendar_report}: |
+    if context is None:
+      context = {}
+    context['tz'] = 'Europe/Brussels'
     wizard = self.browse(cr, uid, ref('calendar_report_2'), context=context)
     action = self.print_calendar(cr, uid, [ref('calendar_report_2')], context=context)
     fp_data = action['datas']['form']['totals_by_employee'][str(ref('hr.employee_fp'))]
