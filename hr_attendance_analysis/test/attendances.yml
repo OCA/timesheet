@@ -55,7 +55,7 @@
     assert fp_data['total_leaves'] == '05:00', "Total leaves must be 05:00, %s found" % fp_data['total_leaves']
     assert fp_data['total_overtime'] == '00:15', "Total overtime must be 00:15, %s found" % fp_data['total_overtime']
     assert fp_data['total_due'] == '09:00', "Total due must be 09:00, %s found" % fp_data['total_due']
-    assert fp_data['total_negative'] == '05:00', "Total negative must be 05:00, %s found" % fp_data['total_negative']
+    assert fp_data['total_negative'] == '00:00', "Total negative must be 00:00, %s found" % fp_data['total_negative']
 -
   I sign in the second day (morning)
 -
@@ -101,3 +101,22 @@
      assert att_4.end_datetime == end_datetime, "Attendance end must be 18:00:00, but it's %s" % att_4.end_datetime
      assert att_4.outside_calendar_duration == 0.25, "Overtime must be 0:15, but it's %s" % att_4.outside_calendar_duration
      assert att_4.inside_calendar_duration == 5, "Inside calendar must be 5:00, but it's %s" % att_4.inside_calendar_duration
+-
+  I create the calendar analysis wizard
+-
+  !record {model: attendance_analysis.wizard.calendar_report, id: calendar_report_2, view: wizard_calendar_report}:
+    employee_ids:
+      - hr.employee_fp
+    from_date: !eval (datetime.now().date() + timedelta(days=1)).strftime('%Y-%m-%d')
+    to_date: !eval (datetime.now().date() + timedelta(days=1)).strftime('%Y-%m-%d')
+-
+  I run the calendar analysis report
+-
+  !python {model: attendance_analysis.wizard.calendar_report}: |
+    wizard = self.browse(cr, uid, ref('calendar_report_2'), context=context)
+    action = self.print_calendar(cr, uid, [ref('calendar_report_2')], context=context)
+    fp_data = action['datas']['form']['totals_by_employee'][str(ref('hr.employee_fp'))]
+    assert fp_data['total_leaves'] == '00:00', "Total leaves must be 00:00, %s found" % fp_data['total_leaves']
+    assert fp_data['total_overtime'] == '00:15', "Total overtime must be 00:15, %s found" % fp_data['total_overtime']
+    assert fp_data['total_due'] == '09:00', "Total due must be 09:00, %s found" % fp_data['total_due']
+    assert fp_data['total_negative'] == '00:10', "Total negative must be 00:10, %s found" % fp_data['total_negative']
