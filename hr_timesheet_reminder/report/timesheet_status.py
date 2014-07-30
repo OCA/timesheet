@@ -21,7 +21,6 @@
 ##############################################################################
 
 import time
-
 from datetime import datetime
 from openerp.report import report_sxw
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
@@ -42,16 +41,18 @@ class timesheet_status(report_sxw.rml_parse):
             'get_timerange_title': self.get_timerange_title,
             'get_user_list': self.get_user_list,
             'get_timesheet_status': self.get_timesheet_status,
-            })
+        })
 
     def set_context(self, objects, data, ids, report_type=None):
         self.end_date = data['form']['date']
         self.compute(objects)
-        return super(timesheet_status, self).set_context(objects, data, ids, report_type)
+        return super(timesheet_status, self).set_context(
+            objects, data, ids, report_type)
 
     def compute(self, objects):
-        """compute all datas and do all the calculations before to start the rml rendering
-           - objects are companies
+        """compute all datas and do all the calculations before to start the rml
+        rendering
+        - objects are companies
         """
         # init the data array
         self.data = {}
@@ -60,12 +61,10 @@ class timesheet_status(report_sxw.rml_parse):
         # get the list of employees ids to treat
         for o in objects:
             self.data[o.id]['employees'] = self._compute_employees_list(o)
-
         # get the time range for each company
         end_date = datetime.strptime(self.end_date, DEFAULT_SERVER_DATE_FORMAT)
         for o in objects:
             self.data[o.id]['time_ranges'] = self._compute_periods(o, end_date)
-
         # get the status of each timesheet for each employee
         for o in objects:
             self.data[o.id]['sheet_status'] = self._compute_all_status(o)
@@ -79,32 +78,23 @@ class timesheet_status(report_sxw.rml_parse):
                                             ('active', '=', True)],
                                            context=self.localcontext)
         return employee_obj.browse(
-                self.cr, self.uid, employee_ids, context=self.localcontext)
+            self.cr, self.uid, employee_ids, context=self.localcontext)
 
     def _get_last_period_dates(self, company, date):
         """ return the start date of the last period to display """
-        return self.pool.get('res.company').get_last_period_dates(
-                    self.cr,
-                    self.uid,
-                    company,
-                    date,
-                    context=self.localcontext)
+        return self.pool['res.company'].get_last_period_dates(
+            self.cr, self.uid, company, date, context=self.localcontext)
 
     def _compute_periods(self, company, date):
         """ return the timeranges to display. This is the 5 last timesheets """
-        return self.pool.get('res.company').compute_timesheet_periods(
-                self.cr,
-                self.uid,
-                company,
-                date,
-                context=self.localcontext)
+        return self.pool['res.company'].compute_timesheet_periods(
+            self.cr, self.uid, company, date, context=self.localcontext)
 
     def get_title(self, obj):
         """ return the title of the main table """
         timerange = self.data[obj.id]['time_ranges']
         start_date = self.formatLang(timerange[-1][0], date=True)
         end_date = self.formatLang(timerange[0][1], date=True)
-
         return obj.name + ", " + start_date + _(" to ") + end_date
 
     def get_timerange_title(self, obj, cpt):
@@ -112,7 +102,6 @@ class timesheet_status(report_sxw.rml_parse):
         timerange = self.data[obj.id]['time_ranges'][cpt]
         start_date = self.formatLang(timerange[0], date=True)
         end_date = self.formatLang(timerange[1], date=True)
-
         return start_date + "\n " + end_date
 
     def get_user_list(self, obj):
@@ -125,26 +114,20 @@ class timesheet_status(report_sxw.rml_parse):
 
     def _compute_timesheet_status(self, employee_id, period):
         """ return the timesheet status for a user and a period """
-        return self.pool.get('hr.employee').compute_timesheet_status(
-                self.cr,
-                self.uid,
-                employee_id,
-                period,
-                context=self.localcontext)
+        return self.pool['hr.employee'].compute_timesheet_status(
+            self.cr, self.uid, employee_id, period, context=self.localcontext)
 
     def _compute_all_status(self, obj):
         """ compute all status for all employees for all periods """
         result = {}
-
-        #for each periods
+        # for each periods
         for p_index, period in enumerate(self.data[obj.id]['time_ranges']):
             result[p_index] = {}
-            #for each employees
+            # for each employees
             for employee in self.data[obj.id]['employees']:
-                #compute the status
+                # compute the status
                 result[p_index][employee.id] = self._compute_timesheet_status(
-                        employee.id, period)
-
+                    employee.id, period)
         return result
 
 report_sxw.report_sxw('report.timesheet.reminder.status', 'res.company',

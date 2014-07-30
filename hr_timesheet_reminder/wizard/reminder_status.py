@@ -23,7 +23,7 @@
 from openerp.osv import orm, fields
 
 
-class reminder_status(orm.TransientModel):
+class ReminderStatus(orm.TransientModel):
     _name = 'hr.timesheet.reminder.status'
 
     _columns = {
@@ -34,7 +34,7 @@ class reminder_status(orm.TransientModel):
             'rid',
             string='Company'),
         'date': fields.date('End Date', required=True),
-        }
+    }
 
     _defaults = {
         'date': lambda *a: fields.date.today(),
@@ -42,17 +42,14 @@ class reminder_status(orm.TransientModel):
 
     def print_report(self, cr, uid, ids, context=None):
         form_values = self.read(
-                cr, uid, ids[0], ['company_ids',  'date'], context=context)
-
+            cr, uid, ids[0], ['company_ids', 'date'], context=context)
         # when no company is selected, select them all
         if not form_values['company_ids']:
-            form_values['company_ids'] = self.pool.get('res.company').\
-                search(cr, uid, [], context=context)
-
+            form_values['company_ids'] = self.pool['res.company'].search(
+                cr, uid, [], context=context)
         data = {'ids': form_values['company_ids'],
                 'model': 'res.company',
                 'form': form_values}
-
         return {'type': 'ir.actions.report.xml',
                 'report_name': 'timesheet.reminder.status',
                 'datas': data}

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2011 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
 #
@@ -25,6 +25,7 @@ from osv import osv
 from datetime import datetime
 from tools.translate import _
 
+
 class Parser(report_sxw.rml_parse):
 
     def _get_day_of_week(self, day):
@@ -36,14 +37,13 @@ class Parser(report_sxw.rml_parse):
             4: _('Friday'),
             5: _('Saturday'),
             6: _('Sunday'),
-            }
-        dayofweek=''
-        weekday = datetime.strptime(day,'%Y-%m-%d').weekday()
+        }
+        weekday = datetime.strptime(day, '%Y-%m-%d').weekday()
         return WEEKDAYS[weekday]
 
     def _get_month_name(self, day):
-        str_month=''
-        month = datetime.strptime(day,'%Y-%m-%d').month
+        str_month = ''
+        month = datetime.strptime(day, '%Y-%m-%d').month
         if month == 1:
             str_month = _('January')
         elif month == 2:
@@ -71,14 +71,17 @@ class Parser(report_sxw.rml_parse):
         return str_month
 
     def _get_days_by_employee(self, employee_id):
-        return self.localcontext['data']['form']['days_by_employee'][str(employee_id)]
+        form = self.localcontext['data']['form']
+        return form['days_by_employee'][str(employee_id)]
 
     def _get_totals_by_employee(self, employee_id):
-        return self.localcontext['data']['form']['totals_by_employee'][str(employee_id)]
+        form = self.localcontext['data']['form']
+        return form['totals_by_employee'][str(employee_id)]
 
     def _get_max_per_day(self):
-        return self.localcontext['data']['form']['max_number_of_attendances_per_day']
-        
+        form = self.localcontext['data']['form']
+        return form['max_number_of_attendances_per_day']
+
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)
         self.localcontext.update({
@@ -91,6 +94,6 @@ class Parser(report_sxw.rml_parse):
         })
 
 report_sxw.report_sxw('report.attendance_analysis.calendar_report',
-                       'attendance_analysis.calendar_report', 
-                       'attendance_analysis/report/calendar_report.mako',
-                       parser=Parser)
+                      'attendance_analysis.calendar_report',
+                      'attendance_analysis/report/calendar_report.mako',
+                      parser=Parser)

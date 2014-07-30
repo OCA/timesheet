@@ -26,14 +26,14 @@ from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
-class reminder(orm.Model):
+class Reminder(orm.Model):
     _name = "hr.timesheet.reminder"
     _description = "Handle the scheduling of timesheet reminders"
 
     _columns = {
-            'reply_to': fields.char('Reply To'),
-            'message': fields.html('Message'),
-            'subject': fields.char('Subject'),
+        'reply_to': fields.char('Reply To'),
+        'message': fields.html('Message'),
+        'subject': fields.char('Subject'),
     }
 
     # default cron (the one created if missing)
@@ -57,18 +57,15 @@ class reminder(orm.Model):
         company_obj = self.pool.get('res.company')
         # get all companies
         company_ids = company_obj.search(cr, uid, [], context=context)
-
         # for each company, get all recipients
         recipients = []
         company_recipients = company_obj.get_reminder_recipients(
-                cr, uid, company_ids, context=context)
+            cr, uid, company_ids, context=context)
         for rec in company_recipients.itervalues():
             recipients += rec
-
         # get the message to send
         message_id = self.get_message_id(cr, uid, context)
         message_data = self.browse(cr, uid, message_id, context=context)
-
         # send them email if they have an email defined
         for employee in recipients:
             if not employee.work_email:
@@ -85,30 +82,27 @@ class reminder(orm.Model):
         return True
 
     def get_cron_id(self, cr, uid, context=None):
-        """return the reminder cron's id. Create one if the cron does not exists """
+        """return the reminder cron's id. Create one if the cron does not
+        exists
+        """
         if context is None:
             context = {}
-        cron_obj = self.pool.get('ir.cron')
+        cron_obj = self.pool['ir.cron']
         # find the cron that send messages
         ctx = dict(context, active_test=False)
         cron_ids = cron_obj.search(
-                cr, uid,
-                [('function', 'ilike', self.cron['function']),
-                 ('model', 'ilike', self.cron['model'])],
-                context=ctx)
-
+            cr, uid,
+            [('function', 'ilike', self.cron['function']),
+             ('model', 'ilike', self.cron['model'])],
+            context=ctx)
         cron_id = None
         if cron_ids:
             cron_id = cron_ids[0]
-
         # the cron does not exists
         if cron_id is None:
-            vals = dict(self.cron,
-                        name=_('timesheet status reminder'),
+            vals = dict(self.cron, name=_('timesheet status reminder'),
                         nextcall=self._cron_nextcall())
-
             cron_id = cron_obj.create(cr, uid, vals, context=context)
-
         return cron_id
 
     @staticmethod
@@ -117,35 +111,27 @@ class reminder(orm.Model):
         return tomorrow.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
 
     def get_message_id(self, cr, uid, context=None):
-        """ return the message's id. create one if the message does not exists """
-        #there is only one line in db, let's get it
+        """ return the message's id. create one if the message does not
+        exists
+        """
+        # there is only one line in db, let's get it
         message_ids = self.search(cr, uid, [], limit=1, context=context)
-
-        message_id = None
-        if message_ids:
-            message_id = message_ids[0]
-
-        #the message does not exists
+        message_id = message_ids and message_ids[0] or None
+        # the message does not exists
         if message_id is None:
-            vals = dict(self.message,
-                        subject=_('Timesheet Reminder'),
-                        message=_(
-                            'At least one of your last timesheets is still '
-                            'in draft or is missing. Please take time to '
-                            'complete and confirm it.'))
-
+            vals = dict(
+                self.message, subject=_('Timesheet Reminder'),
+                message=_('At least one of your last timesheets is still '
+                          'in draft or is missing. Please take time to '
+                          'complete and confirm it.'))
             message_id = self.create(cr, uid, vals, context)
-
         return message_id
 
     def get_config(self, cr, uid, context=None):
         """return the reminder config from the db """
-
         cron_id = self.get_cron_id(cr, uid, context)
-
-        cron_data = self.pool.get('ir.cron').browse(
-                cr, uid, cron_id, context=context)
-
+        cron_data = self.pool['ir.cron'].browse(
+            cr, uid, cron_id, context=context)
         # there is only one line in db, let's get it
         message_id = self.get_message_id(cr, uid, context=context)
         message_data = self.browse(cr, uid, message_id, context=context)
@@ -153,29 +139,28 @@ class reminder(orm.Model):
                 'interval_type': cron_data.interval_type,
                 'interval_number': cron_data.interval_number,
                 'reply_to': message_data.reply_to,
-                'message':  message_data.message,
+                'message': message_data.message,
                 'subject': message_data.subject,
                 'nextcall': self._cron_nextcall(),
-               }
+                }
 
     def save_config(self, cr, uid, ids, datas, context=None):
         """save the reminder config """
-
-        #modify the cron
+        # modify the cron
         cron_id = self.get_cron_id(cr, uid, context=context)
-        self.pool.get('ir.cron').write(
-                cr, uid, [cron_id],
-                {'active': datas['reminder_active'],
-                 'interval_number': datas['interval_number'],
-                 'interval_type': datas['interval_type'],
-                 'nextcall': datas['nextcall'], },
-                 context=context)
-        #modify the message
+        self.pool['ir.cron'].write(
+            cr, uid, [cron_id],
+            {'active': datas['reminder_active'],
+             'interval_number': datas['interval_number'],
+             'interval_type': datas['interval_type'],
+             'nextcall': datas['nextcall'], },
+            context=context)
+        # modify the message
         message_id = ids or self.get_message_id(cr, uid, context)
         self.write(
-                cr, uid, [message_id],
-                {'reply_to': datas['reply_to'],
-                 'message': datas['message'],
-                 'subject': datas['subject'],
-                }, context=context)
+            cr, uid, [message_id],
+            {'reply_to': datas['reply_to'],
+             'message': datas['message'],
+             'subject': datas['subject'],
+             }, context=context)
         return True

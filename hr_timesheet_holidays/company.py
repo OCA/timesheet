@@ -20,14 +20,14 @@
 ##############################################################################
 from openerp.osv import orm, fields
 
+
 class ResCompany(orm.Model):
     _inherit = 'res.company'
     _columns = {
-        'timesheet_hours_per_day': fields.float('Timesheet Hours Per Day', digits=(2,2))
-        }
+        'timesheet_hours_per_day': fields.float(
+            'Timesheet Hours Per Day', digits=(2, 2))
+    }
 
     _defaults = {
         'timesheet_hours_per_day': 8.0
-        }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    }

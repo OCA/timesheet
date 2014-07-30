@@ -18,26 +18,26 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name' : 'Task in time sheet',
- 'version' : '0.2',
- 'author' : 'Camptocamp',
+{'name': 'Task in time sheet',
+ 'version': '0.2',
+ 'author': 'Camptocamp',
  'maintainer': 'Camptocamp - Acsone SA/NV',
  'category': 'Human Resources',
- 'depends' : ['timesheet_task', 'hr_timesheet_sheet'],
+ 'depends': ['timesheet_task', 'hr_timesheet_sheet'],
  'description': """Replace project.task.work items linked to task
                    with hr.analytic.timesheet""",
  'website': 'http://www.camptocamp.com',
  'data': ['hr_timesheet_sheet_view.xml', 'hr_analytic_timesheet_view.xml'],
- 'js' : ['static/src/js/timesheet.js'],
- 'css': ['static/src/css/timesheet.css',],
+ 'js': ['static/src/js/timesheet.js'],
+ 'css': ['static/src/css/timesheet.css', ],
  'qweb': ['static/src/xml/timesheet.xml'],
  'demo': [],
  'test': [],
  'installable': True,
- 'images' : [],
+ 'images': [],
  'auto_install': False,
  'license': 'AGPL-3',
  'application': True,
-}
+ }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
