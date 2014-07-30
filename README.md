@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/OCA/hr-timesheet.svg?branch=7.0)](https://travis-ci.org/OCA/hr-timesheet)
-[![Coverage Status](https://img.shields.io/coveralls/OCA/hr-timesheet.svg)](https://coveralls.io/r/OCA/hr-timesheet?branch=7.0)
+[![Coverage Status](https://coveralls.io/repos/OCA/hr-timesheet/badge.png?branch=7.0)](https://coveralls.io/r/OCA/hr-timesheet?branch=7.0)
 
 Timesheet Management Modules
 ===========================
