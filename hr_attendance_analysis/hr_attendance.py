@@ -89,7 +89,7 @@ class HrAttendance(orm.Model):
             )
         delta = (self.float_to_datetime(float_end_time) -
                  self.float_to_datetime(float_start_time))
-        return self.total_seconds(delta) / 60.0 / 60.0
+        return self.total_seconds(delta) / 3600.0
 
     def time_sum(self, float_first_time, float_second_time):
         str_first_time = self.float_time_convert(float_first_time)
@@ -178,12 +178,12 @@ class HrAttendance(orm.Model):
 
     def _ceil_rounding(self, rounding, datetime):
         minutes = (datetime.minute / 60.0
-                   + datetime.second / 60.0 / 60.0)
+                   + datetime.second / 3600.0)
         return math.ceil(minutes * rounding) / rounding
 
     def _floor_rounding(self, rounding, datetime):
         minutes = (datetime.minute / 60.0
-                   + datetime.second / 60.0 / 60.0)
+                   + datetime.second / 3600.0)
         return math.floor(minutes * rounding) / rounding
 
     def _get_attendance_duration(self, cr, uid, ids, field_name, arg,
@@ -195,7 +195,8 @@ class HrAttendance(orm.Model):
         # 2012.10.16 LF FIX : Get timezone from context
         active_tz = pytz.timezone(
             context.get("tz", "UTC") if context else "UTC")
-        str_now = datetime.strftime(datetime.now(), DEFAULT_SERVER_DATETIME_FORMAT)
+        str_now = datetime.strftime(datetime.now(),
+                                    DEFAULT_SERVER_DATETIME_FORMAT)
         for attendance_id in ids:
             duration = 0.0
             attendance = self.browse(cr, uid, attendance_id, context=context)
@@ -203,7 +204,7 @@ class HrAttendance(orm.Model):
             # 2012.10.16 LF FIX : Attendance in context timezone
             attendance_start = datetime.strptime(
                 attendance.name, DEFAULT_SERVER_DATETIME_FORMAT).replace(
-                tzinfo=pytz.utc).astimezone(active_tz)
+                    tzinfo=pytz.utc).astimezone(active_tz)
             next_attendance_date = str_now
             next_attendance_ids = False
             # should we compute for sign out too?
@@ -224,10 +225,11 @@ class HrAttendance(orm.Model):
                     next_attendance_date = next_attendance.name
                 # 2012.10.16 LF FIX : Attendance in context timezone
                 attendance_stop = datetime.strptime(
-                    next_attendance_date, DEFAULT_SERVER_DATETIME_FORMAT).replace(
-                    tzinfo=pytz.utc).astimezone(active_tz)
+                    next_attendance_date,
+                    DEFAULT_SERVER_DATETIME_FORMAT).replace(
+                        tzinfo=pytz.utc).astimezone(active_tz)
                 duration_delta = attendance_stop - attendance_start
-                duration = self.total_seconds(duration_delta) / 60.0 / 60.0
+                duration = self.total_seconds(duration_delta) / 3600.0
                 duration = round(duration / precision) * precision
             res[attendance.id]['duration'] = duration
             res[attendance.id]['end_datetime'] = next_attendance_date
