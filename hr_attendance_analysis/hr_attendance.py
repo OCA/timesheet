@@ -27,6 +27,7 @@ from datetime import datetime, timedelta
 import math
 from openerp.tools import float_compare
 import pytz
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class ResCompany(orm.Model):
@@ -194,14 +195,14 @@ class HrAttendance(orm.Model):
         # 2012.10.16 LF FIX : Get timezone from context
         active_tz = pytz.timezone(
             context.get("tz", "UTC") if context else "UTC")
-        str_now = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
+        str_now = datetime.strftime(datetime.now(), DEFAULT_SERVER_DATETIME_FORMAT)
         for attendance_id in ids:
             duration = 0.0
             attendance = self.browse(cr, uid, attendance_id, context=context)
             res[attendance.id] = {}
             # 2012.10.16 LF FIX : Attendance in context timezone
             attendance_start = datetime.strptime(
-                attendance.name, '%Y-%m-%d %H:%M:%S').replace(
+                attendance.name, DEFAULT_SERVER_DATETIME_FORMAT).replace(
                 tzinfo=pytz.utc).astimezone(active_tz)
             next_attendance_date = str_now
             next_attendance_ids = False
@@ -223,7 +224,7 @@ class HrAttendance(orm.Model):
                     next_attendance_date = next_attendance.name
                 # 2012.10.16 LF FIX : Attendance in context timezone
                 attendance_stop = datetime.strptime(
-                    next_attendance_date, '%Y-%m-%d %H:%M:%S').replace(
+                    next_attendance_date, DEFAULT_SERVER_DATETIME_FORMAT).replace(
                     tzinfo=pytz.utc).astimezone(active_tz)
                 duration_delta = attendance_stop - attendance_start
                 duration = self.total_seconds(duration_delta) / 60.0 / 60.0
