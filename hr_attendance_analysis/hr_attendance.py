@@ -27,6 +27,7 @@ from datetime import datetime, timedelta
 import math
 from openerp.tools import float_compare
 import pytz
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class ResCompany(orm.Model):
@@ -70,7 +71,7 @@ class HrAttendance(orm.Model):
 
     def float_to_timedelta(self, float_val):
         str_time = self.float_time_convert(float_val)
-        return timedelta(0, int(str_time.split(':')[0]) * 60.0 * 60.0
+        return timedelta(0, int(str_time.split(':')[0]) * 3600.0
                          + int(str_time.split(':')[1]) * 60.0)
 
     def total_seconds(self, td):
@@ -84,7 +85,7 @@ class HrAttendance(orm.Model):
             raise orm.except_orm(
                 _('Error'),
                 _('End time %s < start time %s') %
-                (str(float_end_time), str(float_start_time))
+                (unicode(float_end_time), unicode(float_start_time))
             )
         delta = (self.float_to_datetime(float_end_time) -
                  self.float_to_datetime(float_start_time))
@@ -93,11 +94,11 @@ class HrAttendance(orm.Model):
     def time_sum(self, float_first_time, float_second_time):
         str_first_time = self.float_time_convert(float_first_time)
         first_timedelta = timedelta(
-            0, int(str_first_time.split(':')[0]) * 60.0 * 60.0 +
+            0, int(str_first_time.split(':')[0]) * 3600.0 +
             int(str_first_time.split(':')[1]) * 60.0)
         str_second_time = self.float_time_convert(float_second_time)
         second_timedelta = timedelta(
-            0, int(str_second_time.split(':')[0]) * 60.0 * 60.0 +
+            0, int(str_second_time.split(':')[0]) * 3600.0 +
             int(str_second_time.split(':')[1]) * 60.0)
         return self.total_seconds(first_timedelta + second_timedelta) / 3600.0
 
@@ -194,14 +195,14 @@ class HrAttendance(orm.Model):
         # 2012.10.16 LF FIX : Get timezone from context
         active_tz = pytz.timezone(
             context.get("tz", "UTC") if context else "UTC")
-        str_now = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
+        str_now = datetime.strftime(datetime.now(), DEFAULT_SERVER_DATETIME_FORMAT)
         for attendance_id in ids:
             duration = 0.0
             attendance = self.browse(cr, uid, attendance_id, context=context)
             res[attendance.id] = {}
             # 2012.10.16 LF FIX : Attendance in context timezone
             attendance_start = datetime.strptime(
-                attendance.name, '%Y-%m-%d %H:%M:%S').replace(
+                attendance.name, DEFAULT_SERVER_DATETIME_FORMAT).replace(
                 tzinfo=pytz.utc).astimezone(active_tz)
             next_attendance_date = str_now
             next_attendance_ids = False
@@ -223,7 +224,7 @@ class HrAttendance(orm.Model):
                     next_attendance_date = next_attendance.name
                 # 2012.10.16 LF FIX : Attendance in context timezone
                 attendance_stop = datetime.strptime(
-                    next_attendance_date, '%Y-%m-%d %H:%M:%S').replace(
+                    next_attendance_date, DEFAULT_SERVER_DATETIME_FORMAT).replace(
                     tzinfo=pytz.utc).astimezone(active_tz)
                 duration_delta = attendance_stop - attendance_start
                 duration = self.total_seconds(duration_delta) / 60.0 / 60.0
@@ -246,7 +247,7 @@ class HrAttendance(orm.Model):
                             float_attendance_rounding, attendance_start)
                         rounded_stop_hour = self._floor_rounding(
                             float_attendance_rounding, attendance_stop)
-                        # if shift == 1 hour
+                        # if shift is approximately one hour
                         if abs(1 - rounded_start_hour) < 0.01:
                             attendance_start = datetime(
                                 attendance_start.year, attendance_start.month,
@@ -287,7 +288,7 @@ class HrAttendance(orm.Model):
                         # check if centered_attendance is within a working
                         # schedule 2012.10.16 LF FIX : weekday must be single
                         # character not int
-                        weekday_char = str(
+                        weekday_char = unicode(
                             unichr(centered_attendance.weekday() + 48))
                         matched_schedule_ids = attendance_pool.search(
                             cr, uid,
@@ -306,7 +307,7 @@ class HrAttendance(orm.Model):
                             raise orm.except_orm(
                                 _('Error'),
                                 _('Wrongly configured working schedule with '
-                                  'id %s') % str(calendar_id))
+                                  'id %s') % unicode(calendar_id))
                         if matched_schedule_ids:
                             intervals_within += 1
                             # sign in tolerance
