@@ -85,7 +85,7 @@ class HrAttendance(orm.Model):
             raise orm.except_orm(
                 _('Error'),
                 _('End time %s < start time %s') %
-                (str(float_end_time), str(float_start_time))
+                (unicode(float_end_time), unicode(float_start_time))
             )
         delta = (self.float_to_datetime(float_end_time) -
                  self.float_to_datetime(float_start_time))
@@ -307,7 +307,7 @@ class HrAttendance(orm.Model):
                             raise orm.except_orm(
                                 _('Error'),
                                 _('Wrongly configured working schedule with '
-                                  'id %s') % str(calendar_id))
+                                  'id %s') % unicode(calendar_id))
                         if matched_schedule_ids:
                             intervals_within += 1
                             # sign in tolerance
