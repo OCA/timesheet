@@ -70,7 +70,7 @@ class HrAttendance(orm.Model):
 
     def float_to_timedelta(self, float_val):
         str_time = self.float_time_convert(float_val)
-        return timedelta(0, int(str_time.split(':')[0]) * 60.0 * 60.0
+        return timedelta(0, int(str_time.split(':')[0]) * 3600.0
                          + int(str_time.split(':')[1]) * 60.0)
 
     def total_seconds(self, td):
@@ -93,11 +93,11 @@ class HrAttendance(orm.Model):
     def time_sum(self, float_first_time, float_second_time):
         str_first_time = self.float_time_convert(float_first_time)
         first_timedelta = timedelta(
-            0, int(str_first_time.split(':')[0]) * 60.0 * 60.0 +
+            0, int(str_first_time.split(':')[0]) * 3600.0 +
             int(str_first_time.split(':')[1]) * 60.0)
         str_second_time = self.float_time_convert(float_second_time)
         second_timedelta = timedelta(
-            0, int(str_second_time.split(':')[0]) * 60.0 * 60.0 +
+            0, int(str_second_time.split(':')[0]) * 3600.0 +
             int(str_second_time.split(':')[1]) * 60.0)
         return self.total_seconds(first_timedelta + second_timedelta) / 3600.0
 
