@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+      <record id="al_contract" model="hr.contract">
+          <field name="name">Fabien contract</field>
+          <field name="wage">1000</field>
+          <field name="employee_id" ref="hr.employee_fp"></field>
+          <field name="working_hours" ref="resource.timesheet_group1"></field>
+      </record>
+
+    </data>
+</openerp>
