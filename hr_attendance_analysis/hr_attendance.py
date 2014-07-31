@@ -247,7 +247,7 @@ class HrAttendance(orm.Model):
                             float_attendance_rounding, attendance_start)
                         rounded_stop_hour = self._floor_rounding(
                             float_attendance_rounding, attendance_stop)
-                        # if shift == 1 hour
+                        # if shift is approximately one hour
                         if abs(1 - rounded_start_hour) < 0.01:
                             attendance_start = datetime(
                                 attendance_start.year, attendance_start.month,
@@ -288,7 +288,7 @@ class HrAttendance(orm.Model):
                         # check if centered_attendance is within a working
                         # schedule 2012.10.16 LF FIX : weekday must be single
                         # character not int
-                        weekday_char = str(
+                        weekday_char = unicode(
                             unichr(centered_attendance.weekday() + 48))
                         matched_schedule_ids = attendance_pool.search(
                             cr, uid,
