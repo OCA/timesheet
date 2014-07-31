@@ -23,6 +23,7 @@ import time
 from datetime import datetime
 from openerp.report import report_sxw
 from openerp.tools.translate import _
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class Parser(report_sxw.rml_parse):
@@ -37,12 +38,12 @@ class Parser(report_sxw.rml_parse):
             5: _('Saturday'),
             6: _('Sunday'),
         }
-        weekday = datetime.strptime(day, '%Y-%m-%d').weekday()
+        weekday = datetime.strptime(day, DEFAULT_SERVER_DATE_FORMAT).weekday()
         return WEEKDAYS[weekday]
 
     def _get_month_name(self, day):
         str_month = ''
-        month = datetime.strptime(day, '%Y-%m-%d').month
+        month = datetime.strptime(day, DEFAULT_SERVER_DATE_FORMAT).month
         if month == 1:
             str_month = _('January')
         elif month == 2:
