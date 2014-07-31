@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2011-2013 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
@@ -19,8 +19,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import hr_attendance
-import hr_contract
-import report
-import wizard
-import resource
+from . import hr_attendance
+from . import hr_contract
+from . import report
+from . import wizard
+from . import resource

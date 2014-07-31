@@ -27,30 +27,31 @@
 #
 ##############################################################################
 import datetime
-
-from openerp.osv import fields, orm
+from openerp.osv import orm
 
 
 class hr_contract(orm.Model):
     _inherit = 'hr.contract'
 
     def copy(self, cr, uid, id, defaults, context=None):
-        """
-        When duplicate a contract set the start date to the last end date + 1 day.
-        If the last end date is False, do nothing
+        """When duplicate a contract set the start date to the last end date + 1
+        day. If the last end date is False, do nothing
         """
         contract = self.browse(cr, uid, id, context=context)
-        end_date_contract_id = self.search(cr, uid, [('employee_id', '=', contract.employee_id.id), ], limit=1, order='date_end desc', context=context)
+        end_date_contract_id = self.search(
+            cr, uid, [('employee_id', '=', contract.employee_id.id), ], limit=1,
+            order='date_end desc', context=context)
         last_end_date = False
         if end_date_contract_id:
-            contract = self.browse(cr, uid, end_date_contract_id, context=context)
+            contract = self.browse(
+                cr, uid, end_date_contract_id, context=context)
             last_end_date = contract[0].date_end
-
         if last_end_date:
-            defaults['date_start'] = datetime.datetime.strftime(datetime.datetime.strptime(last_end_date, "%Y-%m-%d") + datetime.timedelta(days=1), "%Y-%m-%d")
+            defaults['date_start'] = datetime.datetime.strftime(
+                datetime.datetime.strptime(last_end_date, "%Y-%m-%d") +
+                datetime.timedelta(days=1), "%Y-%m-%d")
             defaults['date_end'] = False
             defaults['trial_date_start'] = False
             defaults['trial_date_end'] = False
-        return super(hr_contract, self).copy(cr, uid, id, defaults, context=context)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+        return super(hr_contract, self).copy(cr, uid, id, defaults,
+                                             context=context)

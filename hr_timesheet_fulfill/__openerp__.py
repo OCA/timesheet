@@ -20,27 +20,27 @@
 #
 ##############################################################################
 
-{'name' : 'Timesheet Fullfill Wizard',
- 'version' : '1.0',
- 'category' : 'Generic Modules/Human Resources',
- 'description':
-    '''
-    Add a wizard into timesheet allowing people to complete a long period of time with the given values.
-    This is mainly useful to handle a long period of time like holidays.
-    Known limitation:
-      - Will complete all day between dates
-    ''',
- 'author' : 'Camptocamp',
- 'website': 'http://camptocamp.com',
- 'depends' : ['hr_timesheet_sheet',],
- 'data' : [
-     'wizard/timesheet_fulfill_view.xml',
-     ],
- 'demo' : [],
- 'test' : [],
- 'installable': True,
- 'auto_install' : False,
- 'application' : False,
-}
+{
+    'name': 'Timesheet Fullfill Wizard',
+    'version': '1.0',
+    'category': 'Generic Modules/Human Resources',
+    'description': '''
+Add a wizard into timesheet allowing people to complete a long period of
+time with the given values. This is mainly useful to handle a long period of
+time like holidays.
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+Known limitation:
+- Will complete all day between dates
+    ''',
+    'author': 'Camptocamp',
+    'website': 'http://camptocamp.com',
+    'depends': ['hr_timesheet_sheet', ],
+    'data': [
+        'wizard/timesheet_fulfill_view.xml',
+    ],
+    'demo': [],
+    'test': [],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+}

@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-{'name' : 'Import holidays in timesheets',
- 'version' : '1.0',
- 'category' : 'Generic Modules/Human Resources',
+{'name': 'Import holidays in timesheets',
+ 'version': '1.0',
+ 'category': 'Generic Modules/Human Resources',
  'description': """
 Wizard to import holidays in the current timesheet
 ==================================================
@@ -38,13 +38,6 @@ Limitations:
 - The wizard creates the attendances each day with Sign-ins at 00:00 and
   Sign-outs at (00:00 + configured timesheet hours per day).
 
-.. warning::
-    If you are using official addons instead of OCB addons.
-    In order to avoid timezone issues, please ensure the
-    following fix is installed on your system `Fix for Bug #1179893`_
-
-.. _Fix for Bug #1179893: https://code.launchpad.net/~camptocamp/openobject-addons/7.0-fix-hr_timesheet_sheet-timezone-20130723/+merge/176459
-
 Contributors
 ------------
 
@@ -53,22 +46,20 @@ Contributors
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 
 """,
- 'author' : 'Camptocamp',
+ 'author': 'Camptocamp',
  'website': 'http://www.camptocamp.com',
- 'depends' : [
+ 'depends': [
      'hr',
      'account',
      'hr_holidays',
      'hr_timesheet_sheet'
-     ],
- 'data' : [
+ ],
+ 'data': [
      'hr_holidays_view.xml',
      'wizard/holidays_import_view.xml',
      'company_view.xml',
-     ],
+ ],
  'installable': True,
  'auto_install': False,
  'application': False,
-}
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+ }

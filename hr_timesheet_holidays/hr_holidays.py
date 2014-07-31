@@ -20,11 +20,12 @@
 ##############################################################################
 from openerp.osv import orm, fields
 
+
 class HrHolidaysStatus(orm.Model):
+
     """Add analytic account to holiday status"""
     _inherit = 'hr.holidays.status'
     _columns = {
-        'analytic_account_id': fields.many2one('account.analytic.account', 'Analytic Account'),
-        }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+        'analytic_account_id': fields.many2one(
+            'account.analytic.account', 'Analytic Account'),
+    }
