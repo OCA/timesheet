@@ -44,6 +44,12 @@ class ResCompany(orm.Model):
         'working_time_precision': 1.0 / 60  # hours
     }
 
+    def update_attendance_data(self, cr, uid, ids, context=None):
+        attendance_pool = self.pool.get('hr.attendance')
+        att_ids = attendance_pool.search(cr, uid, [], context=context)
+        attendance_pool.button_dummy(cr, uid, att_ids, context=context)
+        return True
+
 
 class HrAttendance(orm.Model):
     # ref: https://bugs.launchpad.net/openobject-client/+bug/887612

@@ -99,6 +99,7 @@ class wizard_calendar_report(orm.TransientModel):
         max_number_of_attendances_per_day = 0
         active_tz = pytz.timezone(
             context.get("tz","UTC") if context else "UTC")
+
         for employee_id in employee_ids:
             employee_id = str(employee_id)
             days_by_employee[employee_id] = {}
@@ -210,15 +211,6 @@ class wizard_calendar_report(orm.TransientModel):
                                         '%Y-%m-%d'
                                     ) <= current_date
                                 )
-                                and
-                                (
-                                    not calendar_attendance.date_from
-                                    or
-                                    datetime.strptime(
-                                        calendar_attendance.date_from,
-                                        '%Y-%m-%d'
-                                    ) <= current_date
-                                )
                             ):
                                 calendar_attendance_duration = (
                                     attendance_pool.time_difference(
@@ -297,7 +289,7 @@ class wizard_calendar_report(orm.TransientModel):
                             attendance_pool.datetime_to_hour(centered_holiday)
                         )
                         # check if centered_holiday is within a working
-                        # schedule                        
+                        # schedule
                         weekday_char = str(
                             unichr(centered_holiday.weekday() + 48))
                         matched_schedule_ids = attendance_pool.matched_schedule(
