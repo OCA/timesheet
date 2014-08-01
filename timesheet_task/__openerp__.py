@@ -18,12 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name' : 'Analytic Timesheet In Task',
- 'version' : '0.2.1',
- 'author' : 'Camptocamp',
+{'name': 'Analytic Timesheet In Task',
+ 'version': '0.2.1',
+ 'author': 'Camptocamp',
  'maintainer': 'Camptocamp, Acsone SA/NV',
  'category': 'Human Resources',
- 'depends' : ['project', 'hr_timesheet_invoice'],
+ 'depends': ['project', 'hr_timesheet_invoice'],
  'description': """
 Replace task work items (project.task.work) linked to task with
 timesheet lines (hr.analytic.timesheet).
@@ -42,10 +42,10 @@ task information through the timesheet sheet (hr.timesheet.sheet).
  'demo': [],
  'test': ['test/task_timesheet_indicators.yml'],
  'installable': True,
- 'images' : [],
+ 'images': [],
  'auto_install': False,
  'license': 'AGPL-3',
  'application': True,
-}
- 
+ }
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

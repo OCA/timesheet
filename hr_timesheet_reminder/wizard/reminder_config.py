@@ -23,7 +23,7 @@
 from openerp.osv import orm, fields
 
 
-class reminder_config(orm.TransientModel):
+class ReminderConfig(orm.TransientModel):
     _name = 'hr.timesheet.reminder.config'
 
     _columns = {
@@ -41,7 +41,9 @@ class reminder_config(orm.TransientModel):
     }
 
     def _check_interval_number(self, cr, uid, ids, context=None):
-        """This constraint should always have 1 id, we are in a TransientModel"""
+        """This constraint should always have 1 id, we are in a
+        TransientModel
+        """
         assert len(ids) == 1, "Only 1 ID expected"
         obj = self.browse(cr, uid, ids[0], context=context)
         if obj.interval_number < 1:
@@ -49,19 +51,21 @@ class reminder_config(orm.TransientModel):
         return True
 
     _constraints = [
-        (_check_interval_number, 'Periodicity must be greater than 0 ', ['interval_number']),
+        (_check_interval_number,
+         'Periodicity must be greater than 0 ', ['interval_number']),
     ]
 
     def default_get(self, cr, uid, fields, context=None):
-        res = super(reminder_config, self).default_get(cr, uid, fields, context=context)
-        data = self.pool.get('hr.timesheet.reminder').\
-                get_config(cr, uid, context=context)
+        res = super(ReminderConfig, self).default_get(
+            cr, uid, fields, context=context)
+        data = self.pool['hr.timesheet.reminder'].get_config(
+            cr, uid, context=context)
         res.update(data)
         return res
 
     def run(self, cr, uid, ids, context=None):
         """ execute the timesheets check and send emails """
-        reminder_obj = self.pool.get('hr.timesheet.reminder')
+        reminder_obj = self.pool['hr.timesheet.reminder']
         reminder_obj.run(cr, uid, context=context)
         return {'type': 'ir.actions.act_window_close'}
 
@@ -69,13 +73,10 @@ class reminder_config(orm.TransientModel):
         """ save defined settings in db """
         # get the wizard datas
         wizard = self.browse(cr, uid, ids[0], context=context)
-
         # retrieve the default cron values
         reminder_obj = self.pool.get('hr.timesheet.reminder')
-
         values = {}.fromkeys(wizard._columns.keys(), False)
         for field_name in values:
             values[field_name] = getattr(wizard, field_name)
-
         reminder_obj.save_config(cr, uid, False, values, context=context)
         return {'type': 'ir.actions.act_window_close'}

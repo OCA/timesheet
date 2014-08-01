@@ -18,6 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import hr_holidays
-import company
-import wizard
+from . import hr_holidays
+from . import company
+from . import wizard

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
 #    Copyright (C) 2011-2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
@@ -23,11 +23,14 @@
     'name': "HR - Attendance Analysis",
     'version': '0.1',
     'category': 'Generic Modules/Human Resources',
-    'summary': "Dynamic reports based on employee's attendances and contract's calendar",
+    'summary': "Dynamic reports based on employee's attendances and contract's "
+               "calendar",
     'description': """
 Dynamic reports based on employee's attendances and contract's calendar.
-Among other things, it lets you see the amount of working hours outside and inside the contract's working schedule (overtime).
-It also provides a daily based report, showing the detailed and total hours compared to calendar hours.
+Among other things, it lets you see the amount of working hours outside and
+inside the contract's working schedule (overtime).
+It also provides a daily based report, showing the detailed and total hours
+compared to calendar hours.
 Several analysis settings can be configured, like:
  - Tolerance for sign-in and sign-out
  - Attendances and overtimes roundings

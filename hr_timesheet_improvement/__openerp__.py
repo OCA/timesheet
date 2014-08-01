@@ -19,12 +19,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name' : 'Timesheet improvements',
- 'version' : '0.1',
- 'author' : 'Camptocamp',
+{'name': 'Timesheet improvements',
+ 'version': '0.1',
+ 'author': 'Camptocamp',
  'maintainer': 'Camptocamp',
  'category': 'Human Resources',
- 'depends' : ['hr_timesheet_sheet'],
+ 'depends': ['hr_timesheet_sheet'],
  'description': """
  Modifies timesheet behavior:
  - Ensure a DESC order on timesheet lines
@@ -35,16 +35,14 @@
  """,
  'website': 'http://www.camptocamp.com',
  'data': ['hr_timesheet_view.xml'],
- 'js' : [],
+ 'js': [],
  'css': [],
  'qweb': [],
  'demo': [],
  'test': [],
  'installable': True,
- 'images' : [],
+ 'images': [],
  'auto_install': False,
  'license': 'AGPL-3',
  'application': True,
-}
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+ }
