@@ -32,8 +32,8 @@ class ResourceCalendarAttendance(orm.Model):
                  'will be considered done at "Work to"'),
         'tolerance_to': fields.float(
             'Tolerance to', size=8,
-            help='Sign in done in the interval "Work from + Tolerance to" will '
-                 'be considered done at "Work from"'),
+            help='Sign in done in the interval "Work from + Tolerance to" '
+                 'will be considered done at "Work from"'),
     }
 
 
@@ -55,8 +55,8 @@ class ResourceCalendar(orm.Model):
              ('1', '60')],
             'Attendance rounding',
             help='For instance, using rounding = 15 minutes, every sign in '
-                 'will be rounded to the following quarter hour and every sign '
-                 'out to the previous quarter hour'),
+                 'will be rounded to the following quarter hour and every '
+                 'sign out to the previous quarter hour'),
         'overtime_rounding': fields.selection(
             [('60', '1'),
              ('30', '2'),
@@ -76,8 +76,8 @@ class ResourceCalendar(orm.Model):
                  '61 minutes as 1 hour and so on'),
         'overtime_rounding_tolerance': fields.float(
             'Overtime rounding tolerance', size=8,
-            help='Overtime can be rounded using a tolerance. Using tolerance = '
-                 '3 minutes and rounding = 15 minutes, if employee does '
+            help='Overtime can be rounded using a tolerance. Using tolerance '
+                 '= 3 minutes and rounding = 15 minutes, if employee does '
                  'overtime of 12 minutes, it will be considered as 15 '
                  'minutes.'),
         'leave_rounding': fields.selection(
@@ -97,7 +97,8 @@ class ResourceCalendar(orm.Model):
                  'minutes, a leave of 1 minute will be considered as 15 '
                  'minutes, 16 minutes as 30 minutes and so on'),
         'overtime_type_ids': fields.one2many(
-            'resource.calendar.overtime.type', 'calendar_id', 'Overtime types'),
+            'resource.calendar.overtime.type',
+            'calendar_id', 'Overtime types'),
     }
 
 

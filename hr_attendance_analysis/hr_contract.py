@@ -34,12 +34,12 @@ class hr_contract(orm.Model):
     _inherit = 'hr.contract'
 
     def copy(self, cr, uid, id, defaults, context=None):
-        """When duplicate a contract set the start date to the last end date + 1
-        day. If the last end date is False, do nothing
-        """
+        """ When duplicate a contract set the start date to the last end
+        date + 1 day. If the last end date is False, do nothing"""
         contract = self.browse(cr, uid, id, context=context)
         end_date_contract_id = self.search(
-            cr, uid, [('employee_id', '=', contract.employee_id.id), ], limit=1,
+            cr, uid,
+            [('employee_id', '=', contract.employee_id.id), ], limit=1,
             order='date_end desc', context=context)
         last_end_date = False
         if end_date_contract_id:

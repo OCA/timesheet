@@ -23,8 +23,8 @@
     'name': "HR - Attendance Analysis",
     'version': '0.1',
     'category': 'Generic Modules/Human Resources',
-    'summary': "Dynamic reports based on employee's attendances and contract's "
-               "calendar",
+    'summary': "Dynamic reports based on employee's attendances and "
+               "contract's calendar",
     'description': """
 Dynamic reports based on employee's attendances and contract's calendar.
 Among other things, it lets you see the amount of working hours outside and
@@ -39,7 +39,12 @@ Several analysis settings can be configured, like:
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends": ['hr_attendance', 'hr_contract', 'hr_holidays', 'report_webkit'],
+    "depends": [
+        'hr_attendance',
+        'hr_contract',
+        'hr_holidays',
+        'report_webkit'
+    ],
     "data": [
         'company_view.xml',
         'hr_attendance_view.xml',
@@ -47,13 +52,12 @@ Several analysis settings can be configured, like:
         'wizard/print_calendar_report.xml',
         'resource_view.xml',
         'security/ir.model.access.csv',
-        ],
+    ],
     "demo": [
         'hr_attendance_demo.xml',
-        ],
+    ],
     "test": [
         'test/attendances.yml',
-        ],
-    "active": False,
+    ],
     "installable": True
 }

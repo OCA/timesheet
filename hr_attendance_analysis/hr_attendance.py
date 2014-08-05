@@ -159,8 +159,8 @@ class HrAttendance(orm.Model):
                 '|',
                 ('dayofweek', '=', False),
                 ('dayofweek', '=', weekday_char),
-                ('calendar_id' ,'=', calendar_id),
-                ('hour_to', '>=' , datetime_hour),
+                ('calendar_id', '=', calendar_id),
+                ('hour_to', '>=', datetime_hour),
                 ('hour_from', '<=', datetime_hour),
             ],
             context=context
@@ -230,7 +230,7 @@ class HrAttendance(orm.Model):
             # 2012.10.16 LF FIX : Attendance in context timezone
             attendance_start = datetime.strptime(
                 attendance.name, DEFAULT_SERVER_DATETIME_FORMAT).replace(
-                    tzinfo=pytz.utc).astimezone(active_tz)
+                tzinfo=pytz.utc).astimezone(active_tz)
             next_attendance_date = str_now
             next_attendance_ids = False
             # should we compute for sign out too?
@@ -253,7 +253,7 @@ class HrAttendance(orm.Model):
                 attendance_stop = datetime.strptime(
                     next_attendance_date,
                     DEFAULT_SERVER_DATETIME_FORMAT).replace(
-                        tzinfo=pytz.utc).astimezone(active_tz)
+                    tzinfo=pytz.utc).astimezone(active_tz)
                 duration_delta = attendance_stop - attendance_start
                 duration = self.total_seconds(duration_delta) / 3600.0
                 duration = round(duration / precision) * precision
@@ -278,8 +278,10 @@ class HrAttendance(orm.Model):
                         # if shift is approximately one hour
                         if abs(1 - rounded_start_hour) < 0.01:
                             attendance_start = datetime(
-                                attendance_start.year, attendance_start.month,
-                                attendance_start.day, attendance_start.hour + 1)
+                                attendance_start.year,
+                                attendance_start.month,
+                                attendance_start.day,
+                                attendance_start.hour + 1)
                         else:
                             attendance_start = datetime(
                                 attendance_start.year, attendance_start.month,
@@ -303,8 +305,7 @@ class HrAttendance(orm.Model):
                     # 2012.10.16 LF FIX : no recursion in split attendance
                     splitted_attendances = (
                         self.split_interval_time_by_precision(
-                            attendance_start, duration, precision
-                    )
+                            attendance_start, duration, precision))
                     counter = 0
                     for atomic_attendance in splitted_attendances:
                         counter += 1
@@ -370,12 +371,11 @@ class HrAttendance(orm.Model):
                                         (att.hour_to - att_stop) /
                                         precision)
                                     intervals_within += additional_intervals
-                                    res[attendance.id][
-                                        'duration'
-                                        ] = self.time_sum(
+                                    res[attendance.id]['duration'] = (
+                                        self.time_sum(
                                             res[attendance.id]['duration'],
                                             additional_intervals * precision)
-
+                                    )
                     res[attendance.id][
                         'inside_calendar_duration'
                         ] = intervals_within * precision
@@ -426,7 +426,9 @@ class HrAttendance(orm.Model):
         for calendar in self.pool['resource.calendar'].browse(
                 cr, uid, ids, context=context):
             contract_ids = contract_pool.search(
-                cr, uid, [('working_hours', '=', calendar.id)], context=context)
+                cr, uid,
+                [('working_hours', '=', calendar.id)],
+                context=context)
             att_ids = attendance_pool._get_by_contracts(
                 cr, uid, contract_ids, context=None)
             for att_id in att_ids:
@@ -475,9 +477,11 @@ class HrAttendance(orm.Model):
                          'trial_date_start', 'trial_date_end',
                          'working_hours'], 20),
         'resource.calendar': (_get_by_calendars, ['attendance_ids'], 20),
-        'resource.calendar.attendance': (_get_by_calendar_attendances,
-                                         ['dayofweek', 'date_from', 'hour_from',
-                                          'hour_to', 'calendar_id'], 20),
+        'resource.calendar.attendance': (
+            _get_by_calendar_attendances,
+            ['dayofweek', 'date_from', 'hour_from', 'hour_to', 'calendar_id'],
+            20
+        ),
     }
 
     _columns = {
