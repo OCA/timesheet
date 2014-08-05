@@ -115,7 +115,7 @@ class HrAttendance(orm.Model):
             int(str_second_time.split(':')[1]) * 60.0)
         return self.total_seconds(
             first_timedelta + second_timedelta) / 60.0 / 60.0
- 
+
     def split_interval_time_by_precision(
             self, start_datetime, duration, precision=0.25
     ):
@@ -155,18 +155,18 @@ class HrAttendance(orm.Model):
                 '&',
                 '|',
                 ('date_from', '=', False),
-                ('date_from','<=', datetime.date()),
+                ('date_from', '<=', datetime.date()),
                 '|',
                 ('dayofweek', '=', False),
-                ('dayofweek','=', weekday_char),
-                ('calendar_id','=', calendar_id),
-                ('hour_to','>=', datetime_hour),
-                ('hour_from','<=', datetime_hour),
+                ('dayofweek', '=', weekday_char),
+                ('calendar_id' ,'=', calendar_id),
+                ('hour_to', '>=' , datetime_hour),
+                ('hour_from', '<=', datetime_hour),
             ],
             context=context
         )
         return matched_schedule_ids
-      
+
     def get_reference_calendar(
         self, cr, uid, employee_id, date=None, context=None
     ):
@@ -301,8 +301,10 @@ class HrAttendance(orm.Model):
                     intervals_within = 0
                     # split attendance in intervals = precision
                     # 2012.10.16 LF FIX : no recursion in split attendance
-                    splitted_attendances = self.split_interval_time_by_precision(
-                        attendance_start, duration, precision)
+                    splitted_attendances = (
+                        self.split_interval_time_by_precision(
+                            attendance_start, duration, precision
+                    )
                     counter = 0
                     for atomic_attendance in splitted_attendances:
                         counter += 1
@@ -312,8 +314,6 @@ class HrAttendance(orm.Model):
                                 delta=atomic_attendance[1],
                             )
                         )
-                        centered_attendance_hour = self.datetime_to_hour(
-                            centered_attendance)
                         # check if centered_attendance is within a working
                         # schedule
                         # 2012.10.16 LF FIX : weekday must be single character
