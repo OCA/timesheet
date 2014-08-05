@@ -85,7 +85,7 @@ class wizard_calendar_report(orm.TransientModel):
         precision = self.pool.get('res.users').browse(
             cr, uid, uid, context=context).company_id.working_time_precision
         active_tz = pytz.timezone(
-            context.get("tz","UTC") if context else "UTC")
+            context.get("tz", "UTC") if context else "UTC")
 
         days_by_employee = {}
 
@@ -98,7 +98,7 @@ class wizard_calendar_report(orm.TransientModel):
         delta = to_date - from_date
         max_number_of_attendances_per_day = 0
         active_tz = pytz.timezone(
-            context.get("tz","UTC") if context else "UTC")
+            context.get("tz", "UTC") if context else "UTC")
 
         for employee_id in employee_ids:
             employee_id = str(employee_id)
@@ -285,9 +285,6 @@ class wizard_calendar_report(orm.TransientModel):
                                 delta=atomic_holiday[1],
                             )
                         )
-                        centered_holiday_hour = (
-                            attendance_pool.datetime_to_hour(centered_holiday)
-                        )
                         # check if centered_holiday is within a working
                         # schedule
                         weekday_char = str(
@@ -303,13 +300,14 @@ class wizard_calendar_report(orm.TransientModel):
                             raise orm.except_orm(
                                 _('Error'),
                                 _('Wrongly configured working schedule with '
-                                  'id %s') % str(calendar_id))
+                                  'id %s') % str(reference_calendar.id))
                         if matched_schedule_ids:
                             intervals_within += 1
 
                     current_total_leaves = intervals_within * precision
 
-                days_by_employee[employee_id][str_current_date]['leaves'] = current_total_leaves
+                days_by_employee[employee_id][str_current_date]['leaves'] = (
+                    current_total_leaves)
                 if current_total_leaves > days_by_employee[employee_id][
                         str_current_date]['due']:
                     days_by_employee[employee_id][str_current_date][
