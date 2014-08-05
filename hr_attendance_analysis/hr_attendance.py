@@ -336,22 +336,16 @@ class HrAttendance(orm.Model):
                             intervals_within += 1
                             # sign in tolerance
                             if intervals_within == 1:
-                                calendar_attendance = attendance_pool.browse(
+                                att = attendance_pool.browse(
                                     cr, uid, matched_schedule_ids[0],
-                                    context=context
-                                )
-                                attendance_start_hour = (
-                                    self.datetime_to_hour(attendance_start)
-                                )
-                                if (attendance_start_hour >=
-                                    calendar_attendance.hour_from
-                                    and
-                                    (attendance_start_hour - (
-                                        calendar_attendance.hour_from +
-                                        calendar_attendance.tolerance_to
-                                    )
-                                    ) < 0.01
-                                ):  # handling float roundings (<=)
+                                    context=context)
+                                att_start = self.datetime_to_hour(
+                                    attendance_start)
+                                if (att.hour_from and
+                                        (att_start >= att_start -
+                                         att.hour_from - att.tolerance_to)
+                                        < 0.01):
+                                    # handling float roundings (<=)
                                     additional_intervals = round(
                                         (att_start - att.hour_from) /
                                         precision)
@@ -362,22 +356,18 @@ class HrAttendance(orm.Model):
                                             additional_intervals * precision)
                             # sign out tolerance
                             if len(splitted_attendances) == counter:
-                                attendance_stop_hour = self.datetime_to_hour(
-                                    attendance_stop)
-                                calendar_attendance = attendance_pool.browse(
+                                att = attendance_pool.browse(
                                     cr, uid, matched_schedule_ids[0],
                                     context=context)
-                                if (attendance_stop_hour <=
-                                    calendar_attendance.hour_to
-                                    and
-                                    (attendance_stop_hour - (
-                                        calendar_attendance.hour_to -
-                                        calendar_attendance.tolerance_from
-                                    )
-                                    ) > -0.01
-                                ):  # handling float roundings (>=)
+                                att_stop = self.datetime_to_hour(
+                                    attendance_stop)
+                                if (att_stop <= att.hour_to and
+                                        (att_stop -
+                                         att.hour_to + att.tolerance_from) >
+                                        -0.01):
+                                    # handling float roundings (>=)
                                     additional_intervals = round(
-                                        (att.hour_to - attendance_stop_hour) /
+                                        (att.hour_to - att_stop) /
                                         precision)
                                     intervals_within += additional_intervals
                                     res[attendance.id][
