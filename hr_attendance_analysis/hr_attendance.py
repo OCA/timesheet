@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-2013 Agile Business Group sagl
+#    Copyright (C) 2011-2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -44,6 +44,12 @@ class ResCompany(orm.Model):
         'working_time_precision': 1.0 / 60  # hours
     }
 
+    def update_attendance_data(self, cr, uid, ids, context=None):
+        attendance_pool = self.pool.get('hr.attendance')
+        att_ids = attendance_pool.search(cr, uid, [], context=context)
+        attendance_pool.button_dummy(cr, uid, att_ids, context=context)
+        return True
+
 
 class HrAttendance(orm.Model):
     # ref: https://bugs.launchpad.net/openobject-client/+bug/887612
@@ -78,14 +84,21 @@ class HrAttendance(orm.Model):
         return (td.microseconds + (td.seconds + td.days * 24 * 3600)
                 * 10 ** 6) / 10 ** 6
 
-    def time_difference(self, float_start_time, float_end_time):
-        if float_compare(float_end_time, float_start_time,
-                         precision_rounding=0.0000001) == -1:
+    def time_difference(
+        self, float_start_time, float_end_time, help_message=False
+    ):
+        if float_compare(
+            float_end_time, float_start_time, precision_rounding=0.0000001
+        ) == -1:
             # that means a difference smaller than 0.36 milliseconds
+            message = _('End time %s < start time %s %s') % (
+                unicode(float_end_time),
+                unicode(float_start_time),
+                help_message and '(' + help_message + ')' or ''
+                )
             raise orm.except_orm(
                 _('Error'),
-                _('End time %s < start time %s') %
-                (unicode(float_end_time), unicode(float_start_time))
+                message
             )
         delta = (self.float_to_datetime(float_end_time) -
                  self.float_to_datetime(float_start_time))
@@ -100,50 +113,63 @@ class HrAttendance(orm.Model):
         second_timedelta = timedelta(
             0, int(str_second_time.split(':')[0]) * 3600.0 +
             int(str_second_time.split(':')[1]) * 60.0)
-        return self.total_seconds(first_timedelta + second_timedelta) / 3600.0
+        return self.total_seconds(
+            first_timedelta + second_timedelta) / 60.0 / 60.0
 
-    def _split_long_attendances(self, start_datetime, duration):
-        # start_datetime: datetime, duration: hours
-        # returns [(datetime, hours)]
-        res = []
-        if duration > 24:
-            res.append((start_datetime, 24))
-            res.extend(self._split_long_attendances(
-                start_datetime + timedelta(1), duration - 24))
-        else:
-            res.append((start_datetime, duration))
-        return res
-
-    def _split_no_recursive_attendance(self, start_datetime, duration,
-                                       precision=0.25):
+    def split_interval_time_by_precision(
+            self, start_datetime, duration, precision=0.25
+    ):
         # start_datetime: datetime, duration: hours, precision: hours
         # returns [(datetime, hours)]
         res = []
         while (duration > precision):
             res.append((start_datetime, precision))
-            start_datetime += timedelta(
-                days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0,
-                hours=precision)
+            start_datetime += timedelta(hours=precision)
             duration -= precision
         if duration > precision / 2.0:
             res.append((start_datetime, precision))
         return res
 
-    def _split_attendance(self, start_datetime, duration, precision=0.25):
-        # start_datetime: datetime, duration: hours, precision: hours
-        # returns [(datetime, hours)]
-        res = []
-        if duration > precision:
-            res.append((start_datetime, precision))
-            res.extend(self._split_attendance(
-                start_datetime + timedelta(0, 0, 0, 0, 0, precision),
-                duration - precision, precision))
-        elif duration > precision / 2.0:
-            res.append((start_datetime, precision))
-        return res
+    def datetime_to_hour(self, datetime):
+        hour = (
+            datetime.hour + datetime.minute / 60.0
+            + datetime.second / 3600.0
+        )
+        return hour
 
-    def get_reference_calendar(self, cr, uid, employee_id, date=None,
-                               context=None):
+    def mid_time_interval(self, datetime_start, delta):
+        return datetime_start + timedelta(hours=delta / 2.0)
+
+    def matched_schedule(
+            self, cr, uid,
+            datetime, weekday_char, calendar_id,
+            context=None
+    ):
+        calendar_attendance_pool = self.pool.get(
+            'resource.calendar.attendance')
+        datetime_hour = self.datetime_to_hour(datetime)
+        matched_schedule_ids = calendar_attendance_pool.search(
+            cr,
+            uid,
+            [
+                '&',
+                '|',
+                ('date_from', '=', False),
+                ('date_from', '<=', datetime.date()),
+                '|',
+                ('dayofweek', '=', False),
+                ('dayofweek', '=', weekday_char),
+                ('calendar_id', '=', calendar_id),
+                ('hour_to', '>=', datetime_hour),
+                ('hour_from', '<=', datetime_hour),
+            ],
+            context=context
+        )
+        return matched_schedule_ids
+
+    def get_reference_calendar(
+        self, cr, uid, employee_id, date=None, context=None
+    ):
         if date is None:
             date = fields.date.context_today(self, cr, uid, context=context)
         contract_pool = self.pool.get('hr.contract')
@@ -204,7 +230,7 @@ class HrAttendance(orm.Model):
             # 2012.10.16 LF FIX : Attendance in context timezone
             attendance_start = datetime.strptime(
                 attendance.name, DEFAULT_SERVER_DATETIME_FORMAT).replace(
-                    tzinfo=pytz.utc).astimezone(active_tz)
+                tzinfo=pytz.utc).astimezone(active_tz)
             next_attendance_date = str_now
             next_attendance_ids = False
             # should we compute for sign out too?
@@ -227,7 +253,7 @@ class HrAttendance(orm.Model):
                 attendance_stop = datetime.strptime(
                     next_attendance_date,
                     DEFAULT_SERVER_DATETIME_FORMAT).replace(
-                        tzinfo=pytz.utc).astimezone(active_tz)
+                    tzinfo=pytz.utc).astimezone(active_tz)
                 duration_delta = attendance_stop - attendance_start
                 duration = self.total_seconds(duration_delta) / 3600.0
                 duration = round(duration / precision) * precision
@@ -252,8 +278,10 @@ class HrAttendance(orm.Model):
                         # if shift is approximately one hour
                         if abs(1 - rounded_start_hour) < 0.01:
                             attendance_start = datetime(
-                                attendance_start.year, attendance_start.month,
-                                attendance_start.day, attendance_start.hour + 1)
+                                attendance_start.year,
+                                attendance_start.month,
+                                attendance_start.day,
+                                attendance_start.hour + 1)
                         else:
                             attendance_start = datetime(
                                 attendance_start.year, attendance_start.month,
@@ -275,36 +303,31 @@ class HrAttendance(orm.Model):
                     intervals_within = 0
                     # split attendance in intervals = precision
                     # 2012.10.16 LF FIX : no recursion in split attendance
-                    splitted_attendances = self._split_no_recursive_attendance(
-                        attendance_start, duration, precision)
+                    splitted_attendances = (
+                        self.split_interval_time_by_precision(
+                            attendance_start, duration, precision))
                     counter = 0
                     for atomic_attendance in splitted_attendances:
                         counter += 1
-                        centered_attendance = atomic_attendance[0] + timedelta(
-                            0, 0, 0, 0, 0, atomic_attendance[1] / 2.0)
-                        centered_attendance_hour = (
-                            centered_attendance.hour +
-                            centered_attendance.minute / 60.0
-                            + centered_attendance.second / 3600.0
+                        centered_attendance = (
+                            self.mid_time_interval(
+                                atomic_attendance[0],
+                                delta=atomic_attendance[1],
+                            )
                         )
                         # check if centered_attendance is within a working
-                        # schedule 2012.10.16 LF FIX : weekday must be single
-                        # character not int
+                        # schedule
+                        # 2012.10.16 LF FIX : weekday must be single character
+                        # not int
                         weekday_char = unicode(
                             unichr(centered_attendance.weekday() + 48))
-                        matched_schedule_ids = attendance_pool.search(
+                        matched_schedule_ids = self.matched_schedule(
                             cr, uid,
-                            ['&',
-                             '|',
-                             ('date_from', '=', False),
-                             ('date_from', '<=', centered_attendance.date()),
-                             '|',
-                             ('dayofweek', '=', False),
-                             ('dayofweek', '=', weekday_char),
-                             ('calendar_id', '=', calendar_id),
-                             ('hour_to', '>=', centered_attendance_hour),
-                             ('hour_from', '<=', centered_attendance_hour)],
-                            context=context)
+                            centered_attendance,
+                            weekday_char,
+                            calendar_id,
+                            context=context
+                        )
                         if len(matched_schedule_ids) > 1:
                             raise orm.except_orm(
                                 _('Error'),
@@ -317,10 +340,8 @@ class HrAttendance(orm.Model):
                                 att = attendance_pool.browse(
                                     cr, uid, matched_schedule_ids[0],
                                     context=context)
-                                att_start = (
-                                    attendance_start.hour +
-                                    attendance_start.minute / 60.0 +
-                                    attendance_start.second / 3600.0)
+                                att_start = self.datetime_to_hour(
+                                    attendance_start)
                                 if (att.hour_from and
                                         (att_start >= att_start -
                                          att.hour_from - att.tolerance_to)
@@ -336,35 +357,38 @@ class HrAttendance(orm.Model):
                                             additional_intervals * precision)
                             # sign out tolerance
                             if len(splitted_attendances) == counter:
-                                attendance_stop_hour = (
-                                    attendance_stop.hour +
-                                    attendance_stop.minute / 60.0
-                                    + attendance_stop.second / 3600.0
-                                )
                                 att = attendance_pool.browse(
                                     cr, uid, matched_schedule_ids[0],
                                     context=context)
-                                if (attendance_stop_hour <= att.hour_to and
-                                        (attendance_stop_hour -
+                                att_stop = self.datetime_to_hour(
+                                    attendance_stop)
+                                if (att_stop <= att.hour_to and
+                                        (att_stop -
                                          att.hour_to + att.tolerance_from) >
                                         -0.01):
                                     # handling float roundings (>=)
                                     additional_intervals = round(
-                                        (att.hour_to - attendance_stop_hour) /
+                                        (att.hour_to - att_stop) /
                                         precision)
                                     intervals_within += additional_intervals
-                                    res[attendance.id]['duration'] = \
+                                    res[attendance.id]['duration'] = (
                                         self.time_sum(
                                             res[attendance.id]['duration'],
                                             additional_intervals * precision)
-                    res[attendance.id]['inside_calendar_duration'] = \
-                        intervals_within * precision
-                    # make difference using time in order to avoid rounding
-                    # errors inside_calendar_duration can't be > duration
-                    res[attendance.id]['outside_calendar_duration'] = \
-                        self.time_difference(
-                            res[attendance.id]['inside_calendar_duration'],
-                            res[attendance.id]['duration'])
+                                    )
+                    res[attendance.id][
+                        'inside_calendar_duration'
+                        ] = intervals_within * precision
+                    # make difference using time in order to avoid
+                    # rounding errors
+                    # inside_calendar_duration can't be > duration
+                    res[attendance.id][
+                        'outside_calendar_duration'
+                        ] = self.time_difference(
+                        res[attendance.id]['inside_calendar_duration'],
+                        res[attendance.id]['duration'],
+                        help_message='Attendance ID %s' % attendance.id)
+
                     if reference_calendar.overtime_rounding:
                         if res[attendance.id]['outside_calendar_duration']:
                             overtime = res[attendance.id][
@@ -402,7 +426,9 @@ class HrAttendance(orm.Model):
         for calendar in self.pool['resource.calendar'].browse(
                 cr, uid, ids, context=context):
             contract_ids = contract_pool.search(
-                cr, uid, [('working_hours', '=', calendar.id)], context=context)
+                cr, uid,
+                [('working_hours', '=', calendar.id)],
+                context=context)
             att_ids = attendance_pool._get_by_contracts(
                 cr, uid, contract_ids, context=None)
             for att_id in att_ids:
@@ -451,9 +477,11 @@ class HrAttendance(orm.Model):
                          'trial_date_start', 'trial_date_end',
                          'working_hours'], 20),
         'resource.calendar': (_get_by_calendars, ['attendance_ids'], 20),
-        'resource.calendar.attendance': (_get_by_calendar_attendances,
-                                         ['dayofweek', 'date_from', 'hour_from',
-                                          'hour_to', 'calendar_id'], 20),
+        'resource.calendar.attendance': (
+            _get_by_calendar_attendances,
+            ['dayofweek', 'date_from', 'hour_from', 'hour_to', 'calendar_id'],
+            20
+        ),
     }
 
     _columns = {
@@ -470,3 +498,10 @@ class HrAttendance(orm.Model):
             _get_attendance_duration, method=True, multi='duration',
             string="Duration within working schedule", store=_store_rules),
     }
+
+    def button_dummy(self, cr, uid, ids, context=None):
+        for att in self.browse(cr, uid, ids, context=context):
+            #  By writing the 'action' field without changing it,
+            #  I'm forcing the '_get_attendance_duration' to be executed
+            att.write({'action': att.action})
+        return True

@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-2013 Agile Business Group sagl
+#    Copyright (C) 2011-2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@ from openerp.tools.translate import _
 from datetime import date, time, datetime, timedelta
 import math
 import calendar
+import pytz
 
 
 class wizard_calendar_report(orm.TransientModel):
@@ -79,8 +80,13 @@ class wizard_calendar_report(orm.TransientModel):
     def print_calendar(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        attendance_pool = self.pool['hr.attendance']
-        holidays_pool = self.pool['hr.holidays']
+        attendance_pool = self.pool.get('hr.attendance')
+        holidays_pool = self.pool.get('hr.holidays')
+        precision = self.pool.get('res.users').browse(
+            cr, uid, uid, context=context).company_id.working_time_precision
+        active_tz = pytz.timezone(
+            context.get("tz", "UTC") if context else "UTC")
+
         days_by_employee = {}
 
         form = self.read(cr, uid, ids, context=context)[0]
@@ -91,6 +97,9 @@ class wizard_calendar_report(orm.TransientModel):
         employee_ids = form['employee_ids']
         delta = to_date - from_date
         max_number_of_attendances_per_day = 0
+        active_tz = pytz.timezone(
+            context.get("tz", "UTC") if context else "UTC")
+
         for employee_id in employee_ids:
             employee_id = str(employee_id)
             days_by_employee[employee_id] = {}
@@ -115,12 +124,17 @@ class wizard_calendar_report(orm.TransientModel):
                     'signout_4': '',
                 }
                 current_date_beginning = datetime.combine(current_date, time())
-                str_current_date_beginning = current_date_beginning.strftime(
-                    '%Y-%m-%d %H:%M:%S')
+                current_date_beginning_utc = current_date_beginning.replace(
+                    tzinfo=active_tz).astimezone(pytz.utc)
+                str_current_date_beginning = (
+                    current_date_beginning_utc.strftime('%Y-%m-%d %H:%M:%S'))
                 current_date_end = datetime.combine(
                     current_date, time()) + timedelta(1)
-                str_current_date_end = current_date_end.strftime(
-                    '%Y-%m-%d %H:%M:%S')
+                current_date_end_utc = current_date_end.replace(
+                    tzinfo=active_tz).astimezone(pytz.utc)
+                str_current_date_end = (
+                    current_date_end_utc.strftime('%Y-%m-%d %H:%M:%S'))
+
                 attendance_ids = attendance_pool.search(cr, uid, [
                     ('employee_id', '=', int(employee_id)),
                     ('name', '>=', str_current_date_beginning),
@@ -141,18 +155,30 @@ class wizard_calendar_report(orm.TransientModel):
                 # printing up to 4 attendances
                 if len(attendance_ids) < 5:
                     count = 1
-                    attendances = attendance_pool.browse(
-                        cr, uid, attendance_ids, context=context)
-                    for attendance in sorted(attendances,
-                                             key=lambda x: x['name']):
+                    for attendance in sorted(
+                        attendance_pool.browse(
+                            cr, uid, attendance_ids, context=context
+                        ),
+                        key=lambda x: x['name']
+                    ):
+
+                        attendance_start = datetime.strptime(
+                            attendance.name, '%Y-%m-%d %H:%M:%S'
+                            ).replace(tzinfo=pytz.utc).astimezone(active_tz)
+                        attendance_end = datetime.strptime(
+                            attendance.end_datetime, '%Y-%m-%d %H:%M:%S'
+                            ).replace(tzinfo=pytz.utc).astimezone(active_tz)
+
                         days_by_employee[employee_id][str_current_date][
-                            'signin_' + str(count)] = attendance.name[11:16]
+                            'signin_'+str(count)] = '%02d:%02d' % (
+                            attendance_start.hour, attendance_start.minute)
                         days_by_employee[employee_id][str_current_date][
-                            'signout_' + str(count)] = \
-                            attendance.end_datetime[11:16]
+                            'signout_'+str(count)] = '%02d:%02d' % (
+                            attendance_end.hour, attendance_end.minute)
                         count += 1
                     if len(attendance_ids) > max_number_of_attendances_per_day:
                         max_number_of_attendances_per_day = len(attendance_ids)
+
                 days_by_employee[employee_id][str_current_date][
                     'attendances'
                 ] = current_total_attendances
@@ -186,10 +212,14 @@ class wizard_calendar_report(orm.TransientModel):
                                     ) <= current_date
                                 )
                             ):
-                                calendar_attendance_duration = \
+                                calendar_attendance_duration = (
                                     attendance_pool.time_difference(
                                         calendar_attendance.hour_from,
-                                        calendar_attendance.hour_to)
+                                        calendar_attendance.hour_to,
+                                        help_message=(
+                                            'Calendar attendance ID %s'
+                                            % calendar_attendance.id))
+                                    )
                                 if calendar_attendance_duration < 0:
                                     raise orm.except_orm(
                                         _('Error'),
@@ -232,26 +262,71 @@ class wizard_calendar_report(orm.TransientModel):
                     # if ends after today
                     if date_to > current_date_end:
                         date_to = current_date_end
-                    current_total_leaves = attendance_pool.time_sum(
-                        current_total_leaves,
-                        (date_to - date_from).total_seconds() / 60.0 / 60.0)
-                days_by_employee[employee_id][str_current_date][
-                    'leaves'] = current_total_leaves
+                    date_from = date_from.replace(
+                        tzinfo=pytz.utc).astimezone(active_tz)
+                    date_to = date_to.replace(
+                        tzinfo=pytz.utc).astimezone(active_tz)
+                    duration_delta = date_to - date_from
+                    duration = (
+                        attendance_pool.total_seconds(duration_delta)
+                        / 60.0 / 60.0
+                    )
+                    intervals_within = 0
+                    splitted_holidays = (
+                        attendance_pool.split_interval_time_by_precision(
+                            date_from, duration, precision)
+                    )
+                    counter = 0
+                    for atomic_holiday in splitted_holidays:
+                        counter += 1
+                        centered_holiday = (
+                            attendance_pool.mid_time_interval(
+                                atomic_holiday[0],
+                                delta=atomic_holiday[1],
+                            )
+                        )
+                        # check if centered_holiday is within a working
+                        # schedule
+                        weekday_char = str(
+                            unichr(centered_holiday.weekday() + 48))
+                        matched_schedule_ids = attendance_pool.matched_schedule(
+                            cr, uid,
+                            centered_holiday,
+                            weekday_char,
+                            reference_calendar.id,
+                            context=context
+                        )
+                        if len(matched_schedule_ids) > 1:
+                            raise orm.except_orm(
+                                _('Error'),
+                                _('Wrongly configured working schedule with '
+                                  'id %s') % str(reference_calendar.id))
+                        if matched_schedule_ids:
+                            intervals_within += 1
+
+                    current_total_leaves = intervals_within * precision
+
+                days_by_employee[employee_id][str_current_date]['leaves'] = (
+                    current_total_leaves)
                 if current_total_leaves > days_by_employee[employee_id][
                         str_current_date]['due']:
                     days_by_employee[employee_id][str_current_date][
                         'leaves'
                     ] = days_by_employee[employee_id][str_current_date]['due']
                 due_minus_leaves = attendance_pool.time_difference(
-                    current_total_leaves, current_total_due)
+                    current_total_leaves, current_total_due,
+                    help_message='Employee ID %s. Date %s' % (
+                        employee_id, str_current_date))
                 if due_minus_leaves < current_total_inside_calendar:
                     days_by_employee[employee_id][
                         str_current_date]['negative'] = 0.0
                 else:
                     days_by_employee[employee_id][str_current_date][
                         'negative'
-                    ] = attendance_pool.time_difference(
-                        current_total_inside_calendar, due_minus_leaves)
+                        ] = attendance_pool.time_difference(
+                        current_total_inside_calendar, due_minus_leaves,
+                        help_message='Employee ID %s. Date %s' % (
+                            employee_id, str_current_date))
 
                 if reference_calendar:
                     if reference_calendar.leave_rounding:

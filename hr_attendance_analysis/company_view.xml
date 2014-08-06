@@ -9,6 +9,10 @@
                 <page string="Configuration" position="inside">
                     <group name="attendance_analysis_grp" string="Attendance analysis">
                         <field name="working_time_precision" widget="float_time"/>
+                        <button name="update_attendance_data" type="object"
+                            string="Update all the attendance data"
+                            confirm="This will update all the attendance data and may take a while"
+                        />
                     </group>
                 </page>
             </field>
