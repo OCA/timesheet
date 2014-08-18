@@ -34,7 +34,8 @@ Known limitation:
     ''',
     'author': 'Camptocamp',
     'website': 'http://camptocamp.com',
-    'depends': ['hr_timesheet_sheet', ],
+    'depends': ['hr_timesheet_sheet',
+                'project' ],
     'data': [
         'wizard/timesheet_fulfill_view.xml',
     ],
