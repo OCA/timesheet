@@ -126,8 +126,7 @@ class HrTimesheetFulfill(orm.TransientModel):
             if not existing_attendances:
                 att_date_start = datetime_current + " 00:00:00"
                 att_start = {
-                    'name': datetime.strptime(att_date_start,
-                                              '%Y-%m-%d %H:%M:%S'),
+                    'name': att_date_start,
                     'action': 'sign_in',
                     'employee_id': employee_id,
                     'sheet_id': timesheet.id,
@@ -135,8 +134,7 @@ class HrTimesheetFulfill(orm.TransientModel):
                 # hh_mm is a tuple (hours, minutes)
                 date_end = " %d:%d:00" % (hh_mm[0], hh_mm[1])
                 att_end = {
-                    'name': datetime.strptime(datetime_current + date_end,
-                                              '%Y-%m-%d %H:%M:%S'),
+                    'name': datetime_current + date_end,
                     'action': 'sign_out',
                     'employee_id': employee_id,
                     'sheet_id': timesheet.id,

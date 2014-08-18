@@ -1,0 +1,29 @@
+-
+ analytic account
+-
+  !record {model: account.analytic.account, id: account_vacations}:
+    name: vacations
+-
+  create timesheet
+-
+  !record {model: hr_timesheet_sheet.sheet, id: test_timesheet}:
+    name: 'week 42'
+    employee_id: hr.employee_fp
+    date_from: 2014-09-01
+    date_to: 2014-09-07
+-
+ initialize wizard
+-
+  !record {model: hr.timesheet.fulfill, id: wizard_fulfill}:
+    date_from: 2014-09-01
+    date_to: 2014-09-04
+    description: vacations
+    nb_hours: 8.0
+    analytic_account_id: account_vacations
+-
+  run wizard
+-
+  !python {model: hr.timesheet.fulfill }: |
+    context['active_id'] = ref('test_timesheet')
+    ret = self.fulfill_timesheet(cr, uid, [ref('wizard_fulfill')], context=context)
+    assert ret == {'type': 'ir.actions.act_window_close'}
