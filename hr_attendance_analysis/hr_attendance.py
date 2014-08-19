@@ -194,10 +194,10 @@ class HrAttendance(orm.Model):
             employee = self.pool.get('hr.employee').browse(
                 cr, uid, employee_id, context=context)
             if active_contract_ids:
-                message = _('Too many active contracts for employee %s at date %s')
+                msg = _('Too many active contracts for employee %s at date %s')
             else:
-                message = _('No active contracts for employee %s at date %s')
-            raise orm.except_orm(_('Error'), message % (employee.name, date))
+                msg = _('No active contracts for employee %s at date %s')
+            raise orm.except_orm(_('Error'), msg % (employee.name, date))
         else:
             contract = contract_pool.browse(
                 cr, uid, active_contract_ids[0], context=context)
