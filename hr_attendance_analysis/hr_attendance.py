@@ -190,17 +190,18 @@ class HrAttendance(orm.Model):
             ('trial_date_end', '!=', False),
             ('trial_date_end', '>=', date),
         ], context=context)
-        if len(active_contract_ids) > 1:
+        if len(active_contract_ids) != 1:
             employee = self.pool.get('hr.employee').browse(
                 cr, uid, employee_id, context=context)
-            raise orm.except_orm(_('Error'), _(
-                'Too many active contracts for employee %s'
-            ) % employee.name)
-        if active_contract_ids:
+            if active_contract_ids:
+                message = _('Too many active contracts for employee %s at date %s')
+            else:
+                message = _('No active contracts for employee %s at date %s')
+            raise orm.except_orm(_('Error'), message % (employee.name, date))
+        else:
             contract = contract_pool.browse(
                 cr, uid, active_contract_ids[0], context=context)
             return contract.working_hours
-        return active_contract_ids
 
     def _ceil_rounding(self, rounding, datetime):
         minutes = (datetime.minute / 60.0
