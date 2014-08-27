@@ -124,12 +124,13 @@ class HrTimesheetFulfill(orm.TransientModel):
                 if record['name'].startswith(datetime_current):
                     existing_attendances = 1
             if not existing_attendances:
+                attendance_context = context.copy()
+                attendance_context['sheet_id'] = timesheet_id
                 att_date_start = datetime_current + " 00:00:00"
                 att_start = {
                     'name': att_date_start,
                     'action': 'sign_in',
                     'employee_id': employee_id,
-                    'sheet_id': timesheet.id,
                 }
                 # hh_mm is a tuple (hours, minutes)
                 date_end = " %d:%d:00" % (hh_mm[0], hh_mm[1])
@@ -137,8 +138,9 @@ class HrTimesheetFulfill(orm.TransientModel):
                     'name': datetime_current + date_end,
                     'action': 'sign_out',
                     'employee_id': employee_id,
-                    'sheet_id': timesheet.id,
                 }
-                attendance_obj.create(cr, uid, att_start, context)
-                attendance_obj.create(cr, uid, att_end, context)
+                attendance_obj.create(cr, uid, att_start,
+                                                      context=attendance_context)
+                attendance_obj.create(cr, uid, att_end,
+                                            context=attendance_context)
         return {'type': 'ir.actions.act_window_close'}
