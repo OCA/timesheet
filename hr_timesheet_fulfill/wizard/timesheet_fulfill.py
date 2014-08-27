@@ -142,7 +142,7 @@ class HrTimesheetFulfill(orm.TransientModel):
                     'employee_id': employee_id,
                 }
                 attendance_obj.create(cr, uid, att_start,
-                                      ontext=attendance_context)
+                                      context=attendance_context)
                 attendance_obj.create(cr, uid, att_end,
                                       context=attendance_context)
         return {'type': 'ir.actions.act_window_close'}
