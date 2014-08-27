@@ -44,11 +44,13 @@ class HrTimesheetFulfill(orm.TransientModel):
         'nb_hours': fields.float('Hours per Day', digits=(2, 2),
                                  required=True),
         'analytic_account_id': fields.many2one(
-            'account.analytic.account', 'Analytic Account', required=True,
+            'account.analytic.account', 'Analytic Account',
+            required=True,
             domain="[('type', '<>', 'view'),"
                    "('state', '!=', 'pending'),"
                    "('state', '!=', 'close')]"),
-        'task_id': fields.many2one('project.task', 'Task', required=False)
+        'task_id': fields.many2one('project.task', 'Task',
+                                   required=False)
     }
 
     def fulfill_timesheet(self, cr, uid, ids, context=None):
@@ -140,7 +142,7 @@ class HrTimesheetFulfill(orm.TransientModel):
                     'employee_id': employee_id,
                 }
                 attendance_obj.create(cr, uid, att_start,
-                                                      context=attendance_context)
+                                      ontext=attendance_context)
                 attendance_obj.create(cr, uid, att_end,
-                                            context=attendance_context)
+                                      context=attendance_context)
         return {'type': 'ir.actions.act_window_close'}
