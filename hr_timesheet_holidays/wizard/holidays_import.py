@@ -80,12 +80,17 @@ class HolidaysImport(orm.TransientModel):
         date_to_str = date_to.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         date_utc_to = get_utc_datetime(date_to, local_tz).strftime(
             DEFAULT_SERVER_DATETIME_FORMAT)
-        cr.execute("select id, date_from, date_to, name from hr_holidays where "
-                   "(((date_from <= %s and date_to >= %s and date_to <= %s) or "
-                   "(date_from >= %s and date_from <= %s and date_to >= %s) or "
-                   "(date_from >= %s and date_from <= %s and date_to >= %s and "
+        cr.execute("select id, date_from, date_to, name from hr_holidays "
+                   "where "
+                   "(((date_from <= %s and date_to >= %s and date_to <= %s) "
+                   "or "
+                   "(date_from >= %s and date_from <= %s and date_to >= %s) "
+                   "or "
+                   "(date_from >= %s and date_from <= %s and date_to >= %s "
+                   "and "
                    "date_to <= %s) or "
-                   "(date_from <= %s and date_to >= %s)) and user_id = %s and "
+                   "(date_from <= %s and date_to >= %s)) and user_id = %s "
+                   "and "
                    "state = 'validate')",
                    (date_utc_from, date_utc_from, date_utc_to,
                     date_utc_from, date_utc_to, date_utc_to,
@@ -140,7 +145,9 @@ class HolidaysImport(orm.TransientModel):
         attendance_obj = self.pool['hr.attendance']
         anl_account_obj = self.pool['account.analytic.account']
         timesheet_id = context['active_id']
-        timesheet = timesheet_obj.browse(cr, uid, timesheet_id, context=context)
+        timesheet = timesheet_obj.browse(cr, uid,
+                                         timesheet_id,
+                                         context=context)
         employee_id = employee_obj.search(
             cr, uid, [('user_id', '=', uid)], context=context)[0]
         if timesheet.state != 'draft':
@@ -171,11 +178,13 @@ class HolidaysImport(orm.TransientModel):
             anl_account = anl_account_obj.browse(cr, uid, analytic_account_id,
                                                  context)
             if holiday.date_from < timesheet.date_from:
-                dt_ts_from = get_utc_start_of_day(timesheet.date_from, local_tz)
+                dt_ts_from = get_utc_start_of_day(timesheet.date_from,
+                                                  local_tz)
                 holiday.date_from = dt_ts_from.strftime(
                     DEFAULT_SERVER_DATETIME_FORMAT)
             if holiday.date_to > timesheet.date_to:
-                dt_ts_to = get_utc_end_of_day(timesheet.date_to, local_tz)
+                dt_ts_to = get_utc_end_of_day(timesheet.date_to,
+                                              local_tz)
                 holiday.date_to = dt_ts_to.strftime(
                     DEFAULT_SERVER_DATETIME_FORMAT)
             nb_days = get_number_days_between_dates(holiday.date_from,
@@ -203,8 +212,10 @@ class HolidaysImport(orm.TransientModel):
                               ('user_id', '=', uid)])
                 if not existing_ts_ids:
                     unit_id = al_ts_obj._getEmployeeUnit(cr, uid, context)
-                    product_id = al_ts_obj._getEmployeeProduct(cr, uid, context)
-                    journal_id = al_ts_obj._getAnalyticJournal(cr, uid, context)
+                    product_id = al_ts_obj._getEmployeeProduct(cr, uid,
+                                                               context)
+                    journal_id = al_ts_obj._getAnalyticJournal(cr, uid,
+                                                               context)
                     holiday_day = {
                         'name': holiday.name or _('Holidays'),
                         'date': str_dt_current,

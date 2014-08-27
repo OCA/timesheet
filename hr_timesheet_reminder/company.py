@@ -88,7 +88,7 @@ class ResCompany(orm.Model):
         return periods
 
     def get_last_period_dates(self, cr, uid, company, date, context=None):
-        """ return the start date and end date of the last period to display """
+        """return the start date and end date of the last period to display"""
         # return the first day and last day of the month
         if company.timesheet_range == 'month':
             start_date = date
