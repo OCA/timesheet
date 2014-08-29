@@ -41,7 +41,8 @@ class HrTimesheetFulfill(orm.TransientModel):
         'date_from': fields.date('Date From', required=True),
         'date_to': fields.date('Date To', required=True),
         'description': fields.char('Description', size=100, required=True),
-        'nb_hours': fields.float('Hours per Day', digits=(2, 2), required=True),
+        'nb_hours': fields.float('Hours per Day', digits=(2, 2),
+                                 required=True),
         'analytic_account_id': fields.many2one(
             'account.analytic.account', 'Analytic Account', required=True,
             domain="[('type', '<>', 'view'),"
