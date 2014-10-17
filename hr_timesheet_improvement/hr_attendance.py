@@ -29,22 +29,22 @@ class HrAttendance(orm.Model):
     _inherit = "hr.attendance"
 
     def _default_date(self, cr, uid, context=None):
-        sheet_id = context.get('sheet_id')
+        sheet_id = context['sheet_id')
         if not sheet_id:
             return time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
-        ts_obj = self.pool.get('hr_timesheet_sheet.sheet')
+        ts_obj = self.pool['hr_timesheet_sheet.sheet']
         timesheet = ts_obj.browse(cr, uid, sheet_id, context=context)
         dates = [a.name for a in timesheet.attendances_ids]
         if not dates:
             return timesheet.date_from
         return max(dates)
 
-    def _altern_si_so(self, cr, uid, ids, context=None):
+    def check_altern_si_so(self, cr, uid, ids, context=None):
         """ Alternance sign_in/sign_out check.
             Previous (if exists) must be of opposite action.
             Next (if exists) must be of opposite action.
         """
-        sheet_obj = self.pool.get('hr_timesheet_sheet.sheet')
+        sheet_obj = self.pool['hr_timesheet_sheet.sheet']
         for att in self.browse(cr, uid, ids, context=context):
             sheet_id = sheet_obj.search(
                 cr, uid, [
@@ -82,6 +82,13 @@ class HrAttendance(orm.Model):
             # first attendance must be sign_in
             if (not prev_atts) and (not next_atts) and att.action != 'sign_in':
                 return False
+        return True
+
+    def _altern_si_so(self, cr, uid, ids, context=None):
+        """ This standard countraint is deactivated and replaced
+            by a test (check_altern_si_so) when the user confirm his timesheet
+            (Button Confirm)
+        """
         return True
 
     _constraints = [
