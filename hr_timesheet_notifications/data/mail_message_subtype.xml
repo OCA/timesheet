@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="subtype_draft" model="mail.message.subtype">
+            <field name="name">Timesheet has been set to draft</field>
+            <field name="res_model">hr_timesheet_sheet.sheet</field>
+            <field name="default" eval="True"/>
+            <field name="description">Timesheet has been set to draft</field>
+        </record>
+        <record id="subtype_confirm" model="mail.message.subtype">
+            <field name="name">Timesheet has been submitted</field>
+            <field name="res_model">hr_timesheet_sheet.sheet</field>
+            <field name="default" eval="True"/>
+            <field name="description">Timesheet has been submitted</field>
+        </record>
+        <record id="subtype_done" model="mail.message.subtype">
+            <field name="name">Timesheet has been approved</field>
+            <field name="res_model">hr_timesheet_sheet.sheet</field>
+            <field name="default" eval="True"/>
+            <field name="description">Timesheet has been approved</field>
+        </record>
+    </data>
+</openerp>
