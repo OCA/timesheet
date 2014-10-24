@@ -29,7 +29,7 @@ class HrAttendance(orm.Model):
     _inherit = "hr.attendance"
 
     def _default_date(self, cr, uid, context=None):
-        sheet_id = context['sheet_id')
+        sheet_id = context.get('sheet_id')
         if not sheet_id:
             return time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         ts_obj = self.pool['hr_timesheet_sheet.sheet']
