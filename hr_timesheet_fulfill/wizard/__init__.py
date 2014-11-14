@@ -1,4 +1,3 @@
+# -*- coding: utf-8 -*-
 
-import timesheet_fulfill
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+from . import timesheet_fulfill

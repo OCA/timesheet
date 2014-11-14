@@ -38,9 +38,6 @@ class HrAttendance(orm.Model):
         if not dates:
             return timesheet.date_from
         return max(dates)
-    """
-    Check sign in signout in the same timesheet only
-    """
 
     def _altern_si_so(self, cr, uid, ids, context=None):
         """ Alternance sign_in/sign_out check.

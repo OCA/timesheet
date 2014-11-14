@@ -55,9 +55,9 @@ class ReminderConfig(orm.TransientModel):
          'Periodicity must be greater than 0 ', ['interval_number']),
     ]
 
-    def default_get(self, cr, uid, fields, context=None):
+    def default_get(self, cr, uid, field_list, context=None):
         res = super(ReminderConfig, self).default_get(
-            cr, uid, fields, context=context)
+            cr, uid, field_list, context=context)
         data = self.pool['hr.timesheet.reminder'].get_config(
             cr, uid, context=context)
         res.update(data)

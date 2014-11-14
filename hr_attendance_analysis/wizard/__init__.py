@@ -20,4 +20,4 @@
 #
 ##############################################################################
 
-import print_calendar_report
+from . import print_calendar_report
