@@ -95,7 +95,7 @@ class HrAttendance(orm.Model):
                 unicode(float_end_time),
                 unicode(float_start_time),
                 help_message and '(' + help_message + ')' or ''
-                )
+            )
             raise orm.except_orm(
                 _('Error'),
                 message
@@ -378,13 +378,13 @@ class HrAttendance(orm.Model):
                                     )
                     res[attendance.id][
                         'inside_calendar_duration'
-                        ] = intervals_within * precision
+                    ] = intervals_within * precision
                     # make difference using time in order to avoid
                     # rounding errors
                     # inside_calendar_duration can't be > duration
                     res[attendance.id][
                         'outside_calendar_duration'
-                        ] = self.time_difference(
+                    ] = self.time_difference(
                         res[attendance.id]['inside_calendar_duration'],
                         res[attendance.id]['duration'],
                         help_message='Attendance ID %s' % attendance.id)

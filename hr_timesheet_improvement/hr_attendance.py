@@ -25,6 +25,7 @@ from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class HrAttendance(orm.Model):
+
     """Alter the default date for manual setting"""
     _inherit = "hr.attendance"
 
