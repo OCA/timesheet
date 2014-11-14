@@ -1,0 +1,50 @@
+-
+ analytic account
+-
+  !record {model: account.analytic.account, id: account_vacations}:
+    name: vacations
+-
+  set timesheet journal on employee_qdp
+-
+ !python {model: hr.employee}: |
+    self.write(cr, uid, ref('hr.employee_qdp'), {'journal_id': ref('hr_timesheet.analytic_journal')})
+-
+  create timesheet
+-
+  !record {model: hr_timesheet_sheet.sheet, id: test_timesheet}:
+    name: 'week 42'
+    employee_id: hr.employee_qdp
+    date_from: 2014-09-01
+    date_to: 2014-09-07
+-
+ initialize wizard
+-
+  !record {model: hr.timesheet.fulfill, id: wizard_fulfill}:
+    date_from: 2014-09-01
+    date_to: 2014-09-04
+    description: vacations
+    nb_hours: 8.0
+    analytic_account_id: account_vacations
+-
+  run wizard
+-
+  !python {model: hr.timesheet.fulfill }: |
+    context['active_id'] = ref('test_timesheet')
+    ret = self.fulfill_timesheet(cr, ref('base.user_demo'), [ref('wizard_fulfill')], context=context)
+    assert ret == {'type': 'ir.actions.act_window_close'}
+-
+  check timesheet
+-
+  !python {model: hr_timesheet_sheet.sheet }: |
+     sheet = self.browse(cr, uid, ref('test_timesheet'), context=context)
+     assert sheet.employee_id.id == ref('hr.employee_qdp')
+     assert len(sheet.attendances_ids) == 2 * 4
+     assert sheet.total_attendance == 8.0 * 4
+     assert sheet.total_timesheet == 8.0 * 4
+     assert sheet.state_attendance == 'absent'
+     assert len(sheet.timesheet_ids) == 4
+     attendances = list(sorted(sheet.attendances_ids, key=lambda x: x.name))
+     assert attendances[0].name == '2014-09-01 00:00:00'
+     assert attendances[0].action == 'sign_in'
+     assert attendances[1].name == '2014-09-01 08:00:00'
+     assert attendances[1].action == 'sign_out'

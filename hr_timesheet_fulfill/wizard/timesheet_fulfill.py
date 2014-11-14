@@ -44,11 +44,13 @@ class HrTimesheetFulfill(orm.TransientModel):
         'nb_hours': fields.float('Hours per Day', digits=(2, 2),
                                  required=True),
         'analytic_account_id': fields.many2one(
-            'account.analytic.account', 'Analytic Account', required=True,
+            'account.analytic.account', 'Analytic Account',
+            required=True,
             domain="[('type', '<>', 'view'),"
                    "('state', '!=', 'pending'),"
                    "('state', '!=', 'close')]"),
-        'task_id': fields.many2one('project.task', 'Task', required=False)
+        'task_id': fields.many2one('project.task', 'Task',
+                                   required=False)
     }
 
     def fulfill_timesheet(self, cr, uid, ids, context=None):
@@ -124,23 +126,23 @@ class HrTimesheetFulfill(orm.TransientModel):
                 if record['name'].startswith(datetime_current):
                     existing_attendances = 1
             if not existing_attendances:
+                attendance_context = context.copy()
+                attendance_context['sheet_id'] = timesheet_id
                 att_date_start = datetime_current + " 00:00:00"
                 att_start = {
-                    'name': datetime.strptime(att_date_start,
-                                              '%Y-%m-%d %H:%M:%S'),
+                    'name': att_date_start,
                     'action': 'sign_in',
                     'employee_id': employee_id,
-                    'sheet_id': timesheet.id,
                 }
                 # hh_mm is a tuple (hours, minutes)
                 date_end = " %d:%d:00" % (hh_mm[0], hh_mm[1])
                 att_end = {
-                    'name': datetime.strptime(datetime_current + date_end,
-                                              '%Y-%m-%d %H:%M:%S'),
+                    'name': datetime_current + date_end,
                     'action': 'sign_out',
                     'employee_id': employee_id,
-                    'sheet_id': timesheet.id,
                 }
-                attendance_obj.create(cr, uid, att_start, context)
-                attendance_obj.create(cr, uid, att_end, context)
+                attendance_obj.create(cr, uid, att_start,
+                                      context=attendance_context)
+                attendance_obj.create(cr, uid, att_end,
+                                      context=attendance_context)
         return {'type': 'ir.actions.act_window_close'}
