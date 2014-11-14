@@ -130,10 +130,10 @@ class HrAttendance(orm.Model):
             res.append((start_datetime, precision))
         return res
 
-    def datetime_to_hour(self, datetime):
+    def datetime_to_hour(self, datetime_):
         hour = (
-            datetime.hour + datetime.minute / 60.0
-            + datetime.second / 3600.0
+            datetime_.hour + datetime_.minute / 60.0
+            + datetime_.second / 3600.0
         )
         return hour
 
@@ -142,12 +142,12 @@ class HrAttendance(orm.Model):
 
     def matched_schedule(
             self, cr, uid,
-            datetime, weekday_char, calendar_id,
+            datetime_, weekday_char, calendar_id,
             context=None
     ):
         calendar_attendance_pool = self.pool.get(
             'resource.calendar.attendance')
-        datetime_hour = self.datetime_to_hour(datetime)
+        datetime_hour = self.datetime_to_hour(datetime_)
         matched_schedule_ids = calendar_attendance_pool.search(
             cr,
             uid,
@@ -155,7 +155,7 @@ class HrAttendance(orm.Model):
                 '&',
                 '|',
                 ('date_from', '=', False),
-                ('date_from', '<=', datetime.date()),
+                ('date_from', '<=', datetime_.date()),
                 '|',
                 ('dayofweek', '=', False),
                 ('dayofweek', '=', weekday_char),
@@ -202,14 +202,14 @@ class HrAttendance(orm.Model):
         else:
             return orm.browse_null()
 
-    def _ceil_rounding(self, rounding, datetime):
-        minutes = (datetime.minute / 60.0
-                   + datetime.second / 3600.0)
+    def _ceil_rounding(self, rounding, datetime_):
+        minutes = (datetime_.minute / 60.0
+                   + datetime_.second / 3600.0)
         return math.ceil(minutes * rounding) / rounding
 
-    def _floor_rounding(self, rounding, datetime):
-        minutes = (datetime.minute / 60.0
-                   + datetime.second / 3600.0)
+    def _floor_rounding(self, rounding, datetime_):
+        minutes = (datetime_.minute / 60.0
+                   + datetime_.second / 3600.0)
         return math.floor(minutes * rounding) / rounding
 
     def _get_attendance_duration(self, cr, uid, ids, field_name, arg,

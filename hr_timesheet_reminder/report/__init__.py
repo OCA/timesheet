@@ -19,4 +19,4 @@
 #
 ##############################################################################
 
-import timesheet_status
+from . import timesheet_status

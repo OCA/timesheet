@@ -66,7 +66,7 @@ class wizard_calendar_report(orm.TransientModel):
 
     _name = "attendance_analysis.wizard.calendar_report"
 
-    def on_change_month(self, cr, uid, id, str_month, year):
+    def on_change_month(self, cr, uid, id_, str_month, year):
         res = {}
         if year and str_month:
             month = int(str_month)

@@ -65,14 +65,14 @@ class ProjectTask(orm.Model):
                 res[task.id]['progress'] = 100.0
         return res
 
-    def _store_set_values(self, cr, uid, ids, fields, context=None):
+    def _store_set_values(self, cr, uid, ids, field_list, context=None):
         # Hack to avoid redefining most of function fields of project.project
         # model. This is mainly due to the fact that orm _store_set_values use
         # direct access to database. So when modify a line the
         # _store_set_values as it uses cursor directly to update tasks
         # project triggers on task are not called
         res = super(ProjectTask, self)._store_set_values(
-            cr, uid, ids, fields, context=context)
+            cr, uid, ids, field_list, context=context)
         for row in self.browse(cr, SUPERUSER_ID, ids, context=context):
             if row.project_id:
                 project = row.project_id
