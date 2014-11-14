@@ -164,16 +164,16 @@ class wizard_calendar_report(orm.TransientModel):
 
                         attendance_start = datetime.strptime(
                             attendance.name, '%Y-%m-%d %H:%M:%S'
-                            ).replace(tzinfo=pytz.utc).astimezone(active_tz)
+                        ).replace(tzinfo=pytz.utc).astimezone(active_tz)
                         attendance_end = datetime.strptime(
                             attendance.end_datetime, '%Y-%m-%d %H:%M:%S'
-                            ).replace(tzinfo=pytz.utc).astimezone(active_tz)
+                        ).replace(tzinfo=pytz.utc).astimezone(active_tz)
 
                         days_by_employee[employee_id][str_current_date][
-                            'signin_'+str(count)] = '%02d:%02d' % (
+                            'signin_' + str(count)] = '%02d:%02d' % (
                             attendance_start.hour, attendance_start.minute)
                         days_by_employee[employee_id][str_current_date][
-                            'signout_'+str(count)] = '%02d:%02d' % (
+                            'signout_' + str(count)] = '%02d:%02d' % (
                             attendance_end.hour, attendance_end.minute)
                         count += 1
                     if len(attendance_ids) > max_number_of_attendances_per_day:
@@ -219,7 +219,7 @@ class wizard_calendar_report(orm.TransientModel):
                                         help_message=(
                                             'Calendar attendance ID %s'
                                             % calendar_attendance.id))
-                                    )
+                                )
                                 if calendar_attendance_duration < 0:
                                     raise orm.except_orm(
                                         _('Error'),
@@ -323,7 +323,7 @@ class wizard_calendar_report(orm.TransientModel):
                 else:
                     days_by_employee[employee_id][str_current_date][
                         'negative'
-                        ] = attendance_obj.time_difference(
+                    ] = attendance_obj.time_difference(
                         current_total_inside_calendar, due_minus_leaves,
                         help_message='Employee ID %s. Date %s' % (
                             employee_id, str_current_date))

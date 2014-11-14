@@ -22,6 +22,7 @@ from openerp.osv import orm, fields
 
 
 class HrAnalyticTimesheet(orm.Model):
+
     """Set order by line date and analytic account name instead of id
     We create related stored values as _order cannot be used on inherited
     columns.

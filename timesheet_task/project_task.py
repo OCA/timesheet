@@ -204,6 +204,7 @@ class HrAnalyticTimesheet(orm.Model):
 
 
 class AccountAnalyticLine(orm.Model):
+
     """We add task_id on AA and manage update of linked task indicators"""
     _inherit = "account.analytic.line"
 
