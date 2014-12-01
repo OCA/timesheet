@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from openerp.osv import orm, fields
 from openerp import SUPERUSER_ID
 from openerp.tools.translate import _
 
@@ -37,7 +37,7 @@ TIMESHEET_WATCHERS = [
 ]
 
 
-class ProjectTask(osv.osv):
+class ProjectTask(orm.Model):
     _inherit = "project.task"
     _name = "project.task"
 
@@ -137,7 +137,7 @@ class ProjectTask(osv.osv):
         return res
 
 
-class HrAnalyticTimesheet(osv.osv):
+class HrAnalyticTimesheet(orm.Model):
 
     """
     Add field:
@@ -202,7 +202,7 @@ class HrAnalyticTimesheet(osv.osv):
     }
 
 
-class AccountAnalyticLine(osv.osv):
+class AccountAnalyticLine(orm.Model):
     """We add task_id on AA and manage update of linked task indicators"""
     _inherit = "account.analytic.line"
 
