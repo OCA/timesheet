@@ -27,9 +27,9 @@
  'description': """Replace project.task.work items linked to task
                    with hr.analytic.timesheet""",
  'website': 'http://www.camptocamp.com',
- 'data': ['hr_timesheet_sheet_view.xml', 'hr_analytic_timesheet_view.xml'],
- 'js': ['static/src/js/timesheet.js'],
- 'css': ['static/src/css/timesheet.css', ],
+ 'data': ['hr_timesheet_sheet_view.xml',
+          'hr_analytic_timesheet_view.xml',
+          'hr_timesheet_task.xml'],
  'qweb': ['static/src/xml/timesheet.xml'],
  'demo': [],
  'test': [],

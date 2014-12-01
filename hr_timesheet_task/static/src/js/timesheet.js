@@ -145,7 +145,6 @@ openerp.hr_timesheet_task = function(instance) {
                     type: "many2one",
                     domain: [
                         ['type','in',['normal', 'contract']],
-                        ['state', '=', 'open'],
                         ['use_timesheets','=',1],
                     ],
                     context: {
@@ -178,7 +177,6 @@ openerp.hr_timesheet_task = function(instance) {
                         name: "task",
                         type: "many2one",
                         domain: [
-                            ['state','=','open'],
                             // show only tasks linked to the selected project
                             ['project_id.analytic_account_id','=',account_id],
                             // ignore tasks already in the timesheet

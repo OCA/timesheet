@@ -9,7 +9,7 @@
                 <field name="user_id" position="after">
                     <field name="task_id"
                             context="{'account_id': account_id}"
-                            domain="[('state', '=', 'open'), ('project_id.analytic_account_id','=',account_id)]"/>
+                            domain="[('project_id.analytic_account_id','=',account_id)]"/>
                 </field>
             </field>
         </record>
@@ -21,7 +21,7 @@
                 <field name="account_id" position="after">
                     <field name="task_id"
                             context="{'account_id': account_id}"
-                            domain="[('state', '=', 'open'), ('project_id.analytic_account_id','=',account_id)]"/>
+                            domain="[('project_id.analytic_account_id','=',account_id)]"/>
                 </field>
             </field>
         </record>
@@ -35,7 +35,7 @@
                     <field name="task_id"/>
                 </field>
                 <xpath
-                    expr="/search/group[@string='Group By...']/filter[@string='Analytic account']"
+                    expr="/search/group[@string='Group By']/filter[@string='Analytic account']"
                     position="after">
                     <filter string="Task" icon="terp-folder-green" context="{'group_by':'task_id'}"
                     />
