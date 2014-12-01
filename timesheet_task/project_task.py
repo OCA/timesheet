@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp.osv import osv, fields
 from openerp import SUPERUSER_ID
 from openerp.tools.translate import _
 
@@ -37,7 +37,7 @@ TIMESHEET_WATCHERS = [
 ]
 
 
-class ProjectTask(orm.Model):
+class ProjectTask(osv.osv):
     _inherit = "project.task"
     _name = "project.task"
 
@@ -59,10 +59,8 @@ class ProjectTask(orm.Model):
             res[task.id]['progress'] = 0.0
             if (task.remaining_hours + hours.get(task.id, 0.0)):
                 res[task.id]['progress'] = round(
-                    min(100.0 * hours.get(task.id, 0.0) /
-                        res[task.id]['total_hours'], 99.99), 2)
-            if task.state in ('done', 'cancelled'):
-                res[task.id]['progress'] = 100.0
+                    100.0 * hours.get(task.id, 0.0) /
+                    res[task.id]['total_hours'], 2)
         return res
 
     def _store_set_values(self, cr, uid, ids, fields, context=None):
@@ -139,7 +137,7 @@ class ProjectTask(orm.Model):
         return res
 
 
-class HrAnalyticTimesheet(orm.Model):
+class HrAnalyticTimesheet(osv.osv):
 
     """
     Add field:
@@ -177,7 +175,8 @@ class HrAnalyticTimesheet(orm.Model):
         res = super(HrAnalyticTimesheet, self).on_change_unit_amount(
             cr, uid, sheet_id, prod_id, unit_amount, company_id, unit,
             journal_id, context=context)
-        if 'value' in res and (task_id or project_id):
+        p = False
+        if 'value' in res:
             if task_id:
                 task_obj = self.pool['project.task']
                 p = task_obj.browse(cr, uid, task_id,
@@ -203,7 +202,7 @@ class HrAnalyticTimesheet(orm.Model):
     }
 
 
-class AccountAnalyticLine(orm.Model):
+class AccountAnalyticLine(osv.osv):
     """We add task_id on AA and manage update of linked task indicators"""
     _inherit = "account.analytic.line"
 

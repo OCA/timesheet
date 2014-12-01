@@ -13,7 +13,6 @@
 -
   !record {model: product.product, id: product_product_hrtester0}:
     categ_id: product.product_category_6
-    cost_method: standard
     mes_type: fixed
     name: HR Tester service
     standard_price: 10.0
