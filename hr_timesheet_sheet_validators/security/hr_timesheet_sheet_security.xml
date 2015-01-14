@@ -5,7 +5,7 @@
             <field name="name">Timesheet by manager</field>
             <field name="model_id" search="[('model','=','hr_timesheet_sheet.sheet')]" model="ir.model"/>
             <field name="global" eval="True"/>
-            <field name="domain_force">[('validator_user_ids', 'in', [user.id]),('employee_id.user_id','=',user.id)]</field>
+            <field name="domain_force">['|',('validator_user_ids', 'in', [user.id]),('employee_id.user_id','=',user.id)]</field>
             <field name="groups" eval="[(4,ref('base.group_user'))]"/>
         </record>
         <record model="ir.rule" id="timesheet_validator_hr_rule">
