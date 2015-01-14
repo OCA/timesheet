@@ -27,32 +27,31 @@
 Timesheet validators
 ========================================
 
-It is frequent for companies to restrict the visibility of
-timesheets only to certain employees.
+Timesheets in Odoo can be validated by users belonging to the group
+“Human Resources / Officer”.
 
-The current functionality allows any user in groups:
-* 'Human Resources / Officer'
-* 'Human Resources / Manager'
-, to list and approve any timesheet.
+However it is frequent for companies allow to employees outside of the
+Human Resources group to validate timesheet.
 
-This module incorporates the following features:
+This module allows a user outside of the Human Resources groups to validate
+timesheets. A rule is predefined, but it is flexible enough to accept
+extensions.
 
+At the time when a user submits a timesheet to the Manager, the application
+determines the validators.
 
-    Allows any employee to approve or refuse the timesheets
-    of the employees that belong to the department that they are managers of,
-    or employees that they are direct manager of.
+Only those validators or employees in the group of Human Resources Officer
+are capable of approving the timesheet.
 
-    Adds filters on timesheets to approve "My department's" and "My employees",
-    that will show only  the timesheets that are associated to the department's
-    or employee manager respectively.
+The current rule sets as validators of a timesheet:
 
-    Adds the deparment and employee's manager to the timesheet form and
-    list views.
+- The head of the department that the employee belongs to
 
-    Shows the department of the employee, in the form and tree views.
+In case that the employee is head of the department, it will attempt to add the head of the parent department instead.
 
-    When the timesheet is confirmed, the manager of the department is
-    added as a follower.
+- The employee’s direct manager
+
+The list of validators is visible in the employee’s timesheet.
 
     """,
     'website': 'http://www.eficent.com',
