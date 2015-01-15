@@ -19,12 +19,12 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
+from openerp.osv import orm, fields
 from openerp.tools.translate import _
 from openerp import netsvc
 
 
-class hr_timesheet_sheet(osv.osv):
+class hr_timesheet_sheet(orm.Model):
     _inherit = "hr_timesheet_sheet.sheet"
 
     _columns = {
@@ -52,26 +52,31 @@ class hr_timesheet_sheet(osv.osv):
         for timesheet in self.browse(cr, uid, ids):
             res[timesheet.id] = []
             users[timesheet.id] = []
-            if timesheet.employee_id \
-                    and timesheet.employee_id.parent_id \
-                    and timesheet.employee_id.parent_id.user_id:
+            if (
+                timesheet.employee_id
+                and timesheet.employee_id.parent_id
+                and timesheet.employee_id.parent_id.user_id
+            ):
                 users[timesheet.id].append(
                     timesheet.employee_id.parent_id.user_id.id)
-            if timesheet.department_id \
-                    and timesheet.department_id.manager_id \
-                    and timesheet.department_id.manager_id.user_id \
-                    and timesheet.department_id.manager_id.user_id.id != uid:
+            if (
+                timesheet.department_id
+                and timesheet.department_id.manager_id
+                and timesheet.department_id.manager_id.user_id
+                and timesheet.department_id.manager_id.user_id.id != uid
+            ):
                 users[timesheet.id].append(
                     timesheet.department_id.manager_id.user_id.id)
-            elif timesheet.department_id \
-                    and timesheet.department_id.parent_id \
-                    and timesheet.department_id.parent_id.manager_id \
-                    and timesheet.department_id.parent_id.manager_id.user_id \
-                    and timesheet.department_id.parent_id.\
-                    manager_id.user_id.id != uid:
+            elif (
+                timesheet.department_id
+                and timesheet.department_id.parent_id
+                and timesheet.department_id.parent_id.manager_id
+                and timesheet.department_id.parent_id.manager_id.user_id
+                and timesheet.department_id.parent_id.
+                    manager_id.user_id.id != uid
+            ):
                 users[timesheet.id].append(
                     timesheet.department_id.manager_id.user_id.id)
-
 
             [res[timesheet.id].append(item) for item in users[timesheet.id]
              if item not in res[timesheet.id]]

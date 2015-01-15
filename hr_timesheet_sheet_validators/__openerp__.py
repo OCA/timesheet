@@ -47,7 +47,8 @@ The current rule sets as validators of a timesheet:
 
 - The head of the department that the employee belongs to
 
-In case that the employee is head of the department, it will attempt to add the head of the parent department instead.
+In case that the employee is head of the department, it will attempt to add
+the head of the parent department instead.
 
 - The employee’s direct manager
 
