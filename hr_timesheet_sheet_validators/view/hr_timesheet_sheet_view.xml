@@ -9,6 +9,7 @@
             <field name="arch" type="xml">
                 <field name="department_id" position="attributes">
                     <attribute name="invisible">False</attribute>
+                    <attribute name="readonly">True</attribute>
                 </field>
                 <xpath expr='//button[@name="done"]' position="replace">
                     <button name="action_done" states="confirm" string="Approve" type="object"

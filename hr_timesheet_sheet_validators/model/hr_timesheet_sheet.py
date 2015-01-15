@@ -126,7 +126,7 @@ class hr_timesheet_sheet(orm.Model):
             for validator_user_id in timesheet.validator_user_ids:
                 validator_user_ids.append(validator_user_id.id)
             if uid not in validator_user_ids:
-                raise osv.except_osv(_('Invalid Action!'),
+                raise orm.except_orm(_('Invalid Action!'),
                                      _('You are not authorised to approve'
                                        ' or refuse this Timesheet.'))
 
