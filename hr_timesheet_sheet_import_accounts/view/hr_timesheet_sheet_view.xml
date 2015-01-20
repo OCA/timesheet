@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
             <field name="arch" type="xml">
                 <xpath expr='//button[@name="cancel"]' position="after">
-                    <button name="set_previous_timesheet_ids" states="draft" string="Import accounts from previous Timehseet" type="object" class="oe_highlight"/>
+                    <button name="set_previous_timesheet_ids" states="new, draft" string="Import accounts from previous Timehseet" type="object" class="oe_highlight"/>
                 </xpath>
             </field>
         </record>
