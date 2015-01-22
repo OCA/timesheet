@@ -2,12 +2,12 @@
 <openerp>
     <data>
         <record id="hr_timesheet_sheet_lwa_form" model="ir.ui.view">
-            <field name="name">hr.timesheet.sheet.lwa.form</field>
+            <field name="name">hr.timesheet.sheet.form</field>
             <field name="model">hr_timesheet_sheet.sheet</field>
             <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
             <field name="arch" type="xml">
                 <xpath expr='//button[@name="cancel"]' position="after">
-                    <button name="set_previous_timesheet_ids" states="new, draft" string="Import accounts from previous Timehseet" type="object" class="oe_highlight"/>
+                    <button name="set_previous_timesheet_ids" states="new,draft" string="Import accounts from previous Timehseet" type="object" class="oe_highlight"/>
                 </xpath>
             </field>
         </record>
