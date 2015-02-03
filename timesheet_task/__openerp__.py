@@ -38,7 +38,10 @@ Used with the module hr_timesheet_task, it also allows users to complete
 task information through the timesheet sheet (hr.timesheet.sheet).
     """,
  'website': 'http://www.camptocamp.com',
- 'data': ['project_task_view.xml'],
+ 'data': [
+     'project_task_view.xml',
+     'report/hr_timesheet_report_view.xml'
+     ],
  'demo': [],
  'test': ['test/task_timesheet_indicators.yml'],
  'installable': True,
