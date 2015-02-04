@@ -187,6 +187,9 @@ openerp.hr_timesheet_task = function(instance) {
                         },
                     },
                 });
+                // reset value previously selected
+                self.task_m2o.set_value(false);
+                self.task_m2o.render_value();
             });
 
             self.$(".oe_timesheet_weekly_add_row button").click(function() {
