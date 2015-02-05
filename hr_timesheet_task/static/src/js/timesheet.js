@@ -2,7 +2,7 @@ openerp.hr_timesheet_task = function(instance) {
 
     var module = instance.hr_timesheet_sheet
 
-    module.WeeklyTimesheet.include({
+    module.WeeklyTimesheet = module.WeeklyTimesheet.extend({
         events: {
             "click .oe_timesheet_weekly_account a": "go_to",
             "click .oe_timesheet_weekly_task a": "go_to_task",
@@ -214,37 +214,6 @@ openerp.hr_timesheet_task = function(instance) {
         },
         get_total: function(account) {
             return this.$('[data-account-task-total="' + account.account_task + '"]');
-        },
-        generate_o2m_value: function() {
-            var self = this;
-            var ops = [];
-
-            _.each(self.accounts, function(account) {
-                var auth_keys = _.extend(_.clone(account.account_defaults), {
-                    name: true, amount:true, unit_amount: true, date: true, account_id:true, task_id: true,
-                });
-                _.each(account.days, function(day) {
-                    _.each(day.lines, function(line) {
-                        if (line.unit_amount !== 0) {
-                            var tmp = _.clone(line);
-                            tmp.id = undefined;
-                            _.each(line, function(v, k) {
-                                if (v instanceof Array) {
-                                    tmp[k] = v[0];
-                                }
-                            });
-                            // we have to remove some keys, because analytic lines are shitty
-                            _.each(_.keys(tmp), function(key) {
-                                if (auth_keys[key] === undefined) {
-                                    tmp[key] = undefined;
-                                }
-                            });
-                            ops.push(tmp);
-                        }
-                    });
-                });
-            });
-            return ops;
         },
     });
 };
