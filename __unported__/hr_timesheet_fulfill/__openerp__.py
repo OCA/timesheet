@@ -34,6 +34,7 @@ Known limitation:
     ''',
     'author': 'Camptocamp',
     'website': 'http://camptocamp.com',
+    'license': 'AGPL-3',
     'depends': ['hr_timesheet_sheet', ],
     'data': [
         'wizard/timesheet_fulfill_view.xml',
