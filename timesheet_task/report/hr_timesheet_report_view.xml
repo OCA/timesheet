@@ -8,8 +8,8 @@
             <field name="model">hr.timesheet.report</field>
             <field name="arch" type="xml">
                 <filter string="Company" position="after">
-                    <filter string="Task" context="{'group_by':'task_id'}"/>
                     <filter string="Analytic Account" context="{'group_by':'account_id'}"/>
+                    <filter string="Task" context="{'group_by':'task_id'}"/>
                 </filter>
             </field>
         </record>
