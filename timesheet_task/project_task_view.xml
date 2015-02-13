@@ -1,0 +1,42 @@
+<openerp>
+    <data>
+        <record id="view_task_form2" model="ir.ui.view">
+            <field name="name">project.task.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='work_ids']" position="replace">
+                    <field colspan="4" name="work_ids" nolabel="1">
+                        <tree string="Task Work" editable="top">
+                            <field name="user_id" on_change="on_change_user_id(user_id)" required="1" invisible="1"/>
+                            <field name="name"/>
+                            <field name="unit_amount" on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id,journal_id, parent.id, to_invoice, parent.project_id)" sum="Total time" widget="float_time"/>
+                            <field name="date" on_change="on_change_date(date)"/>
+                            <field name="journal_id" invisible="1"/>
+                            <field domain="[('type','=','normal')]" name="account_id" invisible="1"/>
+                            <field name="product_id" on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id,journal_id, parent.id, to_invoice, parent.project_id)" required="1" domain="[('type','=','service')]" invisible="1"/>
+                            <field name="product_uom_id" on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id,journal_id, parent.id, to_invoice, parent.project_id)" invisible="1"/>
+                            <field name="amount" sum="Total cost" invisible="1"/>
+                            <field name="general_account_id" invisible="1"/>
+                            <field name="to_invoice"/>
+                        </tree>
+                        <form string="Task Work" editable="top">
+                            <field name="user_id" on_change="on_change_user_id(user_id)" required="1"/>
+                            <field name="name" default_focus="1"/>
+                            <field name="unit_amount" on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id,journal_id, parent.id, to_invoice, parent.project_id, context)" sum="Total time" widget="float_time"/>
+                            <field name="date" on_change="on_change_date(date)"/>
+                            <field name="journal_id" invisible="1"/>
+                            <field domain="[('type','=','normal')]" name="account_id" invisible="1"/>
+                            <field name="product_id" on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id,journal_id, parent.id, to_invoice, parent.project_id)" required="1" domain="[('type','=','service')]" invisible="1"/>
+                            <field name="product_uom_id" on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id,journal_id, parent.id, to_invoice, parent.project_id)" invisible="1"/>
+                            <field name="amount" sum="Total cost" invisible="1"/>
+                            <field name="general_account_id" invisible="1"/>
+                            <field name="to_invoice"/>
+                        </form>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

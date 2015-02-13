@@ -23,10 +23,6 @@
             </field>
         </record>
 
-        <record id="hr_timesheet_sheet.act_hr_timesheet_sheet_form" model="ir.actions.act_window">
-            <field name="context">{'search_default_my_timesheet':1}</field>
-        </record>
-
         <record model="ir.ui.view" id="hr_timesheet_sheet_form_with_activity">
             <field name="name">hr.timesheet.sheet.form</field>
             <field name="model">hr_timesheet_sheet.sheet</field>
@@ -36,13 +32,13 @@
                     expr="/form/sheet/notebook/page[@string='Details']/field[@name='timesheet_ids']/tree[@string='Timesheet Activities']/field[@name='account_id']"
                     position="after">
                     <field name="task_id" context="{'account_id' : account_id}"
-                        domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
+                        domain="[('project_id.analytic_account_id','=',account_id)]"/>
                 </xpath>
                 <xpath
                     expr="/form/sheet/notebook/page[@string='Details']/field[@name='timesheet_ids']/form[@string='Timesheet Activities']/field[@name='account_id']"
                     position="after">
                     <field name="task_id" context="{'account_id' : account_id}"
-                        domain="[('state','=','open'), ('project_id.analytic_account_id','=',account_id)]"/>
+                        domain="[('project_id.analytic_account_id','=',account_id)]"/>
                 </xpath>
             </field>
         </record>
