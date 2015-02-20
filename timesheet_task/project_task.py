@@ -202,7 +202,7 @@ class HrAnalyticTimesheet(orm.Model):
         '''
         res = super(HrAnalyticTimesheet, self)\
             .on_change_account_id(account_id=account_id, user_id=user_id)
-            
+
         if 'value' not in res:
             res['value'] = {}
 
