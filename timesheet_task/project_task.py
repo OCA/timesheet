@@ -196,11 +196,16 @@ class HrAnalyticTimesheet(orm.Model):
         return dict.fromkeys(ids, False)
 
     @api.multi
-    def on_change_account_id(self, account_id, context=None):
+    def on_change_account_id(self, account_id, user_id=False):
         ''' Validate the relation between the project and the task.
             Task must be belong to the project.
         '''
-        to_invoice = False
+        res = super(HrAnalyticTimesheet, self)\
+            .on_change_account_id(account_id=account_id, user_id=user_id)
+            
+        if 'value' not in res:
+            res['value'] = {}
+
         task_id = False
         if account_id:
             project_obj = self.env["project.project"]
@@ -209,11 +214,11 @@ class HrAnalyticTimesheet(orm.Model):
             if projects:
                 assert len(projects) == 1
                 project = projects[0]
-                to_invoice = project.to_invoice.id
                 if len(project.tasks) == 1:
                     task_id = project.tasks[0].id
 
-        return {'value': {'task_id': task_id, 'to_invoice': to_invoice}}
+        res['value']['task_id'] = task_id
+        return res
 
     _columns = {
         'hr_analytic_timesheet_id': fields.function(
