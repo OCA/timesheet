@@ -210,9 +210,8 @@ class HrAnalyticTimesheet(orm.Model):
                 assert len(projects) == 1
                 project = projects[0]
                 to_invoice = project.to_invoice.id
-                valid_task_ids = [task.id for task in project.tasks]
-                if len(valid_task_ids) == 1:
-                    task_id = valid_task_ids[0]
+                if len(project.tasks) == 1:
+                    task_id = project.tasks[0].id
 
         return {'value': {'task_id': task_id, 'to_invoice': to_invoice}}
 
