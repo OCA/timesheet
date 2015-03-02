@@ -21,7 +21,7 @@
 ##############################################################################
 {'name': 'Timesheet improvements',
  'version': '0.1',
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'category': 'Human Resources',
  'depends': ['hr_timesheet_sheet'],

@@ -32,7 +32,7 @@ time like holidays.
 Known limitation:
 - Will complete all day between dates
     ''',
-    'author': 'Camptocamp',
+    'author': "Camptocamp,Odoo Community Association (OCA)",
     'website': 'http://camptocamp.com',
     'license': 'AGPL-3',
     'depends': ['hr_timesheet_sheet', ],
