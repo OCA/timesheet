@@ -35,7 +35,7 @@
 {
     "name" : "Timesheet Reminder",
     "version" : "2.0",
-    "author" : "Camptocamp",
+    "author" : "Camptocamp,Odoo Community Association (OCA)",
     "category" : "",
     "website" : "http://www.camptocamp.com",
     "description": """

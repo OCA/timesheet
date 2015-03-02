@@ -27,7 +27,7 @@ detailed of hours passed.
 
  """,
     "version" : "1.3",
-    "author" : "Camptocamp",
+    "author" : "Camptocamp,Odoo Community Association (OCA)",
     "category" : "Generic Modules/Projects & Services",
     "website": "http://www.camptocamp.com",
     "license": 'AGPL-3',

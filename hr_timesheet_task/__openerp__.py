@@ -20,7 +20,7 @@
 ##############################################################################
 {'name' : 'Task in time sheet',
  'version' : '0.1',
- 'author' : 'Camptocamp',
+ 'author' : "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'category': 'Human Resources',
  'complexity': "normal", #easy, normal, expert

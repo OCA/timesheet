@@ -24,7 +24,7 @@
     "depends" : [
         'hr_timesheet_sheet',
         ],
-    "author" : "Therp BV",
+    "author" : "Therp BV,Odoo Community Association (OCA)",
     "complexity": "normal",
     "description": """This addons saves the user who approved a timesheet.""",
     "category" : "Human Resources",
