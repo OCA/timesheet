@@ -36,7 +36,7 @@ Several analysis settings can be configured, like:
  - Attendances and overtimes roundings
  - Diffrent types of overtime, according to the overtime amount
 """,
-    'author': 'Agile Business Group',
+    'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
