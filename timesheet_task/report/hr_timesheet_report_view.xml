@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_hr_timesheet_report_search" model="ir.ui.view">
+            <field name="name">hr.timesheet.report.search (timesheet_task)</field>
+            <field name="inherit_id" ref="hr_timesheet.view_hr_timesheet_report_search"/>
+            <field name="model">hr.timesheet.report</field>
+            <field name="arch" type="xml">
+                <filter string="Company" position="after">
+                    <filter string="Analytic Account" context="{'group_by':'account_id'}"/>
+                    <filter string="Task" context="{'group_by':'task_id'}"/>
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</openerp>
