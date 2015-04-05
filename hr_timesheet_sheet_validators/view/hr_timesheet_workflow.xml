@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Workflow definition -->
+        <record id="hr_timesheet_sheet.t2" model="workflow.transition">
+            <field name="act_from" ref="hr_timesheet_sheet.act_confirm"/>
+            <field name="act_to" ref="hr_timesheet_sheet.act_done"/>
+            <field name="signal">done</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        <record id="hr_timesheet_sheet.t3" model="workflow.transition">
+            <field name="act_from" ref="hr_timesheet_sheet.act_confirm"/>
+            <field name="act_to" ref="hr_timesheet_sheet.act_draft"/>
+            <field name="signal">cancel</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+    </data>
+</openerp>

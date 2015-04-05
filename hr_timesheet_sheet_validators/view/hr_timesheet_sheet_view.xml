@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="hr_timesheet_sheet_form" model="ir.ui.view">
+            <field name="name">hr.timesheet.sheet.form</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
+            <field name="arch" type="xml">
+                <field name="department_id" position="attributes">
+                    <attribute name="invisible">False</attribute>
+                    <attribute name="readonly">True</attribute>
+                </field>
+                <xpath expr='//button[@name="done"]' position="replace">
+                    <button name="action_done" states="confirm" string="Approve" type="object"
+                            groups="base.group_user,base.group_hr_user" class="oe_highlight"/>
+                </xpath>
+                <xpath expr='//button[@name="cancel"]' position="replace">
+                    <button name="action_cancel" states="confirm" string="Refuse" type="object"
+                            groups="base.group_user,base.group_hr_user" class="oe_highlight"/>
+                </xpath>
+                <xpath expr='//page[@string="Attendances"]' position="after">
+                    <page string="Validators" groups="base.group_hr_user">
+                         <group>
+                             <field name="validator_user_ids"/>
+                         </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_hr_timesheet_sheet_filter" model="ir.ui.view">
+            <field name="name">hr_timesheet_sheet.sheet.filter</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr='//field[@name="employee_id"]' position="after">
+                    <field name="validator_user_ids"/>
+                </xpath>
+                <xpath expr='//filter[@name="to_approve"]' position="after">
+                    <filter name="my_timesheets"
+                            string="My timesheets to validate"
+                            domain="[('validator_user_ids','in',[uid])]"
+                            help="My Timesheets to validate"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_timesheet_sheet_tree_simplified" model="ir.ui.view">
+            <field name="name">hr.timesheet.sheet.tree</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified"/>
+            <field eval="10" name="priority"/>
+            <field name="arch" type="xml">
+                <field name="department_id" position="attributes">
+                    <attribute name="invisible">False</attribute>
+                </field>
+            </field>
+        </record>
+
+        <menuitem action="hr_timesheet_sheet.act_hr_timesheet_sheet_form" id="hr_timesheet_sheet.menu_act_hr_timesheet_sheet_form" parent="hr_attendance.menu_hr_time_tracking"
+             sequence="2" groups="base.group_user,base.group_hr_user"/>
+
+    </data>
+</openerp>

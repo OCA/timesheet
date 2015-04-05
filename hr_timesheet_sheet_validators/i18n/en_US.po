@@ -1,0 +1,53 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* hr_timesheet_sheet_validators
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-01-14 14:31+0000\n"
+"PO-Revision-Date: 2015-01-14 14:31+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_timesheet_sheet_validators
+#: view:hr_timesheet_sheet.sheet:0
+msgid "Refuse"
+msgstr "Refuse"
+
+#. module: hr_timesheet_sheet_validators
+#: view:hr_timesheet_sheet.sheet:0
+msgid "My Timesheets to validate"
+msgstr "My Timesheets to validate"
+
+#. module: hr_timesheet_sheet_validators
+#: view:hr_timesheet_sheet.sheet:0
+msgid "False"
+msgstr "False"
+
+#. module: hr_timesheet_sheet_validators
+#: view:hr_timesheet_sheet.sheet:0
+msgid "My timesheets to validate"
+msgstr "My timesheets to validate"
+
+#. module: hr_timesheet_sheet_validators
+#: model:ir.model,name:hr_timesheet_sheet_validators.model_hr_timesheet_sheet_sheet
+msgid "Timesheet"
+msgstr "Timesheet"
+
+#. module: hr_timesheet_sheet_validators
+#: view:hr_timesheet_sheet.sheet:0
+#: field:hr_timesheet_sheet.sheet,validator_user_ids:0
+msgid "Validators"
+msgstr "Validators"
+
+#. module: hr_timesheet_sheet_validators
+#: view:hr_timesheet_sheet.sheet:0
+msgid "Approve"
+msgstr "Approve"
+
