@@ -28,6 +28,7 @@
              ],
  'website': 'http://www.camptocamp.com',
  'data': ['views/hr_analytic_timesheet.xml',
+          'views/hr_timesheet_sheet.xml',
           ],
  'test': [],
  'installable': True,

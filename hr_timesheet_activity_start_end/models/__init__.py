@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import hr_analytic_timesheet
+from . import account_analytic_line
