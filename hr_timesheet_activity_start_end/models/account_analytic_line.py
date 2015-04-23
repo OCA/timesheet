@@ -21,10 +21,21 @@
 
 from __future__ import division
 
+import math
 from datetime import timedelta
 
 from openerp import models, fields, api, exceptions, _
 from openerp.tools.float_utils import float_compare
+
+
+def float_time_convert(float_val):
+    hours = math.floor(abs(float_val))
+    mins = abs(float_val) - hours
+    mins = round(mins * 60)
+    if mins >= 60.0:
+        hours = hours + 1
+        mins = 0.0
+    return '%02d:%02d' % (hours, mins)
 
 
 class AccountAnalyticLine(models.Model):
@@ -40,15 +51,47 @@ class AccountAnalyticLine(models.Model):
         stop = timedelta(hours=self.hour_stop)
         if stop < start:
             raise exceptions.ValidationError(
-                _('The start hour must precede the end hour.')
+                _('The beginning hour (%s) must '
+                  'precede the ending hour (%s).') %
+                (float_time_convert(self.hour_start),
+                 float_time_convert(self.hour_stop))
             )
         hours = (stop - start).seconds / 3600
         if (hours and
                 float_compare(hours, self.unit_amount, precision_digits=4)):
             raise exceptions.ValidationError(
-                _('The duration must be equal to the difference '
-                  'between the hours.')
+                _('The duration (%s) must be equal to the difference '
+                  'between the hours (%s).') %
+                (float_time_convert(self.unit_amount),
+                 float_time_convert(hours))
             )
+        # check if lines overlap
+        others = self.search([
+            ('id', '!=', self.id),
+            ('user_id', '=', self.user_id.id),
+            ('date', '=', self.date),
+            '|',
+            '|',
+            '&',
+            ('hour_start', '<', self.hour_start),
+            ('hour_stop', '>', self.hour_start),
+            '&',
+            ('hour_start', '<', self.hour_stop),
+            ('hour_stop', '>', self.hour_stop),
+            '&',
+            ('hour_start', '>', self.hour_start),
+            ('hour_stop', '<', self.hour_stop),
+        ])
+        if others:
+            message = _("Lines can't overlap:\n")
+            message += '\n'.join(['%s - %s' %
+                                  (float_time_convert(line.hour_start),
+                                   float_time_convert(line.hour_stop))
+                                  for line
+                                  in (self + others).sorted(
+                                      lambda l: l.hour_start
+                                  )])
+            raise exceptions.ValidationError(message)
 
 
 class HrAnalyticTimesheet(models.Model):
