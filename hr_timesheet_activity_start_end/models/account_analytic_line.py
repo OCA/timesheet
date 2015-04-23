@@ -41,20 +41,20 @@ def float_time_convert(float_val):
 class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
-    hour_start = fields.Float(string='Begin Hour')
-    hour_stop = fields.Float(string='End Hour')
+    time_start = fields.Float(string='Begin Hour')
+    time_stop = fields.Float(string='End Hour')
 
     @api.one
-    @api.constrains('hour_start', 'hour_stop', 'unit_amount')
-    def _check_hour_start_stop(self):
-        start = timedelta(hours=self.hour_start)
-        stop = timedelta(hours=self.hour_stop)
+    @api.constrains('time_start', 'time_stop', 'unit_amount')
+    def _check_time_start_stop(self):
+        start = timedelta(hours=self.time_start)
+        stop = timedelta(hours=self.time_stop)
         if stop < start:
             raise exceptions.ValidationError(
                 _('The beginning hour (%s) must '
                   'precede the ending hour (%s).') %
-                (float_time_convert(self.hour_start),
-                 float_time_convert(self.hour_stop))
+                (float_time_convert(self.time_start),
+                 float_time_convert(self.time_stop))
             )
         hours = (stop - start).seconds / 3600
         if (hours and
@@ -73,23 +73,23 @@ class AccountAnalyticLine(models.Model):
             '|',
             '|',
             '&',
-            ('hour_start', '<', self.hour_start),
-            ('hour_stop', '>', self.hour_start),
+            ('time_start', '<', self.time_start),
+            ('time_stop', '>', self.time_start),
             '&',
-            ('hour_start', '<', self.hour_stop),
-            ('hour_stop', '>', self.hour_stop),
+            ('time_start', '<', self.time_stop),
+            ('time_stop', '>', self.time_stop),
             '&',
-            ('hour_start', '>', self.hour_start),
-            ('hour_stop', '<', self.hour_stop),
+            ('time_start', '>', self.time_start),
+            ('time_stop', '<', self.time_stop),
         ])
         if others:
             message = _("Lines can't overlap:\n")
             message += '\n'.join(['%s - %s' %
-                                  (float_time_convert(line.hour_start),
-                                   float_time_convert(line.hour_stop))
+                                  (float_time_convert(line.time_start),
+                                   float_time_convert(line.time_stop))
                                   for line
                                   in (self + others).sorted(
-                                      lambda l: l.hour_start
+                                      lambda l: l.time_start
                                   )])
             raise exceptions.ValidationError(message)
 
@@ -97,10 +97,10 @@ class AccountAnalyticLine(models.Model):
 class HrAnalyticTimesheet(models.Model):
     _inherit = 'hr.analytic.timesheet'
 
-    @api.onchange('hour_start', 'hour_stop')
+    @api.onchange('time_start', 'time_stop')
     def onchange_hours_start_stop(self):
-        start = timedelta(hours=self.hour_start)
-        stop = timedelta(hours=self.hour_stop)
+        start = timedelta(hours=self.time_start)
+        stop = timedelta(hours=self.time_stop)
         if stop < start:
             return
         self.unit_amount = (stop - start).seconds / 3600
