@@ -19,7 +19,7 @@
 #
 #
 
-{'name': 'Timesheet Activities - Start/End Hours',
+{'name': 'Timesheet Activities - Begin/End Hours',
  'version': '1.0',
  'author': 'Camptocamp,Odoo Community Association (OCA)',
  'license': 'AGPL-3',

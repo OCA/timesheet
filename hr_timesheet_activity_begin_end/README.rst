@@ -1,7 +1,7 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
    :alt: License: AGPL-3
 
-Timesheet Activities - Start/End Hours
+Timesheet Activities - Begin/End Hours
 ======================================
 
 Adds starting and ending hours fields on the timesheet activities.
