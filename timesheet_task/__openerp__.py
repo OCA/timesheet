@@ -20,7 +20,7 @@
 ##############################################################################
 {'name': 'Analytic Timesheet In Task',
  'version': '0.2.1',
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp, Acsone SA/NV',
  'category': 'Human Resources',
  'depends': ['project', 'hr_timesheet_invoice'],

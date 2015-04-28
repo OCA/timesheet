@@ -30,13 +30,13 @@ class HrAnalyticTimesheet(orm.Model):
     _order = "date_aal DESC, account_name ASC"
 
     def _get_account_analytic_line(self, cr, uid, ids, context=None):
-        ts_line_ids = self.pool.get('hr.analytic.timesheet').search(
-            cr, uid, [('line_id', 'in', ids)])
+        ts_line_ids = self.pool['hr.analytic.timesheet'].search(
+            cr, uid, [('line_id', 'in', ids)], context=context)
         return ts_line_ids
 
     def _get_account_analytic_account(self, cr, uid, ids, context=None):
-        ts_line_ids = self.pool.get('hr.analytic.timesheet').search(
-            cr, uid, [('account_id', 'in', ids)])
+        ts_line_ids = self.pool['hr.analytic.timesheet'].search(
+            cr, uid, [('account_id', 'in', ids)], context=context)
         return ts_line_ids
 
     _columns = {
@@ -56,3 +56,27 @@ class HrAnalyticTimesheet(orm.Model):
                 'hr.analytic.timesheet': (lambda self, cr, uid, ids,
                                           context=None: ids, None, 10)}),
     }
+
+
+class HrTimesheetsheet(orm.Model):
+    """
+    Set order by line date and analytic account name instead of id
+    We create related stored values as _order cannot be used
+    on inherited columns
+    """
+    _inherit = "hr_timesheet_sheet.sheet"
+
+    def button_confirm(self, cr, uid, ids, context=None):
+        attendances_obj = self.pool['hr.attendance']
+        for sheet in self.browse(cr, uid, ids, context=context):
+            ids_attendances = attendances_obj.search(cr, uid,
+                                                     [('sheet_id',
+                                                       '=',
+                                                       sheet.id)],
+                                                     context=context)
+            attendances_obj.check_altern_si_so(cr, uid,
+                                               ids_attendances,
+                                               context=context)
+        return super(HrTimesheetsheet, self).button_confirm(cr, uid,
+                                                            ids,
+                                                            context=context)

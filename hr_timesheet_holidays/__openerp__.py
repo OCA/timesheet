@@ -46,7 +46,7 @@ Contributors
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 
 """,
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'website': 'http://www.camptocamp.com',
  'depends': [
      'hr',
