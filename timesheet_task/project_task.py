@@ -20,7 +20,7 @@
 ##############################################################################
 
 from openerp.osv import orm, fields
-from openerp import SUPERUSER_ID
+from openerp import api, SUPERUSER_ID
 from openerp.tools.translate import _
 
 TASK_WATCHERS = [
@@ -194,6 +194,31 @@ class HrAnalyticTimesheet(orm.Model):
             self, cr, uid, ids, names, arg, context=None):
         """Ensure all hr_analytic_timesheet_id is always False"""
         return dict.fromkeys(ids, False)
+
+    @api.multi
+    def on_change_account_id(self, account_id, user_id=False):
+        ''' Validate the relation between the project and the task.
+            Task must be belong to the project.
+        '''
+        res = super(HrAnalyticTimesheet, self)\
+            .on_change_account_id(account_id=account_id, user_id=user_id)
+
+        if 'value' not in res:
+            res['value'] = {}
+
+        task_id = False
+        if account_id:
+            project_obj = self.env["project.project"]
+            projects = project_obj.search([('analytic_account_id',
+                                            '=', account_id)])
+            if projects:
+                assert len(projects) == 1
+                project = projects[0]
+                if len(project.tasks) == 1:
+                    task_id = project.tasks[0].id
+
+        res['value']['task_id'] = task_id
+        return res
 
     _columns = {
         'hr_analytic_timesheet_id': fields.function(
