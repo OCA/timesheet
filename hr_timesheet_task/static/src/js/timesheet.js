@@ -145,6 +145,7 @@ openerp.hr_timesheet_task = function(instance) {
                     type: "many2one",
                     domain: [
                         ['type','in',['normal', 'contract']],
+                        ['state', '<>', 'close'],
                         ['use_timesheets','=',1],
                     ],
                     context: {
