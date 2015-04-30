@@ -1,0 +1,107 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Timesheet validators</h2>
+            <p>
+            This module was written to extend the HR Timesheet capabilities of Odoo.
+
+            Timesheets in Odoo can be validated by users belonging to the group
+            “Human Resources / Officer”.
+
+            However it is frequent for companies allow to employees outside of the
+            Human Resources group to validate timesheet.
+
+            This module allows a user outside of the Human Resources groups to validate
+            timesheets. A rule is predefined, but it is flexible enough to accept
+            extensions.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Installation</h2>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">No additional installation instructions are required.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Configuration</h2>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">This module does not require any additional configuration.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Usage</h2>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+            At the time when a user submits a timesheet to the Manager, the application
+            determines the validators.
+
+            Only those validators or employees in the group of Human Resources Officer
+            are capable of approving the timesheet.
+
+            The current rule sets as validators of a timesheet:
+
+            - The head of the department that the employee belongs to
+
+            In case that the employee is head of the department, it will attempt to add
+            the head of the parent department instead.
+
+            - The employee’s direct manager
+
+            The list of validators is visible in the employee’s timesheet.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Known issues / Roadmap</h2>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+                No issue has been identified.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Credits</h2>
+        </div>
+        <div class="oe_span12">
+            <h3>Contributors</h3>
+            <ul>
+                <li>Jordi Ballester Alomar &lt;<a
+                        href="mailto:jordi.ballester@eficent.com">jordi.ballester@eficent.com</a>&gt;</li>
+            </ul>
+        </div>
+        <div class="oe_span12">
+            <h3>Maintainer</h3>
+            <p>
+                This module is maintained by the OCA.<br/>
+                OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.<br/>
+                To contribute to this module, please visit <a href="http://odoo-community.org">http://odoo-community.org</a>.<br/>
+                <a href="http://odoo-community.org"><img class="oe_picture oe_centered" src="http://odoo-community.org/logo.png"></a>
+            </p>
+        </div>
+    </div>
+</section>
