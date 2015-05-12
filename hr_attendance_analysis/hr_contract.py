@@ -3,7 +3,7 @@
 #
 #    Authors: Stéphane Bidoul & Laetitia Gangloff
 #    Copyright (c) 2013 Acsone SA/NV (http://www.acsone.eu)
-#    All Rights Reserved
+#    Copyright (C) 2015 Agile Business Group sagl (<http://www.agilebg.com>)
 #
 #    WARNING: This program as such is intended to be used by professional
 #    programmers who take the whole responsibility of assessing all potential
