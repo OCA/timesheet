@@ -27,7 +27,7 @@ import calendar
 import pytz
 
 
-class wizard_calendar_report(orm.TransientModel):
+class WizardCalendarReport(orm.TransientModel):
 
     _columns = {
         'month': fields.selection([
