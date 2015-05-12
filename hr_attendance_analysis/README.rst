@@ -10,6 +10,7 @@ inside the contract's working schedule (overtime).
 It also provides a daily based report, showing the detailed and total hours
 compared to calendar hours.
 Several analysis settings can be configured, like:
+
 * Tolerance for sign-in and sign-out
 * Attendances and overtimes roundings
 * Diffrent types of overtime, according to the overtime amount
