@@ -33,10 +33,10 @@ from openerp.osv import orm
 class hr_contract(orm.Model):
     _inherit = 'hr.contract'
 
-    def copy(self, cr, uid, id, defaults, context=None):
+    def copy(self, cr, uid, contract_id, defaults, context=None):
         """ When duplicate a contract set the start date to the last end
         date + 1 day. If the last end date is False, do nothing"""
-        contract = self.browse(cr, uid, id, context=context)
+        contract = self.browse(cr, uid, contract_id, context=context)
         end_date_contract_id = self.search(
             cr, uid,
             [('employee_id', '=', contract.employee_id.id), ], limit=1,
@@ -53,5 +53,5 @@ class hr_contract(orm.Model):
             defaults['date_end'] = False
             defaults['trial_date_start'] = False
             defaults['trial_date_end'] = False
-        return super(hr_contract, self).copy(cr, uid, id, defaults,
+        return super(hr_contract, self).copy(cr, uid, contract_id, defaults,
                                              context=context)

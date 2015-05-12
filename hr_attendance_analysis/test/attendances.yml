@@ -1,4 +1,10 @@
 -
+  Change the contract of the Employee to ensure the test will happen during the contract
+-
+ !python {model: hr.contract}: |
+   import time
+   self.write(cr, uid, [ref('al_contract')], {'date_start': time.strftime('%Y-%m-01')}, context=context)
+-
   First of all, Employee Sign's In.
 -
   !record {model: hr.attendance, id: hr_attendance_0}:
