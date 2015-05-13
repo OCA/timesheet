@@ -36,12 +36,12 @@ class HrAnalyticTimesheet(orm.Model):
 
     def _getEmployeeProduct(self, cr, uid, context=None):
         return super(HrAnalyticTimesheet, self)._getEmployeeProduct(
-            cr, uid, context=context)
+            cr, SUPERUSER_ID, context=context)
 
     def _getEmployeeUnit(self, cr, uid, context=None):
         return super(HrAnalyticTimesheet, self)._getEmployeeUnit(
-            cr, uid, context=context)
+            cr, SUPERUSER_ID, context=context)
 
     def _getGeneralAccount(self, cr, uid, context=None):
         return super(HrAnalyticTimesheet, self)._getEmployeeProduct(
-            cr, uid, context=context)
+            cr, SUPERUSER_ID, context=context)
