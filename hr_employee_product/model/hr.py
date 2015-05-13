@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp.osv import orm
 from openerp import SUPERUSER_ID
 
 
@@ -27,7 +27,9 @@ class HrAnalyticTimesheet(orm.Model):
 
     _inherit = 'hr.analytic.timesheet'
 
-    def on_change_unit_amount(self, cr, uid, id, prod_id, unit_amount, company_id, unit=False, journal_id=False, context=None):
+    def on_change_unit_amount(self, cr, uid, id, prod_id, unit_amount,
+                              company_id, unit=False, journal_id=False,
+                              context=None):
         return super(HrAnalyticTimesheet, self).on_change_unit_amount(
             cr, SUPERUSER_ID, id, prod_id, unit_amount, company_id, unit=False,
             journal_id=False, context=context)
