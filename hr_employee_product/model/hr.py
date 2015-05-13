@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
+from openerp.osv import fields, orm
 from openerp import SUPERUSER_ID
 
 
@@ -43,5 +43,11 @@ class HrAnalyticTimesheet(orm.Model):
             cr, SUPERUSER_ID, context=context)
 
     def _getGeneralAccount(self, cr, uid, context=None):
-        return super(HrAnalyticTimesheet, self)._getEmployeeProduct(
+        return super(HrAnalyticTimesheet, self)._getGeneralAccount(
             cr, SUPERUSER_ID, context=context)
+
+    _defaults = {
+        'product_uom_id': _getEmployeeUnit,
+        'product_id': _getEmployeeProduct,
+        'general_account_id': _getGeneralAccount,
+    }

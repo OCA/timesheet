@@ -1,11 +1,18 @@
 <section class="oe_container">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
-            <h2 class="oe_slogan">Stock partial invoicing</h2>
+            <h2 class="oe_slogan">Manage products representing employees</h2>
             <p>
-                This module was written to extend the invoicing capabilities
-                of Odoo, and allows users to create customer or supplier
-                invoices for part of a delivered Order or received Incoming Shipment.
+            This module was written to extend the Timesheet capabilities of Odoo.
+
+            It allows to restrict the access to the products that represent an actual
+            employee, only to the Human Resources / Manager group.
+
+            A company may want to do that when they want to keep an actual hourly cost
+            per employee, so that the time entered by employees through timesheets can
+            result in a more realistic cost, but at the same time want to conceal this
+            information to general employees.
+
             </p>
         </div>
     </div>
@@ -40,9 +47,9 @@
         </div>
         <div class="oe_span6">
             <p class="oe_mt32">
-                When the user wants to create an invoice for a Delivery
-                Order or Incoming Shipment she/he can indicate which moves
-                should be invoiced, and what quantity to invoice.
+            A user in the group 'Human Resources / Manager' should go to the product form
+            and set the checkbox 'Is Employee'. This product will then be accessible only
+            by this group.
             </p>
         </div>
     </div>
@@ -54,10 +61,7 @@
             <h2 class="oe_slogan">Known issues / Roadmap</h2>
         </div>
         <div class="oe_span6">
-            <p class="oe_mt32">
-                This module conflicts with module 'stock_picking_invoice_link' available in
-                the same OCA repository.
-            </p>
+            <p class="oe_mt32">No issues have been identified.</p>
         </div>
     </div>
 </section>
