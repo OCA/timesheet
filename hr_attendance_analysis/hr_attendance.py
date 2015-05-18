@@ -24,6 +24,7 @@ from openerp.osv import fields, orm
 from openerp.tools.translate import _
 from datetime import datetime, timedelta
 import math
+import time
 from openerp.tools import float_compare
 import pytz
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
@@ -466,6 +467,13 @@ class HrAttendance(orm.Model):
                     attendance_ids.append(previous_attendance_ids[-1])
         return attendance_ids
 
+    def _day_compute(self, cr, uid, ids, fieldnames, args, context=None):
+        res = dict.fromkeys(ids, '')
+        for obj in self.browse(cr, uid, ids, context=context):
+            res[obj.id] = time.strftime(
+                '%Y-%m-%d', time.strptime(obj.name, '%Y-%m-%d %H:%M:%S'))
+        return res
+
     _inherit = "hr.attendance"
 
     _store_rules = {
@@ -496,6 +504,9 @@ class HrAttendance(orm.Model):
         'inside_calendar_duration': fields.function(
             _get_attendance_duration, method=True, multi='duration',
             string="Duration within working schedule", store=_store_rules),
+        'day': fields.function(
+            _day_compute, type='char', string='Day',
+            store=True, select=1, size=32),
     }
 
     def button_dummy(self, cr, uid, ids, context=None):
