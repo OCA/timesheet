@@ -200,7 +200,7 @@ class HrAttendance(orm.Model):
                 cr, uid, active_contract_ids[0], context=context)
             return contract.working_hours
         else:
-            return orm.browse_null()
+            return None
 
     def _ceil_rounding(self, rounding, datetime_):
         minutes = (datetime_.minute / 60.0
