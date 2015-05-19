@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="hat_1" model="hr.analytic.timesheet">
+            <field name="name">Feature omega: technical design</field>
+            <field name="user_id" ref="base.user_demo"/>
+            <field eval="DateTime.today().strftime('%Y-%m-%d')" name="date"/>
+            <field eval="1.00" name="unit_amount"/>
+            <field name="product_id" ref="product.product_product_consultant"/>
+            <field name="product_uom_id" ref="product.product_uom_hour"/>
+            <field name="account_id" ref="account.analytic_administratif"></field>
+            <field eval="-30.00" name="amount"/>
+            <field name="general_account_id" ref="account.a_expense"/>
+            <field name="journal_id" ref="hr_timesheet.analytic_journal"/>
+        </record>
+
+        <record id="hat_2" model="hr.analytic.timesheet">
+            <field name="name">Feature omega: technical design</field>
+            <field name="user_id" ref="base.user_demo"/>
+            <field eval="(DateTime.today() + relativedelta(days=1)).strftime('%Y-%m-%d')" name="date"/>
+            <field eval="2.00" name="unit_amount"/>
+            <field name="product_id" ref="product.product_product_consultant"/>
+            <field name="product_uom_id" ref="product.product_uom_hour"/>
+            <field name="account_id" ref="account.analytic_administratif"></field>
+            <field eval="-60.00" name="amount"/>
+            <field name="general_account_id" ref="account.a_expense"/>
+            <field name="journal_id" ref="hr_timesheet.analytic_journal"/>
+        </record>
+
+        <record id="hat_6" model="hr.analytic.timesheet">
+            <field name="name">Feature omega: technical design</field>
+            <field name="user_id" ref="base.user_demo"/>
+            <field eval="(DateTime.today() + relativedelta(days=6)).strftime('%Y-%m-%d')" name="date"/>
+            <field eval="6.00" name="unit_amount"/>
+            <field name="product_id" ref="product.product_product_consultant"/>
+            <field name="product_uom_id" ref="product.product_uom_hour"/>
+            <field name="account_id" ref="account.analytic_administratif"></field>
+            <field eval="-180.00" name="amount"/>
+            <field name="general_account_id" ref="account.a_expense"/>
+            <field name="journal_id" ref="hr_timesheet.analytic_journal"/>
+        </record>
+
+        <record id="hat_7" model="hr.analytic.timesheet">
+            <field name="name">Feature omega: technical design</field>
+            <field name="user_id" ref="base.user_demo"/>
+            <field eval="(DateTime.today() + relativedelta(days=7)).strftime('%Y-%m-%d')" name="date"/>
+            <field eval="7.00" name="unit_amount"/>
+            <field name="product_id" ref="product.product_product_consultant"/>
+            <field name="product_uom_id" ref="product.product_uom_hour"/>
+            <field name="account_id" ref="account.analytic_administratif"></field>
+            <field eval="-210.00" name="amount"/>
+            <field name="general_account_id" ref="account.a_expense"/>
+            <field name="journal_id" ref="hr_timesheet.analytic_journal"/>
+        </record>
+
+        <record id="hr.employee_qdp" model="hr.employee">
+            <field name="journal_id" ref="hr_timesheet.analytic_journal"/>
+        </record>
+
+        <record id="htss_4_changeperiod" model="hr_timesheet_sheet.sheet">
+            <field name="employee_id" ref="hr.employee_qdp" />
+            <field eval="DateTime.today().strftime('%Y-%m-%d')" name="date_from"/>
+            <field eval="(DateTime.today() + relativedelta(days=6)).strftime('%Y-%m-%d')" name="date_to"/>
+            <field name="state">draft</field>
+        </record>
+
+    </data>
+</openerp>
