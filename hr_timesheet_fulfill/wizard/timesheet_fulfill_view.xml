@@ -51,7 +51,6 @@
       <field name="model">hr_timesheet_sheet.sheet</field>
       <field name="name">Fill in Timesheet</field>
       <field eval="'ir.actions.act_window,%d'%action_hr_timesheet_fulfill" name="value"/>
-      <field eval="True" name="object"/>
     </record>
 
   </data>
