@@ -70,17 +70,8 @@ class AccountAnalyticLine(models.Model):
             ('id', '!=', self.id),
             ('user_id', '=', self.user_id.id),
             ('date', '=', self.date),
-            '|',
-            '|',
-            '&',
-            ('time_start', '<', self.time_start),
-            ('time_stop', '>', self.time_start),
-            '&',
             ('time_start', '<', self.time_stop),
-            ('time_stop', '>', self.time_stop),
-            '&',
-            ('time_start', '>', self.time_start),
-            ('time_stop', '<', self.time_stop),
+            ('time_stop', '>', self.time_start),
         ])
         if others:
             message = _("Lines can't overlap:\n")
