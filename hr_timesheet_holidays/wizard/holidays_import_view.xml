@@ -30,7 +30,6 @@
       <field name="model">hr_timesheet_sheet.sheet</field>
       <field name="name">Import Holidays</field>
       <field eval="'ir.actions.act_window,%d'%action_hr_timesheet_holidays_import" name="value"/>
-      <field eval="True" name="object"/>
     </record>
 
   </data>
