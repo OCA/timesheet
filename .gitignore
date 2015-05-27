@@ -55,3 +55,5 @@ docs/_build/
 *~
 *.swp
 
+# Windows
+desktop.ini
