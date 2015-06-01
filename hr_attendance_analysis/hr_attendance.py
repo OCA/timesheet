@@ -208,7 +208,8 @@ class HrAttendance(orm.Model):
                 cr, uid, employee_id, context=context)
             msg = _('Too many active contracts for employee %s at date %s')
             raise orm.except_orm(
-                _('Error'), msg % (employee.name, date_format))
+                _('Error'), msg % (employee.name,
+                                   datetime.strftime(date, date_format)))
         elif active_contract_ids:
             contract = contract_pool.browse(
                 cr, uid, active_contract_ids[0], context=context)
