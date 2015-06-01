@@ -40,11 +40,16 @@
     "website": "http://www.camptocamp.com",
     "description": """
 Timesheet Reports Module:
-    * Add a menu in Human Resources / Configuration / Timesheet Reminder. It allows to send automatic emails to those who did not complete their timesheet in the last 5 weeks.
+    * Add a menu in Human Resources / Configuration / Timesheet Reminder. It
+    allows to send automatic emails to those who did not complete their
+    timesheet in the last 5 weeks.
     * Per employee, you can choose to send the reminder or not.
-    * Add a report in Human Resources / Reporting / Timesheet / Timesheet Status which displays the state of the last 5 timesheets for all users per company.
+    * Add a report in Human Resources / Reporting / Timesheet / Timesheet
+    Status which displays the state of the last 5 timesheets for all users
+    per company.
 
-This module replaces the modules c2c_timesheet_reports in TinyERP 4 and OpenERP 5.
+This module replaces the modules c2c_timesheet_reports in TinyERP 4 and
+OpenERP 5.
     """,
     "depends": ["hr_timesheet_sheet"],
     "init_xml": [],

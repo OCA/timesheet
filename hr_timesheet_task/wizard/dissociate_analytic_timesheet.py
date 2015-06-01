@@ -35,13 +35,18 @@ class DissociateInvoice(osv.osv_memory):
     _inherit = 'dissociate.aal.to.invoice'
 
     def dissociate_aal(self, cr, uid, ids, context):
-        """ If the wizard is called from hr.analytic.timesheet (inherits account.analytic.line)
-            We get the account.analytic.line ids and call the wizard with them """
+        """ If the wizard is called from hr.analytic.timesheet (inherits
+            account.analytic.line)
+            We get the account.analytic.line ids and call the wizard with them
+        """
         if context.get('active_model', False) == 'hr.analytic.timesheet':
             at_obj = self.pool.get('hr.analytic.timesheet')
             at_ids = context.get('active_ids', False)
-            aal_ids = [at.line_id.id for at in at_obj.browse(cr, uid, at_ids, context)]
+            aal_ids = [at.line_id.id for at in
+                       at_obj.browse(cr, uid, at_ids, context)]
             context['active_ids'] = aal_ids
-        return super(DissociateInvoice, self).dissociate_aal(cr, uid, ids, context)
+        return super(DissociateInvoice, self).dissociate_aal(cr, uid, ids,
+                                                             context)
+
 
 DissociateInvoice()

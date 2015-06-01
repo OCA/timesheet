@@ -38,8 +38,9 @@ class ReminderConfig(osv.osv_memory):
 
     _columns = {
         'reminder_active': fields.boolean('Reminder Active'),
-        'interval_type': fields.selection([('days', 'Day(s)'), ('weeks', 'Week(s)'), ('months', 'Month(s)')],
-                                          'Periodicity Unit', ),
+        'interval_type': fields.selection(
+            [('days', 'Day(s)'), ('weeks', 'Week(s)'), ('months', 'Month(s)')],
+            'Periodicity Unit', ),
         'interval_number': fields.integer('Periodicity Quantity', ),
         'nextcall': fields.datetime('Next Run', ),
         'message': fields.text('Message', required=True),
@@ -54,11 +55,13 @@ class ReminderConfig(osv.osv_memory):
         return True
 
     _constraints = [
-        (_check_interval_number, 'Periodicity must be greater than 0 ', ['interval_number']),
+        (_check_interval_number, 'Periodicity must be greater than 0 ',
+         ['interval_number']),
     ]
 
     def default_get(self, cr, uid, fields, context=None):
-        res = super(reminder_config, self).default_get(cr, uid, fields, context=context)
+        res = super(reminder_config, self).default_get(cr, uid, fields,
+                                                       context=context)
         data = self.pool.get('hr.timesheet.reminder'). \
             get_config(cr, uid, context)
         res.update(data)

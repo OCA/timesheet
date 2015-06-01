@@ -55,7 +55,8 @@ class Reminder(osv.osv):
             'interval_type': 'weeks',
             'nextcall': time.strftime("%Y-%m-%d %H:%M:%S",
                                       (datetime.today()
-                                       + timedelta(days=1)).timetuple()),  # tomorrow same time
+                                       + timedelta(days=1)).timetuple()),
+            # tomorrow same time
             'numbercall': -1,
             'doall': True,
             'model': 'hr.timesheet.reminder',
@@ -76,7 +77,8 @@ class Reminder(osv.osv):
 
         # for each company, get all recipients
         recipients = []
-        company_recipients = company_obj.get_reminder_recipients(cr, uid, company_ids, context=context)
+        company_recipients = company_obj.get_reminder_recipients(
+            cr, uid, company_ids, context=context)
         for company_id, rec in company_recipients.iteritems():
             recipients += rec
 
@@ -91,15 +93,18 @@ class Reminder(osv.osv):
                 emails.append(employee.work_email)
 
         if emails:
-            tools.email_send(message_data.reply_to, [], message_data.subject, message_data.message, email_bcc=emails)
+            tools.email_send(message_data.reply_to, [], message_data.subject,
+                             message_data.message, email_bcc=emails)
 
     def get_cron_id(self, cr, uid, context):
-        """return the reminder cron's id. Create one if the cron does not exists """
+        """return the reminder cron's id. Create one if the cron
+        does not exists """
         cron_obj = self.pool.get('ir.cron')
         # find the cron that send messages
-        cron_id = cron_obj.search(cr, uid, [('function', 'ilike', self.cron['function']),
-                                            ('model', 'ilike', self.cron['model'])],
-                                  context={'active_test': False})
+        cron_id = cron_obj.search(cr, uid, [
+            ('function', 'ilike', self.cron['function']),
+            ('model', 'ilike', self.cron['model'])],
+            context={'active_test': False})
         if cron_id:
             cron_id = cron_id[0]
 
@@ -111,7 +116,8 @@ class Reminder(osv.osv):
         return cron_id
 
     def get_message_id(self, cr, uid, context):
-        """ return the message'id. create one if the message does not exists """
+        """ return the message'id. create one if the message
+        does not exists """
         # there is only one line in db, let's get it
         message_id = self.search(cr, uid, [], limit=1, context=context)
 
@@ -122,7 +128,9 @@ class Reminder(osv.osv):
         if not message_id:
             # translate
             self.message['subject'] = _('Timesheet Reminder')
-            self.message['message'] = _('At least one of your last timesheets is still in draft or is missing. Please take time to complete and confirm it.')
+            self.message['message'] = _(
+                'At least one of your last timesheets is still in draft or '
+                'is missing. Please take time to complete and confirm it.')
 
             message_id = self.create(cr, uid, self.message, context)
 
@@ -154,8 +162,10 @@ class Reminder(osv.osv):
         cron_id = self.get_cron_id(cr, uid, context)
         self.pool.get('ir.cron').write(cr, uid, [cron_id],
                                        {'active': datas['reminder_active'],
-                                        'interval_number': datas['interval_number'],
-                                        'interval_type': datas['interval_type'],
+                                        'interval_number': datas[
+                                            'interval_number'],
+                                        'interval_type': datas[
+                                            'interval_type'],
                                         'nextcall': datas['nextcall'], },
                                        context=context)
         # modify the message

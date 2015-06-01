@@ -33,14 +33,17 @@
     "description":
         """
         Wizard to import holidays in the current timesheet.
-        This module adds a relation between the Leave Types and the Analytic Accounts.
-        The Timesheet lines are created on the Analytic Account defined on the Leave Type.
+        This module adds a relation between the Leave Types and the Analytic
+        Accounts.
+        The Timesheet lines are created on the Analytic Account defined on the
+        Leave Type.
 
         The hours to input per day is configurable at company level.
 
         Limitations:
           - Consider that the work days are Monday to Friday
-          - The wizard creates the attendances each day with Sign-ins at 00:00 and Sign-outs at (00:00 + configured timesheet hours per day).
+          - The wizard creates the attendances each day with Sign-ins at 00:00
+          and Sign-outs at (00:00 + configured timesheet hours per day).
 
         """,
     "website": "http://www.camptocamp.com",

@@ -38,7 +38,8 @@
     "category": "Generic Modules/Human Resources",
     "description":
         """
-Add a wizard into timesheet allowing people to complete a long period of time with the given values.
+Add a wizard into timesheet allowing people to complete a long period of time
+ with the given values.
 This is mainly useful to handle a long period of time like holidays.
 Known limitation:
   - Will complete all day between dates

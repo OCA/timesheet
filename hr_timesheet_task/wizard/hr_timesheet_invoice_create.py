@@ -34,13 +34,18 @@ class HrTimesheetInvoiceCreate(osv.osv_memory):
     _inherit = 'hr.timesheet.invoice.create'
 
     def do_create(self, cr, uid, ids, context=None):
-        """ If the wizard is called from hr.analytic.timesheet (inherits account.analytic.line)
-            We get the account.analytic.line ids and call the wizard with them """
+        """ If the wizard is called from hr.analytic.timesheet (inherits
+            account.analytic.line)
+            We get the account.analytic.line ids and call the wizard with them
+        """
         if context.get('active_model', False) == 'hr.analytic.timesheet':
             at_obj = self.pool.get('hr.analytic.timesheet')
             at_ids = context.get('active_ids', False)
-            aal_ids = [at.line_id.id for at in at_obj.browse(cr, uid, at_ids, context)]
+            aal_ids = [at.line_id.id for at in
+                       at_obj.browse(cr, uid, at_ids, context)]
             context['active_ids'] = aal_ids
-        return super(hr_timesheet_invoice_create, self).do_create(cr, uid, ids, context)
+        return super(hr_timesheet_invoice_create, self).do_create(cr, uid, ids,
+                                                                  context)
+
 
 HrTimesheetInvoiceCreate()
