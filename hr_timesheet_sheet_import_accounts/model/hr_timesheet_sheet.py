@@ -21,7 +21,8 @@
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from openerp.osv import orm, fields
+from openerp.osv import orm
+
 
 class hr_timesheet_sheet(orm.Model):
     _inherit = "hr_timesheet_sheet.sheet"
@@ -33,7 +34,8 @@ class hr_timesheet_sheet(orm.Model):
 
         for sheet in sheet_obj.browse(cr, uid, ids, context=context):
             date_from = datetime.strptime(sheet.date_from, '%Y-%m-%d')
-            user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
+            user = self.pool.get('res.users').browse(cr, uid, uid,
+                                                     context=context)
             r = user.company_id and user.company_id.timesheet_range or 'month'
             delta = relativedelta(months=-1)
             if r == 'month':
@@ -95,9 +97,9 @@ class hr_timesheet_sheet(orm.Model):
                         'user_id': context.get('user_id') or uid,
                     }
 
-                    timesheet_id = timesheet_obj.create(cr, uid, vals,
-                                                        context=context)
-                    timesheet_ids.append(timesheet_id)
+                    ts_id = timesheet_obj.create(cr, uid, vals,
+                                                 context=context)
+                    timesheet_ids.append(ts_id)
 
                 if timesheet_ids:
                     sheet_obj.write(cr, uid, sheet.id,
