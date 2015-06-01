@@ -25,7 +25,7 @@ from openerp.report import report_sxw
 
 class TimesheetReport(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context=None):
-        super(timesheet_report, self).__init__(cr, uid, name, context)
+        super(TimesheetReport, self).__init__(cr, uid, name, context)
         self.localcontext.update({
             'time': time,
             'format_date': self._get_and_change_date_format_for_swiss,
@@ -35,7 +35,7 @@ class TimesheetReport(report_sxw.rml_parse):
     def set_context(self, objects, data, ids, report_type=None):
         self.localcontext['ts_lines'] = objects
         self.localcontext['tot_hours'] = self._get_tot_hours(objects)
-        super(timesheet_report, self).set_context(objects, data, ids,
+        super(TimesheetReport, self).set_context(objects, data, ids,
                                                   report_type)
 
     def _get_tot_hours(self, ts_lines):
@@ -71,8 +71,8 @@ class TimesheetReport(report_sxw.rml_parse):
 report_sxw.report_sxw('report.hr.analytic.timesheet.report',
                       'hr.analytic.timesheet',
                       'addons/hr_timesheet_print/report/timesheet_report.rml',
-                      parser=timesheet_report)
+                      parser=TimesheetReport)
 report_sxw.report_sxw('report.analytic.line.timesheet.report',
                       'account.analytic.line',
                       'addons/hr_timesheet_print/report/timesheet_report.rml',
-                      parser=timesheet_report)
+                      parser=TimesheetReport)

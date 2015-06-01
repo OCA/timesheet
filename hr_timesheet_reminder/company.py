@@ -132,5 +132,4 @@ class ResCompany(osv.osv):
         return start_date, end_date
 
 
-ResCompa
-y()
+ResCompany()

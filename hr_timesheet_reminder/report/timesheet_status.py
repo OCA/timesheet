@@ -40,7 +40,7 @@ class TimesheetStatus(report_sxw.rml_parse):
     _name = 'report.timesheet.reminder.status'
 
     def __init__(self, cr, uid, name, context):
-        super(timesheet_status, self).__init__(cr, uid, name, context)
+        super(TimesheetStatus, self).__init__(cr, uid, name, context)
         self.data = {}
         self.localcontext.update({
             'compute': self.compute,
@@ -54,7 +54,7 @@ class TimesheetStatus(report_sxw.rml_parse):
     def set_context(self, objects, data, ids, report_type=None):
         self.end_date = data['form']['date']
         self.compute(objects)
-        return super(timesheet_status, self).set_context(objects, data, ids,
+        return super(TimesheetStatus, self).set_context(objects, data, ids,
                                                          report_type)
 
     def compute(self, objects):
