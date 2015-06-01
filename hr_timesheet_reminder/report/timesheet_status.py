@@ -55,7 +55,7 @@ class TimesheetStatus(report_sxw.rml_parse):
         self.end_date = data['form']['date']
         self.compute(objects)
         return super(TimesheetStatus, self).set_context(objects, data, ids,
-                                                         report_type)
+                                                        report_type)
 
     def compute(self, objects):
         """compute all datas and do all the calculations before to start the

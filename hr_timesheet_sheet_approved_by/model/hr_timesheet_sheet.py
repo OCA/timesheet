@@ -39,4 +39,4 @@ class HrTimesheetSheet(Model):
                 vals['done_uid'] = False
 
         return super(HrTimesheetSheet, self).write(cr, uid, ids, vals,
-                                                     context=context)
+                                                   context=context)

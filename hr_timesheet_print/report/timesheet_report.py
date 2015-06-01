@@ -36,7 +36,7 @@ class TimesheetReport(report_sxw.rml_parse):
         self.localcontext['ts_lines'] = objects
         self.localcontext['tot_hours'] = self._get_tot_hours(objects)
         super(TimesheetReport, self).set_context(objects, data, ids,
-                                                  report_type)
+                                                 report_type)
 
     def _get_tot_hours(self, ts_lines):
         tot = 0.0

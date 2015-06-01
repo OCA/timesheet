@@ -61,7 +61,7 @@ class ReminderConfig(osv.osv_memory):
 
     def default_get(self, cr, uid, fields, context=None):
         res = super(ReminderConfig, self).default_get(cr, uid, fields,
-                                                       context=context)
+                                                      context=context)
         data = self.pool.get('hr.timesheet.reminder'). \
             get_config(cr, uid, context)
         res.update(data)
