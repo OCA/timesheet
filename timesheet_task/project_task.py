@@ -32,10 +32,10 @@ from osv import osv, fields
 TASK_WATCHERS = ['work_ids', 'remaining_hours', 'planned_hours']
 AA_WATCHERS = ['unit_amount', 'product_uom_id', 'account_id', 'to_invoice', 'task_id']
 
+
 class ProjectTask(osv.osv):
     _inherit = "project.task"
     _name = "project.task"
-
 
     def _progress_rate(self, cr, uid, ids, names, arg, context=None):
         """TODO improve code taken for OpenERP"""
@@ -44,7 +44,7 @@ class ProjectTask(osv.osv):
                         FROM account_analytic_line 
                       WHERE task_id IN %s 
                       GROUP BY task_id""", (tuple(ids),))
-                      
+
         hours = dict(cr.fetchall())
         for task in self.browse(cr, uid, ids, context=context):
             res[task.id] = {}
@@ -53,41 +53,42 @@ class ProjectTask(osv.osv):
             res[task.id]['delay_hours'] = res[task.id]['total_hours'] - task.planned_hours
             res[task.id]['progress'] = 0.0
             if (task.remaining_hours + hours.get(task.id, 0.0)):
-                res[task.id]['progress'] = round(min(100.0 * hours.get(task.id, 0.0) / res[task.id]['total_hours'], 99.99),2)
-            if task.state in ('done','cancelled'):
+                res[task.id]['progress'] = round(min(100.0 * hours.get(task.id, 0.0) / res[task.id]['total_hours'], 99.99), 2)
+            if task.state in ('done', 'cancelled'):
                 res[task.id]['progress'] = 100.0
         return res
-
 
     def _get_analytic_line(self, cr, uid, ids, context=None):
         result = []
         for aal in self.pool.get('account.analytic.line').browse(cr, uid, ids, context=context):
-            if aal.task_id: result.append(aal.task_id.id)
+            if aal.task_id:
+                result.append(aal.task_id.id)
         return result
 
+    _columns = {
+        'work_ids': fields.one2many('hr.analytic.timesheet', 'task_id', 'Work done'),
 
-    _columns = {'work_ids': fields.one2many('hr.analytic.timesheet', 'task_id', 'Work done'),
+        'effective_hours': fields.function(_progress_rate, multi="progress", method=True, string='Time Spent',
+                                           help="Sum of spent hours of all tasks related to this project and its child projects.",
+                                           store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
+                                                  'account.analytic.line': (_get_analytic_line, AA_WATCHERS, 20)}),
 
-    'effective_hours': fields.function(_progress_rate, multi="progress", method=True, string='Time Spent',
-                                       help="Sum of spent hours of all tasks related to this project and its child projects.",
-                                       store = {'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
-                                                'account.analytic.line': (_get_analytic_line, AA_WATCHERS, 20)}),
+        'delay_hours': fields.function(_progress_rate, multi="progress", method=True, string='Deduced Hours',
+                                       help="Sum of spent hours with invoice factor of all tasks related to this project and its child projects.",
+                                       store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
+                                              'account.analytic.line': (_get_analytic_line, AA_WATCHERS, 20)}),
 
-    'delay_hours': fields.function(_progress_rate, multi="progress", method=True, string='Deduced Hours',
-                                    help="Sum of spent hours with invoice factor of all tasks related to this project and its child projects.",
-                                    store = {'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
-                                             'account.analytic.line': (_get_analytic_line, AA_WATCHERS, 20)}),
+        'total_hours': fields.function(_progress_rate, multi="progress", method=True, string='Total Time',
+                                       help="Sum of total hours of all tasks related to this project and its child projects.",
+                                       store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
+                                              'account.analytic.line': (_get_analytic_line, AA_WATCHERS, 20)}),
 
-    'total_hours': fields.function(_progress_rate, multi="progress", method=True, string='Total Time',
-                                   help="Sum of total hours of all tasks related to this project and its child projects.",
-                                   store = {'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
-                                            'account.analytic.line': (_get_analytic_line, AA_WATCHERS, 20)}),
+        'progress': fields.function(_progress_rate, multi="progress", method=True, string='Progress', type='float', group_operator="avg",
+                                    help="Percent of tasks closed according to the total of tasks todo.",
+                                    store={'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
+                                           'account.analytic.line': (_get_analytic_line, AA_WATCHERS, 20)})
+    }
 
-    'progress': fields.function(_progress_rate, multi="progress", method=True, string='Progress', type='float', group_operator="avg",
-                                     help="Percent of tasks closed according to the total of tasks todo.",
-                                     store = {'project.task': (lambda self, cr, uid, ids, c={}: ids, TASK_WATCHERS, 20),
-                                              'account.analytic.line': (_get_analytic_line, AA_WATCHERS, 20)})}
-    
     def write(self, cr, uid, ids, vals, context=None):
         res = super(ProjectTask, self).write(cr, uid, ids, vals, context=context)
         if 'project_id' in vals:
@@ -99,7 +100,9 @@ class ProjectTask(osv.osv):
                 ts_obj.write(cr, uid, [w.id for w in task.work_ids], {'account_id': account_id}, context=context)
         return res
 
+
 ProjectTask()
+
 
 class HrAnalyticTimesheet(osv.osv):
     _inherit = "hr.analytic.timesheet"
@@ -125,24 +128,23 @@ class HrAnalyticTimesheet(osv.osv):
                     res['value']['to_invoice'] = p.to_invoice.id
         return res
 
+
 HrAnalyticTimesheet()
+
 
 class AccountAnalyticLine(osv.osv):
     """We add task_id on AA and manage update of linked task indicators"""
     _inherit = "account.analytic.line"
     _name = "account.analytic.line"
 
-
-
     _columns = {'task_id': fields.many2one('project.task', 'Task')}
-
 
     def _compute_hours_with_factor(self, cr, uid, hours, factor_id, context=None):
         if not hours or not factor_id:
             return 0.0
         fact_obj = self.pool.get('hr_timesheet_invoice.factor')
         factor = 100.0 - float(fact_obj.browse(cr, uid, factor_id).factor)
-        return (float(hours)/100.00)*factor
+        return (float(hours) / 100.00) * factor
 
     def _set_remaining_hours_create(self, cr, uid, vals, context=None):
         if not vals.get('task_id'):
@@ -161,15 +163,15 @@ class AccountAnalyticLine(osv.osv):
         for line in self.browse(cr, uid, ids):
             # in OpenERP if we set a value to nil vals become False
             old_task_id = line.task_id and line.task_id.id or None
-            new_task_id = vals.get('task_id', old_task_id) #if no task_id in vals we assume it is equal to old
+            new_task_id = vals.get('task_id', old_task_id)  # if no task_id in vals we assume it is equal to old
 
-            #we look if value has changed
+            # we look if value has changed
             if (new_task_id != old_task_id) and old_task_id:
                 self._set_remaining_hours_unlink(cr, uid, [line.id], context)
                 if new_task_id:
                     data = {'task_id': new_task_id,
                             'to_invoice': vals.get('to_invoice',
-                                               line.to_invoice and line.to_invoice.id or False),
+                                                   line.to_invoice and line.to_invoice.id or False),
                             'unit_amount': vals.get('unit_amount', line.unit_amount)}
                     self._set_remaining_hours_create(cr, uid, data, context)
                 return ids
@@ -182,9 +184,8 @@ class AccountAnalyticLine(osv.osv):
                                                                  old_factor, context)
                 # we always execute request because invoice factor can be set to gratis
                 cr.execute('update project_task set remaining_hours=remaining_hours - %s + (%s) where id=%s',
-                               (comp_hours, old_comp_hours, new_task_id))
+                           (comp_hours, old_comp_hours, new_task_id))
         return ids
-
 
     def _set_remaining_hours_unlink(self, cr, uid, ids, context=None):
         if isinstance(ids, (int, long)):
@@ -200,19 +201,18 @@ class AccountAnalyticLine(osv.osv):
                            (comp_hours, line.task_id.id))
         return ids
 
-
-
     def create(self, cr, uid, vals, context=None):
         if vals.get('task_id'):
             self._set_remaining_hours_create(cr, uid, vals, context)
-        return super(AccountAnalyticLine,self).create(cr, uid, vals, context=context)
+        return super(AccountAnalyticLine, self).create(cr, uid, vals, context=context)
 
     def write(self, cr, uid, ids, vals, context=None):
-        self. _set_remaining_hours_write(cr, uid, ids, vals, context=context)
+        self._set_remaining_hours_write(cr, uid, ids, vals, context=context)
         return super(AccountAnalyticLine, self).write(cr, uid, ids, vals, context=context)
 
     def unlink(self, cr, uid, ids, context=None):
         self._set_remaining_hours_unlink(cr, uid, ids, context)
         return super(AccountAnalyticLine, self).unlink(cr, uid, ids, context=context)
+
 
 AccountAnalyticLine()

@@ -30,7 +30,7 @@
 from osv import osv, fields
 
 
-class hr_holidays_status(osv.osv):
+class HrHolidaysStatus(osv.osv):
     """Add analytic account to holiday status"""
 
     _inherit = 'hr.holidays.status'
@@ -40,4 +40,4 @@ class hr_holidays_status(osv.osv):
                                                "Analytic Account"),
     }
 
-hr_holidays_status()
+HrHolidaysStatus()

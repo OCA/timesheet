@@ -30,7 +30,7 @@
 from osv import osv
 
 
-class hr_timesheet_invoice_create(osv.osv_memory):
+class HrTimesheetInvoiceCreate(osv.osv_memory):
     _inherit = 'hr.timesheet.invoice.create'
 
     def do_create(self, cr, uid, ids, context=None):
@@ -43,4 +43,4 @@ class hr_timesheet_invoice_create(osv.osv_memory):
             context['active_ids'] = aal_ids
         return super(hr_timesheet_invoice_create, self).do_create(cr, uid, ids, context)
 
-hr_timesheet_invoice_create()
+HrTimesheetInvoiceCreate()

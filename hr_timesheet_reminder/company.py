@@ -37,7 +37,7 @@ from osv import fields, osv
 from tools.translate import _
 
 
-class res_company(osv.osv):
+class ResCompany(osv.osv):
     _inherit = 'res.company'
 
     def get_reminder_recipients(self, cr, uid, ids, context=None):
@@ -48,15 +48,15 @@ class res_company(osv.osv):
 
         for company in self.browse(cr, uid, ids, context=context):
             employee_ids = employee_obj.search(
-                    cr, uid,
-                    [('company_id', '=', company.id),
-                     ('active', '=', True)],
-                    context=context)
+                cr, uid,
+                [('company_id', '=', company.id),
+                 ('active', '=', True)],
+                context=context)
             employees = employee_obj.browse(cr, uid, employee_ids, context=context)
 
-            #periods
+            # periods
             periods = self.compute_timesheet_periods(cr, uid, company, datetime.now(), context=context)
-            #remove the first one because it's the current one
+            # remove the first one because it's the current one
             del periods[0]
 
             # for each employee
@@ -79,7 +79,7 @@ class res_company(osv.osv):
         periods = []
         last_start_date, last_end_date = self.get_last_period_dates(cr, uid, company, date, context=context)
         for cpt in range(periods_number):
-            #find the delta between last_XXX_date to XXX_date
+            # find the delta between last_XXX_date to XXX_date
             if company.timesheet_range == 'month':
                 delta = relativedelta(months=-cpt)
             elif company.timesheet_range == 'week':
@@ -101,9 +101,9 @@ class res_company(osv.osv):
         # return the first day and last day of the month
         if company.timesheet_range == 'month':
             start_date = date
-            end_date = start_date + relativedelta(months = +1)
+            end_date = start_date + relativedelta(months=+1)
 
-        #return the first and last days of the week
+        # return the first and last days of the week
         elif company.timesheet_range == 'week':
             # get monday of current week
             start_date = date + relativedelta(weekday=MO(-1))
@@ -115,8 +115,7 @@ class res_company(osv.osv):
             start_date = datetime(date.year, 1, 1) 
             end_date = datetime(date.year, 12, 31)
 
-
         return start_date, end_date
 
 
-res_company()
+ResCompany()

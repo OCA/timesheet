@@ -63,9 +63,9 @@ class HolidaysImport(osv.osv_memory):
             (date_from >= %s and date_from <= %s and date_to >= %s and date_to <= %s) or\
             (date_from <= %s and date_to >= %s)) and user_id = %s and state = 'validate'\
         )", (date_from, date_from, date_to,
-            date_from, date_to, date_to,
-            date_from, date_to, date_from, date_to,
-            date_from, date_to, uid))
+             date_from, date_to, date_to,
+             date_from, date_to, date_from, date_to,
+             date_from, date_to, uid))
         holidays = cr.fetchall()
         if not holidays:
             raise osv.except_osv(_('Information'), _('No holidays for the current timesheet.'))
@@ -74,19 +74,19 @@ class HolidaysImport(osv.osv_memory):
             valid = True
             h_id = holiday[0]
             h_date_from = holiday[1] < timesheet.date_from \
-                          and date_from or holiday[1]
+                and date_from or holiday[1]
             h_date_to = holiday[2] > timesheet.date_to \
-                        and date_to or holiday[2]
+                and date_to or holiday[2]
             h_name = holiday[3]
 
             nb_days = get_number_days_between_dates(h_date_from, h_date_to)
             for day in range(nb_days):
                 str_datetime_current = (datetime.strptime(h_date_from, '%Y-%m-%d %H:%M:%S')
-                                    + timedelta(days=day)).strftime('%Y-%m-%d')
+                                        + timedelta(days=day)).strftime('%Y-%m-%d')
                 line_ids = line_obj.search(cr, uid,
-                                [('date', '=', str_datetime_current),
-                                 ('name', '=', h_name),
-                                 ('user_id', '=', uid)], context=context)
+                                           [('date', '=', str_datetime_current),
+                                            ('name', '=', h_name),
+                                            ('user_id', '=', uid)], context=context)
                 if line_ids:
                     valid = False
             if not valid:
@@ -115,7 +115,7 @@ class HolidaysImport(osv.osv_memory):
         timesheet = timesheet_obj.browse(cr, uid, timesheet_id, context=context)
 
         employee_id = employee_obj.search(cr, uid,
-            [('user_id', '=', uid)], context=context)[0]
+                                          [('user_id', '=', uid)], context=context)[0]
 
         if timesheet.state != 'draft':
             raise osv.except_osv(_('UserError'), _('You can not modify a confirmed timesheet, please ask the manager !'))
@@ -145,7 +145,7 @@ class HolidaysImport(osv.osv_memory):
             nb_days = get_number_days_between_dates(holiday.date_from, holiday.date_to)
             for day in range(nb_days):
                 dt_current = (datetime.strptime(holiday.date_from, '%Y-%m-%d %H:%M:%S')
-                                    + timedelta(days=day))
+                              + timedelta(days=day))
                 str_dt_current = dt_current.strftime('%Y-%m-%d')
 
                 day_of_the_week = dt_current.isoweekday()
@@ -156,9 +156,9 @@ class HolidaysImport(osv.osv_memory):
 
                 # Create timesheet lines
                 existing_ts_ids = al_ts_obj.search(cr, uid,
-                                [('date', '=', str_dt_current),
-                                 ('name', '=', holiday.name),
-                                 ('user_id', '=', uid)])
+                                                   [('date', '=', str_dt_current),
+                                                    ('name', '=', holiday.name),
+                                                    ('user_id', '=', uid)])
                 if not existing_ts_ids:
                     unit_id = al_ts_obj._getEmployeeUnit(cr, uid, context)
                     product_id = al_ts_obj._getEmployeeProduct(cr, uid, context)
@@ -170,14 +170,14 @@ class HolidaysImport(osv.osv_memory):
                         'unit_amount': hours_per_day,
                         'product_uom_id': unit_id,
                         'product_id': product_id,
-                        'user_id':uid,
+                        'user_id': uid,
                         'account_id': anl_account.id,
                         'to_invoice': anl_account.to_invoice.id,
                         'sheet_id': timesheet.id,
-                        'journal_id':  journal_id,
+                        'journal_id': journal_id,
                     }
 
-                    on_change_values = al_ts_obj.\
+                    on_change_values = al_ts_obj. \
                         on_change_unit_amount(cr, uid, False, product_id,
                                               hours_per_day, employee.company_id.id,
                                               unit=unit_id, journal_id=journal_id,
@@ -197,7 +197,7 @@ class HolidaysImport(osv.osv_memory):
                     # get hours and minutes (tuple) from a float time
                     hours = divmod(hours_per_day * 60, 60)
 
-                    date_end = dt_current.replace(hour=hours[0],minute=hours[1])
+                    date_end = dt_current.replace(hour=hours[0], minute=hours[1])
                     str_date_end = date_end.strftime('%Y-%m-%d %H:%M:%S')
                     start = {
                         'name': str_dt_current,
@@ -214,11 +214,12 @@ class HolidaysImport(osv.osv_memory):
                     attendance_obj.create(cr, uid, start, context)
                     attendance_obj.create(cr, uid, end, context)
                 else:
-                    errors.append('%s: There already is an attendance.' % (str_dt_current),)
+                    errors.append('%s: There already is an attendance.' % (str_dt_current), )
         if errors:
             errors_str = "\n".join(errors)
             raise osv.except_osv(_('Errors'), errors_str)
 
         return {'type': 'ir.actions.act_window_close'}
+
 
 HolidaysImport()

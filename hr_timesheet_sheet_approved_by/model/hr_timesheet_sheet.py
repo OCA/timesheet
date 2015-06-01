@@ -22,13 +22,13 @@ from openerp.osv.orm import Model
 from openerp.osv import fields
 
 
-class hr_timesheet_sheet(Model):
+class HrTimesheetSheet(Model):
     _inherit = 'hr_timesheet_sheet.sheet'
 
     _columns = {
-            'done_uid': fields.many2one('res.users', string='Approved by',
-                                        readonly=True),
-            }
+        'done_uid': fields.many2one('res.users', string='Approved by',
+                                    readonly=True),
+    }
 
     def write(self, cr, uid, ids, vals, context=None):
 

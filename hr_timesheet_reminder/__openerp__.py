@@ -33,11 +33,11 @@
 
 
 {
-    "name" : "Timesheet Reminder",
-    "version" : "2.0",
-    "author" : "Camptocamp,Odoo Community Association (OCA)",
-    "category" : "",
-    "website" : "http://www.camptocamp.com",
+    "name": "Timesheet Reminder",
+    "version": "2.0",
+    "author": "Camptocamp,Odoo Community Association (OCA)",
+    "category": "",
+    "website": "http://www.camptocamp.com",
     "description": """
 Timesheet Reports Module:
     * Add a menu in Human Resources / Configuration / Timesheet Reminder. It allows to send automatic emails to those who did not complete their timesheet in the last 5 weeks.
@@ -46,9 +46,9 @@ Timesheet Reports Module:
 
 This module replaces the modules c2c_timesheet_reports in TinyERP 4 and OpenERP 5.
     """,
-    "depends" : ["hr_timesheet_sheet"],
-    "init_xml" : [],
-    "update_xml" : [
+    "depends": ["hr_timesheet_sheet"],
+    "init_xml": [],
+    "update_xml": [
         'security/ir.model.access.csv',
         'wizard/reminder_config_view.xml',
         'wizard/reminder_status_view.xml',

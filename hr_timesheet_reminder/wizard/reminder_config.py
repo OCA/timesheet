@@ -33,15 +33,15 @@
 from osv import osv, fields
 
 
-class reminder_config(osv.osv_memory):
+class ReminderConfig(osv.osv_memory):
     _name = 'hr.timesheet.reminder.config'
 
     _columns = {
         'reminder_active': fields.boolean('Reminder Active'),
-        'interval_type': fields.selection([('days','Day(s)'), ('weeks', 'Week(s)'), ('months', 'Month(s)')],
-                                           'Periodicity Unit',),
-        'interval_number': fields.integer('Periodicity Quantity',),
-        'nextcall': fields.datetime('Next Run',),
+        'interval_type': fields.selection([('days', 'Day(s)'), ('weeks', 'Week(s)'), ('months', 'Month(s)')],
+                                          'Periodicity Unit', ),
+        'interval_number': fields.integer('Periodicity Quantity', ),
+        'nextcall': fields.datetime('Next Run', ),
         'message': fields.text('Message', required=True),
         'subject': fields.char('Subject', size=200, required=True),
         'reply_to': fields.char('Reply To', size=100, required=True),
@@ -59,8 +59,8 @@ class reminder_config(osv.osv_memory):
 
     def default_get(self, cr, uid, fields, context=None):
         res = super(reminder_config, self).default_get(cr, uid, fields, context=context)
-        data = self.pool.get('hr.timesheet.reminder').\
-        get_config(cr, uid, context)
+        data = self.pool.get('hr.timesheet.reminder'). \
+            get_config(cr, uid, context)
         res.update(data)
         return res
 
@@ -76,7 +76,7 @@ class reminder_config(osv.osv_memory):
         # get the wizard datas
         wizard = self.browse(cr, uid, ids, context=context)[0]
 
-        #retrieve the default cron values
+        # retrieve the default cron values
         reminder_obj = self.pool.get('hr.timesheet.reminder')
 
         values = {}.fromkeys(wizard._columns.keys(), False)
@@ -86,4 +86,5 @@ class reminder_config(osv.osv_memory):
         reminder_obj.save_config(cr, uid, False, values, context=context)
         return {'type': 'ir.actions.act_window_close'}
 
-reminder_config()
+
+ReminderConfig()
