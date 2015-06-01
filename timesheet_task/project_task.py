@@ -69,9 +69,17 @@ class ProjectTask(orm.Model):
         # direct access to database. So when modify a line the
         # _store_set_values as it uses cursor directly to update tasks
         # project triggers on task are not called
+
         res = super(ProjectTask, self)._store_set_values(
             cr, uid, ids, fields, context=context)
-        for row in self.browse(cr, SUPERUSER_ID, ids, context=context):
+
+        if context is None:
+            context = {}
+        ctx = context.copy()
+        if 'recursion' in ctx:
+            return res
+        ctx['recursion'] = True
+        for row in self.browse(cr, SUPERUSER_ID, ids, context=ctx):
             if row.project_id:
                 project = row.project_id
                 project.write({'parent_id': project.parent_id.id})
