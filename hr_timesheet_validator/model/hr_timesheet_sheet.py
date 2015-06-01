@@ -28,7 +28,8 @@ class hr_timesheet_sheet(orm.Model):
     _inherit = "hr_timesheet_sheet.sheet"
 
     _columns = {
-        'validator_user_ids': fields.many2many('res.users', string='Validators',
+        'validator_user_ids': fields.many2many('res.users',
+                                               string='Validators',
                                                required=False),
     }
 
@@ -103,7 +104,8 @@ class hr_timesheet_sheet(orm.Model):
 
         for timesheet in self.browse(cr, uid, ids):
             if group_hr_manager_id:
-                    res_id = model_data_obj.read(cr, uid, [group_hr_manager_id],
+                    res_id = model_data_obj.read(cr, uid,
+                                                 [group_hr_manager_id],
                                                  ['res_id'])[0]['res_id']
                     group_hr_manager = res_groups_obj.browse(
                         cr, uid, res_id)
