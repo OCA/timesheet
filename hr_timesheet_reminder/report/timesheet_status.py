@@ -162,4 +162,4 @@ class TimesheetStatus(report_sxw.rml_parse):
 
 report_sxw.report_sxw('report.timesheet.reminder.status', 'res.company',
                       'hr_timesheet_reminder/report/timesheet_status.rml',
-                      parser=timesheet_status, header=False)
+                      parser=TimesheetStatus, header=False)

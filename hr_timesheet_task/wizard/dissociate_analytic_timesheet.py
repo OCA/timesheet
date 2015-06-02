@@ -28,7 +28,7 @@
 ##############################################################################
 
 
-from osv import osv
+from openerp.osv import osv
 
 
 class DissociateInvoice(osv.osv_memory):

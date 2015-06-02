@@ -1,10 +1,10 @@
+# -*- coding: utf-8 -*-
 def _progress_rate(self, cr, uid, ids, names, arg, context=None):
     """As OpenERP SA made a query for this function field (perf.
     reason obviously), I must overide it all."""
     result = {}.fromkeys(ids, 0.0)
-    progress = {}
     if not ids:
-        return res
+        return result
     cr.execute('''SELECT project_id,
                          sum(planned_hours) as sum_planned_hours,
                          sum(total_hours) as sum_total_hours,

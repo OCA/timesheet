@@ -31,7 +31,7 @@
 ##############################################################################
 
 
-from osv import fields, osv
+from openerp.osv import fields, osv
 from tools.translate import _
 from datetime import datetime, timedelta
 

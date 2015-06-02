@@ -30,7 +30,7 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import osv, fields
 
 
 class ReminderConfig(osv.osv_memory):

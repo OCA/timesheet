@@ -31,7 +31,7 @@
 
 import time
 
-from osv import osv, fields
+from openerp.osv import osv, fields
 
 
 class ReminderStatus(osv.osv_memory):

@@ -31,9 +31,9 @@
 ##############################################################################
 
 
-from datetime import date, datetime
-from dateutil.relativedelta import *
-from osv import fields, osv
+from datetime import datetime
+from dateutil import relativedelta
+from openerp.osv import osv
 from tools.translate import _
 
 

@@ -27,7 +27,7 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import osv, fields
 
 TASK_WATCHERS = ['work_ids', 'remaining_hours', 'planned_hours']
 AA_WATCHERS = ['unit_amount', 'product_uom_id', 'account_id', 'to_invoice',
@@ -56,7 +56,7 @@ class ProjectTask(osv.osv):
             res[task.id]['delay_hours'] = \
                 res[task.id]['total_hours'] - task.planned_hours
             res[task.id]['progress'] = 0.0
-            if (task.remaining_hours + hours.get(task.id, 0.0)):
+            if task.remaining_hours + hours.get(task.id, 0.0):
                 res[task.id]['progress'] = round(min(
                     100.0 * hours.get(task.id, 0.0) / res[task.id][
                         'total_hours'], 99.99), 2)

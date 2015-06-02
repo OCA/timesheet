@@ -28,7 +28,7 @@
 ##############################################################################
 
 
-from osv import osv
+from openerp.osv import osv
 
 
 class AssociateInvoice(osv.osv_memory):
