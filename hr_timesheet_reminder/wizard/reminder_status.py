@@ -64,6 +64,3 @@ class ReminderStatus(osv.osv_memory):
         return {'type': 'ir.actions.report.xml',
                 'report_name': 'timesheet.reminder.status',
                 'datas': data}
-
-
-ReminderStatus()

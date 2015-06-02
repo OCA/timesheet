@@ -39,5 +39,3 @@ class HrHolidaysStatus(osv.osv):
         'analytic_account_id': fields.many2one("account.analytic.account",
                                                "Analytic Account"),
     }
-
-HrHolidaysStatus()

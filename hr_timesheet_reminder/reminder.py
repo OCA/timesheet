@@ -176,6 +176,3 @@ class Reminder(osv.osv):
                     'subject': datas['subject'],
                     }, context=context)
         return True
-
-
-Reminder()

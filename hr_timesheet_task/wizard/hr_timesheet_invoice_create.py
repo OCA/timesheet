@@ -46,6 +46,3 @@ class HrTimesheetInvoiceCreate(osv.osv_memory):
             context['active_ids'] = aal_ids
         return super(HrTimesheetInvoiceCreate, self).do_create(cr, uid, ids,
                                                                context)
-
-
-HrTimesheetInvoiceCreate()

@@ -48,6 +48,3 @@ class AssociateInvoice(osv.osv_memory):
 
         return super(AssociateInvoice, self).associate_aal(cr, uid, ids,
                                                            context)
-
-
-AssociateInvoice()

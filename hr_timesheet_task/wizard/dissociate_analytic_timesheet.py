@@ -47,6 +47,3 @@ class DissociateInvoice(osv.osv_memory):
             context['active_ids'] = aal_ids
         return super(DissociateInvoice, self).dissociate_aal(cr, uid, ids,
                                                              context)
-
-
-DissociateInvoice()

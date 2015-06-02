@@ -254,6 +254,3 @@ class HolidaysImport(osv.osv_memory):
             raise osv.except_osv(_('Errors'), errors_str)
 
         return {'type': 'ir.actions.act_window_close'}
-
-
-HolidaysImport()

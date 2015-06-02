@@ -167,6 +167,3 @@ class FulfillTimesheet(osv.osv_memory):
                 attendance_obj.create(cr, uid, att_start, context)
                 attendance_obj.create(cr, uid, att_end, context)
         return {'type': 'ir.actions.act_window_close'}
-
-
-FulfillTimesheet()

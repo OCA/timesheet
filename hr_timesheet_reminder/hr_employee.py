@@ -78,6 +78,3 @@ class HrEmployee(osv.osv):
                 if s['state'] == 'draft':
                     status = 'Draft'
         return status
-
-
-HrEmployee()

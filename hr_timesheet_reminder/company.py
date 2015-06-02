@@ -130,6 +130,3 @@ class ResCompany(osv.osv):
             end_date = datetime(date.year, 12, 31)
 
         return start_date, end_date
-
-
-ResCompany()

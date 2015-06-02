@@ -143,9 +143,6 @@ class ProjectTask(osv.osv):
         return res
 
 
-ProjectTask()
-
-
 class HrAnalyticTimesheet(osv.osv):
     _inherit = "hr.analytic.timesheet"
     _name = "hr.analytic.timesheet"
@@ -165,9 +162,6 @@ class HrAnalyticTimesheet(osv.osv):
                 if p.to_invoice and not to_invoice:
                     res['value']['to_invoice'] = p.to_invoice.id
         return res
-
-
-HrAnalyticTimesheet()
 
 
 class AccountAnalyticLine(osv.osv):
@@ -274,6 +268,3 @@ class AccountAnalyticLine(osv.osv):
         return super(AccountAnalyticLine, self).unlink(cr, uid, ids,
 
                                                        context=context)
-
-
-AccountAnalyticLine()

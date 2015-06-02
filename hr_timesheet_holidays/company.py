@@ -43,6 +43,3 @@ class ResCompany(osv.osv):
     _defaults = {
         'timesheet_hours_per_day': 8.0
     }
-
-
-ResCompany()

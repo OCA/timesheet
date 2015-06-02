@@ -88,6 +88,3 @@ class ReminderConfig(osv.osv_memory):
 
         reminder_obj.save_config(cr, uid, False, values, context=context)
         return {'type': 'ir.actions.act_window_close'}
-
-
-ReminderConfig()
