@@ -27,7 +27,8 @@ from datetime import datetime, timedelta
 import math
 from openerp.tools import float_compare
 import pytz
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from openerp.tools import (DEFAULT_SERVER_DATE_FORMAT,
+                           DEFAULT_SERVER_DATETIME_FORMAT)
 
 
 class ResCompany(orm.Model):
@@ -191,10 +192,24 @@ class HrAttendance(orm.Model):
             ('trial_date_end', '>=', date),
         ], context=context)
         if len(active_contract_ids) > 1:
+            lang_pool = self.pool['res.lang']
+            lang_id = lang_pool.search(
+                cr, uid, [('code', '=', context.get('lang'))],
+                context=context
+            )
+            lang_data = lang_pool.read(
+                cr, uid, lang_id, ['date_format'], context=context
+            )
+            if lang_data:
+                date_format = lang_data[0]['date_format']
+            else:
+                date_format = DEFAULT_SERVER_DATE_FORMAT
             employee = self.pool.get('hr.employee').browse(
                 cr, uid, employee_id, context=context)
             msg = _('Too many active contracts for employee %s at date %s')
-            raise orm.except_orm(_('Error'), msg % (employee.name, date))
+            raise orm.except_orm(
+                _('Error'), msg % (employee.name,
+                                   datetime.strftime(date, date_format)))
         elif active_contract_ids:
             contract = contract_pool.browse(
                 cr, uid, active_contract_ids[0], context=context)
