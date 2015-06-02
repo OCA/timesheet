@@ -32,7 +32,7 @@
 
 
 from datetime import datetime
-from dateutil import relativedelta
+from dateutil.relativedelta import relativedelta, weekday
 from openerp.osv import osv
 from tools.translate import _
 
@@ -120,9 +120,9 @@ class ResCompany(osv.osv):
         # return the first and last days of the week
         elif company.timesheet_range == 'week':
             # get monday of current week
-            start_date = date + relativedelta(weekday=MO(-1))
+            start_date = date + relativedelta(weekday=weekday.MO(-1))
             # get sunday of current week
-            end_date = date + relativedelta(weekday=SU(+1))
+            end_date = date + relativedelta(weekday=weekday.SU(+1))
 
         # return the first and last days of the year
         else:
