@@ -3,7 +3,6 @@ addons:
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
-      - pytz # because pip installation is really slow
 
 language: python
 
