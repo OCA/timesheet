@@ -29,19 +29,17 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 ##############################################################################
-from datetime import *
-
-from osv import fields, osv
+from openerp.osv import fields, osv
 
 
-class hr_employee(osv.osv):
+class HrEmployee(osv.osv):
     _inherit = 'hr.employee'
     _columns = {
-            'receive_timesheet_alerts': fields.boolean('Receive Timesheet Alerts'),
+        'receive_timesheet_alerts': fields.boolean('Receive Timesheet Alerts'),
     }
 
     _defaults = {
-            'receive_timesheet_alerts': lambda *a: True,
+        'receive_timesheet_alerts': lambda *a: True,
     }
 
     def compute_timesheet_status(self, cr, uid, ids, period, context):
@@ -56,7 +54,7 @@ class hr_employee(osv.osv):
 
         time_from = period[0]
         time_to = period[1]
-        
+
         # does the timesheet exsists in db and what is its status?
         timeformat = "%Y-%m-%d"
         str_date_from = time_from.strftime(timeformat)
@@ -67,10 +65,10 @@ class hr_employee(osv.osv):
                    WHERE employee_id = %s
                    AND date_from >= %s
                    AND date_to <= %s""",
-            (employee.id, str_date_from, str_date_to))
+                   (employee.id, str_date_from, str_date_to))
         sheets = cr.dictfetchall()
 
-        #the timesheet does not exists in db
+        # the timesheet does not exists in db
         if not sheets:
             status = 'Missing'
 
@@ -80,5 +78,3 @@ class hr_employee(osv.osv):
                 if s['state'] == 'draft':
                     status = 'Draft'
         return status
-
-hr_employee()

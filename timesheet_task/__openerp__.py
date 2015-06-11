@@ -18,13 +18,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name' : 'Analytic Task',
- 'version' : '0.1',
- 'author' : "Camptocamp,Odoo Community Association (OCA)",
+{'name': 'Analytic Task',
+ 'version': '0.1',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'category': 'Human Resources',
- 'complexity': "normal", #easy, normal, expert
- 'depends' : ['hr_timesheet', 'project', 'hr_timesheet_invoice'],
+ 'complexity': "normal",  # easy, normal, expert
+ 'depends': ['hr_timesheet', 'project', 'hr_timesheet_invoice'],
  'description': """Replace project.task.work items linked to task
                    with hr.analytic.timesheet""",
  'website': 'http://www.camptocamp.com',
@@ -33,9 +33,8 @@
  'demo_xml': [],
  'tests': [],
  'installable': True,
- 'images' : [],
+ 'images': [],
  'auto_install': False,
  'license': 'AGPL-3',
- 'application': True}
- #'icon': '/MODULE_NAME/static/src/images/XXX.png',
- 
+ 'application': True
+ }

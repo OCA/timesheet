@@ -20,23 +20,23 @@
 ##############################################################################
 
 {
-    "name" : "Project Timesheet printing",
-    "description" : """
-This module adds a report on timesheet lines (hr.analytic.timesheet) to print out the
-detailed of hours passed.
+    "name": "Project Timesheet printing",
+    "description": """
+This module adds a report on timesheet lines (hr.analytic.timesheet) to print
+out the detailed of hours passed.
 
  """,
-    "version" : "1.3",
-    "author" : "Camptocamp,Odoo Community Association (OCA)",
-    "category" : "Generic Modules/Projects & Services",
+    "version": "1.3",
+    "author": "Camptocamp,Odoo Community Association (OCA)",
+    "category": "Generic Modules/Projects & Services",
     "website": "http://www.camptocamp.com",
     "license": 'AGPL-3',
-    "depends" : [
+    "depends": [
         "analytic",
         "hr_timesheet_invoice",
         ],
-    "init_xml" : [],
-    "update_xml" : [
+    "init_xml": [],
+    "update_xml": [
         "report.xml",
     ],
     "active": False,

@@ -32,26 +32,27 @@
 
 
 {
-	"name" : "Timesheet fullfill wizard",
-	"version" : "1.0",
-	"author" : "Camptocamp,Odoo Community Association (OCA)",
-	"category" : "Generic Modules/Human Resources",
-	"description":
-"""
-Add a wizard into timesheet allowing people to complete a long period of time with the given values.
+    "name": "Timesheet fullfill wizard",
+    "version": "1.0",
+    "author": "Camptocamp,Odoo Community Association (OCA)",
+    "category": "Generic Modules/Human Resources",
+    "description":
+        """
+Add a wizard into timesheet allowing people to complete a long period of time
+ with the given values.
 This is mainly useful to handle a long period of time like holidays.
 Known limitation:
   - Will complete all day between dates
 """,
-	"website": "http://camptocamp.com",
-	"depends" : [
-                "hr_timesheet_sheet",
-                ],
-	"init_xml" : [],
-	"demo_xml" : [],
-	"update_xml" : [
-		            'wizard/timesheet_fulfill_view.xml',
-	],
-	"active": False,
-	"installable": True
+    "website": "http://camptocamp.com",
+    "depends": [
+        "hr_timesheet_sheet",
+    ],
+    "init_xml": [],
+    "demo_xml": [],
+    "update_xml": [
+        'wizard/timesheet_fulfill_view.xml',
+    ],
+    "active": False,
+    "installable": True
 }

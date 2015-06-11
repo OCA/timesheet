@@ -31,7 +31,7 @@
 ##############################################################################
 
 
-from osv import fields, osv
+from openerp.osv import fields, osv
 from tools.translate import _
 from datetime import datetime, timedelta
 
@@ -52,13 +52,16 @@ class FulfillTimesheet(osv.osv_memory):
         'date_from': fields.date('Date From', required=True),
         'date_to': fields.date('Date To', required=True),
         'description': fields.char('Description', size=100, required=True),
-        'nb_hours': fields.float('Hours per day', digits=(2, 2), required=True),
+        'nb_hours': fields.float('Hours per day', digits=(2, 2),
+                                 required=True),
         'analytic_account_id': fields.many2one('account.analytic.account',
-                               'Analytic Account', required=True,
-                               domain="[('type', '=', 'normal'),"
-                                      "('state', '!=', 'pending'),"
-                                      "('state', '!=', 'close')]"),
-        'task_id':fields.many2one('project.task','Task', required=False)
+                                               'Analytic Account',
+                                               required=True,
+                                               domain=
+                                               "[('type', '=', 'normal'),"
+                                               "('state', '!=', 'pending'),"
+                                               "('state', '!=', 'close')]"),
+        'task_id': fields.many2one('project.task', 'Task', required=False)
     }
 
     def fulfill_timesheet(self, cr, uid, ids, context):
@@ -72,31 +75,40 @@ class FulfillTimesheet(osv.osv_memory):
 
         # Get the current timesheet
         timesheet_id = context['active_id']
-        timesheet = timesheet_obj.browse(cr, uid, timesheet_id, context=context)
+        timesheet = timesheet_obj.browse(cr, uid, timesheet_id,
+                                         context=context)
 
         # Get the employee
         employee_id = employee_obj.search(cr, uid,
-                [('user_id', '=', uid)], context=context)[0]
+                                          [('user_id', '=', uid)],
+                                          context=context)[0]
         employee = employee_obj.browse(cr, uid, employee_id, context=context)
 
-        if not(0.0 <= wizard.nb_hours <= 24.0):
+        if not (0.0 <= wizard.nb_hours <= 24.0):
             raise osv.except_osv(_('Only 24 hours a day max'),
-                                 _('Please, set another value for nb hours a day.'))
+                                 _(
+                                     'Please, set another value for nb hours'
+                                     ' a day.'))
 
         # compute hours in hours and minutes (tuple)
         hh_mm = divmod(wizard.nb_hours * 60, 60)
 
         if timesheet.state != 'draft':
             raise osv.except_osv(_('UserError'),
-                                 _('You can not modify a confirmed timesheet, please ask the manager !'))
+                                 _(
+                                 'You can not modify a confirmed timesheet,'
+                                 ' please ask the manager !'))
 
         # Verify the date must be in timesheet dates
         if timesheet.date_from > wizard.date_from:
-            raise osv.except_osv(_('UserError'), _('Your date_from must be in timesheet dates !'))
+            raise osv.except_osv(_('UserError'), _(
+                'Your date_from must be in timesheet dates !'))
         if timesheet.date_to < wizard.date_to:
-            raise osv.except_osv(_('UserError'), _('Your date_to must be in timesheet dates !'))
+            raise osv.except_osv(_('UserError'), _(
+                'Your date_to must be in timesheet dates !'))
 
-        for day in range(get_number_days_between_dates(wizard.date_from, wizard.date_to)):
+        for day in range(get_number_days_between_dates(wizard.date_from,
+                                                       wizard.date_to)):
             datetime_current = (datetime.strptime(wizard.date_from, '%Y-%m-%d')
                                 + timedelta(days=day)).strftime('%Y-%m-%d')
 
@@ -109,7 +121,7 @@ class FulfillTimesheet(osv.osv_memory):
                 'date': datetime_current,
                 'unit_amount': wizard.nb_hours,
                 'product_uom_id': unit_id,
-                'user_id':uid,
+                'user_id': uid,
                 'product_id': product_id,
                 'account_id': wizard.analytic_account_id.id,
                 'to_invoice': wizard.analytic_account_id.to_invoice.id,
@@ -118,7 +130,7 @@ class FulfillTimesheet(osv.osv_memory):
                 'journal_id': journal_id,
             }
 
-            on_change_values = al_ts_obj.\
+            on_change_values = al_ts_obj. \
                 on_change_unit_amount(cr, uid, False, product_id,
                                       wizard.nb_hours, employee.company_id.id,
                                       task_id=wizard.task_id.id,
@@ -130,7 +142,7 @@ class FulfillTimesheet(osv.osv_memory):
 
             # If there is no other attendances, create it
             # create the attendances:
-            existing_attendances = attendance_obj\
+            existing_attendances = attendance_obj \
                 .search(cr, uid, [('name', '=', datetime_current),
                                   ('employee_id', '=', employee_id)])
 
@@ -155,5 +167,3 @@ class FulfillTimesheet(osv.osv_memory):
                 attendance_obj.create(cr, uid, att_start, context)
                 attendance_obj.create(cr, uid, att_end, context)
         return {'type': 'ir.actions.act_window_close'}
-
-FulfillTimesheet()

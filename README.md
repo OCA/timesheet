@@ -11,5 +11,3 @@ This project aim to deal with modules related to manage timesheet in a generic w
  - Send reminder to employees
  - Integrate timesheet with project
  - ...
-
-

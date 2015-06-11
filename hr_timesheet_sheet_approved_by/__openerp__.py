@@ -19,16 +19,16 @@
 #
 ##############################################################################
 {
-    "name" : "See how approved a timesheet",
-    "version" : "1.0",
-    "depends" : [
+    "name": "See how approved a timesheet",
+    "version": "1.0",
+    "depends": [
         'hr_timesheet_sheet',
         ],
-    "author" : "Therp BV,Odoo Community Association (OCA)",
+    "author": "Therp BV,Odoo Community Association (OCA)",
     "complexity": "normal",
     "description": """This addons saves the user who approved a timesheet.""",
-    "category" : "Human Resources",
-    "data" : [
+    "category": "Human Resources",
+    "data": [
         'view/hr_timesheet_sheet.xml',
     ],
     "js": [
@@ -37,7 +37,7 @@
     ],
     "auto_install": False,
     "installable": True,
-    "external_dependencies" : {
-        'python' : [],
+    "external_dependencies": {
+        'python': [],
     },
 }

@@ -28,4 +28,4 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 ##############################################################################
-import timesheet_status
+from . import timesheet_status

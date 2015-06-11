@@ -26,34 +26,37 @@
 ##############################################################################
 
 {
-	"name" : "Import holidays in timesheets",
-	"version" : "1.0",
-	"author" : "Camptocamp,Odoo Community Association (OCA)",
-	"category" : "Generic Modules/Human Resources",
-	"description":
-"""
-Wizard to import holidays in the current timesheet.
-This module adds a relation between the Leave Types and the Analytic Accounts.
-The Timesheet lines are created on the Analytic Account defined on the Leave Type.
+    "name": "Import holidays in timesheets",
+    "version": "1.0",
+    "author": "Camptocamp,Odoo Community Association (OCA)",
+    "category": "Generic Modules/Human Resources",
+    "description":
+        """
+        Wizard to import holidays in the current timesheet.
+        This module adds a relation between the Leave Types and the Analytic
+        Accounts.
+        The Timesheet lines are created on the Analytic Account defined on the
+        Leave Type.
 
-The hours to input per day is configurable at company level.
-    
-Limitations:
-  - Consider that the work days are Monday to Friday
-  - The wizard creates the attendances each day with Sign-ins at 00:00 and Sign-outs at (00:00 + configured timesheet hours per day).
+        The hours to input per day is configurable at company level.
 
-""",
-	"website": "http://www.camptocamp.com",
-	"depends" : ["hr",
-                 "account",
-                 "hr_holidays",
-                 "hr_timesheet_sheet"],
-	"init_xml" : [],
-	"update_xml" : [
-		'hr_holidays_view.xml',
+        Limitations:
+          - Consider that the work days are Monday to Friday
+          - The wizard creates the attendances each day with Sign-ins at 00:00
+          and Sign-outs at (00:00 + configured timesheet hours per day).
+
+        """,
+    "website": "http://www.camptocamp.com",
+    "depends": ["hr",
+                "account",
+                "hr_holidays",
+                "hr_timesheet_sheet"],
+    "init_xml": [],
+    "update_xml": [
+        'hr_holidays_view.xml',
         'wizard/holidays_import_view.xml',
         'company_view.xml',
-	],
-	"active": False,
-	"installable": True
+    ],
+    "active": False,
+    "installable": True
 }

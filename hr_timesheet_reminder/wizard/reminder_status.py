@@ -31,16 +31,17 @@
 
 import time
 
-from osv import osv, fields
+from openerp.osv import osv, fields
 
 
-class reminder_status(osv.osv_memory):
+class ReminderStatus(osv.osv_memory):
     _name = 'hr.timesheet.reminder.status'
 
     _columns = {
-        'company_ids': fields.many2many('res.company', 'reminder_company_rel', 'wid', 'rid', 'Company'),
+        'company_ids': fields.many2many('res.company', 'reminder_company_rel',
+                                        'wid', 'rid', 'Company'),
         'date': fields.date('End Date', required=True),
-        }
+    }
 
     _defaults = {
         'date': lambda *a: time.strftime('%Y-%m-%d'),
@@ -50,11 +51,11 @@ class reminder_status(osv.osv_memory):
         if context is None:
             context = {}
 
-        form_values = self.read(cr, uid, ids, ['company_ids',  'date'])[0]
+        form_values = self.read(cr, uid, ids, ['company_ids', 'date'])[0]
 
         if not form_values['company_ids']:
-            form_values['company_ids'] = self.pool.get('res.company').\
-            search(cr, uid, [], context=context)
+            form_values['company_ids'] = self.pool.get('res.company'). \
+                search(cr, uid, [], context=context)
         data = {'ids': form_values['company_ids'],
                 'model': 'res.company',
                 'form': {}}
@@ -63,5 +64,3 @@ class reminder_status(osv.osv_memory):
         return {'type': 'ir.actions.report.xml',
                 'report_name': 'timesheet.reminder.status',
                 'datas': data}
-
-reminder_status()

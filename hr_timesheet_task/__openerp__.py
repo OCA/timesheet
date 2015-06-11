@@ -18,22 +18,24 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name' : 'Task in time sheet',
- 'version' : '0.1',
- 'author' : "Camptocamp,Odoo Community Association (OCA)",
+{'name': 'Task in time sheet',
+ 'version': '0.1',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'category': 'Human Resources',
- 'complexity': "normal", #easy, normal, expert
- 'depends' : ['timesheet_task', 'hr_timesheet_sheet'],
+ 'complexity': "normal",  # easy, normal, expert
+ 'depends': ['timesheet_task', 'hr_timesheet_sheet'],
  'description': """Replace project.task.work items linked to task
                    with hr.analytic.timesheet""",
  'website': 'http://www.camptocamp.com',
  'init_xml': [],
- 'update_xml': ['hr_timesheet_sheet_view.xml', 'hr_analytic_timesheet_view.xml'],
+ 'update_xml': ['hr_timesheet_sheet_view.xml',
+                'hr_analytic_timesheet_view.xml'],
  'demo_xml': [],
  'tests': [],
  'installable': True,
- 'images' : [],
+ 'images': [],
  'auto_install': False,
  'license': 'AGPL-3',
- 'application': True}
+ 'application': True
+ }
