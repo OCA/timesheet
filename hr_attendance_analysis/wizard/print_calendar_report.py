@@ -83,8 +83,7 @@ class WizardCalendarReport(orm.TransientModel):
         holidays_obj = self.pool.get('hr.holidays')
         precision = self.pool.get('res.users').browse(
             cr, uid, uid, context=context).company_id.working_time_precision
-        active_tz = pytz.timezone(
-            context.get("tz", "UTC") if context else "UTC")
+        active_tz = pytz.timezone(context.get('tz') or 'UTC')
 
         days_by_employee = {}
 
@@ -96,8 +95,6 @@ class WizardCalendarReport(orm.TransientModel):
         employee_ids = form['employee_ids']
         delta = to_date - from_date
         max_number_of_attendances_per_day = 0
-        active_tz = pytz.timezone(
-            context.get("tz", "UTC") if context else "UTC")
 
         for employee_id in employee_ids:
             employee_id = str(employee_id)
