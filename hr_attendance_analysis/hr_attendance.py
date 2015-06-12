@@ -219,8 +219,7 @@ class HrAttendance(orm.Model):
         precision = self.pool['res.users'].browse(
             cr, uid, uid, context=context).company_id.working_time_precision
         # 2012.10.16 LF FIX : Get timezone from context
-        active_tz = pytz.timezone(
-            context.get("tz", "UTC") if context else "UTC")
+        active_tz = pytz.timezone(context.get('tz') or 'UTC')
         str_now = datetime.strftime(datetime.now(),
                                     DEFAULT_SERVER_DATETIME_FORMAT)
         for attendance_id in ids:
