@@ -41,7 +41,8 @@ class HrTimesheetSheet(orm.Model):
                 cr, uid, 'hr_timesheet_notifications', 'subtype_confirm')[1],
             ]
 
-        if sheet.employee_id.parent_id.user_id:
+        if (sheet.employee_id.parent_id and
+                sheet.employee_id.parent_id.user_id):
             sheet.message_subscribe_users(
                 subtype_ids=subtype_ids,
                 user_ids=[sheet.employee_id.parent_id.user_id.id])
