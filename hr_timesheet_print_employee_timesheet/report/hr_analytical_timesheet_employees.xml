@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="report_hr_analytical_timesheet_employees" model="ir.actions.report.xml">
+            <field name="name">hr.analytical.timesheet.employees</field>
+            <field name="model">hr.analytical.timesheet.employees</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hr_timesheet_print_employee_timesheet.qweb_hr_analytical_timesheet_employees</field>
+        </record>
+        <template id="qweb_hr_analytical_timesheet_employees">
+            <t t-call="report.html_container">
+                <t t-call="report.internal_layout">
+                    <div class="page">
+                        <t t-foreach="docs" t-as="doc">
+                            <h1>Timesheets per employee</h1>
+                            <section t-foreach="doc.employee_ids" t-as="employee">
+                                <h4 style="page-break-after: avoid"><t t-esc="employee.display_name" /></h4>
+                                <table t-foreach="doc.get_timesheets(employee)" t-as="timesheet" class="table table-striped table-bordered table-condensed" style="page-break-inside: avoid; page-break-before: auto">
+                                    <thead>
+                                        <tr>
+                                            <td><t t-esc="doc.format_date(timesheet.date_start, 'Y')" /></td>
+                                            <t t-foreach="timesheet" t-as="date">
+                                                <th t-attf-style="background: #{'darkgray' if date.weekday() not in [5, 6] else 'lightgray'}">
+                                                    <t t-esc="doc.format_date(date, 'E')" />
+                                                </th>
+                                            </t>
+                                            <td />
+                                        </tr>
+                                        <tr>
+                                            <td><t t-esc="doc.format_date(timesheet.date_start, 'LLLL')" /></td>
+                                            <t t-foreach="timesheet" t-as="date">
+                                                <th t-attf-style="background: #{'darkgray' if date.weekday() not in [5, 6] else 'lightgray'}">
+                                                    <t t-esc="doc.format_date(date, 'dd')" />
+                                                </th>
+                                            </t>
+                                            <td>Sum</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="timesheet.accounts" t-as="account">
+                                            <th><t t-esc="account.display_name if not doc.short_account_names else account.name" /></th>
+                                            <t t-foreach="timesheet" t-as="date">
+                                                <td t-attf-style="#{'' if date.weekday() not in [5, 6] else 'background: lightgray;'} text-align: right">
+                                                    <t t-esc="timesheet[date].get(account.id, '')" />
+                                                </td>
+                                            </t>
+                                            <td style="text-align: right"><t t-esc="sum([hours.get(account.id, 0) for hours in timesheet.itervalues()])" /></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Sum</th>
+                                            <t t-foreach="timesheet" t-as="date">
+                                                <t t-set="sum_hours" t-value="sum(timesheet[date].itervalues())" />
+                                                <td t-attf-style="#{'' if date.weekday() not in [5, 6] else 'background: lightgray;'} text-align: right; color: #{'green' if sum_hours >= 7.5 and sum_hours &lt;= 8.5 else 'red' if sum_hours > 0 and sum_hours &lt; 7.5 else 'purple' if sum_hours > 8.5 else 'inherit'}">
+                                                    <t t-esc="sum_hours or ''" />
+                                                </td>
+                                            </t>
+                                            <th style="text-align: right"><t t-esc="sum([sum(timesheet[date2].itervalues()) for date2 in timesheet])" /></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </section>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

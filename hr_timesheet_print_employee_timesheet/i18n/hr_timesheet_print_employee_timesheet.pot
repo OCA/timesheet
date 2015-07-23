@@ -1,0 +1,122 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_timesheet_print_employee_timesheet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-23 08:44+0000\n"
+"PO-Revision-Date: 2015-07-23 08:44+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: view:hr.analytical.timesheet.employees:hr_timesheet_print_employee_timesheet.form_hr_analytical_timesheet_employees
+msgid "Cancel"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: model:ir.actions.act_window,name:hr_timesheet_print_employee_timesheet.action_hr_analytical_timesheet_employees
+msgid "Employee timesheets"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,employee_ids:0
+msgid "Employees"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,date_end:0
+msgid "End date"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,id:0
+msgid "ID"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: view:hr.analytical.timesheet.employees:hr_timesheet_print_employee_timesheet.form_hr_analytical_timesheet_employees
+msgid "Print"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: model:ir.model,name:hr_timesheet_print_employee_timesheet.model_hr_analytical_timesheet_employees
+msgid "Print timesheets per employee"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,short_account_names:0
+msgid "Short account names"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,date_start:0
+msgid "Start date"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: view:website:hr_timesheet_print_employee_timesheet.qweb_hr_analytical_timesheet_employees
+msgid "Sum"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: help:hr.analytical.timesheet.employees,date_start:0
+msgid "This will be normalized to the beginning of a month"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: help:hr.analytical.timesheet.employees,date_end:0
+msgid "This will be normalized to the end of a month"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: help:hr.analytical.timesheet.employees,short_account_names:0
+msgid "This will show only the analytic account's name, not the hierarchy"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: model:ir.model,name:hr_timesheet_print_employee_timesheet.model_hr_analytic_timesheet
+msgid "Timesheet line"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: view:website:hr_timesheet_print_employee_timesheet.qweb_hr_analytical_timesheet_employees
+msgid "Timesheets per employee"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: model:ir.actions.report.xml,name:hr_timesheet_print_employee_timesheet.report_hr_analytical_timesheet_employees
+msgid "hr.analytical.timesheet.employees"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: view:hr.analytical.timesheet.employees:hr_timesheet_print_employee_timesheet.form_hr_analytical_timesheet_employees
+msgid "or"
+msgstr ""
+
