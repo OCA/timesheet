@@ -13,6 +13,9 @@ env:
 virtualenv:
   system_site_packages: true
 
+sudo: false
+cache: pip
+
 addons:
   apt:
     packages:
