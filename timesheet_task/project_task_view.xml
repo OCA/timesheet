@@ -9,7 +9,7 @@
                 <xpath expr="//field[@name='work_ids']" position="replace">
                     <field colspan="4" name="work_ids" nolabel="1">
                         <tree string="Task Work" editable="top">
-                            <field name="user_id" on_change="on_change_user_id(user_id)" required="1" invisible="1"/>
+                            <field name="user_id" on_change="on_change_user_id(user_id, account_id, unit_amount)" required="1" invisible="1"/>
                             <field name="name"/>
                             <field name="unit_amount" on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id,journal_id, parent.id, to_invoice, parent.project_id)" sum="Total time" widget="float_time"/>
                             <field name="date" on_change="on_change_date(date)"/>
@@ -22,7 +22,7 @@
                             <field name="to_invoice"/>
                         </tree>
                         <form string="Task Work" editable="top">
-                            <field name="user_id" on_change="on_change_user_id(user_id)" required="1"/>
+                            <field name="user_id" on_change="on_change_user_id(user_id, account_id, unit_amount)" required="1"/>
                             <field name="name" default_focus="1"/>
                             <field name="unit_amount" on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id,journal_id, parent.id, to_invoice, parent.project_id, context)" sum="Total time" widget="float_time"/>
                             <field name="date" on_change="on_change_date(date)"/>

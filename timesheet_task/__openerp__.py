@@ -23,7 +23,7 @@
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp, Acsone SA/NV',
  'category': 'Human Resources',
- 'depends': ['project', 'hr_timesheet_invoice'],
+ 'depends': ['project', 'analytic_user_function'],
  'description': """
 Replace task work items (project.task.work) linked to task with
 timesheet lines (hr.analytic.timesheet).
