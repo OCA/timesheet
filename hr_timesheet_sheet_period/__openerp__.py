@@ -41,12 +41,14 @@ See: https://github.com/OCA/hr
 Configuration
 =============
 
-This module does not require any additional configuration.
+Create first the Payroll Fiscal Years and Payroll
+Periods from 'Human Resources > Configuration > Payroll'
 
 Usage
 =====
-
-No specific usage instructions are required.
+When the user goes to 'Human Resources > Time Tracking > My current
+timesheet', the application will attempt to create a new timesheet using as
+start and end dates the Pay Period corresponding to today's date.
 
 Known issues / Roadmap
 ======================
