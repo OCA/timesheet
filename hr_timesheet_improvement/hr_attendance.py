@@ -39,15 +39,12 @@ class HrAttendance(orm.Model):
             return timesheet.date_from
         return max(dates)
 
-    # HUM CHECKME
-    # Check sign in signout in the same timesheet only
-    #
-
     def _altern_si_so(self, cr, uid, ids, context=None):
         """ Alternance sign_in/sign_out check.
             Previous (if exists) must be of opposite action.
             Next (if exists) must be of opposite action.
         """
+        # Check sign in signout in the same timesheet only
         sheet_obj = self.pool.get('hr_timesheet_sheet.sheet')
         for att in self.browse(cr, uid, ids, context=context):
             sheet_id = sheet_obj.search(
