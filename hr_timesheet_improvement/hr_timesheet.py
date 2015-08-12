@@ -29,7 +29,7 @@ class HrAnalyticTimesheet(orm.Model):
     _inherit = "hr.analytic.timesheet"
     _order = "date_aal DESC, account_name ASC"
 
-    date_aal = fields.Char(related='line_id.date',
+    date_aal = fields.Date(related='line_id.date',
                            store=True)
 
     account_name = fields.Char(related='account_id.name',
