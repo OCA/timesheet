@@ -81,8 +81,10 @@ To contribute to this module, please visit http://odoo-community.org.
     'author': "Eficent,Odoo Community Association (OCA)",
     'website': 'http://www.eficent.com',
     'license': 'AGPL-3',
-    "depends": ['hr_period'],
-    "data": [],
+    "depends": ['hr_period', 'hr_timesheet_sheet'],
+    "data": [
+        'views/hr_timesheet_sheet_view.xml',
+    ],
     'test': [],
     "demo": [],
     "active": False,

@@ -20,10 +20,27 @@
 ##############################################################################
 from datetime import datetime
 from openerp.osv import fields, osv, orm
+from openerp.tools.translate import _
 
 
 class HrTimesheetSheet(orm.Model):
     _inherit = "hr_timesheet_sheet.sheet"
+
+    _columns = {
+        'hr_period_id': fields.many2one(
+            'hr.period', string='Period',
+            readonly=True, states={
+                'draft': [('readonly', False)],
+                'new': [('readonly', False)]})
+    }
+
+    def onchange_pay_period(self, cr, uid, id, hr_period_id, context=None):
+        if hr_period_id:
+            period = self.pool['hr.period'].browse(
+                cr, uid, hr_period_id, context=context)
+            return {'value': {'date_from': period.date_start,
+                              'date_to': period.date_stop}}
+        return {}
 
     def _get_current_pay_period(self, cr, uid, context=None):
         period_obj = self.pool['hr.period']
@@ -59,7 +76,33 @@ class HrTimesheetSheet(orm.Model):
         else:
             return res
 
+    def _default_hr_period_id(self, cr, uid, context=None):
+        return self._get_current_pay_period(cr, uid, context=context)
+
     _defaults = {
         'date_from': _default_date_from,
         'date_to': _default_date_to,
+        'hr_period_id': _default_hr_period_id,
     }
+
+    def _check_start_end_dates(self, cr, uid, ids):
+        for timesheet in self.browse(cr, uid, ids):
+            if timesheet.hr_period_id:
+                if timesheet.date_from != timesheet.hr_period_id.date_start:
+                    raise orm.except_orm(
+                        _('Error:'),
+                        _("The Date From must match with that of the "
+                          "Payslip period '%s'.") % (
+                            timesheet.hr_period_id.name))
+                if timesheet.date_to != timesheet.hr_period_id.date_stop:
+                    raise orm.except_orm(
+                        _('Error:'),
+                        _("The Date To must match with that of the "
+                          "Payslip period '%s'.") % (
+                            timesheet.hr_period_id.name))
+        return True
+
+    _constraints = [
+        (_check_start_end_dates, "Error msg in raise",
+            ['date_from', 'date_to', 'hr_period_id']),
+    ]
