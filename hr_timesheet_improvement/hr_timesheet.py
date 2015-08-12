@@ -29,30 +29,8 @@ class HrAnalyticTimesheet(orm.Model):
     _inherit = "hr.analytic.timesheet"
     _order = "date_aal DESC, account_name ASC"
 
-    def _get_account_analytic_line(self, cr, uid, ids, context=None):
-        ts_line_ids = self.pool.get('hr.analytic.timesheet').search(
-            cr, uid, [('line_id', 'in', ids)])
-        return ts_line_ids
+    date_aal = fields.Char(related='line_id.date',
+                           store=True)
 
-    def _get_account_analytic_account(self, cr, uid, ids, context=None):
-        ts_line_ids = self.pool.get('hr.analytic.timesheet').search(
-            cr, uid, [('account_id', 'in', ids)])
-        return ts_line_ids
-
-    _columns = {
-        'date_aal': fields.related(
-            'line_id', 'date', string="Analytic Line Date", type='date',
-            store={
-                'account.analytic.line': (_get_account_analytic_line, ['date'],
-                                          10),
-                'hr.analytic.timesheet': (lambda self, cr, uid, ids,
-                                          context=None: ids, None, 10)}),
-        'account_name': fields.related(
-            'account_id', 'name', string="Analytic Account Name", type='char',
-            size=256,
-            store={
-                'account.analytic.account': (_get_account_analytic_account,
-                                             ['name'], 10),
-                'hr.analytic.timesheet': (lambda self, cr, uid, ids,
-                                          context=None: ids, None, 10)}),
-    }
+    account_name = fields.Char(related='account_id.name',
+                               store=True)
