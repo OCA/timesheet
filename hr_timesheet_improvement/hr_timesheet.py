@@ -18,10 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import orm, fields
+from openerp import models, fields
 
 
-class HrAnalyticTimesheet(orm.Model):
+class HrAnalyticTimesheet(models.Model):
     """Set order by line date and analytic account name instead of id
     We create related stored values as _order cannot be used on inherited
     columns.
