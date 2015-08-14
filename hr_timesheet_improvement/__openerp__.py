@@ -25,14 +25,6 @@
  'maintainer': 'Camptocamp',
  'category': 'Human Resources',
  'depends': ['hr_timesheet_sheet'],
- 'description': """
- Modifies timesheet behavior:
- - Ensure a DESC order on timesheet lines
- - Set default date for manually entering attendance to max attendance date
- - Redefine constraint on timesheets to check alternation of 'sign in' and
-   'sign out' only on current timesheet instead of doing it on all timesheets
-   of the employee
- """,
  'website': 'http://www.camptocamp.com',
  'data': ['hr_timesheet_view.xml'],
  'js': [],
