@@ -27,9 +27,6 @@ Contributors
 ------------
 
 * Vincent Renaville <vincent.renaville@camptocamp.com>
-* Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
-* Yannick Vaucher <yannick.vaucher@camptocamp.com>
-* Pedro M. Baeza <pedro.baeza@gmail.com>
 * Charbel Jacquin <charbel.jacquin@camptocamp.com>
 * Damien Crier <damien.crier@camptocamp.com>
 

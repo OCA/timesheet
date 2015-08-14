@@ -23,8 +23,6 @@ import datetime
 import time
 from openerp import fields, exceptions
 from openerp.tests import common
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class TestImprovement(common.TransactionCase):
@@ -76,9 +74,8 @@ class TestImprovement(common.TransactionCase):
              'employee_id': self.employee.id,
              }
             )
-        att_name = datetime.datetime.strptime(att_rs.name,
-                                              DEFAULT_SERVER_DATETIME_FORMAT)
-        att_name = att_name.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        att_name = fields.Datetime.from_string(att_rs.name)
+        att_name = fields.Date.to_string(att_name)
         self.assertEqual(fields.Date.today(), att_name)
 
     def test_timesheet_with_existing_attendances(self):
@@ -102,7 +99,7 @@ class TestImprovement(common.TransactionCase):
         att_rs1 = self.attendance_model.with_context(sheet_id=s.id).create(
             {'action': 'sign_out',
              'employee_id': self.employee.id,
-             'name': new_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+             'name': fields.Datetime.to_string(new_date),
              }
             )
         old_date = (
@@ -117,7 +114,7 @@ class TestImprovement(common.TransactionCase):
              }
             )
         att_name = fields.Datetime.from_string(att_rs.name)
-        att_name = att_name.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        att_name = fields.Date.to_string(att_name)
         self.assertEqual(fields.Date.today(), att_name)
 
     def test_timesheet_2_following_sign_in(self):
@@ -141,6 +138,6 @@ class TestImprovement(common.TransactionCase):
             self.attendance_model.with_context(sheet_id=s.id).create(
                 {'action': 'sign_in',
                  'employee_id': self.employee.id,
-                 'name': new_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+                 'name': fields.Datetime.to_string(new_date)
                  }
                 )
