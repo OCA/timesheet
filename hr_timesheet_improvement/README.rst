@@ -33,6 +33,7 @@ Credits
 Contributors
 ------------
 
+* Yannick Vaucher <yannick.vaucher@camptocamp.com>
 * Vincent Renaville <vincent.renaville@camptocamp.com>
 * Charbel Jacquin <charbel.jacquin@camptocamp.com>
 * Damien Crier <damien.crier@camptocamp.com>
