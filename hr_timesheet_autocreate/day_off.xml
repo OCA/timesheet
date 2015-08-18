@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+        <record model="ir.ui.view" id="holiday_categ_tree_inh">
+            <field name="name">training.holidays.category.tree</field>
+            <field name="model">training.holidays.category</field>
+            <field name="inherit_id" ref="BHC_day_off.holiday_categ_tree"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="timesheet"/>
+                </field>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="holiday_categ_form_inh">
+            <field name="name">training.holidays.category.form</field>
+            <field name="model">training.holidays.category</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="BHC_day_off.holiday_categ_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="timesheet"/>
+                    <field name="analytic_account_id" attrs="{'invisible':[('timesheet','=',False)]}"/>
+                </field>
+            </field>
+        </record>
+        
+    </data>
+</openerp>
