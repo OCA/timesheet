@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<record id="hr_timesheet_line_form" model="ir.ui.view">
+    <field name="name">Timesheet with lead/opportunity</field>
+    <field name="model">hr.analytic.timesheet</field>
+    <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//group[@string='Product']/div" position="after">
+            <field name="lead_id" />
+            <field name="phonecall_id" />
+        </xpath>
+    </field>
+</record>
+
+</data>
+</openerp>
