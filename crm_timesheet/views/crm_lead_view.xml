@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<record id="crm_case_form_view_leads" model="ir.ui.view">
+    <field name="name">CRM - Leads with timesheets</field>
+    <field name="model">crm.lead</field>
+    <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+    <field name="arch" type="xml">
+        <field name="user_id" position="after">
+            <field name="analytic_account_id" />
+        </field>
+        <page string="Extra Info" position="after">
+            <page string="Timesheet">
+                <field name="timesheet_ids"
+                    context="{'default_account_id': analytic_account_id,
+                              'default_user_id': uid}"/>
+            </page>
+        </page>
+    </field>
+</record>
+
+<record id="crm_case_form_view_oppor" model="ir.ui.view">
+    <field name="name">CRM - Opportunities with timesheets</field>
+    <field name="model">crm.lead</field>
+    <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+    <field name="arch" type="xml">
+        <field name="user_id" position="after">
+            <field name="analytic_account_id" />
+        </field>
+        <page string="Lead" position="after">
+            <page string="Timesheet">
+                <field name="timesheet_ids"
+                    context="{'default_account_id': analytic_account_id,
+                              'default_user_id': uid}" />
+            </page>
+        </page>
+    </field>
+</record>
+</data>
+</openerp>
