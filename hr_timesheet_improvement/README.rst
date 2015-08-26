@@ -11,10 +11,15 @@ Modifies timesheet behavior:
    'sign out' only on current timesheet instead of doing it on all timesheets
    of the employee
 
+Configuration
+=============
+
+To configure this module, you need to:
+
+* Go To Settings -> Users -> Users -> admin -> Access rights -> Technical Settings , And activate "Attendances" checkbox
+
 Usage
 =====
-
-Go To Settings -> Users -> Users -> admin -> Access rights -> Technical Settings , And activate "Attendances" checkbox
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
