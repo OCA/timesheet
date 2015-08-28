@@ -11,6 +11,13 @@ Modifies timesheet behavior:
    'sign out' only on current timesheet instead of doing it on all timesheets
    of the employee
 
+Configuration
+=============
+
+To configure this module, you need to:
+
+* Go To Settings -> Users -> Users -> admin -> Access rights -> Technical Settings , And activate "Attendances" checkbox
+
 Usage
 =====
 
