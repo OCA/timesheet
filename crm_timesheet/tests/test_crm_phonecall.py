@@ -72,5 +72,6 @@ class CrmPhonecallCase(base.BaseCase):
                 phonecall, phonecall.timesheet_ids[0])
             for write_vals in write_cases:
                 phonecall.write(write_vals)
-                self.check_phonecall_timesheet_asserts(
-                    phonecall, phonecall.timesheet_ids[0])
+                if phonecall.timesheet_ids:
+                    self.check_phonecall_timesheet_asserts(
+                        phonecall, phonecall.timesheet_ids[0])
