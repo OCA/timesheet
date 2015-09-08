@@ -62,9 +62,7 @@ class CrmPhonecallCase(base.BaseCase):
             {'analytic_account_id': self.analytic_account2.id},
             {'duration': 0},
             {'duration': -20},
-            {'partner_id': False},
-            {'analytic_account_id': False},
-            {'date': False}
+            {'partner_id': False}
         )
         for create_vals in create_cases:
             phonecall = self.phonecall_create(create_vals)
@@ -72,6 +70,9 @@ class CrmPhonecallCase(base.BaseCase):
                 phonecall, phonecall.timesheet_ids[0])
             for write_vals in write_cases:
                 phonecall.write(write_vals)
-                if phonecall.timesheet_ids:
-                    self.check_phonecall_timesheet_asserts(
-                        phonecall, phonecall.timesheet_ids[0])
+                self.check_phonecall_timesheet_asserts(
+                    phonecall, phonecall.timesheet_ids[0])
+            with self.assertRaises(ValidationError):
+                phonecall.write({'date': False})
+            phonecall.write({'analytic_account_id': False})
+            self.assertFalse(phonecall.timesheet_ids)

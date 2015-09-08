@@ -24,12 +24,14 @@ class CrmPhonecall(models.Model):
         if len(self) > 0:
             self.ensure_one()
         date = vals.get('date', self.date)
+        if not date:
+            raise ValidationError(_('Date field must be filled.'))
         user_id = vals.get('user_id', self.user_id.id)
         account_id = vals.get('analytic_account_id',
                               self.analytic_account_id.id)
         unit_amount = vals.get('duration', self.duration)
         res = {
-            'date': date[:DATE_LENGTH] if date else False,
+            'date': date[:DATE_LENGTH],
             'user_id': user_id,
             'name': vals.get('name', self.name),
             'account_id': account_id,
@@ -43,8 +45,6 @@ class CrmPhonecall(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('analytic_account_id') and vals.get('duration', 0) > 0:
-            if not vals.get('date'):
-                raise ValidationError(_('Date field must be filled.'))
             timesheet_data = self._timesheet_prepare(vals)
             vals['timesheet_ids'] = vals.get('timesheet_ids', [])
             vals['timesheet_ids'].append((0, 0, timesheet_data))
