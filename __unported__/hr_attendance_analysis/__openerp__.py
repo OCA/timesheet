@@ -59,5 +59,5 @@ Several analysis settings can be configured, like:
     "test": [
         'test/attendances.yml',
     ],
-    "installable": True
+    "installable": False
 }

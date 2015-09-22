@@ -38,5 +38,5 @@ out the detailed of hours passed.
     "data": [
         "report.xml",
     ],
-    'installable': True
+    'installable': False
 }
