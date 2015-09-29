@@ -22,21 +22,13 @@
 #     If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': "HR Timesheet Invoice Hide To Invoice",
 
-    'summary': """
-        Adding a security group to display invoicing rate field on timesheet
-        line""",
-    'author': "ACSONE SA/NV,Odoo Community Association (OCA)",
-    'website': "http://acsone.eu",
-    'category': 'Invoicing & Payments',
-    'version': '8.0.1.0.0',
-    'license': 'AGPL-3',
-    'depends': [
-        'hr_timesheet_invoice',
-    ],
-    'data': [
-        'security/hr_timesheet_invoice_hide_to_invoice_security.xml',
-    ],
-}
+from openerp import models, fields
+
+GN = 'hr_timesheet_invoice_hide_to_invoice.group_invoice_rate_timesheet_line'
+
+
+class AccountAnalyticLine(models.Model):
+    _inherit = 'account.analytic.line'
+
+    to_invoice = fields.Many2one(groups=GN)
