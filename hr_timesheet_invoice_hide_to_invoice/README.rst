@@ -1,10 +1,14 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 
+====================================
 HR Timesheet Invoice Hide To Invoice
 ====================================
 
 This module was written to add a security group to display invoicing rate field on timesheet line or not.
+Therefore at the installation of this module, invoicing rate field is hidden for all users
+
 
 Installation
 ============
