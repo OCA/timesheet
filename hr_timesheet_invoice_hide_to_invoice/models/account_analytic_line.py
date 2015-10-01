@@ -25,10 +25,11 @@
 
 from openerp import models, fields
 
-GN = 'hr_timesheet_invoice_hide_to_invoice.group_invoice_rate_timesheet_line'
+GROUP_ID = ('hr_timesheet_invoice_hide_to_invoice.'
+            'group_invoice_rate_timesheet_line')
 
 
 class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
-    to_invoice = fields.Many2one(groups=GN)
+    to_invoice = fields.Many2one(groups=GROUP_ID)
