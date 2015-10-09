@@ -30,7 +30,7 @@ Allows to change covered period while the timesheet is in the 'draft' state""",
     'author': 'ACSONE SA/NV,Odoo Community Association (OCA)',
     'website': 'http://www.acsone.eu',
     'category': 'Human Resources',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'license': 'AGPL-3',
     'depends': [
         'hr_timesheet_sheet',
