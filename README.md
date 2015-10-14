@@ -15,4 +15,20 @@ way. You'll find modules that:
 
 
 [//]: # (addons)
+Unported addons
+---------------
+addon | version | summary
+--- | --- | ---
+[crm_timesheet](crm_timesheet/) | 8.0.1.0.0 (unported) | CRM Timesheet
+[hr_attendance_analysis](hr_attendance_analysis/) | 0.1 (unported) | Dynamic reports based on employee's attendances and contract's calendar
+[hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 8.0.1.0.0 (unported) | Timesheet Activities - Begin/End Hours
+[hr_timesheet_fulfill](hr_timesheet_fulfill/) | 1.0 (unported) | Timesheet Fullfill Wizard
+[hr_timesheet_holidays](hr_timesheet_holidays/) | 1.0 (unported) | Import holidays in timesheets
+[hr_timesheet_improvement](hr_timesheet_improvement/) | 8.0.0.1.0 (unported) | Timesheet improvements
+[hr_timesheet_print](hr_timesheet_print/) | 1.3 (unported) | Project Timesheet printing
+[hr_timesheet_reminder](hr_timesheet_reminder/) | 2.0 (unported) | Timesheet Reminder
+[hr_timesheet_sheet_change_period](hr_timesheet_sheet_change_period/) | 8.0.1.0.0 (unported) | Allows to change covered period while the timesheet is in the 'draft' state
+[hr_timesheet_task](hr_timesheet_task/) | 8.0.0.3.0 (unported) | Task in time sheet
+[timesheet_task](timesheet_task/) | 8.0.0.2.1 (unported) | Analytic Timesheet In Task
+
 [//]: # (end addons)
