@@ -48,7 +48,7 @@ Allows to change covered period while the timesheet is in the 'draft' state""",
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

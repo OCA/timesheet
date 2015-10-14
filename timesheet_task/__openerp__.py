@@ -44,7 +44,7 @@ task information through the timesheet sheet (hr.timesheet.sheet).
      ],
  'demo': [],
  'test': ['test/task_timesheet_indicators.yml'],
- 'installable': True,
+ 'installable': False,
  'images': [],
  'auto_install': False,
  'license': 'AGPL-3',

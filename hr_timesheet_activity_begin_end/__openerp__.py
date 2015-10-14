@@ -31,6 +31,6 @@
           'views/hr_timesheet_sheet.xml',
           ],
  'test': [],
- 'installable': True,
+ 'installable': False,
  'auto_install': False,
  }
