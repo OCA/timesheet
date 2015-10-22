@@ -23,7 +23,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 GROUP_ID = ('hr_timesheet_invoice_hide_to_invoice.'
             'group_invoice_rate_timesheet_line')
@@ -33,3 +33,22 @@ class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
     to_invoice = fields.Many2one(groups=GROUP_ID)
+
+    @api.model
+    def _add_default_to_invoice(self, vals):
+        if not self.env['res.users'].has_group(GROUP_ID) and\
+                vals.get('account_id'):
+            account_id = vals.get('account_id')
+            account = self.env['account.analytic.account'].browse([account_id])
+            vals['to_invoice'] = account.to_invoice.id
+
+    @api.model
+    @api.returns('self', lambda value: value.id)
+    def create(self, vals):
+        self._add_default_to_invoice(vals)
+        return super(AccountAnalyticLine, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        self._add_default_to_invoice(vals)
+        return super(AccountAnalyticLine, self).write(vals)
