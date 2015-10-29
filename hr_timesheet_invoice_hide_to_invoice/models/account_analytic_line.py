@@ -35,6 +35,16 @@ class AccountAnalyticLine(models.Model):
     to_invoice = fields.Many2one(groups=GROUP_ID)
 
     @api.model
+    def check_field_access_rights(self, operation, fields):
+        """Allow to modify to invoiced field to avoid to override all views"""
+        if 'to_invoice' in fields and\
+                not self.env['res.users'].has_group(GROUP_ID):
+            fields.remove('to_invoice')
+        res = super(AccountAnalyticLine, self)\
+            .check_field_access_rights(operation, fields)
+        return res
+
+    @api.model
     def _add_default_to_invoice(self, vals):
         if not self.env['res.users'].has_group(GROUP_ID) and\
                 vals.get('account_id'):
