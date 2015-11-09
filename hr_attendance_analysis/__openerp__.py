@@ -47,5 +47,5 @@
     "test": [
         'test/attendances.yml',
     ],
-    "installable": False
+    "installable": True
 }
