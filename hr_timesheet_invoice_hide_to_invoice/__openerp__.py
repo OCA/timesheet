@@ -35,8 +35,10 @@
     'license': 'AGPL-3',
     'depends': [
         'hr_timesheet_invoice',
+        'hr_timesheet_sheet',
     ],
     'data': [
         'security/hr_timesheet_invoice_hide_to_invoice_security.xml',
+        'views/hr_timesheet_invoice_hide_to_invoice_view.xml',
     ],
 }

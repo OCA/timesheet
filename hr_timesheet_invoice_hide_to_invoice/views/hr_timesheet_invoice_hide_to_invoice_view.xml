@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="hr_timesheet_sheet_form" model="ir.ui.view">
+            <field name="name">hr.timesheet.sheet.form</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//tree//field[@name='to_invoice']" position="attributes">
+                    <attribute name="groups">hr_timesheet_invoice_hide_to_invoice.group_invoice_rate_timesheet_line</attribute>
+                </xpath>
+                <xpath expr="//form//field[@name='to_invoice']" position="attributes">
+                    <attribute name="groups">hr_timesheet_invoice_hide_to_invoice.group_invoice_rate_timesheet_line</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="hr_timesheet_line_form" model="ir.ui.view">
+            <field name="name">hr.analytic.timesheet.form</field>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="inherit_id" ref="hr_timesheet_invoice.hr_timesheet_line_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='to_invoice']" position="attributes">
+                    <attribute name="groups">hr_timesheet_invoice_hide_to_invoice.group_invoice_rate_timesheet_line</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="hr_timesheet_line_tree" model="ir.ui.view">
+            <field name="name">hr.analytic.timesheet.tree</field>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="inherit_id" ref="hr_timesheet_invoice.hr_timesheet_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='to_invoice']" position="attributes">
+                    <attribute name="groups">hr_timesheet_invoice_hide_to_invoice.group_invoice_rate_timesheet_line</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_hr_timesheet_line_search_to_invoice" model="ir.ui.view">
+            <field name="name">hr.analytic.timesheet.search.to_invoice</field>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="inherit_id" ref="hr_timesheet_invoice.view_hr_timesheet_line_search_to_invoice"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='to_invoice']" position="attributes">
+                    <attribute name="groups">hr_timesheet_invoice_hide_to_invoice.group_invoice_rate_timesheet_line</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
