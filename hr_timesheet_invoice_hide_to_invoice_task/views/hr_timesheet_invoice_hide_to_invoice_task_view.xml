@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_task_form2" model="ir.ui.view">
+            <field name="name">project.task.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="timesheet_task.view_task_form2"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//tree//field[@name='to_invoice']" position="attributes">
+                    <attribute name="groups">hr_timesheet_invoice_hide_to_invoice.group_invoice_rate_timesheet_line</attribute>
+                </xpath>
+                <xpath expr="//form//field[@name='to_invoice']" position="attributes">
+                    <attribute name="groups">hr_timesheet_invoice_hide_to_invoice.group_invoice_rate_timesheet_line</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
