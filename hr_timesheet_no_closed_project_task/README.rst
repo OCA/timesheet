@@ -6,8 +6,6 @@
 HR Timesheet No Closed Project-Task
 ===================================
 
-This module depends on https://github.com/odoo/odoo/pull/8186
-
 This module prevents to select closed project or task on timesheet line.
 
 Installation
