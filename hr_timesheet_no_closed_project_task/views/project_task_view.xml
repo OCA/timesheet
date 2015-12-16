@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_task_form2">
+            <field name="name">project.task.form (hr_timesheet_no_closed_project_task)</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="timesheet_task.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='work_ids']" position="before">
+                    <field name="stage_closed" invisible="1" />
+                    <field name="project_state" invisible="1" />
+                </xpath>
+               <xpath expr="//field[@name='work_ids']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|', ('stage_closed', '=', True), ('project_state', 'in', ('close', 'cancelled'))]}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
