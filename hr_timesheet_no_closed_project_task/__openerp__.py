@@ -16,6 +16,7 @@
         "hr_timesheet_task",
         "hr_timesheet_invoice",
         "account_analytic_project",
+        "project_stage_closed",
     ],
     "data": [
         'security/ir.model.access.csv',
