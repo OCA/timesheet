@@ -28,18 +28,37 @@ class HrTimesheetSheet(orm.Model):
 
     _columns = {
         'hr_period_id': fields.many2one(
-            'hr.period', string='Period',
+            'hr.period', string='Pay Period',
             readonly=True, states={
-                'draft': [('readonly', False)],
                 'new': [('readonly', False)]})
     }
+
+    def name_get(self, cr, uid, ids, context=None):
+        if not ids:
+            return []
+        if isinstance(ids, (long, int)):
+            ids = [ids]
+        res = super(HrTimesheetSheet, self).name_get(cr, uid, ids,
+                                                     context=context)
+        res2 = []
+        for record in res:
+            sheet = self.browse(cr, uid, record[0], context=context)
+            if sheet.hr_period_id:
+                record = list(record)
+                name = sheet.hr_period_id.name
+                record[1] = name
+                res2.append(tuple(record))
+            else:
+                res2.append(record)
+        return res2
 
     def onchange_pay_period(self, cr, uid, id, hr_period_id, context=None):
         if hr_period_id:
             period = self.pool['hr.period'].browse(
                 cr, uid, hr_period_id, context=context)
             return {'value': {'date_from': period.date_start,
-                              'date_to': period.date_stop}}
+                              'date_to': period.date_stop,
+                              'name': period.name}}
         return {}
 
     def _get_current_pay_period(self, cr, uid, context=None):
