@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="hr_period_create_timesheet_form_view" model="ir.ui.view">
+            <field name="name">hr.period.create.timesheet.form</field>
+            <field name="model">hr.period.create.timesheet</field>
+            <field name="arch" type="xml">
+                <form string="Create Timesheets" version="7.0">
+                    <header>
+                        <button icon="gtk-execute" string="Generate" name="compute" type="object" class="oe_highlight"  />
+                    </header>
+                    <group>
+                        <label colspan="4" nolabel="1"
+                               string="This wizard will generate Timesheets for the selected employee(s) based on the HR Periods selected." />
+                    </group>
+                    <group colspan="4" >
+                        <separator string="Employees" colspan="4"/>
+                        <newline/>
+                        <field name="employee_ids" nolabel="1"/>
+                    </group>
+               </form>
+			</field>
+		</record>
+
+        <record id="action_hr_period_create_timesheet" model="ir.actions.act_window">
+            <field name="name">Generate Timesheets</field>
+            <field name="res_model">hr.period.create.timesheet</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="hr_period_create_timesheet_form_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="hr_period_create_timesheet_ir_value">
+            <field name="model_id" ref="hr_period.model_hr_period" />
+            <field name="object" eval="1" />
+            <field name="name">Create Employee Timesheet</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_hr_period_create_timesheet'))" />
+            <field name="key">action</field>
+            <field name="model">hr.period</field>
+        </record>
+
+    </data>
+</openerp>
