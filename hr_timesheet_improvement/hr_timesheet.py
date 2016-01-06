@@ -30,7 +30,7 @@ class HrAnalyticTimesheet(models.Model):
     _order = "date_aal DESC, account_name ASC"
 
     date_aal = fields.Date(related='line_id.date',
-                           store=True)
+                           store=True, readonly=True)
 
     account_name = fields.Char(related='account_id.name',
-                               store=True)
+                               store=True, readonly=True)
