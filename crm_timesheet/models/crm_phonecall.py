@@ -59,8 +59,8 @@ class CrmPhonecall(models.Model):
                                        self.analytic_account_id)
         duration = vals.get('duration', 0)
         if timesheet:
-            if ('analytic_account_id' in vals
-                    and not vals['analytic_account_id']):
+            if ('analytic_account_id' in vals and
+                    not vals['analytic_account_id']):
                 vals['timesheet_ids'] = [(2, timesheet.id, 0)]
             else:
                 vals['timesheet_ids'] = [(1, timesheet.id,
