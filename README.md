@@ -20,6 +20,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [crm_timesheet](crm_timesheet/) | 8.0.1.0.0 | CRM Timesheet
+[crm_timesheet_analytic_partner](crm_timesheet_analytic_partner/) | 8.0.1.0.0 | CRM Timesheet Analytic Partner
 [hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 8.0.1.0.0 | Timesheet Activities - Begin/End Hours
 [hr_timesheet_improvement](hr_timesheet_improvement/) | 8.0.0.1.0 | Timesheet improvements
 [hr_timesheet_sheet_change_period](hr_timesheet_sheet_change_period/) | 8.0.1.0.0 | Allows to change covered period while the timesheet is in the 'draft' state
