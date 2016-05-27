@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="group_invoice_rate_timesheet_line" model="res.groups">
+            <field name="name">Modify Invoicing Rate On Timesheet Line</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+    </data>
+</openerp>
