@@ -9,12 +9,18 @@
                 <xpath
                     expr="//field[@name='timesheet_ids']/tree[@string='Timesheet Activities']/field[@name='account_id']"
                     position="attributes">
-                    <attribute name="domain">[('type','in',['normal','contract']),('state', '&lt;&gt;', 'close'),('use_timesheets','=',1),'|', ('project_ids', '=', False), ('project_ids.state', 'not in', ('close', 'cancelled'))]</attribute>
+                    <attribute name="domain">[
+                      ('type','in',['normal','contract']), ('state', '&lt;&gt;', 'close'), ('use_timesheets','=',1),
+                      '|', ('project_ids', '=', False), ('project_ids.state', 'not in', ('close', 'cancelled'))]
+                    </attribute>
                 </xpath>
                 <xpath
                     expr="//field[@name='timesheet_ids']/form[@string='Timesheet Activities']/field[@name='account_id']"
                     position="attributes">
-                    <attribute name="domain">[('type','in',['normal','contract']),('state', '&lt;&gt;', 'close'),('use_timesheets','=',1),'|', ('project_ids', '=', False), ('project_ids.state', 'not in', ('close', 'cancelled'))]</attribute>
+                    <attribute name="domain">[
+                      ('type','in',['normal','contract']),('state', '&lt;&gt;', 'close'),('use_timesheets','=',1),
+                      '|', ('project_ids', '=', False), ('project_ids.state', 'not in', ('close', 'cancelled'))]
+                    </attribute>
                 </xpath>
                 <xpath
                     expr="//field[@name='timesheet_ids']/tree[@string='Timesheet Activities']/field[@name='task_id']"
