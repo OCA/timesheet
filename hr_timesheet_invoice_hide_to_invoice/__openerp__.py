@@ -1,27 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#     This file is part of hr_timesheet_invoice_hide_to_invoice,
-#     an Odoo module.
-#
-#     Copyright (c) 2015 ACSONE SA/NV (<http://acsone.eu>)
-#
-#     hr_timesheet_invoice_hide_to_invoice is free software:
-#     you can redistribute it and/or modify it under the terms of the GNU
-#     Affero General Public License as published by the Free Software
-#     Foundation,either version 3 of the License, or (at your option) any
-#     later version.
-#
-#     hr_timesheet_invoice_hide_to_invoice is distributed
-#     in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-#     even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-#     PURPOSE.  See the GNU Affero General Public License for more details.
-#
-#     You should have received a copy of the GNU Affero General Public License
-#     along with hr_timesheet_invoice_hide_to_invoice.
-#     If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 ACSONE SA/NV
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 {
     'name': "HR Timesheet Invoice Hide To Invoice",
 
