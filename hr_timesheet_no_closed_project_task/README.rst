@@ -22,10 +22,6 @@ Usage
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/117/8.0
 
-For further information, please visit:
-
- * https://www.odoo.com/forum/help-1
-
 Bug Tracker
 ===========
 
