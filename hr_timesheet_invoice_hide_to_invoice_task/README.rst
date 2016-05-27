@@ -6,16 +6,15 @@
 HR Timesheet Invoice Hide To Invoice Task
 =========================================
 
-This module was written to add a security group to display invoicing rate field on task work or not.
-Therefore at the installation of this module, invoicing rate field is hidden for all users.1
-
+This is a glue module that make hr_timesheet_invoice_hide_to_invoice
+work correctly in presence of the timesheet_task module.
 
 Installation
 ============
 
-To install this module, you need to:
-
- * Click on install button
+There is no specific installation instructions for this module.
+It is autoinstalled when timesheet_task and hr_timesheet_invoice_hide_to_invoice
+are both installed.
 
 Usage
 =====

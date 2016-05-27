@@ -6,16 +6,22 @@
 HR Timesheet Invoice Hide To Invoice
 ====================================
 
-This module was written to add a security group to display invoicing rate field on timesheet line or not.
-Therefore at the installation of this module, invoicing rate field is hidden for all users
+This module was written to prevent users entering timesheet to
+decide the invoicing rate themselves. This is useful in companies where
+that decision is done by the management.
+
+It adds a security group that controls the visibility of the
+invoicing rate field on timesheet lines.
+
+At installation of this module, the invoicing rate field
+becomes hidden for all users by default, unless they are added in
+the "Modify Invoicing Rate On Timesheet Line" group.
 
 
 Installation
 ============
 
-To install this module, you need to:
-
- * Click on install button
+There is no specific installation instructions for this module.
 
 Usage
 =====
