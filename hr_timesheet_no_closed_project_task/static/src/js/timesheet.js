@@ -1,3 +1,6 @@
+/* © 2015 ACSONE SA/NV (http://acsone.eu)
+ * License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). */
+
 openerp.hr_timesheet_no_closed_project_task = function(instance) { 
 
     var module = instance.hr_timesheet_sheet
