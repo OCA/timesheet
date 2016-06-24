@@ -74,15 +74,21 @@ class AccountAnalyticLine(models.Model):
             ('time_stop', '>', self.time_start),
         ])
         if others:
-            message = _("Lines can't overlap:\n")
-            message += '\n'.join(['%s - %s' %
-                                  (float_time_convert(line.time_start),
-                                   float_time_convert(line.time_stop))
-                                  for line
-                                  in (self + others).sorted(
-                                      lambda l: l.time_start
-                                  )])
-            raise exceptions.ValidationError(message)
+            # Due to float_time, test with float_compare
+            if any(float_compare(self.time_stop,
+                                 line.time_start,
+                                 precision_digits=4) > 0 and
+                   float_compare(line.time_stop,
+                                 self.time_start,
+                                 precision_digits=4) > 0
+                   for line in others):
+                message = _("Lines can't overlap:\n")
+                message += '\n'.join(
+                    ['%s - %s' % (float_time_convert(line.time_start),
+                                  float_time_convert(line.time_stop))
+                     for line
+                     in (self + others).sorted(lambda l: l.time_start)])
+                raise exceptions.ValidationError(message)
 
 
 class HrAnalyticTimesheet(models.Model):
