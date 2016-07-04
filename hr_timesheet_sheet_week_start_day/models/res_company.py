@@ -22,4 +22,3 @@ class ResCompany(models.Model):
     timesheet_week_start = fields.Selection(_WEEKDAYS,
                                             string='Week start day',
                                             default='0')
-
