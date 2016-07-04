@@ -6,7 +6,10 @@
 HR Timesheet No Closed Project-Task
 ===================================
 
-This module prevents to select closed project or task on timesheet line.
+This module prevents to select analytic account related to closed project or task on timesheet line.
+
+So, project manager will be able to close a project to signal that work is done and users cannot timesheet on it anymore, while leaving the contract open for the account manager.
+
 
 Installation
 ============
@@ -17,6 +20,9 @@ To install this module, you need to:
 
 Usage
 =====
+
+To specify that a task is closed, it's necessary to set closed flag task stage.
+So, if a task is in a closed stage, the task is closed.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
