@@ -14,33 +14,28 @@ class HrTimesheetSheet(models.Model):
     @api.model
     def _default_date_from(self):
         date_from = super(HrTimesheetSheet, self)._default_date_from()
-        user = self.env['res.users'].browse(self.env.uid)
-        r = user.company_id and user.company_id.timesheet_range or 'month'
+        user = self.env.user
+        r = user.company_id.timesheet_range or 'month'
         if r == 'week':
             if user.company_id.timesheet_week_start:
-                date_from = (datetime.today() + relativedelta(
+                datetime_from = (datetime.today() + relativedelta(
                     weekday=int(user.company_id.timesheet_week_start),
-                    days=-6)).strftime('%Y-%m-%d')
+                    days=-6))
+                date_from = fields.Date.to_string(datetime_from)
         return date_from
 
     @api.model
     def _default_date_to(self):
         date_to = super(HrTimesheetSheet, self)._default_date_to()
-        user = self.env['res.users'].browse(self.env.uid)
-        r = user.company_id and user.company_id.timesheet_range or 'month'
+        user = self.env.user
+        r = user.company_id.timesheet_range or 'month'
         week_end = (int(user.company_id.timesheet_week_start) + 6) % 7
         if r == 'week':
-            date_to = (datetime.today() + relativedelta(
-                weekday=week_end)).strftime('%Y-%m-%d')
+            datetime_to = (datetime.today() + relativedelta(
+                weekday=week_end))
+            date_to = fields.Date.to_string(datetime_to)
 
         return date_to
 
-    date_from = fields.Date(string='Date from', required=True, select=1,
-                            readonly=True,
-                            states={'new': [('readonly', False)]},
-                            default=_default_date_from)
-
-    date_to = fields.Date(string='Date to', required=True,
-                          select=1, readonly=True,
-                          states={'new': [('readonly', False)]},
-                          default=_default_date_to)
+    date_from = fields.Date(default=_default_date_from)
+    date_to = fields.Date(default=_default_date_to)

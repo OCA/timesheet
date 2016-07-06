@@ -7,11 +7,10 @@
             <field name="inherit_id"
                    ref="hr_timesheet_sheet.hr_timesheet_sheet_company"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='timesheet_range']"
-                       position="after">
+                <field name="timesheet_range" position="after">
                         <field name="timesheet_week_start"
-                               attrs="{'invisible':[('timesheet_range','!=','week')]}"/>
-                </xpath>
+                               attrs="{'invisible':[('timesheet_range','!=','week')], 'required':[('timesheet_range','=','week')]}"/>
+                </field>
             </field>
         </record>
     </data>
