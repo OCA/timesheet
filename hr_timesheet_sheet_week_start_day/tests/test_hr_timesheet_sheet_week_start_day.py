@@ -25,6 +25,6 @@ class TestHrTimesheetSheetWeekStartDay(common.TransactionCase):
         weekday_to = date_to.weekday()
 
         self.assertEqual(weekday_from, 6, "The timesheet should start on "
-                                          "sunday")
+                                          "Sunday")
 
-        self.assertEqual(weekday_to, 5, "The timesheet should end on saturday")
+        self.assertEqual(weekday_to, 5, "The timesheet should end on Saturday")
