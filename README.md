@@ -15,6 +15,12 @@ way. You'll find modules that:
 
 
 [//]: # (addons)
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[hr_timesheet_sheet_week_start_day](hr_timesheet_sheet_week_start_day/) | 8.0.1.0.0 | Allows to define the week start date for Timesheets at company level
+
 Unported addons
 ---------------
 addon | version | summary
