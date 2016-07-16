@@ -1,27 +1,12 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-15 Agile Business Group sagl (<http://www.agilebg.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2011 Domsense srl (<http://www.domsense.com>)
+# © 2011-15 Agile Business Group sagl (<http://www.agilebg.com>)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from __future__ import division
-from openerp.osv import fields, orm
+from openerp import models, fields, api
 from openerp.tools.translate import _
+from openerp.exceptions import Warning as UserError
 from datetime import datetime, timedelta
 import math
 import time
@@ -30,30 +15,29 @@ import pytz
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
-class ResCompany(orm.Model):
+class ResCompany(models.Model):
     _inherit = 'res.company'
 
-    _columns = {
-        'working_time_precision': fields.float(
-            'Working time precision',
-            help='The precision used to analyse working times over working '
-                 'schedule (hh:mm)', required=True)
-    }
+    working_time_precision = fields.Float(
+        string='Working time precision',
+        help='The precision used to analyse working times over working '
+             'schedule (hh:mm)',
+        required=True,
+        default=1.0 / 60,
+    )
 
-    _defaults = {
-        'working_time_precision': 1.0 / 60  # hours
-    }
-
-    def update_attendance_data(self, cr, uid, ids, context=None):
-        attendance_pool = self.pool.get('hr.attendance')
-        att_ids = attendance_pool.search(cr, uid, [], context=context)
-        attendance_pool.button_dummy(cr, uid, att_ids, context=context)
+    @api.multi
+    def update_attendance_data(self):
+        attendance_pool = self.env['hr.attendance']
+        attendances = attendance_pool.search([])
+        attendances.button_dummy()
         return True
 
 
-class HrAttendance(orm.Model):
+class HrAttendance(models.Model):
     # ref: https://bugs.launchpad.net/openobject-client/+bug/887612
     # test: 0.9853 - 0.0085
+    _inherit = "hr.attendance"
 
     def float_time_convert(self, float_val):
         hours = math.floor(abs(float_val))
@@ -77,12 +61,16 @@ class HrAttendance(orm.Model):
 
     def float_to_timedelta(self, float_val):
         str_time = self.float_time_convert(float_val)
-        return timedelta(0, int(str_time.split(':')[0]) * 3600.0
-                         + int(str_time.split(':')[1]) * 60.0)
+        int_hour = int(str_time.split(":")[0])
+        int_minute = int(str_time.split(":")[1])
+        return timedelta(
+            0,
+            (int_hour * 3600.0) + (int_minute * 6.0)),
 
     def total_seconds(self, td):
-        return (td.microseconds + (td.seconds + td.days * 24 * 3600)
-                * 10 ** 6) / 10 ** 6
+        return (td.microseconds +
+                (td.seconds + td.days * 24 * 3600) * 10 ** 6) / \
+            10 ** 6
 
     def time_difference(
         self, float_start_time, float_end_time, help_message=False
@@ -95,11 +83,9 @@ class HrAttendance(orm.Model):
                 unicode(float_end_time),
                 unicode(float_start_time),
                 help_message and '(' + help_message + ')' or ''
-                )
-            raise orm.except_orm(
-                _('Error'),
-                message
             )
+            raise UserError(message)
+
         delta = (self.float_to_datetime(float_end_time) -
                  self.float_to_datetime(float_start_time))
         return self.total_seconds(delta) / 3600.0
@@ -131,26 +117,23 @@ class HrAttendance(orm.Model):
         return res
 
     def datetime_to_hour(self, datetime_):
-        hour = (
-            datetime_.hour + datetime_.minute / 60.0
-            + datetime_.second / 3600.0
-        )
+        hour = (datetime_.hour + datetime_.minute / 60.0 +
+                datetime_.second / 3600.0)
         return hour
 
     def mid_time_interval(self, datetime_start, delta):
         return datetime_start + timedelta(hours=delta / 2.0)
 
+    @api.model
     def matched_schedule(
-            self, cr, uid,
+            self,
             datetime_, weekday_char, calendar_id,
-            context=None
-    ):
-        calendar_attendance_pool = self.pool.get(
-            'resource.calendar.attendance')
+            context=None):
+
+        calendar_attendance_pool = self.env[
+            'resource.calendar.attendance']
         datetime_hour = self.datetime_to_hour(datetime_)
-        matched_schedule_ids = calendar_attendance_pool.search(
-            cr,
-            uid,
+        matched_schedules = calendar_attendance_pool.search(
             [
                 '&',
                 '|',
@@ -163,17 +146,20 @@ class HrAttendance(orm.Model):
                 ('hour_to', '>=', datetime_hour),
                 ('hour_from', '<=', datetime_hour),
             ],
-            context=context
         )
-        return matched_schedule_ids
+        return matched_schedules
 
+    @api.model
     def get_reference_calendar(
-        self, cr, uid, employee_id, date=None, context=None
-    ):
+            self, employee_id, date=None):
+
         if date is None:
-            date = fields.date.context_today(self, cr, uid, context=context)
-        contract_pool = self.pool.get('hr.contract')
-        active_contract_ids = contract_pool.search(cr, uid, [
+            date = fields.date.context_today()
+
+        contract_pool = self.env['hr.contract']
+        employee_pool = self.env['hr.employee']
+
+        active_contracts = contract_pool.search([
             '&',
             ('employee_id', '=', employee_id),
             '|',
@@ -189,62 +175,73 @@ class HrAttendance(orm.Model):
             '&',
             ('trial_date_end', '!=', False),
             ('trial_date_end', '>=', date),
-        ], context=context)
-        if len(active_contract_ids) > 1:
-            employee = self.pool.get('hr.employee').browse(
-                cr, uid, employee_id, context=context)
+        ])
+
+        if len(active_contracts) > 1:
+            employee = employee_pool.browse(employee_id)
             msg = _('Too many active contracts for employee %s at date %s')
-            raise orm.except_orm(_('Error'), msg % (employee.name, date))
-        elif active_contract_ids:
-            contract = contract_pool.browse(
-                cr, uid, active_contract_ids[0], context=context)
+            raise UserError(msg % (employee.name, date))
+        elif active_contracts:
+            contract = active_contracts[0]
             return contract.working_hours
         else:
             return None
 
     def _ceil_rounding(self, rounding, datetime_):
-        minutes = (datetime_.minute / 60.0
-                   + datetime_.second / 3600.0)
+        minutes = (datetime_.minute / 60.0 +
+                   datetime_.second / 3600.0)
         return math.ceil(minutes * rounding) / rounding
 
     def _floor_rounding(self, rounding, datetime_):
-        minutes = (datetime_.minute / 60.0
-                   + datetime_.second / 3600.0)
+        minutes = (datetime_.minute / 60.0 +
+                   datetime_.second / 3600.0)
         return math.floor(minutes * rounding) / rounding
 
-    def _get_attendance_duration(self, cr, uid, ids, field_name, arg,
-                                 context=None):
-        res = {}
-        attendance_pool = self.pool['resource.calendar.attendance']
-        precision = self.pool['res.users'].browse(
-            cr, uid, uid, context=context).company_id.working_time_precision
+    # TODO: this is for functional field
+    @api.depends(
+        "triggering_attendance_id", "triggering_attendance_id.name",
+        "triggering_attendance_id.action",
+        "triggering_attendance_id.employee_id",
+        "employee_id.contract_ids", "employee_id.contract_ids.date_start",
+        "employee_id.contract_ids.date_start",
+        "employee_id.contract_ids.date_end",
+        "employee_id.contract_ids.trial_date_start",
+        "employee_id.contract_ids.trial_date_end",
+        "employee_id.contract_ids.working_hours",
+        "employee_id.contract_ids.working_hours.attendance_ids",
+        "employee_id.contract_ids.working_hours.attendance_ids.dayofweek",
+        "employee_id.contract_ids.working_hours.attendance_ids.date_from",
+        "employee_id.contract_ids.working_hours.attendance_ids.hour_from",
+        "employee_id.contract_ids.working_hours.attendance_ids.hour_to",
+        "employee_id.contract_ids.working_hours.attendance_ids.calendar_id"
+    )
+    @api.multi
+    def _compute_attendance_duration(self):
+        precision = self.env['res.users'].browse(
+            self.env.user.id).company_id.working_time_precision
+
         # 2012.10.16 LF FIX : Get timezone from context
-        active_tz = pytz.timezone(context.get('tz') or 'UTC')
+        active_tz = pytz.timezone(self.env.context.get('tz') or 'UTC')
         str_now = datetime.strftime(datetime.now(),
                                     DEFAULT_SERVER_DATETIME_FORMAT)
-        for attendance_id in ids:
+        for attendance in self:
             duration = 0.0
-            attendance = self.browse(cr, uid, attendance_id, context=context)
-            res[attendance.id] = {}
             # 2012.10.16 LF FIX : Attendance in context timezone
             attendance_start = datetime.strptime(
                 attendance.name, DEFAULT_SERVER_DATETIME_FORMAT).replace(
                 tzinfo=pytz.utc).astimezone(active_tz)
             next_attendance_date = str_now
-            next_attendance_ids = False
+            next_attendance = False
             # should we compute for sign out too?
             if attendance.action == 'sign_in':
-                next_attendance_ids = self.search(
-                    cr, uid, [('employee_id', '=', attendance.employee_id.id),
-                              ('name', '>', attendance.name)], order='name',
-                    context=context)
-                if next_attendance_ids:
-                    next_attendance = self.browse(
-                        cr, uid, next_attendance_ids[0], context=context)
+                next_attendances = self.search(
+                    [('employee_id', '=', attendance.employee_id.id),
+                     ('name', '>', attendance.name)], order='name')
+                if next_attendances:
+                    next_attendance = next_attendances[0]
                     if next_attendance.action == 'sign_in':
                         # 2012.10.16 LF FIX : Attendance in context timezone
-                        raise orm.except_orm(
-                            _('Error'),
+                        raise UserError(
                             _('Incongruent data: sign-in %s is followed by '
                               'another sign-in') % attendance_start)
                     next_attendance_date = next_attendance.name
@@ -256,15 +253,18 @@ class HrAttendance(orm.Model):
                 duration_delta = attendance_stop - attendance_start
                 duration = self.total_seconds(duration_delta) / 3600.0
                 duration = round(duration / precision) * precision
-            res[attendance.id]['duration'] = duration
-            res[attendance.id]['end_datetime'] = next_attendance_date
+            attendance.duration = duration
+            attendance.end_datetime = next_attendance_date
             # If calendar is not specified: working days = 24/7
-            res[attendance.id]['inside_calendar_duration'] = duration
-            res[attendance.id]['outside_calendar_duration'] = 0.0
-            reference_calendar = self.get_reference_calendar(
-                cr, uid, attendance.employee_id.id, date=str_now[:10],
-                context=context)
-            if reference_calendar and next_attendance_ids:
+            attendance.inside_calendar_duration = duration
+            attendance.outside_calendar_duration = 0.0
+            reference_calendar = attendance.employee_id.contract_id and \
+                attendance.employee_id.contract_id.working_hours or False
+            # reference_calendar = self.get_reference_calendar(
+            #     attendance.employee_id.id,
+            #     date=str_now[:10])
+            if reference_calendar and next_attendance:
+                # raise UserError("weks")
                 if reference_calendar:
                     # TODO applicare prima arrotondamento o tolleranza?
                     if reference_calendar.attendance_rounding:
@@ -295,9 +295,9 @@ class HrAttendance(orm.Model):
                         duration = self.total_seconds(
                             duration_delta) / 3600.0
                         duration = round(duration / precision) * precision
-                        res[attendance.id]['duration'] = duration
-                    res[attendance.id]['inside_calendar_duration'] = 0.0
-                    res[attendance.id]['outside_calendar_duration'] = 0.0
+                        attendance.duration = duration
+                    attendance.inside_calendar_duration = 0.0
+                    attendance.outside_calendar_duration = 0.0
                     calendar_id = reference_calendar.id
                     intervals_within = 0
                     # split attendance in intervals = precision
@@ -320,197 +320,144 @@ class HrAttendance(orm.Model):
                         # not int
                         weekday_char = unicode(
                             unichr(centered_attendance.weekday() + 48))
-                        matched_schedule_ids = self.matched_schedule(
-                            cr, uid,
+                        matched_schedules = self.matched_schedule(
                             centered_attendance,
                             weekday_char,
                             calendar_id,
-                            context=context
                         )
-                        if len(matched_schedule_ids) > 1:
-                            raise orm.except_orm(
-                                _('Error'),
+                        if len(matched_schedules) > 1:
+                            raise UserError(
                                 _('Wrongly configured working schedule with '
                                   'id %s') % unicode(calendar_id))
-                        if matched_schedule_ids:
+                        if matched_schedules:
                             intervals_within += 1
                             # sign in tolerance
                             if intervals_within == 1:
-                                att = attendance_pool.browse(
-                                    cr, uid, matched_schedule_ids[0],
-                                    context=context)
+                                att = matched_schedules[0]
                                 att_start = self.datetime_to_hour(
                                     attendance_start)
                                 if (att.hour_from and
                                         (att_start >= att_start -
-                                         att.hour_from - att.tolerance_to)
-                                        < 0.01):
+                                         att.hour_from - att.tolerance_to) <
+                                        0.01):
                                     # handling float roundings (<=)
                                     additional_intervals = round(
                                         (att_start - att.hour_from) /
                                         precision)
                                     intervals_within += additional_intervals
-                                    res[attendance.id]['duration'] = \
+                                    attendance.duration = \
                                         self.time_sum(
-                                            res[attendance.id]['duration'],
+                                            attendance.duration,
                                             additional_intervals * precision)
                             # sign out tolerance
                             if len(splitted_attendances) == counter:
-                                att = attendance_pool.browse(
-                                    cr, uid, matched_schedule_ids[0],
-                                    context=context)
+                                att = matched_schedules[0]
                                 att_stop = self.datetime_to_hour(
                                     attendance_stop)
                                 if (att_stop <= att.hour_to and
                                         (att_stop -
                                          att.hour_to + att.tolerance_from) >
-                                        -0.01):
+                                        (-0.01)):
                                     # handling float roundings (>=)
                                     additional_intervals = round(
                                         (att.hour_to - att_stop) /
                                         precision)
                                     intervals_within += additional_intervals
-                                    res[attendance.id]['duration'] = (
+                                    attendance.duration = (
                                         self.time_sum(
-                                            res[attendance.id]['duration'],
+                                            attendance.duration,
                                             additional_intervals * precision)
                                     )
-                    res[attendance.id][
-                        'inside_calendar_duration'
-                        ] = intervals_within * precision
+                    attendance.inside_calendar_duration = intervals_within * \
+                        precision
                     # make difference using time in order to avoid
                     # rounding errors
                     # inside_calendar_duration can't be > duration
-                    res[attendance.id][
-                        'outside_calendar_duration'
-                        ] = self.time_difference(
-                        res[attendance.id]['inside_calendar_duration'],
-                        res[attendance.id]['duration'],
-                        help_message='Attendance ID %s' % attendance.id)
-
+                    attendance.outside_calendar_duration = \
+                        self.time_difference(
+                            attendance.inside_calendar_duration,
+                            attendance.duration,
+                            help_message='Attendance ID %s' % attendance.id,
+                        )
                     if reference_calendar.overtime_rounding:
-                        if res[attendance.id]['outside_calendar_duration']:
-                            overtime = res[attendance.id][
-                                'outside_calendar_duration']
+                        if attendance.outside_calendar_duration:
+                            overtime = attendance.outside_calendar_duration
                             cal = reference_calendar
                             if cal.overtime_rounding_tolerance:
                                 overtime = self.time_sum(
                                     overtime, cal.overtime_rounding_tolerance)
                             float_overtime_rounding = float(
                                 reference_calendar.overtime_rounding)
-                            res[attendance.id]['outside_calendar_duration'] = \
+                            attendance.outside_calendar_duration = \
                                 math.floor(overtime *
                                            float_overtime_rounding) / \
                                 float_overtime_rounding
-        return res
 
-    def _get_by_contracts(self, cr, uid, ids, context=None):
-        attendance_ids = []
-        attendance_pool = self.pool['hr.attendance']
-        for contract in self.pool['hr.contract'].browse(
-                cr, uid, ids, context=context):
-            att_ids = attendance_pool.search(
-                cr, uid,
-                [('employee_id', '=', contract.employee_id.id)],
-                context=context)
-            for att_id in att_ids:
-                if att_id not in attendance_ids:
-                    attendance_ids.append(att_id)
-        return attendance_ids
-
-    def _get_by_calendars(self, cr, uid, ids, context=None):
-        attendance_ids = []
-        attendance_pool = self.pool['hr.attendance']
-        contract_pool = self.pool['hr.contract']
-        for calendar in self.pool['resource.calendar'].browse(
-                cr, uid, ids, context=context):
-            contract_ids = contract_pool.search(
-                cr, uid,
-                [('working_hours', '=', calendar.id)],
-                context=context)
-            att_ids = attendance_pool._get_by_contracts(
-                cr, uid, contract_ids, context=None)
-            for att_id in att_ids:
-                if att_id not in attendance_ids:
-                    attendance_ids.append(att_id)
-        return attendance_ids
-
-    def _get_by_calendar_attendances(self, cr, uid, ids, context=None):
-        attendance_ids = []
-        attendance_pool = self.pool['hr.attendance']
-        for calendar_attendance in \
-                self.pool['resource.calendar.attendance'].browse(
-                    cr, uid, ids, context=context):
-            att_ids = attendance_pool._get_by_calendars(
-                cr, uid, [calendar_attendance.calendar_id.id], context=None)
-            for att_id in att_ids:
-                if att_id not in attendance_ids:
-                    attendance_ids.append(att_id)
-        return attendance_ids
-
-    def _get_attendances(self, cr, uid, ids, context=None):
-        attendance_ids = []
-        for attendance in self.browse(cr, uid, ids, context=context):
-            if (attendance.action == 'sign_in' and
-                    attendance.id not in attendance_ids):
-                attendance_ids.append(attendance.id)
+    @api.depends("name", "action", "employee_id")
+    @api.multi
+    def _compute_triggering_attendance_id(self):
+        for attendance in self:
+            attendance.triggering_attendance_id = False
+            if attendance.action == 'sign_in':
+                attendance.triggering_attendance_id = attendance.id
             elif attendance.action == 'sign_out':
-                previous_attendance_ids = self.search(
-                    cr, uid, [('employee_id', '=', attendance.employee_id.id),
-                              ('name', '<', attendance.name),
-                              ('action', '=', 'sign_in')],
-                    order='name', context=context)
-                if (previous_attendance_ids and
-                        previous_attendance_ids[-1] not in
-                        attendance_ids):
-                    attendance_ids.append(previous_attendance_ids[-1])
-        return attendance_ids
+                previous_attendances = self.search([
+                    ('employee_id', '=', attendance.employee_id.id),
+                    ('name', '<', attendance.name),
+                    ('action', '=', 'sign_in')],
+                    order='name')
+                if previous_attendances:
+                    attendance.triggering_attendance_id = \
+                        previous_attendances[-1].id
 
-    def _day_compute(self, cr, uid, ids, fieldnames, args, context=None):
-        res = dict.fromkeys(ids, '')
-        for obj in self.browse(cr, uid, ids, context=context):
-            res[obj.id] = time.strftime(
-                '%Y-%m-%d', time.strptime(obj.name, '%Y-%m-%d %H:%M:%S'))
-        return res
+    @api.depends("name")
+    @api.multi
+    def _compute_day(self):
+        for attendance in self:
+            attendance.day = time.strftime(
+                '%Y-%m-%d',
+                time.strptime(attendance.name, '%Y-%m-%d %H:%M:%S'))
 
-    _inherit = "hr.attendance"
+    triggering_attendance_id = fields.Many2one(
+        string="Triggering Attendance",
+        comodel_name="hr.attendance",
+        compute="_compute_triggering_attendance_id",
+        store=True,
+    )
+    duration = fields.Float(
+        compute='_compute_attendance_duration',
+        multi='duration',
+        string="Attendance duration",
+        store=True,
+    )
+    end_datetime = fields.Datetime(
+        compute='_compute_attendance_duration',
+        multi='duration',
+        string="End date time",
+        store=True,
+    )
+    outside_calendar_duration = fields.Float(
+        compute='_compute_attendance_duration',
+        multi='duration',
+        string="Overtime",
+        store=True,
+    )
+    inside_calendar_duration = fields.Float(
+        compute='_compute_attendance_duration',
+        multi='duration',
+        string="Duration within working schedule",
+        store=True,
+    )
+    day = fields.Date(
+        compute='_compute_day',
+        string='Day',
+        store=True,
+        select=1,
+    )
 
-    _store_rules = {
-        'hr.attendance': (_get_attendances,
-                          ['name', 'action', 'employee_id'], 20),
-        'hr.contract': (_get_by_contracts,
-                        ['employee_id', 'date_start', 'date_end',
-                         'trial_date_start', 'trial_date_end',
-                         'working_hours'], 20),
-        'resource.calendar': (_get_by_calendars, ['attendance_ids'], 20),
-        'resource.calendar.attendance': (
-            _get_by_calendar_attendances,
-            ['dayofweek', 'date_from', 'hour_from', 'hour_to', 'calendar_id'],
-            20
-        ),
-    }
-
-    _columns = {
-        'duration': fields.function(
-            _get_attendance_duration, method=True, multi='duration',
-            string="Attendance duration", store=_store_rules),
-        'end_datetime': fields.function(
-            _get_attendance_duration, method=True, multi='duration',
-            type="datetime", string="End date time", store=_store_rules),
-        'outside_calendar_duration': fields.function(
-            _get_attendance_duration, method=True, multi='duration',
-            string="Overtime", store=_store_rules),
-        'inside_calendar_duration': fields.function(
-            _get_attendance_duration, method=True, multi='duration',
-            string="Duration within working schedule", store=_store_rules),
-        'day': fields.function(
-            _day_compute, type='char', string='Day',
-            store=True, select=1, size=32),
-    }
-
-    def button_dummy(self, cr, uid, ids, context=None):
-        for att in self.browse(cr, uid, ids, context=context):
+    @api.multi
+    def button_dummy(self):
+        for att in self:
             #  By writing the 'action' field without changing it,
-            #  I'm forcing the '_get_attendance_duration' to be executed
+            #  I'm forcing the '_compute_attendance_duration' to be executed
             att.write({'action': att.action})
-        return True
