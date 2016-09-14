@@ -175,23 +175,27 @@ openerp.hr_timesheet_task = function(instance) {
             });
 
             self.$(".oe_timesheet_weekly_add_row button").click(function() {
-                var id = self.account_m2o.get_value();
-                if (id === false) {
-                    self.dfm.set({display_invalid_fields: true});
-                    return;
-                }
-                var ops = self.generate_o2m_value();
-                new instance.web.Model("hr.analytic.timesheet").call("on_change_account_id", [[], id]).then(function(res) {
-                    var def = _.extend({}, self.default_get, res.value, {
-                        name: self.description_line,
-                        unit_amount: 0,
-                        date: instance.web.date_to_str(self.dates[0]),
-                        account_id: id,
-                        task_id: self.task_m2o.get_value(),
-                    });
-                    ops.push(def);
-                    self.set({"sheets": ops});
+                self.onclick_add_row_button()
+            });
+        },
+        onclick_add_row_button: function(){
+            var self = this
+            var id = self.account_m2o.get_value();
+            if (id === false) {
+                self.dfm.set({display_invalid_fields: true});
+                return;
+            }
+            var ops = self.generate_o2m_value();
+            new instance.web.Model("hr.analytic.timesheet").call("on_change_account_id", [[], id]).then(function(res) {
+                var def = _.extend({}, self.default_get, res.value, {
+                    name: self.description_line,
+                    unit_amount: 0,
+                    date: instance.web.date_to_str(self.dates[0]),
+                    account_id: id,
+                    task_id: self.task_m2o.get_value(),
                 });
+                ops.push(def);
+                self.set({"sheets": ops});
             });
         },
         onchange_account_id: function() {
