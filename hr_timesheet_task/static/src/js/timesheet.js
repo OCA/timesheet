@@ -198,26 +198,31 @@ odoo.define('hr_timesheet_task.sheet', function (require) {
                 self.onchange_project_id();
             });
 
-            self.$('.oe_timesheet_button_add').click(function() {
-                var id = self.project_m2o.get_value();
-                var task_id = self.task_m2o.get_value();
-                if (id === false) {
-                    self.dfm.set({display_invalid_fields: true});
-                    return;
-                }
-
-                var ops = self.generate_o2m_value();
-                ops.push(_.extend({}, self.default_get, {
-                    name: self.description_line,
-                    unit_amount: 0,
-                    date: time.date_to_str(self.dates[0]),
-                    project_id: id,
-                    task_id: task_id,
-                }));
-
-                self.set({sheets: ops});
-                self.destroy_content();
+            self.$(".oe_timesheet_weekly_add_row button").click(function() {
+                self.onclick_add_row_button();
             });
+        },
+
+        onclick_add_row_button: function(){
+            var self = this;
+            var id = self.project_m2o.get_value();
+            var task_id = self.task_m2o.get_value();
+            if (id === false) {
+                self.dfm.set({display_invalid_fields: true});
+                return;
+            }
+
+            var ops = self.generate_o2m_value();
+            ops.push(_.extend({}, self.default_get, {
+                name: self.description_line,
+                unit_amount: 0,
+                date: time.date_to_str(self.dates[0]),
+                project_id: id,
+                task_id: task_id,
+            }));
+
+            self.set({sheets: ops});
+            self.destroy_content();
         },
 
         onchange_project_id: function() {
