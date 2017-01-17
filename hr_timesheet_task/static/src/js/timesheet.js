@@ -111,7 +111,7 @@ odoo.define('hr_timesheet_task.sheet', function (require) {
                         return day;
                     });
 
-                    var partner_id = undefined;
+                    var partner_id;
 
                     if(lines[0].partner_id){
                         if(parseInt(lines[0].partner_id, 10) == lines[0].partner_id){
