@@ -1,27 +1,12 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Nicolas Bessi
-#    Copyright 2013 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2013 Nicolas Bessi, Camptocamp SA
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 
 from openerp.osv import orm, fields
 from openerp import api, SUPERUSER_ID
 from openerp.tools.translate import _
+
 
 TASK_WATCHERS = [
     'work_ids',
@@ -29,6 +14,8 @@ TASK_WATCHERS = [
     'effective_hours',
     'planned_hours'
 ]
+
+
 TIMESHEET_WATCHERS = [
     'unit_amount',
     'product_uom_id',
@@ -146,7 +133,6 @@ class ProjectTask(orm.Model):
 
 
 class HrAnalyticTimesheet(orm.Model):
-
     """
     Add field:
     - hr_analytic_timesheet_id:
@@ -228,7 +214,43 @@ class HrAnalyticTimesheet(orm.Model):
         res['value']['task_id'] = task_id
         return res
 
+    @api.model
+    def create(self, vals):
+        if vals.get('work_date'):
+            vals['date'] = vals['work_date'][:10]
+        elif vals.get('date'):
+            vals['work_date'] = vals['date']
+        if (
+            not self.env.context.get('__is_creating_tsline__') and
+            vals.get('task_id') and
+            not (vals.get('journal_id') or vals.get('account_id'))
+        ):
+            Work = self.env['project.task.work'].with_context(
+                __is_creating_tsline__=True)
+            tsline_id = Work._create_analytic_entries({
+                'task_id': vals['task_id'],
+                'name': vals.get('name', '/'),
+                'user_id': vals['user_id'],
+                'date': vals['date'],
+                'hours': vals['unit_amount']})
+            tsline = self.browse(tsline_id)
+            tsline.write({
+                'task_id': vals['task_id'],
+                'work_date': vals['work_date']})
+        else:
+            tsline = super(HrAnalyticTimesheet, self).create(vals)
+        return tsline
+
+    @api.multi
+    def write(self, vals):
+        if vals.get('work_date'):
+            vals['date'] = vals['work_date'][:10]
+        elif vals.get('date'):
+            vals['work_date'] = vals['date']
+        return super(HrAnalyticTimesheet, self).write(vals)
+
     _columns = {
+        'work_date': fields.datetime('Work Start Time'),
         'hr_analytic_timesheet_id': fields.function(
             _get_dummy_hr_analytic_timesheet_id, string='Related Timeline Id',
             type='boolean')

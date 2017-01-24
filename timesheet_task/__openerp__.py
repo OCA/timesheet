@@ -19,36 +19,22 @@
 #
 ##############################################################################
 {'name': 'Analytic Timesheet In Task',
- 'version': '8.0.0.2.1',
- 'author': "Camptocamp,Odoo Community Association (OCA)",
- 'maintainer': 'Camptocamp, Acsone SA/NV',
+ 'version': '8.0.1.0.0',
+ 'author': "Camptocamp, Daniel Reis, Odoo Community Association (OCA)",
  'category': 'Human Resources',
- 'depends': ['project', 'hr_timesheet_invoice'],
- 'description': """
-Replace task work items (project.task.work) linked to task with
-timesheet lines (hr.analytic.timesheet).
-
-Unless the module project_timesheet, it allows to have only one single
-object that handles and records time spent by employees, making more
-coherence for the end user. This way, time entered through timesheet
-lines or tasks is the same. As long as a timesheet lines has an
-associated task, it will compute the related indicators.
-
-Used with the module hr_timesheet_task, it also allows users to complete
-task information through the timesheet sheet (hr.timesheet.sheet).
-    """,
+ 'depends': [
+     'project',
+     'project_timesheet',
+     'hr_timesheet_invoice',
+     ],
  'website': 'http://www.camptocamp.com',
  'data': [
      'project_task_view.xml',
+     'project_task_data.xml',
      'report/hr_timesheet_report_view.xml'
      ],
- 'demo': [],
  'test': ['test/task_timesheet_indicators.yml'],
  'installable': True,
- 'images': [],
- 'auto_install': False,
  'license': 'AGPL-3',
  'application': True,
  }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -19,4 +19,5 @@
 #
 ##############################################################################
 from . import project_task
+from . import project_task_work
 from . import report
