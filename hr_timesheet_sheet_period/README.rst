@@ -7,7 +7,8 @@ HR Timesheet Sheet based on Payroll Period
 ==========================================
 
 This module allows to create timesheets with start and end dates matching with the
-payroll period.
+payroll period of the schedule pay that is specified in the contract of the 
+employee or if not then will match the nearest payroll period.
 
 Configuration
 =============
@@ -25,7 +26,7 @@ as per the Schedule Pay mentioned in the Employee's contract.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/117/9.0
+   :target: https://runbot.odoo-community.org/runbot/117/8.0
 
 
 Bug Tracker
@@ -39,6 +40,11 @@ help us smashing it by providing a detailed and welcomed feedback.
 
 Credits
 =======
+
+Images
+------
+
+* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
 
 Contributors
 ------------

@@ -98,11 +98,13 @@ class HrTimesheetSheet(models.Model):
             if timesheet.hr_period_id:
                 if timesheet.date_from != timesheet.hr_period_id.date_start:
                     raise UserError(
-                        _("The Date From must match with that of the "
-                          "Payslip period '%s'.") % (
+                        _("The Date From of Timesheet must match with that of"
+                          " date start '%s' of the Payroll period '%s'.") % (
+                            timesheet.hr_period_id.date_start,
                             timesheet.hr_period_id.name))
                 if timesheet.date_to != timesheet.hr_period_id.date_stop:
                     raise UserError(
-                        _("The Date To must match with that of the "
-                          "Payslip period '%s'.") % (
+                        _("The Date To of Timesheet must match with that of"
+                          " date stop '%s' of the Payroll period '%s'.") % (
+                            timesheet.hr_period_id.date_stop,
                             timesheet.hr_period_id.name))
