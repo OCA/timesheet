@@ -56,9 +56,12 @@ You can disable it again once the migration work has been completed.
 Usage
 =====
 
-To use this module, you need to:
-
-#. Go to ...
+In Project Tasks, you can create work lines.
+They look similar to the original work lines, and allow to select the User u
+and record a date and dtime for the work.
+But in fact these liens are being directly stored as Timesheet lines.
+You can confirm this by creating a Timesheet for the User covering the data of
+the work line. The work resorded from the Project Task will also be availablein the Timesheet.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -70,7 +73,8 @@ To use this module, you need to:
 Known issues / Roadmap
 ======================
 
-* ...
+None.
+
 
 Bug Tracker
 ===========

@@ -2,7 +2,6 @@
 # Copyright 2013 Nicolas Bessi, Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-
 from openerp.osv import orm, fields
 from openerp import api, SUPERUSER_ID
 from openerp.tools.translate import _

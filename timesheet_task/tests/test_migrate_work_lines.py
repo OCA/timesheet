@@ -59,9 +59,9 @@ class TestMigrateWorkLines(TransactionCase):
         Creating a work line directly from Tasks, providing only
         the minimum data, should correctly compute the remaining data and
         successfully create the timesheet line.
-        This is to keep support to create work lines from RPC calls od data imports,
-        without having to provide the additional data computed on the webclient
-        from through onchange events.
+        This is to keep support to create work lines from RPC calls or
+        data imports, without having to provide the additional data
+        computed on the webclient from through onchange events.
         """
         task = self.env['project.task'].create(
             {'name': 'Test create naive work line',
@@ -71,9 +71,9 @@ class TestMigrateWorkLines(TransactionCase):
                 0,
                 False,
                 {'name': 'Naive timesheet line',
-                    'user_id': self.env.ref('base.user_root').id,
-                    'work_date': '2017-01-16 10:30:00',
-                    'unit_amount': 0.5}
+                 'user_id': self.env.ref('base.user_root').id,
+                 'work_date': '2017-01-16 10:30:00',
+                 'unit_amount': 0.5}
             )],
         })
         self.assertEqual(
