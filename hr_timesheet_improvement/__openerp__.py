@@ -26,7 +26,10 @@
  'category': 'Human Resources',
  'depends': ['hr_timesheet_sheet'],
  'website': 'http://www.camptocamp.com',
- 'data': ['hr_timesheet_view.xml'],
+ 'data': [
+     'hr_timesheet_view.xml',
+     'views/templates.xml',
+ ],
  'js': [],
  'css': [],
  'qweb': [],
