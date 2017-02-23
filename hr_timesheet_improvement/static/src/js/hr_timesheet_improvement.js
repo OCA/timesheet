@@ -8,8 +8,9 @@ openerp.hr_timesheet_improvement = function(instance)
         ignore_fields: function()
         {
             var result = this._super.apply(this, arguments);
-            // we don't want to try to write on the account
+            // we don't want to try to write on the related fields
             result.push('account_name');
+            result.push('date_aal');
             return result
         },
     });
