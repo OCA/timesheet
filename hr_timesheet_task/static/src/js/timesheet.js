@@ -8,7 +8,7 @@ odoo.define('hr_timesheet_task.sheet', function (require) {
     var time = require('web.time');
     var hr_timesheet_sheet = require('hr_timesheet_sheet.sheet');
 
-    var WeeklyTimesheet = core.form_custom_registry.get('weekly_timesheet').extend({
+    core.form_custom_registry.get('weekly_timesheet').include({
         events: {
             'click .oe_timesheet_weekly_account a': 'go_to',
             'click .oe_timesheet_weekly_account_task a': 'go_to_task',
@@ -240,8 +240,6 @@ odoo.define('hr_timesheet_task.sheet', function (require) {
             return this.$('[data-project-task="' + project.project_task + '"][data-day-count="' + day_count + '"]');
         },
     });
-
-    core.form_custom_registry.add('weekly_timesheet', WeeklyTimesheet);
 });
 
 

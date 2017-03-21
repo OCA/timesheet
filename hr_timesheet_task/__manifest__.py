@@ -15,15 +15,15 @@
     'author': 'Scopea, Niboo, Camptocamp SA, Odoo Community Association (OCA)',
     'depends': [
         'hr_timesheet_sheet',
+        'hr_timesheet_attendance',
     ],
     'data': [
         'views/hr_timesheet_assets.xml',
         'views/hr_timesheet_view.xml',
     ],
     'qweb': [
-        'static/src/xml/hr_timesheet_task.xml',
+        'static/src/xml/timesheet.xml',
     ],
     'installable': True,
     'application': False,
 }
-
