@@ -32,6 +32,7 @@ addon | version | summary
 [hr_timesheet_task_required](hr_timesheet_task_required/) | 8.0.1.0.0 | Set task on timesheet as a mandatory field
 [timesheet_task](timesheet_task/) | 8.0.0.2.1 | Analytic Timesheet In Task
 
+
 Unported addons
 ---------------
 addon | version | summary
