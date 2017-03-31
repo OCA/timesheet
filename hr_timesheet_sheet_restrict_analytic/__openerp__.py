@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Hr Timesheet Restrict Analytic",
+    "name": "Hr Timesheet Sheet Restrict Analytic",
     "summary": "Allows to restrict the analytic accounts that can be "
                "used in timesheets",
     "version": "9.0.1.0.0",

@@ -5,7 +5,7 @@
               inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
             <script type="text/javascript"
-                    src="/hr_timesheet_restrict_analytic/static/src/js/restrict_timesheet.js"/>
+                    src="/hr_timesheet_sheet_restrict_analytic/static/src/js/restrict_timesheet.js"/>
         </xpath>
     </template>
 
