@@ -84,39 +84,6 @@ class AccountAnalyticLine(models.Model):
                                   )])
             raise exceptions.ValidationError(message)
 
-
-class HrAnalyticTimesheet(models.Model):
-    _inherit = 'hr.analytic.timesheet'
-
-    _order = "id desc"
-    _order = ("aal_date DESC, aal_time_start DESC,"
-              "aal_time_stop DESC, aal_account_name ASC")
-
-    aal_date = fields.Date(
-        string='Analytic Line Date',
-        related='line_id.date',
-        store=True,
-        readonly=True,
-    )
-    aal_time_start = fields.Float(
-        string='Analytic Line Begin Hour',
-        related='line_id.time_start',
-        store=True,
-        readonly=True,
-    )
-    aal_time_stop = fields.Float(
-        string='Analytic Line Begin Hour',
-        related='line_id.time_stop',
-        store=True,
-        readonly=True,
-    )
-    aal_account_name = fields.Char(
-        string='Analytic Account Name',
-        related='account_id.name',
-        store=True,
-        readonly=True,
-    )
-
     @api.onchange('time_start', 'time_stop')
     def onchange_hours_start_stop(self):
         start = timedelta(hours=self.time_start)
@@ -124,3 +91,4 @@ class HrAnalyticTimesheet(models.Model):
         if stop < start:
             return
         self.unit_amount = (stop - start).seconds / 3600
+

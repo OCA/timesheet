@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Authors: Guewen Baconnier
+#    Authors: Guewen Baconnier, Fabien Moret
 #    Copyright 2015 Camptocamp SA
+#    Copyright 2017 Martronic SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,8 +21,8 @@
 #
 
 {'name': 'Timesheet Activities - Begin/End Hours',
- 'version': '8.0.1.0.0',
- 'author': 'Camptocamp,Odoo Community Association (OCA)',
+ 'version': '9.0.1.0.0',
+ 'author': 'Martronic SA,Camptocamp,Odoo Community Association (OCA)',
  'license': 'AGPL-3',
  'category': 'Human Resources',
  'depends': ['hr_timesheet_sheet',
@@ -31,6 +32,6 @@
           'views/hr_timesheet_sheet.xml',
           ],
  'test': [],
- 'installable': False,
+ 'installable': True,
  'auto_install': False,
  }
