@@ -31,7 +31,6 @@ class TestBeginEnd(common.TransactionCase):
         self.consultant = self.env.ref('product.product_product_consultant')
         self.analytic = self.env.ref('account.analytic_administratif')
         self.expense = self.env.ref('account.a_expense')
-        self.journal = self.env.ref('hr_timesheet.analytic_journal')
         self.hour = self.env.ref('product.product_uom_hour')
         self.user = self.env.ref('base.user_root')
         self.base_line = {
