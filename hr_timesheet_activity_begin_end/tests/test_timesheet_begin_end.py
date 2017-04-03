@@ -46,7 +46,6 @@ class TestBeginEnd(common.TransactionCase):
             'account_id': self.analytic.id,
             'amount': -60.,
             'general_account_id': self.expense.id,
-            'journal_id': self.journal.id,
         }
 
     def test_onchange(self):
