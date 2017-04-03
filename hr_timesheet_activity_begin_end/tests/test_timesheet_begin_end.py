@@ -28,7 +28,7 @@ class TestBeginEnd(common.TransactionCase):
     def setUp(self):
         super(TestBeginEnd, self).setUp()
         self.timesheet_line_model = self.env['account.analytic.line']
-        self.consultant = self.env.ref('product.product_product_consultant')
+        self.consultant = self.env.ref('product.product_product_1')
         self.analytic = self.env.ref('account.analytic_administratif')
         self.expense = self.env.ref('account.a_expense')
         self.hour = self.env.ref('product.product_uom_hour')
