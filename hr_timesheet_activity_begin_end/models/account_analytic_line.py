@@ -92,4 +92,3 @@ class AccountAnalyticLine(models.Model):
         if stop < start:
             return
         self.unit_amount = (stop - start).seconds / 3600
-

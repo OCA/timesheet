@@ -30,7 +30,9 @@ class TestBeginEnd(common.TransactionCase):
         self.timesheet_line_model = self.env['account.analytic.line']
         self.consultant = self.env.ref('product.product_product_1')
         self.analytic = self.env.ref('analytic.analytic_administratif')
-        self.expense = self.env['account.account'].search([('user_type_id', '=', self.env.ref('account.data_account_type_expenses').id)], limit=1)
+        expenses_id = self.env.ref('account.data_account_type_expenses').id
+        self.expense = self.env['account.account'].search(
+            [('user_type_id', '=', expenses_id)], limit=1)
         self.hour = self.env.ref('product.product_uom_hour')
         self.user = self.env.ref('base.user_root')
         self.base_line = {
