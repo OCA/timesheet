@@ -44,9 +44,10 @@ class AccountAnalyticLine(models.Model):
     time_start = fields.Float(string='Begin Hour')
     time_stop = fields.Float(string='End Hour')
 
-    @api.one
+    @api.multi
     @api.constrains('time_start', 'time_stop', 'unit_amount')
     def _check_time_start_stop(self):
+        self.ensure_one()
         start = timedelta(hours=self.time_start)
         stop = timedelta(hours=self.time_stop)
         if stop < start:
