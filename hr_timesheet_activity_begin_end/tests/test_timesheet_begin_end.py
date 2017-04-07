@@ -80,7 +80,7 @@ class TestBeginEnd(common.TransactionCase):
 
     def test_float_time_convert(self):
         message_re = (r"The beginning hour \(\d\d:\d\d\) must precede "
-                      r"the ending hour \(\d\d:00)\.")
+                      r"the ending hour \(\d\d:00\)\.")
         line = self.base_line.copy()
         line.update({
             'time_start': 12.,
