@@ -65,7 +65,7 @@ class TestBeginEnd(common.TransactionCase):
             'time_stop': 10.,
         })
         line.onchange_hours_start_stop()
-        self.assertEquals(line.unit_amount, 2)
+        self.assertEquals(line.unit_amount, False)
 
     def test_check_begin_before_end(self):
         message_re = (r"The beginning hour \(\d\d:\d\d\) must precede "
@@ -79,7 +79,8 @@ class TestBeginEnd(common.TransactionCase):
             self.timesheet_line_model.create(line)
 
     def test_float_time_convert(self):
-        message_re = (r"Text error message in case of > 59.5 secs remains.")
+        message_re = (r"The beginning hour \(\d\d:\d\d\) must precede "
+                      r"the ending hour \(\d\d:00)\.")
         line = self.base_line.copy()
         line.update({
             'time_start': 12.,
