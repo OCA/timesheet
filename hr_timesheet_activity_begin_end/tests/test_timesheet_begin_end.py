@@ -79,6 +79,7 @@ class TestBeginEnd(common.TransactionCase):
             self.timesheet_line_model.create(line)
 
     def test_float_time_convert(self):
+        message_re = (r"Text error message in case of > 59.5 secs remains.")
         line = self.base_line.copy()
         line.update({
             'time_start': 12.,
