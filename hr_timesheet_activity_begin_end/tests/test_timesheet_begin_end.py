@@ -58,6 +58,15 @@ class TestBeginEnd(common.TransactionCase):
         line.onchange_hours_start_stop()
         self.assertEquals(line.unit_amount, 2)
 
+    def test_onchange_begin_before_end(self):
+        line = self.timesheet_line_model.new({
+            'name': 'test',
+            'time_start': 12.,
+            'time_stop': 10.,
+        })
+        line.onchange_hours_start_stop()
+        self.assertEquals(line.unit_amount, 2)
+
     def test_check_begin_before_end(self):
         message_re = (r"The beginning hour \(\d\d:\d\d\) must precede "
                       r"the ending hour \(\d\d:\d\d\)\.")
@@ -65,6 +74,15 @@ class TestBeginEnd(common.TransactionCase):
         line.update({
             'time_start': 12.,
             'time_stop': 10.,
+        })
+        with self.assertRaisesRegexp(exceptions.ValidationError, message_re):
+            self.timesheet_line_model.create(line)
+
+    def test_float_time_convert(self):
+        line = self.base_line.copy()
+        line.update({
+            'time_start': 12.,
+            'time_stop': 10.995,
         })
         with self.assertRaisesRegexp(exceptions.ValidationError, message_re):
             self.timesheet_line_model.create(line)
