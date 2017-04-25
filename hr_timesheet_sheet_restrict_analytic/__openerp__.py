@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2015 Eficent Business and IT Consulting Services S.L. (www.eficent.com)
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 {
     "name": "Hr Timesheet Sheet Restrict Analytic",
@@ -17,6 +17,6 @@
         "views/hr_timesheet_sheet_view.xml",
         "views/hr_timesheet_restrict_analytic.xml"
     ],
-    "license": "AGPL-3",
+    "license": "LGPL-3",
     'installable': True,
 }

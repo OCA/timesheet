@@ -1,6 +1,6 @@
-.. image:: https://img.shields.io/badge/license-AGPLv3-blue.svg
-   :target: https://www.gnu.org/licenses/agpl.html
-   :alt: License: AGPL-3
+.. image:: https://img.shields.io/badge/license-LGPLv3-blue.svg
+   :target: https://www.gnu.org/licenses/lgpl.html
+   :alt: License: LGPL-3
 
 ====================================
 Hr Timesheet Sheet Restrict Analytic
