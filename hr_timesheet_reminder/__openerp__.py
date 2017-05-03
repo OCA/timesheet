@@ -54,5 +54,5 @@ of TinyERP 4 and OpenERP 5.
         'timesheet_report.xml',
     ],
     "active": False,
-    'installable': False
+    'installable': True,
 }
