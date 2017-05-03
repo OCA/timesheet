@@ -120,7 +120,7 @@ class Reminder(orm.Model):
         # the message does not exists
         if message_id is None:
             vals = dict(
-                self.message, subject=_('Timesheet Reminder'),
+                subject=_('Timesheet Reminder'),
                 message=_('At least one of your last timesheets is still '
                           'in draft or is missing. Please take time to '
                           'complete and confirm it.'))
