@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_toggl_backend","toggl_backend connector manager","model_toggl_backend","connector.group_connector_manager",1,1,1,1
+"access_toggl_binding","toggl_binding connector manager","model_toggl_binding","connector.group_connector_manager",1,1,1,1
+"access_toggl_backend_user","toggl_backend user","model_toggl_backend","base.group_user",1,0,0,0
+"access_toggl_hr_analytic_timesheet_user","toggl_hr_analytic_timesheet user","model_toggl_hr_analytic_timesheet","base.group_user",1,1,1,1

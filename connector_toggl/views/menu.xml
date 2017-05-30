@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <menuitem id="menu_toggl_root"
+        parent="connector.menu_connector_root"
+        name="Toggl"
+        sequence="10"
+        groups="connector.group_connector_manager"/>
+
+    <menuitem id="menu_toggl_backend"
+        name="Backends"
+        parent="menu_toggl_root"
+        action="action_toggl_backend"/>
+
+  </data>
+</openerp>

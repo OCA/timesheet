@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Update hr_timesheet_sheet_sheet form -->
+        <record model="ir.ui.view" id="hr_timesheet_sheet_form_toggl">
+            <field name="name">Timesheet form with Toggl button</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//header/button[@name='button_confirm']" position="after">
+                        <button name="import_from_toggl" type="object"
+                            states="draft" icon="terp-go-week" string="Import from Toggl"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</openerp>

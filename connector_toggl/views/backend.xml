@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_toggl_backend_form" model="ir.ui.view">
+            <field name="name">toggl.backend.form</field>
+            <field name="model">toggl.backend</field>
+            <field name="arch" type="xml">
+                <form string="Toggl Backend">
+                    <sheet>
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <span>Toggl backend: </span><field name="name" class="oe_inline" />
+                        </h1>
+                        <notebook>
+                            <page string="Actions" name="actions">
+                                <div name="actions">
+                                    <group>
+                                        <div>
+                                            <label string="Import products since" class="oe_inline"/>
+                                            <field name="import_from_date"
+                                                class="oe_inline"
+                                                nolabel="1"/>
+                                        </div>
+                                    </group>
+                                </div>
+                            </page>
+                            <page string="Settings" name="settings">
+                                <group>
+                                    <field name="api_url"/>
+                                    <field name="version"/>
+                                    <field name="api_key"/>
+                                    <field name="workspace_id"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_toggl_backend_tree" model="ir.ui.view">
+            <field name="name">toggl.backend.tree</field>
+            <field name="model">toggl.backend</field>
+            <field name="arch" type="xml">
+                <tree string="Toggl Backend">
+                    <field name="name"/>
+                    <field name="api_key"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_toggl_backend" model="ir.actions.act_window">
+            <field name="name">Toggl Backends</field>
+            <field name="res_model">toggl.backend</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_toggl_backend_tree"/>
+        </record>
+
+    </data>
+</openerp>
