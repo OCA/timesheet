@@ -1,38 +1,16 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Authors: Guewen Baconnier
-#    Copyright 2015 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+# Copyright 2015 Camptocamp SA - Guewen Baconnier
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import fields, exceptions
-from openerp.tests import common
+from odoo import fields, exceptions
+from odoo.tests import common
 
 
 class TestBeginEnd(common.TransactionCase):
-
     def setUp(self):
         super(TestBeginEnd, self).setUp()
-        self.timesheet_line_model = self.env['hr.analytic.timesheet']
-        self.consultant = self.env.ref('product.product_product_consultant')
-        self.analytic = self.env.ref('account.analytic_administratif')
-        self.expense = self.env.ref('account.a_expense')
-        self.journal = self.env.ref('hr_timesheet.analytic_journal')
-        self.hour = self.env.ref('product.product_uom_hour')
+        self.timesheet_line_model = self.env['account.analytic.line']
+        self.analytic = self.env.ref('analytic.analytic_administratif')
         self.user = self.env.ref('base.user_root')
         self.base_line = {
             'name': 'test',
@@ -41,12 +19,8 @@ class TestBeginEnd(common.TransactionCase):
             'time_stop': 12.,
             'user_id': self.user.id,
             'unit_amount': 2.,
-            'product_id': self.consultant.id,
-            'product_uom_id': self.hour.id,
             'account_id': self.analytic.id,
             'amount': -60.,
-            'general_account_id': self.expense.id,
-            'journal_id': self.journal.id,
         }
 
     def test_onchange(self):
@@ -59,14 +33,12 @@ class TestBeginEnd(common.TransactionCase):
         self.assertEquals(line.unit_amount, 2)
 
     def test_check_begin_before_end(self):
-        message_re = (r"The beginning hour \(\d\d:\d\d\) must precede "
-                      r"the ending hour \(\d\d:\d\d\)\.")
         line = self.base_line.copy()
         line.update({
             'time_start': 12.,
             'time_stop': 10.,
         })
-        with self.assertRaisesRegexp(exceptions.ValidationError, message_re):
+        with self.assertRaises(exceptions.ValidationError):
             self.timesheet_line_model.create(line)
 
     def test_check_wrong_duration(self):
