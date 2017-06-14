@@ -1,31 +1,15 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Authors: Guewen Baconnier
-#    Copyright 2015 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+# Copyright 2015 Camptocamp SA - Guewen Baconnier
+# Copyright 2017 Tecnativa, S.L. - Luis M. Ontalba
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from __future__ import division
 
 import math
 from datetime import timedelta
 
-from openerp import models, fields, api, exceptions, _
-from openerp.tools.float_utils import float_compare
+from odoo import models, fields, api, exceptions, _
+from odoo.tools.float_utils import float_compare
 
 
 def float_time_convert(float_val):
@@ -83,39 +67,6 @@ class AccountAnalyticLine(models.Model):
                                       lambda l: l.time_start
                                   )])
             raise exceptions.ValidationError(message)
-
-
-class HrAnalyticTimesheet(models.Model):
-    _inherit = 'hr.analytic.timesheet'
-
-    _order = "id desc"
-    _order = ("aal_date DESC, aal_time_start DESC,"
-              "aal_time_stop DESC, aal_account_name ASC")
-
-    aal_date = fields.Date(
-        string='Analytic Line Date',
-        related='line_id.date',
-        store=True,
-        readonly=True,
-    )
-    aal_time_start = fields.Float(
-        string='Analytic Line Begin Hour',
-        related='line_id.time_start',
-        store=True,
-        readonly=True,
-    )
-    aal_time_stop = fields.Float(
-        string='Analytic Line Begin Hour',
-        related='line_id.time_stop',
-        store=True,
-        readonly=True,
-    )
-    aal_account_name = fields.Char(
-        string='Analytic Account Name',
-        related='account_id.name',
-        store=True,
-        readonly=True,
-    )
 
     @api.onchange('time_start', 'time_stop')
     def onchange_hours_start_stop(self):
