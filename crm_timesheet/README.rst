@@ -6,30 +6,16 @@
 CRM Timesheet
 =============
 
-This module allows to generate timesheets from leads/opportunities and phone
-calls.
-
+This module allows to generate timesheets from leads/opportunities.
 
 Usage
 =====
 
 * In lead/opportunity forms you have Timesheet tab.
-* In phone calls tree, you can add an analytic account, and if the call has
-  any duration, a timesheet activity will be created.
-* You can choose how to input time: (1) set time you dedicated to call after
-  finishing it OR (2) create & save call with time set in 00:00 and Stop the
-  timer when call ends, this will set exactly the time you spent.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/117/8.0
-
-
-Known issues / Roadmap
-======================
-
-* crm.phonecall::write() method has to be wrapped by api.one and this could
-  affect performance when writing lot of records at the same time.
+   :target: https://runbot.odoo-community.org/runbot/117/10.0
 
 
 Bug Tracker
@@ -64,9 +50,10 @@ Credits
 Contributors
 ------------
 
-* Antonio Espinosa <antonioea@antiun.com>
-* Rafael Blasco <rafabn@antiun.com>
+* Antonio Espinosa <antonio.espinosa@tecnativa.com>
+* Rafael Blasco <rafael.blasco@tecnativa.com>
 * Javier Iniesta <javieria@antiun.com>
+* David Vidal <david.vidal@tecnativa.com>
 
 Maintainer
 ----------

@@ -7,10 +7,8 @@
 from odoo import fields, models
 
 
-class CrmLead(models.Model):
-    _inherit = 'crm.lead'
+class AccountAnalyticLine(models.Model):
+    _inherit = 'account.analytic.line'
 
-    analytic_account_id = fields.Many2one(
-        comodel_name='account.analytic.account')
-    timesheet_ids = fields.One2many(comodel_name='account.analytic.line',
-                                    inverse_name='lead_id')
+    lead_id = fields.Many2one(comodel_name='crm.lead',
+                              string='Lead/Oportunity')
