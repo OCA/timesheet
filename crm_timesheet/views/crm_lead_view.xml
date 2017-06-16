@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
+<odoo>
 
 <record id="crm_case_form_view_leads" model="ir.ui.view">
     <field name="name">CRM - Leads with timesheets</field>
@@ -10,7 +9,7 @@
         <field name="user_id" position="after">
             <field name="analytic_account_id" />
         </field>
-        <page string="Extra Info" position="after">
+        <page name="extra" position="after">
             <page string="Timesheet">
                 <field name="timesheet_ids"
                     context="{'default_account_id': analytic_account_id,
@@ -28,7 +27,7 @@
         <field name="user_id" position="after">
             <field name="analytic_account_id" />
         </field>
-        <page string="Lead" position="after">
+        <page name="lead" position="after">
             <page string="Timesheet">
                 <field name="timesheet_ids"
                     context="{'default_account_id': analytic_account_id,
@@ -37,5 +36,5 @@
         </page>
     </field>
 </record>
-</data>
-</openerp>
+
+</odoo>
