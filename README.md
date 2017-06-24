@@ -20,6 +20,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[hr_timesheet_sheet_restrict_analytic](hr_timesheet_sheet_restrict_analytic/) | 9.0.1.0.0 | Allows to restrict the analytic accounts that can be used in timesheets
 [hr_timesheet_sheet_week_start_day](hr_timesheet_sheet_week_start_day/) | 9.0.1.0.0 | Allows to define the week start date for Timesheets at company level
 
 
