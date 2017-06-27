@@ -1,5 +1,12 @@
+language: python
 sudo: false
-cache: pip
+cache:
+  apt: true
+  directories:
+    - $HOME/.cache/pip
+
+python:
+  - "2.7"
 
 addons:
   apt:
@@ -7,27 +14,25 @@ addons:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
 
-language: python
-
-python:
-  - "2.7"
-
 env:
-  - VERSION="10.0" LINT_CHECK="1"
-  - VERSION="10.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0"
-  - VERSION="10.0" ODOO_REPO="OCA/OCB" LINT_CHECK="0"
+  global:
+  - VERSION="10.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - TRANSIFEX_USER='transbot@odoo-community.org'
+  - secure: CSf07Ubip0XXb19t6uBFhRMTlKFz7dGO2oxN5ibgObzjj+fncjdMsTqY0tIGT0/0+X9hWzDL4ZpY+1jhrHDgnDw9D2w81CZXC82DobPf+/pQ4MCHbZmldTqAE/APIzG76D6m77VB0yYGX+3LhNrpRKiDlWbLUFySQV5pe4py4R0=
 
-virtualenv:
-  system_site_packages: true
+  matrix:
+  - LINT_CHECK="1"
+  - TRANSIFEX="1"
+  - TESTS="1" ODOO_REPO="OCA/OCB"
+  - TESTS="1" ODOO_REPO="odoo/odoo"
 
 install:
-  - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
-  - travis_install_nightly ${VERSION}
+  - travis_install_nightly
 
 script:
-  - travis_run_tests ${VERSION}
+  - travis_run_tests
 
 after_success:
-  coveralls
-
+  - travis_after_tests_success
