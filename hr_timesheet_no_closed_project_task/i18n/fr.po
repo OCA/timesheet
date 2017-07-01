@@ -1,0 +1,92 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * hr_timesheet_no_closed_project_task
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-28 07:54+0000\n"
+"PO-Revision-Date: 2017-06-28 07:54+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: hr_timesheet_no_closed_project_task
+#: field:project.task,stage_closed:0
+msgid "Closed"
+msgstr ""
+
+#. module: hr_timesheet_no_closed_project_task
+#: field:project.task,project_state:0
+msgid "Project State"
+msgstr ""
+
+#. module: hr_timesheet_no_closed_project_task
+#: model:ir.model,name:hr_timesheet_no_closed_project_task.model_project_task
+msgid "Task"
+msgstr "Tâche"
+
+#. module: hr_timesheet_no_closed_project_task
+#: help:project.task,stage_closed:0
+msgid "Tasks in this stage are considered closed."
+msgstr ""
+
+#. module: hr_timesheet_no_closed_project_task
+#: model:ir.model,name:hr_timesheet_no_closed_project_task.model_hr_analytic_timesheet
+msgid "Timesheet Line"
+msgstr "Ligne de feuille de temps"
+
+#. module: hr_timesheet_no_closed_project_task
+#: view:hr_timesheet_sheet.sheet:hr_timesheet_no_closed_project_task.hr_timesheet_sheet_form
+msgid ""
+"[\n"
+"                      ('type','in',['normal','contract']), ('state', '<>', 'close'), ('use_timesheets','=',1),\n"
+"                      '|', ('project_ids', '=', False), ('project_ids.state', 'not in', ('close', 'cancelled'))]"
+msgstr ""
+
+#. module: hr_timesheet_no_closed_project_task
+#: view:hr_timesheet_sheet.sheet:hr_timesheet_no_closed_project_task.hr_timesheet_sheet_form
+msgid ""
+"[\n"
+"                      ('type','in',['normal','contract']),('state', '<>', 'close'),('use_timesheets','=',1),\n"
+"                      '|', ('project_ids', '=', False), ('project_ids.state', 'not in', ('close', 'cancelled'))]"
+msgstr ""
+
+#. module: hr_timesheet_no_closed_project_task
+#: view:hr.analytic.timesheet:hr_timesheet_no_closed_project_task.hr_timesheet_line_form
+#: view:hr.analytic.timesheet:hr_timesheet_no_closed_project_task.hr_timesheet_line_tree
+#: view:hr_timesheet_sheet.sheet:hr_timesheet_no_closed_project_task.hr_timesheet_sheet_form
+msgid ""
+"[('project_id.analytic_account_id','=',account_id),('stage_id.closed', '=', "
+"False)]"
+msgstr ""
+
+#. module: hr_timesheet_no_closed_project_task
+#: view:hr.analytic.timesheet:hr_timesheet_no_closed_project_task.hr_timesheet_line_form
+msgid ""
+"[('type','=','normal'),('state', '<>', "
+"'close'),('parent_id','!=',False),('project_ids.state', 'not in', ('close', "
+"'cancelled'))]"
+msgstr ""
+
+#. module: hr_timesheet_no_closed_project_task
+#: view:hr.analytic.timesheet:hr_timesheet_no_closed_project_task.hr_timesheet_line_tree2
+msgid ""
+"[('type','in',['normal','contract']),('state', '<>', "
+"'close'),('use_timesheets','=',1),'|', ('project_ids', '=', False), "
+"('project_ids.state', 'not in', ('close', 'cancelled'))]"
+msgstr ""
+
+#. module: hr_timesheet_no_closed_project_task
+#: view:project.task:hr_timesheet_no_closed_project_task.view_task_form2
+msgid ""
+"{'readonly': ['|', ('stage_closed', '=', True), ('project_state', 'in', "
+"('close', 'cancelled'))]}"
+msgstr ""
