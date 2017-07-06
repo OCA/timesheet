@@ -6,14 +6,14 @@
 Hr Timesheet Task Required
 ==========================
 
-This module allow to set task on timesheet as a mandatory field.
+This module allows to set task on timesheet as a mandatory field.
 
 Usage
 =====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/117/8.0
+   :target: https://runbot.odoo-community.org/runbot/117/10.0
 
 
 Bug Tracker
@@ -37,6 +37,7 @@ Contributors
 
 * Adrien Peiffer <adrien.peiffer@acsone.eu>
 * Laurent Mignon <laurent.mignon@acsone.eu>
+* Benjamin Willig <benjamin.willig@acsone.eu>
 
 Maintainer
 ----------
