@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="hr_timesheet_line_form">
+        <field name="name">account.analytic.line.form (in hr_timesheet_task_required)</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+        <field name="arch" type="xml">
+
+            <field name="task_id" poistion="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+
+        </field>
+   </record>
+
+    <record model="ir.ui.view" id="account_analytic_line_tree">
+        <field name="name">hr.analytic.timesheet.form (in hr_timesheet_task_required)</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+        <field name="arch" type="xml">
+
+            <field name="task_id" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+
+        </field>
+    </record>
+
+</odoo>
