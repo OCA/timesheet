@@ -198,7 +198,7 @@ odoo.define('hr_timesheet_task.sheet', function (require) {
                 self.onchange_project_id();
             });
 
-            self.$(".oe_timesheet_weekly_add_row button").click(function() {
+            self.$(".oe_timesheet_button_add").click(function() {
                 self.onclick_add_row_button();
             });
         },
