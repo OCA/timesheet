@@ -1,0 +1,96 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * crm_timesheet
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-01 03:16+0000\n"
+"PO-Revision-Date: 2017-07-01 03:16+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: crm_timesheet
+#: field:crm.lead,analytic_account_id:0
+#: field:crm.phonecall,analytic_account_id:0
+msgid "Analytic account id"
+msgstr "ID analitičnega konta"
+
+#. module: crm_timesheet
+#: code:addons/crm_timesheet/models/crm_phonecall.py:28
+#, python-format
+msgid "Date field must be filled."
+msgstr "Polje datum mora biti izpolnjeno."
+
+#. module: crm_timesheet
+#: code:addons/crm_timesheet/models/crm_phonecall.py:86
+#, python-format
+msgid "End date must be datetime."
+msgstr "Končni datum mora biti formata datetime."
+
+#. module: crm_timesheet
+#: view:crm.lead:crm_timesheet.crm_case_form_view_leads
+msgid "Extra Info"
+msgstr "Dodatne informacije"
+
+#. module: crm_timesheet
+#: view:crm.lead:crm_timesheet.crm_case_form_view_oppor
+msgid "Lead"
+msgstr "Indic"
+
+#. module: crm_timesheet
+#: field:hr.analytic.timesheet,lead_id:0
+#: model:ir.model,name:crm_timesheet.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Indic/priložnost"
+
+#. module: crm_timesheet
+#: field:hr.analytic.timesheet,phonecall_id:0
+msgid "Phone Call"
+msgstr "Telefonski klic"
+
+#. module: crm_timesheet
+#: model:ir.model,name:crm_timesheet.model_crm_phonecall
+msgid "Phonecall"
+msgstr "Telefonski klic"
+
+#. module: crm_timesheet
+#: code:addons/crm_timesheet/models/crm_phonecall.py:84
+#, python-format
+msgid "Start date must be datetime."
+msgstr "Začetni datum mora biti formata datetime."
+
+#. module: crm_timesheet
+#: view:crm.phonecall:crm_timesheet.crm_case_inbound_phone_tree_view
+msgid "Stop"
+msgstr "Stop"
+
+#. module: crm_timesheet
+#: view:crm.lead:crm_timesheet.crm_case_form_view_leads
+#: view:crm.lead:crm_timesheet.crm_case_form_view_oppor
+#: view:crm.phonecall:crm_timesheet.crm_case_phone_form_view
+msgid "Timesheet"
+msgstr "Časovnica"
+
+#. module: crm_timesheet
+#: model:ir.model,name:crm_timesheet.model_hr_analytic_timesheet
+msgid "Timesheet Line"
+msgstr "Postavka časovnice"
+
+#. module: crm_timesheet
+#: field:crm.lead,timesheet_ids:0 field:crm.phonecall,timesheet_ids:0
+msgid "Timesheet ids"
+msgstr "ID-ji časovnic"
+
+#. module: crm_timesheet
+#: view:crm.phonecall:crm_timesheet.crm_case_inbound_phone_tree_view
+msgid "{'required': [('analytic_account_id', '!=', False)]}"
+msgstr "{'required': [('analytic_account_id', '!=', False)]}"

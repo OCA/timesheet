@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * hr_timesheet_task
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-01 03:16+0000\n"
+"PO-Revision-Date: 2017-07-01 03:16+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: hr_timesheet_task
+#: view:hr.analytic.timesheet:hr_timesheet_task.hr_timesheet_line_search
+#: view:hr_timesheet_sheet.sheet:hr_timesheet_task.view_hr_timesheet_sheet_filter_custom
+msgid "Current Month"
+msgstr "Tekoči mesec"
+
+#. module: hr_timesheet_task
+#: view:hr.analytic.timesheet:hr_timesheet_task.hr_timesheet_line_search
+#: view:hr_timesheet_sheet.sheet:hr_timesheet_task.view_hr_timesheet_sheet_filter_custom
+msgid "Current Week"
+msgstr "Tekoči teden"
+
+#. module: hr_timesheet_task
+#: view:hr.analytic.timesheet:hr_timesheet_task.hr_timesheet_line_search
+#: view:hr_timesheet_sheet.sheet:hr_timesheet_task.view_hr_timesheet_sheet_filter_custom
+msgid "Current Year"
+msgstr "Tekoče leto"
+
+#. module: hr_timesheet_task
+#. openerp-web
+#: code:addons/hr_timesheet_task/static/src/xml/timesheet.xml:8
+#: view:hr.analytic.timesheet:hr_timesheet_task.hr_timesheet_line_search
+#, python-format
+msgid "Task"
+msgstr "Opravilo"

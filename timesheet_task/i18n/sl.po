@@ -1,0 +1,79 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * timesheet_task
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-01 03:16+0000\n"
+"PO-Revision-Date: 2017-07-01 03:16+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: timesheet_task
+#: view:hr.timesheet.report:timesheet_task.view_hr_timesheet_report_search
+msgid "Analytic Account"
+msgstr "Analitični konto"
+
+#. module: timesheet_task
+#: model:ir.model,name:timesheet_task.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Analitična postavka"
+
+#. module: timesheet_task
+#: view:hr.timesheet.report:timesheet_task.view_hr_timesheet_report_search
+msgid "Company"
+msgstr "Družba"
+
+#. module: timesheet_task
+#: constraint:account.analytic.line:0
+#: code:addons/timesheet_task/project_task.py:255
+#, python-format
+msgid "Error! Task must belong to the project."
+msgstr "Napaka! Opravilo mora pripadati projektu."
+
+#. module: timesheet_task
+#: field:hr.analytic.timesheet,hr_analytic_timesheet_id:0
+msgid "Related Timeline Id"
+msgstr "Povezani ID časovnega poteka"
+
+#. module: timesheet_task
+#: field:account.analytic.line,task_id:0 field:hr.analytic.timesheet,task_id:0
+#: view:hr.timesheet.report:timesheet_task.view_hr_timesheet_report_search
+#: field:hr.timesheet.report,task_id:0
+#: model:ir.model,name:timesheet_task.model_project_task
+msgid "Task"
+msgstr "Opravilo"
+
+#. module: timesheet_task
+#: view:project.task:timesheet_task.view_task_form2
+msgid "Task Work"
+msgstr "Delo na opravilu"
+
+#. module: timesheet_task
+#: model:ir.model,name:timesheet_task.model_hr_timesheet_report
+msgid "Timesheet"
+msgstr "Časovnica"
+
+#. module: timesheet_task
+#: model:ir.model,name:timesheet_task.model_hr_analytic_timesheet
+msgid "Timesheet Line"
+msgstr "Postavka časovnice"
+
+#. module: timesheet_task
+#: view:project.task:timesheet_task.view_task_form2
+msgid "Total cost"
+msgstr "Skupaj stroški"
+
+#. module: timesheet_task
+#: view:project.task:timesheet_task.view_task_form2
+msgid "Total time"
+msgstr "Skupaj čas"
