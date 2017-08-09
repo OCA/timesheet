@@ -236,7 +236,7 @@ odoo.define('hr_timesheet_task.sheet', function (require) {
                 // ignore tasks already in the timesheet
                 ['id', 'not in', _.pluck(self.projects, 'task')],
             ];
-            self.task_m2o.node.attrs.context = {'project_id': project_id};
+            self.task_m2o.node.attrs.context = {'default_project_id': project_id};
             self.task_m2o.set_value(false);
             self.task_m2o.render_value();
         },
