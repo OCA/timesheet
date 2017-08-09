@@ -16,11 +16,17 @@ way. You'll find modules that:
 
 [//]: # (addons)
 
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[crm_timesheet](crm_timesheet/) | 10.0.1.0.0 | CRM Timesheet
+
+
 Unported addons
 ---------------
 addon | version | summary
 --- | --- | ---
-[crm_timesheet](crm_timesheet/) | 8.0.1.0.0 (unported) | CRM Timesheet
 [hr_attendance_analysis](hr_attendance_analysis/) | 0.1 (unported) | Dynamic reports based on employee's attendances and contract's calendar
 [hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 8.0.1.0.0 (unported) | Timesheet Activities - Begin/End Hours
 [hr_timesheet_fulfill](hr_timesheet_fulfill/) | 1.0 (unported) | Timesheet Fullfill Wizard
