@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- vim:fdn=3:
--->
-<openerp>
+<odoo>
     <data>
         <template id="assets_backend" name="account assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                <link rel="stylesheet" href="/hr_timesheet_task/static/src/css/timesheet.css"/>
                 <script type="text/javascript" src="/hr_timesheet_task/static/src/js/timesheet.js"></script>
-                <script type="text/javascript" src="/account/static/src/js/account_tour_bank_statement_reconciliation.js"></script>
+                <link rel="stylesheet" href="/hr_timesheet_task/static/src/css/timesheet.css"/>
             </xpath>
         </template>
     </data>
-</openerp>
+</odoo>
+
