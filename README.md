@@ -21,6 +21,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [crm_timesheet](crm_timesheet/) | 10.0.1.0.0 | CRM Timesheet
+[hr_timesheet_task](hr_timesheet_task/) | 10.0.1.0.0 | Allow the user to select task in a timesheet
 
 
 Unported addons
@@ -36,7 +37,6 @@ addon | version | summary
 [hr_timesheet_reminder](hr_timesheet_reminder/) | 2.0 (unported) | Timesheet Reminder
 [hr_timesheet_sheet_change_period](hr_timesheet_sheet_change_period/) | 8.0.1.0.0 (unported) | Allows to change covered period while the timesheet is in the 'draft' state
 [hr_timesheet_sheet_week_start_day](hr_timesheet_sheet_week_start_day/) | 8.0.1.0.0 (unported) | Allows to define the week start date for Timesheets at company level
-[hr_timesheet_task](hr_timesheet_task/) | 8.0.0.3.0 (unported) | Task in time sheet
 [timesheet_task](timesheet_task/) | 8.0.0.2.1 (unported) | Analytic Timesheet In Task
 
 [//]: # (end addons)
