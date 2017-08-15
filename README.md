@@ -20,7 +20,9 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[crm_phonecall_timesheet](crm_phonecall_timesheet/) | 10.0.1.0.0 | CRM Timesheet
 [crm_timesheet](crm_timesheet/) | 10.0.1.0.0 | CRM Timesheet
+[hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 10.0.1.0.0 | Timesheet Activities - Begin/End Hours
 [hr_timesheet_task](hr_timesheet_task/) | 10.0.1.0.0 | Allow the user to select task in a timesheet
 
 
@@ -29,7 +31,6 @@ Unported addons
 addon | version | summary
 --- | --- | ---
 [hr_attendance_analysis](hr_attendance_analysis/) | 0.1 (unported) | Dynamic reports based on employee's attendances and contract's calendar
-[hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 8.0.1.0.0 (unported) | Timesheet Activities - Begin/End Hours
 [hr_timesheet_fulfill](hr_timesheet_fulfill/) | 1.0 (unported) | Timesheet Fullfill Wizard
 [hr_timesheet_holidays](hr_timesheet_holidays/) | 1.0 (unported) | Import holidays in timesheets
 [hr_timesheet_improvement](hr_timesheet_improvement/) | 8.0.0.1.0 (unported) | Timesheet improvements
