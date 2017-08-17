@@ -11,6 +11,9 @@ class CrmLead(models.Model):
     _inherit = 'crm.lead'
 
     analytic_account_id = fields.Many2one(
-        comodel_name='account.analytic.account')
-    timesheet_ids = fields.One2many(comodel_name='account.analytic.line',
-                                    inverse_name='lead_id')
+        comodel_name='account.analytic.account', string="Analytic account",
+    )
+    timesheet_ids = fields.One2many(
+        comodel_name='account.analytic.line', inverse_name='lead_id',
+        string="Timesheet",
+    )
