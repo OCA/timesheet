@@ -12,8 +12,7 @@
         <page name="extra" position="after">
             <page string="Timesheet">
                 <field name="timesheet_ids"
-                    context="{'default_account_id': analytic_account_id,
-                              'default_user_id': uid}"/>
+                    context="{'default_account_id': analytic_account_id, 'default_user_id': uid, 'tree_view_ref': 'hr_timesheet.hr_timesheet_line_tree', 'from_lead': True}"/>
             </page>
         </page>
     </field>
@@ -30,8 +29,7 @@
         <page name="lead" position="after">
             <page string="Timesheet">
                 <field name="timesheet_ids"
-                    context="{'default_account_id': analytic_account_id,
-                              'default_user_id': uid}" />
+                    context="{'default_account_id': analytic_account_id, 'default_user_id': uid, 'tree_view_ref': 'hr_timesheet.hr_timesheet_line_tree', 'from_lead': True}" />
             </page>
         </page>
     </field>
