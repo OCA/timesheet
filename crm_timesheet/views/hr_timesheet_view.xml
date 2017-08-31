@@ -9,9 +9,6 @@
         <field name="project_id" position="attributes">
             <attribute name="required">not context.get('from_lead')</attribute>
         </field>
-        <field name="project_id" position="after">
-            <field name="account_id" invisible="not context.get('from_lead')"/>
-        </field>
         <field name="task_id" position="after">
             <field name="lead_id" invisible="context.get('from_lead')"/>
         </field>
