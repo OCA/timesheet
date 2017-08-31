@@ -21,13 +21,8 @@ class AccountAnalyticLine(models.Model):
             ])
             if len(projects) == 1:
                 self.project_id = projects
-            return {
-                'domain': {
-                    'project_id': [
-                        ('analytic_account_id', '=', self.account_id.id),
-                    ],
-                },
-            }
+            elif not self.project_id < projects:
+                self.project_id = False
 
     @api.onchange('project_id')
     def _onchange_project_id(self):
