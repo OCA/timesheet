@@ -69,6 +69,8 @@ class AccountAnalyticLineCase(SavepointCase):
         line._onchange_project_id()
         self.assertEqual(line.account_id, self.account2)
         line.project_id = self.project11
+        line._onchange_project_id()
         self.assertEqual(line.account_id, self.account1)
         line.project_id = self.project0
+        line._onchange_project_id()
         self.assertFalse(line.account_id)
