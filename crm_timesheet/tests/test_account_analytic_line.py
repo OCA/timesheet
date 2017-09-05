@@ -18,9 +18,6 @@ class AccountAnalyticLineCase(SavepointCase):
         cls.account2 = Account.create({
             "name": "Account 2",
         })
-        cls.project0 = Project.create({
-            "name": "Project 0",
-        })
         cls.project11 = Project.create({
             "name": "Project 1.1",
             "analytic_account_id": cls.account1.id,
@@ -71,6 +68,3 @@ class AccountAnalyticLineCase(SavepointCase):
         line.project_id = self.project11
         line._onchange_project_id()
         self.assertEqual(line.account_id, self.account1)
-        line.project_id = self.project0
-        line._onchange_project_id()
-        self.assertFalse(line.account_id)
