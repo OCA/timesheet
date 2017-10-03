@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_timesheet_sheet_week_start_day_view" model="ir.ui.view">
+        <field name="name">project.config.settings.sheet</field>
+        <field name="model">project.config.settings</field>
+        <field name="inherit_id" ref="project.view_config_settings"/>
+        <field name="arch" type="xml">
+            <field name="timesheet_range" position="after">
+                    <field name="timesheet_week_start"
+                           attrs="{'invisible':[('timesheet_range','!=','week')], 'required':[('timesheet_range','=','week')]}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

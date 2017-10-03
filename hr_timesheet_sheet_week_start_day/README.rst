@@ -7,26 +7,26 @@ Hr Timesheet Sheet Week Start Day
 =================================
 
 This module allows to define the week day that the employee timesheet should
- start on.
+start on.
 
 Configuration
 =============
 
 To configure this module, you need to:
 
-#. Go to 'Settings / Companies / Companies' and then to tab 'Configuration'
-#. Set the 'Timesheet range' to "Week"
-#. Change the "Week start day" to the desired day of the week
+#. Go to 'Project / Configuration / Settings'.
+#. In the "Timesheets" category set the 'Timesheet range' to "Week".
+#. Change the "Week start day" to the desired day of the week.
 
 Usage
 =====
 
 When an employee creates a new weekly timesheet, the default starting day
-will be the week day defined in the company settings.
+will be the week day defined in the project settings.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/117/9.0
+   :target: https://runbot.odoo-community.org/runbot/117/10.0
 
 
 Bug Tracker
@@ -48,7 +48,8 @@ Images
 Contributors
 ------------
 
-* Eficent Business and IT Consulting Services S.L. <contact@eficent.com>
+* Jordi Ballester Alomar <jordi.ballester@eficent.com>
+* Lois Rilo <lois.rilo@eficent.com>
 
 Maintainer
 ----------
