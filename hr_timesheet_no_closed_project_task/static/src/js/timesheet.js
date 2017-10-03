@@ -9,15 +9,18 @@ odoo.define('hr_timesheet_no_closed_project_task', function (require) {
 
     core.form_custom_registry.get('weekly_timesheet').include({
 
+        project_push_stage_domain: function () {
+            this.task_m2o.node.attrs.domain.push(['stage_closed', '=', false]);
+        },
         init_add_project: function () {
             var self = this;
-            this._super.apply(this, arguments);
-            self.task_m2o.node.attrs.domain.push(['stage_id.closed', '=', false]);
+            self._super.apply(self, arguments);
+            self.project_push_stage_domain();
         },
         onchange_project_id: function () {
             var self = this;
-            this._super.apply(this, arguments);
-            self.task_m2o.node.attrs.domain.push(['stage_id.closed', '=', false]);
+            self._super.apply(self, arguments);
+            self.project_push_stage_domain();
         }
     });
 });
