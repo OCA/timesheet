@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="edit_holiday_status_form_inh">
+            <field name="name">hr.holidays.status.form</field>
+            <field name="model">hr.holidays.status</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+            <field name="arch" type="xml">
+                <field name="limit" position="after">
+                    <field name="timesheet"/>
+                    <field name="analytic_account_id" attrs="{'invisible':[('timesheet','=',False)]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

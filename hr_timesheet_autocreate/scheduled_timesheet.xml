@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+   <data noupdate="1">               
+        <record forcecreate="True" id="ir_cron_create_timesheets"  model="ir.cron">
+            <field name="name">Automatic updates of employee's timesheets</field>
+            <field eval="True" name="active" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall" />
+            <field eval="'hr_timesheet_sheet.sheet'" name="model" />
+            <field eval="'update_timesheets'" name="function" />                                                             
+            <field eval="" name="args" />
+        </record>
+     </data>
+     <data>   
+        <record id="hr_timesheet_sheet.act_new" model="workflow.activity">
+            <field name="wkf_id" ref="hr_timesheet_sheet.wkf_timesheet"/>
+            <field name="name">new</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state':'new'})</field>
+            <field name="action_id" search="[('name','=','Timesheet Followers')]" model="ir.actions.server"/> 
+            <field name="flow_start">True</field>
+        </record>
+         
+        <delete model="mail.message.subtype" search="[('name','=','State Changed (Confirm and Approved)')]"/>
+        <delete model="mail.message.subtype" search="[('name','=','Confirm Timesheet')]"/>
+        <delete model="mail.message.subtype" search="[('name','=','Done Timesheet')]"/>
+        <delete model="mail.message.subtype" search="[('name','=','Draft Timesheet')]"/>
+        
+        <record id="mt_issue_draft" model="mail.message.subtype">
+            <field name="name">Draft</field>
+            <field name="res_model">hr_timesheet_sheet.sheet</field>
+            <field name="default" eval="False"/>
+            <field name="description">Draft Timesheet</field>
+        </record>
+        
+        <record id="mt_issue_confirm" model="mail.message.subtype">
+            <field name="name">Confirm</field>
+            <field name="res_model">hr_timesheet_sheet.sheet</field>
+            <field name="default" eval="True"/>
+            <field name="description">Confirm Timesheet</field>
+        </record>
+        
+        <record id="mt_issue_done" model="mail.message.subtype">
+            <field name="name">Done</field>
+            <field name="res_model">hr_timesheet_sheet.sheet</field>
+            <field name="default" eval="True"/>
+            <field name="description">Done Timesheet</field>
+        </record>
+        
+   </data>
+</openerp>
