@@ -2,8 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-2014 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
+#    Copyright (C) 2011-15 Agile Business Group sagl (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -25,6 +24,7 @@ from openerp.osv import fields, orm
 from openerp.tools.translate import _
 from datetime import datetime, timedelta
 import math
+import time
 from openerp.tools import float_compare
 import pytz
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
@@ -130,10 +130,10 @@ class HrAttendance(orm.Model):
             res.append((start_datetime, precision))
         return res
 
-    def datetime_to_hour(self, datetime):
+    def datetime_to_hour(self, datetime_):
         hour = (
-            datetime.hour + datetime.minute / 60.0
-            + datetime.second / 3600.0
+            datetime_.hour + datetime_.minute / 60.0
+            + datetime_.second / 3600.0
         )
         return hour
 
@@ -142,12 +142,12 @@ class HrAttendance(orm.Model):
 
     def matched_schedule(
             self, cr, uid,
-            datetime, weekday_char, calendar_id,
+            datetime_, weekday_char, calendar_id,
             context=None
     ):
         calendar_attendance_pool = self.pool.get(
             'resource.calendar.attendance')
-        datetime_hour = self.datetime_to_hour(datetime)
+        datetime_hour = self.datetime_to_hour(datetime_)
         matched_schedule_ids = calendar_attendance_pool.search(
             cr,
             uid,
@@ -155,7 +155,7 @@ class HrAttendance(orm.Model):
                 '&',
                 '|',
                 ('date_from', '=', False),
-                ('date_from', '<=', datetime.date()),
+                ('date_from', '<=', datetime_.date()),
                 '|',
                 ('dayofweek', '=', False),
                 ('dayofweek', '=', weekday_char),
@@ -193,23 +193,23 @@ class HrAttendance(orm.Model):
         if len(active_contract_ids) > 1:
             employee = self.pool.get('hr.employee').browse(
                 cr, uid, employee_id, context=context)
-            raise orm.except_orm(_('Error'), _(
-                'Too many active contracts for employee %s'
-            ) % employee.name)
-        if active_contract_ids:
+            msg = _('Too many active contracts for employee %s at date %s')
+            raise orm.except_orm(_('Error'), msg % (employee.name, date))
+        elif active_contract_ids:
             contract = contract_pool.browse(
                 cr, uid, active_contract_ids[0], context=context)
             return contract.working_hours
-        return active_contract_ids
+        else:
+            return None
 
-    def _ceil_rounding(self, rounding, datetime):
-        minutes = (datetime.minute / 60.0
-                   + datetime.second / 3600.0)
+    def _ceil_rounding(self, rounding, datetime_):
+        minutes = (datetime_.minute / 60.0
+                   + datetime_.second / 3600.0)
         return math.ceil(minutes * rounding) / rounding
 
-    def _floor_rounding(self, rounding, datetime):
-        minutes = (datetime.minute / 60.0
-                   + datetime.second / 3600.0)
+    def _floor_rounding(self, rounding, datetime_):
+        minutes = (datetime_.minute / 60.0
+                   + datetime_.second / 3600.0)
         return math.floor(minutes * rounding) / rounding
 
     def _get_attendance_duration(self, cr, uid, ids, field_name, arg,
@@ -219,8 +219,7 @@ class HrAttendance(orm.Model):
         precision = self.pool['res.users'].browse(
             cr, uid, uid, context=context).company_id.working_time_precision
         # 2012.10.16 LF FIX : Get timezone from context
-        active_tz = pytz.timezone(
-            context.get("tz", "UTC") if context else "UTC")
+        active_tz = pytz.timezone(context.get('tz') or 'UTC')
         str_now = datetime.strftime(datetime.now(),
                                     DEFAULT_SERVER_DATETIME_FORMAT)
         for attendance_id in ids:
@@ -467,6 +466,13 @@ class HrAttendance(orm.Model):
                     attendance_ids.append(previous_attendance_ids[-1])
         return attendance_ids
 
+    def _day_compute(self, cr, uid, ids, fieldnames, args, context=None):
+        res = dict.fromkeys(ids, '')
+        for obj in self.browse(cr, uid, ids, context=context):
+            res[obj.id] = time.strftime(
+                '%Y-%m-%d', time.strptime(obj.name, '%Y-%m-%d %H:%M:%S'))
+        return res
+
     _inherit = "hr.attendance"
 
     _store_rules = {
@@ -497,6 +503,9 @@ class HrAttendance(orm.Model):
         'inside_calendar_duration': fields.function(
             _get_attendance_duration, method=True, multi='duration',
             string="Duration within working schedule", store=_store_rules),
+        'day': fields.function(
+            _day_compute, type='char', string='Day',
+            store=True, select=1, size=32),
     }
 
     def button_dummy(self, cr, uid, ids, context=None):

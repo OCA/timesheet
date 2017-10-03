@@ -2,8 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-2014 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
+#    Copyright (C) 2011-15 Agile Business Group sagl (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,21 +20,10 @@
 ##############################################################################
 {
     'name': "HR - Attendance Analysis",
-    'version': '0.1',
+    'version': '8.0.1.0.0',
     'category': 'Generic Modules/Human Resources',
     'summary': "Dynamic reports based on employee's attendances and "
                "contract's calendar",
-    'description': """
-Dynamic reports based on employee's attendances and contract's calendar.
-Among other things, it lets you see the amount of working hours outside and
-inside the contract's working schedule (overtime).
-It also provides a daily based report, showing the detailed and total hours
-compared to calendar hours.
-Several analysis settings can be configured, like:
- - Tolerance for sign-in and sign-out
- - Attendances and overtimes roundings
- - Diffrent types of overtime, according to the overtime amount
-""",
     'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
@@ -59,5 +47,5 @@ Several analysis settings can be configured, like:
     "test": [
         'test/attendances.yml',
     ],
-    "installable": False
+    "installable": True
 }
