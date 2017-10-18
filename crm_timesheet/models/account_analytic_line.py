@@ -13,18 +13,7 @@ class AccountAnalyticLine(models.Model):
     lead_id = fields.Many2one(comodel_name='crm.lead',
                               string='Lead/Opportunity')
 
-    @api.onchange('account_id')
-    def _onchange_account_id(self):
-        if self.account_id:
-            projects = self.env['project.project'].search([
-                ('analytic_account_id', '=', self.account_id.id),
-            ])
-            if len(projects) == 1:
-                self.project_id = projects
-            elif not self.project_id < projects:
-                self.project_id = False
-
-    @api.onchange('project_id')
-    def _onchange_project_id(self):
-        if self.project_id:
-            self.account_id = self.project_id.analytic_account_id
+    @api.onchange('lead_id')
+    def _onchange_lead_id(self):
+        if self.lead_id.project_id:
+            self.project_id = self.lead_id.project_id.id
