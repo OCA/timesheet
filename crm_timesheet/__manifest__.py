@@ -7,7 +7,7 @@
 {
     'name': "CRM Timesheet",
     'category': 'Customer Relationship Management',
-    'version': '10.0.1.1.1',
+    'version': '10.0.2.0.0',
     'depends': [
         'crm',
         'hr_timesheet'

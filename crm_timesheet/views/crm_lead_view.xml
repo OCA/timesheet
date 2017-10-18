@@ -7,12 +7,12 @@
     <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
     <field name="arch" type="xml">
         <field name="user_id" position="after">
-            <field name="analytic_account_id" />
+            <field name="project_id" />
         </field>
         <page name="extra" position="after">
             <page string="Timesheet">
                 <field name="timesheet_ids"
-                    context="{'default_account_id': analytic_account_id, 'default_user_id': uid, 'tree_view_ref': 'hr_timesheet.hr_timesheet_line_tree', 'from_lead': True}"/>
+                    context="{'default_project_id': project_id, 'default_user_id': uid, 'tree_view_ref': 'hr_timesheet.hr_timesheet_line_tree', 'from_lead': True}"/>
             </page>
         </page>
     </field>
@@ -24,12 +24,12 @@
     <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
     <field name="arch" type="xml">
         <field name="user_id" position="after">
-            <field name="analytic_account_id" />
+            <field name="project_id" />
         </field>
         <page name="lead" position="after">
             <page string="Timesheet">
                 <field name="timesheet_ids"
-                    context="{'default_account_id': analytic_account_id, 'default_user_id': uid, 'tree_view_ref': 'hr_timesheet.hr_timesheet_line_tree', 'from_lead': True}" />
+                    context="{'default_project_id': project_id, 'default_user_id': uid, 'tree_view_ref': 'hr_timesheet.hr_timesheet_line_tree', 'from_lead': True}" />
             </page>
         </page>
     </field>
