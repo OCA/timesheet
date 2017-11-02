@@ -21,7 +21,7 @@
 
 {
     'name': "Manage products representing employees",
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Human Resources',
     'author': "Eficent, Odoo Community Association (OCA)",
     'website': 'http://www.eficent.com',
@@ -33,6 +33,5 @@
     ],
     'test': [],
     "demo": [],
-    "active": False,
     "installable": True
 }

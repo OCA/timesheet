@@ -19,11 +19,11 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
+from openerp import models
 from openerp import SUPERUSER_ID
 
 
-class HrAnalyticTimesheet(orm.Model):
+class HrAnalyticTimesheet(models.Model):
 
     _inherit = 'hr.analytic.timesheet'
 
