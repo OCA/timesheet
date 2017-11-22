@@ -132,7 +132,10 @@ openerp.hr_timesheet_task = function(instance) {
             return result;
         },
         initialize_content_group_by: function(record) {
-            return _.str.sprintf('%s-%s', record.account_id, record.task_id);
+            return _.str.sprintf(
+                '%s-%s', this._m2o_id(record.account_id),
+                this._m2o_id(record.task_id)
+            );
         },
         _m2o_id: function(val) {
             // the || false is necessary because this can also be `undefined`
