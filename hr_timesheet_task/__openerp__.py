@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Author: Nicolas Bessi
@@ -24,8 +24,6 @@
  'maintainer': 'Camptocamp - Acsone SA/NV',
  'category': 'Human Resources',
  'depends': ['timesheet_task', 'hr_timesheet_sheet'],
- 'description': """Replace project.task.work items linked to task
-                   with hr.analytic.timesheet""",
  'website': 'http://www.camptocamp.com',
  'data': ['hr_timesheet_sheet_view.xml',
           'hr_analytic_timesheet_view.xml',
@@ -39,5 +37,3 @@
  'license': 'AGPL-3',
  'application': True,
  }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
