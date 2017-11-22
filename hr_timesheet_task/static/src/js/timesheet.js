@@ -1,15 +1,17 @@
-openerp.hr_timesheet_task = function(instance) { 
+openerp.hr_timesheet_task = function(instance) {
 
-    var module = instance.hr_timesheet_sheet
+    var module = instance.hr_timesheet_sheet,
+        date_to_str = instance.web.date_to_str;
 
-    module.WeeklyTimesheet = module.WeeklyTimesheet.extend({
+    module.WeeklyTimesheet.include({
         events: {
             "click .oe_timesheet_weekly_account a": "go_to",
             "click .oe_timesheet_weekly_task a": "go_to_task",
         },
+        task_names: {},
         go_to_task : function(event) {
             var id = JSON.parse($(event.target).data("task-id"));
-            this.do_action({
+            return this.do_action({
                 type: 'ir.actions.act_window',
                 res_model: "project.task",
                 res_id: id,
@@ -18,205 +20,190 @@ openerp.hr_timesheet_task = function(instance) {
             });
         },
         initialize_content: function() {
+            var deferred = this._super.apply(this, arguments);
+            if(!deferred)
+            {
+                // this happens when super exits early
+                return;
+            }
+            return deferred.then(
+            ).then(
+                this.proxy('initialize_content_group')
+            ).then(
+                this.proxy('initialize_content_tasks')
+            ).then(
+                this.proxy('display_data')
+            );
+        },
+        initialize_content_tasks: function() {
             var self = this;
-            if (self.setting)
-                return;
-            // don't render anything until we have date_to and date_from
-            if (!self.get("date_to") || !self.get("date_from"))
-                return;
-            this.destroy_content();
+            this.tasks = _.chain(this.get('sheets'))
+            .groupBy('task_id')
+            .map(function(x) {return self._m2o_id(x[0].task_id);})
+            .value();
 
-            // it's important to use those vars to avoid race conditions
-            var dates;
-            var accounts;
-            var account_names;
-            var task_names;
-            var default_get;
-            return this.render_drop.add(new instance.web.Model("hr.analytic.timesheet").call("default_get", [
-                ['account_id','task_id','general_account_id','journal_id','date','name','user_id','product_id','product_uom_id','to_invoice','amount','unit_amount'],
-                new instance.web.CompoundContext({'user_id': self.get('user_id')})]).then(function(result) {
-                default_get = result;
-                // calculating dates
-                dates = [];
-                var start = self.get("date_from");
-                var end = self.get("date_to");
-                while (start <= end) {
-                    dates.push(start);
-                    start = start.clone().addDays(1);
-                }
-
-                timesheet_lines = _(self.get("sheets")).chain()
-                .map(function(el) {
-                    // much simpler to use only the id in all cases
-                    if (typeof(el.account_id) === "object")
-                        el.account_id = el.account_id[0];
-                    if (typeof(el.task_id) === "object")
-                        el.task_id = el.task_id[0];
-                    return el;
-                }).value();
-
-                // group by account
-                var timesheet_lines_by_account_id = _.groupBy(timesheet_lines, function(el) {
-                    return el.account_id;
-                });
-
-                // group by account and task
-                var timesheet_lines_by_account_id_task_id = _.groupBy(timesheet_lines, function(el) {
-                    return [el.account_id, el.task_id];
-                });
-
-                var account_ids = _.map(_.keys(timesheet_lines_by_account_id), function(el) { return el === "false" ? false : Number(el) });
-
-                return new instance.web.Model("hr.analytic.timesheet").call("multi_on_change_account_id", [[], account_ids,
-                    new instance.web.CompoundContext({'user_id': self.get('user_id')})]).then(function(accounts_defaults) {
-                    accounts = _(timesheet_lines_by_account_id_task_id).chain().map(function(lines, account_id_task_id) {
-                        account_defaults = _.extend({}, default_get, (accounts_defaults[lines[0].account_id] || {}).value || {});
-                        // group by days
-                        var index = _.groupBy(lines, "date");
-                        var days = _.map(dates, function(date) {
-                            var day = {day: date, lines: index[instance.web.date_to_str(date)] || []};
-                            // add line where we will insert/remove hours
-                            var to_add = _.find(day.lines, function(line) { return line.name === self.description_line });
-                            if (to_add) {
-                                day.lines = _.without(day.lines, to_add);
-                                day.lines.unshift(to_add);
-                            } else {
-                                day.lines.unshift(_.extend(_.clone(account_defaults), {
-                                    name: self.description_line,
-                                    unit_amount: 0,
-                                    date: instance.web.date_to_str(date),
-                                    account_id: lines[0].account_id,
-                                    task_id: lines[0].task_id,
-                                }));
-                            }
-                            return day;
-                        });
-                        return {account_task: account_id_task_id, account: lines[0].account_id, task: lines[0].task_id, days: days, account_defaults: account_defaults};
-                    }).value();
-
-                    // we need the name_get of the analytic accounts
-                    return new instance.web.Model("account.analytic.account").call("name_get", [_.pluck(accounts, "account"),
-                        new instance.web.CompoundContext()]).then(function(result) {
-                        account_names = {};
-                        _.each(result, function(el) {
-                            account_names[el[0]] = el[1];
-                        });
-                        // we need the name_get of the tasks
-                        return new instance.web.Model("project.task").call("name_get", [_(accounts).chain().pluck("task").filter(function(el) { return el; }).value(),
-                            new instance.web.CompoundContext()]).then(function(result) {
-                            task_names = {};
-                            _.each(result, function(el) {
-                                task_names[el[0]] = el[1];
-                            });
-                            accounts = _.sortBy(accounts, function(el) {
-                                return account_names[el.account];
-                            });
-                        });
-                    });
-                });
-            })).then(function(result) {
-                // we put all the gathered data in self, then we render
-                self.dates = dates;
-                self.accounts = accounts;
-                self.account_names = account_names;
-                self.task_names = task_names;
-                self.default_get = default_get;
-                //real rendering
-                self.display_data();
+            return new instance.web.Model('project.task')
+            .call(
+                "name_get",
+                [
+                    _.filter(this.tasks, _.identity),
+                    new instance.web.CompoundContext()
+                ]
+            ).then(function(names)
+            {
+                self.task_names = {
+                    false: instance.web._t('No task'),
+                };
+                _.extend(self.task_names, _.object(names));
             });
         },
-        init_add_account: function() {
+        initialize_content_group: function() {
             var self = this;
-            if (self.dfm)
-                return;
-            self.$(".oe_timesheet_weekly_add_row").show();
-            self.dfm = new instance.web.form.DefaultFieldManager(self);
+            this.accounts = _.chain(this.accounts)
+            .map(function(account)
+            {
+                return _.chain(account.days)
+                .map(function(day) { return day.lines; })
+                .flatten(true)
+                .groupBy(self.proxy('initialize_content_group_by'))
+                .map(_.bind(
+                    self.initialize_content_group_clone_account,
+                    self, account
+                ))
+                .value();
+            })
+            .flatten(true)
+            .sortBy(function(account) {
+                return _.str.sprintf(
+                    '%s - %s',
+                    self.task_names[account.task_id],
+                    self.account_names[account.account]
+                );
+            })
+            .value();
+
+        },
+        initialize_content_group_clone_account: function(account, records) {
+            var self = this,
+                clone = _.clone(account);
+            clone.task_id = self._m2o_id(records[0].task_id);
+            clone.account_defaults = _.clone(account.account_defaults);
+            clone.account_defaults.task_id = clone.task_id;
+            this.initialize_content_group_clone_days(clone, records);
+            return clone
+        },
+        initialize_content_group_clone_days: function(account, records) {
+            var self = this;
+            account.days = _.map(account.days, function(day)
+            {
+                var cloned_day = _.clone(day);
+                cloned_day.lines = _.map(
+                    _.filter(records, function(record) {
+                        return date_to_str(day.day) == record.date;
+                    }),
+                    _.bind(
+                        self.initialize_content_group_clone_record,
+                        self, account
+                    )
+                );
+                if(!cloned_day.lines.length)
+                {
+                    cloned_day.lines.unshift(_.extend(
+                        {}, account.account_defaults,
+                        {
+                            name: self.description_line,
+                            date: date_to_str(day.day),
+                            unit_amount: 0,
+                            account_id: account.account,
+                        }
+                    ));
+                }
+                return cloned_day;
+            });
+        },
+        initialize_content_group_clone_record: function(account, record) {
+            var result = _.clone(record);
+            result.task_id = this._m2o_id(record.task_id);
+            if(result.task_id != account.task_id)
+            {
+                result.unit_amount = 0;
+                result.task_id = account.task_id;
+            }
+            return result;
+        },
+        initialize_content_group_by: function(record) {
+            return _.str.sprintf('%s-%s', record.account_id, record.task_id);
+        },
+        _m2o_id: function(val) {
+            // the || false is necessary because this can also be `undefined`
+            // for legacy lines, which messes up qweb
+            return val && val.length ? val[0] : (val || false);
+        },
+        init_add_account: function() {
+            // add our field, attach handlers
+            var self = this,
+                result = this._super.apply(this, arguments);
             self.dfm.extend_field_desc({
-                account: {
-                    relation: "account.analytic.account",
-                },
                 task: {
                     relation: "project.task",
                 },
             });
-            self.account_m2o = new instance.web.form.FieldMany2One(self.dfm, {
-                attrs: {
-                    name: "account",
-                    type: "many2one",
-                    domain: [
-                        ['type','in',['normal', 'contract']],
-                        ['state', '!=', 'close'],
-                        ['use_timesheets','=',1],
-                    ],
-                    context: {
-                        default_use_timesheets: 1,
-                        default_type: "contract",
-                    },
-                    modifiers: '{"required": true}',
-                },
-            });
+            self.dfm.build_eval_context = self.proxy('_add_eval_context');
             self.task_m2o = new instance.web.form.FieldMany2One(self.dfm, {
                 attrs: {
                     name: "task",
                     type: "many2one",
-                    domain: [
-                        // at this moment, it is always an empty list 
-                        ['project_id.analytic_account_id','=',self.account_m2o.get_value()]
-                    ],
+                    domain: new instance.web.CompoundDomain(
+                        '[("project_id.analytic_account_id", "=", account),' +
+                        '("id", "not in", _all_task_ids)]'
+                    ),
                 },
             });
-            self.task_m2o.prependTo(self.$(".oe_timesheet_weekly_add_row td"));
-            self.account_m2o.prependTo(self.$(".oe_timesheet_weekly_add_row td"));
-
-            // when account_m2o loses focus, value can be changed, 
-            // update task_m2o to show only tasks related to the selected project
-            self.account_m2o.$input.focusout(function(){
-                self.onchange_account_id()
-            });
-
-            self.$(".oe_timesheet_weekly_add_row button").click(function() {
-                self.onclick_add_row_button()
+            self.account_m2o.node.attrs.domain = new instance.web.CompoundDomain(
+                "[" +
+                    "('type','in', ['normal', 'contract']), " +
+                    "('state', '!=', 'close'), " +
+                    "('use_timesheets', '=', True)" +
+                "]"
+            );
+            self.task_m2o.insertBefore(
+                self.$(".oe_timesheet_weekly_add_row td button")
+            );
+            return result;
+        },
+        _add_eval_context: function() {
+            return new instance.web.CompoundContext({
+                'account': this.account_m2o.get_value(),
+                'task': this.task_m2o.get_value(),
+                '_all_account_ids': _.pluck(this.accounts, 'account'),
+                '_all_task_ids': _.pluck(this.accounts, 'task_id'),
             });
         },
-        onclick_add_row_button: function(){
-            var self = this
-            var id = self.account_m2o.get_value();
-            if (id === false) {
-                self.dfm.set({display_invalid_fields: true});
-                return;
+        set: function(arg1, arg2, arg3) {
+            // this is called by the click handler, we intercept setting
+            // operations without a task id
+            var self = this;
+            if(arg1 && arg1.sheets && arg1.sheets.length && this.task_m2o)
+            {
+                // the new record is the last one
+                var record = arg1.sheets[arg1.sheets.length - 1];
+                // this happens when adding a row via the ui
+                if(!record.task_id && self.task_m2o.get_value())
+                {
+                    record.task_id = self.task_m2o.get_value();
+                }
             }
-            var ops = self.generate_o2m_value();
-            new instance.web.Model("hr.analytic.timesheet").call("on_change_account_id", [[], id]).then(function(res) {
-                var def = _.extend({}, self.default_get, res.value, {
-                    name: self.description_line,
-                    unit_amount: 0,
-                    date: instance.web.date_to_str(self.dates[0]),
-                    account_id: id,
-                    task_id: self.task_m2o.get_value(),
-                });
-                ops.push(def);
-                self.set({"sheets": ops});
-            });
-        },
-        onchange_account_id: function() {
-            var self = this
-            var account_id = self.account_m2o.get_value();
-            if (account_id === false) { return; }
-            self.task_m2o.node.attrs.domain = [
-               // show only tasks linked to the selected project
-               ['project_id.analytic_account_id','=',account_id],
-               // ignore tasks already in the timesheet
-               ['id', 'not in', _.pluck(self.accounts, "task")],
-            ]
-            self.task_m2o.node.attrs.context = {'account_id': account_id};
-            self.task_m2o.set_value(false);
-            self.task_m2o.render_value();
+            return this._super.apply(this, arguments);
         },
         get_box: function(account, day_count) {
-            return this.$('[data-account-task="' + account.account_task + '"][data-day-count="' + day_count + '"]');
+            return this._super.apply(this, arguments).filter(
+                _.str.sprintf('[data-task="%s"]', account.task_id || 0)
+            );
         },
         get_total: function(account) {
-            return this.$('[data-account-task-total="' + account.account_task + '"]');
+            return this._super.apply(this, arguments).filter(
+                _.str.sprintf('[data-task="%s"]', account.task_id || 0)
+            );
         },
     });
 };
