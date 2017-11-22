@@ -58,7 +58,12 @@ openerp.hr_timesheet_task = function(instance) {
             });
         },
         initialize_content_group: function() {
-            var self = this;
+            var
+            self = this,
+            existing_groups = _.chain(this.get('sheets'))
+                .groupBy(self.proxy('initialize_content_group_by'))
+                .keys();
+
             this.accounts = _.chain(this.accounts)
             .map(function(account)
             {
@@ -66,6 +71,10 @@ openerp.hr_timesheet_task = function(instance) {
                 .map(function(day) { return day.lines; })
                 .flatten(true)
                 .groupBy(self.proxy('initialize_content_group_by'))
+                .filter(function(records, group) {
+                    return !existing_groups.intersection([group]).isEmpty()
+                        .value();
+                })
                 .map(_.bind(
                     self.initialize_content_group_clone_account,
                     self, account
