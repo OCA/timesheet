@@ -27,7 +27,7 @@ class HrTimesheetSheet(models.Model):
         res = super(HrTimesheetSheet, self)._default_date_to()
         period = self._get_current_pay_period()
         if period:
-            return period.date_stop
+            return period.date_end
         else:
             return res
 
@@ -83,7 +83,7 @@ class HrTimesheetSheet(models.Model):
         contract = contract_obj.search([('employee_id', '=',
                                          employee.get('employee_id'))])
         search_domain = [('date_start', '<=', date_today),
-                         ('date_stop', '>=', date_today)]
+                         ('date_end', '>=', date_today)]
         if contract and contract.schedule_pay:
             search_domain += [('schedule_pay', '=', contract.schedule_pay)]
         period_ids = period_obj.search(search_domain)
