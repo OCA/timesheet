@@ -194,15 +194,17 @@ openerp.hr_timesheet_task = function(instance) {
         set: function(arg1, arg2, arg3) {
             // this is called by the click handler, we intercept setting
             // operations without a task id
-            var self = this;
-            if(arg1 && arg1.sheets && arg1.sheets.length && this.task_m2o)
+            if(
+                arg1 && arg1.sheets && arg1.sheets.length && this.task_m2o &&
+                !this.setting
+            )
             {
                 // the new record is the last one
                 var record = arg1.sheets[arg1.sheets.length - 1];
                 // this happens when adding a row via the ui
-                if(!record.task_id && self.task_m2o.get_value())
+                if(!record.task_id && this.task_m2o.get_value())
                 {
-                    record.task_id = self.task_m2o.get_value();
+                    record.task_id = this.task_m2o.get_value();
                 }
             }
             return this._super.apply(this, arguments);
