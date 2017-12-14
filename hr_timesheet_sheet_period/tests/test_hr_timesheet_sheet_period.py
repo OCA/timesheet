@@ -20,7 +20,7 @@ class TestHrTimesheetSheetPeriod(common.TransactionCase):
 
         self.today_date = datetime.today().date()
         self.date_start = datetime.today().strftime('%Y-01-01')
-        self.date_stop = datetime.today().strftime('%Y-12-31')
+        self.date_end = datetime.today().strftime('%Y-12-31')
         self.company = self.env.ref('base.main_company')
         self.employee = self.env.ref('hr.employee_root')
 
@@ -28,7 +28,7 @@ class TestHrTimesheetSheetPeriod(common.TransactionCase):
         vals = {
             'company_id': self.company.id,
             'date_start': self.date_start,
-            'date_stop': self.date_stop,
+            'date_end': self.date_end,
             'schedule_pay': 'monthly',
             'payment_day': '2',
             'name': 'Test Fiscal Year 2017',
@@ -51,7 +51,7 @@ class TestHrTimesheetSheetPeriod(common.TransactionCase):
         hr_timesheet = self.create_hr_timesheet_sheet()
         self.assertEqual(hr_timesheet.hr_period_id.date_start,
                          hr_timesheet.date_from)
-        self.assertEqual(hr_timesheet.hr_period_id.date_stop,
+        self.assertEqual(hr_timesheet.hr_period_id.date_end,
                          hr_timesheet.date_to)
         self.assertEqual(self.today_date.month,
                          hr_timesheet.hr_period_id.number)
@@ -80,7 +80,7 @@ class TestHrTimesheetSheetPeriod(common.TransactionCase):
 
         self.assertEqual(hr_timesheet.hr_period_id.date_start,
                          hr_timesheet.date_from)
-        self.assertEqual(hr_timesheet.hr_period_id.date_stop,
+        self.assertEqual(hr_timesheet.hr_period_id.date_end,
                          hr_timesheet.date_to)
         self.assertEqual(self.today_date.month,
                          hr_timesheet.hr_period_id.number)
