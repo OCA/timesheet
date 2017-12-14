@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016-17 Eficent Business and IT Consulting Services S.L.
-#   (http://www.eficent.com)
 # Copyright 2016-17 Serpent Consulting Services Pvt. Ltd.
-#   (<http://www.serpentcs.com>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests import common
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 from odoo.exceptions import ValidationError as UserError
 
 
@@ -21,7 +20,7 @@ class TestHrTimesheetSheetPeriod(common.TransactionCase):
 
         self.today_date = datetime.today().date()
         self.date_start = datetime.today().strftime('%Y-01-01')
-        self.date_stop = datetime.today().strftime('%Y-12-31')
+        self.date_end = datetime.today().strftime('%Y-12-31')
         self.company = self.env.ref('base.main_company')
         self.employee = self.env.ref('hr.employee_root')
 
@@ -34,7 +33,7 @@ class TestHrTimesheetSheetPeriod(common.TransactionCase):
         vals = {
             'company_id': self.company.id,
             'date_start': self.date_start,
-            'date_stop': self.date_stop,
+            'date_end': self.date_end,
             'schedule_pay': 'monthly',
             'payment_day': '2',
             'name': 'Test Fiscal Year 2017',
@@ -51,6 +50,17 @@ class TestHrTimesheetSheetPeriod(common.TransactionCase):
         })
         return timesheet_sheet
 
+    def test_defaults(self):
+        self.create_fiscal_year()
+        hr_timesheet = self.create_hr_timesheet_sheet()
+        self.assertEqual(
+            hr_timesheet.date_to,
+            (datetime.today() + relativedelta(weekday=6)).strftime('%Y-%m-%d'))
+        self.assertEqual(
+            hr_timesheet.date_from,
+            (datetime.today() + relativedelta(
+                weekday=0, days=-6)).strftime('%Y-%m-%d'))
+
     def test_hr_timesheet_period(self):
         fiscal_year = self.create_fiscal_year()
         fiscal_year.create_periods()
@@ -58,7 +68,7 @@ class TestHrTimesheetSheetPeriod(common.TransactionCase):
         hr_timesheet = self.create_hr_timesheet_sheet()
         self.assertEqual(hr_timesheet.hr_period_id.date_start,
                          hr_timesheet.date_from)
-        self.assertEqual(hr_timesheet.hr_period_id.date_stop,
+        self.assertEqual(hr_timesheet.hr_period_id.date_end,
                          hr_timesheet.date_to)
         self.assertEqual(self.today_date.month,
                          hr_timesheet.hr_period_id.number)
@@ -87,7 +97,7 @@ class TestHrTimesheetSheetPeriod(common.TransactionCase):
 
         self.assertEqual(hr_timesheet.hr_period_id.date_start,
                          hr_timesheet.date_from)
-        self.assertEqual(hr_timesheet.hr_period_id.date_stop,
+        self.assertEqual(hr_timesheet.hr_period_id.date_end,
                          hr_timesheet.date_to)
         self.assertEqual(self.today_date.month,
                          hr_timesheet.hr_period_id.number)

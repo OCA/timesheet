@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016-17 Eficent Business and IT Consulting Services S.L.
-#   (http://www.eficent.com)
 # Copyright 2016-17 Serpent Consulting Services Pvt. Ltd.
-#   (<http://www.serpentcs.com>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime
@@ -71,7 +69,7 @@ class HrTimesheetSheet(models.Model):
     def onchange_pay_period(self):
         if self.hr_period_id:
             self.date_from = self.hr_period_id.date_start
-            self.date_to = self.hr_period_id.date_stop
+            self.date_to = self.hr_period_id.date_end
             self.name = self.hr_period_id.name
 
     @api.model
@@ -103,9 +101,9 @@ class HrTimesheetSheet(models.Model):
                           " date start '%s' of the Payroll period '%s'.") % (
                             timesheet.hr_period_id.date_start,
                             timesheet.hr_period_id.name))
-                if timesheet.date_to != timesheet.hr_period_id.date_stop:
+                if timesheet.date_to != timesheet.hr_period_id.date_end:
                     raise UserError(
                         _("The Date To of Timesheet must match with that of"
                           " date stop '%s' of the Payroll period '%s'.") % (
-                            timesheet.hr_period_id.date_stop,
+                            timesheet.hr_period_id.date_end,
                             timesheet.hr_period_id.name))
