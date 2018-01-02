@@ -196,7 +196,7 @@ openerp.hr_timesheet_task = function(instance) {
             // operations without a task id
             if(
                 arg1 && arg1.sheets && arg1.sheets.length && this.task_m2o &&
-                !this.setting
+                !this.setting && !this.querying
             )
             {
                 // the new record is the last one
