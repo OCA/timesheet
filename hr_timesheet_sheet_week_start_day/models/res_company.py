@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# © 2015 Eficent Business and IT Consulting Services S.L. (www.eficent.com)
+# Copyright 2015-17 Eficent Business and IT Consulting Services S.L.
+#     (www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import fields, models
+from odoo import fields, models
 
 _WEEKDAYS = [
     ('0', 'Monday'),
@@ -16,9 +17,7 @@ _WEEKDAYS = [
 
 
 class ResCompany(models.Model):
-
     _inherit = 'res.company'
 
-    timesheet_week_start = fields.Selection(_WEEKDAYS,
-                                            string='Week start day',
-                                            default='0')
+    timesheet_week_start = fields.Selection(
+        _WEEKDAYS, string='Week start day', default='0')

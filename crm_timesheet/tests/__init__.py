@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
-# See README.rst file on addon root folder for license details
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from . import test_crm_phonecall
+from . import test_account_analytic_line

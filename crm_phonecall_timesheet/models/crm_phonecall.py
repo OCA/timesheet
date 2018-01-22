@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
-# See README.rst file on addon root folder for license details
+# Copyright 2015 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2015 Javier Iniesta <javieria@antiun.com>
+# Copyright 2017 David Vidal <david.vidal@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, api, _
-from openerp.fields import DATE_LENGTH
+from odoo import _, api, fields, models
+from odoo.fields import DATE_LENGTH
 from datetime import datetime
-from openerp.exceptions import ValidationError
+from odoo.exceptions import UserError
 
 
 class CrmPhonecall(models.Model):
@@ -12,7 +15,7 @@ class CrmPhonecall(models.Model):
 
     analytic_account_id = fields.Many2one(
         comodel_name='account.analytic.account')
-    timesheet_ids = fields.One2many(comodel_name='hr.analytic.timesheet',
+    timesheet_ids = fields.One2many(comodel_name='account.analytic.line',
                                     inverse_name='phonecall_id')
 
     def _timesheet_prepare(self, vals):
@@ -25,7 +28,7 @@ class CrmPhonecall(models.Model):
             self.ensure_one()
         date = vals.get('date', self.date)
         if not date:
-            raise ValidationError(_('Date field must be filled.'))
+            raise UserError(_('Date field must be filled.'))
         user_id = vals.get('user_id', self.user_id.id)
         account_id = vals.get('analytic_account_id',
                               self.analytic_account_id.id)
@@ -37,8 +40,6 @@ class CrmPhonecall(models.Model):
             'account_id': account_id,
             'unit_amount': unit_amount / 60.0,
             'code': 'phone',
-            'journal_id': self.env[
-                'hr.analytic.timesheet']._getAnalyticJournal()
         }
         return res
 
@@ -51,16 +52,16 @@ class CrmPhonecall(models.Model):
         res = super(CrmPhonecall, self).create(vals)
         return res
 
-    @api.one
+    @api.multi
     def write(self, vals):
-        timesheet = self.env['hr.analytic.timesheet'].search([
+        timesheet = self.env['account.analytic.line'].search([
             ('code', '=', 'phone'), ('phonecall_id', '=', self.id)])
         analytic_account_id = vals.get('analytic_account_id',
                                        self.analytic_account_id)
         duration = vals.get('duration', 0)
         if timesheet:
-            if ('analytic_account_id' in vals
-                    and not vals['analytic_account_id']):
+            if ('analytic_account_id' in vals and not vals[
+                    'analytic_account_id']):
                 vals['timesheet_ids'] = [(2, timesheet.id, 0)]
             else:
                 vals['timesheet_ids'] = [(1, timesheet.id,
@@ -81,9 +82,9 @@ class CrmPhonecall(models.Model):
 
     def _end_call(self, start_dt, end_dt):
         if not isinstance(start_dt, datetime):
-            raise ValidationError(_('Start date must be datetime.'))
+            raise UserError(_('Start date must be datetime.'))
         if not isinstance(end_dt, datetime):
-            raise ValidationError(_('End date must be datetime.'))
+            raise UserError(_('End date must be datetime.'))
         if end_dt < start_dt:
             return 0
         return (end_dt - start_dt).total_seconds() / 60.0

@@ -1,21 +1,24 @@
 # -*- coding: utf-8 -*-
-# See README.rst file on addon root folder for license details
+# Copyright 2015 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2015 Javier Iniesta <javieria@antiun.com>
+# Copyright 2017 David Vidal <david.vidal@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     'name': "CRM Timesheet",
     'category': 'Customer Relationship Management',
-    'version': '8.0.1.0.0',
+    'version': '10.0.2.0.0',
     'depends': [
         'crm',
         'hr_timesheet'
     ],
     'data': [
         'views/crm_lead_view.xml',
-        'views/crm_phonecall_view.xml',
-        'views/hr_analytic_timesheet_view.xml'
+        'views/hr_timesheet_view.xml'
     ],
-    'author': 'Antiun Ingeniería S.L.,Odoo Community Association (OCA)',
-    'website': 'http://www.antiun.com',
+    'author': 'Tecnativa, '
+              'Odoo Community Association (OCA)',
+    'website': 'http://www.tecnativa.com',
     'license': 'AGPL-3',
-    'installable': False,
+    'installable': True,
 }

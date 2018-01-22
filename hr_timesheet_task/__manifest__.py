@@ -1,43 +1,23 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    Author: Nicolas Bessi
-#    Copyright 2013 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-{'name': 'Task in time sheet',
- 'version': '8.0.0.3.0',
- 'author': "Camptocamp,Odoo Community Association (OCA)",
- 'maintainer': 'Camptocamp - Acsone SA/NV',
- 'category': 'Human Resources',
- 'depends': ['timesheet_task', 'hr_timesheet_sheet'],
- 'description': """Replace project.task.work items linked to task
-                   with hr.analytic.timesheet""",
- 'website': 'http://www.camptocamp.com',
- 'data': ['hr_timesheet_sheet_view.xml',
-          'hr_analytic_timesheet_view.xml',
-          'hr_timesheet_task.xml'],
- 'qweb': ['static/src/xml/timesheet.xml'],
- 'demo': [],
- 'test': [],
- 'installable': False,
- 'images': [],
- 'auto_install': False,
- 'license': 'AGPL-3',
- 'application': True,
- }
+# -*- coding: utf-8 -*-
+# Copyright 2017 Scopea, Niboo SPRL, Camptocamp SA
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+{
+    'name': 'HR - Task In Timesheets',
+    'category': 'HR',
+    'summary': 'Allow the user to select task in a timesheet',
+    'website': 'https://odoo-community.org/',
+    'license': 'AGPL-3',
+    'version': '10.0.1.0.0',
+    'author': 'Scopea, Niboo, Camptocamp SA, Odoo Community Association (OCA)',
+    'depends': ['hr_timesheet_sheet'],
+    'data': [
+        'views/hr_timesheet_assets.xml',
+        'views/hr_timesheet_view.xml',
+    ],
+    'qweb': [
+        'static/src/xml/timesheet.xml',
+    ],
+    'installable': True,
+    'application': False,
+}

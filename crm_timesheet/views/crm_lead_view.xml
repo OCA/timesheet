@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
+<odoo>
 
 <record id="crm_case_form_view_leads" model="ir.ui.view">
     <field name="name">CRM - Leads with timesheets</field>
@@ -8,13 +7,12 @@
     <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
     <field name="arch" type="xml">
         <field name="user_id" position="after">
-            <field name="analytic_account_id" />
+            <field name="project_id" />
         </field>
-        <page string="Extra Info" position="after">
+        <page name="extra" position="after">
             <page string="Timesheet">
                 <field name="timesheet_ids"
-                    context="{'default_account_id': analytic_account_id,
-                              'default_user_id': uid}"/>
+                    context="{'default_project_id': project_id, 'default_user_id': uid, 'tree_view_ref': 'hr_timesheet.hr_timesheet_line_tree', 'from_lead': True}"/>
             </page>
         </page>
     </field>
@@ -26,16 +24,15 @@
     <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
     <field name="arch" type="xml">
         <field name="user_id" position="after">
-            <field name="analytic_account_id" />
+            <field name="project_id" />
         </field>
-        <page string="Lead" position="after">
+        <page name="lead" position="after">
             <page string="Timesheet">
                 <field name="timesheet_ids"
-                    context="{'default_account_id': analytic_account_id,
-                              'default_user_id': uid}" />
+                    context="{'default_project_id': project_id, 'default_user_id': uid, 'tree_view_ref': 'hr_timesheet.hr_timesheet_line_tree', 'from_lead': True}" />
             </page>
         </page>
     </field>
 </record>
-</data>
-</openerp>
+
+</odoo>
