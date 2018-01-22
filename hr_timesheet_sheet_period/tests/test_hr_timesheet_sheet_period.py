@@ -17,12 +17,18 @@ class TestHrTimesheetSheetPeriod(common.TransactionCase):
         self.timeheet_model = self.env['hr_timesheet_sheet.sheet']
         self.fiscal_year_model = self.env['hr.fiscalyear']
         self.hr_contract_model = self.env['hr.contract']
+        self.data_range_type = self.env['date.range.type']
 
         self.today_date = datetime.today().date()
         self.date_start = datetime.today().strftime('%Y-01-01')
         self.date_end = datetime.today().strftime('%Y-12-31')
         self.company = self.env.ref('base.main_company')
         self.employee = self.env.ref('hr.employee_root')
+
+        self.type = self.data_range_type.create({
+            'name': 'Fiscal year',
+            'allow_overlap': False
+        })
 
     def create_fiscal_year(self):
         vals = {
@@ -32,6 +38,7 @@ class TestHrTimesheetSheetPeriod(common.TransactionCase):
             'schedule_pay': 'monthly',
             'payment_day': '2',
             'name': 'Test Fiscal Year 2017',
+            'type_id': self.type.id
         }
 
         fiscal_year = self.fiscal_year_model.create(vals)
