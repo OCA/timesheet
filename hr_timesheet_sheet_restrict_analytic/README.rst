@@ -6,32 +6,30 @@
 Hr Timesheet Sheet Restrict Analytic
 ====================================
 
-This module allows to define what analytic accounts should be used by
+This module allows to define what projets should be used by
 employees when they complete their timesheets.
+
+Configuration
+=============
+
+Define the Analytic Accounts:
+
+#. Go to *Poject > Dashboard* and open any project's settings.
+#. Press the checkbox 'Allow timesheets'.
 
 
 Usage
 =====
 
-Define the Analytic Accounts
-----------------------------
+Complete your Timesheets:
 
-#. Make sure that your user is assigned to the group
-   'Technical Settings / Analytic Accounting'.
-
-#. Go to *Accounting - Configuration - Analytic Accounting* and open an
-   analytic account. Press the checkbox 'Use in Timesheets'.
-
-Complete your Timesheets
-------------------------
-
-* Go to *Timesheets - Weekly* or *Timesheets - My Timesheets*. The dropdown
-  list of analytic accounts will only display those that you defined as 'Use
-  in Timesheets'.
+* Go to *Timesheets > Weekly* or *Timesheets > My Timesheets*. The dropdown
+  list of projects will only display those that you defined as
+  'Allow timesheets'.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/117/9.0
+   :target: https://runbot.odoo-community.org/runbot/117/10.0
 
 
 Bug Tracker
@@ -54,6 +52,7 @@ Contributors
 ------------
 
 * Jordi Ballester <jordi.ballester@eficent.com>
+* Lois Rilo <lois.rilo@eficent.com>
 
 Maintainer
 ----------
