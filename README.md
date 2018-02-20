@@ -22,9 +22,11 @@ addon | version | summary
 --- | --- | ---
 [crm_phonecall_timesheet](crm_phonecall_timesheet/) | 10.0.1.0.0 | CRM Timesheet
 [crm_timesheet](crm_timesheet/) | 10.0.2.0.0 | CRM Timesheet
+[hr_employee_product](hr_employee_product/) | 10.0.1.0.0 | Product is an employee
 [hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 10.0.1.0.0 | Timesheet Activities - Begin/End Hours
 [hr_timesheet_sheet_week_start_day](hr_timesheet_sheet_week_start_day/) | 10.0.1.0.0 | Allows to define the week start date for Timesheets at company level
 [hr_timesheet_task](hr_timesheet_task/) | 10.0.1.0.0 | Allow the user to select task in a timesheet
+[hr_timesheet_task_required](hr_timesheet_task_required/) | 10.0.1.0.0 | Set task on timesheet as a mandatory field
 
 
 Unported addons
