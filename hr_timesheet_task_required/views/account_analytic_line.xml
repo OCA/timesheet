@@ -12,10 +12,10 @@
             </field>
 
         </field>
-   </record>
+    </record>
 
     <record model="ir.ui.view" id="account_analytic_line_tree">
-        <field name="name">hr.analytic.timesheet.form (in hr_timesheet_task_required)</field>
+        <field name="name">account.analytic.line.tree (in hr_timesheet_task_required)</field>
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
         <field name="arch" type="xml">
