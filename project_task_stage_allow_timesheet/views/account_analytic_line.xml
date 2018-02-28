@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="hr_timesheet_line_form">
+        <field name="name">account.analytic.line.form (in project_task_stage_allow_timesheet)</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+        <field name="arch" type="xml">
+
+            <field name="task_id" poistion="attributes">
+                <attribute name="domain"/>
+            </field>
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="account_analytic_line_tree">
+        <field name="name">account.analytic.line.tree (in project_task_stage_allow_timesheet)</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+        <field name="arch" type="xml">
+
+            <field name="task_id" position="attributes">
+                <attribute name="domain"/>
+            </field>
+
+        </field>
+    </record>
+
+</odoo>
