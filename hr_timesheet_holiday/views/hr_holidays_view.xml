@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <!-- add analytic account on Leave Type form view -->
+    <record id="edit_holiday_status_form1" model="ir.ui.view">
+        <field name="model">hr.holidays.status</field>
+        <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <field name="active" position="after">
+                <field name="analytic_account_id"
+                    domain="[('is_leave_account','=',True)]"
+                    context="{'default_is_leave_account': True}"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- add analytic account on Leave Type tree view -->
+    <record id="view_holiday_status_tree1" model="ir.ui.view">
+        <field name="model">hr.holidays.status</field>
+        <field name="inherit_id" ref="hr_holidays.view_holiday_status_normal_tree"/>
+        <field name="arch" type="xml">
+            <field name="limit" position="after">
+                <field name="analytic_account_id" />
+            </field>
+        </field>
+    </record>
+
+    <!-- add Leave Accounts action -->
+    <record id="act_hr_leave_accounts_form" model="ir.actions.act_window">
+        <field name="name">Leave Accounts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.analytic.account</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_leave_account','=', True)]</field>
+        <field name="context">{'default_is_leave_account':1}</field>
+    </record>
+
+    <!-- add Leave Accounts menu -->
+    <menuitem parent="hr.menu_hr_configuration"
+              id="menu_leave_accounts"
+              action="act_hr_leave_accounts_form"
+              sequence="11"
+              groups="base.group_hr_manager"/>
+
+    <!-- add Leaves flag to Analytic Account form -->
+    <record id="account_analytic_account_timesheet_form" model="ir.ui.view">
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//div[@name="project"]' position='inside'>
+                <field name="is_leave_account"/>
+                <label for="is_leave_account"/>
+            </xpath>
+        </field>
+    </record>
+
+</data>
+</openerp>

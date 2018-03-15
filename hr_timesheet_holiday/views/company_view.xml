@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record model="ir.ui.view" id="view_company_inherit_form">
+      <field name="name">res.company.form.inherit</field>
+      <field name="inherit_id" ref="base.view_company_form"/>
+      <field name="model">res.company</field>
+      <field name="priority">18</field>
+      <field name="arch" type="xml">
+        <field name="timesheet_max_difference" position="after">
+          <field name="timesheet_hours_per_day" widget="float_time"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>
