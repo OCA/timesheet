@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="hr_timesheet_sheet_form" model="ir.ui.view">
+            <field name="name">hr.timesheet.sheet.form</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id"
+                   ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="hr_period_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_hr_timesheet_sheet_filter" model="ir.ui.view">
+            <field name="name">hr_timesheet_sheet.sheet.filter</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id"
+                   ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"/>
+            <field name="arch" type="xml">
+                <field name="date_from" position="after">
+                    <field name="hr_period_id"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
