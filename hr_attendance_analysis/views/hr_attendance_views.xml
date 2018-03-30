@@ -38,7 +38,7 @@
             <field name="model">hr.attendance</field>
             <field name="arch" type="xml">
                 <search string="Hr Attendance Search">
-                    <filter icon="terp-go-today" string="Today" name="today" domain="[('name::date','=',current_date)]" />
+                    <filter icon="terp-go-today" string="Today" name="today" domain="[('name','&gt;=',current_date),('name','&lt;=',current_date)]" />
                     <separator orientation="vertical"/>
                     <field name="employee_id"/>
                     <field name="name" string="Start date time"/>
