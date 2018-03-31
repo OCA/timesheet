@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 07:54+0000\n"
-"PO-Revision-Date: 2017-06-28 07:54+0000\n"
+"POT-Creation-Date: 2018-03-31 00:41+0000\n"
+"PO-Revision-Date: 2018-03-31 00:41+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgid "End Hour"
 msgstr "Heure de fin"
 
 #. module: hr_timesheet_activity_begin_end
-#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:77
+#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:85
 #, python-format
 msgid "Lines can't overlap:\n"
 msgstr "Les lignes ne peuvent pas se chevaucher :\n"
