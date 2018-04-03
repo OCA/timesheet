@@ -2,7 +2,8 @@
 # Copyright 2016 Sunflower IT <http://sunflowerweb.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class AnalyticAccount(models.Model):
@@ -18,3 +19,28 @@ class AnalyticAccount(models.Model):
         'hr.holidays.status',
         'analytic_account_id',
     )
+
+    @api.model
+    def _trigger_project_creation(self, vals):
+        if vals.get('is_leave_account'):
+            return True
+        return super(AnalyticAccount, self)._trigger_project_creation(vals)
+
+    @api.multi
+    def project_create(self, vals):
+        res = super(AnalyticAccount, self).project_create(vals)
+        if isinstance(res, (int, long)):
+            for aa in self:
+                if aa.is_leave_account:
+                    project = self.env['project.project'].browse(res)
+                    project.write({'allow_timesheets': True})
+        return res
+
+    @api.constrains('is_leave_account', 'project_ids.allow_timesheets')
+    @api.multi
+    def _check_allow_timesheet(self):
+        for aa in self:
+            if any(project.allow_timesheets is False
+                   for project in aa.project_ids):
+                raise ValidationError(_('All the projects for the analytic '
+                                        'account must allow timesheets'))
