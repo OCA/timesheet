@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
+<odoo>
 
     <!-- add analytic account on Leave Type form view -->
     <record id="edit_holiday_status_form1" model="ir.ui.view">
@@ -39,11 +38,11 @@
     </record>
 
     <!-- add Leave Accounts menu -->
-    <menuitem parent="hr.menu_hr_configuration"
+    <menuitem parent="hr_holidays.menu_hr_holidays_configuration"
               id="menu_leave_accounts"
               action="act_hr_leave_accounts_form"
               sequence="11"
-              groups="base.group_hr_manager"/>
+              groups="hr.group_hr_manager"/>
 
     <!-- add Leaves flag to Analytic Account form -->
     <record id="account_analytic_account_timesheet_form" model="ir.ui.view">
@@ -57,5 +56,4 @@
         </field>
     </record>
 
-</data>
-</openerp>
+</odoo>

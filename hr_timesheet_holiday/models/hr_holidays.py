@@ -4,8 +4,8 @@
 
 from datetime import timedelta
 
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning as UserError
+from odoo import models, fields, api, _
+from odoo.exceptions import Warning as UserError
 
 
 class HrHolidays(models.Model):
@@ -13,26 +13,29 @@ class HrHolidays(models.Model):
     _inherit = 'hr.holidays'
 
     # Timesheet entry linked to this leave request
-    timesheet_ids = fields.One2many(
-        'hr.analytic.timesheet',
+    analytic_line_ids = fields.One2many(
+        'account.analytic.line',
         'leave_id',
-        'Timesheet entries'
+        'Analytic Lines'
     )
 
     @api.multi
-    def add_timesheet_line(self, description, date, hours, account_id,
-                           user_id):
+    def add_timesheet_line(self, description, date, hours, account):
         """Add a timesheet line for this leave"""
         self.ensure_one()
-        self.sudo(user_id).write({'timesheet_ids': [(0, False, {
-            'name': description,
-            'date': date,
-            'unit_amount': hours,
-            'company_id': self.employee_id.company_id.id,
-            'account_id': account_id,
-            'user_id': user_id,
-            'journal_id': self.employee_id.journal_id.id
-        })]})
+        projects = account.project_ids.filtered(
+            lambda p: p.active is True)
+        if not projects:
+            raise UserError('No active projects for this Analytic Account')
+        self.sudo().with_context(force_write=True).write(
+            {'analytic_line_ids': [(0, False, {
+                'name': description,
+                'date': date,
+                'unit_amount': hours,
+                'company_id': self.employee_id.company_id.id,
+                'account_id': account.id,
+                'project_id': projects[0].id,
+            })]})
 
     @api.model
     def _get_hours_per_day(self, company, employee):
@@ -45,9 +48,9 @@ class HrHolidays(models.Model):
         return hours_per_day
 
     @api.multi
-    def holidays_validate(self):
+    def action_approve(self):
         """On grant of leave, add timesheet lines"""
-        res = super(HrHolidays, self).holidays_validate()
+        res = super(HrHolidays, self).action_approve()
 
         # Postprocess Leave Types that have an analytic account configured
         for leave in self:
@@ -70,7 +73,7 @@ class HrHolidays(models.Model):
                     (leave.employee_id.name,))
 
             # Add analytic lines for these leave hours
-            leave.timesheet_ids.sudo(user.id).unlink()  # to be sure
+            leave.analytic_line_ids.sudo(user.id).unlink()  # to be sure
             dt_from = fields.Datetime.from_string(leave.date_from)
             for day in range(abs(int(leave.number_of_days))):
                 dt_current = dt_from + timedelta(days=day)
@@ -79,22 +82,20 @@ class HrHolidays(models.Model):
                 day_of_the_week = dt_current.isoweekday()
                 if day_of_the_week in (6, 7):
                     continue
-
                 leave.add_timesheet_line(
                     description=leave.name or leave.holiday_status_id.name,
                     date=dt_current,
                     hours=hours_per_day,
-                    account_id=account.id,
-                    user_id=user.id
+                    account=account
                 )
 
         return res
 
     @api.multi
-    def holidays_refuse(self):
+    def action_refuse(self):
         """On refusal of leave, delete timesheet lines"""
-        res = super(HrHolidays, self).holidays_refuse()
-        self.mapped('timesheet_ids') \
+        res = super(HrHolidays, self).action_refuse()
+        self.mapped('analytic_line_ids') \
             .with_context(force_write=True) \
             .unlink()
         return res

@@ -20,6 +20,7 @@ The hours to input per day is configurable at company level.
 Limitations:
 
 - Consider that the work days are Monday to Friday
+- Only allow leaves account linked to project
 
 Configuration
 =============
@@ -28,8 +29,8 @@ To configure this module, you need to:
 
 #. Find your company in Settings - Companies and configure the amount of hours
    per workday under Configuration - Timesheets - Timesheet Hours Per Day.
-#. For each Leave Type under Human Resources - Leave Types, select or create
-   an Analytic Account.
+#. For each Leave Type under Human Resources - Leave Types, select an Analytic
+   Account linked to a project that allows timesheets or create one.
 
 Usage
 =====
@@ -74,6 +75,7 @@ Contributors
 * Tom Blauwendraat <tom@sunflowerweb.nl>
 * Terrence Nzaywa <terrence@sunflowerweb.nl>
 * Holger Brunn <hbrunn@therp.nl>
+* Aaron Henriquez <ahenriquez@eficent.com>
 
 Maintainer
 ----------
