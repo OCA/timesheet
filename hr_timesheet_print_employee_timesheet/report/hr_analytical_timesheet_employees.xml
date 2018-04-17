@@ -15,7 +15,7 @@
                             <h1>Timesheets per employee</h1>
                             <section t-foreach="doc.employee_ids" t-as="employee">
                                 <h4 style="page-break-after: avoid"><t t-esc="employee.display_name" /></h4>
-                                <table t-foreach="doc.get_timesheets(employee)" t-as="timesheet" class="table table-striped table-bordered table-condensed" style="page-break-inside: avoid; page-break-before: auto">
+                                <table t-foreach="doc.get_timesheets(employee)" t-as="timesheet" class="table table-striped table-bordered table-condensed" style="page-break-before: auto">
                                     <thead>
                                         <tr>
                                             <td><t t-esc="doc.format_date(timesheet.date_start, 'Y')" /></td>
