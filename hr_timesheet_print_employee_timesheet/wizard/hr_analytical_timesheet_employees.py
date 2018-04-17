@@ -21,8 +21,9 @@ import collections
 import datetime
 import babel.dates
 from dateutil.relativedelta import relativedelta
-from openerp import models, fields, api
+from openerp import _, models, fields, api
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from openerp.exceptions import ValidationError
 
 
 class HrAnalyticalTimesheetEmployees(models.TransientModel):
@@ -113,3 +114,11 @@ class HrAnalyticalTimesheetEmployees(models.TransientModel):
     def format_date(self, date, fmt):
         return babel.dates.format_date(
             date, format=fmt, locale=self.env.context.get('lang', 'en_US'))
+
+    @api.constrains('date_start', 'date_end')
+    def _constrain_dates(self):
+        for this in self:
+            if this.date_start > this.date_end:
+                raise ValidationError(
+                    _('Start date must be greater than end date')
+                )

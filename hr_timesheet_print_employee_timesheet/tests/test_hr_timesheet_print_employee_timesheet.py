@@ -18,7 +18,7 @@
 #
 ##############################################################################
 from dateutil.relativedelta import relativedelta
-from openerp import fields
+from openerp import exceptions, fields
 from openerp.tests.common import TransactionCase
 
 
@@ -36,3 +36,11 @@ class TestHrTimesheetPrintEmployeeTimesheet(TransactionCase):
         report = wizard.button_print()
         data, data_type = self.env['ir.actions.report.xml'].render_report(
             wizard.ids, report['report_name'], {})
+        # check constraint
+        with self.assertRaises(exceptions.ValidationError):
+            self.env['hr.analytical.timesheet.employees'].with_context(
+                active_ids=self.env['hr.employee'].search([]).ids
+            ).create({
+                'date_start': '2042-01-01',
+                'date_end': '2018-01-01',
+            })
