@@ -6,3 +6,4 @@ from . import analytic_line
 from . import company
 from . import hr_holidays
 from . import hr_holidays_status
+from . import hr_timesheet_sheet
