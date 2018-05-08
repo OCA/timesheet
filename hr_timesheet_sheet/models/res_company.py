@@ -1,11 +1,17 @@
-# -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Copyright 2018 Eficent Business and IT Consulting Services, S.L.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
+from dateutil.rrule import (MONTHLY, WEEKLY, DAILY)
 
 
 class ResCompany(models.Model):
     _inherit = 'res.company'
 
-    timesheet_range = fields.Selection([('week', 'Week'), ('month', 'Month')],
-            default='week', string='Timesheet range', help="Periodicity on which you validate your timesheets.")
+    sheet_range = fields.Selection([
+        (MONTHLY, 'Month'),
+        (WEEKLY, 'Week'),
+        (DAILY, 'Day')],
+        string='Timesheet Sheet Range',
+        default=WEEKLY,
+        help="The range of your Timesheet Sheet.")
