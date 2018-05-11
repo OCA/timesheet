@@ -27,7 +27,7 @@
                     <button name="action_timesheet_done" states="confirm" string="Approve" type="object" groups="hr_timesheet.group_hr_timesheet_user" class="oe_highlight"/>
                     <button name="action_timesheet_draft" states="done" string="Set to Draft" type="object" groups="hr_timesheet.group_hr_timesheet_user"/>
                     <button name="action_timesheet_draft" states="confirm" string="Refuse" type="object" groups="hr_timesheet.group_hr_timesheet_user"/>
-                    <field name="state" widget="statusbar" statusbar_visible="new,draft,confirm,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -47,7 +47,7 @@
                     <notebook>
                         <page string="Summary">
                             <group name="Sheet">
-                                <field name="line_ids" nolabel="1" attrs="{'readonly': [('state', 'not in', ['new', 'draft'])]}"
+                                <field name="line_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}"
                                        widget="x2many_2d_matrix"
                                        field_x_axis="value_x"
                                        field_y_axis="value_y"
@@ -114,7 +114,7 @@
         <field name="arch" type="xml">
             <search string="Search Timesheet">
                 <field name="date_start"/>
-                <filter name="new" string="In Draft" domain="[('state','in',('draft', 'new'))]" help="Unvalidated Timesheet Sheets"/>
+                <filter name="draft" string="In Draft" domain="[('state','=','draft')]" help="Unvalidated Timesheet Sheets"/>
                 <filter name="to_approve" string="To Approve" domain="[('state','=','confirm')]" help="Confirmed Timesheet Sheets"/>
                 <filter string="Unread Messages" name="message_needaction" domain="[('message_needaction','=',True)]"/>
                 <field name="employee_id"/>

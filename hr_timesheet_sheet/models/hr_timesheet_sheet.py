@@ -64,14 +64,14 @@ class Sheet(models.Model):
         default=lambda self: self._default_date_start(),
         required=True,
         index=True,
-        states={'new': [('readonly', False)]},
+        states={'draft': [('readonly', False)]},
     )
     date_end = fields.Date(
         string='Date To',
         default=lambda self: self._default_date_end(),
         required=True,
         index=True,
-        states={'new': [('readonly', False)]},
+        states={'draft': [('readonly', False)]},
     )
     timesheet_ids = fields.One2many(
         comodel_name='account.analytic.line',
@@ -80,7 +80,7 @@ class Sheet(models.Model):
         readonly=True,
         states={
             'draft': [('readonly', False)],
-            'new': [('readonly', False)]},
+        }
     )
     line_ids = fields.One2many(
         comodel_name='hr_timesheet.sheet.line',
@@ -88,14 +88,13 @@ class Sheet(models.Model):
         string='Timesheets',
         states={
             'draft': [('readonly', False)],
-            'new': [('readonly', False)]},
+        }
     )
     state = fields.Selection([
-        ('new', 'New'),
         ('draft', 'Open'),
         ('confirm', 'Waiting Approval'),
         ('done', 'Approved')],
-        default='new', track_visibility='onchange',
+        default='draft', track_visibility='onchange',
         string='Status', required=True, readonly=True, index=True,
     )
     company_id = fields.Many2one(
@@ -114,7 +113,7 @@ class Sheet(models.Model):
              'to the timesheet sheet when clicked the button.',
         states={
             'draft': [('readonly', False)],
-            'new': [('readonly', False)]},
+        },
     )
     add_line_task_id = fields.Many2one(
         comodel_name='project.task',
@@ -123,7 +122,7 @@ class Sheet(models.Model):
              'to the timesheet sheet when clicked the button.',
         states={
             'draft': [('readonly', False)],
-            'new': [('readonly', False)]},
+        },
     )
 
     @api.constrains('date_start', 'date_end')
@@ -307,7 +306,7 @@ class Sheet(models.Model):
     @api.multi
     def button_add_line(self):
         for rec in self:
-            if rec.state in ['new', 'draft']:
+            if rec.state == 'draft':
                 rec.add_line()
                 rec.add_line_task_id = False
                 rec.add_line_project_id = False

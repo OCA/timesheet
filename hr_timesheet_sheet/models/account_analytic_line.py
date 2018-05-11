@@ -35,7 +35,7 @@ class AccountAnalyticLine(models.Model):
                 [('date_end', '>=', timesheet.date),
                  ('date_start', '<=', timesheet.date),
                  ('employee_id.user_id.id', '=', timesheet.user_id.id),
-                 ('state', 'in', ['draft', 'new']),
+                 ('state', '=', 'draft'),
                  ])
             if sheets:
                 timesheet.sheet_id_computed = sheets[0]
@@ -69,7 +69,7 @@ class AccountAnalyticLine(models.Model):
 
     def _check_state(self):
         for line in self:
-            if line.sheet_id and line.sheet_id.state not in ('draft', 'new'):
+            if line.sheet_id and line.sheet_id.state != 'draft':
                 raise UserError(
                     _('You cannot modify an entry in a confirmed '
                       'timesheet sheet.'))
