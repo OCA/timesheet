@@ -5,7 +5,6 @@ import logging
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import (MONTHLY, WEEKLY)
 from odoo import api, fields, models, _
-from odoo.tools.sql import drop_view_if_exists
 from odoo.exceptions import UserError, ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -98,12 +97,6 @@ class Sheet(models.Model):
         ('done', 'Approved')],
         default='new', track_visibility='onchange',
         string='Status', required=True, readonly=True, index=True,
-    )
-    account_ids = fields.One2many(
-        comodel_name='hr_timesheet.sheet.account',
-        inverse_name='sheet_id',
-        string='Analytic accounts',
-        readonly=True
     )
     company_id = fields.Many2one(
         comodel_name='res.company',
@@ -443,53 +436,6 @@ class Sheet(models.Model):
             return False
         return ['&', ('state', '=', 'confirm'),
                 ('employee_id', 'in', empids.ids)]
-
-
-class SheetAccount(models.Model):
-    _name = "hr_timesheet.sheet.account"
-    _description = "Timesheet Sheets by Period"
-    _auto = False
-    _order = 'name'
-
-    name = fields.Many2one(
-        comodel_name='account.analytic.account',
-        string='Project / Analytic Account',
-        readonly=True,
-    )
-    sheet_id = fields.Many2one(
-        comodel_name='hr_timesheet.sheet',
-        string='Sheet',
-        readonly=True,
-    )
-    total = fields.Float(
-        string='Total Time',
-        digits=(16, 2),
-        readonly=True,
-    )
-
-    _depends = {
-        'account.analytic.line': ['account_id', 'date', 'unit_amount',
-                                  'user_id'],
-        'hr_timesheet.sheet': ['date_start', 'date_end', 'user_id'],
-    }
-
-    @api.model_cr
-    def init(self):
-        drop_view_if_exists(self._cr, 'hr_timesheet_sheet_account')
-        self._cr.execute("""create view hr_timesheet_sheet_account as (
-            select
-                min(l.id) as id,
-                l.account_id as name,
-                s.id as sheet_id,
-                sum(l.unit_amount) as total
-            from
-                account_analytic_line l
-                    LEFT JOIN hr_timesheet_sheet s
-                        ON (s.date_end >= l.date
-                            AND s.date_start <= l.date
-                            AND s.user_id = l.user_id)
-            group by l.account_id, s.id
-        )""")
 
 
 class SheetLine(models.TransientModel):
