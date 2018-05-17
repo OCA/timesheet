@@ -27,7 +27,7 @@ class HrTimesheetSheet(models.Model):
                 holiday2hours[holiday] += line.unit_amount
             for holiday, hours in holiday2hours.iteritems():
                 request = self.env['hr.holidays'].sudo(this.user_id).create({
-                    'name': '%s: %s' % (this.name, holiday.name),
+                    'name': '%s: %s' % (this.display_name, holiday.name),
                     'user_id': this.user_id.id,
                     'date_from': this.date_from,
                     'date_to': this.date_to,

@@ -2,7 +2,6 @@
 # © 2016 Sunflower IT (http://sunflowerweb.nl)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import time
-from openerp.tools import float_round
 from openerp.tests.common import TransactionCase
 from openerp.exceptions import ValidationError
 
@@ -67,6 +66,8 @@ class TimesheetHolidayTest(TransactionCase):
         manager = self.env.ref('hr.employee_fp')
         employee = self.env.ref('hr.employee_qdp')
         employee.write(employee.default_get(['product_id', 'journal_id']))
+
+        # create timesheet line with 6.0 hours of sick leave
         line = self.env['hr.analytic.timesheet'].sudo(
             employee.user_id,
         ).default_get([
@@ -82,6 +83,8 @@ class TimesheetHolidayTest(TransactionCase):
             name='/',
             unit_amount=6,
         )
+
+        # create and confirm a timesheet with the 6.0 hours line
         sheet = self.env['hr_timesheet_sheet.sheet'].sudo(
             employee.user_id
         ).create({
@@ -91,14 +94,34 @@ class TimesheetHolidayTest(TransactionCase):
             'timesheet_ids': [(0, 0, line)],
         })
         sheet.signal_workflow('confirm')
+        self.assertEqual(sheet.state, 'confirm')
+
+        # fully approve timesheet
         leaves_taken_before = self.account.holiday_status_ids.sudo(
             employee.user_id
         ).leaves_taken
         sheet.sudo(manager.user_id).signal_workflow('done')
+        self.assertEqual(sheet.state, 'done')
+
+        # assert that total leave has increases
         leaves_taken_after = self.account.holiday_status_ids.sudo(
             employee.user_id
         ).leaves_taken
-        self.assertEqual(
-            float_round(leaves_taken_before + 6.0 / 7.0, 2),
-            float_round(leaves_taken_after, 2),
+        self.assertAlmostEqual(
+            leaves_taken_before + 6.0 / 7.0,
+            leaves_taken_after,
+            2
         )
+
+        # resubmit timesheet with 8.0 hours of leave
+        # sheet.create_workflow()
+        # self.assertEquals(sheet.state, 'draft')
+        # sheet.timesheet_ids.write(dict(unit_amount=8))
+        # sheet.signal_workflow('confirm')
+        # sheet.signal_workflow('done')
+        # self.assertEqual(sheet.state, 'done')
+        # self.assertAlmostEqual(
+        #     leaves_taken_before + 8.0 / 7.0,
+        #     leaves_taken_after,
+        #     2
+        # )
