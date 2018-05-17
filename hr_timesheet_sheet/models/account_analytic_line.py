@@ -23,9 +23,9 @@ class AccountAnalyticLine(models.Model):
         store=True,
     )
 
-    @api.depends('date', 'user_id', 'project_id', 'task_id',
+    @api.depends('date', 'user_id', 'project_id', 'task_id', 'company_id',
                  'sheet_id.date_start', 'sheet_id.date_end',
-                 'sheet_id.employee_id')
+                 'sheet_id.employee_id', 'sheet_id.company_id')
     def _compute_sheet(self):
         """Links the timesheet line to the corresponding sheet"""
         for timesheet in self:
@@ -35,6 +35,7 @@ class AccountAnalyticLine(models.Model):
                 [('date_end', '>=', timesheet.date),
                  ('date_start', '<=', timesheet.date),
                  ('employee_id.user_id.id', '=', timesheet.user_id.id),
+                 ('company_id', 'in', [timesheet.company_id.id, False]),
                  ('state', '=', 'draft'),
                  ])
             if sheets:
@@ -51,9 +52,12 @@ class AccountAnalyticLine(models.Model):
                     WHERE %(date_end)s >= l.date
                         AND %(date_start)s <= l.date
                         AND %(user_id)s = l.user_id
+                        AND %(company_id)s = l.company_id
                     GROUP BY l.id""", {'date_start': ts.date_start,
                                        'date_end': ts.date_end,
-                                       'user_id': ts.employee_id.user_id.id, })
+                                       'user_id': ts.employee_id.user_id.id,
+                                       'company_id': ts.company_id.id,
+                                       })
             ids.extend([row[0] for row in self._cr.fetchall()])
         return [('id', 'in', ids)]
 

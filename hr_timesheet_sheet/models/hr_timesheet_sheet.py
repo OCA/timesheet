@@ -101,6 +101,7 @@ class Sheet(models.Model):
         comodel_name='res.company',
         string='Company',
         default=lambda self: self.env['res.company']._company_default_get(),
+        readonly=True,
     )
     department_id = fields.Many2one(
         comodel_name='hr.department',
@@ -143,13 +144,69 @@ class Sheet(models.Model):
                     FROM hr_timesheet_sheet
                     WHERE (date_start <= %s and %s <= date_end)
                         AND user_id=%s
+                        AND company_id=%s
                         AND id <> %s""",
-                    (sheet.date_end, sheet.date_start, new_user_id, sheet.id))
+                    (sheet.date_end, sheet.date_start, new_user_id,
+                     sheet.company_id.id, sheet.id))
                 if any(self.env.cr.fetchall()):
                     raise ValidationError(
                         _('You cannot have 2 sheets that overlap!\n'
                           'Please use the menu \'Timesheet Sheet\' '
                           'to avoid this problem.'))
+
+    @api.multi
+    @api.constrains('company_id', 'employee_id')
+    def _check_company_id_employee_id(self):
+        for rec in self.sudo():
+            if rec.company_id and rec.employee_id.company_id and \
+                    rec.company_id != rec.employee_id.company_id:
+                raise ValidationError(
+                    _('The Company in the Timesheet Sheet and in '
+                      'the Employee must be the same.'))
+
+    @api.multi
+    @api.constrains('company_id', 'department_id')
+    def _check_company_id_department_id(self):
+        for rec in self.sudo():
+            if rec.company_id and rec.department_id.company_id and \
+                    rec.company_id != rec.department_id.company_id:
+                raise ValidationError(
+                    _('The Company in the Timesheet Sheet and in '
+                      'the Department must be the same.'))
+
+    @api.multi
+    @api.constrains('company_id', 'add_line_project_id')
+    def _check_company_id_add_line_project_id(self):
+        for rec in self.sudo():
+            if rec.company_id and rec.add_line_project_id.company_id and \
+                    rec.company_id != rec.add_line_project_id.company_id:
+                raise ValidationError(
+                    _('The Company in the Timesheet Sheet and in '
+                      'the Project must be the same.'))
+
+    @api.multi
+    @api.constrains('company_id', 'add_line_task_id')
+    def _check_company_id_add_line_task_id(self):
+        for rec in self.sudo():
+            if rec.company_id and rec.add_line_task_id.company_id and \
+                    rec.company_id != rec.add_line_task_id.company_id:
+                raise ValidationError(
+                    _('The Company in the Timesheet Sheet and in '
+                      'the Task must be the same.'))
+
+    @api.constrains('company_id')
+    def _check_company_id(self):
+        for rec in self.sudo():
+            if not rec.company_id:
+                continue
+            for field in rec.timesheet_ids:
+                if rec.company_id and field.company_id and \
+                        rec.company_id != field.company_id:
+                    raise ValidationError(_(
+                        'You cannot change the company, as this %s (%s) '
+                        'is assigned to %s (%s).'
+                    ) % (rec._name, rec.display_name,
+                         field._name, field.display_name))
 
     @api.onchange('employee_id')
     def _onchange_employee_id(self):
@@ -171,6 +228,7 @@ class Sheet(models.Model):
                 ('date', '>=', sheet.date_start),
                 ('employee_id', '=', sheet.employee_id.id),
                 ('sheet_id', 'in', [sheet and sheet.id or False, False]),
+                ('company_id', '=', sheet.company_id.id),
             ])
             lines = self.env['hr_timesheet.sheet.line']
             for date in dates:
@@ -205,6 +263,7 @@ class Sheet(models.Model):
                 'domain': {
                     'add_line_task_id': [
                         ('project_id', '=', self.add_line_project_id.id),
+                        ('company_id', '=', self.company_id.id),
                         ('id', 'not in',
                          self.timesheet_ids.mapped('task_id').ids)],
                 },
@@ -369,6 +428,7 @@ class Sheet(models.Model):
             self.add_line_task_id.id or False,
             'sheet_id': self.id,
             'unit_amount': 0.0,
+            'company_id': self.company_id.id,
         }
 
     @api.model
@@ -404,6 +464,7 @@ class Sheet(models.Model):
                     ('date', '>=', self.date_start),
                     ('employee_id', '=', self.employee_id.id),
                     ('sheet_id', '=', self.id),
+                    ('company_id', '=', self.company_id.id),
                 ])
                 if allow_empty_rows and self.add_line_project_id:
                     check = any([l.unit_amount for l in row])
@@ -489,6 +550,7 @@ class SheetLine(models.TransientModel):
                 ('date', '=', self.date),
                 ('employee_id', '=', self.sheet_id.employee_id.id),
                 ('sheet_id', '=', self.sheet_id.id),
+                ('company_id', '=', self.sheet_id.company_id.id),
             ])
             if len(timesheets) != self.count_timesheets:
                 _logger.info('Found timesheets %s, expected %s',
@@ -563,4 +625,5 @@ class SheetLine(models.TransientModel):
             'task_id': task,
             'sheet_id': self.sheet_id.id,
             'unit_amount': amount,
+            'company_id': self.sheet_id.company_id.id,
         }
