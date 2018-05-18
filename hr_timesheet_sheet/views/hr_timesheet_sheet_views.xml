@@ -41,7 +41,7 @@
                             <div style="display: inline;"><field name="date_start" class="oe_inline"/> to <field name="date_end" class="oe_inline"/></div>
                             <field name="name" invisible="1"/>
                             <field name="department_id" invisible="1"/>
-                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>
                         </group>
                     </group>
                     <notebook>

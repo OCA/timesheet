@@ -47,6 +47,20 @@ class TestHrTimesheetSheet(TransactionCase):
              'company_ids': [(4, self.company.id)],
              })
 
+        self.user_2 = self.env['res.users'].sudo(self.env.user).with_context(
+            no_reset_password=True).create(
+            {'name': 'Test User 2',
+             'login': 'test_user_2',
+             'email': 'test2@oca.com',
+             'groups_id': [(6, 0, [employees_group.id,
+                                   sheet_user_group.id,
+                                   project_user_group.id,
+                                   multi_company_group.id,
+                                   ])],
+             'company_id': self.company_2.id,
+             'company_ids': [(4, self.company_2.id)],
+             })
+
         self.employee = self.employee_model.create({
             'name': "Test User",
             'user_id': self.user.id,
@@ -358,6 +372,27 @@ class TestHrTimesheetSheet(TransactionCase):
             [('id', 'in', [timesheet_3.id, timesheet_4.id, timesheet_5.id])])
         self.assertEqual(len(timesheet_3_4_and_5), 3)
 
+        timesheet_6 = self.aal_model.create({
+            'name': '/',
+            'project_id': self.project_1.id,
+            'employee_id': self.employee.id,
+            'unit_amount': 2.0,
+        })
+        sheet._onchange_dates_or_timesheets()
+        self.assertEqual(len(sheet.timesheet_ids), 4)
+        line = sheet.line_ids.filtered(lambda l: l.unit_amount != 0.0)
+        self.assertEqual(line.count_timesheets, 4)
+        self.assertEqual(line.unit_amount, 5.0)
+
+        line._cache.update(
+            line._convert_to_cache(
+                {'unit_amount': 1.0}, update=True))
+        line.onchange_unit_amount()
+        sheet._onchange_dates_or_timesheets()
+        self.assertEqual(len(sheet.timesheet_ids), 3)
+        self.assertEqual(line.count_timesheets, 3)
+        self.assertFalse(self.aal_model.search([('id', '=', timesheet_6.id)]))
+
     def test_7(self):
         sheet = self.sheet_model.sudo(self.user).new({
             'employee_id': self.employee.id,
@@ -383,3 +418,40 @@ class TestHrTimesheetSheet(TransactionCase):
                 'employee_id': self.employee.id,
                 'company_id': self.user.company_id.id,
             })
+
+    def test_8(self):
+        """Multicompany test"""
+        employee_2 = self.employee_model.create({
+            'name': "Test User 2",
+            'user_id': self.user_2.id,
+            'company_id': self.user_2.company_id.id,
+        })
+        department_2 = self.department_model.create({
+            'name': "Department test 2",
+            'company_id': self.user_2.company_id.id,
+        })
+        project_3 = self.project_model.create({
+            'name': "Project 3",
+            'company_id': self.user_2.company_id.id,
+        })
+        task_3 = self.task_model.create({
+            'name': "Task 3",
+            'project_id': project_3.id,
+            'company_id': self.user_2.company_id.id,
+        })
+        sheet = self.sheet_model.sudo(self.user).create({
+            'employee_id': self.employee.id,
+            'company_id': self.user.company_id.id,
+            'department_id': self.department.id,
+        })
+        with self.assertRaises(ValidationError):
+            sheet.company_id = self.user_2.company_id.id
+        sheet.company_id = self.user.company_id.id
+        with self.assertRaises(ValidationError):
+            sheet.employee_id = employee_2
+        with self.assertRaises(ValidationError):
+            sheet.department_id = department_2
+        with self.assertRaises(ValidationError):
+            sheet.add_line_project_id = project_3
+        with self.assertRaises(ValidationError):
+            sheet.add_line_task_id = task_3

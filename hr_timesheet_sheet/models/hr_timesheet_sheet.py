@@ -101,7 +101,6 @@ class Sheet(models.Model):
         comodel_name='res.company',
         string='Company',
         default=lambda self: self.env['res.company']._company_default_get(),
-        readonly=True,
     )
     department_id = fields.Many2one(
         comodel_name='hr.department',
