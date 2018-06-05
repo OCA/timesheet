@@ -8,7 +8,9 @@ Link holidays to analytic lines
 
 This module adds a relation between Leave Type and Analytic Account.
 When a Leave Request is granted, the granted days are converted to hours and
-added as a line to the Analytic Account.
+added as a line to the Analytic Account. Conversely, when a timesheet line
+with an analytic account pointed to by a Leave Type is approved, this will
+result in an approved leave request.
 
 When the leave is revoked, the analytic lines are removed again.
 
@@ -48,9 +50,6 @@ Known issues / Roadmap
   To make this easier, the function `_get_hours_per_day` was made which can be
   overridden by child modules.
 * We should probably start using resource calendars.
-* hr_timesheet_sheet dependency can be changed to hr_timesheet, now only
-  included because hr_timesheet_sheet adds the Timesheet configurations menu
-  in Company view.
 
 Bug Tracker
 ===========

@@ -4,7 +4,7 @@
 
 {
     'name': 'Link holidays to analytic lines',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.0',
     'category': 'Generic Modules/Human Resources',
     'summary': """When holidays are granted, add lines to the analytic account
         that is linked to the Leave Type""",

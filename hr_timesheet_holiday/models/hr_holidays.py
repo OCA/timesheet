@@ -52,9 +52,9 @@ class HrHolidays(models.Model):
         # Postprocess Leave Types that have an analytic account configured
         for leave in self:
             account = leave.holiday_status_id.analytic_account_id
-            if not account or leave.type != 'remove':
+            if not account or leave.type != 'remove' or leave.timesheet_ids:
                 # we only work on leaves (type=remove, type=add is allocation)
-                # which have an account set
+                # which have an account set and dont yet point to a leave
                 continue
 
             # Assert hours per working day
@@ -70,7 +70,6 @@ class HrHolidays(models.Model):
                     (leave.employee_id.name,))
 
             # Add analytic lines for these leave hours
-            leave.timesheet_ids.sudo(user.id).unlink()  # to be sure
             dt_from = fields.Datetime.from_string(leave.date_from)
             for day in range(abs(int(leave.number_of_days))):
                 dt_current = dt_from + timedelta(days=day)
