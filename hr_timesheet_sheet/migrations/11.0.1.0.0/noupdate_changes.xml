@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+  <record id="mt_timesheet_confirmed" model="mail.message.subtype">
+    <field name="res_model">hr_timesheet.sheet</field>
+  </record>
+  <record id="mt_timesheet_approved" model="mail.message.subtype">
+    <field name="res_model">hr_timesheet.sheet</field>
+  </record>
+</odoo> 
