@@ -18,7 +18,7 @@ class AccountAnalyticLine(models.Model):
         for rec in self:
             task = rec.task_id
             stage = task.stage_id
-            if not stage.allow_timesheet:
+            if task and not stage.allow_timesheet:
                 raise ValidationError(_(
                     "You can't link a timesheet line to a task if its stage "
                     "doesn't allow it. (Task: %s, Stage: %s)"
