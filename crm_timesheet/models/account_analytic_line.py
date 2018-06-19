@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # Copyright 2015 Javier Iniesta <javieria@antiun.com>
 # Copyright 2017 David Vidal <david.vidal@tecnativa.com>
@@ -10,8 +9,10 @@ from odoo import api, fields, models
 class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
-    lead_id = fields.Many2one(comodel_name='crm.lead',
-                              string='Lead/Opportunity')
+    lead_id = fields.Many2one(
+        comodel_name='crm.lead',
+        string='Lead/Opportunity',
+    )
 
     @api.onchange('lead_id')
     def _onchange_lead_id(self):
