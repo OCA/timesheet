@@ -16,14 +16,11 @@ CRM Timesheet
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fhr--timesheet-lightgray.png?logo=github
     :target: https://github.com/OCA/hr-timesheet/tree/11.0/crm_timesheet
     :alt: OCA/hr-timesheet
-.. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/hr-timesheet-11-0/hr-timesheet-11-0-crm_timesheet
-    :alt: Translate me on Weblate
-.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+.. |badge4| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/117/11.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| 
 
 This module allows to generate timesheets from leads/opportunities.
 
