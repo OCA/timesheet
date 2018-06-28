@@ -1,4 +1,4 @@
-odoo.define('hr_timesheet_sheet_restrict_analytic.restrict', function (require) {
+odoo.define('hr_timesheet_sheet_restrict_project.restrict', function (require) {
 'use strict';
 
     var core = require('web.core');

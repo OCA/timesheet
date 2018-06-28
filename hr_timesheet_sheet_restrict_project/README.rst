@@ -2,11 +2,11 @@
    :target: https://www.gnu.org/licenses/lgpl.html
    :alt: License: LGPL-3
 
-====================================
-Hr Timesheet Sheet Restrict Analytic
-====================================
+===================================
+Hr Timesheet Sheet Restrict Project
+===================================
 
-This module allows to define what projets should be used by
+This module allows to define what projects should be used by
 employees when they complete their timesheets.
 
 Configuration
@@ -14,7 +14,7 @@ Configuration
 
 Define the Analytic Accounts:
 
-#. Go to *Poject > Dashboard* and open any project's settings.
+#. Go to *Project > Dashboard* and open any project's settings.
 #. Press the checkbox 'Allow timesheets'.
 
 

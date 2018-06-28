@@ -4,7 +4,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 {
-    "name": "Hr Timesheet Sheet Restrict Analytic",
+    "name": "Hr Timesheet Sheet Restrict Project",
     "summary": "Allows to restrict the analytic accounts that can be "
                "used in timesheets",
     "version": "10.0.1.0.0",
@@ -15,7 +15,7 @@
     "depends": ["hr_timesheet_sheet"],
     "data": [
         "views/hr_timesheet_sheet_view.xml",
-        "views/hr_timesheet_restrict_analytic.xml",
+        "views/hr_timesheet_restrict_project.xml",
     ],
     "license": "LGPL-3",
     'installable': True,
