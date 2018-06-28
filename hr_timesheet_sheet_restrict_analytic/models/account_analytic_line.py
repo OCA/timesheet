@@ -9,14 +9,14 @@ from odoo import api, models
 class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
-    @api.onchange('is_timesheet')
+    @api.onchange('project_id')
     def _onchange_allowed_analytic_account_ids(self):
         """
         The purpose of the method is to define a domain for the available
         analytic accounts
         """
         result = {}
-        if self.is_timesheet:
+        if self.project_id:
             result['domain'] = {
                 'project_id': [('allow_timesheets', '=', True)]}
         return result
