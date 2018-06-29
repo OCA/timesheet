@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo10-addon-hr_employee_product',
         'odoo10-addon-hr_timesheet_activity_begin_end',
         'odoo10-addon-hr_timesheet_no_closed_project_task',
+        'odoo10-addon-hr_timesheet_sheet_period',
         'odoo10-addon-hr_timesheet_sheet_week_start_day',
         'odoo10-addon-hr_timesheet_task',
         'odoo10-addon-hr_timesheet_task_required',
