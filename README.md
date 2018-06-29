@@ -25,6 +25,7 @@ addon | version | summary
 [hr_employee_product](hr_employee_product/) | 10.0.1.0.0 | Product is an employee
 [hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 10.0.1.0.0 | Timesheet Activities - Begin/End Hours
 [hr_timesheet_no_closed_project_task](hr_timesheet_no_closed_project_task/) | 10.0.1.0.0 | Prevent to select closed project or task on timesheet line
+[hr_timesheet_sheet_period](hr_timesheet_sheet_period/) | 10.0.1.0.0 | HR Timesheet Sheet based on Payroll Period
 [hr_timesheet_sheet_week_start_day](hr_timesheet_sheet_week_start_day/) | 10.0.1.0.0 | Allows to define the week start date for Timesheets at company level
 [hr_timesheet_task](hr_timesheet_task/) | 10.0.1.0.0 | Allow the user to select task in a timesheet
 [hr_timesheet_task_required](hr_timesheet_task_required/) | 10.0.1.0.0 | Set task on timesheet as a mandatory field
