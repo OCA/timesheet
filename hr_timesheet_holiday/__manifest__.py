@@ -14,6 +14,7 @@
     'depends': [
         'hr_timesheet',
         'hr_holidays',
+        'hr_holidays_settings',
     ],
     'data': [
         'views/hr_holidays_view.xml',
