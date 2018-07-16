@@ -47,7 +47,7 @@ class TimesheetHolidayTest(TestHrHolidaysBase):
         # Link sick leave to analytic account
         sl = self.sl
         sl.write({
-            'analytic_account_id': account.id
+            'project_id': project.id
         })
         # Confirm leave and check hours added to account
         hours_before = sum(account.line_ids.mapped('amount'))

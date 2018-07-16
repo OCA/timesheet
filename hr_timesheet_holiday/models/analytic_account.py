@@ -7,7 +7,7 @@ from odoo.exceptions import ValidationError
 
 
 class AnalyticAccount(models.Model):
-    """Add 'is leave account' flag to Analytic Account"""
+    """Add 'is_leave_account' flag to Analytic Account"""
     _inherit = 'account.analytic.account'
 
     is_leave_account = fields.Boolean(
@@ -16,8 +16,8 @@ class AnalyticAccount(models.Model):
         default=False,
     )
     holiday_status_ids = fields.One2many(
-        'hr.holidays.status',
-        'analytic_account_id',
+        comodel_name='hr.holidays.status',
+        inverse_name='analytic_account_id',
     )
 
     @api.model
@@ -29,18 +29,19 @@ class AnalyticAccount(models.Model):
     @api.multi
     def project_create(self, vals):
         res = super(AnalyticAccount, self).project_create(vals)
-        if isinstance(res, (int, long)):
+        if isinstance(res, (int, float)):
             for aa in self:
                 if aa.is_leave_account:
                     project = self.env['project.project'].browse(res)
                     project.write({'allow_timesheets': True})
         return res
 
-    @api.constrains('is_leave_account', 'project_ids.allow_timesheets')
+    @api.constrains('is_leave_account', 'project_ids')
     @api.multi
-    def _check_allow_timesheet(self):
+    def _check_account_allow_timesheet(self):
         for aa in self:
             if any(project.allow_timesheets is False
                    for project in aa.project_ids):
-                raise ValidationError(_('All the projects for the analytic '
-                                        'account must allow timesheets'))
+                raise ValidationError(
+                    _('All the projects for the analytic '
+                      'account must allow timesheets.'))

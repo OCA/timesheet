@@ -6,10 +6,15 @@ from odoo import models, fields
 
 
 class HrHolidaysStatus(models.Model):
-    """Add analytic account to holiday status"""
+    """Add project to holiday status"""
     _inherit = 'hr.holidays.status'
 
     analytic_account_id = fields.Many2one(
-        'account.analytic.account',
-        'Analytic Account'
+        comodel_name='account.analytic.account',
+        string='Analytic Account',
+        related='project_id.analytic_account_id',
+    )
+    project_id = fields.Many2one(
+        comodel_name='project.project',
+        string='Project',
     )
