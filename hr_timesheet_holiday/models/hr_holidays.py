@@ -14,9 +14,9 @@ class HrHolidays(models.Model):
 
     # Timesheet entry linked to this leave request
     analytic_line_ids = fields.One2many(
-        'account.analytic.line',
-        'leave_id',
-        'Analytic Lines'
+        comodel_name='account.analytic.line',
+        inverse_name='leave_id',
+        string='Analytic Lines',
     )
 
     @api.multi
@@ -86,7 +86,7 @@ class HrHolidays(models.Model):
                     description=leave.name or leave.holiday_status_id.name,
                     date=dt_current,
                     hours=hours_per_day,
-                    account=account
+                    account=account,
                 )
 
         return res
@@ -95,7 +95,6 @@ class HrHolidays(models.Model):
     def action_refuse(self):
         """On refusal of leave, delete timesheet lines"""
         res = super(HrHolidays, self).action_refuse()
-        self.mapped('analytic_line_ids') \
-            .with_context(force_write=True) \
-            .unlink()
+        self.mapped('analytic_line_ids').with_context(
+            force_write=True).unlink()
         return res

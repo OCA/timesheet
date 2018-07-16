@@ -2,11 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-===============================
-Link holidays to analytic lines
-===============================
+====================
+HR Timesheet Holiday
+====================
 
-This module adds a relation between Leave Type and Analytic Account.
+This module adds a relation between Leave Types and Projects/Analytic Accounts.
 When a Leave Request is granted, the granted days are converted to hours and
 added as a line to the Analytic Account.
 
@@ -29,8 +29,8 @@ To configure this module, you need to:
 
 #. Find your company in Settings - Companies and configure the amount of hours
    per workday under Configuration - Timesheets - Timesheet Hours Per Day.
-#. For each Leave Type under Human Resources - Leave Types, select an Analytic
-   Account linked to a project that allows timesheets or create one.
+#. For each Leave Type under Human Resources - Leave Types, select a
+   Project that allows timesheets or create one.
 
 Usage
 =====
