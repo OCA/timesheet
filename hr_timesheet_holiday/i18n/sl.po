@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * hr_timesheet_holiday
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2018
 msgid ""
@@ -12,21 +12,22 @@ msgstr ""
 "PO-Revision-Date: 2018-03-31 00:41+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2018\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: hr_timesheet_holiday
-#: field:account.analytic.line,_timesheet_ids:0
-#: field:hr.analytic.timesheet,_timesheet_ids:0
-msgid " timesheet ids"
+#: code:addons/hr_timesheet_holiday/models/analytic_account.py:46
+#, python-format
+msgid "All the projects for the analytic account must allow timesheets."
 msgstr ""
 
 #. module: hr_timesheet_holiday
-#: field:hr.holidays.status,analytic_account_id:0
 #: model:ir.model,name:hr_timesheet_holiday.model_account_analytic_account
+#: model:ir.model.fields,field_description:hr_timesheet_holiday.field_hr_holidays_status_analytic_account_id
 msgid "Analytic Account"
 msgstr "Analitični konto"
 
@@ -36,7 +37,14 @@ msgid "Analytic Line"
 msgstr "Analitična postavka"
 
 #. module: hr_timesheet_holiday
-#: help:account.analytic.account,is_leave_account:0
+#: model:ir.model.fields,field_description:hr_timesheet_holiday.field_hr_holidays_analytic_line_ids
+#, fuzzy
+msgid "Analytic Lines"
+msgstr "Analitična postavka"
+
+#. module: hr_timesheet_holiday
+#: model:ir.model.fields,help:hr_timesheet_holiday.field_account_analytic_account_is_leave_account
+#: model:ir.model.fields,help:hr_timesheet_holiday.field_project_project_is_leave_account
 msgid "Check this field if this account manages leaves"
 msgstr ""
 
@@ -46,8 +54,14 @@ msgid "Companies"
 msgstr ""
 
 #. module: hr_timesheet_holiday
-#: field:account.analytic.account,holiday_status_ids:0
+#: model:ir.model.fields,field_description:hr_timesheet_holiday.field_account_analytic_account_holiday_status_ids
+#: model:ir.model.fields,field_description:hr_timesheet_holiday.field_project_project_holiday_status_ids
 msgid "Holiday status ids"
+msgstr ""
+
+#. module: hr_timesheet_holiday
+#: model:ir.ui.view,arch_db:hr_timesheet_holiday.view_company_inherit_form
+msgid "Human Resources"
 msgstr ""
 
 #. module: hr_timesheet_holiday
@@ -67,48 +81,53 @@ msgid "Leave Type"
 msgstr ""
 
 #. module: hr_timesheet_holiday
-#: field:hr.analytic.timesheet,leave_id:0
+#: model:ir.model.fields,field_description:hr_timesheet_holiday.field_account_analytic_line_leave_id
 msgid "Leave id"
 msgstr ""
 
 #. module: hr_timesheet_holiday
-#: field:account.analytic.account,is_leave_account:0
+#: model:ir.model.fields,field_description:hr_timesheet_holiday.field_account_analytic_account_is_leave_account
+#: model:ir.model.fields,field_description:hr_timesheet_holiday.field_project_project_is_leave_account
 msgid "Leaves"
 msgstr ""
 
 #. module: hr_timesheet_holiday
-#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:43
+#: model:ir.model.fields,help:hr_timesheet_holiday.field_hr_holidays_status_analytic_account_id
+msgid ""
+"Link this project to an analytic account if you need financial management on "
+"projects. It enables you to connect projects with budgets, planning, cost "
+"and revenue analysis, timesheets on projects, etc."
+msgstr ""
+
+#. module: hr_timesheet_holiday
+#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:46
 #, python-format
 msgid "No hours per day defined for Company '%s'"
 msgstr ""
 
 #. module: hr_timesheet_holiday
-#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:69
+#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:72
 #, python-format
 msgid "No user defined for Employee '%s'"
 msgstr ""
 
 #. module: hr_timesheet_holiday
-#: code:addons/hr_timesheet_holiday/models/analytic_line.py:21
-#, python-format
-msgid ""
-"This line is protected against\n"
-"                            editing because it was created automatically by\n"
-"                            a leave request. Please edit the leave request\n"
-"                            instead."
+#: model:ir.model.fields,field_description:hr_timesheet_holiday.field_hr_holidays_status_project_id
+msgid "Project"
 msgstr ""
 
 #. module: hr_timesheet_holiday
-#: field:res.company,timesheet_hours_per_day:0
+#: code:addons/hr_timesheet_holiday/models/analytic_line.py:40
+#, python-format
+msgid ""
+"This line is protected against editing because it was created automatically "
+"by a leave request. Please edit the leave request instead."
+msgstr ""
+
+#. module: hr_timesheet_holiday
+#: model:ir.model.fields,field_description:hr_timesheet_holiday.field_res_company_timesheet_hours_per_day
 msgid "Timesheet Hours Per Day"
 msgstr ""
 
-#. module: hr_timesheet_holiday
-#: model:ir.model,name:hr_timesheet_holiday.model_hr_analytic_timesheet
-msgid "Timesheet Line"
-msgstr "Postavka časovnice"
-
-#. module: hr_timesheet_holiday
-#: field:hr.holidays,timesheet_ids:0
-msgid "Timesheet entries"
-msgstr ""
+#~ msgid "Timesheet Line"
+#~ msgstr "Postavka časovnice"
