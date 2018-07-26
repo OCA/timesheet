@@ -54,7 +54,10 @@
                                        field_value="unit_amount"
                                        x_axis_clickable="0"
                                        y_axis_clickable="1">
-                                    <tree>
+                                    <!-- Well this is embarassing... we need to set a huge limit for records to be fetched in
+                                    order to make sure that all rows are going to be displayed. At least until we find a method to
+                                    dynamically define the limit.-->
+                                    <tree limit="1000000">
                                         <field name="value_x"/>
                                         <field name="value_y"/>
                                         <field name="unit_amount"/>
@@ -107,7 +110,6 @@
             </form>
         </field>
     </record>
-
     <record id="view_hr_timesheet_sheet_filter" model="ir.ui.view">
         <field name="name">hr_timesheet.sheet.filter</field>
         <field name="model">hr_timesheet.sheet</field>
