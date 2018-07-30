@@ -23,7 +23,7 @@
         <field name="arch" type="xml">
             <form string="Timesheet Sheet">
                 <header>
-                    <button name="action_timesheet_confirm" states="draft" string="Submit to Manager" type="object" groups="hr_timesheet.group_hr_timesheet_user" class="oe_highlight"/>
+                    <button name="action_timesheet_confirm" states="draft" string="Submit to Manager" type="object" class="oe_highlight"/>
                     <button name="action_timesheet_done" states="confirm" string="Approve" type="object" groups="hr_timesheet.group_hr_timesheet_user" class="oe_highlight"/>
                     <button name="action_timesheet_draft" states="done" string="Set to Draft" type="object" groups="hr_timesheet.group_hr_timesheet_user"/>
                     <button name="action_timesheet_draft" states="confirm" string="Refuse" type="object" groups="hr_timesheet.group_hr_timesheet_user"/>
@@ -129,8 +129,8 @@
         </field>
     </record>
 
-    <record id="hr_timesheet_sheet_action" model="ir.actions.act_window">
-        <field name="name">Timesheet Sheet</field>
+    <record id="act_hr_timesheet_sheet_my_timesheets" model="ir.actions.act_window">
+        <field name="name">My Timesheet Sheets</field>
         <field name="res_model">hr_timesheet.sheet</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
@@ -150,10 +150,37 @@
         </field>
     </record>
 
-    <menuitem id="menu_act_hr_timesheet_sheet_form"
-        name="Timesheet Sheet"
-        parent="hr_timesheet.menu_hr_time_tracking"
-        action="hr_timesheet_sheet_action"/>
+    <menuitem action="act_hr_timesheet_sheet_my_timesheets"
+              id="menu_act_hr_timesheet_sheet_my_timesheets"
+              parent="hr_timesheet.menu_hr_time_tracking"
+         sequence="3"/>
+
+    <record id="act_hr_timesheet_sheet_form" model="ir.actions.act_window">
+        <field name="name">Timesheet Sheets to Approve</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr_timesheet.sheet</field>
+        <field name="view_type">form</field>
+        <field name="view_id" eval="False"/>
+        <field name="context">{'search_default_to_approve':1}</field>
+        <field name="search_view_id" ref="view_hr_timesheet_sheet_filter"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            New timesheet to approve.
+          </p><p>
+            You must record timesheets every day and confirm at the end
+            of the week. Once the timesheet is confirmed, it should be
+            validated by a manager.
+          </p><p>
+            Timesheets can also be invoiced to customers, depending on the
+            configuration of each project's related contract.
+          </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_hr_to_approve" name="To Approve" parent="hr_timesheet.timesheet_menu_root" sequence="7"/>
+
+    <menuitem action="act_hr_timesheet_sheet_form" id="menu_act_hr_timesheet_sheet_form" parent="menu_hr_to_approve"
+         sequence="11" groups="hr_timesheet.group_hr_timesheet_user"/>
 
         <!--
             account.analytic.line inheritancy
