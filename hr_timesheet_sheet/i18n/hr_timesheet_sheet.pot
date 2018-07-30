@@ -208,8 +208,19 @@ msgid "Month"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.actions.act_window,help:hr_timesheet_sheet.hr_timesheet_sheet_action
+#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_my_timesheets
+msgid "My Timesheet Sheets"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 msgid "New timesheet sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+msgid "New timesheet to approve."
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -363,9 +374,7 @@ msgid "Timesheet Period"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_sheet_action
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet
-#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_form
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Timesheet Sheet"
 msgstr ""
@@ -389,7 +398,9 @@ msgid "Timesheet Sheets"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_form
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department_timesheet_sheet_to_approve_count
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_form
 msgid "Timesheet Sheets to Approve"
 msgstr ""
 
@@ -399,7 +410,7 @@ msgid "Timesheet approved"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.actions.act_window,help:hr_timesheet_sheet.hr_timesheet_sheet_action
+#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 msgid "Timesheet sheets can also be invoiced to customers, depending on\n"
 "             the configuration of each project's related contract."
 msgstr ""
@@ -418,12 +429,19 @@ msgid "Timesheets Approved"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+msgid "Timesheets can also be invoiced to customers, depending on the\n"
+"            configuration of each project's related contract."
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_department_timesheet_confirmed
 msgid "Timesheets to Approve"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_hr_to_approve
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "To Approve"
 msgstr ""
@@ -494,7 +512,14 @@ msgid "You cannot modify an entry in a confirmed timesheet sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.actions.act_window,help:hr_timesheet_sheet.hr_timesheet_sheet_action
+#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+msgid "You must record timesheets every day and confirm at the end\n"
+"            of the week. Once the timesheet is confirmed, it should be\n"
+"            validated by a manager."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 msgid "You must record timesheets in the sheet every day and confirm at the end\n"
 "             of the week. Once the timesheet sheet is confirmed, it should be\n"
 "             validated by a manager."
