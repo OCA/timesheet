@@ -70,7 +70,8 @@
                                 </field>
                                 <group class="oe_edit_only">
                                     <field name="add_line_project_id" domain="[('company_id', '=', company_id)]"/>
-                                    <field name="add_line_task_id" attrs="{'invisible': [('add_line_project_id', '=', False)]}"/>
+                                    <field name="add_line_task_id" attrs="{'invisible': [('add_line_project_id', '=', False)]}"
+                                           context="{'default_project_id': add_line_project_id}"/>
                                     <button name="button_add_line"
                                             type="object"
                                             string="Add new line"
