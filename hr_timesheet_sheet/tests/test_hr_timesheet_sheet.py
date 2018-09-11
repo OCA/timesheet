@@ -162,8 +162,16 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(sheet.state, 'confirm')
         self.department._compute_timesheet_to_approve()
         self.assertEqual(self.department.timesheet_sheet_to_approve_count, 1)
+
+        # Confirmed timesheet cannot be modified
         with self.assertRaises(UserError):
             timesheet.unit_amount = 0.0
+        self.assertEqual(timesheet.unit_amount, 1.0)
+
+        # Force confirmed timesheet to be modified
+        timesheet.with_context(skip_check_state=True).unit_amount = 0.0
+        self.assertEqual(timesheet.unit_amount, 0.0)
+
         with self.assertRaises(UserError):
             timesheet.unlink()
         sheet.action_timesheet_done()
