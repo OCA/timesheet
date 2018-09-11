@@ -63,7 +63,7 @@ class AccountAnalyticLine(models.Model):
 
     @api.multi
     def write(self, values):
-        self._check_state()
+        self._check_state_on_write(values)
         return super(AccountAnalyticLine, self).write(values)
 
     @api.multi
@@ -71,13 +71,20 @@ class AccountAnalyticLine(models.Model):
         self._check_state()
         return super(AccountAnalyticLine, self).unlink()
 
+    @api.multi
+    def _check_state_on_write(self, values):
+        """ Hook for extensions """
+        self._check_state()
+
+    @api.multi
     def _check_state(self):
+        if self._context.get('skip_check_state'):
+            return
         for line in self:
             if line.sheet_id and line.sheet_id.state != 'draft':
                 raise UserError(
                     _('You cannot modify an entry in a confirmed '
                       'timesheet sheet.'))
-        return True
 
     @api.multi
     def merge_timesheets(self):
