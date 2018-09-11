@@ -78,7 +78,7 @@ class AccountAnalyticLine(models.Model):
 
     @api.multi
     def _check_state(self):
-        if self._context.get('skip_check_state'):
+        if self.env.context.get('skip_check_state'):
             return
         for line in self:
             if line.sheet_id and line.sheet_id.state != 'draft':
