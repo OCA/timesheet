@@ -66,7 +66,7 @@ Contributors
 ------------
 
 * Miquel Raïch <miquel.raich@eficent.com>
-
+* Andrea Stirpe <a.stirpe@onestein.nl>
 
 Maintainer
 ----------
