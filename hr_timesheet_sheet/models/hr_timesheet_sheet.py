@@ -124,6 +124,15 @@ class Sheet(models.Model):
             'draft': [('readonly', False)],
         },
     )
+    total_time = fields.Float(
+        compute='_compute_total_time',
+        store=True,
+    )
+
+    @api.depends('timesheet_ids.unit_amount')
+    def _compute_total_time(self):
+        for sheet in self:
+            sheet.total_time = sum(sheet.mapped('timesheet_ids.unit_amount'))
 
     @api.constrains('date_start', 'date_end')
     def _check_start_end_dates(self):
