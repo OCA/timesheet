@@ -463,3 +463,29 @@ class TestHrTimesheetSheet(TransactionCase):
             sheet.add_line_project_id = project_3
         with self.assertRaises(ValidationError):
             sheet.add_line_task_id = task_3
+
+    def test_9(self):
+        sheet = self.sheet_model.sudo(self.user).create({
+            'employee_id': self.employee.id,
+            'company_id': self.user.company_id.id,
+            'department_id': self.department.id,
+        })
+
+        sheet.add_line_project_id = self.project_1
+        sheet.onchange_add_project_id()
+        sheet.sudo(self.user).button_add_line()
+        sheet._onchange_dates_or_timesheets()
+        sheet.onchange_add_project_id()
+        self.assertEqual(len(sheet.timesheet_ids), 1)
+
+        sheet.action_timesheet_confirm()
+        self.assertEqual(sheet.state, 'confirm')
+
+        sheet.action_timesheet_done()
+        self.assertEqual(sheet.state, 'done')
+        with self.assertRaises(UserError):
+            sheet.unlink()
+
+        sheet.action_timesheet_refuse()
+        self.assertEqual(sheet.state, 'draft')
+        sheet.unlink()
