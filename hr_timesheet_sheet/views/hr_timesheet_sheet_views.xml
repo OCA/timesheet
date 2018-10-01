@@ -27,7 +27,7 @@
                     <button name="action_timesheet_confirm" states="draft" string="Submit to Manager" type="object" class="oe_highlight"/>
                     <button name="action_timesheet_done" states="confirm" string="Approve" type="object" groups="hr_timesheet.group_hr_timesheet_user" class="oe_highlight"/>
                     <button name="action_timesheet_draft" states="done" string="Set to Draft" type="object" groups="hr_timesheet.group_hr_timesheet_user"/>
-                    <button name="action_timesheet_draft" states="confirm" string="Refuse" type="object" groups="hr_timesheet.group_hr_timesheet_user"/>
+                    <button name="action_timesheet_refuse" states="confirm" string="Refuse" type="object" groups="hr_timesheet.group_hr_timesheet_user"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
                 </header>
                 <sheet>
