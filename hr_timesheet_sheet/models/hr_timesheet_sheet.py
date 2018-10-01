@@ -371,6 +371,10 @@ class Sheet(models.Model):
         self.write({'state': 'done'})
 
     @api.multi
+    def action_timesheet_refuse(self):
+        return self.action_timesheet_draft()
+
+    @api.multi
     def button_add_line(self):
         for rec in self:
             if rec.state == 'draft':
