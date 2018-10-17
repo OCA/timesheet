@@ -489,3 +489,20 @@ class TestHrTimesheetSheet(TransactionCase):
         sheet.action_timesheet_refuse()
         self.assertEqual(sheet.state, 'draft')
         sheet.unlink()
+
+    def test_10_start_day(self):
+        """Test that the start day can be configured for weekly timesheets."""
+        self.company.timesheet_week_start = '6'
+        sheet = self.sheet_model.sudo(self.user).create({
+            'employee_id': self.employee.id,
+            'company_id': self.company.id,
+        })
+        date_start = fields.Date.from_string(sheet.date_start)
+        date_end = fields.Date.from_string(sheet.date_end)
+        weekday_from = date_start.weekday()
+        weekday_to = date_end.weekday()
+
+        self.assertEqual(weekday_from, 6, "The timesheet should start on "
+                                          "Sunday")
+
+        self.assertEqual(weekday_to, 5, "The timesheet should end on Saturday")

@@ -23,6 +23,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box" attrs="{'invisible':[('sheet_range','!=',2)], 'required':[('sheet_range','=',2)]}">
+                        <div class="o_setting_right_pane">
+                            <label for="timesheet_week_start"/>
+                            <div class="text-muted">
+                                Choose the week start day.
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field name="timesheet_week_start" class="o_light_label" widget="selection" required="1"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </field>
