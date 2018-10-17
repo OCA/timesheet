@@ -11,3 +11,8 @@ class ResConfig(models.TransientModel):
         related='company_id.sheet_range',
         string="Timesheet Sheet Range",
         help="The range of your Timesheet Sheet.")
+
+    timesheet_week_start = fields.Selection(
+        related='company_id.timesheet_week_start',
+        string="Week Start Day",
+        help="Starting day for Timesheet Sheets.")

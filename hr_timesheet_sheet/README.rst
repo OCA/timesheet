@@ -29,6 +29,7 @@ If you want other default ranges different from weekly, you need to go:
 
 * In the menu `Configuration` -> `Settings` -> **Timesheet Options**,
   and select in **Timesheet Sheet Range** the default range you want.
+* When you have a weekly range you can also specify the **Week Start Day**.
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
@@ -67,6 +68,7 @@ Contributors
 
 * Miquel Raïch <miquel.raich@eficent.com>
 * Andrea Stirpe <a.stirpe@onestein.nl>
+* Lois Rilo <lois.rilo@eficent.com>
 
 Maintainer
 ----------
