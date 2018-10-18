@@ -22,7 +22,13 @@ class Sheet(models.Model):
         r = user.company_id and user.company_id.sheet_range or WEEKLY
         today = fields.Date.from_string(fields.Date.context_today(self))
         if r == WEEKLY:
-            return today - relativedelta(days=today.weekday())
+            if user.company_id.timesheet_week_start:
+                delta = relativedelta(
+                    weekday=int(user.company_id.timesheet_week_start),
+                    days=6)
+            else:
+                delta = relativedelta(days=today.weekday())
+            return today - delta
         elif r == MONTHLY:
             return today + relativedelta(day=1)
         return today
@@ -32,7 +38,12 @@ class Sheet(models.Model):
         r = user.company_id and user.company_id.sheet_range or WEEKLY
         today = fields.Date.from_string(fields.Date.context_today(self))
         if r == WEEKLY:
-            return today + relativedelta(days=6-today.weekday())
+            if user.company_id.timesheet_week_start:
+                delta = relativedelta(weekday=(int(
+                    user.company_id.timesheet_week_start) + 6) % 7)
+            else:
+                delta = relativedelta(days=6-today.weekday())
+            return today + delta
         elif r == MONTHLY:
             return today + relativedelta(months=1, day=1, days=-1)
         return today
