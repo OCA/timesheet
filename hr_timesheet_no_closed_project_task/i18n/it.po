@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-31 04:45+0000\n"
-"PO-Revision-Date: 2018-03-31 04:45+0000\n"
-"Last-Translator: Marco Calcagni <mcalcagni@dinamicheaziendali.it>, 2018\n"
+"PO-Revision-Date: 2018-10-28 23:02+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2.1\n"
 
 #. module: hr_timesheet_no_closed_project_task
 #: model:ir.model.fields,field_description:hr_timesheet_no_closed_project_task.field_project_task_stage_closed
@@ -26,9 +27,9 @@ msgstr "Chiuso"
 #. module: hr_timesheet_no_closed_project_task
 #: model:ir.model,name:hr_timesheet_no_closed_project_task.model_project_task
 msgid "Task"
-msgstr "Task"
+msgstr "Attività"
 
 #. module: hr_timesheet_no_closed_project_task
 #: model:ir.model.fields,help:hr_timesheet_no_closed_project_task.field_project_task_stage_closed
 msgid "Tasks in this stage are considered closed."
-msgstr "I task in questo stato sono considerati chiusi."
+msgstr "Le attività di questa fase sono considerate chiuse."
