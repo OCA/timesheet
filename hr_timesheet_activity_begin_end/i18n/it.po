@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-31 04:45+0000\n"
-"PO-Revision-Date: 2018-03-31 04:45+0000\n"
-"Last-Translator: Marco Calcagni <mcalcagni@dinamicheaziendali.it>, 2018\n"
+"PO-Revision-Date: 2018-10-28 23:03+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2.1\n"
 
 #. module: hr_timesheet_activity_begin_end
 #: model:ir.model,name:hr_timesheet_activity_begin_end.model_account_analytic_line
 msgid "Analytic Line"
-msgstr "Righe di analitica"
+msgstr "Riga analitica"
 
 #. module: hr_timesheet_activity_begin_end
 #: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_account_analytic_line_time_start
@@ -43,7 +44,7 @@ msgstr "Le righe non possono sovrapporsi:\n"
 #: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:38
 #, python-format
 msgid "The beginning hour (%s) must precede the ending hour (%s)."
-msgstr "L'ora di inizio (%s) deve essere antecedente all'ora fine (%s)."
+msgstr "L'ora di inizio (%s) deve essere antecedente all'ora di fine (%s)."
 
 #. module: hr_timesheet_activity_begin_end
 #: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:47
