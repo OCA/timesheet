@@ -75,10 +75,12 @@ class TestHrTimesheetSheet(TransactionCase):
         self.project_1 = self.project_model.create({
             'name': "Project 1",
             'company_id': self.user.company_id.id,
+            'allow_timesheets': True,
         })
         self.project_2 = self.project_model.create({
             'name': "Project 2",
             'company_id': self.user.company_id.id,
+            'allow_timesheets': True,
         })
         self.task_1 = self.task_model.create({
             'name': "Task 1",
