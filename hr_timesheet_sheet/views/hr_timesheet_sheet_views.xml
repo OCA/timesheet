@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!--
+        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+    -->
 
     <record id="hr_timesheet_sheet_tree_simplified" model="ir.ui.view">
         <field name="name">hr.timesheet.sheet.tree</field>
@@ -120,12 +123,12 @@
                 <field name="date_start"/>
                 <filter name="draft" string="In Draft" domain="[('state','=','draft')]" help="Unvalidated Timesheet Sheets"/>
                 <filter name="to_approve" string="To Approve" domain="[('state','=','confirm')]" help="Confirmed Timesheet Sheets"/>
-                <filter string="Unread Messages" name="message_needaction" domain="[('message_needaction','=',True)]"/>
+                <filter name="message_needaction" string="Unread Messages" domain="[('message_needaction','=',True)]"/>
                 <field name="employee_id"/>
                 <field name="department_id"/>
                 <group expand="0" string="Group By">
-                    <filter string="Employees" domain="[]" context="{'group_by':'employee_id'}"/>
-                    <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter name="groupby_employees" string="Employees" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter name="groupby_department" string="Department" domain="[]" context="{'group_by':'department_id'}"/>
                 </group>
             </search>
         </field>
