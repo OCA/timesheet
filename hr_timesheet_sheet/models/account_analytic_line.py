@@ -1,4 +1,5 @@
 # Copyright 2018 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -10,7 +11,6 @@ class AccountAnalyticLine(models.Model):
 
     sheet_id_computed = fields.Many2one(
         comodel_name='hr_timesheet.sheet',
-        string='Sheet',
         compute='_compute_sheet',
         index=True,
         ondelete='cascade',
@@ -64,12 +64,12 @@ class AccountAnalyticLine(models.Model):
     @api.multi
     def write(self, values):
         self._check_state_on_write(values)
-        return super(AccountAnalyticLine, self).write(values)
+        return super().write(values)
 
     @api.multi
     def unlink(self):
         self._check_state()
-        return super(AccountAnalyticLine, self).unlink()
+        return super().unlink()
 
     @api.multi
     def _check_state_on_write(self, values):
