@@ -1,4 +1,5 @@
 # Copyright 2018 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -14,7 +15,7 @@ class Sheet(models.Model):
     _name = 'hr_timesheet.sheet'
     _inherit = ['mail.thread', 'mail.activity.mixin', 'portal.mixin']
     _table = 'hr_timesheet_sheet'
-    _order = "id desc"
+    _order = 'id desc'
     _description = 'Timesheet Sheet'
 
     def _default_date_start(self):
@@ -96,7 +97,7 @@ class Sheet(models.Model):
     line_ids = fields.One2many(
         comodel_name='hr_timesheet.sheet.line',
         compute='_compute_line_ids',
-        string='Timesheets',
+        string='Timesheet Sheet Lines',
         states={
             'draft': [('readonly', False)],
         }
@@ -305,7 +306,7 @@ class Sheet(models.Model):
                 raise UserError(
                     _('In order to create a sheet for this employee, '
                       'you must link him/her to an user.'))
-        res = super(Sheet, self).create(vals)
+        res = super().create(vals)
         res.write({'state': 'draft'})
         self.delete_empty_lines(True)
         return res
@@ -320,7 +321,7 @@ class Sheet(models.Model):
                     _('In order to create a sheet for this employee, '
                       'you must link him/her to an user.'))
             self._check_sheet_date(forced_user_id=new_user_id)
-        res = super(Sheet, self).write(vals)
+        res = super().write(vals)
         if self.state == 'draft':
             for rec in self:
                 rec.delete_empty_lines(True)
@@ -347,7 +348,7 @@ class Sheet(models.Model):
             analytic_timesheet_toremove += \
                 sheet.timesheet_ids.filtered(lambda t: not t.task_id)
         analytic_timesheet_toremove.unlink()
-        return super(Sheet, self).unlink()
+        return super().unlink()
 
     @api.multi
     def action_timesheet_draft(self):
@@ -404,10 +405,10 @@ class Sheet(models.Model):
             return []
         # time_period = end - start
         # number_of_days = time_period/timedelta(days=1)
-        dates = [fields.Date.to_string(start)]
+        dates = [start]
         while start != end:
             start += relativedelta(days=1)
-            dates.append(fields.Date.to_string(start))
+            dates.append(start)
         return dates
 
     def _get_line_name(self, project, task=None):
@@ -509,7 +510,7 @@ class Sheet(models.Model):
                 return 'hr_timesheet_sheet.mt_timesheet_confirmed'
             elif 'state' in init_values and record.state == 'done':
                 return 'hr_timesheet_sheet.mt_timesheet_approved'
-        return super(Sheet, self)._track_subtype(init_values)
+        return super()._track_subtype(init_values)
 
     @api.model
     def _needaction_domain_get(self):
