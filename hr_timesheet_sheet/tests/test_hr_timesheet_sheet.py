@@ -1,5 +1,5 @@
 # Copyright 2018 Eficent Business and IT Consulting Services, S.L.
-# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
 from dateutil.relativedelta import relativedelta
@@ -10,7 +10,7 @@ from odoo.exceptions import UserError, ValidationError
 class TestHrTimesheetSheet(TransactionCase):
 
     def setUp(self):
-        super(TestHrTimesheetSheet, self).setUp()
+        super().setUp()
         employees_group = self.env.ref('base.group_user')
         multi_company_group = self.env.ref('base.group_multi_company')
         sheet_user_group = self.env.ref('hr_timesheet.group_hr_timesheet_user')
@@ -108,8 +108,7 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(len(sheet.timesheet_ids), 1)
         self.assertEqual(len(sheet.line_ids), 7)
 
-        sheet.date_end = fields.Date.to_string(
-            fields.Date.from_string(sheet.date_end) + relativedelta(days=1))
+        sheet.date_end = sheet.date_end + relativedelta(days=1)
         sheet._onchange_dates_or_timesheets()
         self.assertEqual(len(sheet.timesheet_ids), 0)
         self.assertEqual(len(sheet.line_ids), 0)
@@ -224,8 +223,7 @@ class TestHrTimesheetSheet(TransactionCase):
             'project_id': self.project_1.id,
             'employee_id': self.employee.id,
         })
-        timesheet_3.date = fields.Date.to_string(
-            fields.Date.from_string(timesheet_3.date) + relativedelta(days=1))
+        timesheet_3.date = timesheet_3.date + relativedelta(days=1)
 
         sheet = self.sheet_model.sudo(self.user).create({
             'employee_id': self.employee.id,
