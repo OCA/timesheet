@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--
+        Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+    -->
+
+    <template id="assets_backend" name="hr_timesheet_timetracker assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/hr_timesheet_timetracker/static/src/scss/kanban.scss"/>
+        </xpath>
+    </template>
+
+</odoo>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+    -->
+
+    <record id="project_task_form" model="ir.ui.view">
+        <field name="name">project.task.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box' or hasclass('oe_button_box')]">
+                <button name="action_start_timetracker" string="Start Timetracker" type="object" icon="fa-play-circle-o text-success" attrs="{'invisible': ['|', ('can_use_timetracker', '=', False), ('is_timetracker_running', '=', True)]}"/>
+                <button name="action_stop_timetracker" string="Stop Timetracker" type="object" icon="fa-pause-circle-o text-warning" attrs="{'invisible': ['|', ('can_use_timetracker', '=', False), ('is_timetracker_running', '=', False)]}"/>
+            </xpath>
+            <field name="timesheet_ids" position="before">
+                <field name="can_use_timetracker" invisible="1"/>
+                <field name="is_timetracker_running" invisible="1"/>
+            </field>
+            <xpath expr="//field[@name='timesheet_ids']/tree" position="attributes">
+                <attribute name="default_order">date,timetracker_started_at</attribute>
+            </xpath>
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='unit_amount']" position="before">
+                <field name="timetracker_started_at" invisible="1"/>
+                <field name="timetracker_stopped_at" invisible="1"/>
+                <field name="is_timetracker_running" invisible="1"/>
+                <field name="is_timetracked" invisible="1"/>
+                <field name="can_use_timetracker" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='unit_amount']" position="attributes">
+                <attribute name="attrs">{'readonly': [('is_timetracker_running', '=', True)], 'invisible': [('is_timetracker_running', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='unit_amount']" position="after">
+                <button name="action_timetracker" string="Start Timetracker" type="object" icon="fa-play-circle-o fa-lg text-success" attrs="{'invisible': ['|', ('can_use_timetracker', '=', False), ('is_timetracker_running', '=', True)]}"/>
+                <button name="action_timetracker" string="Stop Timetracker" type="object" icon="fa-pause-circle-o fa-lg text-warning" attrs="{'invisible': ['|', ('can_use_timetracker', '=', False), ('is_timetracker_running', '=', False)]}"/>
+                <button name="action_refresh_timetracker" string="Tracking Time" type="object" icon="fa-clock-o fa-lg text-info" attrs="{'invisible': ['|', ('can_use_timetracker', '=', True), ('is_timetracker_running', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='date']" position="attributes">
+                <attribute name="attrs">{'readonly': [('is_timetracked', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_task_kanban" model="ir.ui.view">
+        <field name="name">project.task.kanban</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="hr_timesheet.view_task_kanban_inherited_progress"/>
+        <field name="arch" type="xml">
+            <templates position="before">
+                <field name="timesheet_ids"/>
+                <field name="can_use_timetracker"/>
+                <field name="is_timetracker_running"/>
+            </templates>
+            <div class="oe_kanban_bottom_left" position="inside">
+                <div class="o_timetracker o_field_widget">
+                    <a type="object" class="o_timetracker_btn" name="action_refresh_timetracker" title="Tracking Time" attrs="{'invisible': ['|', ('can_use_timetracker', '=', True), ('is_timetracker_running', '=', False)]}">
+                        <span class="fa fa-lg fa-clock-o text-info"></span>
+                    </a>
+                    <a type="object" class="o_timetracker_btn" name="action_start_timetracker" title="Start Timetracker" attrs="{'invisible': ['|', ('can_use_timetracker', '=', False), ('is_timetracker_running', '=', True)]}">
+                        <span class="fa fa-lg fa-play-circle-o text-success"></span>
+                    </a>
+                    <a type="object" class="o_timetracker_btn" name="action_stop_timetracker" title="Stop Timetracker" attrs="{'invisible': ['|', ('can_use_timetracker', '=', False), ('is_timetracker_running', '=', False)]}">
+                        <span class="fa fa-lg fa-pause-circle-o text-warning"></span>
+                    </a>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

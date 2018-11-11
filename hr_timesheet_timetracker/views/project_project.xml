@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+    -->
+
+    <record id="project_project_view_form_simplified" model="ir.ui.view">
+        <field name="name">project.project.view.form.simplified.timetracker</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="hr_timesheet.project_project_view_form_simplified_inherit_timesheet"/>
+        <field name="arch" type="xml">
+            <field name="allow_timesheets" position="after">
+                <field name="timetracker_rounding_enabled" attrs="{'invisible': [('allow_timesheets', '=', False)]}"/>
+                <field string="Started At" name="timetracker_started_at_rounding" attrs="{'invisible': ['|', ('timetracker_rounding_enabled', '=', False), ('allow_timesheets', '=', False)]}"/>
+                <field string="Stopped At" name="timetracker_stopped_at_rounding" attrs="{'invisible': ['|', ('timetracker_rounding_enabled', '=', False), ('allow_timesheets', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="edit_project" model="ir.ui.view">
+        <field name="name">project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="hr_timesheet.project_invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//page[@name="settings"]' position="after">
+                <page name="timetracking" string="Timetracking" attrs="{'invisible': [('allow_timesheets', '=', False)]}">
+                    <group>
+                        <field name="timetracker_rounding_enabled"/>
+                    </group>
+                    <group attrs="{'invisible': ['|', ('timetracker_rounding_enabled', '=', False), ('allow_timesheets', '=', False)]}">
+                        <field string="Started At" name="timetracker_started_at_rounding"/>
+                        <field string="Stopped At" name="timetracker_stopped_at_rounding"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

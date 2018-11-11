@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+    -->
+
+    <record id="hr_timesheet_line_tree" model="ir.ui.view">
+        <field name="name">account.analytic.line.tree</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="unit_amount" position="before">
+                <field name="timetracker_started_at" invisible="1"/>
+                <field name="timetracker_stopped_at" invisible="1"/>
+                <field name="is_timetracker_running" invisible="1"/>
+                <field name="is_timetracked" invisible="1"/>
+                <field name="can_use_timetracker" invisible="1"/>
+            </field>
+            <field name="unit_amount" position="attributes">
+                <attribute name="attrs">{'readonly': [('is_timetracker_running', '=', True)], 'invisible': [('is_timetracker_running', '=', True)]}</attribute>
+            </field>
+            <field name="unit_amount" position="after">
+                <button name="action_timetracker" string="Start Timetracker" type="object" icon="fa-play-circle-o fa-lg text-success" attrs="{'invisible': ['|', ('can_use_timetracker', '=', False), ('is_timetracker_running', '=', True)]}"/>
+                <button name="action_timetracker" string="Stop Timetracker" type="object" icon="fa-pause-circle-o fa-lg text-warning" attrs="{'invisible': ['|', ('can_use_timetracker', '=', False), ('is_timetracker_running', '=', False)]}"/>
+            </field>
+            <field name="date" position="attributes">
+                <attribute name="attrs">{'readonly': [('is_timetracked', '=', True)]}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_timesheet_line_tree_user" model="ir.ui.view">
+        <field name="name">account.analytic.line.tree.user</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.timesheet_view_tree_user"/>
+        <field name="arch" type="xml">
+            <field name="unit_amount" position="after">
+                <button name="action_refresh_timetracker" string="Tracking Time" type="object" icon="fa-clock-o fa-lg text-info" attrs="{'invisible': ['|', ('can_use_timetracker', '=', True), ('is_timetracker_running', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_timesheet_line_form" model="ir.ui.view">
+        <field name="name">account.analytic.line.form</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+        <field name="arch" type="xml">
+            <field name="unit_amount" position="before">
+                <field name="timetracker_started_at" attrs="{'invisible': [('id', '=', False)]}"/>
+                <field name="timetracker_stopped_at" attrs="{'invisible': [('id', '=', False)]}"/>
+                <field name="is_timetracker_running" invisible="1"/>
+                <field name="is_timetracked" invisible="1"/>
+                <field name="can_use_timetracker" invisible="1"/>
+            </field>
+            <field name="unit_amount" position="attributes">
+                <attribute name="attrs">{'readonly': [('is_timetracker_running', '=', True)], 'invisible': [('is_timetracker_running', '=', True)]}</attribute>
+            </field>
+            <field name="date" position="attributes">
+                <attribute name="attrs">{'readonly': [('is_timetracked', '=', True)]}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_timesheet_line_form_via_task" model="ir.ui.view">
+        <field name="name">account.analytic.line.form</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet_timetracker.hr_timesheet_line_form"/>
+        <field name="mode">primary</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <field name="project_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="task_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <xpath expr="//form">
+                <footer>
+                    <button special="save" string="Start" class="btn btn-primary" type="object"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_timesheet_line_search" model="ir.ui.view">
+        <field name="name">account.analytic.line.search</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='name']" position="after">
+                <field name="timetracker_started_at"/>
+                <field name="timetracker_stopped_at"/>
+                <field name="is_timetracker_running"/>
+                <field name="is_timetracked"/>
+            </xpath>
+            <xpath expr="//search/filter[@name='mine']" position="after">
+                <separator/>
+                <filter name="is_timetracker_running" string="Is Timetracker Active" domain="[('is_timetracker_running', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_kanban_account_analytic_line" model="ir.ui.view">
+        <field name="name">account.analytic.line.kanban</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.view_kanban_account_analytic_line"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/field[@name='unit_amount']" position="after">
+                <field name="is_timetracker_running"/>
+                <field name="is_timetracked"/>
+                <field name="can_use_timetracker"/>
+            </xpath>
+            <xpath expr="//templates//field[@name='unit_amount']/.." position="attributes">
+                <attribute name="attrs">{'readonly': [('is_timetracker_running', '=', True)], 'invisible': [('is_timetracker_running', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//templates//field[@name='unit_amount']" position="after">
+                <a type="object" name="action_timetracker" title="Start Timetracker" attrs="{'invisible': ['|', ('can_use_timetracker', '=', False), ('is_timetracker_running', '=', True)]}">
+                    <i class="fa fa-lg fa-play-circle-o text-success"></i>
+                </a>
+            </xpath>
+            <xpath expr="//templates//field[@name='unit_amount']/.." position="after">
+                <span class="float-right">
+                    <a type="object" name="action_refresh_timetracker" title="Tracking Time" attrs="{'invisible': ['|', ('can_use_timetracker', '=', True), ('is_timetracker_running', '=', False)]}">
+                        <i class="fa fa-lg fa-clock-o text-info"></i>
+                    </a>
+                    <a type="object" name="action_timetracker" title="Stop Timetracker" attrs="{'invisible': ['|', ('can_use_timetracker', '=', False), ('is_timetracker_running', '=', False)]}">
+                        <i class="fa fa-lg fa-pause-circle-o text-warning"></i>
+                    </a>
+                </span>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_reset_timetracked_duration" model="ir.actions.server">
+        <field name="name">Reset Timetracked Duration</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="analytic.model_account_analytic_line"/>
+        <field name="binding_model_id" ref="analytic.model_account_analytic_line"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.action_reset_timetracked_duration()
+        </field>
+    </record>
+
+</odoo>
