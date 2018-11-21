@@ -24,15 +24,18 @@ class HrHolidays(models.Model):
                            user_id):
         """Add a timesheet line for this leave"""
         self.ensure_one()
-        self.sudo(user_id).write({'timesheet_ids': [(0, False, {
-            'name': description,
-            'date': date,
-            'unit_amount': hours,
-            'company_id': self.employee_id.company_id.id,
-            'account_id': account_id,
-            'user_id': user_id,
-            'journal_id': self.employee_id.journal_id.id
-        })]})
+        vals = self.env['hr.analytic.timesheet'].on_change_user_id(
+            user_id
+        )['value']
+        vals.update(
+            name=description,
+            date=date,
+            unit_amount=hours,
+            account_id=account_id,
+            user_id=user_id,
+            leave_id=self.id,
+        )
+        return self.env['hr.analytic.timesheet'].sudo(user_id).create(vals)
 
     @api.model
     def _get_hours_per_day(self, company, employee):
