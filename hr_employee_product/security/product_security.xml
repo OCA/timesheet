@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="0">
-    <data>
+<!--Copyright 2015-17 Eficent Business and IT Consulting Services S.L.-->
+<!--License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).-->
+<odoo>
         <record id="property_rule_product_employee_user" model="ir.rule">
             <field name="name">Employees cannot view products that represent employees</field>
             <field name="model_id" ref="product.model_product_template"/>
@@ -14,5 +15,4 @@
             <field name="domain_force">[(1, '=', 1)]</field>
             <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>
         </record>
-    </data>
 </odoo>
