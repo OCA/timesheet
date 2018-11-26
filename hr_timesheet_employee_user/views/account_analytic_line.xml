@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+    -->
+
+    <record id="action_reset_user_from_employee" model="ir.actions.server">
+        <field name="name">Reset User from Employee</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="analytic.model_account_analytic_line"/>
+        <field name="binding_model_id" ref="analytic.model_account_analytic_line"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.action_reset_user_from_employee()
+        </field>
+    </record>
+
+    <record id="action_reset_user_from_employee_all" model="ir.actions.server">
+        <field name="name">Reset User from Employee (all)</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="analytic.model_account_analytic_line"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = model.action_reset_user_from_employee_all()
+        </field>
+    </record>
+
+    <menuitem
+        id="action_reset_user_from_employee_all"
+        action="action_reset_user_from_employee_all"
+        name="Reset User from Employee (all)"
+        parent="hr_timesheet.hr_timesheet_menu_configuration"
+    />
+
+</odoo>
