@@ -11,6 +11,13 @@
             <t t-call="report.html_container">
                 <t t-call="report.internal_layout">
                     <div class="page">
+                        <style type="text/css">
+                          .hours-good {color: green;}
+                          .hours-less {color: red;}
+                          .hours-more {color: purple;}
+                          .cell-weekend {background-color: lightgray;}
+                          .cell-weekday {background-color: darkgray;}
+                        </style>
                         <t t-foreach="docs" t-as="doc">
                             <h1>Timesheets per employee</h1>
                             <section t-foreach="doc.employee_ids" t-as="employee">
@@ -20,7 +27,7 @@
                                         <tr>
                                             <td><t t-esc="doc.format_date(timesheet.date_start, 'Y')" /></td>
                                             <t t-foreach="timesheet" t-as="date">
-                                                <th t-attf-style="background: #{'darkgray' if date.weekday() not in [5, 6] else 'lightgray'}">
+                                                <th t-attf-class="{{'cell-weekday' if date.weekday() not in [5, 6] else 'cell-weekend'}}">
                                                     <t t-esc="doc.format_date(date, 'E')" />
                                                 </th>
                                             </t>
@@ -29,7 +36,7 @@
                                         <tr>
                                             <td><t t-esc="doc.format_date(timesheet.date_start, 'LLLL')" /></td>
                                             <t t-foreach="timesheet" t-as="date">
-                                                <th t-attf-style="background: #{'darkgray' if date.weekday() not in [5, 6] else 'lightgray'}">
+                                                <th t-attf-class="{{'cell-weekday' if date.weekday() not in [5, 6] else 'cell-weekend'}}">
                                                     <t t-esc="doc.format_date(date, 'dd')" />
                                                 </th>
                                             </t>
@@ -40,11 +47,11 @@
                                         <tr t-foreach="timesheet.accounts" t-as="account">
                                             <th><t t-esc="account.display_name if not doc.short_account_names else account.name" /></th>
                                             <t t-foreach="timesheet" t-as="date">
-                                                <td t-attf-style="#{'' if date.weekday() not in [5, 6] else 'background: lightgray;'} text-align: right">
+                                                <td t-attf-class="text-right {{'cell-normal' if date.weekday() not in [5, 6] else 'cell-weekend'}}">
                                                     <t t-esc="timesheet[date].get(account.id, '')" />
                                                 </td>
                                             </t>
-                                            <td style="text-align: right"><t t-esc="sum([hours.get(account.id, 0) for hours in timesheet.itervalues()])" /></td>
+                                            <td class="text-right"><t t-esc="sum([hours.get(account.id, 0) for hours in timesheet.itervalues()])" /></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
@@ -52,11 +59,11 @@
                                             <th>Sum</th>
                                             <t t-foreach="timesheet" t-as="date">
                                                 <t t-set="sum_hours" t-value="sum(timesheet[date].itervalues())" />
-                                                <td t-attf-style="#{'' if date.weekday() not in [5, 6] else 'background: lightgray;'} text-align: right; color: #{'green' if sum_hours >= 7.5 and sum_hours &lt;= 8.5 else 'red' if sum_hours > 0 and sum_hours &lt; 7.5 else 'purple' if sum_hours > 8.5 else 'inherit'}">
+                                                <td t-attf-class="text-right {{'cell-normal' if date.weekday() not in [5, 6] else 'cell-weekend'}} {{'hours-good' if sum_hours &gt;= 7.5 and sum_hours &lt;= 8.5 else 'hours-less' if sum_hours &gt; 0 and sum_hours &lt; 7.5 else 'hours-more' if sum_hours &gt; 8.5 else ''}}">
                                                     <t t-esc="sum_hours or ''" />
                                                 </td>
                                             </t>
-                                            <th style="text-align: right"><t t-esc="sum([sum(timesheet[date2].itervalues()) for date2 in timesheet])" /></th>
+                                            <th class="text-right"><t t-esc="sum([sum(timesheet[date2].itervalues()) for date2 in timesheet])" /></th>
                                         </tr>
                                     </tfoot>
                                 </table>
