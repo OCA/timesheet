@@ -34,3 +34,17 @@ class HrAnalyticTimesheet(models.Model):
 
     account_name = fields.Char(related='account_id.name',
                                store=True, readonly=True)
+
+    def _register_hook(self, cr):
+        """Patch recomputation of sheet_id to never recompute when
+        account_name changes"""
+        if self._columns['sheet_id'].store.get(
+                'hr.analytic.timesheet', [None, None, None]
+        )[1] is None:
+            trigger = self._columns['sheet_id'].store['hr.analytic.timesheet']
+            self._columns['sheet_id'].store['hr.analytic.timesheet'] = (
+                trigger[0],
+                [f for f in self._columns.keys() if f != 'account_name'],
+                trigger[2],
+            )
+        return super(HrAnalyticTimesheet, self)._register_hook(cr)
