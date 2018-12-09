@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * hr_timesheet_sheet
-# 
+#
 # Translators:
 # gezza <geza.nagy@oregional.hu>, 2016
 # krnkris <krnkris@freemail.hu>, 2016
@@ -14,28 +14,37 @@ msgstr ""
 "PO-Revision-Date: 2016-09-07 08:56+0000\n"
 "Last-Translator: Martin Trigaux <mat@odoo.com>, 2016\n"
 "Language-Team: Hungarian (https://www.transifex.com/odoo/teams/41243/hu/)\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_state
-msgid ""
-" * The 'Open' status is used when a user is encoding a new and unconfirmed timesheet. \n"
-"* The 'Waiting Approval' status is used to confirm the timesheet by user. \n"
-"* The 'Approved' status is used when the users timesheet is accepted by his/her senior."
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_warning
+msgid "Access warning"
 msgstr ""
-" * A 'Nyitott' állapotot használja, ha a felhasználó olyan új időkimutatást táplál be ami még nincs visszaigazolva.                 \n"
-"* A 'Jóváhagyásra vár' állapotot használja, ha egy felhasználó visszaigazolta az időkimutatást.                 \n"
-"* Az 'Jóváhagyott' állapotot használja, ha a felhasználó időkimutatását elfogadta egy felettese."
 
 #. module: hr_timesheet_sheet
-#. openerp-web
-#: code:addons/hr_timesheet_sheet/static/src/xml/timesheet.xml:33
-#, python-format
-msgid "Add a Line"
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_ids
+#, fuzzy
+msgid "Activities"
+msgstr "Időkimutatás tevékenység"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#, fuzzy
+msgid "Add new line"
 msgstr "Sor hozzáadása"
 
 #. module: hr_timesheet_sheet
@@ -44,33 +53,36 @@ msgid "Analytic Line"
 msgstr "Analitikus/elemző tételsor"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account_ids
-msgid "Analytic accounts"
-msgstr "Gyűjtőkódok"
-
-#. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Approve"
 msgstr "Jóváhagyás"
 
 #. module: hr_timesheet_sheet
-#: selection:hr_timesheet_sheet.sheet,state:0
+#: selection:hr_timesheet.sheet,state:0
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_approved
 msgid "Approved"
 msgstr "Jóváhagyott"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:140
-#, python-format
-msgid "Cannot approve a non-submitted timesheet."
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:382
+#, fuzzy, python-format
+msgid "Cannot approve a non-submitted sheet."
 msgstr "Nem lehet jóváhagyni egy beadatlan munkaidő-kiosztást."
 
 #. module: hr_timesheet_sheet
-#. openerp-web
-#: code:addons/hr_timesheet_sheet/static/src/xml/timesheet.xml:51
-#, python-format
-msgid "Click to add projects, contracts or analytic accounts."
-msgstr "Kattintson projekt, szerződések vagy elemző számlák hozzáadásához."
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
+msgid "Choose the week start day."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
+msgid "Choose which timesheet sheet ranges should be used by default"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_res_company
@@ -78,282 +90,564 @@ msgid "Companies"
 msgstr "Vállalatok"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_company_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__company_id
 msgid "Company"
 msgstr "Vállalat"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-msgid "Confirmed Timesheets"
+#: model:ir.model,name:hr_timesheet_sheet.model_res_config_settings
+#, fuzzy
+msgid "Config Settings"
+msgstr "project.config.settings"
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+#, fuzzy
+msgid "Confirmed Timesheet Sheets"
 msgstr "Jóváhagyott munkaidő kimutatások"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open_create_uid
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_create_uid
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__count_timesheets
+#, fuzzy
+msgid "Count Timesheets"
+msgstr "Az én jelenlegi időkimutatásom"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__create_uid
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__create_uid
 msgid "Created by"
 msgstr "Készítette"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open_create_date
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_create_date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__create_date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__create_date
 msgid "Created on"
 msgstr "Létrehozás dátuma"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_date_from
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__access_url
+msgid "Customer Portal URL"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__date
+#, fuzzy
+msgid "Date"
+msgstr "Dátumig"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__date_start
 msgid "Date From"
 msgstr "Dátumtól"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_date_to
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__value_x
+#, fuzzy
+msgid "Date Name"
+msgstr "Dátumtól"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__date_end
 msgid "Date To"
 msgstr "Dátumig"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_department_id
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+#: selection:res.company,sheet_range:0
+msgid "Day"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__department_id
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Department"
 msgstr "Osztály, részleg"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Details"
 msgstr "Részletek"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open_display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account_display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_display_name
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__display_name
 msgid "Display Name"
 msgstr "Megjelenített név"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_employee
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_employee_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__employee_id
 msgid "Employee"
 msgstr "Alkalmazott"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Employee's Name"
 msgstr "Alkalmazott neve"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Employees"
 msgstr "Alkalmazottak"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_config_settings_form_inherit_hr_timesheet_sheet
-msgid "Extra features"
-msgstr "Extra jellemzők"
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:623
+#, fuzzy, python-format
+msgid "Error code: Cannot have 0 timesheets."
+msgstr "Nem többszörözhet egy időkimutatást."
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_week_start:0
+msgid "Friday"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Group By"
 msgstr "Csoportosítás"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#: model:ir.model,name:hr_timesheet_sheet.model_hr_department
+#, fuzzy
+msgid "HR Department"
+msgstr "Emberi erőforrás Osztály, részleg"
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Hours"
 msgstr "Órák"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model,name:hr_timesheet_sheet.model_hr_department
-msgid "Hr Department"
-msgstr "Emberi erőforrás Osztály, részleg"
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open_id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account_id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__id
 msgid "ID"
 msgstr "Azonosító ID"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_project_id
+msgid ""
+"If selected, the associated project is added to the timesheet sheet when "
+"clicked the button."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_task_id
+msgid ""
+"If selected, the associated task is added to the timesheet sheet when "
+"clicked the button."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "In Draft"
 msgstr "Tervezet"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:106
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:116
-#, python-format
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:307
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:321
+#, fuzzy, python-format
 msgid ""
-"In order to create a timesheet for this employee, you must link him/her to a"
-" user."
+"In order to create a sheet for this employee, you must link him/her to an "
+"user."
 msgstr ""
 "Ahhoz, hogy munkaidőbeosztás tudjon ennek a munkavállalónak készíteni, "
 "előszöz hozzá kell rendelnie egy felhasználóhoz."
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open___last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet___last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account___last_update
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line____last_update
 msgid "Last Modified on"
 msgstr "Utoljára frissítve ekkor"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open_write_uid
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_write_uid
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__write_uid
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__write_uid
 msgid "Last Updated by"
 msgstr "Utoljára frissítette"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open_write_date
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_write_date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__write_date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__write_date
 msgid "Last Updated on"
 msgstr "Utoljára frissítve "
 
 #. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_range:0
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_ids
+#, fuzzy
+msgid "Messages"
+msgstr "Olvasatlan üzenetek"
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_week_start:0
+msgid "Monday"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,sheet_range:0
 msgid "Month"
 msgstr "Hónap"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_config_settings_form_inherit_hr_timesheet_sheet
-msgid "More Info"
-msgstr "További információ"
-
-#. module: hr_timesheet_sheet
-#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_form_my_current
-msgid "My Current Timesheet"
-msgstr "Az én jelenlegi időkimutatásom"
-
-#. module: hr_timesheet_sheet
-#: model:ir.actions.server,name:hr_timesheet_sheet.ir_actions_server_timesheet_sheet
-msgid "My Timesheet"
-msgstr "Munkaidő-kiosztásom"
-
-#. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_my_timesheets
-msgid "My Timesheets"
+#, fuzzy
+msgid "My Timesheet Sheets"
 msgstr "Munkaidő-kiosztásaim"
 
 #. module: hr_timesheet_sheet
-#: selection:hr_timesheet_sheet.sheet,state:0
-msgid "New"
-msgstr "Új"
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
+#, fuzzy
+msgid "New timesheet sheet."
+msgstr "új munkaidő-kiosztás."
 
 #. module: hr_timesheet_sheet
-#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
 msgid "New timesheet to approve."
 msgstr "Új, elfogadásra váró munkaidő-kiosztás"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_name
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
 msgid "Note"
 msgstr "Jegyzet"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:138
-#, python-format
-msgid "Only an HR Officer or Manager can approve timesheets."
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error_counter
+msgid "Number of error"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread_counter
+#, fuzzy
+msgid "Number of unread messages"
+msgstr "Olvasatlan üzenetek"
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:380
+#, fuzzy, python-format
+msgid "Only an HR Officer or Manager can approve sheets."
 msgstr ""
 "Csak egy HR emberi erőforrás hivatalnok vagy vezető tud jóváhagyni munkaidő-"
 "kiosztásokat."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:123
-#, python-format
-msgid ""
-"Only an HR Officer or Manager can refuse timesheets or reset them to draft."
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:357
+#, fuzzy, python-format
+msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 msgstr ""
 "Csak egy HR emberi erőforrás hivatalnok vagy vezető tud elutasítani vagy "
 "visszaállítani tervezetnek munkaidő-kiosztásokat."
 
 #. module: hr_timesheet_sheet
-#: selection:hr_timesheet_sheet.sheet,state:0
+#: selection:hr_timesheet.sheet,state:0
 msgid "Open"
 msgstr "Megnyitás"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/wizard/hr_timesheet_current.py:26
-#, python-format
-msgid "Open Timesheet"
-msgstr "Munkaidő-kiosztás megnyitása"
+#: selection:hr_timesheet.sheet,activity_state:0
+msgid "Overdue"
+msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_project_config_settings_timesheet_range
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company_timesheet_range
-msgid "Periodicity on which you validate your timesheets."
-msgstr "Periódus, melyen az időkimutatásait érvényesíti."
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+msgid "Period"
+msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account_name
-msgid "Project / Analytic Account"
-msgstr "Projekt /Gyűjtőkód"
+#: selection:hr_timesheet.sheet,activity_state:0
+msgid "Planned"
+msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_url
+msgid "Portal Access URL"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__project_id
+msgid "Project"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__value_y
+msgid "Project Name"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__unit_amount
+msgid "Quantity"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Refuse"
 msgstr "Elutasít"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_user_id
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__user_id
 msgid "Related user name for the resource to manage its access."
 msgstr ""
 "Az erőforráshoz kapcsolódó felhasználó neve, aki kezeli a hozzáférést az "
 "erőforráshoz."
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_account_filter
-msgid "Search Account"
-msgstr "Felhasználó keresés"
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_user_id
+msgid "Responsible User"
+msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+#: selection:res.company,timesheet_week_start:0
+msgid "Saturday"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Search Timesheet"
 msgstr "Munkaidő-kiosztás keresése"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_token
+msgid "Security Token"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_project_id
+msgid "Select Project"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_task_id
+msgid "Select Task"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Set to Draft"
 msgstr "Beállítás tervezetnek"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line_sheet_id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line_sheet_id_computed
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account_sheet_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__sheet_id
 msgid "Sheet"
 msgstr "Táblázat"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_state
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_id_computed
+msgid "Sheet Id Computed"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
+msgid "Starting day for Timesheet Sheets."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__state
 msgid "Status"
 msgstr "Állapot"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Submit to Manager"
 msgstr "Felső vezetőnek rendelkezésére"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Summary"
 msgstr "Összegzés"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
-msgid "Timesheet"
-msgstr "Munkaidő-kiosztás"
+#: selection:res.company,timesheet_week_start:0
+msgid "Sunday"
+msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__task_id
+msgid "Task"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:194
+#, python-format
+msgid ""
+"The Company in the Timesheet Sheet and in the Department must be the same."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:184
+#, python-format
+msgid ""
+"The Company in the Timesheet Sheet and in the Employee must be the same."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:204
+#, python-format
+msgid "The Company in the Timesheet Sheet and in the Project must be the same."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:214
+#, python-format
+msgid "The Company in the Timesheet Sheet and in the Task must be the same."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company__sheet_range
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__sheet_range
+msgid "The range of your Timesheet Sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:154
+#, python-format
+msgid "The start date cannot be later than the end date."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_week_start:0
+msgid "Thursday"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Timesheet Activities"
 msgstr "Időkimutatás tevékenység"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
+#, fuzzy
+msgid "Timesheet Options"
+msgstr "Munkaidő-kiosztás sorok"
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Timesheet Period"
 msgstr "Időkimutatás időszak"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_project_config_settings_module_project_timesheet_synchro
-msgid "Timesheet app for Chrome/Android/iOS"
-msgstr "Időbeosztás alkalmazás  Chrome/Android/iOS eszközökhöz"
+#: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#, fuzzy
+msgid "Timesheet Sheet"
+msgstr "Munkaidő-kiosztás"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line
+#, fuzzy
+msgid "Timesheet Sheet Line"
+msgstr "Munkaidő-kiosztás sorok"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__line_ids
+#, fuzzy
+msgid "Timesheet Sheet Lines"
+msgstr "Munkaidő-kiosztás sorok"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__sheet_range
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__sheet_range
+#, fuzzy
+msgid "Timesheet Sheet Range"
+msgstr "Munkaidő-kiosztás időintervalluma"
+
+#. module: hr_timesheet_sheet
+#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_count
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified
+#, fuzzy
+msgid "Timesheet Sheets"
+msgstr "Munkaidő-kiosztás sorok"
+
+#. module: hr_timesheet_sheet
+#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department__timesheet_sheet_to_approve_count
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_form
+#, fuzzy
+msgid "Timesheet Sheets to Approve"
+msgstr "Elfogadásra váró munkaidő-kiosztások"
 
 #. module: hr_timesheet_sheet
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_approved
@@ -361,38 +655,20 @@ msgid "Timesheet approved"
 msgstr "Elfogadott munkaidő-kiosztás"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_account_form
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_account_tree
-msgid "Timesheet by Accounts"
-msgstr "Gyűjtőkódok szerinti munkaidő-kiosztás"
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
+#, fuzzy
+msgid ""
+"Timesheet sheets can also be invoiced to customers, depending on\n"
+"             the configuration of each project's related contract."
+msgstr ""
+"Munkaidő kimutatást az ügyfeleknek is lehet számlázni, attól \n"
+"                függően, hogyan lett minden egyes projekt beállítva a "
+"vonatkozó szerződéshez."
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_timesheet_ids
-msgid "Timesheet lines"
-msgstr "Munkaidő-kiosztás sorok"
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company_timesheet_range
-msgid "Timesheet range"
-msgstr "Munkaidő-kiosztás időintervalluma"
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_project_config_settings_timesheet_range
-msgid "Timesheet range *"
-msgstr "Munkaidő-kiosztás időintervalluma *"
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department_timesheet_to_approve_count
-msgid "Timesheet to Approve"
-msgstr "Elfogadásra váró munkaidő-kiosztás"
-
-#. module: hr_timesheet_sheet
-#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee_timesheet_count
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_department_view_kanban
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_employee_extd_form
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_config_settings_form_inherit_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__timesheet_ids
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_department_view_kanban
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_employee_extd_form
 msgid "Timesheets"
 msgstr "Munkaidő-beosztás"
 
@@ -402,147 +678,175 @@ msgid "Timesheets Approved"
 msgstr "Elfogadott munkaidő-kiosztások"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_sheet_account
-msgid "Timesheets by Period"
-msgstr "Időszak szerinti munkaidő-kiosztások"
-
-#. module: hr_timesheet_sheet
-#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
-#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+#, fuzzy
 msgid ""
 "Timesheets can also be invoiced to customers, depending on the\n"
-"                configuration of each project's related contract."
+"            configuration of each project's related contract."
 msgstr ""
 "Munkaidő kimutatást az ügyfeleknek is lehet számlázni, attól \n"
-"                függően, hogyan lett minden egyes projekt beállítva a vonatkozó szerződéshez."
+"                függően, hogyan lett minden egyes projekt beállítva a "
+"vonatkozó szerződéshez."
 
 #. module: hr_timesheet_sheet
-#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_form
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
-#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_form
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_department_timesheet_confirmed
 msgid "Timesheets to Approve"
 msgstr "Elfogadásra váró munkaidő-kiosztások"
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_hr_to_approve
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "To Approve"
 msgstr "Jóváhagyandó"
 
 #. module: hr_timesheet_sheet
-#. openerp-web
-#: code:addons/hr_timesheet_sheet/static/src/xml/timesheet.xml:14
-#: code:addons/hr_timesheet_sheet/static/src/xml/timesheet.xml:36
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_account_form
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_account_tree
-#, python-format
-msgid "Total"
-msgstr "Összesen"
+#: selection:hr_timesheet.sheet,activity_state:0
+msgid "Today"
+msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account_total
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__total_time
 msgid "Total Time"
 msgstr "Összes idő"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+#: selection:res.company,timesheet_week_start:0
+msgid "Tuesday"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Unread Messages"
 msgstr "Olvasatlan üzenetek"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-msgid "Unvalidated Timesheets"
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread_counter
+#, fuzzy
+msgid "Unread Messages Counter"
+msgstr "Olvasatlan üzenetek"
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+#, fuzzy
+msgid "Unvalidated Timesheet Sheets"
 msgstr "Nem jóváhagyott munkaidő-kiosztások"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_user_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__user_id
 msgid "User"
 msgstr "Felhasználó"
 
 #. module: hr_timesheet_sheet
-#: selection:hr_timesheet_sheet.sheet,state:0
+#: selection:hr_timesheet.sheet,state:0
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_confirmed
 msgid "Waiting Approval"
 msgstr "Jóváhagyásra vár"
 
 #. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_range:0
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__website_message_ids
+#, fuzzy
+msgid "Website Messages"
+msgstr "Olvasatlan üzenetek"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_week_start:0
+msgid "Wednesday"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,sheet_range:0
 msgid "Week"
 msgstr "Hét"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:146
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:333
 #, python-format
 msgid "Week "
 msgstr "Hét "
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:154
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
+msgid "Week Start Day"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_week_start
+msgid "Week start day"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_department.py:41
+#: code:addons/hr_timesheet_sheet/models/hr_employee.py:35
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:225
 #, python-format
-msgid "You cannot delete a timesheet which is already confirmed."
+msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:344
+#, fuzzy, python-format
+msgid "You cannot delete a timesheet sheet which is already confirmed."
 msgstr "Nem törölhet olyan időkimutatást, mely már visszaigazolt."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:100
-#, python-format
-msgid "You cannot duplicate a timesheet."
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
+#, fuzzy, python-format
+msgid "You cannot duplicate a sheet."
 msgstr "Nem többszörözhet egy időkimutatást."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:85
-#, python-format
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:173
+#, fuzzy, python-format
 msgid ""
-"You cannot have 2 timesheets that overlap!\n"
-"Please use the menu 'My Current Timesheet' to avoid this problem."
+"You cannot have 2 sheets that overlap!\n"
+"Please use the menu 'Timesheet Sheet' to avoid this problem."
 msgstr ""
 "Nem lehet 2 időkimutatása mely fedi egymást!\n"
-"Használja a 'Én aktuális időkimutatásom' menüt, ennek a problémának az elkerülésére."
+"Használja a 'Én aktuális időkimutatásom' menüt, ennek a problémának az "
+"elkerülésére."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:60
-#, python-format
-msgid "You cannot modify an entry in a confirmed timesheet."
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:86
+#, fuzzy, python-format
+msgid "You cannot modify an entry in a confirmed timesheet sheet."
 msgstr "Nem tud módosítani a visszaigazolt időkimutatáson."
 
 #. module: hr_timesheet_sheet
-#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
-#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+#, fuzzy
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
-"                of the week. Once the timesheet is confirmed, it should be\n"
-"                validated by a manager."
+"            of the week. Once the timesheet is confirmed, it should be\n"
+"            validated by a manager."
 msgstr ""
 "Rögzítenie kell a munkaóra kimutatásait minden nap és le kell jelentenie\n"
-"                 a hét végén. Ha a munkaidő-kiosztás lejelentett és elfogadott\n"
+"                 a hét végén. Ha a munkaidő-kiosztás lejelentett és "
+"elfogadott\n"
 "                akkor a főnökének le kell igazolnia."
 
 #. module: hr_timesheet_sheet
-#. openerp-web
-#: code:addons/hr_timesheet_sheet/static/src/xml/timesheet.xml:52
-#, python-format
-msgid "You will be able to register your working hours and activities."
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
+#, fuzzy
+msgid ""
+"You must record timesheets in the sheet every day and confirm at the end\n"
+"             of the week. Once the timesheet sheet is confirmed, it should "
+"be\n"
+"             validated by a manager."
 msgstr ""
-"Lehetősége lesz a munka órái és a tevékenységei\n"
-"                        regisztrálására."
+"Rögzítenie kell a munkaóra kimutatásait minden nap és le kell jelentenie\n"
+"                 a hét végén. Ha a munkaidő-kiosztás lejelentett és "
+"elfogadott\n"
+"                akkor a főnökének le kell igazolnia."
 
 #. module: hr_timesheet_sheet
-#: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_current_open
-msgid "hr.timesheet.current.open"
-msgstr "hr.timesheet.current.open"
-
-#. module: hr_timesheet_sheet
-#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
-msgid "new timesheet."
-msgstr "új munkaidő-kiosztás."
-
-#. module: hr_timesheet_sheet
-#: model:ir.model,name:hr_timesheet_sheet.model_project_config_settings
-msgid "project.config.settings"
-msgstr "project.config.settings"
-
-#. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "ig"
 
@@ -550,3 +854,74 @@ msgstr "ig"
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
 msgid "waiting approval"
 msgstr "Jóváhagyásra váró"
+
+#~ msgid ""
+#~ " * The 'Open' status is used when a user is encoding a new and "
+#~ "unconfirmed timesheet. \n"
+#~ "* The 'Waiting Approval' status is used to confirm the timesheet by "
+#~ "user. \n"
+#~ "* The 'Approved' status is used when the users timesheet is accepted by "
+#~ "his/her senior."
+#~ msgstr ""
+#~ " * A 'Nyitott' állapotot használja, ha a felhasználó olyan új "
+#~ "időkimutatást táplál be ami még nincs visszaigazolva.                 \n"
+#~ "* A 'Jóváhagyásra vár' állapotot használja, ha egy felhasználó "
+#~ "visszaigazolta az időkimutatást.                 \n"
+#~ "* Az 'Jóváhagyott' állapotot használja, ha a felhasználó időkimutatását "
+#~ "elfogadta egy felettese."
+
+#~ msgid "Analytic accounts"
+#~ msgstr "Gyűjtőkódok"
+
+#~ msgid "Click to add projects, contracts or analytic accounts."
+#~ msgstr "Kattintson projekt, szerződések vagy elemző számlák hozzáadásához."
+
+#~ msgid "Extra features"
+#~ msgstr "Extra jellemzők"
+
+#~ msgid "More Info"
+#~ msgstr "További információ"
+
+#~ msgid "My Timesheet"
+#~ msgstr "Munkaidő-kiosztásom"
+
+#~ msgid "New"
+#~ msgstr "Új"
+
+#~ msgid "Open Timesheet"
+#~ msgstr "Munkaidő-kiosztás megnyitása"
+
+#~ msgid "Periodicity on which you validate your timesheets."
+#~ msgstr "Periódus, melyen az időkimutatásait érvényesíti."
+
+#~ msgid "Project / Analytic Account"
+#~ msgstr "Projekt /Gyűjtőkód"
+
+#~ msgid "Search Account"
+#~ msgstr "Felhasználó keresés"
+
+#~ msgid "Timesheet app for Chrome/Android/iOS"
+#~ msgstr "Időbeosztás alkalmazás  Chrome/Android/iOS eszközökhöz"
+
+#~ msgid "Timesheet by Accounts"
+#~ msgstr "Gyűjtőkódok szerinti munkaidő-kiosztás"
+
+#~ msgid "Timesheet range *"
+#~ msgstr "Munkaidő-kiosztás időintervalluma *"
+
+#~ msgid "Timesheet to Approve"
+#~ msgstr "Elfogadásra váró munkaidő-kiosztás"
+
+#~ msgid "Timesheets by Period"
+#~ msgstr "Időszak szerinti munkaidő-kiosztások"
+
+#~ msgid "Total"
+#~ msgstr "Összesen"
+
+#~ msgid "You will be able to register your working hours and activities."
+#~ msgstr ""
+#~ "Lehetősége lesz a munka órái és a tevékenységei\n"
+#~ "                        regisztrálására."
+
+#~ msgid "hr.timesheet.current.open"
+#~ msgstr "hr.timesheet.current.open"
