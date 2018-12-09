@@ -21,10 +21,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: hr_timesheet_sheet
-#. openerp-web
-#: code:addons/hr_timesheet_sheet/static/src/xml/timesheet.xml:33
-#, python-format
-msgid "Add a Line"
+#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#, fuzzy
+msgid "Add new line"
 msgstr "Añadir una línea"
 
 #. module: hr_timesheet_sheet
@@ -33,27 +32,31 @@ msgid "Analytic Line"
 msgstr "Línea Analítica"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account_ids
-msgid "Analytic accounts"
-msgstr "Cuentas analíticas"
-
-#. module: hr_timesheet_sheet
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Approve"
 msgstr "Aprobar"
 
 #. module: hr_timesheet_sheet
-#: selection:hr_timesheet_sheet.sheet,state:0
+#: selection:hr_timesheet.sheet,state:0
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_approved
 msgid "Approved"
 msgstr "Aprobado"
 
 #. module: hr_timesheet_sheet
-#. openerp-web
-#: code:addons/hr_timesheet_sheet/static/src/xml/timesheet.xml:51
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:381
 #, python-format
-msgid "Click to add projects, contracts or analytic accounts."
-msgstr "Pulse para añadir proyectos, contratos o cuentas analíticas."
+msgid "Cannot approve a non-submitted sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
+msgid "Choose the week start day."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
+msgid "Choose which timesheet sheet ranges should be used by default"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_res_company
@@ -61,29 +64,62 @@ msgid "Companies"
 msgstr "Compañías"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_company_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_company_id
 msgid "Company"
 msgstr "Compañía"
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-msgid "Confirmed Timesheets"
+#, fuzzy
+msgid "Confirmed Timesheet Sheets"
 msgstr "Hoja de Registro confirmadas"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open_create_uid
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_create_uid
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_count_timesheets
+#, fuzzy
+msgid "Count Timesheets"
+msgstr "Hoja de Registro confirmadas"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_create_uid
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open_create_date
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_create_date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_create_date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_create_date
 msgid "Created on"
 msgstr "Creado en"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_department_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_date
+msgid "Date"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_date_start
+msgid "Date From"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_value_x
+#, fuzzy
+msgid "Date Name"
+msgstr "Nombre mostrado"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_date_end
+msgid "Date To"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,sheet_range:0
+msgid "Day"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_department_id
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Department"
 msgstr "Departamento"
@@ -94,15 +130,14 @@ msgid "Details"
 msgstr "Detalles"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open_display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account_display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_display_name
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_display_name
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_employee
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_employee_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_employee_id
 msgid "Employee"
 msgstr "Empleado"
 
@@ -117,9 +152,26 @@ msgid "Employees"
 msgstr "Empleados"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:622
+#, fuzzy, python-format
+msgid "Error code: Cannot have 0 timesheets."
+msgstr "No puede duplicar una Hoja de Registro."
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_week_start:0
+msgid "Friday"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Group By"
 msgstr "Agrupar por"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model,name:hr_timesheet_sheet.model_hr_department
+#, fuzzy
+msgid "HR Department"
+msgstr "Departamento"
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -127,11 +179,24 @@ msgid "Hours"
 msgstr "Horas"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open_id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account_id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_id
 msgid "ID"
 msgstr "ID (identificación)"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet_add_line_project_id
+msgid ""
+"If selected, the associated project is added to the timesheet sheet when "
+"clicked the button."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet_add_line_task_id
+msgid ""
+"If selected, the associated task is added to the timesheet sheet when "
+"clicked the button."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -139,55 +204,56 @@ msgid "In Draft"
 msgstr "En borrador"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:106
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:116
-#, python-format
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:306
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:320
+#, fuzzy, python-format
 msgid ""
-"In order to create a timesheet for this employee, you must link him/her to a "
+"In order to create a sheet for this employee, you must link him/her to an "
 "user."
 msgstr ""
 "Para crear una Hoja de Registro para este empleado, debe enlazarlo con un "
 "usuario."
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open___last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet___last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account___last_update
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet___last_update
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line___last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open_write_uid
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_write_uid
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_write_uid
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_write_uid
 msgid "Last Updated by"
 msgstr "Última actualización de"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open_write_date
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_write_date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_write_date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_write_date
 msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_range:0
+#: selection:res.company,timesheet_week_start:0
+msgid "Monday"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,sheet_range:0
 msgid "Month"
 msgstr "Mes"
 
 #. module: hr_timesheet_sheet
-#: model:ir.actions.server,name:hr_timesheet_sheet.ir_actions_server_timesheet_sheet
-msgid "My Timesheet"
-msgstr "Mis Hojas de Registro"
-
-#. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_my_timesheets
-msgid "My Timesheets"
+#, fuzzy
+msgid "My Timesheet Sheets"
 msgstr "Mis Hojas de Registro"
 
 #. module: hr_timesheet_sheet
-#: selection:hr_timesheet_sheet.sheet,state:0
-msgid "New"
-msgstr "Nuevo"
+#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
+#, fuzzy
+msgid "New timesheet sheet."
+msgstr "Nueva hoja de registro."
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
@@ -195,31 +261,46 @@ msgid "New timesheet to approve."
 msgstr "Nueva Hoja de Registro aprobada"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_name
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_name
 msgid "Note"
 msgstr "Nota"
 
 #. module: hr_timesheet_sheet
-#: selection:hr_timesheet_sheet.sheet,state:0
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:379
+#, python-format
+msgid "Only an HR Officer or Manager can approve sheets."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:356
+#, python-format
+msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:hr_timesheet.sheet,state:0
 msgid "Open"
 msgstr "Abrir"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/wizard/hr_timesheet_current.py:26
-#, python-format
-msgid "Open Timesheet"
-msgstr "Abrir hoja de registro"
+#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+msgid "Period"
+msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_project_config_settings_timesheet_range
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company_timesheet_range
-msgid "Periodicity on which you validate your timesheets."
-msgstr "Periodicidad en la cual valida sus Hojas de Registros."
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_project_id
+msgid "Project"
+msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account_name
-msgid "Project / Analytic Account"
-msgstr "Proyecto / cuenta analítica"
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_value_y
+msgid "Project Name"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_unit_amount
+msgid "Quantity"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -227,14 +308,29 @@ msgid "Refuse"
 msgstr "Rechazar"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_account_filter
-msgid "Search Account"
-msgstr "Buscar Cuenta"
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet_user_id
+msgid "Related user name for the resource to manage its access."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_week_start:0
+msgid "Saturday"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Search Timesheet"
 msgstr "Buscar Hoja de Registro"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_add_line_project_id
+msgid "Select Project"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_add_line_task_id
+msgid "Select Task"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -244,12 +340,17 @@ msgstr "Cambiar a borrador"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line_sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line_sheet_id_computed
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account_sheet_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_sheet_id
 msgid "Sheet"
 msgstr "Hoja"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_state
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings_timesheet_week_start
+msgid "Starting day for Timesheet Sheets."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_state
 msgid "Status"
 msgstr "Estado"
 
@@ -264,10 +365,57 @@ msgid "Summary"
 msgstr "Resumen"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
-msgid "Timesheet"
-msgstr "Hoja de registros"
+#: selection:res.company,timesheet_week_start:0
+msgid "Sunday"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_task_id
+msgid "Task"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:193
+#, python-format
+msgid ""
+"The Company in the Timesheet Sheet and in the Department must be the same."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:183
+#, python-format
+msgid ""
+"The Company in the Timesheet Sheet and in the Employee must be the same."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:203
+#, python-format
+msgid "The Company in the Timesheet Sheet and in the Project must be the same."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:213
+#, python-format
+msgid "The Company in the Timesheet Sheet and in the Task must be the same."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company_sheet_range
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings_sheet_range
+msgid "The range of your Timesheet Sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:153
+#, python-format
+msgid "The start date cannot be later than the end date."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_week_start:0
+msgid "Thursday"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -275,9 +423,51 @@ msgid "Timesheet Activities"
 msgstr "Actividades del parte de horas"
 
 #. module: hr_timesheet_sheet
+#: model:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
+#, fuzzy
+msgid "Timesheet Options"
+msgstr "Líneas de Hoja de registros"
+
+#. module: hr_timesheet_sheet
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Timesheet Period"
 msgstr "Período de la Hoja de Registro"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet
+#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#, fuzzy
+msgid "Timesheet Sheet"
+msgstr "Hoja de registros"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line
+#, fuzzy
+msgid "Timesheet Sheet Line"
+msgstr "Líneas de Hoja de registros"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company_sheet_range
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings_sheet_range
+#, fuzzy
+msgid "Timesheet Sheet Range"
+msgstr "Rango Hoja de Registro"
+
+#. module: hr_timesheet_sheet
+#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee_timesheet_count
+#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified
+#, fuzzy
+msgid "Timesheet Sheets"
+msgstr "Líneas de Hoja de registros"
+
+#. module: hr_timesheet_sheet
+#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department_timesheet_sheet_to_approve_count
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_form
+#, fuzzy
+msgid "Timesheet Sheets to Approve"
+msgstr "Hojas de Registro por aprobar"
 
 #. module: hr_timesheet_sheet
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_approved
@@ -285,33 +475,21 @@ msgid "Timesheet approved"
 msgstr "Hoja de Registro aprobada"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_account_form
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_account_tree
-msgid "Timesheet by Accounts"
-msgstr "Hoja de Registro por cuentas"
+#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
+#, fuzzy
+msgid ""
+"Timesheet sheets can also be invoiced to customers, depending on\n"
+"             the configuration of each project's related contract."
+msgstr ""
+"Las Hojas de Registros también puede ser facturada a los clientes, "
+"dependiendo en la\n"
+"configuración de cada proyecto relacionada con el contrato."
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_timesheet_ids
-msgid "Timesheet lines"
-msgstr "Líneas de Hoja de registros"
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company_timesheet_range
-msgid "Timesheet range"
-msgstr "Rango Hoja de Registro"
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department_timesheet_to_approve_count
-msgid "Timesheet to Approve"
-msgstr "Hoja de Registro por aprobar"
-
-#. module: hr_timesheet_sheet
-#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee_timesheet_count
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_ids
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_timesheet_ids
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_department_view_kanban
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_employee_extd_form
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_config_settings_form_inherit_hr_timesheet_sheet
 msgid "Timesheets"
 msgstr "Hojas de registro"
 
@@ -321,25 +499,18 @@ msgid "Timesheets Approved"
 msgstr "Hoja de Registro aprobada"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_sheet_account
-msgid "Timesheets by Period"
-msgstr "Hoja de Registro por período"
-
-#. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
-#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
+#, fuzzy
 msgid ""
 "Timesheets can also be invoiced to customers, depending on the\n"
-"                configuration of each project's related contract."
+"            configuration of each project's related contract."
 msgstr ""
 "Las Hojas de Registros también puede ser facturada a los clientes, "
 "dependiendo en la\n"
 "configuración de cada proyecto relacionada con el contrato."
 
 #. module: hr_timesheet_sheet
-#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_form
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
-#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_form
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_department_timesheet_confirmed
 msgid "Timesheets to Approve"
 msgstr "Hojas de Registro por aprobar"
@@ -351,19 +522,14 @@ msgid "To Approve"
 msgstr "Para aprobar"
 
 #. module: hr_timesheet_sheet
-#. openerp-web
-#: code:addons/hr_timesheet_sheet/static/src/xml/timesheet.xml:14
-#: code:addons/hr_timesheet_sheet/static/src/xml/timesheet.xml:36
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_account_form
-#: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_account_tree
-#, python-format
-msgid "Total"
-msgstr "Total"
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_account_total
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_total_time
 msgid "Total Time"
 msgstr "Tiempo total"
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_week_start:0
+msgid "Tuesday"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -372,78 +538,110 @@ msgstr "Mensajes sin leer"
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-msgid "Unvalidated Timesheets"
+#, fuzzy
+msgid "Unvalidated Timesheet Sheets"
 msgstr "Hoja de Registro no validadas"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_user_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_user_id
 msgid "User"
 msgstr "Usuario"
 
 #. module: hr_timesheet_sheet
-#: selection:hr_timesheet_sheet.sheet,state:0
+#: selection:hr_timesheet.sheet,state:0
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_confirmed
 msgid "Waiting Approval"
 msgstr "Esperando aprobación"
 
 #. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_range:0
+#: selection:res.company,timesheet_week_start:0
+msgid "Wednesday"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,sheet_range:0
 msgid "Week"
 msgstr "Semana"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:146
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:332
 #, python-format
 msgid "Week "
 msgstr "Semana "
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:154
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings_timesheet_week_start
+msgid "Week Start Day"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company_timesheet_week_start
+msgid "Week start day"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_department.py:41
+#: code:addons/hr_timesheet_sheet/models/hr_employee.py:35
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:224
 #, python-format
-msgid "You cannot delete a timesheet which is already confirmed."
+msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:343
+#, fuzzy, python-format
+msgid "You cannot delete a timesheet sheet which is already confirmed."
 msgstr "No puede eliminar una Hoja de Registro que ya está confirmada."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:100
-#, python-format
-msgid "You cannot duplicate a timesheet."
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:299
+#, fuzzy, python-format
+msgid "You cannot duplicate a sheet."
 msgstr "No puede duplicar una Hoja de Registro."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:60
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:172
 #, python-format
-msgid "You cannot modify an entry in a confirmed timesheet."
+msgid ""
+"You cannot have 2 sheets that overlap!\n"
+"Please use the menu 'Timesheet Sheet' to avoid this problem."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:86
+#, fuzzy, python-format
+msgid "You cannot modify an entry in a confirmed timesheet sheet."
 msgstr "No puede modificar una entrada en una Hoja de Registro confirmada."
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
-#: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
+#, fuzzy
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
-"                of the week. Once the timesheet is confirmed, it should be\n"
-"                validated by a manager."
+"            of the week. Once the timesheet is confirmed, it should be\n"
+"            validated by a manager."
 msgstr ""
 "Usted debe grabar las Hojas de Registro cada día y confirmarlas al final\n"
 "de la semana. Una vez que las Hojas de Registro sean confirmadas, deben\n"
 "ser validadas por el administrador."
 
 #. module: hr_timesheet_sheet
-#. openerp-web
-#: code:addons/hr_timesheet_sheet/static/src/xml/timesheet.xml:52
-#, python-format
-msgid "You will be able to register your working hours and activities."
-msgstr ""
-"Usted será habilitado para registrar sus horas de trabajo y actividades."
-
-#. module: hr_timesheet_sheet
-#: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_current_open
-msgid "hr.timesheet.current.open"
-msgstr "rrhh.hojaasistencia.actual.abrir"
-
-#. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
-msgid "new timesheet."
-msgstr "Nueva hoja de registro."
+#, fuzzy
+msgid ""
+"You must record timesheets in the sheet every day and confirm at the end\n"
+"             of the week. Once the timesheet sheet is confirmed, it should "
+"be\n"
+"             validated by a manager."
+msgstr ""
+"Usted debe grabar las Hojas de Registro cada día y confirmarlas al final\n"
+"de la semana. Una vez que las Hojas de Registro sean confirmadas, deben\n"
+"ser validadas por el administrador."
+
+#. module: hr_timesheet_sheet
+#: model:ir.model,name:hr_timesheet_sheet.model_res_config_settings
+msgid "res.config.settings"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -454,3 +652,46 @@ msgstr "a"
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
 msgid "waiting approval"
 msgstr "Esperando aprobación"
+
+#~ msgid "Analytic accounts"
+#~ msgstr "Cuentas analíticas"
+
+#~ msgid "Click to add projects, contracts or analytic accounts."
+#~ msgstr "Pulse para añadir proyectos, contratos o cuentas analíticas."
+
+#~ msgid "My Timesheet"
+#~ msgstr "Mis Hojas de Registro"
+
+#~ msgid "New"
+#~ msgstr "Nuevo"
+
+#~ msgid "Open Timesheet"
+#~ msgstr "Abrir hoja de registro"
+
+#~ msgid "Periodicity on which you validate your timesheets."
+#~ msgstr "Periodicidad en la cual valida sus Hojas de Registros."
+
+#~ msgid "Project / Analytic Account"
+#~ msgstr "Proyecto / cuenta analítica"
+
+#~ msgid "Search Account"
+#~ msgstr "Buscar Cuenta"
+
+#~ msgid "Timesheet by Accounts"
+#~ msgstr "Hoja de Registro por cuentas"
+
+#~ msgid "Timesheet to Approve"
+#~ msgstr "Hoja de Registro por aprobar"
+
+#~ msgid "Timesheets by Period"
+#~ msgstr "Hoja de Registro por período"
+
+#~ msgid "Total"
+#~ msgstr "Total"
+
+#~ msgid "You will be able to register your working hours and activities."
+#~ msgstr ""
+#~ "Usted será habilitado para registrar sus horas de trabajo y actividades."
+
+#~ msgid "hr.timesheet.current.open"
+#~ msgstr "rrhh.hojaasistencia.actual.abrir"
