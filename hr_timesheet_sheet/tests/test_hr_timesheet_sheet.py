@@ -224,8 +224,11 @@ class TestHrTimesheetSheet(TransactionCase):
             'project_id': self.project_1.id,
             'employee_id': self.employee.id,
         })
-        timesheet_3.date = fields.Date.to_string(
-            fields.Date.from_string(timesheet_3.date) + relativedelta(days=1))
+        dt = fields.Date.from_string(timesheet_3.date)
+        # With this we assure to be in the same week but different day
+        # (for covering today = sunday)
+        days = -1 if dt.weekday() == 6 else 1
+        timesheet_3.date = fields.Date.to_string(dt + relativedelta(days=days))
 
         sheet = self.sheet_model.sudo(self.user).create({
             'employee_id': self.employee.id,
