@@ -6,7 +6,7 @@
     'name': 'Hr Timesheet Task Required',
     'summary': """
         Set task on timesheet as a mandatory field""",
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'license': 'AGPL-3',
     'author': 'ACSONE SA/NV, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/hr-timesheet',
