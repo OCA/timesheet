@@ -311,7 +311,9 @@ class Sheet(models.Model):
 
     @api.multi
     def copy(self, default=None):
-        raise UserError(_('You cannot duplicate a sheet.'))
+        if not self.env.context.get('allow_copy_timesheet'):
+            raise UserError(_('You cannot duplicate a sheet.'))
+        return super(Sheet, self).copy(default=default)
 
     @api.model
     def create(self, vals):
@@ -406,8 +408,14 @@ class Sheet(models.Model):
         for rec in self:
             if rec.state in ['new', 'draft']:
                 rec.add_line(rec.add_line_project_id, rec.add_line_task_id)
-                rec.add_line_task_id = False
-                rec.add_line_project_id = False
+                rec.reset_add_line()
+
+    @api.multi
+    def reset_add_line(self):
+        self.write({
+            'add_line_project_id': False,
+            'add_line_task_id': False,
+        })
 
     def _get_date_name(self, date):
         return fields.Date.from_string(date).strftime("%a\n%b %d")
