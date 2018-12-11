@@ -1,5 +1,5 @@
 # Copyright 2018 Eficent Business and IT Consulting Services, S.L.
-# Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2018 Brainbean Apps
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -21,7 +21,7 @@ class Sheet(models.Model):
     def _default_date_start(self):
         user = self.env['res.users'].browse(self.env.uid)
         r = user.company_id and user.company_id.sheet_range or WEEKLY
-        today = fields.Date.from_string(fields.Date.context_today(self))
+        today = fields.Date.context_today(self)
         if r == WEEKLY:
             if user.company_id.timesheet_week_start:
                 delta = relativedelta(
@@ -37,7 +37,7 @@ class Sheet(models.Model):
     def _default_date_end(self):
         user = self.env['res.users'].browse(self.env.uid)
         r = user.company_id and user.company_id.sheet_range or WEEKLY
-        today = fields.Date.from_string(fields.Date.context_today(self))
+        today = fields.Date.context_today(self)
         if r == WEEKLY:
             if user.company_id.timesheet_week_start:
                 delta = relativedelta(weekday=(int(
@@ -247,7 +247,7 @@ class Sheet(models.Model):
                 ('date', '<=', sheet.date_end),
                 ('date', '>=', sheet.date_start),
                 ('employee_id', '=', sheet.employee_id.id),
-                ('sheet_id', 'in', [sheet and sheet.id or False, False]),
+                ('sheet_id', 'in', [sheet.id, False]),
                 ('company_id', '=', sheet.company_id.id),
             ])
             lines = self.env['hr_timesheet.sheet.line']
@@ -255,20 +255,11 @@ class Sheet(models.Model):
                 for project in timesheets.mapped('project_id'):
                     timesheet = timesheets.filtered(
                         lambda x: (x.project_id == project))
-                    tasks = [task for task in timesheet.mapped('task_id')]
-                    if not timesheet or not all(
-                            [t.task_id for t in timesheet]):
-                        tasks += [self.env['project.task']]
-                    for task in tasks:
-                        lines |= self.env['hr_timesheet.sheet.line'].create(
-                            sheet._get_default_analytic_line(
-                                date=date,
-                                project=project,
-                                task=task,
-                                timesheet=timesheet.filtered(
-                                    lambda t: date == t.date
-                                    and t.task_id.id == task.id),
-                            ))
+                    lines |= self._collect_lines_from_timesheets(
+                        project,
+                        timesheet,
+                        date
+                    )
             sheet.line_ids = lines
 
     @api.onchange('date_start', 'date_end', 'timesheet_ids')
@@ -297,7 +288,9 @@ class Sheet(models.Model):
 
     @api.multi
     def copy(self, default=None):
-        raise UserError(_('You cannot duplicate a sheet.'))
+        if not self.env.context.get('allow_copy_timesheet'):
+            raise UserError(_('You cannot duplicate a sheet.'))
+        return super().copy(default=default)
 
     @api.model
     def create(self, vals):
@@ -330,8 +323,8 @@ class Sheet(models.Model):
     @api.multi
     def name_get(self):
         # week number according to ISO 8601 Calendar
-        return [(r['id'], _('Week ') + str(fields.Date.from_string(
-            r['date_start']).isocalendar()[1]))
+        return [(r['id'], _('Week ') + str(
+            r['date_start'].isocalendar()[1]))
             for r in self.sudo().read(['date_start'], load='_classic_write')]
         # It's a cheesy name because you may have ranges different of weeks.
 
@@ -366,10 +359,7 @@ class Sheet(models.Model):
                     and sheet.employee_id.parent_id.user_id:
                 self.message_subscribe_users(
                     user_ids=[sheet.employee_id.parent_id.user_id.id])
-            if sheet.add_line_task_id:
-                sheet.add_line_task_id = False
-            if sheet.add_line_project_id:
-                sheet.add_line_project_id = False
+            sheet.reset_add_line()
         self.write({'state': 'confirm'})
         return True
 
@@ -391,16 +381,21 @@ class Sheet(models.Model):
         for rec in self:
             if rec.state == 'draft':
                 rec.add_line()
-                rec.add_line_task_id = False
-                rec.add_line_project_id = False
+                rec.reset_add_line()
         return True
 
+    @api.multi
+    def reset_add_line(self):
+        for sheet in self:
+            sheet.add_line_task_id = False
+            sheet.add_line_project_id = False
+
     def _get_date_name(self, date):
-        return fields.Date.from_string(date).strftime("%a\n%b %d")
+        return date.strftime("%a\n%b %d")
 
     def _get_dates(self):
-        start = fields.Date.from_string(self.date_start)
-        end = fields.Date.from_string(self.date_end)
+        start = self.date_start
+        end = self.date_end
         if end < start:
             return []
         # time_period = end - start
@@ -417,18 +412,50 @@ class Sheet(models.Model):
             name += ' - {}'.format(task.name)
         return name
 
-    def _get_default_analytic_line(self, date, project, task, timesheet=None):
-        name_y = self._get_line_name(project, task)
+    def _get_new_line_name(self):
+        return self._get_line_name(
+            self.add_line_project_id,
+            self.add_line_task_id,
+        )
+
+    def _collect_lines_from_timesheets(self, project, timesheet, date):
+        tasks = [task for task in timesheet.mapped('task_id')]
+        if not timesheet or not all(
+                [t.task_id for t in timesheet]):
+            tasks += [self.env['project.task']]
+
+        name_x = self._get_date_name(date)
+        lines = self.env['hr_timesheet.sheet.line']
+        for task in tasks:
+            name_y = self._get_line_name(project, task)
+            values = {
+                'value_x': name_x,
+                'value_y': name_y,
+                'date': date,
+                'project_id': project.id,
+                'task_id': task.id,
+            }
+            lines |= self.env['hr_timesheet.sheet.line'].create(
+                self._get_default_analytic_line(
+                    values=values,
+                    timesheet=timesheet.filtered(
+                        lambda t: date == t.date
+                        and t.task_id.id == task.id),
+                )
+            )
+
+        return lines
+
+    def _get_default_analytic_line(
+            self,
+            values,
+            timesheet=None):
+
         timesheet = self.clean_timesheets(timesheet)
-        values = {
-            'value_x': self._get_date_name(date),
-            'value_y': name_y,
-            'date': date,
-            'project_id': project.id,
-            'task_id': task and task.id or False,
+        values.update({
             'count_timesheets': len(timesheet),
             'unit_amount': 0.0,
-        }
+        })
         if self.id:
             values.update({
                 'sheet_id': self.id,
@@ -446,10 +473,8 @@ class Sheet(models.Model):
             'name': '/',
             'employee_id': self.employee_id.id,
             'date': self.date_start,
-            'project_id': self.add_line_project_id and
-            self.add_line_project_id.id or False,
-            'task_id': self.add_line_task_id and
-            self.add_line_task_id.id or False,
+            'project_id': self.add_line_project_id.id,
+            'task_id': self.add_line_task_id.id,
             'sheet_id': self.id,
             'unit_amount': 0.0,
             'company_id': self.company_id.id,
@@ -459,8 +484,7 @@ class Sheet(models.Model):
     def add_line(self):
         if self.add_line_project_id:
             values = self._prepare_empty_analytic_line()
-            name_line = self._get_line_name(
-                self.add_line_project_id, self.add_line_task_id)
+            name_line = self._get_new_line_name()
             if self.line_ids.mapped('value_y'):
                 self.delete_empty_lines(False)
             if name_line not in self.line_ids.mapped('value_y'):
@@ -480,10 +504,9 @@ class Sheet(models.Model):
         for name in self.line_ids.mapped('value_y'):
             row = self.line_ids.filtered(lambda l: l.value_y == name)
             if row:
-                task = row[0].task_id and row[0].task_id.id or False
                 ts_row = self.env['account.analytic.line'].search([
                     ('project_id', '=', row[0].project_id.id),
-                    ('task_id', '=', task),
+                    ('task_id', '=', row[0].task_id.id),
                     ('date', '<=', self.date_end),
                     ('date', '>=', self.date_start),
                     ('employee_id', '=', self.employee_id.id),
@@ -567,15 +590,7 @@ class SheetLine(models.TransientModel):
         if self.unit_amount and not self.count_timesheets:
             self._create_timesheet(self.unit_amount)
         elif self.count_timesheets:
-            task = self.task_id and self.task_id.id or False
-            timesheets = self.env['account.analytic.line'].search([
-                ('project_id', '=', self.project_id.id),
-                ('task_id', '=', task),
-                ('date', '=', self.date),
-                ('employee_id', '=', self.sheet_id.employee_id.id),
-                ('sheet_id', '=', self.sheet_id.id),
-                ('company_id', '=', self.sheet_id.company_id.id),
-            ])
+            timesheets = self._find_timesheets()
             if len(timesheets) != self.count_timesheets:
                 _logger.info('Found timesheets %s, expected %s',
                              len(timesheets), self.count_timesheets)
@@ -651,3 +666,14 @@ class SheetLine(models.TransientModel):
             'unit_amount': amount,
             'company_id': self.sheet_id.company_id.id,
         }
+
+    @api.model
+    def _find_timesheets(self):
+        return self.env['account.analytic.line'].search([
+            ('project_id', '=', self.project_id.id),
+            ('task_id', '=', self.task_id.id),
+            ('date', '=', self.date),
+            ('employee_id', '=', self.sheet_id.employee_id.id),
+            ('sheet_id', '=', self.sheet_id.id),
+            ('company_id', '=', self.sheet_id.company_id.id),
+        ])
