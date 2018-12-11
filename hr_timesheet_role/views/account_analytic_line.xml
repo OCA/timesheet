@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+    -->
+
+    <record id="account_analytic_line_tree" model="ir.ui.view">
+        <field name="name">account.analytic.line.tree</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="project_id" position="after">
+                <field name="is_role_required" invisible="1"/>
+                <field name="limit_role_to_assignments" invisible="1"/>
+                <field name="role_id" attrs="{'required': [('is_role_required', '=', True)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="account_analytic_line_form" model="ir.ui.view">
+        <field name="name">account.analytic.line.form</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+        <field name="arch" type="xml">
+            <field name="project_id" position="after">
+                <field name="is_role_required" invisible="1"/>
+                <field name="limit_role_to_assignments" invisible="1"/>
+                <field name="role_id" attrs="{'required': [('is_role_required', '=', True)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="account_analytic_line_search" model="ir.ui.view">
+        <field name="name">account.analytic.line.search</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
+        <field name="arch" type="xml">
+            <field name="project_id" position="after">
+                <field name="role_id"/>
+            </field>
+            <xpath expr="//filter[@name='groupby_project']" position="after">
+                <filter string="Role" name="groupby_role" domain="[]" context="{'group_by':'role_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account_analytic_line_kanban" model="ir.ui.view">
+        <field name="name">account.analytic.line.kanban</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.view_kanban_account_analytic_line"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/field[@name='project_id']" position="after">
+                <field name="role_id"/>
+            </xpath>
+            <xpath expr="//t[@t-esc='record.project_id.value']/../.." position="after">
+                <div class="text-muted">
+                    <span>
+                        <t t-esc="record.role_id.value"/>
+                    </span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
