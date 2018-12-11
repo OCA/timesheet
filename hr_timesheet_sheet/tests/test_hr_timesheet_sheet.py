@@ -1,7 +1,7 @@
 # Copyright 2018 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2018 Brainbean Apps
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields
 from dateutil.relativedelta import relativedelta
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import UserError, ValidationError
@@ -223,11 +223,10 @@ class TestHrTimesheetSheet(TransactionCase):
             'project_id': self.project_1.id,
             'employee_id': self.employee.id,
         })
-        dt = fields.Date.from_string(timesheet_3.date)
         # With this we assure to be in the same week but different day
         # (for covering today = sunday)
-        days = -1 if dt.weekday() == 6 else 1
-        timesheet_3.date = dt + relativedelta(days=days)
+        days = -1 if timesheet_3.date.weekday() == 6 else 1
+        timesheet_3.date = timesheet_3.date + relativedelta(days=days)
 
         sheet = self.sheet_model.sudo(self.user).create({
             'employee_id': self.employee.id,
@@ -501,10 +500,8 @@ class TestHrTimesheetSheet(TransactionCase):
             'employee_id': self.employee.id,
             'company_id': self.company.id,
         })
-        date_start = fields.Date.from_string(sheet.date_start)
-        date_end = fields.Date.from_string(sheet.date_end)
-        weekday_from = date_start.weekday()
-        weekday_to = date_end.weekday()
+        weekday_from = sheet.date_start.weekday()
+        weekday_to = sheet.date_end.weekday()
 
         self.assertEqual(weekday_from, 6, "The timesheet should start on "
                                           "Sunday")
