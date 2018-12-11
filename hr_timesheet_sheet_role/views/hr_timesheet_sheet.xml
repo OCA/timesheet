@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="hr_timesheet_sheet_form" model="ir.ui.view">
+        <field name="name">hr_timesheet.sheet.form</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']/tree">
+                <field name="role_id"/>
+            </xpath>
+            <field name="add_line_task_id" position="after">
+                <field name="add_line_limit_role_to_assignments" invisible="1"/>
+                <field
+                    name="add_line_role_id"
+                    attrs="{'invisible': [('add_line_project_id', '=', False)]}"
+                    context="{'default_project_id': add_line_project_id}"
+                />
+            </field>
+            <xpath expr="//field[@name='timesheet_ids']/tree//field[@name='task_id']" position="after">
+                <field name="is_role_required" invisible="1"/>
+                <field name="limit_role_to_assignments" invisible="1"/>
+                <field name="role_id" attrs="{'required': [('is_role_required', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='timesheet_ids']/form//field[@name='task_id']" position="after">
+                <field name="is_role_required" invisible="1"/>
+                <field name="limit_role_to_assignments" invisible="1"/>
+                <field name="role_id" attrs="{'required': [('is_role_required', '=', True)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
