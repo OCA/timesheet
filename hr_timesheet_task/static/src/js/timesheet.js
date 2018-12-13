@@ -202,6 +202,25 @@ odoo.define('hr_timesheet_task.sheet', function (require) {
                 self.onclick_add_row_button();
             });
         },
+        display_totals: function() {
+            var self = this;
+            var day_tots = _.map(_.range(self.dates.length), function() { return 0; });
+            var super_tot = 0;
+            _.each(self.projects, function(project) {
+                var acc_tot = 0;
+                _.each(_.range(self.dates.length), function(day_count) {
+                    var sum = self.sum_box(project, day_count);
+                    acc_tot += sum;
+                    day_tots[day_count] += sum;
+                    super_tot += sum;
+                });
+                self.$('[data-project-task-total="' + project.project_task + '"]').html(self.format_client(acc_tot));
+            });
+            _.each(_.range(self.dates.length), function(day_count) {
+                self.$('[data-day-total="' + day_count + '"]').html(self.format_client(day_tots[day_count]));
+            });
+            this.$('.oe_timesheet_weekly_supertotal').html(self.format_client(super_tot));
+        },
 
         onclick_add_row_button: function(){
             var self = this;

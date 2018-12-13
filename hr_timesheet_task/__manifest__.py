@@ -8,7 +8,7 @@
     'summary': 'Allow the user to select task in a timesheet',
     'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'author': 'Scopea, Niboo, Camptocamp SA, Odoo Community Association (OCA)',
     'depends': ['hr_timesheet_sheet'],
     'data': [
