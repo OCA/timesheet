@@ -1,55 +1,59 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016-17 Eficent Business and IT Consulting Services S.L.
 # Copyright 2016-17 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime
 from odoo import api, fields, models, _
-from odoo.exceptions import ValidationError as UserError
+from odoo.exceptions import ValidationError
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class HrTimesheetSheet(models.Model):
-    _inherit = "hr_timesheet_sheet.sheet"
+    _inherit = "hr_timesheet.sheet"
 
     @api.model
-    def _default_date_from(self):
-        res = super(HrTimesheetSheet, self)._default_date_from()
+    def _default_date_start(self):
+        res = super(HrTimesheetSheet, self)._default_date_start()
         period = self._get_current_pay_period()
-        if period:
-            return period.date_start
-        else:
-            return res
+        return period and period.date_start or res
 
     @api.model
-    def _default_date_to(self):
-        res = super(HrTimesheetSheet, self)._default_date_to()
+    def _default_date_end(self):
+        res = super(HrTimesheetSheet, self)._default_date_end()
         period = self._get_current_pay_period()
-        if period:
-            return period.date_end
-        else:
-            return res
+        return period and period.date_end or res
 
     @api.model
     def _default_hr_period_id(self):
         return self._get_current_pay_period()
 
-    hr_period_id = fields.Many2one('hr.period', string='Pay Period',
-                                   readonly=True,
-                                   states={'new': [('readonly', False)]},
-                                   default=_default_hr_period_id)
-    date_from = fields.Date('Date from', required=True, index=True,
-                            readonly=True,
-                            states={'new': [('readonly', False)]},
-                            default=_default_date_from)
-    date_to = fields.Date('Date to', required=True, index=True, readonly=True,
-                          states={'new': [('readonly', False)]},
-                          default=_default_date_to)
+    hr_period_id = fields.Many2one(
+        'hr.period',
+        string='Pay Period',
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+        default=_default_hr_period_id
+    )
+    date_start = fields.Date(
+        string='Date From',
+        default=lambda self: self._default_date_start(),
+        required=True,
+        index=True,
+        states={'draft': [('readonly', False)]},
+    )
+    date_end = fields.Date(
+        string='Date To',
+        default=lambda self: self._default_date_end(),
+        required=True,
+        index=True,
+        states={'draft': [('readonly', False)]},
+    )
 
     @api.multi
     def name_get(self):
         if not self._ids:
             return []
-        if isinstance(self._ids, (long, int)):
+        if isinstance(self._ids, int):
             self._ids = [self._ids]
         res = super(HrTimesheetSheet, self).name_get()
         res2 = []
@@ -68,15 +72,15 @@ class HrTimesheetSheet(models.Model):
     @api.onchange('hr_period_id')
     def onchange_pay_period(self):
         if self.hr_period_id:
-            self.date_from = self.hr_period_id.date_start
-            self.date_to = self.hr_period_id.date_end
+            self.date_start = self.hr_period_id.date_start
+            self.date_end = self.hr_period_id.date_end
             self.name = self.hr_period_id.name
 
     @api.model
     def _get_current_pay_period(self):
         period_obj = self.env['hr.period']
         contract_obj = self.env['hr.contract']
-        date_today = datetime.today().strftime('%Y-%m-%d')
+        date_today = datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         employee = self.default_get(['employee_id'])
         contract = contract_obj.search([('employee_id', '=',
                                          employee.get('employee_id'))])
@@ -91,18 +95,18 @@ class HrTimesheetSheet(models.Model):
             return False
 
     @api.multi
-    @api.constrains('date_from', 'date_to', 'hr_period_id')
+    @api.constrains('date_start', 'date_end', 'hr_period_id')
     def _check_start_end_dates(self):
         for timesheet in self:
             if timesheet.hr_period_id:
-                if timesheet.date_from != timesheet.hr_period_id.date_start:
-                    raise UserError(
+                if timesheet.date_start != timesheet.hr_period_id.date_start:
+                    raise ValidationError(
                         _("The Date From of Timesheet must match with that of"
                           " date start '%s' of the Payroll period '%s'.") % (
                             timesheet.hr_period_id.date_start,
                             timesheet.hr_period_id.name))
-                if timesheet.date_to != timesheet.hr_period_id.date_end:
-                    raise UserError(
+                if timesheet.date_end != timesheet.hr_period_id.date_end:
+                    raise ValidationError(
                         _("The Date To of Timesheet must match with that of"
                           " date stop '%s' of the Payroll period '%s'.") % (
                             timesheet.hr_period_id.date_end,
