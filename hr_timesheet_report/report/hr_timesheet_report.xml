@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018-2020 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+    -->
+
+    <template id="report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="report">
+                <t t-call="web.external_layout">
+                    <t t-set="uom_hour" t-value="env.ref('uom.product_uom_hour')"/>
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h2>
+                                    <span>Timesheets Report</span>
+                                    <span class="float-right text-right">
+                                        <span
+                                            t-if="report.time_format == 'hh_mm'"
+                                            t-esc="report.total_unit_amount"
+                                            t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
+                                        />
+                                        <span
+                                            t-elif="report.time_format == 'hh_mm_ss'"
+                                            t-esc="report.total_unit_amount"
+                                            t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour'}"
+                                        />
+                                        <span
+                                            t-elif="report.time_format == 'decimal'"
+                                            t-esc="report.total_unit_amount"
+                                            t-options="{'widget': 'float', 'precision': 2}"
+                                        />
+                                        <span t-esc="uom_hour.name"/>
+                                    </span>
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div t-if="report.line_ids" class="col">
+                                <h5>
+                                    <span>on <span t-esc="len(report.line_ids)"/> selected entries</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div t-if="report.date_from or report.date_to" class="col">
+                                <h5>
+                                    <span>Date Range:</span>
+                                    <span t-if="report.date_from and not report.date_to">
+                                        since <span t-field="report.date_from"/>
+                                    </span>
+                                    <span t-elif="not report.date_from and report.date_to">
+                                        until <span t-field="report.date_to"/>
+                                    </span>
+                                    <t t-else="">
+                                        <span t-field="report.date_from"/> - <span t-field="report.date_to"/>
+                                    </t>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <t>
+                                <div t-if="report.project_ids" class="col">
+                                    <h5>Projects:</h5>
+                                    <ul>
+                                        <li t-foreach="report.project_ids" t-as="project">
+                                            <span t-field="project.name"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </t>
+                            <t>
+                                <div t-if="report.task_ids" class="col">
+                                    <h5>Tasks:</h5>
+                                    <ul>
+                                        <li t-foreach="report.task_ids" t-as="task">
+                                            <span t-field="task.name"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </t>
+                            <t>
+                                <div t-if="report.employee_ids" class="col">
+                                    <h5>Employees:</h5>
+                                    <ul>
+                                        <li t-foreach="report.employee_ids" t-as="employee">
+                                            <span t-field="employee.name"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </t>
+                            <t>
+                                <div t-if="report.employee_category_ids" class="col">
+                                    <h5>Employee Tags:</h5>
+                                    <ul>
+                                        <li t-foreach="report.employee_category_ids" t-as="employee_category">
+                                            <span t-field="employee_category.name"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </t>
+                            <t>
+                                <div t-if="report.department_ids" class="col">
+                                    <h5>Departments:</h5>
+                                    <ul>
+                                        <li t-foreach="report.department_ids" t-as="department">
+                                            <span t-field="department.name"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </t>
+                        </div>
+                        <table class="table table-sm">
+                            <tbody>
+                                <t t-set="group_colspan" t-value="len(report.entry_field_ids) + 1"/>
+                                <t t-foreach="report.group_ids" t-as="group">
+                                    <tr t-if="group.name" class="o_line_section">
+                                        <th t-att-colspan="group_colspan">
+                                            <span t-field="group.name"/>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th t-foreach="report.entry_field_ids" t-as="field">
+                                            <span t-field="field.field_title"/>
+                                        </th>
+                                        <th class="text-right">
+                                            <span t-esc="uom_hour.name"/>
+                                        </th>
+                                    </tr>
+                                    <tr t-foreach="group.entry_ids" t-as="entry">
+                                        <td t-foreach="report.entry_field_ids" t-as="field">
+                                            <!-- see https://github.com/odoo/odoo/issues/29658 -->
+                                            <span t-att-class="field.cell_classes" t-raw="entry.render_value(field.field_name)"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span
+                                                t-if="report.time_format == 'hh_mm'"
+                                                t-field="entry.total_unit_amount"
+                                                t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
+                                            />
+                                            <span
+                                                t-elif="report.time_format == 'hh_mm_ss'"
+                                                t-field="entry.total_unit_amount"
+                                                t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour'}"
+                                            />
+                                            <span
+                                                t-elif="report.time_format == 'decimal'"
+                                                t-field="entry.total_unit_amount"
+                                                t-options="{'widget': 'float', 'precision': 2}"
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr class="o_subtotal">
+                                        <t t-if="len(report.entry_field_ids) > 1" t-for="len(report.entry_field_ids) - 1">
+                                            <td/>
+                                        </t>
+                                        <td class="text-right"><strong>Subtotal</strong></td>
+                                        <td class="text-right">
+                                            <strong
+                                                t-if="report.time_format == 'hh_mm'"
+                                                t-esc="group.total_unit_amount"
+                                                t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
+                                            />
+                                            <strong
+                                                t-elif="report.time_format == 'hh_mm_ss'"
+                                                t-esc="group.total_unit_amount"
+                                                t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour'}"
+                                            />
+                                            <strong
+                                                t-elif="report.time_format == 'decimal'"
+                                                t-esc="group.total_unit_amount"
+                                                t-options="{'widget': 'float', 'precision': 2}"
+                                            />
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <report
+        id="action_report_qweb_pdf"
+        model="hr.timesheet.report"
+        report_type="qweb-pdf"
+        name="hr_timesheet_report.report"
+        string="Timesheet Report"
+        file="Timesheet Report"
+    />
+
+    <report
+        id="action_report_qweb_html"
+        model="hr.timesheet.report"
+        report_type="qweb-html"
+        name="hr_timesheet_report.report"
+        string="Timesheet Report"
+        file="Timesheet Report"
+    />
+
+    <report
+        id="action_report_xlsx"
+        model="hr.timesheet.report"
+        report_type="xlsx"
+        name="hr_timesheet_report.report"
+        string="Timesheet Report"
+        file="Timesheet Report"
+    />
+
+</odoo>
