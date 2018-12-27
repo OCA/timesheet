@@ -255,7 +255,7 @@ class Sheet(models.Model):
                 for project in timesheets.mapped('project_id'):
                     timesheet = timesheets.filtered(
                         lambda x: (x.project_id == project))
-                    lines |= self._collect_lines_from_timesheets(
+                    lines |= sheet._collect_lines_from_timesheets(
                         project,
                         timesheet,
                         date
