@@ -4,6 +4,8 @@
     'category': 'Human Resources',
     'sequence': 80,
     'license': 'AGPL-3',
+    "author": "BizzAppDev, "
+        "Odoo Community Association (OCA)",
     'depends': [
         'hr_timesheet',
         'hr_attendance',
