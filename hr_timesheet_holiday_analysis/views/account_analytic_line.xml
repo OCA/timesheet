@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+    -->
+
+    <record id="account_analytic_line_search" model="ir.ui.view">
+        <field name="name">account.analytic.line.search</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='month']" position="before">
+                <field name="is_leave"/>
+                <filter name="is_leave" string="Is Leave" domain="[('is_leave', '=', True)]"/>
+                <filter name="is_not_leave" string="Is Not Leave" domain="[('is_leave', '=', False)]"/>
+                <separator/>
+            </xpath>
+            <xpath expr="//group">
+                <filter string="Is Leave?" name="groupby_is_leave" domain="[]" context="{'group_by':'is_leave'}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
