@@ -1,6 +1,6 @@
 from odoo import api, fields, models, _
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT,\
+    DEFAULT_SERVER_DATE_FORMAT
 from odoo.exceptions import UserError
 
 import pytz

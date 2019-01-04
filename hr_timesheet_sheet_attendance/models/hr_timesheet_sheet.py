@@ -56,7 +56,7 @@ class HrTimesheetSheet(models.Model):
         string='Current Status')
     attendance_count = fields.Integer(
         compute='_compute_attendance_count',
-        string="Attendances")
+        string="Attendance Count")
 
     @api.multi
     def attendance_action_change(self):
