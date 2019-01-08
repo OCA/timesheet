@@ -8,7 +8,6 @@
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/hr-timesheet/",
     'depends': [
-        'hr_timesheet',
         'hr_attendance',
         'hr_timesheet_sheet'
     ],

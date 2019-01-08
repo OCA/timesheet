@@ -1,15 +1,17 @@
 from odoo.addons.hr_timesheet_sheet_attendance.tests.\
     hr_timesheet_sheet_test_cases import HrTimesheetTestCases
 from odoo.exceptions import ValidationError, UserError
+from odoo import fields
 
 
 class TestHrAttendance(HrTimesheetTestCases):
 
     def setUp(self):
         super(TestHrAttendance, self).setUp()
+        checkInDate = '2018-12-12 10:00:00'
         self.attendance_1 = self._create_attendance(
             employee=self.employee,
-            checkIn='2018-12-12 10:00:00'
+            checkIn=fields.Datetime.from_string(checkInDate)
         )
 
     def test_00_compute_sheet_id(self):
@@ -45,8 +47,11 @@ class TestHrAttendance(HrTimesheetTestCases):
 
         # create attendance in confirmed timesheet
         with self.assertRaises(ValidationError):
+            checkInDate = '2018-12-12 13:35:00'
             self._create_attendance(
-                employee=self.employee, checkIn='2018-12-12 13:35:00')
+                employee=self.employee,
+                checkIn=fields.Datetime.from_string(checkInDate)
+            )
 
         # modify attendance in confirmed timesheet
         with self.assertRaises(ValidationError):
