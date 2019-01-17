@@ -72,7 +72,7 @@
                                         <field name="count_timesheets"/>
                                     </tree>
                                 </field>
-                                <group class="oe_edit_only">
+                                <group class="oe_edit_only" attrs="{'invisible': [('state', '!=', 'draft')]}">
                                     <field name="add_line_project_id" domain="[('company_id', '=', company_id), ('allow_timesheets', '=', True)]"/>
                                     <field name="add_line_task_id" attrs="{'invisible': [('add_line_project_id', '=', False)]}"
                                            context="{'default_project_id': add_line_project_id}"/>
