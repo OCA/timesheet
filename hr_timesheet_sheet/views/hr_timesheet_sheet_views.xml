@@ -25,9 +25,9 @@
             <form string="Timesheet Sheet">
                 <header>
                     <button name="action_timesheet_confirm" states="draft" string="Submit to Manager" type="object" class="oe_highlight"/>
-                    <button name="action_timesheet_done" states="confirm" string="Approve" type="object" groups="hr_timesheet.group_hr_timesheet_user" class="oe_highlight"/>
-                    <button name="action_timesheet_draft" states="done" string="Set to Draft" type="object" groups="hr_timesheet.group_hr_timesheet_user"/>
-                    <button name="action_timesheet_refuse" states="confirm" string="Refuse" type="object" groups="hr_timesheet.group_hr_timesheet_user"/>
+                    <button name="action_timesheet_done" states="confirm" string="Approve" type="object" groups="hr_timesheet.group_timesheet_manager" class="oe_highlight"/>
+                    <button name="action_timesheet_draft" states="done" string="Set to Draft" type="object" groups="hr_timesheet.group_timesheet_manager"/>
+                    <button name="action_timesheet_refuse" states="confirm" string="Refuse" type="object" groups="hr_timesheet.group_timesheet_manager"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
                 </header>
                 <sheet>
@@ -119,7 +119,7 @@
             <search string="Search Timesheet">
                 <field name="date_start"/>
                 <filter name="draft" string="In Draft" domain="[('state','=','draft')]" help="Unvalidated Timesheet Sheets"/>
-                <filter name="to_approve" string="To Approve" domain="[('state','=','confirm')]" help="Confirmed Timesheet Sheets"/>
+                <filter name="to_approve" string="To Approve" domain="[('state','=','confirm')]" help="Confirmed Timesheet Sheets" groups="hr_timesheet.group_timesheet_manager"/>
                 <filter string="Unread Messages" name="message_needaction" domain="[('message_needaction','=',True)]"/>
                 <field name="employee_id"/>
                 <field name="department_id"/>
@@ -179,10 +179,10 @@
         </field>
     </record>
 
-    <menuitem id="menu_hr_to_approve" name="To Approve" parent="hr_timesheet.timesheet_menu_root" sequence="7"/>
+    <menuitem id="menu_hr_to_approve" name="To Approve" parent="hr_timesheet.timesheet_menu_root" sequence="7" groups="hr_timesheet.group_timesheet_manager"/>
 
     <menuitem action="act_hr_timesheet_sheet_form" id="menu_act_hr_timesheet_sheet_form" parent="menu_hr_to_approve"
-         sequence="11" groups="hr_timesheet.group_hr_timesheet_user"/>
+         sequence="11"/>
 
         <!--
             account.analytic.line inheritancy
