@@ -9,20 +9,21 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-28 07:54+0000\n"
-"PO-Revision-Date: 2017-06-28 07:54+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-02-01 17:03+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: crm_timesheet
 #: field:crm.lead,analytic_account_id:0
 #: field:crm.phonecall,analytic_account_id:0
 msgid "Analytic account id"
-msgstr ""
+msgstr "Cuenta analítica ID"
 
 #. module: crm_timesheet
 #: code:addons/crm_timesheet/models/crm_phonecall.py:28
@@ -88,9 +89,9 @@ msgstr "Línea del parte de horas"
 #. module: crm_timesheet
 #: field:crm.lead,timesheet_ids:0 field:crm.phonecall,timesheet_ids:0
 msgid "Timesheet ids"
-msgstr ""
+msgstr "Partes de horas IDS"
 
 #. module: crm_timesheet
 #: view:crm.phonecall:crm_timesheet.crm_case_inbound_phone_tree_view
 msgid "{'required': [('analytic_account_id', '!=', False)]}"
-msgstr ""
+msgstr "'{'required': [('analytic_account_id', '!=', False)]}'"
