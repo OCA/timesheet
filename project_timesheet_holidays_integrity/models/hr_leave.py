@@ -9,6 +9,8 @@ class HrLeave(models.Model):
 
     @api.multi
     def action_restore_data_integrity_with_timesheets(self):
+        AccountAnalyticLine = self.env['account.analytic.line']
+
         def should_map_to_timesheets(leave):
             return leave.holiday_type == 'employee' and \
                 leave.holiday_status_id.timesheet_project_id and \
@@ -16,8 +18,9 @@ class HrLeave(models.Model):
 
         for leave in self.filtered(should_map_to_timesheets):
             if leave.timesheet_ids:
-                leave.timesheet_ids.write({'holiday_id': False})
-                leave.timesheet_ids.unlink()
+                timesheet_ids = leave.timesheet_ids
+                timesheet_ids.write({'holiday_id': False})
+                timesheet_ids.unlink()
 
             # create the timesheet on the vacation project
             holiday_project = leave.holiday_status_id.timesheet_project_id
@@ -33,7 +36,7 @@ class HrLeave(models.Model):
             )
             for index, (day_date, work_hours_count) in \
                     enumerate(work_hours_data):
-                self.env['account.analytic.line'].create({
+                AccountAnalyticLine.create({
                     'name': '%s (%s/%s)' % (
                         leave.holiday_status_id.name or '',
                         index + 1,

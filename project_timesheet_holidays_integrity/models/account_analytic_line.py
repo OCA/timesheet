@@ -31,9 +31,9 @@ class AccountAnalyticLine(models.Model):
                 if day_date != line.date:
                     continue
 
-                line.with_context({
-                    'skip_leave_integrity_check': True,
-                }).write({
+                line.with_context(
+                    skip_leave_integrity_check=True,
+                ).write({
                     'name': '%s (%s/%s)' % (
                         line.holiday_id.holiday_status_id.name or '',
                         index + 1,
