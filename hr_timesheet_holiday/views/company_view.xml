@@ -11,6 +11,7 @@
                 <page string="Human Resources">
                     <group name="timesheet">
                         <field name="timesheet_hours_per_day" widget="float_time"/>
+                        <field name="timesheet_holiday_use_calendar"/>
                     </group>
                 </page>
             </notebook>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="project_config_settings_form_view">
+        <field name="name">project.config.settings.form (in hr_timesheet_holiday)</field>
+        <field name="model">project.config.settings</field>
+         <field name="inherit_id" ref="project.view_config_settings"/>
+        <field name="arch" type="xml">
+            <group name="timesheets" position="inside">
+                <field name="timesheet_hours_per_day" widget="float_time" class="oe_inline"/>
+                <field name="timesheet_holiday_use_calendar"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>

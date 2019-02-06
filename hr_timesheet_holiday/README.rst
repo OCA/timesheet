@@ -27,8 +27,14 @@ Configuration
 
 To configure this module, you need to:
 
-#. Find your company in Settings - Companies and configure the amount of hours
-   per workday under Configuration - Timesheets - Timesheet Hours Per Day.
+#. Find your company in Settings - Companies and  under Configuration -
+   Timesheets:
+
+   * Configure the amount of hours per workday: "Timesheet Hours Per Day."
+   * If your also use calendar resource to define the working time of your
+     employee you can also tick the checkbox for "Use Employee Working Time
+     when creating timesheet"
+
 #. For each Leave Type under Human Resources - Leave Types, select a
    Project that allows timesheets or create one.
 
@@ -45,10 +51,6 @@ To use this module, you need to:
 Known issues / Roadmap
 ======================
 
-* Hours per workday should be configurable per employee, not only by company.
-  To make this easier, the function `_get_hours_per_day` was made which can be
-  overridden by child modules.
-* We should probably start using resource calendars.
 * hr_timesheet_sheet dependency can be changed to hr_timesheet, now only
   included because hr_timesheet_sheet adds the Timesheet configurations menu
   in Company view.
@@ -76,6 +78,7 @@ Contributors
 * Terrence Nzaywa <terrence@sunflowerweb.nl>
 * Holger Brunn <hbrunn@therp.nl>
 * Aaron Henriquez <ahenriquez@eficent.com>
+* Laurent Mignon <laurent.mignon@acsone.eu>
 
 Maintainer
 ----------

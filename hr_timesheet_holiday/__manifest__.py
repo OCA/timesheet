@@ -4,11 +4,12 @@
 
 {
     'name': 'HR Timesheet Holiday',
-    'version': '10.0.1.0.0',
+    'version': '10.0.2.0.0',
     'category': 'Generic Modules/Human Resources',
     'summary': """When holidays are granted, add lines to the analytic account
         that is linked to the Leave Type""",
-    'author': "Sunflower IT, Therp BV, Odoo Community Association (OCA)",
+    'author': "Sunflower IT, Therp BV, ACSONE SA/NV,"
+              "Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/hr-timesheet',
     'license': 'AGPL-3',
     'depends': [
@@ -17,6 +18,7 @@
         'hr_holidays_settings',
     ],
     'data': [
+        'views/project_config_settings.xml',
         'views/hr_holidays_view.xml',
         'views/company_view.xml',
     ],
