@@ -1,1 +1,2 @@
-This module allows to set task on timesheet as a mandatory field.
+This module allows to configure project as having task on timesheet as a
+mandatory field.
