@@ -1,20 +1,27 @@
 # Copyright 2018 ACSONE SA/NV
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, models, _
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 
 class AccountAnalyticLine(models.Model):
-
     _inherit = 'account.analytic.line'
+
+    is_task_required = fields.Boolean(
+        string='Is Task Required',
+        related='project_id.is_timesheet_task_required',
+    )
 
     @api.constrains(
         'project_id',
         'task_id',
+        'is_task_required',
     )
     def _check_timesheet_task(self):
-        for rec in self:
-            if rec.project_id and not rec.task_id:
+        for line in self:
+            if line.project_id and line.is_task_required and not line.task_id:
                 raise ValidationError(_(
-                    "You must specify a task for timesheet lines."))
+                    'You must specify a task for timesheet lines.'
+                ))

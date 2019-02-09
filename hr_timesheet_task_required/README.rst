@@ -25,7 +25,8 @@ Hr Timesheet Task Required
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows to set task on timesheet as a mandatory field.
+This module allows to configure project as having task on timesheet as a
+mandatory field.
 
 **Table of contents**
 
@@ -49,6 +50,7 @@ Authors
 ~~~~~~~
 
 * ACSONE SA/NV
+* Brainbean Apps
 
 Contributors
 ~~~~~~~~~~~~
