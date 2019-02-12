@@ -18,7 +18,7 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
                     <div class="o_setting_right_pane">
                         <label for="is_timesheet_task_required"/>
                         <div class="text-muted">
-                            Require task selection on each timesheet entry
+                            Require task selection on each timesheet entry by default
                         </div>
                     </div>
                 </div>

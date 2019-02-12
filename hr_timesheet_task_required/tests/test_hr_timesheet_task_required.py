@@ -18,10 +18,10 @@ class TestHrTimesheetTaskRequired(SavepointCase):
 
         cls.project_1 = cls.Project.create({
             'name': 'Project 1',
+            'is_timesheet_task_required': True,
         })
         cls.project_2 = cls.Project.create({
             'name': 'Project 2',
-            'is_timesheet_task_required': False,
         })
         cls.task_1_p1 = cls.ProjectTask.create({
             'name': 'Task 1-1',
