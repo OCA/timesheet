@@ -9,6 +9,4 @@ class ResCompany(models.Model):
 
     is_timesheet_task_required = fields.Boolean(
         string='Require Tasks on Timesheets',
-        required=True,
-        default=True,
     )
