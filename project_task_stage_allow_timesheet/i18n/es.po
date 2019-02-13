@@ -6,31 +6,35 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2019-02-13 16:24+0000\n"
+"Last-Translator: j-zaballa <jonzaballa@digital5.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: project_task_stage_allow_timesheet
 #: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_project_task_type_allow_timesheet
 msgid "Allow timesheets"
-msgstr ""
+msgstr "Permitir partes de horas"
 
 #. module: project_task_stage_allow_timesheet
 #: model:ir.model,name:project_task_stage_allow_timesheet.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Línea analítica"
 
 #. module: project_task_stage_allow_timesheet
 #: model:ir.model,name:project_task_stage_allow_timesheet.model_project_task_type
 msgid "Task Stage"
-msgstr ""
+msgstr "Etapa de tarea"
 
 #. module: project_task_stage_allow_timesheet
 #: code:addons/project_task_stage_allow_timesheet/models/account_analytic_line.py:22
 #, python-format
 msgid "You can't link a timesheet line to a task if its stage doesn't allow it. (Task: %s, Stage: %s)"
 msgstr ""
+"No puedes imputar horas en una tarea cuyo estado no lo permite. (Tarea: %s, "
+"Etapa: %s)"
