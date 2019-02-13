@@ -75,6 +75,7 @@ class Sheet(models.Model):
         default=lambda self: self._default_date_start(),
         required=True,
         index=True,
+        readonly=True,
         states={'draft': [('readonly', False)]},
     )
     date_end = fields.Date(
@@ -82,6 +83,7 @@ class Sheet(models.Model):
         default=lambda self: self._default_date_end(),
         required=True,
         index=True,
+        readonly=True,
         states={'draft': [('readonly', False)]},
     )
     timesheet_ids = fields.One2many(
@@ -97,6 +99,7 @@ class Sheet(models.Model):
         comodel_name='hr_timesheet.sheet.line',
         compute='_compute_line_ids',
         string='Timesheets',
+        readonly=True,
         states={
             'draft': [('readonly', False)],
         }
@@ -233,6 +236,17 @@ class Sheet(models.Model):
             self.department_id = self.employee_id.department_id
             self.user_id = self.employee_id.user_id
 
+    def _get_timesheet_sheet_lines_domain(self):
+        self.ensure_one()
+        domain = [
+            ('project_id', '!=', False),
+            ('date', '<=', self.date_end),
+            ('date', '>=', self.date_start),
+            ('employee_id', '=', self.employee_id.id),
+            ('company_id', '=', self.company_id.id),
+        ]
+        return domain
+
     @api.multi
     def _compute_line_ids(self):
         for sheet in self:
@@ -241,14 +255,7 @@ class Sheet(models.Model):
             dates = sheet._get_dates()
             if not dates:
                 continue
-            timesheets = self.env['account.analytic.line'].search([
-                ('project_id', '!=', False),
-                ('date', '<=', sheet.date_end),
-                ('date', '>=', sheet.date_start),
-                ('employee_id', '=', sheet.employee_id.id),
-                ('sheet_id', 'in', [sheet and sheet.id or False, False]),
-                ('company_id', '=', sheet.company_id.id),
-            ])
+            timesheets = sheet._get_timesheet_lines()
             lines = self.env['hr_timesheet.sheet.line']
             for date in dates:
                 for project in timesheets.mapped('project_id'):
@@ -270,9 +277,24 @@ class Sheet(models.Model):
                             ))
             sheet.line_ids = lines
 
+    def _get_timesheet_lines(self):
+        self.ensure_one()
+        if self.state == 'draft':
+            domain = self._get_timesheet_sheet_lines_domain()
+            timesheets = self.env['account.analytic.line'].search(domain)
+        else:
+            timesheets = self.timesheet_ids
+        return timesheets
+
     @api.onchange('date_start', 'date_end', 'timesheet_ids')
     def _onchange_dates_or_timesheets(self):
         self._compute_line_ids()
+
+    @api.onchange('line_ids')
+    def _onchange_line_ids(self):
+        if self.state == 'draft' and not self.timesheet_ids and self.line_ids:
+            timesheets = self._get_timesheet_lines()
+            self.timesheet_ids = timesheets
 
     @api.onchange('add_line_project_id')
     def onchange_add_project_id(self):
@@ -321,8 +343,8 @@ class Sheet(models.Model):
                       'you must link him/her to an user.'))
             self._check_sheet_date(forced_user_id=new_user_id)
         res = super(Sheet, self).write(vals)
-        if self.state == 'draft':
-            for rec in self:
+        for rec in self:
+            if rec.state == 'draft':
                 rec.delete_empty_lines(True)
         return res
 
@@ -356,6 +378,9 @@ class Sheet(models.Model):
                 _('Only an HR Officer or Manager can refuse sheets '
                   'or reset them to draft.'))
         self.write({'state': 'draft'})
+        domain = self._get_timesheet_sheet_lines_domain()
+        timesheets = self.env['account.analytic.line'].search(domain)
+        self.clean_timesheets(timesheets)
         return True
 
     @api.multi
@@ -467,11 +492,11 @@ class Sheet(models.Model):
                     self.env['account.analytic.line'].create(values)
 
     def clean_timesheets(self, timesheet):
-        if self.id:
+        if self.id and self.state == 'draft':
             for aal in timesheet.filtered(lambda a: not a.sheet_id):
                 aal.write({'sheet_id': self.id})
         repeated = timesheet.filtered(lambda t: t.name == "/")
-        if len(repeated) > 1:
+        if len(repeated) > 1 and self.id:
             timesheet = repeated.merge_timesheets()
         return timesheet
 
@@ -510,15 +535,6 @@ class Sheet(models.Model):
             elif 'state' in init_values and record.state == 'done':
                 return 'hr_timesheet_sheet.mt_timesheet_approved'
         return super(Sheet, self)._track_subtype(init_values)
-
-    @api.model
-    def _needaction_domain_get(self):
-        empids = self.env['hr.employee'].search(
-            [('parent_id.user_id', '=', self.env.uid)])
-        if not empids:
-            return False
-        return ['&', ('state', '=', 'confirm'),
-                ('employee_id', 'in', empids.ids)]
 
 
 class SheetLine(models.TransientModel):

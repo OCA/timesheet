@@ -195,11 +195,16 @@ class TestHrTimesheetSheet(TransactionCase):
             'company_id': self.user.company_id.id,
             'date_start': self.sheet_model._default_date_start(),
             'date_end': self.sheet_model._default_date_end(),
+            'state': 'draft',
         })
         sheet._onchange_dates_or_timesheets()
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertEqual(len(sheet.timesheet_ids), 0)
         self.assertTrue(self.aal_model.search([('id', '=', timesheet.id)]))
+
+        sheet._onchange_line_ids()
+        self.assertEqual(len(sheet.line_ids), 7)
+        self.assertEqual(len(sheet.timesheet_ids), 1)
 
         sheet = self.sheet_model.sudo(self.user).create(
             sheet._convert_to_write(sheet._cache))
@@ -412,6 +417,7 @@ class TestHrTimesheetSheet(TransactionCase):
             'company_id': self.user.company_id.id,
             'date_start': self.sheet_model._default_date_end(),
             'date_end': self.sheet_model._default_date_start(),
+            'state': 'draft',
         })
         sheet._onchange_dates_or_timesheets()
         self.assertEqual(len(sheet.line_ids), 0)
