@@ -1,10 +1,10 @@
 # Copyright 2018 Eficent
-# Copyright 2018 Brainbean Apps
+# Copyright 2018-2019 Brainbean Apps
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'HR Timesheet Sheet',
-    'version': '12.0.1.0.2',
+    'version': '12.0.1.0.3',
     'category': 'Human Resources',
     'sequence': 80,
     'summary': 'Timesheet Sheets, Activities',
