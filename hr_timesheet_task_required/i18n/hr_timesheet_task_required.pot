@@ -47,7 +47,7 @@ msgstr ""
 
 #. module: hr_timesheet_task_required
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.res_config_settings_view_form
-msgid "Require task selection on each timesheet entry"
+msgid "Require task selection on each timesheet entry by default"
 msgstr ""
 
 #. module: hr_timesheet_task_required
