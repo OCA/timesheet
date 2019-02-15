@@ -2,9 +2,13 @@
 # Copyright 2018-2019 Brainbean Apps
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import babel.dates
 import logging
+import re
+from datetime import datetime, time
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import (MONTHLY, WEEKLY)
+
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
 
@@ -345,8 +349,8 @@ class Sheet(models.Model):
     @api.multi
     def name_get(self):
         # week number according to ISO 8601 Calendar
-        return [(r['id'], _('Week ') + str(
-            r['date_start'].isocalendar()[1]))
+        return [(r['id'], _('Week %s') % (str(
+            r['date_start'].isocalendar()[1])))
             for r in self.sudo().read(['date_start'], load='_classic_write')]
         # It's a cheesy name because you may have ranges different of weeks.
 
@@ -416,7 +420,14 @@ class Sheet(models.Model):
             sheet.add_line_project_id = False
 
     def _get_date_name(self, date):
-        return date.strftime("%a\n%b %d")
+        name = babel.dates.format_skeleton(
+            skeleton='MMMEd',
+            datetime=datetime.combine(date, time.min),
+            locale=self.env.context.get('lang') or 'en_US',
+        )
+        name = re.sub(r'(\s*[^\w\d\s])\s+', r'\1\n', name)
+        name = re.sub(r'([\w\d])\s([\w\d])', u'\\1\u00A0\\2', name)
+        return name
 
     def _get_dates(self):
         start = self.date_start
@@ -432,10 +443,10 @@ class Sheet(models.Model):
         return dates
 
     def _get_line_name(self, project, task=None):
-        name = '{}'.format(project.name)
         if task:
-            name += ' - {}'.format(task.name)
-        return name
+            return '%s - %s' % (project.name, task.name)
+
+        return project.name
 
     def _get_new_line_name(self):
         return self._get_line_name(
