@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo12-addon-hr_timesheet_role',
         'odoo12-addon-hr_timesheet_sheet',
         'odoo12-addon-hr_timesheet_task_required',
+        'odoo12-addon-hr_utilization_analysis',
         'odoo12-addon-hr_utilization_report',
     ],
     classifiers=[
