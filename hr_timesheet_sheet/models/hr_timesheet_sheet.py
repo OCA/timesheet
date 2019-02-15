@@ -361,7 +361,7 @@ class Sheet(models.Model):
         analytic_timesheet_toremove = self.env['account.analytic.line']
         for sheet in self:
             analytic_timesheet_toremove += \
-                sheet.timesheet_ids.filtered(lambda t: not t.task_id)
+                sheet.timesheet_ids.filtered(lambda t: t.name == '/')
         analytic_timesheet_toremove.unlink()
         return super().unlink()
 
