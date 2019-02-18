@@ -260,26 +260,47 @@ class Sheet(models.Model):
             dates = sheet._get_dates()
             if not dates:
                 continue
-            timesheets = sheet._get_timesheet_lines()
+            all_timesheets = sheet._get_timesheet_lines()
+            all_lines = self.line_ids
             lines = self.env['hr_timesheet.sheet.line']
+            projects = all_timesheets.mapped('project_id')
             for date in dates:
-                for project in timesheets.mapped('project_id'):
-                    timesheet = timesheets.filtered(
+                for project in projects:
+                    timesheets_pr = all_timesheets.filtered(
                         lambda x: (x.project_id == project))
-                    tasks = [task for task in timesheet.mapped('task_id')]
-                    if not timesheet or not all(
-                            [t.task_id for t in timesheet]):
+                    tasks = [task for task in timesheets_pr.mapped('task_id')]
+                    if not timesheets_pr or not all(
+                            [t.task_id for t in timesheets_pr]):
                         tasks += [self.env['project.task']]
                     for task in tasks:
-                        lines |= self.env['hr_timesheet.sheet.line'].create(
-                            sheet._get_default_sheet_line(
+                        timesheets = all_timesheets.filtered(
+                            lambda t: date == t.date
+                            and t.project_id.id == project.id
+                            and t.task_id.id == task.id)
+                        line = all_lines.filtered(
+                            lambda t: date == t.date
+                            and t.project_id.id == project.id
+                            and t.task_id.id == task.id)
+                        if not line:
+                            values = sheet._get_default_sheet_line(
                                 date=date,
                                 project=project,
                                 task=task,
-                                timesheets=timesheet.filtered(
-                                    lambda t: date == t.date
-                                    and t.task_id.id == task.id),
-                            ))
+                                timesheets=timesheets,
+                            )
+                            new_line = self.env['hr_timesheet.sheet.line'].\
+                                create(values)
+                            new_line.count_timesheets = \
+                                len(timesheets.exists())
+                            lines |= new_line
+                            all_timesheets = all_timesheets.exists()
+                        else:
+                            unit_amount = sum(
+                                [t.unit_amount for t in timesheets])
+                            if line.unit_amount != unit_amount and timesheets:
+                                line.unit_amount = unit_amount
+                            line.count_timesheets = len(timesheets)
+                            lines |= line
             sheet.line_ids = lines
 
     def _get_timesheet_lines(self):
@@ -452,7 +473,10 @@ class Sheet(models.Model):
 
     def _get_default_sheet_line(self, date, project, task, timesheets=None):
         name_y = self._get_line_name(project, task)
-        timesheet = self.clean_timesheets(timesheets)
+        if timesheets:
+            timesheet = self.clean_timesheets(timesheets)
+        else:
+            timesheet = self.env['account.analytic.line']
         values = {
             'value_x': self._get_date_name(date),
             'value_y': name_y,
