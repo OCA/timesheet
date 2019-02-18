@@ -67,6 +67,8 @@
                                         <field name="project_id"/>
                                         <field name="task_id"/>
                                         <field name="count_timesheets"/>
+                                        <field name="company_id"/>
+                                        <field name="employee_id"/>
                                     </tree>
                                 </field>
                                 <group class="oe_edit_only" attrs="{'invisible': [('state', '!=', 'draft')]}">

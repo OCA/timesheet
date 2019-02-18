@@ -245,7 +245,8 @@ class Sheet(models.Model):
             ('date', '<=', self.date_end),
             ('date', '>=', self.date_start),
             ('employee_id', '=', self.employee_id.id),
-            ('company_id', '=', self.company_id.id),
+            # ('company_id', '=', self.company_id.id),
+            # company_id is related, and fails the search
         ]
         return domain
 
@@ -281,11 +282,11 @@ class Sheet(models.Model):
 
     def _get_timesheet_lines(self):
         self.ensure_one()
+        timesheets = self.timesheet_ids
         if self.state == 'draft':
             domain = self._get_timesheet_sheet_lines_domain()
-            timesheets = self.env['account.analytic.line'].search(domain)
-        else:
-            timesheets = self.timesheet_ids
+            timesheets |= self.env['account.analytic.line'].search(domain).\
+                filtered(lambda aal: aal.company_id == self.company_id)
         return timesheets
 
     @api.onchange('date_start', 'date_end', 'timesheet_ids')
@@ -451,6 +452,8 @@ class Sheet(models.Model):
             'task_id': task and task.id,
             'count_timesheets': len(timesheet),
             'unit_amount': 0.0,
+            'employee_id': self.employee_id.id,
+            'company_id': self.company_id.id,
         }
         if self.id:
             values.update({
@@ -566,6 +569,14 @@ class SheetLine(models.TransientModel):
     count_timesheets = fields.Integer(
         default=0,
     )
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        string='Company',
+    )
+    employee_id = fields.Many2one(
+        comodel_name='hr.employee',
+        string='Employee',
+    )
 
     @api.onchange('unit_amount')
     def onchange_unit_amount(self):
@@ -657,11 +668,11 @@ class SheetLine(models.TransientModel):
         task = self.task_id.id if self.task_id else False
         return {
             'name': empty_name,
-            'employee_id': self.sheet_id.employee_id.id,
+            'employee_id': self.employee_id.id,
             'date': self.date,
             'project_id': self.project_id.id,
             'task_id': task,
             'sheet_id': self.sheet_id.id,
             'unit_amount': amount,
-            'company_id': self.sheet_id.company_id.id,
+            'company_id': self.company_id.id,
         }
