@@ -267,11 +267,11 @@ class Sheet(models.Model):
                         tasks += [self.env['project.task']]
                     for task in tasks:
                         lines |= self.env['hr_timesheet.sheet.line'].create(
-                            sheet._get_default_analytic_line(
+                            sheet._get_default_sheet_line(
                                 date=date,
                                 project=project,
                                 task=task,
-                                timesheet=timesheet.filtered(
+                                timesheets=timesheet.filtered(
                                     lambda t: date == t.date
                                     and t.task_id.id == task.id),
                             ))
@@ -441,9 +441,9 @@ class Sheet(models.Model):
             name += ' - {}'.format(task.name)
         return name
 
-    def _get_default_analytic_line(self, date, project, task, timesheet=None):
+    def _get_default_sheet_line(self, date, project, task, timesheets=None):
         name_y = self._get_line_name(project, task)
-        timesheet = self.clean_timesheets(timesheet)
+        timesheet = self.clean_timesheets(timesheets)
         values = {
             'value_x': self._get_date_name(date),
             'value_y': name_y,
@@ -458,9 +458,9 @@ class Sheet(models.Model):
                 'sheet_id': self.id,
             })
         if timesheet:
-            amount = sum([t.unit_amount for t in timesheet])
+            unit_amount = sum([t.unit_amount for t in timesheet])
             values.update({
-                'unit_amount': amount,
+                'unit_amount': unit_amount,
             })
         return values
 
@@ -491,16 +491,16 @@ class Sheet(models.Model):
                 self.timesheet_ids |= \
                     self.env['account.analytic.line'].create(values)
 
-    def clean_timesheets(self, timesheet):
+    def clean_timesheets(self, timesheets):
         if self.id and self.state == 'draft':
-            for aal in timesheet.filtered(lambda a: not a.sheet_id):
+            for aal in timesheets.filtered(lambda a: not a.sheet_id):
                 aal.write({'sheet_id': self.id})
-        repeated = timesheet.filtered(lambda t: t.name == "/")
+        repeated = timesheets.filtered(lambda t: t.name == "/")
         if len(repeated) > 1 and self.id:
-            timesheet = repeated.merge_timesheets()
-        return timesheet
+            return repeated.merge_timesheets()
+        return timesheets
 
-    def delete_empty_lines(self, allow_empty_rows=False):
+    def delete_empty_lines(self, delete_empty_rows=False):
         for name in self.line_ids.mapped('value_y'):
             row = self.line_ids.filtered(lambda l: l.value_y == name)
             if row:
@@ -514,7 +514,7 @@ class Sheet(models.Model):
                     ('sheet_id', '=', self.id),
                     ('company_id', '=', self.company_id.id),
                 ])
-                if allow_empty_rows and self.add_line_project_id:
+                if delete_empty_rows and self.add_line_project_id:
                     check = any([l.unit_amount for l in row])
                 else:
                     check = not all([l.unit_amount for l in row])
