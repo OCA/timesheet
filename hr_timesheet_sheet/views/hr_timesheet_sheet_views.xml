@@ -79,6 +79,7 @@
                                             type="object"
                                             string="Add new line"
                                             class="oe_highlight"
+                                            attrs="{'invisible': [('add_line_project_id', '=', False)]}"
                                     />
                                 </group>
                             </group>

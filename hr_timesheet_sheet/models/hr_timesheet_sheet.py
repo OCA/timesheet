@@ -332,7 +332,6 @@ class Sheet(models.Model):
                       'you must link him/her to an user.'))
         res = super(Sheet, self).create(vals)
         res.write({'state': 'draft'})
-        self.delete_empty_lines(True)
         return res
 
     @api.multi
@@ -348,7 +347,8 @@ class Sheet(models.Model):
         res = super(Sheet, self).write(vals)
         for rec in self:
             if rec.state == 'draft':
-                rec.delete_empty_lines(True)
+                if 'add_line_project_id' not in vals:
+                    rec.delete_empty_lines(True)
         return res
 
     @api.multi
@@ -513,7 +513,9 @@ class Sheet(models.Model):
                     ('sheet_id', '=', self.id),
                     ('company_id', '=', self.company_id.id),
                 ])
-                if delete_empty_rows and self.add_line_project_id:
+                if delete_empty_rows and \
+                        self.add_line_project_id == row[0].project_id \
+                        and self.add_line_task_id == row[0].task_id:
                     check = any([l.unit_amount for l in row])
                 else:
                     check = not all([l.unit_amount for l in row])
@@ -521,6 +523,8 @@ class Sheet(models.Model):
                     ts_row.filtered(
                         lambda t: t.name == empty_name and not t.unit_amount
                     ).unlink()
+                    if not ts_row.exists() and delete_empty_rows:
+                        row.unlink()
 
     # ------------------------------------------------
     # OpenChatter methods and notifications
