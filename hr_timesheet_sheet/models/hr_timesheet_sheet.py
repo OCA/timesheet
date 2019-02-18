@@ -617,22 +617,22 @@ class SheetLine(models.TransientModel):
                             self.count_timesheets = len(
                                 self.sheet_id.timesheet_ids)
                         if new_ts.unit_amount + diff_amount >= 0.0:
-                            new_ts.unit_amount += diff_amount
+                            if diff_amount != 0.0:
+                                new_ts.unit_amount += diff_amount
                             if not new_ts.unit_amount:
                                 new_ts.unlink()
                                 self.count_timesheets -= 1
                         else:
-                            amount = self.unit_amount - new_ts.unit_amount
+                            diff_amount += new_ts.unit_amount
                             new_ts.write({'unit_amount': 0.0})
                             new_ts.unlink()
                             self.count_timesheets -= 1
-                            self._diff_amount_timesheets(amount, other_ts)
+                            self._diff_amount_timesheets(diff_amount, other_ts)
                     else:
                         if diff_amount > 0.0:
                             self._create_timesheet(diff_amount)
                         else:
-                            amount = self.unit_amount
-                            self._diff_amount_timesheets(amount, other_ts)
+                            self._diff_amount_timesheets(diff_amount, other_ts)
                 else:
                     raise ValidationError(
                         _('Error code: Cannot have 0 timesheets.'))
@@ -643,14 +643,14 @@ class SheetLine(models.TransientModel):
             self.count_timesheets += 1
 
     @api.model
-    def _diff_amount_timesheets(self, amount, timesheets):
+    def _diff_amount_timesheets(self, diff_amount, timesheets):
         for timesheet in timesheets:
-            diff_amount = timesheet.unit_amount - amount
-            if diff_amount >= 0.0:
-                timesheet.unit_amount = diff_amount
+            if timesheet.unit_amount + diff_amount >= 0.0:
+                if diff_amount != 0.0:
+                    timesheet.unit_amount += diff_amount
                 break
             else:
-                amount -= timesheet.unit_amount
+                diff_amount += timesheet.unit_amount
                 timesheet.write({'unit_amount': 0.0})
 
     @api.model
