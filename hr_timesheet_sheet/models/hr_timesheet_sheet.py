@@ -101,7 +101,7 @@ class Sheet(models.Model):
         states={
             'new': [('readonly', False)],
             'draft': [('readonly', False)],
-        }
+        },
     )
     line_ids = fields.One2many(
         comodel_name='hr_timesheet.sheet.line',
@@ -111,7 +111,7 @@ class Sheet(models.Model):
         states={
             'new': [('readonly', False)],
             'draft': [('readonly', False)],
-        }
+        },
     )
     state = fields.Selection([
         ('new', 'New'),
@@ -322,7 +322,6 @@ class Sheet(models.Model):
                       'you must link him/her to an user.'))
         res = super(Sheet, self).create(vals)
         res.write({'state': 'draft'})
-        self.delete_empty_lines(True)
         return res
 
     @api.multi
@@ -338,7 +337,8 @@ class Sheet(models.Model):
         res = super(Sheet, self).write(vals)
         for rec in self:
             if rec.state == 'draft':
-                rec.delete_empty_lines(True)
+                if 'add_line_project_id' not in vals:
+                    rec.delete_empty_lines(True)
         return res
 
     @api.multi
@@ -405,8 +405,8 @@ class Sheet(models.Model):
         for rec in self:
             if rec.state in ['new', 'draft']:
                 rec.add_line(rec.add_line_project_id, rec.add_line_task_id)
-                rec.add_line_task_id = False
-                rec.add_line_project_id = False
+                rec.write(
+                    {'add_line_project_id': False, 'add_line_task_id': False})
 
     def _get_date_name(self, date):
         return fields.Date.from_string(date).strftime("%a\n%b %d")
@@ -486,11 +486,14 @@ class Sheet(models.Model):
         for name in self.line_ids.mapped('value_y'):
             row = self.line_ids.filtered(lambda l: l.value_y == name)
             if row:
+                row_0 = fields.first(row)
                 ts_row = self.timesheet_ids.filtered(
-                    lambda x: x.project_id.id == row[0].project_id.id
-                    and x.task_id.id == row[0].task_id.id
+                    lambda x: x.project_id.id == row_0.project_id.id
+                    and x.task_id.id == row_0.task_id.id
                 )
-                if delete_empty_rows and self.add_line_project_id:
+                is_add_line = self.add_line_project_id == row_0.project_id \
+                    and self.add_line_task_id == row_0.task_id
+                if delete_empty_rows and is_add_line:
                     check = any([l.unit_amount for l in row])
                 else:
                     check = not all([l.unit_amount for l in row])
@@ -498,6 +501,8 @@ class Sheet(models.Model):
                     ts_row.filtered(
                         lambda t: t.name == empty_name and not t.unit_amount
                     ).unlink()
+                    if not ts_row.exists() and delete_empty_rows:
+                        row.unlink()
 
     # ------------------------------------------------
     # OpenChatter methods and notifications
