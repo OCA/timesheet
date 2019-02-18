@@ -15,7 +15,7 @@
                 <field name="date_end"/>
                 <field name="department_id" invisible="1"/>
                 <field name="state"/>
-                <field name="total_time"/>
+                <field name="total_time" widget="float_time"/>
                 <field name="message_needaction" invisible="1"/>
             </tree>
         </field>
