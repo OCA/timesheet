@@ -99,8 +99,10 @@ class Sheet(models.Model):
     )
     line_ids = fields.One2many(
         comodel_name='hr_timesheet.sheet.line',
+        inverse_name='sheet_id',
         compute='_compute_line_ids',
         string='Timesheets',
+        store=True,
         readonly=True,
         states={
             'draft': [('readonly', False)],
@@ -330,7 +332,12 @@ class Sheet(models.Model):
                 raise UserError(
                     _('In order to create a sheet for this employee, '
                       'you must link him/her to an user.'))
+        line_ids = self.env['hr_timesheet.sheet.line']
+        if 'line_ids' in vals:
+            for val in vals['line_ids']:
+                line_ids |= line_ids.browse(val[1])
         res = super(Sheet, self).create(vals)
+        line_ids.write({'sheet_id': res.id})
         res.write({'state': 'draft'})
         return res
 
