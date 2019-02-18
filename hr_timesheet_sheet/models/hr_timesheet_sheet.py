@@ -347,6 +347,8 @@ class Sheet(models.Model):
         res = super(Sheet, self).write(vals)
         for rec in self:
             if rec.state == 'draft':
+                if 'timesheet_ids' not in vals:
+                    rec.update_timesheets_according_lines()
                 if 'add_line_project_id' not in vals:
                     rec.delete_empty_lines(True)
         return res
@@ -489,6 +491,7 @@ class Sheet(models.Model):
             if name_line not in self.line_ids.mapped('value_y'):
                 self.timesheet_ids |= \
                     self.env['account.analytic.line'].create(values)
+                self._compute_line_ids()
 
     def clean_timesheets(self, timesheets):
         if self.id and self.state == 'draft':
@@ -525,6 +528,68 @@ class Sheet(models.Model):
                     ).unlink()
                     if not ts_row.exists() and delete_empty_rows:
                         row.unlink()
+
+    def update_timesheets_according_lines(self):
+        """This method updates timesheets according
+        the values of the timesheet lines."""
+        for line in self.line_ids:
+            if line.unit_amount and not line.count_timesheets:
+                line._create_timesheet(line.unit_amount)
+            elif line.count_timesheets:
+                timesheets = self.timesheet_ids.filtered(
+                    lambda t: t.project_id == line.project_id
+                    and t.task_id == line.task_id and t.date == line.date
+                )
+                if timesheets and len(timesheets) != line.count_timesheets:
+                    _logger.info('Found timesheets %s, expected %s',
+                                 len(timesheets), line.count_timesheets)
+                    line.count_timesheets = len(timesheets)
+                    line.unit_amount = sum([t.unit_amount for t in timesheets])
+                if not self.id:
+                    continue
+                if self.add_line_project_id:
+                    continue
+                if not line.unit_amount:
+                    new_ts = timesheets.filtered(lambda t: t.name == '/')
+                    other_ts = timesheets.filtered(lambda t: t.name != '/')
+                    if new_ts:
+                        new_ts.unlink()
+                    for timesheet in other_ts:
+                        timesheet.write({'unit_amount': 0.0})
+                    line.count_timesheets = len(other_ts)
+                else:
+                    if line.count_timesheets > 0:
+                        amount = sum([t.unit_amount for t in timesheets])
+                        new_ts = timesheets.filtered(lambda t: t.name == '/')
+                        other_ts = timesheets.filtered(lambda t: t.name != '/')
+                        diff_amount = line.unit_amount - amount
+                        if new_ts:
+                            if len(new_ts) > 1:
+                                new_ts = new_ts.merge_timesheets()
+                                line.count_timesheets = len(
+                                    line.sheet_id.timesheet_ids)
+                            if new_ts.unit_amount + diff_amount >= 0.0:
+                                if diff_amount != 0.0:
+                                    new_ts.unit_amount += diff_amount
+                                if not new_ts.unit_amount:
+                                    new_ts.unlink()
+                                    line.count_timesheets -= 1
+                            else:
+                                diff_amount += new_ts.unit_amount
+                                new_ts.write({'unit_amount': 0.0})
+                                new_ts.unlink()
+                                line.count_timesheets -= 1
+                                line._diff_amount_timesheets(
+                                    diff_amount, other_ts)
+                        else:
+                            if diff_amount > 0.0:
+                                line._create_timesheet(diff_amount)
+                            else:
+                                line._diff_amount_timesheets(
+                                    diff_amount, other_ts)
+                    else:
+                        raise ValidationError(
+                            _('Error code: Cannot have 0 timesheets.'))
 
     # ------------------------------------------------
     # OpenChatter methods and notifications
@@ -584,72 +649,10 @@ class SheetLine(models.TransientModel):
 
     @api.onchange('unit_amount')
     def onchange_unit_amount(self):
-        """This method is called when filling a cell of the matrix.
-        It checks if there exists timesheets associated  to that cell.
-        If yes, it does several comparisons to see if the unit_amount of
-        the timesheets should be updated accordingly."""
+        """This method is called when filling a cell of the matrix."""
         self.ensure_one()
         if self.unit_amount < 0.0:
             self.write({'unit_amount': 0.0})
-        if self.unit_amount and not self.count_timesheets:
-            self._create_timesheet(self.unit_amount)
-        elif self.count_timesheets:
-            task = self.task_id and self.task_id.id or False
-            timesheets = self.env['account.analytic.line'].search([
-                ('project_id', '=', self.project_id.id),
-                ('task_id', '=', task),
-                ('date', '=', self.date),
-                ('employee_id', '=', self.sheet_id.employee_id.id),
-                ('sheet_id', '=', self.sheet_id.id),
-                ('company_id', '=', self.sheet_id.company_id.id),
-            ])
-            if len(timesheets) != self.count_timesheets:
-                _logger.info('Found timesheets %s, expected %s',
-                             len(timesheets), self.count_timesheets)
-                self.count_timesheets = len(timesheets)
-            if not self.unit_amount:
-                new_ts = timesheets.filtered(lambda t: t.name == empty_name)
-                other_ts = timesheets.filtered(lambda t: t.name != empty_name)
-                if new_ts:
-                    new_ts.unlink()
-                for timesheet in other_ts:
-                    timesheet.write({'unit_amount': 0.0})
-                self.count_timesheets = len(other_ts)
-            else:
-                if self.count_timesheets == 1:
-                    timesheets.write({'unit_amount': self.unit_amount})
-                elif self.count_timesheets > 1:
-                    amount = sum([t.unit_amount for t in timesheets])
-                    new_ts = timesheets.filtered(
-                        lambda t: t.name == empty_name)
-                    other_ts = timesheets.filtered(
-                        lambda t: t.name != empty_name)
-                    diff_amount = self.unit_amount - amount
-                    if new_ts:
-                        if len(new_ts) > 1:
-                            new_ts = new_ts.merge_timesheets()
-                            self.count_timesheets = len(
-                                self.sheet_id.timesheet_ids)
-                        if new_ts.unit_amount + diff_amount >= 0.0:
-                            if diff_amount != 0.0:
-                                new_ts.unit_amount += diff_amount
-                            if not new_ts.unit_amount:
-                                new_ts.unlink()
-                                self.count_timesheets -= 1
-                        else:
-                            diff_amount += new_ts.unit_amount
-                            new_ts.write({'unit_amount': 0.0})
-                            new_ts.unlink()
-                            self.count_timesheets -= 1
-                            self._diff_amount_timesheets(diff_amount, other_ts)
-                    else:
-                        if diff_amount > 0.0:
-                            self._create_timesheet(diff_amount)
-                        else:
-                            self._diff_amount_timesheets(diff_amount, other_ts)
-                else:
-                    raise ValidationError(
-                        _('Error code: Cannot have 0 timesheets.'))
 
     def _create_timesheet(self, amount):
         values = self._line_to_timesheet(amount)

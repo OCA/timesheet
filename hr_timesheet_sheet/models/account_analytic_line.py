@@ -28,6 +28,12 @@ class AccountAnalyticLine(models.Model):
             if timesheet.sheet_id != sheet:
                 timesheet.sheet_id = sheet
 
+    @api.onchange('unit_amount')
+    def onchange_unit_amount(self):
+        self.ensure_one()
+        if self.project_id and self.unit_amount < 0.0:
+            self.write({'unit_amount': 0.0})
+
     @api.model
     def create(self, values):
         res = super(AccountAnalyticLine, self).create(values)
