@@ -105,8 +105,10 @@ class Sheet(models.Model):
     )
     line_ids = fields.One2many(
         comodel_name='hr_timesheet.sheet.line',
+        inverse_name='sheet_id',
         compute='_compute_line_ids',
         string='Timesheets',
+        store=True,  # hack: avoid creation of lines when already have ones
         readonly=True,
         states={
             'new': [('readonly', False)],
@@ -147,6 +149,11 @@ class Sheet(models.Model):
     total_time = fields.Float(
         compute='_compute_total_time',
         store=True,
+    )
+    _dummy_field = fields.Boolean(
+        compute='_compute_dummy_field',
+        store=False,
+        # hack: needed to force recompute "stored" lines
     )
 
     @api.depends('timesheet_ids.unit_amount')
@@ -247,6 +254,13 @@ class Sheet(models.Model):
         ]
 
     @api.multi
+    def _compute_dummy_field(self):
+        for sheet in self:
+            sheet._dummy_field = False
+        self._compute_line_ids()
+
+    @api.multi
+    @api.depends()
     def _compute_line_ids(self):
         for sheet in self:
             if not all([sheet.date_start, sheet.date_end]):
@@ -322,7 +336,11 @@ class Sheet(models.Model):
                 raise UserError(
                     _('In order to create a sheet for this employee, '
                       'you must link him/her to an user.'))
+        line_ids = self.env['hr_timesheet.sheet.line']
+        for val in vals.get('line_ids', []):
+            line_ids |= line_ids.browse(val[1])
         res = super(Sheet, self).create(vals)
+        line_ids.write({'sheet_id': res.id})
         res.write({'state': 'draft'})
         return res
 

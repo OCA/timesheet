@@ -44,6 +44,7 @@
                             <field name="name" invisible="1"/>
                             <field name="department_id" invisible="1"/>
                             <field name="company_id" groups="base.group_multi_company" force_save="1"/>
+                            <field name="_dummy_field" invisible="1"/>
                         </group>
                     </group>
                     <notebook>
