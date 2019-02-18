@@ -471,9 +471,9 @@ class Sheet(models.Model):
                 'task_id': task.id,
             }
             lines |= self.env['hr_timesheet.sheet.line'].create(
-                self._get_default_analytic_line(
+                self._get_default_sheet_line(
                     values=values,
-                    timesheet=timesheet.filtered(
+                    timesheets=timesheet.filtered(
                         lambda t: date == t.date
                         and t.task_id.id == task.id),
                 )
@@ -481,24 +481,20 @@ class Sheet(models.Model):
 
         return lines
 
-    def _get_default_analytic_line(
-            self,
-            values,
-            timesheet=None):
-
-        timesheet = self.clean_timesheets(timesheet)
+    def _get_default_sheet_line(self, values, timesheets=None):
+        timesheets = self.clean_timesheets(timesheets)
         values.update({
-            'count_timesheets': len(timesheet),
+            'count_timesheets': len(timesheets),
             'unit_amount': 0.0,
         })
         if self.id:
             values.update({
                 'sheet_id': self.id,
             })
-        if timesheet:
-            amount = sum([t.unit_amount for t in timesheet])
+        if timesheets:
+            unit_amount = sum([t.unit_amount for t in timesheets])
             values.update({
-                'unit_amount': amount,
+                'unit_amount': unit_amount,
             })
         return values
 
@@ -526,16 +522,16 @@ class Sheet(models.Model):
                 self.timesheet_ids |= \
                     self.env['account.analytic.line'].create(values)
 
-    def clean_timesheets(self, timesheet):
+    def clean_timesheets(self, timesheets):
         if self.id and self.state == 'draft':
-            for aal in timesheet.filtered(lambda a: not a.sheet_id):
+            for aal in timesheets.filtered(lambda a: not a.sheet_id):
                 aal.write({'sheet_id': self.id})
-        repeated = timesheet.filtered(lambda t: t.name == empty_name)
+        repeated = timesheets.filtered(lambda t: t.name == empty_name)
         if len(repeated) > 1 and self.id:
-            timesheet = repeated.merge_timesheets()
-        return timesheet
+            return repeated.merge_timesheets()
+        return timesheets
 
-    def delete_empty_lines(self, allow_empty_rows=False):
+    def delete_empty_lines(self, delete_empty_rows=False):
         for name in self.line_ids.mapped('value_y'):
             row = self.line_ids.filtered(lambda l: l.value_y == name)
             if row:
@@ -548,7 +544,7 @@ class Sheet(models.Model):
                     ('sheet_id', '=', self.id),
                     ('company_id', '=', self.company_id.id),
                 ])
-                if allow_empty_rows and self.add_line_project_id:
+                if delete_empty_rows and self.add_line_project_id:
                     check = any([l.unit_amount for l in row])
                 else:
                     check = not all([l.unit_amount for l in row])
