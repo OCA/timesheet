@@ -267,9 +267,22 @@ class Sheet(models.Model):
                 continue
             matrix = sheet._get_data_matrix()
             lines = self.env['hr_timesheet.sheet.line']
+            all_lines = self.line_ids
             for item in sorted(matrix, key=lambda l: self._sort_matrix(l)):
-                vals = sheet._get_default_sheet_line(matrix, item)
-                lines |= self.env['hr_timesheet.sheet.line'].create(vals)
+                line = all_lines.filtered(
+                    lambda l: l.date == item[0]
+                    and l.project_id == item[1]
+                    and l.task_id == item[2]
+                )
+                if not line:
+                    vals = sheet._get_default_sheet_line(matrix, item)
+                    lines |= self.env['hr_timesheet.sheet.line'].create(vals)
+                else:
+                    unit_amount = sum(
+                        [t.unit_amount for t in matrix[item]])
+                    if line.unit_amount != unit_amount and matrix[item]:
+                        line.unit_amount = unit_amount
+                    lines |= line
                 sheet.clean_timesheets(matrix[item])
             sheet.line_ids = lines
 
@@ -284,7 +297,7 @@ class Sheet(models.Model):
             data_key = (line.date, line.project_id, line.task_id)
             if data_key not in matrix:
                 matrix[data_key] = empty_line
-            matrix[data_key] += line
+            matrix[data_key] |= line
         for date in self._get_dates():
             for item in matrix.copy():
                 if (date, item[1], item[2]) not in matrix:
