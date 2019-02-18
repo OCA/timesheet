@@ -438,6 +438,8 @@ class Sheet(models.Model):
             'project_id': item[1].id,
             'task_id': item[2].id,
             'unit_amount': sum(t.unit_amount for t in matrix[item]),
+            'employee_id': self.employee_id.id,
+            'company_id': self.company_id.id,
         }
         if self.id:
             values.update({'sheet_id': self.id})
@@ -541,6 +543,14 @@ class SheetLine(models.TransientModel):
         string="Quantity",
         default=0.0,
     )
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        string='Company',
+    )
+    employee_id = fields.Many2one(
+        comodel_name='hr.employee',
+        string='Employee',
+    )
 
     @api.onchange('unit_amount')
     def onchange_unit_amount(self):
@@ -584,11 +594,11 @@ class SheetLine(models.TransientModel):
     def _line_to_timesheet(self, amount):
         return {
             'name': empty_name,
-            'employee_id': self.sheet_id.employee_id.id,
+            'employee_id': self.employee_id.id,
             'date': self.date,
             'project_id': self.project_id.id,
             'task_id': self.task_id.id,
             'sheet_id': self.sheet_id.id,
             'unit_amount': amount,
-            'company_id': self.sheet_id.company_id.id,
+            'company_id': self.company_id.id,
         }

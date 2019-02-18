@@ -56,7 +56,7 @@
                                        field_value="unit_amount"
                                        x_axis_clickable="0"
                                        y_axis_clickable="1">
-                                    <!-- Well this is embarassing... we need to set a huge limit for records to be fetched in
+                                    <!-- Well this is embarrassing... we need to set a huge limit for records to be fetched in
                                     order to make sure that all rows are going to be displayed. At least until we find a method to
                                     dynamically define the limit.-->
                                     <tree limit="1000000">
@@ -67,6 +67,8 @@
                                         <field name="date"/>
                                         <field name="project_id"/>
                                         <field name="task_id"/>
+                                        <field name="company_id"/>
+                                        <field name="employee_id"/>
                                     </tree>
                                 </field>
                                 <group class="oe_edit_only" attrs="{'invisible': [('state', 'not in', ['new', 'draft'])]}">
@@ -90,6 +92,9 @@
                                     <field name="name"/>
                                     <field name="unit_amount" widget="float_time" string="Hours" sum="Hours"/>
                                     <field name="user_id" invisible="1"/>
+                                    <field name="sheet_id" invisible="1"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="employee_id" invisible="1"/>
                                 </tree>
                                 <form string="Timesheet Activities">
                                     <group>
@@ -99,6 +104,9 @@
                                         <field name="task_id" domain="[('project_id', '=', project_id)]" context="{'default_project_id': project_id}"/>
                                         <field name="unit_amount" widget="float_time" string="Hours"/>
                                         <field name="user_id" invisible="1"/>
+                                        <field name="sheet_id" invisible="1"/>
+                                        <field name="company_id" invisible="1"/>
+                                        <field name="employee_id" invisible="1"/>
                                     </group>
                                 </form>
                             </field>
