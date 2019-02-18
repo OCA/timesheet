@@ -414,7 +414,7 @@ class Sheet(models.Model):
     def button_add_line(self):
         for rec in self:
             if rec.state == 'draft':
-                rec.add_line()
+                rec.add_line(rec.add_line_project_id, rec.add_line_task_id)
                 rec.add_line_task_id = False
                 rec.add_line_project_id = False
         return True
@@ -449,7 +449,7 @@ class Sheet(models.Model):
             'value_y': name_y,
             'date': date,
             'project_id': project.id,
-            'task_id': task and task.id or False,
+            'task_id': task and task.id,
             'count_timesheets': len(timesheet),
             'unit_amount': 0.0,
         }
@@ -465,26 +465,23 @@ class Sheet(models.Model):
         return values
 
     @api.model
-    def _prepare_empty_analytic_line(self):
+    def _prepare_empty_analytic_line(self, project, task):
         return {
             'name': '/',
             'employee_id': self.employee_id.id,
             'date': self.date_start,
-            'project_id': self.add_line_project_id and
-            self.add_line_project_id.id or False,
-            'task_id': self.add_line_task_id and
-            self.add_line_task_id.id or False,
+            'project_id': project and project.id,
+            'task_id': task and task.id,
             'sheet_id': self.id,
             'unit_amount': 0.0,
             'company_id': self.company_id.id,
         }
 
     @api.model
-    def add_line(self):
-        if self.add_line_project_id:
-            values = self._prepare_empty_analytic_line()
-            name_line = self._get_line_name(
-                self.add_line_project_id, self.add_line_task_id)
+    def add_line(self, project, task):
+        if project:
+            values = self._prepare_empty_analytic_line(project, task)
+            name_line = self._get_line_name(project, task)
             if self.line_ids.mapped('value_y'):
                 self.delete_empty_lines(False)
             if name_line not in self.line_ids.mapped('value_y'):
