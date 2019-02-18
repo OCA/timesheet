@@ -122,6 +122,37 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(len(sheet.timesheet_ids), 0)
         self.assertEqual(len(sheet.line_ids), 0)
 
+    def test_1_B(self):
+        sheet = self.sheet_model.sudo(self.user).new({
+            'employee_id': self.employee.id,
+            'company_id': self.user.company_id.id,
+            'date_start': self.sheet_model._default_date_start(),
+            'date_end': self.sheet_model._default_date_end(),
+            'state': 'new',
+            'timesheet_ids': [(0, 0, {
+                'name': '/',
+                'project_id': self.project_1.id,
+                'employee_id': self.employee.id,
+                'unit_amount': 1,
+            })],
+        })
+        sheet._onchange_dates()
+        sheet._onchange_timesheets()
+        self.assertEqual(len(sheet.timesheet_ids), 0)
+        self.assertEqual(len(sheet.line_ids), 0)
+        self.assertEqual(sheet.state, 'new')
+
+        line = self.sheet_line_model.new({
+            'project_id': self.project_1.id,
+            'employee_id': self.employee.id,
+            'sheet_id': sheet.id,
+            'unit_amount': 1,
+        })
+        line.onchange_unit_amount()
+        self.assertEqual(len(sheet.timesheet_ids), 0)
+        self.assertEqual(len(sheet.line_ids), 0)
+        self.assertEqual(sheet.state, 'new')
+
     def test_2(self):
         sheet = self.sheet_model.sudo(self.user).create({
             'employee_id': self.employee.id,

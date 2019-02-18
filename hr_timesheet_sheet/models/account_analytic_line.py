@@ -28,6 +28,10 @@ class AccountAnalyticLine(models.Model):
             if timesheet.sheet_id != sheet:
                 timesheet.sheet_id = sheet
 
+    @api.onchange('unit_amount')
+    def onchange_unit_amount(self):
+        """ Hook for extensions """
+
     @api.model
     def create(self, values):
         res = super(AccountAnalyticLine, self).create(values)
@@ -41,12 +45,22 @@ class AccountAnalyticLine(models.Model):
         vals_do_compute = ['date', 'employee_id', 'project_id', 'company_id']
         if any(val in vals_do_compute for val in values):
             self._compute_sheet()
+        vals_do_lines_compute = [
+            'unit_amount', 'name',
+        ]
+        if not self.env.context.get('timesheet_write') and \
+                any(val in vals_do_lines_compute for val in values):
+            self.mapped('sheet_id').with_context(
+                sheet_write=True)._onchange_timesheets()
         return res
 
     @api.multi
     def unlink(self):
         self._check_state()
-        return super(AccountAnalyticLine, self).unlink()
+        sheets = self.mapped('sheet_id')
+        res = super(AccountAnalyticLine, self).unlink()
+        sheets.with_context(sheet_write=True)._compute_line_ids()
+        return res
 
     @api.multi
     def _check_state_on_write(self, values):
@@ -91,9 +105,11 @@ class AccountAnalyticLine(models.Model):
         unit_amount = sum(
             [t.unit_amount for t in self])
         amount = sum([t.amount for t in self])
-        self[0].write({
+        first_ts = fields.first(self)
+        first_ts.with_context(timesheet_write=True).write({
             'unit_amount': unit_amount,
             'amount': amount,
         })
-        self[1:].unlink()
-        return self[0]
+        others = self - first_ts
+        others.unlink()
+        return first_ts

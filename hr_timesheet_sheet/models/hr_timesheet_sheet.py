@@ -338,7 +338,9 @@ class Sheet(models.Model):
             self._check_sheet_date(forced_user_id=new_user_id)
         res = super(Sheet, self).write(vals)
         for rec in self:
-            if rec.state == 'draft':
+            if rec.state == 'draft' and \
+                    not self.env.context.get('sheet_write'):
+                rec.update_timesheets_according_lines()
                 if 'add_line_project_id' not in vals:
                     rec.delete_empty_lines(True)
         return res
@@ -478,6 +480,7 @@ class Sheet(models.Model):
             if name_line not in self.line_ids.mapped('value_y'):
                 self.timesheet_ids |= \
                     self.env['account.analytic.line'].create(values)
+                self._onchange_timesheets()
 
     def link_timesheets_to_sheet(self, timesheets):
         self.ensure_one()
@@ -510,8 +513,53 @@ class Sheet(models.Model):
                     ts_row.filtered(
                         lambda t: t.name == empty_name and not t.unit_amount
                     ).unlink()
+                    self.with_context(sheet_write=True).write(
+                        {'timesheet_ids': [
+                            (6, 0, self.timesheet_ids.exists().ids)]})
                     if not ts_row.exists() and delete_empty_rows:
-                        row.unlink()
+                        self.with_context(sheet_write=True).write(
+                            {'line_ids': [
+                                (6, 0, (self.line_ids.exists() - row).ids)]})
+
+    def update_timesheets_according_lines(self):
+        """This method updates timesheets according
+        the values of the timesheet lines."""
+        if not self.id or self.add_line_project_id or self.add_line_task_id:
+            return
+        for line in self.line_ids:
+            sheet = line.sheet_id
+            timesheets = sheet.timesheet_ids.filtered(
+                lambda t: t.date == line.date
+                and t.project_id.id == line.project_id.id
+                and t.task_id.id == line.task_id.id
+            )
+            new_ts = timesheets.filtered(lambda t: t.name == empty_name)
+            amount = sum(t.unit_amount for t in timesheets)
+            diff_amount = line.unit_amount - amount
+            if len(new_ts) > 1:
+                new_ts = new_ts.merge_timesheets()
+                sheet.with_context(sheet_write=True).write(
+                    {'timesheet_ids': [
+                        (6, 0, sheet.timesheet_ids.exists().ids)]})
+            if not diff_amount:
+                continue
+            if new_ts:
+                unit_amount = new_ts.unit_amount + diff_amount
+                if unit_amount:
+                    new_ts.with_context(timesheet_write=True).write(
+                        {'unit_amount': unit_amount})
+                else:
+                    new_ts.unlink()
+                    sheet.with_context(sheet_write=True).write(
+                        {'timesheet_ids': [
+                            (6, 0, sheet.timesheet_ids.exists().ids)]})
+            else:
+                new_ts_values = line._line_to_timesheet(diff_amount)
+                ts_new = \
+                    line.env['account.analytic.line'].create(new_ts_values)
+                sheet.with_context(sheet_write=True).write(
+                    {'timesheet_ids': [
+                        (6, 0, (sheet.timesheet_ids.exists() | ts_new).ids)]})
 
     # ------------------------------------------------
     # OpenChatter methods and notifications
@@ -568,41 +616,24 @@ class SheetLine(models.TransientModel):
 
     @api.onchange('unit_amount')
     def onchange_unit_amount(self):
-        """This method is called when filling a cell of the matrix.
-        It checks if there exists timesheets associated  to that cell.
-        If yes, it does several comparisons to see if the unit_amount of
-        the timesheets should be updated accordingly."""
+        """ This method is called when filling a cell of the matrix. """
         self.ensure_one()
+        self._update_line()
 
+    def _update_line(self):
         sheet = self.sheet_id
-        if not sheet:
-            model = self.env.context.get('params', {}).get('model', '')
-            obj_id = self.env.context.get('params', {}).get('id')
-            if model == 'hr_timesheet.sheet' and isinstance(obj_id, int):
-                sheet = self.env['hr_timesheet.sheet'].browse(obj_id)
-        if not sheet:
-            return {'warning': {
-                'title': _("Warning"),
-                'message': _("Save the Timesheet Sheet first.")
-            }}
-        timesheets = sheet.timesheet_ids.filtered(
-            lambda t: t.date == self.date
-            and t.project_id.id == self.project_id.id
-            and t.task_id.id == self.task_id.id
-        )
-        new_ts = timesheets.filtered(lambda t: t.name == empty_name)
-        amount = sum(t.unit_amount for t in timesheets)
-        diff_amount = self.unit_amount - amount
-        if not diff_amount:
-            return
-        if new_ts:
-            if len(new_ts) > 1:
-                new_ts = new_ts.merge_timesheets()
-            unit_amount = new_ts.unit_amount + diff_amount
-            new_ts.write({'unit_amount': unit_amount})
-        else:
-            new_ts_values = self._line_to_timesheet(diff_amount)
-            self.env['account.analytic.line'].create(new_ts_values)
+        if isinstance(self.id, models.NewId) and sheet._ids:
+            line = sheet.line_ids.filtered(
+                lambda l: l.date == self.date
+                and l.project_id.id == self.project_id.id
+                and l.task_id.id == self.task_id.id
+                and l.id != self.id
+            )
+            if line:
+                line.unit_amount = self.unit_amount
+                sheet.line_ids -= self
+                return line
+        return self
 
     @api.model
     def _line_to_timesheet(self, amount):
