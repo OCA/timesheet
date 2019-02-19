@@ -46,29 +46,22 @@
             <xpath expr="//sheet/notebook" position="inside" >
                 <page string="Attendances"
                     groups="hr_attendance.group_hr_attendance">
-                   <group>
-                       <group>
-                            <field name="attendances_ids" nolabel="1" context="{'default_employee_id': employee_id}">
-                                <tree string="Attendances" editable="bottom" create="false">
-                                    <field name="check_in"/>
-                                    <field name="check_out"/>
-                                    <field invisible="1" name="employee_id"/>
-                                </tree>
-                            </field>
+                    <group colspan="4">
+                        <group>
+                            <label for="attendance_state"/>
+                            <div>
+                                <field name="attendance_state"/>
+                                <button name="attendance_action_change" attrs="{'invisible': [('attendance_state', '=', 'checked_in')]}" type="object" string="Check In" style="margin-left: 20px"/>
+                                <button name="attendance_action_change" attrs="{'invisible': ['|', ('attendance_state','=',False), ('attendance_state', '=', 'checked_out')]}" type="object" string="Check Out"  style="margin-left: 20px"/>
+                            </div>
                         </group>
-                        <group col="6">
-                            <field name="attendance_state" colspan="3"/>
-                            <button name="attendance_action_change"
-                                attrs="{'invisible': [('attendance_state', '=', 'checked_in')]}"
-                                type="object"
-                                string="Check In" class="oe_link"
-                                colspan="1"/>
-                            <button name="attendance_action_change"
-                                attrs="{'invisible': ['|', ('attendance_state','=',False), ('attendance_state', '=', 'checked_out')]}"
-                                type="object"
-                                string="Check Out" class="oe_link"
-                                colspan="1"/>
-                        </group>
+                        <field name="attendances_ids" nolabel="1" context="{'default_employee_id': employee_id}" colspan="4">
+                            <tree string="Attendances" editable="bottom" create="false">
+                                <field name="check_in"/>
+                                <field name="check_out"/>
+                                <field invisible="1" name="employee_id"/>
+                            </tree>
+                        </field> 
                     </group>
                 </page>
             </xpath>
