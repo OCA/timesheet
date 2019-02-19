@@ -51,7 +51,7 @@ msgid "Require task selection on each timesheet entry by default"
 msgstr ""
 
 #. module: hr_timesheet_task_required
-#: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:25
+#: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:24
 #, python-format
 msgid "You must specify a task for timesheet lines."
 msgstr ""
