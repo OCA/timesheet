@@ -17,11 +17,10 @@ class AccountAnalyticLine(models.Model):
     @api.constrains(
         'project_id',
         'task_id',
-        'is_task_required',
     )
     def _check_timesheet_task(self):
         for line in self:
-            if line.project_id and line.is_task_required and not line.task_id:
+            if line.is_task_required and not line.task_id:
                 raise ValidationError(_(
                     'You must specify a task for timesheet lines.'
                 ))
