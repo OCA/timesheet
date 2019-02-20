@@ -28,10 +28,15 @@ class AccountAnalyticLine(models.Model):
             if timesheet.sheet_id != sheet:
                 timesheet.sheet_id = sheet
 
+    def _negative_unit_amount(self):
+        """In newer versions, add a field in res.config.settings"""
+        return True
+
     @api.onchange('unit_amount')
     def onchange_unit_amount(self):
         self.ensure_one()
-        if self.project_id and self.unit_amount < 0.0:
+        if not self._negative_unit_amount() and self.project_id \
+                and self.unit_amount < 0.0:
             self.write({'unit_amount': 0.0})
 
     @api.model

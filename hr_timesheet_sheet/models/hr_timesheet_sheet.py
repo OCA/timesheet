@@ -601,7 +601,8 @@ class Sheet(models.Model):
                                 new_ts = new_ts.merge_timesheets()
                                 line.count_timesheets = len(
                                     line.sheet_id.timesheet_ids)
-                            if new_ts.unit_amount + diff_amount >= 0.0:
+                            if line._negative_unit_amount() or \
+                                    new_ts.unit_amount + diff_amount >= 0.0:
                                 if diff_amount != 0.0:
                                     new_ts.unit_amount += diff_amount
                                 if not new_ts.unit_amount:
@@ -615,7 +616,8 @@ class Sheet(models.Model):
                                 line._diff_amount_timesheets(
                                     diff_amount, other_ts)
                         else:
-                            if diff_amount > 0.0:
+                            if line._negative_unit_amount() or \
+                                    diff_amount > 0.0:
                                 line._create_timesheet(diff_amount)
                             else:
                                 line._diff_amount_timesheets(
@@ -680,11 +682,15 @@ class SheetLine(models.TransientModel):
         string='Employee',
     )
 
+    def _negative_unit_amount(self):
+        """In newer versions, add a field in res.config.settings"""
+        return True
+
     @api.onchange('unit_amount')
     def onchange_unit_amount(self):
         """This method is called when filling a cell of the matrix."""
         self.ensure_one()
-        if self.unit_amount < 0.0:
+        if not self._negative_unit_amount() and self.unit_amount < 0.0:
             self.write({'unit_amount': 0.0})
 
     def _create_timesheet(self, amount):
@@ -695,7 +701,8 @@ class SheetLine(models.TransientModel):
     @api.model
     def _diff_amount_timesheets(self, diff_amount, timesheets):
         for timesheet in timesheets:
-            if timesheet.unit_amount + diff_amount >= 0.0:
+            if self._negative_unit_amount() or \
+                    timesheet.unit_amount + diff_amount >= 0.0:
                 if diff_amount != 0.0:
                     timesheet.unit_amount += diff_amount
                 break

@@ -43,6 +43,9 @@ Known issues / Roadmap
   limitation of the tree view limit parameter not being able to dynamically
   set a limit. Since default value of odoo, 40 records is too small, we decided
   to set 1M, which should be good enough in the majority of scenarios.
+* Put a negative_unit_amount boolean in res.config.settings, because now to
+  disable negative quantities we should have to supersede the method
+  _negative_unit_amount to False.
 
 Bug Tracker
 ===========

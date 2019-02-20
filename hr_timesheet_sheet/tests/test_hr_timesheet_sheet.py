@@ -378,8 +378,12 @@ class TestHrTimesheetSheet(TransactionCase):
                 {'unit_amount': -1.0}, update=True))
         line.onchange_unit_amount()
         sheet.write({})
-        self.assertEqual(len(sheet.line_ids), 0)
-        self.assertEqual(len(sheet.timesheet_ids), 0)
+        if line._negative_unit_amount():
+            self.assertEqual(len(sheet.line_ids), 7)
+            self.assertEqual(len(sheet.timesheet_ids), 1)
+        else:
+            self.assertEqual(len(sheet.line_ids), 0)
+            self.assertEqual(len(sheet.timesheet_ids), 0)
 
     def test_6(self):
         timesheet_1 = self.aal_model.create({
@@ -443,8 +447,12 @@ class TestHrTimesheetSheet(TransactionCase):
                 {'unit_amount': 3.0}, update=True))
         line.onchange_unit_amount()
         sheet.write({})
-        self.assertEqual(len(sheet.timesheet_ids), 3)
-        self.assertEqual(line.count_timesheets, 3)
+        if line._negative_unit_amount():
+            self.assertEqual(len(sheet.timesheet_ids), 4)
+            self.assertEqual(line.count_timesheets, 4)
+        else:
+            self.assertEqual(len(sheet.timesheet_ids), 3)
+            self.assertEqual(line.count_timesheets, 3)
 
         timesheet_3_4_and_5 = self.aal_model.search(
             [('id', 'in', [timesheet_3.id, timesheet_4.id, timesheet_5.id])])
@@ -467,9 +475,16 @@ class TestHrTimesheetSheet(TransactionCase):
                 {'unit_amount': 1.0}, update=True))
         line.onchange_unit_amount()
         sheet.write({})
-        self.assertEqual(len(sheet.timesheet_ids), 3)
-        self.assertEqual(line.count_timesheets, 3)
-        self.assertFalse(self.aal_model.search([('id', '=', timesheet_6.id)]))
+        if line._negative_unit_amount():
+            self.assertEqual(len(sheet.timesheet_ids), 4)
+            self.assertEqual(line.count_timesheets, 4)
+            self.assertTrue(self.aal_model.search(
+                [('id', '=', timesheet_6.id)]))
+        else:
+            self.assertEqual(len(sheet.timesheet_ids), 3)
+            self.assertEqual(line.count_timesheets, 3)
+            self.assertFalse(self.aal_model.search(
+                [('id', '=', timesheet_6.id)]))
 
     def test_7(self):
         sheet = self.sheet_model.sudo(self.user).new({
