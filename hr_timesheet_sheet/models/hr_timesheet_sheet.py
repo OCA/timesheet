@@ -517,9 +517,10 @@ class Sheet(models.Model):
         if project:
             values = self._prepare_empty_analytic_line(project, task)
             name_line = self._get_line_name(project, task)
-            if self.line_ids.mapped('value_y'):
+            name_list = list(set(self.line_ids.mapped('value_y')))
+            if name_list:
                 self.delete_empty_lines(False)
-            if name_line not in self.line_ids.mapped('value_y'):
+            if name_line not in name_list:
                 self.timesheet_ids |= \
                     self.env['account.analytic.line'].create(values)
                 self._compute_line_ids()
@@ -534,7 +535,8 @@ class Sheet(models.Model):
         return timesheets
 
     def delete_empty_lines(self, delete_empty_rows=False):
-        for name in self.line_ids.mapped('value_y'):
+        name_list = list(set(self.line_ids.mapped('value_y')))
+        for name in name_list:
             row = self.line_ids.filtered(lambda l: l.value_y == name)
             if row:
                 task = row[0].task_id and row[0].task_id.id or False
