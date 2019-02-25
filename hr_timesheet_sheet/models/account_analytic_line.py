@@ -50,8 +50,26 @@ class AccountAnalyticLine(models.Model):
 
     @api.multi
     def _check_state_on_write(self, values):
-        """ Hook for extensions """
-        self._check_state()
+        """ This method must allow validation of invoices if
+        the timesheet sheet is not in draft state. In sale_timesheet addon,
+        the `_compute_timesheet_revenue` method of `account.invoice` model
+        modifies the `timesheet_revenue` and `timesheet_invoice_id` fields in
+        analytic lines.
+        """
+        allowed = self._get_allowed_fields_on_check_state()
+        if any(val not in allowed for val in values):
+            self._check_state()
+
+    def _get_allowed_fields_on_check_state(self):
+        """ Extend this method to add fields that could be modified
+        when the timesheet sheet is not in draft.
+        """
+        return [
+            'timesheet_invoice_id',
+            'timesheet_revenue',
+            'product_uom_id',
+            'amount'
+        ]
 
     @api.multi
     def _check_state(self):
