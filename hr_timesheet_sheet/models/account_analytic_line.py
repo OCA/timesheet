@@ -1,5 +1,5 @@
 # Copyright 2018 Eficent Business and IT Consulting Services, S.L.
-# Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -26,7 +26,8 @@ class AccountAnalyticLine(models.Model):
                 ('company_id', 'in', [timesheet.company_id.id, False]),
                 ('state', '=', 'draft'),
             ], limit=1)
-            timesheet.sheet_id = sheet
+            if timesheet.sheet_id != sheet:
+                timesheet.sheet_id = sheet
 
     @api.model
     def create(self, values):
@@ -37,10 +38,11 @@ class AccountAnalyticLine(models.Model):
     @api.multi
     def write(self, values):
         self._check_state_on_write(values)
+        res = super().write(values)
         vals_do_compute = ['date', 'employee_id', 'project_id', 'company_id']
         if any(val in vals_do_compute for val in values):
             self._compute_sheet()
-        return super().write(values)
+        return res
 
     @api.multi
     def unlink(self):
