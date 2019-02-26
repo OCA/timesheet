@@ -3,7 +3,7 @@
 
 {
     'name': 'HR Timesheet Sheet',
-    'version': '11.0.1.2.2',
+    'version': '11.0.1.2.3',
     'category': 'Human Resources',
     'sequence': 80,
     'summary': 'Timesheet Sheets, Activities',
