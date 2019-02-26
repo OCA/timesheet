@@ -72,7 +72,7 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:372
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:401
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
@@ -190,7 +190,7 @@ msgid "Employees"
 msgstr "Langileak"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:638
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:665
 #, python-format
 msgid "Error code: Cannot have 0 timesheets."
 msgstr ""
@@ -272,8 +272,8 @@ msgid "In Draft"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:314
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:326
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:340
 #, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
@@ -394,13 +394,13 @@ msgid "Number of unread messages"
 msgstr "Irakurri gabeko mezuak"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:370
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:399
 #, python-format
 msgid "Only an HR Officer or Manager can approve sheets."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:350
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:376
 #, python-format
 msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 msgstr ""
@@ -497,11 +497,6 @@ msgid "Sheet"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_id_computed
-msgid "Sheet Id Computed"
-msgstr ""
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Starting day for Timesheet Sheets."
 msgstr ""
@@ -541,27 +536,27 @@ msgid "Task"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:194
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:201
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Department must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:184
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:191
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Employee must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:204
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:211
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Project must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:214
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:221
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Task must be the same."
 msgstr ""
@@ -573,7 +568,7 @@ msgid "The range of your Timesheet Sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:154
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:161
 #, python-format
 msgid "The start date cannot be later than the end date."
 msgstr ""
@@ -747,9 +742,9 @@ msgid "Week"
 msgstr "Astea"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:326
-#, python-format
-msgid "Week "
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:352
+#, fuzzy, python-format
+msgid "Week %s"
 msgstr "Astea"
 
 #. module: hr_timesheet_sheet
@@ -765,25 +760,25 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:41
 #: code:addons/hr_timesheet_sheet/models/hr_employee.py:35
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:225
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:232
 #, python-format
 msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:337
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:363
 #, python-format
 msgid "You cannot delete a timesheet sheet which is already confirmed."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:292
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:318
 #, python-format
 msgid "You cannot duplicate a sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:173
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:180
 #, python-format
 msgid ""
 "You cannot have 2 sheets that overlap!\n"
