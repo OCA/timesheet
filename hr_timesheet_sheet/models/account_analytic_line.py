@@ -25,7 +25,8 @@ class AccountAnalyticLine(models.Model):
                 ('company_id', 'in', [timesheet.company_id.id, False]),
                 ('state', '=', 'draft'),
             ], limit=1)
-            timesheet.sheet_id = sheet
+            if timesheet.sheet_id != sheet:
+                timesheet.sheet_id = sheet
 
     @api.model
     def create(self, values):
@@ -36,10 +37,11 @@ class AccountAnalyticLine(models.Model):
     @api.multi
     def write(self, values):
         self._check_state_on_write(values)
+        res = super(AccountAnalyticLine, self).write(values)
         vals_do_compute = ['date', 'employee_id', 'project_id', 'company_id']
         if any(val in vals_do_compute for val in values):
             self._compute_sheet()
-        return super(AccountAnalyticLine, self).write(values)
+        return res
 
     @api.multi
     def unlink(self):
