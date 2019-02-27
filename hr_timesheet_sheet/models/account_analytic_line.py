@@ -51,7 +51,29 @@ class AccountAnalyticLine(models.Model):
     @api.multi
     def _check_state_on_write(self, values):
         """ Hook for extensions """
-        self._check_state()
+        if self._timesheet_should_check_write(values):
+            self._check_state()
+
+    @api.model
+    def _timesheet_should_check_write(self, values):
+        """ Hook for extensions """
+        return bool(set(self._get_timesheet_protected_fields()) &
+                    set(values.keys()))
+
+    @api.model
+    def _get_timesheet_protected_fields(self):
+        """ Hook for extensions """
+        return [
+            'name',
+            'date',
+            'unit_amount',
+            'user_id',
+            'employee_id',
+            'department_id',
+            'task_id',
+            'project_id',
+            'sheet_id',
+        ]
 
     @api.multi
     def _check_state(self):
