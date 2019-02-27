@@ -565,7 +565,7 @@ msgid "You cannot have 2 sheets that overlap!\n"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:63
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:85
 #, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet."
 msgstr ""
