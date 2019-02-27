@@ -14,6 +14,8 @@ from odoo.exceptions import UserError, ValidationError
 
 _logger = logging.getLogger(__name__)
 
+empty_name = '/'
+
 
 class Sheet(models.Model):
     _name = 'hr_timesheet.sheet'
@@ -365,7 +367,7 @@ class Sheet(models.Model):
         analytic_timesheet_toremove = self.env['account.analytic.line']
         for sheet in self:
             analytic_timesheet_toremove += \
-                sheet.timesheet_ids.filtered(lambda t: t.name == '/')
+                sheet.timesheet_ids.filtered(lambda t: t.name == empty_name)
         analytic_timesheet_toremove.unlink()
         return super().unlink()
 
@@ -503,7 +505,7 @@ class Sheet(models.Model):
     @api.model
     def _prepare_empty_analytic_line(self):
         return {
-            'name': '/',
+            'name': empty_name,
             'employee_id': self.employee_id.id,
             'date': self.date_start,
             'project_id': self.add_line_project_id.id,
@@ -528,7 +530,7 @@ class Sheet(models.Model):
         if self.id and self.state == 'draft':
             for aal in timesheet.filtered(lambda a: not a.sheet_id):
                 aal.write({'sheet_id': self.id})
-        repeated = timesheet.filtered(lambda t: t.name == "/")
+        repeated = timesheet.filtered(lambda t: t.name == empty_name)
         if len(repeated) > 1 and self.id:
             timesheet = repeated.merge_timesheets()
         return timesheet
@@ -552,7 +554,8 @@ class Sheet(models.Model):
                     check = not all([l.unit_amount for l in row])
                 if check:
                     ts_row.filtered(
-                        lambda t: t.name == '/' and not t.unit_amount).unlink()
+                        lambda t: t.name == empty_name and not t.unit_amount
+                    ).unlink()
 
     # ------------------------------------------------
     # OpenChatter methods and notifications
@@ -620,8 +623,8 @@ class SheetLine(models.TransientModel):
                              len(timesheets), self.count_timesheets)
                 self.count_timesheets = len(timesheets)
             if not self.unit_amount:
-                new_ts = timesheets.filtered(lambda t: t.name == '/')
-                other_ts = timesheets.filtered(lambda t: t.name != '/')
+                new_ts = timesheets.filtered(lambda t: t.name == empty_name)
+                other_ts = timesheets.filtered(lambda t: t.name != empty_name)
                 if new_ts:
                     new_ts.unlink()
                 for timesheet in other_ts:
@@ -632,8 +635,10 @@ class SheetLine(models.TransientModel):
                     timesheets.write({'unit_amount': self.unit_amount})
                 elif self.count_timesheets > 1:
                     amount = sum([t.unit_amount for t in timesheets])
-                    new_ts = timesheets.filtered(lambda t: t.name == '/')
-                    other_ts = timesheets.filtered(lambda t: t.name != '/')
+                    new_ts = timesheets.filtered(
+                        lambda t: t.name == empty_name)
+                    other_ts = timesheets.filtered(
+                        lambda t: t.name != empty_name)
                     diff_amount = self.unit_amount - amount
                     if new_ts:
                         if len(new_ts) > 1:
@@ -681,7 +686,7 @@ class SheetLine(models.TransientModel):
     def _line_to_timesheet(self, amount):
         task = self.task_id.id if self.task_id else False
         return {
-            'name': '/',
+            'name': empty_name,
             'employee_id': self.sheet_id.employee_id.id,
             'date': self.date,
             'project_id': self.project_id.id,
