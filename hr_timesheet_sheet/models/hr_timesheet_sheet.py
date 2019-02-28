@@ -380,9 +380,6 @@ class Sheet(models.Model):
                 _('Only an HR Officer or Manager can refuse sheets '
                   'or reset them to draft.'))
         self.write({'state': 'draft'})
-        domain = self._get_timesheet_sheet_lines_domain()
-        timesheets = self.env['account.analytic.line'].search(domain)
-        self.clean_timesheets(timesheets)
         return True
 
     @api.multi
