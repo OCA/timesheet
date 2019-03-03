@@ -45,7 +45,7 @@ msgid "Approved"
 msgstr "승인됨"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:381
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:405
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
@@ -155,7 +155,7 @@ msgid "Employees"
 msgstr "임직원"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:622
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:637
 #, fuzzy, python-format
 msgid "Error code: Cannot have 0 timesheets."
 msgstr "작업표를 복제할 수 없습니다."
@@ -207,8 +207,8 @@ msgid "In Draft"
 msgstr "기안 상태"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:306
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:320
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:330
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:344
 #, fuzzy, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
@@ -269,13 +269,13 @@ msgid "Note"
 msgstr "노트"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:379
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:403
 #, python-format
 msgid "Only an HR Officer or Manager can approve sheets."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:356
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:380
 #, python-format
 msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 msgstr ""
@@ -342,7 +342,6 @@ msgstr "기안으로 설정"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line_sheet_id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line_sheet_id_computed
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_sheet_id
 msgid "Sheet"
 msgstr "표"
@@ -378,27 +377,27 @@ msgid "Task"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:193
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:198
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Department must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:183
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:188
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Employee must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:203
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:208
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Project must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:213
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:218
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Task must be the same."
 msgstr ""
@@ -410,7 +409,7 @@ msgid "The range of your Timesheet Sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:153
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:158
 #, python-format
 msgid "The start date cannot be later than the end date."
 msgstr ""
@@ -559,7 +558,7 @@ msgid "Week"
 msgstr "주"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:332
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:356
 #, python-format
 msgid "Week "
 msgstr "주"
@@ -577,25 +576,25 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:41
 #: code:addons/hr_timesheet_sheet/models/hr_employee.py:35
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:224
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:229
 #, python-format
 msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:343
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:367
 #, fuzzy, python-format
 msgid "You cannot delete a timesheet sheet which is already confirmed."
 msgstr "이미 확정된 작업표는 삭제할 수 없습니다."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:299
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:323
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "작업표를 복제할 수 없습니다."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:172
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:177
 #, fuzzy, python-format
 msgid ""
 "You cannot have 2 sheets that overlap!\n"
@@ -605,7 +604,7 @@ msgstr ""
 "이 문제를 방지하려면 '개인 현재 작업표' 메뉴를 사용하십시오."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:86
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:85
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet."
 msgstr "확정된 작업표의 항목은 수정할 수 없습니다!"
