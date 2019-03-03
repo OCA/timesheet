@@ -24,7 +24,39 @@ msgid "Analytic Line"
 msgstr "Ligne analytique"
 
 #. module: hr_timesheet_task_required
-#: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:19
+#: model:ir.model,name:hr_timesheet_task_required.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: hr_timesheet_task_required
+#: model:ir.model,name:hr_timesheet_task_required.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: hr_timesheet_task_required
+#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_account_analytic_line__is_task_required
+msgid "Is Task Required"
+msgstr ""
+
+#. module: hr_timesheet_task_required
+#: model:ir.model,name:hr_timesheet_task_required.model_project_project
+msgid "Project"
+msgstr ""
+
+#. module: hr_timesheet_task_required
+#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_project_project__is_timesheet_task_required
+#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_company__is_timesheet_task_required
+#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_config_settings__is_timesheet_task_required
+msgid "Require Tasks on Timesheets"
+msgstr ""
+
+#. module: hr_timesheet_task_required
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.res_config_settings_view_form
+msgid "Require task selection on each timesheet entry by default"
+msgstr ""
+
+#. module: hr_timesheet_task_required
+#: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:24
 #, python-format
 msgid "You must specify a task for timesheet lines."
 msgstr ""
