@@ -1,21 +1,22 @@
+import datetime
+
 from odoo.addons.hr_timesheet_sheet_attendance.tests.\
     hr_timesheet_sheet_test_cases import HrTimesheetTestCases
 from odoo.exceptions import UserError
-from odoo import fields
 
 
 class TestHrTimesheetSheet(HrTimesheetTestCases):
 
     def test_00_check_timesheet_compute_old_attendance(self):
         """ sheet_id should compute for attendaces which
-        have created before creation of timesheet"""
-        checkInDate = '2018-11-12 10:00:00'
+        were created before creation of timesheet"""
+        checkInDate = datetime.datetime(2018, 11, 12, 10, 0, 0)
         self._create_attendance(
             employee=self.employee,
-            checkIn=fields.Datetime.from_string(checkInDate)
+            checkIn=checkInDate,
         )
         time_sheet = self._create_timesheet_sheet(
-            self.employee, '2018-11-12')
+            self.employee, datetime.date(2018, 11, 12))
         self.assertEqual(
             time_sheet.attendance_count,
             1,
@@ -24,16 +25,16 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
         )
 
     def test_01_compute_total_time_and_difference(self):
-        """Check for timedifference, total attendance time
-        and atteendance count"""
+        """Check for time difference, total attendance time
+        and attendance count"""
 
         # Attendance - 1
-        checkInDate = '2018-12-12 10:00:00'
-        checkOutDate = '2018-12-12 12:00:00'
+        checkInDate = datetime.datetime(2018, 12, 12, 10, 0, 0)
+        checkOutDate = datetime.datetime(2018, 12, 12, 12, 0, 0)
         self._create_attendance(
             employee=self.employee,
-            checkIn=fields.Datetime.from_string(checkInDate),
-            checkOut=fields.Datetime.from_string(checkOutDate)
+            checkIn=checkInDate,
+            checkOut=checkOutDate,
         )
         self.assertEqual(
             self.timesheet.attendance_count,
@@ -55,12 +56,12 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
         )
 
         # Attendance - 2
-        checkInDate = '2018-12-12 13:00:00'
-        checkOutDate = '2018-12-12 14:00:00'
+        checkInDate = datetime.datetime(2018, 12, 12, 13, 0, 0)
+        checkOutDate = datetime.datetime(2018, 12, 12, 14, 0, 0)
         self._create_attendance(
             employee=self.employee,
-            checkIn=fields.Datetime.from_string(checkInDate),
-            checkOut=fields.Datetime.from_string(checkOutDate)
+            checkIn=checkInDate,
+            checkOut=checkOutDate,
         )
         self.timesheet._compute_attendance_count()
         self.assertEqual(
@@ -85,7 +86,7 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
         # Create timesheet lines
         self.timesheet.timesheet_ids = [(0, 0, {
             'employee_id': self.employee.id,
-            'date': '2018-12-12',
+            'date': datetime.date(2018, 12, 12),
             'project_id': self.project_id.id,
             'task_id': self.task_1.id,
             'name': 'testing',
@@ -99,15 +100,15 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
         )
 
         # # Attendance - 3
-        checkInDate = '2018-12-12 16:00:00'
+        checkInDate = datetime.datetime(2018, 12, 12, 16, 0, 0)
         attendance_3 = self._create_attendance(
             employee=self.employee,
-            checkIn=fields.Datetime.from_string(checkInDate)
+            checkIn=checkInDate,
         )
         with self.assertRaises(UserError):
             self.timesheet.action_timesheet_confirm()
 
-        attendance_3.check_out = '2018-12-12 17:00:00'
+        attendance_3.check_out = datetime.datetime(2018, 12, 12, 17, 0, 0)
         self.timesheet.action_timesheet_confirm()
         self.assertEqual(
             self.timesheet.state,
