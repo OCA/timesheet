@@ -1,3 +1,4 @@
+import datetime
 from odoo.tests.common import TransactionCase
 from odoo import fields
 
@@ -9,7 +10,7 @@ class HrTimesheetTestCases(TransactionCase):
         self.user_id = self._create_user()
         self.employee = self._create_employee(self.user_id)
         self.timesheet = self._create_timesheet_sheet(
-            self.employee, '2018-12-12')
+            self.employee, datetime.date(2018, 12, 12))
         self.project_id = self.env.ref('project.project_project_1')
         self.task_1 = self.env.ref('project.project_task_1')
 
