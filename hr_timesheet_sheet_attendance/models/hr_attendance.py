@@ -1,10 +1,7 @@
 from odoo import api, fields, models, _
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT,\
-    DEFAULT_SERVER_DATE_FORMAT
 from odoo.exceptions import UserError
 
 import pytz
-from datetime import datetime
 
 
 class HrAttendance(models.Model):
@@ -12,8 +9,8 @@ class HrAttendance(models.Model):
 
     def _get_attendance_employee_tz(self, date=None):
         """Convert date according to timezone of user
-        :param date: datetime, type string
-        :return: return converted date, type string"""
+        :param date: datetime.datetime.
+        :return: datetime.date with applied timezone or False"""
 
         tz = False
         if self.employee_id.user_id:
@@ -21,12 +18,9 @@ class HrAttendance(models.Model):
         if not date:
             return False
         time_zone = pytz.timezone(tz or 'UTC')
-        attendance_dt = datetime.strptime(date, DEFAULT_SERVER_DATETIME_FORMAT)
-        attendance_tz_dt = pytz.UTC.localize(attendance_dt)
+        attendance_tz_dt = pytz.UTC.localize(date)
         attendance_tz_dt = attendance_tz_dt.astimezone(time_zone)
-        attendance_tz_date_str = datetime.strftime(
-            attendance_tz_dt, DEFAULT_SERVER_DATE_FORMAT)
-        return attendance_tz_date_str
+        return attendance_tz_dt.date()
 
     def _get_timesheet_sheet(self):
         """Find and return current timesheet-sheet
@@ -91,18 +85,18 @@ class HrAttendance(models.Model):
                 "Ask your manager to reset it before adding attendance."
             ))
         else:
-            checkin_tz_date_str = self._get_attendance_employee_tz(
+            checkin_tz_date = self._get_attendance_employee_tz(
                 date=self.check_in
             )
-            checkout_tz_date_str = self._get_attendance_employee_tz(
+            checkout_tz_date = self._get_attendance_employee_tz(
                 date=self.check_out
             )
-            if ((timesheet.date_start > checkin_tz_date_str or
-                 timesheet.date_end < checkin_tz_date_str) or
-                    checkout_tz_date_str and (timesheet.date_start >
-                                              checkout_tz_date_str or
-                                              timesheet.date_end <
-                                              checkout_tz_date_str)):
+            if ((timesheet.date_start > checkin_tz_date or
+                 timesheet.date_end < checkin_tz_date) or
+                    checkout_tz_date and (timesheet.date_start >
+                                          checkout_tz_date or
+                                          timesheet.date_end <
+                                          checkout_tz_date)):
                 raise UserError(_(
                     "You can not enter an attendance date " +
                     "outside the current timesheet dates."))
