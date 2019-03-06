@@ -548,20 +548,22 @@ class SheetLine(models.TransientModel):
         default=0.0,
     )
 
-    @api.onchange('unit_amount')
-    def onchange_unit_amount(self):
-        """This method is called when filling a cell of the matrix.
-        It checks if there exists timesheets associated  to that cell.
-        If yes, it does several comparisons to see if the unit_amount of
-        the timesheets should be updated accordingly."""
-        self.ensure_one()
-
+    def _get_sheet(self):
         sheet = self.sheet_id
         if not sheet:
             model = self.env.context.get('params', {}).get('model', '')
             obj_id = self.env.context.get('params', {}).get('id')
             if model == 'hr_timesheet.sheet' and isinstance(obj_id, int):
                 sheet = self.env['hr_timesheet.sheet'].browse(obj_id)
+        return sheet
+
+    @api.onchange('unit_amount')
+    def onchange_unit_amount(self):
+        """This method is called when filling a cell of the matrix.
+        It checks if there exists timesheets associated  to that cell.
+        If yes, it does several comparisons to see if the unit_amount of
+        the timesheets should be updated accordingly."""
+        sheet = self._get_sheet()
         if not sheet:
             return {'warning': {
                 'title': _("Warning"),
@@ -584,7 +586,8 @@ class SheetLine(models.TransientModel):
             new_ts.write({'unit_amount': unit_amount})
         else:
             new_ts_values = self._line_to_timesheet(diff_amount)
-            self.env['account.analytic.line'].create(new_ts_values)
+            if new_ts_values:
+                self.env['account.analytic.line'].create(new_ts_values)
 
     @api.model
     def _line_to_timesheet(self, amount):
