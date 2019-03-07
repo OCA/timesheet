@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo10-addon-hr_timesheet_holiday',
         'odoo10-addon-hr_timesheet_no_closed_project_task',
         'odoo10-addon-hr_timesheet_sheet_period',
+        'odoo10-addon-hr_timesheet_sheet_restrict_project',
         'odoo10-addon-hr_timesheet_sheet_week_start_day',
         'odoo10-addon-hr_timesheet_task',
         'odoo10-addon-hr_timesheet_task_required',
