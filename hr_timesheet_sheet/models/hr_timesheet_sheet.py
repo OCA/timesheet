@@ -14,6 +14,8 @@ from odoo.exceptions import UserError, ValidationError
 
 _logger = logging.getLogger(__name__)
 
+empty_name = '/'
+
 
 class Sheet(models.Model):
     _name = 'hr_timesheet.sheet'
@@ -365,7 +367,7 @@ class Sheet(models.Model):
         analytic_timesheet_toremove = self.env['account.analytic.line']
         for sheet in self:
             analytic_timesheet_toremove += \
-                sheet.timesheet_ids.filtered(lambda t: t.name == '/')
+                sheet.timesheet_ids.filtered(lambda t: t.name == empty_name)
         analytic_timesheet_toremove.unlink()
         return super().unlink()
 
@@ -376,9 +378,6 @@ class Sheet(models.Model):
                 _('Only an HR Officer or Manager can refuse sheets '
                   'or reset them to draft.'))
         self.write({'state': 'draft'})
-        domain = self._get_timesheet_sheet_lines_domain()
-        timesheets = self.env['account.analytic.line'].search(domain)
-        self.clean_timesheets(timesheets)
         return True
 
     @api.multi
@@ -472,9 +471,9 @@ class Sheet(models.Model):
                 'task_id': task.id,
             }
             lines |= self.env['hr_timesheet.sheet.line'].create(
-                self._get_default_analytic_line(
+                self._get_default_sheet_line(
                     values=values,
-                    timesheet=timesheet.filtered(
+                    timesheets=timesheet.filtered(
                         lambda t: date == t.date
                         and t.task_id.id == task.id),
                 )
@@ -482,31 +481,27 @@ class Sheet(models.Model):
 
         return lines
 
-    def _get_default_analytic_line(
-            self,
-            values,
-            timesheet=None):
-
-        timesheet = self.clean_timesheets(timesheet)
+    def _get_default_sheet_line(self, values, timesheets=None):
+        timesheets = self.clean_timesheets(timesheets)
         values.update({
-            'count_timesheets': len(timesheet),
+            'count_timesheets': len(timesheets),
             'unit_amount': 0.0,
         })
         if self.id:
             values.update({
                 'sheet_id': self.id,
             })
-        if timesheet:
-            amount = sum([t.unit_amount for t in timesheet])
+        if timesheets:
+            unit_amount = sum([t.unit_amount for t in timesheets])
             values.update({
-                'unit_amount': amount,
+                'unit_amount': unit_amount,
             })
         return values
 
     @api.model
     def _prepare_empty_analytic_line(self):
         return {
-            'name': '/',
+            'name': empty_name,
             'employee_id': self.employee_id.id,
             'date': self.date_start,
             'project_id': self.add_line_project_id.id,
@@ -527,16 +522,16 @@ class Sheet(models.Model):
                 self.timesheet_ids |= \
                     self.env['account.analytic.line'].create(values)
 
-    def clean_timesheets(self, timesheet):
+    def clean_timesheets(self, timesheets):
         if self.id and self.state == 'draft':
-            for aal in timesheet.filtered(lambda a: not a.sheet_id):
+            for aal in timesheets.filtered(lambda a: not a.sheet_id):
                 aal.write({'sheet_id': self.id})
-        repeated = timesheet.filtered(lambda t: t.name == "/")
+        repeated = timesheets.filtered(lambda t: t.name == empty_name)
         if len(repeated) > 1 and self.id:
-            timesheet = repeated.merge_timesheets()
-        return timesheet
+            return repeated.merge_timesheets()
+        return timesheets
 
-    def delete_empty_lines(self, allow_empty_rows=False):
+    def delete_empty_lines(self, delete_empty_rows=False):
         for name in self.line_ids.mapped('value_y'):
             row = self.line_ids.filtered(lambda l: l.value_y == name)
             if row:
@@ -549,13 +544,14 @@ class Sheet(models.Model):
                     ('sheet_id', '=', self.id),
                     ('company_id', '=', self.company_id.id),
                 ])
-                if allow_empty_rows and self.add_line_project_id:
+                if delete_empty_rows and self.add_line_project_id:
                     check = any([l.unit_amount for l in row])
                 else:
                     check = not all([l.unit_amount for l in row])
                 if check:
                     ts_row.filtered(
-                        lambda t: t.name == '/' and not t.unit_amount).unlink()
+                        lambda t: t.name == empty_name and not t.unit_amount
+                    ).unlink()
 
     # ------------------------------------------------
     # OpenChatter methods and notifications
@@ -623,8 +619,8 @@ class SheetLine(models.TransientModel):
                              len(timesheets), self.count_timesheets)
                 self.count_timesheets = len(timesheets)
             if not self.unit_amount:
-                new_ts = timesheets.filtered(lambda t: t.name == '/')
-                other_ts = timesheets.filtered(lambda t: t.name != '/')
+                new_ts = timesheets.filtered(lambda t: t.name == empty_name)
+                other_ts = timesheets.filtered(lambda t: t.name != empty_name)
                 if new_ts:
                     new_ts.unlink()
                 for timesheet in other_ts:
@@ -635,8 +631,10 @@ class SheetLine(models.TransientModel):
                     timesheets.write({'unit_amount': self.unit_amount})
                 elif self.count_timesheets > 1:
                     amount = sum([t.unit_amount for t in timesheets])
-                    new_ts = timesheets.filtered(lambda t: t.name == '/')
-                    other_ts = timesheets.filtered(lambda t: t.name != '/')
+                    new_ts = timesheets.filtered(
+                        lambda t: t.name == empty_name)
+                    other_ts = timesheets.filtered(
+                        lambda t: t.name != empty_name)
                     diff_amount = self.unit_amount - amount
                     if new_ts:
                         if len(new_ts) > 1:
@@ -644,22 +642,22 @@ class SheetLine(models.TransientModel):
                             self.count_timesheets = len(
                                 self.sheet_id.timesheet_ids)
                         if new_ts.unit_amount + diff_amount >= 0.0:
-                            new_ts.unit_amount += diff_amount
+                            if diff_amount != 0.0:
+                                new_ts.unit_amount += diff_amount
                             if not new_ts.unit_amount:
                                 new_ts.unlink()
                                 self.count_timesheets -= 1
                         else:
-                            amount = self.unit_amount - new_ts.unit_amount
+                            diff_amount += new_ts.unit_amount
                             new_ts.write({'unit_amount': 0.0})
                             new_ts.unlink()
                             self.count_timesheets -= 1
-                            self._diff_amount_timesheets(amount, other_ts)
+                            self._diff_amount_timesheets(diff_amount, other_ts)
                     else:
                         if diff_amount > 0.0:
                             self._create_timesheet(diff_amount)
                         else:
-                            amount = self.unit_amount
-                            self._diff_amount_timesheets(amount, other_ts)
+                            self._diff_amount_timesheets(diff_amount, other_ts)
                 else:
                     raise ValidationError(
                         _('Error code: Cannot have 0 timesheets.'))
@@ -670,21 +668,21 @@ class SheetLine(models.TransientModel):
             self.count_timesheets += 1
 
     @api.model
-    def _diff_amount_timesheets(self, amount, timesheets):
+    def _diff_amount_timesheets(self, diff_amount, timesheets):
         for timesheet in timesheets:
-            diff_amount = timesheet.unit_amount - amount
-            if diff_amount >= 0.0:
-                timesheet.unit_amount = diff_amount
+            if timesheet.unit_amount + diff_amount >= 0.0:
+                if diff_amount != 0.0:
+                    timesheet.unit_amount += diff_amount
                 break
             else:
-                amount -= timesheet.unit_amount
+                diff_amount += timesheet.unit_amount
                 timesheet.write({'unit_amount': 0.0})
 
     @api.model
     def _line_to_timesheet(self, amount):
         task = self.task_id.id if self.task_id else False
         return {
-            'name': '/',
+            'name': empty_name,
             'employee_id': self.sheet_id.employee_id.id,
             'date': self.date,
             'project_id': self.project_id.id,
