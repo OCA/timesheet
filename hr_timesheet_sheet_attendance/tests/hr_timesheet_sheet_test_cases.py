@@ -22,7 +22,9 @@ class HrTimesheetTestCases(TransactionCase):
             'company_id': self.env.ref('base.main_company').id,
             'groups_id': [(6, 0, [
                 self.env.ref('base.group_user').id,
-                self.env.ref('base.group_partner_manager').id
+                self.env.ref('base.group_partner_manager').id,
+                self.env.ref('hr_timesheet.group_hr_timesheet_user').id,
+                self.env.ref('hr_attendance.group_hr_attendance_user').id,
             ])],
         }
         return self.env['res.users'].create(user_vals)

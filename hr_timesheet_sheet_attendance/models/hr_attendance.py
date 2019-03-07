@@ -1,7 +1,7 @@
 from odoo import api, fields, models, _
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT,\
     DEFAULT_SERVER_DATE_FORMAT
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 import pytz
 from datetime import datetime
@@ -29,7 +29,7 @@ class HrAttendance(models.Model):
         return attendance_tz_date_str
 
     def _get_timesheet_sheet(self):
-        """Find and return current timesheet-sheet
+        """Find and return current timesheet sheet
         :return: recordset of hr_timesheet.sheet or False"""
 
         sheet_obj = self.env['hr_timesheet.sheet']
@@ -49,7 +49,7 @@ class HrAttendance(models.Model):
 
     @api.depends('employee_id', 'check_in', 'check_out')
     def _compute_sheet_id(self):
-        """Find and set current timesheet-sheet in
+        """Find and set current timesheet sheet in
         current attendance record"""
         for attendance in self:
             attendance.sheet_id = attendance._get_timesheet_sheet()
@@ -57,11 +57,12 @@ class HrAttendance(models.Model):
     sheet_id = fields.Many2one(
         comodel_name='hr_timesheet.sheet',
         compute="_compute_sheet_id",
+        compute_sudo=True,
         string='Sheet',
         store=True)
 
     def _check_timesheet_state(self):
-        """Check and raise error if current sheet not in draftstate"""
+        """Check and raise error if current sheet not in draft state"""
         if self._context.get('allow_modify_confirmed_sheet', False):
             return
         if self.sheet_id and self.sheet_id.state != 'draft':
@@ -71,7 +72,7 @@ class HrAttendance(models.Model):
 
     @api.multi
     def unlink(self):
-        # Restrict to delete attendance from confirmed timesheet-sheet
+        # Restrict to delete attendance from confirmed timesheet sheet
         for attendance in self:
             attendance._check_timesheet_state()
 
@@ -79,15 +80,15 @@ class HrAttendance(models.Model):
 
     @api.constrains('check_in', 'check_out')
     def _check_timesheet(self):
-        """- Restrict to create attendance in confirmed timesheet-sheet
+        """- Restrict to create attendance in confirmed timesheet sheet
         - Restrict to add attendance date outside the current
         timesheet dates"""
         timesheet = self.sheet_id
         if not timesheet:
             return
         if timesheet and timesheet.state != 'draft':
-            raise UserError(_(
-                "You can not enter an attendance in a submitted timesheet. " +
+            raise ValidationError(_(
+                "You can not enter an attendance in a submitted timesheet. "
                 "Ask your manager to reset it before adding attendance."
             ))
         else:
@@ -103,6 +104,6 @@ class HrAttendance(models.Model):
                                               checkout_tz_date_str or
                                               timesheet.date_end <
                                               checkout_tz_date_str)):
-                raise UserError(_(
-                    "You can not enter an attendance date " +
+                raise ValidationError(_(
+                    "You can not enter an attendance date "
                     "outside the current timesheet dates."))

@@ -8,8 +8,8 @@ class HrTimesheetSheet(models.Model):
     _inherit = 'hr_timesheet.sheet'
 
     def _compute_attendance_count(self):
-        '''Compute total number of attendance records
-        linked to current timesheet'''
+        """Compute total number of attendance records
+        linked to current timesheet"""
 
         for attendances in self:
             attendances.attendance_count = len(attendances.attendances_ids)
@@ -18,9 +18,9 @@ class HrTimesheetSheet(models.Model):
                  'attendances_ids', 'attendances_ids.check_in',
                  'attendances_ids.check_out', 'attendances_ids.employee_id')
     def _compute_attendance_time(self):
-        '''Compute total attendance time and
+        """Compute total attendance time and
         difference in total attendance-time
-        and timesheet-entry '''
+        and timesheet-entry """
 
         current_date = datetime.now()
         for sheet in self:
@@ -41,10 +41,12 @@ class HrTimesheetSheet(models.Model):
 
     total_attendance = fields.Float(
         compute='_compute_attendance_time',
+        compute_sudo=True,
         string='Total Attendance',
     )
     total_difference = fields.Float(
         compute='_compute_attendance_time',
+        compute_sudo=True,
         string='Difference',
     )
     attendances_ids = fields.One2many(
@@ -60,9 +62,9 @@ class HrTimesheetSheet(models.Model):
 
     @api.multi
     def attendance_action_change(self):
-        '''Call attendance_action_change to
+        """Call attendance_action_change to
         perform Check In/Check Out action
-        Returns last attendance record'''
+        Returns last attendance record"""
 
         return self.employee_id.attendance_action_change()
 
