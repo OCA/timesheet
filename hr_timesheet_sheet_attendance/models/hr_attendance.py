@@ -1,10 +1,6 @@
 from odoo import api, fields, models, _
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT,\
-    DEFAULT_SERVER_DATE_FORMAT
 from odoo.exceptions import UserError
-
 import pytz
-from datetime import datetime
 
 
 class HrAttendance(models.Model):
@@ -14,19 +10,15 @@ class HrAttendance(models.Model):
         """Convert date according to timezone of user
         :param date: datetime, type string
         :return: return converted date, type string"""
-
         tz = False
         if self.employee_id.user_id:
             tz = self.employee_id.user_id.partner_id.tz
         if not date:
             return False
         time_zone = pytz.timezone(tz or 'UTC')
-        attendance_dt = datetime.strptime(date, DEFAULT_SERVER_DATETIME_FORMAT)
-        attendance_tz_dt = pytz.UTC.localize(attendance_dt)
-        attendance_tz_dt = attendance_tz_dt.astimezone(time_zone)
-        attendance_tz_date_str = datetime.strftime(
-            attendance_tz_dt, DEFAULT_SERVER_DATE_FORMAT)
-        return attendance_tz_date_str
+        attendance_tz_dt = pytz.UTC.localize(date)
+        attendance_tz_date = attendance_tz_dt.astimezone(time_zone).date()
+        return attendance_tz_date
 
     def _get_timesheet_sheet(self):
         """Find and return current timesheet-sheet
@@ -36,14 +28,12 @@ class HrAttendance(models.Model):
         check_in = False
         if self.check_in:
             check_in = self._get_attendance_employee_tz(date=self.check_in)
-
         domain = [('employee_id', '=', self.employee_id.id)]
         if check_in:
             domain += [
                 ('date_start', '<=', check_in),
                 ('date_end', '>=', check_in)
             ]
-
         sheet_ids = sheet_obj.search(domain, limit=1)
         return sheet_ids[:1] or False
 

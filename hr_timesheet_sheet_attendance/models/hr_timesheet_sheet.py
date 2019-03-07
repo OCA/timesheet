@@ -1,6 +1,5 @@
 from odoo import api, fields, models, _
 from datetime import datetime
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.exceptions import UserError
 
 
@@ -29,9 +28,7 @@ class HrTimesheetSheet(models.Model):
             atte_with_checkout = sheet.attendances_ids - atte_without_checkout
             total_time = sum(atte_with_checkout.mapped('worked_hours'))
             for attendance in atte_without_checkout:
-                delta = current_date - datetime.strptime(
-                    attendance.check_in,
-                    DEFAULT_SERVER_DATETIME_FORMAT)
+                delta = current_date - attendance.check_in
                 total_time += delta.total_seconds() / 3600.0
             sheet.total_attendance = total_time
 
@@ -50,13 +47,13 @@ class HrTimesheetSheet(models.Model):
     attendances_ids = fields.One2many(
         comodel_name='hr.attendance',
         inverse_name='sheet_id',
-        string='Attendances')
+        string='Attendance/s')
     attendance_state = fields.Selection(
         related='employee_id.attendance_state',
         string='Current Status')
     attendance_count = fields.Integer(
         compute='_compute_attendance_count',
-        string="Attendance Count")
+        string="Attendances")
 
     @api.multi
     def attendance_action_change(self):

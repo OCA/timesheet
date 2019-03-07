@@ -14,7 +14,6 @@ class HrTimesheetTestCases(TransactionCase):
         self.task_1 = self.env.ref('project.project_task_1')
 
     def _create_user(self):
-        """Create and return user"""
         user_vals = {
             'name': 'TestUser',
             'login': 'test',
@@ -28,9 +27,6 @@ class HrTimesheetTestCases(TransactionCase):
         return self.env['res.users'].create(user_vals)
 
     def _create_employee(self, user):
-        """Create employee
-        :param user: record set of res.user
-        :param return: recordset of hr.employee"""
         employee_vals = {
             'name': 'TestEmployee',
             'user_id': self.user_id.id,
@@ -46,10 +42,6 @@ class HrTimesheetTestCases(TransactionCase):
         return self.env['hr.employee'].create(employee_vals)
 
     def _create_timesheet_sheet(self, employee, date=None):
-        """Create employee
-        :param employee: record set of hr.employee
-        :param str date: date
-        :param return: recordset of hr_timesheet.sheet"""
         if not date:
             date = fields.Date.today()
         sheet_vals = {
@@ -60,11 +52,6 @@ class HrTimesheetTestCases(TransactionCase):
         return self.env['hr_timesheet.sheet'].create(sheet_vals)
 
     def _create_attendance(self, employee, checkIn=None, checkOut=None):
-        """Create employee
-        :param employee: record set of hr.employee
-        :param str checkIn: datetime
-        :param str checkOut: datetime
-        :param return: recordset of hr.attendance"""
         attendance_vals = {
             'employee_id': employee.id,
             'check_in': checkIn,

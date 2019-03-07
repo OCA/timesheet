@@ -1,13 +1,11 @@
 {
     'name': 'HR Timesheet Sheet Attendance',
-    'version': '11.0.0.0.0',
+    'version': '12.0.0.0.0',
     'category': 'Human Resources',
     'sequence': 80,
     'license': 'AGPL-3',
-    "author": "BizzAppDev, "
-    "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/hr-timesheet/",
     'depends': [
+        'hr_timesheet',
         'hr_attendance',
         'hr_timesheet_sheet'
     ],
