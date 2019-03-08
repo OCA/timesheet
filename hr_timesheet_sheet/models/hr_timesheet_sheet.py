@@ -295,8 +295,8 @@ class Sheet(models.Model):
     @api.onchange('line_ids')
     def _onchange_line_ids(self):
         if self.state == 'draft' and not self.timesheet_ids and self.line_ids:
-            timesheets = self._get_timesheet_lines()
-            self.timesheet_ids = timesheets
+            if not self.env.context.get('sheet_details'):
+                self.timesheet_ids = self._get_timesheet_lines()
 
     @api.onchange('add_line_project_id')
     def onchange_add_project_id(self):
