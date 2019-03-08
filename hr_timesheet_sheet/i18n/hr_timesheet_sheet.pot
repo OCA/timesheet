@@ -176,7 +176,7 @@ msgid "Employees"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:663
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:662
 #, python-format
 msgid "Error code: Cannot have 0 timesheets."
 msgstr ""
