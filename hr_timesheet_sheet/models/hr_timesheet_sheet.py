@@ -511,7 +511,6 @@ class Sheet(models.Model):
             'company_id': self.company_id.id,
         }
 
-    @api.model
     def add_line(self):
         if self.add_line_project_id:
             values = self._prepare_empty_analytic_line()
