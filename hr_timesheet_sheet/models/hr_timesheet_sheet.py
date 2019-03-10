@@ -476,8 +476,9 @@ class Sheet(models.Model):
             'company_id': self.company_id.id,
         }
 
-    @api.model
+    @api.multi
     def add_line(self, project, task):
+        self.ensure_one()
         if project:
             values = self._prepare_empty_analytic_line(project, task)
             name_line = self._get_line_name(project, task)
