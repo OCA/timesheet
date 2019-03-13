@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="assets_backend" name="hr_timesheet_sheet_attendance assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/hr_timesheet_sheet_attendance/static/src/js/attendance_matrix_widget.js" />
+            <link rel="stylesheet" href="/hr_timesheet_sheet_attendance/static/src/css/attendance_matrix_widget.css" />
+        </xpath>
+    </template>
+</odoo>
