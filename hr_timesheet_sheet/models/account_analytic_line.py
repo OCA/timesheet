@@ -23,7 +23,7 @@ class AccountAnalyticLine(models.Model):
                 ('date_start', '<=', timesheet.date),
                 ('employee_id', '=', timesheet.employee_id.id),
                 ('company_id', 'in', [timesheet.company_id.id, False]),
-                ('state', '=', 'draft'),
+                ('state', 'in', ['new', 'draft']),
             ], limit=1)
             if timesheet.sheet_id != sheet:
                 timesheet.sheet_id = sheet
@@ -80,7 +80,7 @@ class AccountAnalyticLine(models.Model):
         if self.env.context.get('skip_check_state'):
             return
         for line in self:
-            if line.sheet_id and line.sheet_id.state != 'draft':
+            if line.sheet_id and line.sheet_id.state not in ['new', 'draft']:
                 raise UserError(
                     _('You cannot modify an entry in a confirmed '
                       'timesheet sheet.'))

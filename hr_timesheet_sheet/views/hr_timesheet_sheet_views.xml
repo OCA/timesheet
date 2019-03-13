@@ -48,7 +48,7 @@
                     <notebook>
                         <page string="Summary">
                             <group name="Sheet">
-                                <field name="line_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                <field name="line_ids" nolabel="1" attrs="{'readonly': [('state', 'not in', ['new', 'draft'])]}"
                                        widget="x2many_2d_matrix"
                                        field_x_axis="value_x"
                                        field_y_axis="value_y"
@@ -68,7 +68,7 @@
                                         <field name="task_id"/>
                                     </tree>
                                 </field>
-                                <group class="oe_edit_only" attrs="{'invisible': [('state', '!=', 'draft')]}">
+                                <group class="oe_edit_only" attrs="{'invisible': [('state', 'not in', ['new', 'draft'])]}">
                                     <field name="add_line_project_id" domain="[('company_id', '=', company_id), ('allow_timesheets', '=', True)]"/>
                                     <field name="add_line_task_id" attrs="{'invisible': [('add_line_project_id', '=', False)]}"
                                            context="{'default_project_id': add_line_project_id}"/>

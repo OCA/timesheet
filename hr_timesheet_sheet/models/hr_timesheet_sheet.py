@@ -52,9 +52,12 @@ class Sheet(models.Model):
         return today
 
     def _default_employee(self):
-        emp_ids = self.env['hr.employee'].search(
-            [('user_id', '=', self.env.uid)])
-        return emp_ids and emp_ids[0] or False
+        company = self.env['res.company']._company_default_get()
+        employee = self.env['hr.employee'].search([
+            ('user_id', '=', self.env.uid),
+            ('company_id', '=', company.id),
+        ], limit=1)
+        return employee
 
     name = fields.Char(
         string="Note",
@@ -65,6 +68,8 @@ class Sheet(models.Model):
         string='Employee',
         default=lambda self: self._default_employee(),
         required=True,
+        readonly=True,
+        states={'new': [('readonly', False)]},
     )
     user_id = fields.Many2one(
         comodel_name='res.users',
@@ -79,7 +84,7 @@ class Sheet(models.Model):
         required=True,
         index=True,
         readonly=True,
-        states={'draft': [('readonly', False)]},
+        states={'new': [('readonly', False)]},
     )
     date_end = fields.Date(
         string='Date To',
@@ -87,7 +92,7 @@ class Sheet(models.Model):
         required=True,
         index=True,
         readonly=True,
-        states={'draft': [('readonly', False)]},
+        states={'new': [('readonly', False)]},
     )
     timesheet_ids = fields.One2many(
         comodel_name='account.analytic.line',
@@ -95,6 +100,7 @@ class Sheet(models.Model):
         string='Timesheets',
         readonly=True,
         states={
+            'new': [('readonly', False)],
             'draft': [('readonly', False)],
         }
     )
@@ -104,14 +110,16 @@ class Sheet(models.Model):
         string='Timesheets',
         readonly=True,
         states={
+            'new': [('readonly', False)],
             'draft': [('readonly', False)],
         }
     )
     state = fields.Selection([
+        ('new', 'New'),
         ('draft', 'Open'),
         ('confirm', 'Waiting Approval'),
         ('done', 'Approved')],
-        default='draft', track_visibility='onchange',
+        default='new', track_visibility='onchange',
         string='Status', required=True, readonly=True, index=True,
     )
     company_id = fields.Many2one(
@@ -230,7 +238,6 @@ class Sheet(models.Model):
     def _onchange_employee_id(self):
         if self.employee_id:
             self.department_id = self.employee_id.department_id
-            self.user_id = self.employee_id.user_id
 
     def _get_timesheet_sheet_lines_domain(self):
         self.ensure_one()
@@ -286,7 +293,7 @@ class Sheet(models.Model):
             self.clean_timesheets(data_matrix[item]['timesheets'])
         return lines
 
-    @api.onchange('date_start', 'date_end')
+    @api.onchange('date_start', 'date_end', 'employee_id')
     def _onchange_dates(self):
         domain = self._get_timesheet_sheet_lines_domain()
         timesheets = self.env['account.analytic.line'].search(domain)
@@ -408,7 +415,7 @@ class Sheet(models.Model):
     @api.multi
     def button_add_line(self):
         for rec in self:
-            if rec.state == 'draft':
+            if rec.state in ['new', 'draft']:
                 rec.add_line(rec.add_line_project_id, rec.add_line_task_id)
                 rec.add_line_task_id = False
                 rec.add_line_project_id = False
@@ -478,7 +485,7 @@ class Sheet(models.Model):
 
     def link_timesheets_to_sheet(self, timesheets):
         self.ensure_one()
-        if self.id and self.state == 'draft':
+        if self.id and self.state in ['new', 'draft']:
             for aal in timesheets.filtered(lambda a: not a.sheet_id):
                 aal.write({'sheet_id': self.id})
 
