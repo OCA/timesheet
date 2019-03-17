@@ -154,7 +154,7 @@ msgid "Employees"
 msgstr "Empleats"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:637
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:638
 #, fuzzy, python-format
 msgid "Error code: Cannot have 0 timesheets."
 msgstr "No pot duplicar una fulla d'hores."
