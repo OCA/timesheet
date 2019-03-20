@@ -96,11 +96,11 @@ class TestHrTimesheetSheet(TransactionCase):
 
     def test_1(self):
         sheet = self.sheet_model.sudo(self.user).create({
-            'employee_id': self.employee.id,
             'company_id': self.user.company_id.id,
         })
         self.assertEqual(len(sheet.timesheet_ids), 0)
         self.assertEqual(len(sheet.line_ids), 0)
+        self.assertTrue(sheet.employee_id)
 
         sheet.add_line_project_id = self.project_1
         sheet.onchange_add_project_id()
