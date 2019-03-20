@@ -69,7 +69,6 @@
                                         <field name="date"/>
                                         <field name="project_id"/>
                                         <field name="task_id"/>
-                                        <field name="count_timesheets"/>
                                     </tree>
                                 </field>
                                 <group class="oe_edit_only" attrs="{'invisible': [('state', '!=', 'draft')]}">
@@ -85,7 +84,7 @@
                             </group>
                         </page>
                         <page string="Details">
-                            <field context="{'employee_id': employee_id, 'user_id':user_id, 'timesheet_date_start': date_start, 'timesheet_date_end': date_end}" name="timesheet_ids" nolabel="1">
+                            <field name="timesheet_ids" nolabel="1">
                                 <tree editable="bottom" string="Timesheet Activities">
                                     <field name="date"/>
                                     <field name="project_id" required="1"/>
