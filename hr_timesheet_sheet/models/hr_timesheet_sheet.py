@@ -245,57 +245,44 @@ class Sheet(models.Model):
 
     def _get_timesheet_sheet_lines_domain(self):
         self.ensure_one()
-        domain = [
+        return [
             ('project_id', '!=', False),
             ('date', '<=', self.date_end),
             ('date', '>=', self.date_start),
             ('employee_id', '=', self.employee_id.id),
             ('company_id', '=', self.company_id.id),
         ]
-        return domain
 
     @api.multi
     def _compute_line_ids(self):
         for sheet in self:
             if not all([sheet.date_start, sheet.date_end]):
                 continue
-            dates = sheet._get_dates()
-            if not dates:
-                continue
-            data_matrix = {}
-            projects = sheet.timesheet_ids.mapped('project_id')
-            for date in dates:
-                for project in projects:
-                    project_timesheets = sheet.timesheet_ids.filtered(
-                        lambda x: x.project_id == project)
-                    tasks = [project_timesheets.mapped('task_id')]
-                    if not project_timesheets or not all(
-                            [t.task_id for t in project_timesheets]):
-                        tasks += [self.env['project.task']]
-                    for task in tasks:
-                        timesheets = project_timesheets.filtered(
-                            lambda t: date == t.date
-                            and t.task_id == task)
-                        unit_amount = sum(t.unit_amount for t in timesheets)
-                        data_matrix[(date, project, task)] = {
-                            'unit_amount': unit_amount,
-                            'timesheets': timesheets
-                        }
-            sheet.line_ids = sheet._create_data_matrix_lines(data_matrix)
+            matrix = sheet._get_data_matrix()
+            lines = self.env['hr_timesheet.sheet.line']
+            for item in sorted(matrix, key=lambda l: self._sort_matrix(l)):
+                vals = sheet._get_default_sheet_line(matrix, item)
+                lines |= self.env['hr_timesheet.sheet.line'].create(vals)
+                sheet.clean_timesheets(matrix[item])
+            sheet.line_ids = lines
 
-    def _create_data_matrix_lines(self, data_matrix):
+    def _sort_matrix(self, line):
+        return [line[0], line[1].name, line[2].name or '']
+
+    def _get_data_matrix(self):
         self.ensure_one()
-        lines = self.env['hr_timesheet.sheet.line']
-        for item in data_matrix:
-            lines |= self.env['hr_timesheet.sheet.line'].create(
-                self._get_default_sheet_line(
-                    date=item[0],
-                    project=item[1],
-                    task=item[2],
-                    unit_amount=data_matrix[item]['unit_amount']
-                ))
-            self.clean_timesheets(data_matrix[item]['timesheets'])
-        return lines
+        matrix = {}
+        empty_line = self.env['account.analytic.line']
+        for line in self.timesheet_ids:
+            data_key = (line.date, line.project_id, line.task_id)
+            if data_key not in matrix:
+                matrix[data_key] = empty_line
+            matrix[data_key] += line
+        for date in self._get_dates():
+            for item in matrix.copy():
+                if (date, item[1], item[2]) not in matrix:
+                    matrix[(date, item[1], item[2])] = empty_line
+        return matrix
 
     @api.onchange('date_start', 'date_end', 'employee_id')
     def _onchange_dates(self):
@@ -466,20 +453,17 @@ class Sheet(models.Model):
             self.add_line_task_id,
         )
 
-    def _get_default_sheet_line(self, date, project, task, unit_amount):
-        name_y = self._get_line_name(project, task)
+    def _get_default_sheet_line(self, matrix, item):
         values = {
-            'value_x': self._get_date_name(date),
-            'value_y': name_y,
-            'date': date,
-            'project_id': project.id,
-            'task_id': task.id,
-            'unit_amount': unit_amount,
+            'value_x': self._get_date_name(item[0]),
+            'value_y': self._get_line_name(item[1], item[2]),
+            'date': item[0],
+            'project_id': item[1].id,
+            'task_id': item[2].id,
+            'unit_amount': sum(t.unit_amount for t in matrix[item]),
         }
         if self.id:
-            values.update({
-                'sheet_id': self.id,
-            })
+            values.update({'sheet_id': self.id})
         return values
 
     @api.model
