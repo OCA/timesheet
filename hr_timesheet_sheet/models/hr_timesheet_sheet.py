@@ -379,6 +379,12 @@ class Sheet(models.Model):
         analytic_timesheet_toremove.unlink()
         return super(Sheet, self).unlink()
 
+    def _timesheet_subscribe_users(self):
+        for sheet in self:
+            if sheet.employee_id.parent_id.user_id:
+                self.message_subscribe_users(
+                    user_ids=[sheet.employee_id.parent_id.user_id.id])
+
     @api.multi
     def action_timesheet_draft(self):
         if not self.env.user.has_group('hr_timesheet.group_hr_timesheet_user'):
@@ -389,10 +395,7 @@ class Sheet(models.Model):
 
     @api.multi
     def action_timesheet_confirm(self):
-        for sheet in self:
-            if sheet.employee_id.parent_id.user_id:
-                self.message_subscribe_users(
-                    user_ids=[sheet.employee_id.parent_id.user_id.id])
+        self._timesheet_subscribe_users()
         self.write({
             'state': 'confirm',
             'add_line_project_id': False,
