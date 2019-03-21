@@ -1,11 +1,9 @@
-# Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from psycopg2 import IntegrityError
-
 from odoo import fields
+from odoo.exceptions import ValidationError
 from odoo.tests import common
-from odoo.tools.misc import mute_logger
 
 
 class TestHrTimesheetEmployeeRequired(common.TransactionCase):
@@ -41,8 +39,10 @@ class TestHrTimesheetEmployeeRequired(common.TransactionCase):
             ])]
         })
 
-        with self.assertRaises(IntegrityError), mute_logger('odoo.sql_db'):
-            self.AccountAnalyticLine.sudo(user=user).create({
+        with self.assertRaises(ValidationError):
+            self.AccountAnalyticLine.sudo(user=user).with_context({
+                'test_hr_timesheet_employee_required': True,
+            }).create({
                 'project_id': project.id,
                 'name': 'Time Entry #1',
             })
@@ -65,7 +65,9 @@ class TestHrTimesheetEmployeeRequired(common.TransactionCase):
             'user_id': user.id,
         })
 
-        self.AccountAnalyticLine.sudo(user=user).create({
+        self.AccountAnalyticLine.sudo(user=user).with_context({
+            'test_hr_timesheet_employee_required': True,
+        }).create({
             'project_id': project.id,
             'name': 'Time Entry #2',
         })
@@ -78,7 +80,9 @@ class TestHrTimesheetEmployeeRequired(common.TransactionCase):
             'name': 'Employee #3',
         })
 
-        self.SudoAccountAnalyticLine.create({
+        self.SudoAccountAnalyticLine.with_context({
+            'test_hr_timesheet_employee_required': True,
+        }).create({
             'project_id': project.id,
             'name': 'Time Entry #3',
             'employee_id': employee.id,
