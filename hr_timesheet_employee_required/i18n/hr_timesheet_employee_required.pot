@@ -19,7 +19,8 @@ msgid "Analytic Line"
 msgstr ""
 
 #. module: hr_timesheet_employee_required
-#: sql_constraint:account.analytic.line:0
+#: code:addons/hr_timesheet_employee_required/models/account_analytic_line.py:21
+#, python-format
 msgid "Employee is required for Task Log"
 msgstr ""
 
