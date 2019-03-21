@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="crm_case_form_view_leads" model="ir.ui.view">
+        <field name="name">CRM - Leads with timesheets</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="project_id" />
+            </field>
+            <page name="extra" position="after">
+                <page string="Timesheet">
+                    <field name="timesheet_ids"
+                           context="{'default_project_id': project_id, 'default_user_id': uid, 'tree_view_ref': 'hr_timesheet.timesheet_view_tree_user', 'from_lead': True}"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <!-- This is ugly, but needed as the context for hiding the field is not propagated otherwise to the children view -->
+    <record model="ir.actions.act_window" id="crm.crm_lead_all_leads">
+        <field name="context">{'default_type':'lead', 'search_default_type': 'lead', 'needaction_menu_ref': 'crm.menu_crm_opportunities', 'search_default_to_process':1, 'from_lead': True}</field>
+    </record>
+
+    <record id="crm_case_form_view_oppor" model="ir.ui.view">
+        <field name="name">CRM - Opportunities with timesheets</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="project_id" />
+            </field>
+            <page name="lead" position="after">
+                <page string="Timesheet">
+                    <field name="timesheet_ids"
+                           context="{'default_project_id': project_id, 'default_user_id': uid, 'tree_view_ref': 'hr_timesheet.timesheet_view_tree_user', 'from_lead': True}" />
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <!-- This is ugly, but needed as the context for hiding the field is not propagated otherwise to the children view -->
+    <record model="ir.actions.act_window" id="crm.crm_lead_opportunities_tree_view">
+        <field name="context">{'default_type': 'opportunity', 'default_user_id': uid, 'search_default_assigned_to_me': 1, 'from_lead': True}</field>
+    </record>
+
+</odoo>
