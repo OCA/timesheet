@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <tree decoration-info="state == 'draft'" decoration-muted="state == 'done'" decoration-bf="message_needaction == True" string="Timesheet Sheets">
                 <field name="employee_id"/>
+                <field name="display_name" string="Period"/>
                 <field name="date_start"/>
                 <field name="date_end"/>
                 <field name="department_id" invisible="1"/>
