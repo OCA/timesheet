@@ -32,12 +32,19 @@ class TestHrTimesheetTaskRequired(SavepointCase):
             'project_id': cls.project_2.id,
         })
 
+        cls.employee = cls.env['hr.employee'].create({
+            'name': "Test User",
+            'user_id': cls.env.user.id,
+            'company_id': cls.env.user.company_id.id,
+        })
+
     def test_timesheet_line_task_required(self):
         with self.assertRaises(ValidationError):
             self.AnalyticLine.create({
                 'name': 'test',
                 'project_id': self.project_1.id,
                 'unit_amount': 10,
+                'employee_id': self.employee.id,
             })
 
         self.AnalyticLine.create({
@@ -45,6 +52,7 @@ class TestHrTimesheetTaskRequired(SavepointCase):
             'project_id': self.project_1.id,
             'task_id': self.task_1_p1.id,
             'unit_amount': 10,
+            'employee_id': self.employee.id,
         })
 
     def test_timesheet_line_task_not_required(self):
@@ -52,6 +60,7 @@ class TestHrTimesheetTaskRequired(SavepointCase):
             'name': 'test',
             'project_id': self.project_2.id,
             'unit_amount': 10,
+            'employee_id': self.employee.id,
         })
 
         self.AnalyticLine.create({
@@ -59,4 +68,5 @@ class TestHrTimesheetTaskRequired(SavepointCase):
             'project_id': self.project_2.id,
             'task_id': self.task_1_p2.id,
             'unit_amount': 10,
+            'employee_id': self.employee.id,
         })
