@@ -26,18 +26,18 @@ msgstr "Riga analitica"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_crm_lead
-#: model:ir.model.fields,field_description:crm_timesheet.field_account_analytic_line_lead_id
+#: model:ir.model.fields,field_description:crm_timesheet.field_account_analytic_line__lead_id
 msgid "Lead/Opportunity"
 msgstr "Lead/Opportunità"
 
 #. module: crm_timesheet
-#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead_project_id
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__project_id
 msgid "Project"
 msgstr "Progetto"
 
 #. module: crm_timesheet
-#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead_timesheet_ids
-#: model:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_leads
-#: model:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_oppor
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__timesheet_ids
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_oppor
 msgid "Timesheet"
 msgstr "Foglio ore"
