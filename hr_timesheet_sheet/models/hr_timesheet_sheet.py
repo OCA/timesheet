@@ -259,11 +259,11 @@ class Sheet(models.Model):
             if not all([sheet.date_start, sheet.date_end]):
                 continue
             matrix = sheet._get_data_matrix()
-            lines = self.env['hr_timesheet.sheet.line']
+            vals_list = []
             for item in sorted(matrix, key=lambda l: self._sort_matrix(l)):
-                vals = sheet._get_default_sheet_line(matrix, item)
-                lines |= self.env['hr_timesheet.sheet.line'].create(vals)
+                vals_list.append(sheet._get_default_sheet_line(matrix, item))
                 sheet.clean_timesheets(matrix[item])
+            lines = self.env['hr_timesheet.sheet.line'].create(vals_list)
             sheet.line_ids = lines
 
     def _sort_matrix(self, line):
