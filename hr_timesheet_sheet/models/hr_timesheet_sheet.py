@@ -130,6 +130,7 @@ class Sheet(models.Model):
         comodel_name='res.company',
         string='Company',
         default=lambda self: self.env['res.company']._company_default_get(),
+        readonly=True,
     )
     department_id = fields.Many2one(
         comodel_name='hr.department',
@@ -242,6 +243,7 @@ class Sheet(models.Model):
     def _onchange_employee_id(self):
         if self.employee_id:
             self.department_id = self.employee_id.department_id
+            self.company_id = self.employee_id.company_id
 
     def _get_timesheet_sheet_lines_domain(self):
         self.ensure_one()
@@ -250,7 +252,7 @@ class Sheet(models.Model):
             ('date', '<=', self.date_end),
             ('date', '>=', self.date_start),
             ('employee_id', '=', self.employee_id.id),
-            ('company_id', '=', self.company_id.id),
+            ('company_id', '=', self.employee_id.company_id.id),
         ]
 
     @api.multi
@@ -324,10 +326,12 @@ class Sheet(models.Model):
     @api.model
     def create(self, vals):
         if 'employee_id' in vals:
-            if not self.env['hr.employee'].browse(vals['employee_id']).user_id:
+            employee = self.env['hr.employee'].browse(vals['employee_id'])
+            if not employee.user_id:
                 raise UserError(
                     _('In order to create a sheet for this employee, '
                       'you must link him/her to an user.'))
+            vals['company_id'] = employee.company_id.id
         res = super().create(vals)
         res.write({'state': 'draft'})
         self.delete_empty_lines(True)
