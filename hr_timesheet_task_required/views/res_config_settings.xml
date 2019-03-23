@@ -10,7 +10,7 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="hr_timesheet.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[@data-key='project']/h2[text()='Tasks Management']/following-sibling::div" position="inside">
+            <xpath expr="//div[@data-key='project']//field[@name='module_hr_timesheet']/../../.." position="inside">
                 <div class="col-12 col-lg-6 o_setting_box">
                     <div class="o_setting_left_pane">
                         <field name="is_timesheet_task_required"/>
