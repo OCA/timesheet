@@ -13,41 +13,40 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2016-09-07 08:56+0000\n"
-"Last-Translator: Cas Vissers <casvissers@brahoo.nl>, 2016\n"
+"PO-Revision-Date: 2019-03-23 17:14+0000\n"
+"Last-Translator: Cas Vissers <c.vissers@brahoo.nl>\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.5.1\n"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_warning
 msgid "Access warning"
-msgstr ""
+msgstr "Toegangs waarschuwing"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Actie nodig"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_ids
-#, fuzzy
 msgid "Activities"
-msgstr "Urenstaten activiteiten"
+msgstr "Activiteiten"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Activiteit status"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
-#, fuzzy
 msgid "Add new line"
-msgstr "Regel toevoegen"
+msgstr "Voeg een nieuwe regel toe"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_line
@@ -68,23 +67,23 @@ msgstr "Goedgekeurd"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Aantal bijlages"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:400
-#, fuzzy, python-format
+#, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Een niet ingediende urenstaat kan niet goedgekeurd worden."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose the week start day."
-msgstr ""
+msgstr "Kies de week startdag."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose which timesheet sheet ranges should be used by default"
-msgstr ""
+msgstr "Kies welke urenstaat range standaard gebruikt moet worden"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_res_company
@@ -98,21 +97,18 @@ msgstr "Bedrijf"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_res_config_settings
-#, fuzzy
 msgid "Config Settings"
-msgstr "project.config.settings"
+msgstr "Configuratie instellingen"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-#, fuzzy
 msgid "Confirmed Timesheet Sheets"
 msgstr "Bevestigde urenstaten"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__count_timesheets
-#, fuzzy
 msgid "Count Timesheets"
-msgstr "Mijn huidige urenstaat"
+msgstr "Aantal urenstaten"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__create_uid
@@ -129,11 +125,10 @@ msgstr "Aangemaakt op"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__access_url
 msgid "Customer Portal URL"
-msgstr ""
+msgstr "Klant portaal URL"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__date
-#, fuzzy
 msgid "Date"
 msgstr "Datum tot"
 
@@ -144,9 +139,8 @@ msgstr "Datum vanaf"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__value_x
-#, fuzzy
 msgid "Date Name"
-msgstr "Datum vanaf"
+msgstr "Datum naam"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__date_end
@@ -156,7 +150,7 @@ msgstr "Datum tot"
 #. module: hr_timesheet_sheet
 #: selection:res.company,sheet_range:0
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__department_id
@@ -193,29 +187,29 @@ msgstr "Werknemers"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:662
-#, fuzzy, python-format
+#, python-format
 msgid "Error code: Cannot have 0 timesheets."
-msgstr "Het is niet mogelijk een urenstaat te dupliceren."
+msgstr "Fout code: Kan niet geen urenstaten hebben."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Volgers"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Volgers (kanalen)"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Volgers (relaties)"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_week_start:0
 msgid "Friday"
-msgstr ""
+msgstr "Vrijdag"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -224,7 +218,6 @@ msgstr "Groepeer op"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_department
-#, fuzzy
 msgid "HR Department"
 msgstr "HR afdeling"
 
@@ -242,17 +235,17 @@ msgstr "ID"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Wanneer aangevinkt hebben nieuwe berichten uw aandacht nodig."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Wanneer aangevinkt, hebben nieuwe berichten uw aandacht nodig."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Wanneer aangevinkt, hebben sommige berichten een leveringsfout."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_project_id
@@ -260,6 +253,8 @@ msgid ""
 "If selected, the associated project is added to the timesheet sheet when "
 "clicked the button."
 msgstr ""
+"Wanneer aangevinkt, wordt het geasocieerde project toegevoegd aan de "
+"urenstaat wanneer de knop wordt gedrukt."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_task_id
@@ -267,6 +262,8 @@ msgid ""
 "If selected, the associated task is added to the timesheet sheet when "
 "clicked the button."
 msgstr ""
+"Wanneer aangevinkt, wordt de geasocieerde taak toegevoegd aan de urenstaat "
+"wanneer de knop wordt gedrukt."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -276,18 +273,18 @@ msgstr "In concept"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:328
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:342
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user."
 msgstr ""
-"Om een tijdschema voor deze medewerker aan te maken, moet u hem/haar eerst "
+"Om een urenstaat voor deze medewerker aan te maken, moet u hem/haar eerst "
 "linken aan een gebruiker."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Is volger"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet____last_update
@@ -310,23 +307,22 @@ msgstr "Laatst bijgewerkt op"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Hoofdbijlage"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Bericht leveringsfout"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_ids
-#, fuzzy
 msgid "Messages"
-msgstr "Ongelezen berichten"
+msgstr "Berichten"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_week_start:0
 msgid "Monday"
-msgstr ""
+msgstr "Maandag"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,sheet_range:0
@@ -336,15 +332,13 @@ msgstr "Maand"
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_my_timesheets
-#, fuzzy
 msgid "My Timesheet Sheets"
 msgstr "Mijn urenstaten"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
-#, fuzzy
 msgid "New timesheet sheet."
-msgstr "nieuwe urenstaat."
+msgstr "Nieuwe urenstaat."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
@@ -354,17 +348,17 @@ msgstr "Nieuwe urenstaat goed te keuren."
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Volgende activitiet deadline"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Volgende activitiet samenvatting"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Volgende activiteit type"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
@@ -374,38 +368,37 @@ msgstr "Notitie"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Aantal acties"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error_counter
 msgid "Number of error"
-msgstr ""
+msgstr "Aantal fouten"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Aantal berichten welke een actie nodig hebben"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Aantal berichten met een leverfout"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread_counter
-#, fuzzy
 msgid "Number of unread messages"
-msgstr "Ongelezen berichten"
+msgstr "Aantal ongelezen berichten"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:398
-#, fuzzy, python-format
+#, python-format
 msgid "Only an HR Officer or Manager can approve sheets."
 msgstr "Alleen een HR functionaris of manager kan urenstaten goedkeuren."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:378
-#, fuzzy, python-format
+#, python-format
 msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 msgstr ""
 "Alleen een HR functionaris of manager kan urenstaten weigeren of terugzetten "
@@ -419,37 +412,37 @@ msgstr "Open"
 #. module: hr_timesheet_sheet
 #: selection:hr_timesheet.sheet,activity_state:0
 msgid "Overdue"
-msgstr ""
+msgstr "Vervallen"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Period"
-msgstr ""
+msgstr "Periode"
 
 #. module: hr_timesheet_sheet
 #: selection:hr_timesheet.sheet,activity_state:0
 msgid "Planned"
-msgstr ""
+msgstr "Gepland"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_url
 msgid "Portal Access URL"
-msgstr ""
+msgstr "Portaal toegang URL"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__project_id
 msgid "Project"
-msgstr ""
+msgstr "Project"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__value_y
 msgid "Project Name"
-msgstr ""
+msgstr "Project naam"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__unit_amount
 msgid "Quantity"
-msgstr ""
+msgstr "Hoeveelheid"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -464,12 +457,12 @@ msgstr "Gekoppelde gebruikersnaam voor de resource om zijn toegang te beheren."
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Verantwoordelijke gebruiker"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_week_start:0
 msgid "Saturday"
-msgstr ""
+msgstr "Zaterdag"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -479,17 +472,17 @@ msgstr "Urenstaat zoeken"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_token
 msgid "Security Token"
-msgstr ""
+msgstr "Beveiligingstoken"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_project_id
 msgid "Select Project"
-msgstr ""
+msgstr "Selecteer project"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_task_id
 msgid "Select Task"
-msgstr ""
+msgstr "Selecteer taak"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -505,7 +498,7 @@ msgstr "Formulier"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Starting day for Timesheet Sheets."
-msgstr ""
+msgstr "Startdag for urenstaten."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__state
@@ -520,6 +513,10 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Status gebaseerd op activiteitein\n"
+"Vervallen: Verval datum is reeds verstreken\n"
+"Vandaag: Activiteit is vandaag\n"
+"Gepland: Activiteit is in de toekomst."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -534,55 +531,55 @@ msgstr "Samenvatting"
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_week_start:0
 msgid "Sunday"
-msgstr ""
+msgstr "Zondag"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__task_id
 msgid "Task"
-msgstr ""
+msgstr "Taak"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:203
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Department must be the same."
-msgstr ""
+msgstr "Het bedrijf in de urenstaat en afdeling moeten gelijk zijn."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:193
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Employee must be the same."
-msgstr ""
+msgstr "Het bedrijf in de urenstaat en werknemer moeten gelijk zijn."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:213
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Project must be the same."
-msgstr ""
+msgstr "Het bedrijf in de urenstaat en project moeten gelijk zijn."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:223
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Task must be the same."
-msgstr ""
+msgstr "Het bedrijf in de urenstaat en taak moeten gelijk zijn."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company__sheet_range
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__sheet_range
 msgid "The range of your Timesheet Sheet."
-msgstr ""
+msgstr "Bereik van uw urenstaat."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:163
 #, python-format
 msgid "The start date cannot be later than the end date."
-msgstr ""
+msgstr "The start datum kan voor de einddatum liggen."
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_week_start:0
 msgid "Thursday"
-msgstr ""
+msgstr "Donderdag"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -591,9 +588,8 @@ msgstr "Urenstaten activiteiten"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
-#, fuzzy
 msgid "Timesheet Options"
-msgstr "Urenstaat regels"
+msgstr "Urenstaat opties"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -603,26 +599,22 @@ msgstr "Urenstaten periode"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
-#, fuzzy
 msgid "Timesheet Sheet"
 msgstr "Urenstaat"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line
-#, fuzzy
 msgid "Timesheet Sheet Line"
-msgstr "Urenstaat regels"
+msgstr "Urenstaatregel"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__line_ids
-#, fuzzy
 msgid "Timesheet Sheet Lines"
-msgstr "Urenstaat regels"
+msgstr "Urenstaatregel"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__sheet_range
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__sheet_range
-#, fuzzy
 msgid "Timesheet Sheet Range"
 msgstr "Urenstaat bereik"
 
@@ -630,15 +622,13 @@ msgstr "Urenstaat bereik"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_count
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified
-#, fuzzy
 msgid "Timesheet Sheets"
-msgstr "Urenstaat regels"
+msgstr "Urenstaten"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_form
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department__timesheet_sheet_to_approve_count
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_form
-#, fuzzy
 msgid "Timesheet Sheets to Approve"
 msgstr "Urenstaten goed te keuren"
 
@@ -649,13 +639,12 @@ msgstr "Urenstaat goedgekeurd"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
-#, fuzzy
 msgid ""
 "Timesheet sheets can also be invoiced to customers, depending on\n"
 "             the configuration of each project's related contract."
 msgstr ""
 "Urenstaten kunnen ook aan klanten gefactureerd worden, afhankelijk van\n"
-"hoe het contract voor elk project opgemaakt werd."
+"hoe elk project ingesteld is."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__timesheet_ids
@@ -671,7 +660,6 @@ msgstr "Goedgekeurde urenstaten"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
-#, fuzzy
 msgid ""
 "Timesheets can also be invoiced to customers, depending on the\n"
 "            configuration of each project's related contract."
@@ -694,7 +682,7 @@ msgstr "Goed te keuren"
 #. module: hr_timesheet_sheet
 #: selection:hr_timesheet.sheet,activity_state:0
 msgid "Today"
-msgstr ""
+msgstr "Vandaag"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__total_time
@@ -704,7 +692,7 @@ msgstr "Totale tijd"
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_week_start:0
 msgid "Tuesday"
-msgstr ""
+msgstr "Dinsdag"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread
@@ -714,13 +702,11 @@ msgstr "Ongelezen berichten"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread_counter
-#, fuzzy
 msgid "Unread Messages Counter"
 msgstr "Ongelezen berichten"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-#, fuzzy
 msgid "Unvalidated Timesheet Sheets"
 msgstr "Niet bevestigde urenstaten"
 
@@ -737,19 +723,18 @@ msgstr "Wachtend op goedkeuring"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__website_message_ids
-#, fuzzy
 msgid "Website Messages"
-msgstr "Ongelezen berichten"
+msgstr "Website berichten"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Website communicatie geschiedenis"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_week_start:0
 msgid "Wednesday"
-msgstr ""
+msgstr "Woensdag"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,sheet_range:0
@@ -758,19 +743,19 @@ msgstr "Week"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:354
-#, fuzzy, python-format
+#, python-format
 msgid "Week %s"
-msgstr "Week"
+msgstr "Week %s"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Week Start Day"
-msgstr ""
+msgstr "Week startdag"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_week_start
 msgid "Week start day"
-msgstr ""
+msgstr "Week startdag"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:41
@@ -779,22 +764,24 @@ msgstr ""
 #, python-format
 msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
+"U kunt het bedrijf niet wijzigen, dit aangezien %s (%s) is toegewezen aan %s "
+"(%s)."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:365
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot delete a timesheet sheet which is already confirmed."
-msgstr "U kunt geen urenstaat verwijderen welke al is bevestigd"
+msgstr "U kunt geen urenstaat verwijderen welke al is bevestigd."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:320
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "Het is niet mogelijk een urenstaat te dupliceren."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:182
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot have 2 sheets that overlap!\n"
 "Please use the menu 'Timesheet Sheet' to avoid this problem."
@@ -805,25 +792,23 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:86
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet."
-msgstr "U kunt geen wijziging doen in een geaccordeerde tijdsregistratie."
+msgstr "U kunt geen wijziging doen in een geaccordeerde urenstaatregel."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
-#, fuzzy
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
 "            of the week. Once the timesheet is confirmed, it should be\n"
 "            validated by a manager."
 msgstr ""
 "U moet uw urenstaat elke dag invullen en bevestigen op het einde\n"
-"van de week. Eenmaal de urenstaat bevestigd is, moet hij bevestigd\n"
+"van de week. Eenmaal de urenstaat ingediend is, moet hij bevestigd\n"
 "worden door een manager."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
-#, fuzzy
 msgid ""
 "You must record timesheets in the sheet every day and confirm at the end\n"
 "             of the week. Once the timesheet sheet is confirmed, it should "
@@ -831,7 +816,7 @@ msgid ""
 "             validated by a manager."
 msgstr ""
 "U moet uw urenstaat elke dag invullen en bevestigen op het einde\n"
-"van de week. Eenmaal de urenstaat bevestigd is, moet hij bevestigd\n"
+"van de week. Eenmaal de urenstaat ingediend is, moet hij bevestigd\n"
 "worden door een manager."
 
 #. module: hr_timesheet_sheet
