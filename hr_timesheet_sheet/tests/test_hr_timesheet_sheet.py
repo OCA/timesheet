@@ -622,6 +622,32 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertIsNotNone(sheet.name)
 
     def test_14(self):
+        """Test company constraint in Account Analytic Account."""
+        self.aal_model.create({
+            'name': 'test1',
+            'project_id': self.project_1.id,
+            'employee_id': self.employee.id,
+            'company_id': self.company.id,
+            'unit_amount': 2.0,
+            'date': self.sheet_model._default_date_start(),
+        })
+        self.assertNotEqual(self.company, self.company_2)
+        sheet = self.sheet_model.sudo(self.user).create({
+            'employee_id': self.employee.id,
+            'department_id': self.department.id,
+        })
+        self.assertEqual(sheet.company_id, self.company)
+        sheet._onchange_dates()
+        self.assertEqual(len(sheet.timesheet_ids), 1)
+        self.assertEqual(sheet.timesheet_ids.company_id, self.company)
+
+        analytic_account = sheet.timesheet_ids.account_id
+        self.assertEqual(analytic_account.company_id, self.company)
+
+        with self.assertRaises(ValidationError):
+            analytic_account.company_id = self.company_2
+
+    def test_15(self):
         department = self.department_model.create({
             'name': "Department test",
             'company_id': False,
