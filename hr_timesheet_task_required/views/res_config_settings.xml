@@ -17,6 +17,7 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
                     </div>
                     <div class="o_setting_right_pane">
                         <label for="is_timesheet_task_required"/>
+                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." role="img" aria-label="Values set here are company-specific." groups="base.group_multi_company"/>
                         <div class="text-muted">
                             Require task selection on each timesheet entry by default
                         </div>
