@@ -10,6 +10,7 @@
         <field name="arch" type="xml">
             <tree decoration-info="state == 'draft'" decoration-muted="state == 'done'" decoration-bf="message_needaction == True" string="Timesheet Sheets">
                 <field name="employee_id"/>
+                <field name="display_name" string="Period"/>
                 <field name="date_start"/>
                 <field name="date_end"/>
                 <field name="department_id" invisible="1"/>
@@ -45,13 +46,13 @@
                             <div style="display: inline;"><field name="date_start" class="oe_inline"/> to <field name="date_end" class="oe_inline"/></div>
                             <field name="name" invisible="1"/>
                             <field name="department_id" invisible="1"/>
-                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Summary">
                             <group name="Sheet">
-                                <field name="line_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                <field name="line_ids" nolabel="1" attrs="{'readonly': [('state', 'not in', ['new', 'draft'])]}"
                                        widget="x2many_2d_matrix"
                                        field_x_axis="value_x"
                                        field_y_axis="value_y"
@@ -69,10 +70,9 @@
                                         <field name="date"/>
                                         <field name="project_id"/>
                                         <field name="task_id"/>
-                                        <field name="count_timesheets"/>
                                     </tree>
                                 </field>
-                                <group class="oe_edit_only" attrs="{'invisible': [('state', '!=', 'draft')]}">
+                                <group class="oe_edit_only" attrs="{'invisible': [('state', 'not in', ['new', 'draft'])]}">
                                     <field name="add_line_project_id" domain="[('company_id', '=', company_id), ('allow_timesheets', '=', True)]"/>
                                     <field name="add_line_task_id" attrs="{'invisible': [('add_line_project_id', '=', False)]}"
                                            context="{'default_project_id': add_line_project_id}"/>
@@ -85,7 +85,7 @@
                             </group>
                         </page>
                         <page string="Details">
-                            <field context="{'employee_id': employee_id, 'user_id':user_id, 'timesheet_date_start': date_start, 'timesheet_date_end': date_end}" name="timesheet_ids" nolabel="1">
+                            <field name="timesheet_ids" nolabel="1">
                                 <tree editable="bottom" string="Timesheet Activities">
                                     <field name="date"/>
                                     <field name="project_id" required="1"/>
