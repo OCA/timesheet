@@ -618,6 +618,6 @@ msgstr ""
 #. module: hr_utilization_report
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:232
 #, python-format
-msgid "{l} Â» {r}"
+msgid "{l} » {r}"
 msgstr ""
 
