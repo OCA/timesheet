@@ -30,8 +30,6 @@ Timesheet entries are made by employees each day. At the end of the defined peri
 employees validate their sheet and the manager must then approve his team's entries.
 Periods are defined in the company forms and you can set them to run monthly, weekly or daily.
 
-Negative hours are not admitted.
-
 **Table of contents**
 
 .. contents::
@@ -57,9 +55,9 @@ If you want other default ranges different from weekly, you need to go:
 Known issues / Roadmap
 ======================
 
-* When you open the `Summary` or `Details` tab, a save should be performed
-  to ensure the data shown is correct. This perhaps could be achieved by including
-  a .js file that does that.
+* When you change values on the `Summary` tab, a save should be performed
+  to ensure the data shown on the `Details` tab is correct. This limitation could be
+  perhaps avoided by including a .js file that aligns the `Details` tab.
 * The timesheet grid is limited to display a max. of 1M cells, due to a
   limitation of the tree view limit parameter not being able to dynamically
   set a limit. Since default value of odoo, 40 records is too small, we decided
@@ -82,6 +80,7 @@ Authors
 ~~~~~~~
 
 * Eficent
+* Onestein
 
 Contributors
 ~~~~~~~~~~~~
