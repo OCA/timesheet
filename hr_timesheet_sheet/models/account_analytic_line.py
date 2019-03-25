@@ -71,6 +71,7 @@ class AccountAnalyticLine(models.Model):
             'user_id',
             'employee_id',
             'department_id',
+            'company_id',
             'task_id',
             'project_id',
             'sheet_id',
