@@ -4,12 +4,12 @@
 
 {
     'name': 'HR Timesheet Sheet',
-    'version': '11.0.1.2.5',
+    'version': '11.0.1.3.0',
     'category': 'Human Resources',
     'sequence': 80,
     'summary': 'Timesheet Sheets, Activities',
     'license': 'AGPL-3',
-    'author': 'Eficent, Odoo Community Association (OCA)',
+    'author': 'Eficent, Onestein, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/hr-timesheet',
     'depends': [
         'hr_timesheet',
