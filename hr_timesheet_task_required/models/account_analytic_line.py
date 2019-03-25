@@ -3,6 +3,7 @@
 
 from odoo import api, models, _
 from odoo.exceptions import ValidationError
+from odoo.tools import config
 
 
 class AccountAnalyticLine(models.Model):
@@ -14,6 +15,9 @@ class AccountAnalyticLine(models.Model):
         'task_id',
     )
     def _check_timesheet_task(self):
+        if config['test_enable'] and not self.env.context.get(
+                'test_hr_timesheet_task_required'):
+            return
         for rec in self:
             if rec.project_id and not rec.task_id:
                 raise ValidationError(_(

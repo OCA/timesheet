@@ -24,16 +24,22 @@ class TestHrTimesheetTaskRequired(SavepointCase):
 
     def test_timesheet_line_task_required(self):
         with self.assertRaises(ValidationError):
-            self.AnalyticLine.create({
+            self.AnalyticLine.with_context(
+                {'test_hr_timesheet_task_required': True}
+            ).create(
+                {
+                    'name': "test",
+                    'project_id': self.project_1.id,
+                    'unit_amount': 10,
+                })
+
+        line = self.AnalyticLine.with_context(
+            {'test_hr_timesheet_task_required': True}
+        ).create(
+            {
                 'name': "test",
                 'project_id': self.project_1.id,
+                'task_id': self.task_1_p1.id,
                 'unit_amount': 10,
             })
-
-        line = self.AnalyticLine.create({
-            'name': "test",
-            'project_id': self.project_1.id,
-            'task_id': self.task_1_p1.id,
-            'unit_amount': 10,
-        })
         self.assertTrue(bool(line))
