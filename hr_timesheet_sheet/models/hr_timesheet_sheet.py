@@ -257,6 +257,7 @@ class Sheet(models.Model):
 
     @api.multi
     def _compute_line_ids(self):
+        SheetLine = self.env['hr_timesheet.sheet.line']
         for sheet in self:
             if not all([sheet.date_start, sheet.date_end]):
                 continue
@@ -265,8 +266,7 @@ class Sheet(models.Model):
             for item in sorted(matrix, key=lambda l: self._sort_matrix(l)):
                 vals_list.append(sheet._get_default_sheet_line(matrix, item))
                 sheet.clean_timesheets(matrix[item])
-            lines = self.env['hr_timesheet.sheet.line'].create(vals_list)
-            sheet.line_ids = lines
+            sheet.line_ids = SheetLine.create(vals_list)
 
     def _sort_matrix(self, line):
         return [line[0], line[1].name, line[2].name or '']
