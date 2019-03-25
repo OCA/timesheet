@@ -1,16 +1,18 @@
 # Copyright 2018 Eficent
 # Copyright 2018-2019 Brainbean Apps
+# Copyright 2018-2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'HR Timesheet Sheet',
-    'version': '12.0.1.0.7',
+    'version': '12.0.1.1.0',
     'category': 'Human Resources',
     'sequence': 80,
     'summary': 'Timesheet Sheets, Activities',
     'license': 'AGPL-3',
     'author': (
         'Eficent, '
+        'Onestein, '
         'Odoo Community Association (OCA)'
     ),
     'website': 'https://github.com/OCA/hr-timesheet',

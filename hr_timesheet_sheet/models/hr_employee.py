@@ -16,9 +16,10 @@ class HrEmployee(models.Model):
 
     @api.multi
     def _compute_timesheet_count(self):
+        Sheet = self.env['hr_timesheet.sheet']
         for employee in self:
-            employee.timesheet_count = employee.env['hr_timesheet.sheet'].\
-                search_count([('employee_id', '=', employee.id)])
+            employee.timesheet_count = Sheet.search_count([
+                ('employee_id', '=', employee.id)])
 
     @api.constrains('company_id')
     def _check_company_id(self):
