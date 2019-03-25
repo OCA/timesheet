@@ -222,19 +222,6 @@ class Sheet(models.Model):
                     _('The Company in the Timesheet Sheet and in '
                       'the Task must be the same.'))
 
-    @api.constrains('company_id')
-    def _check_company_id(self):
-        for rec in self.sudo():
-            if not rec.company_id:
-                continue
-            for field in rec.timesheet_ids:
-                if field.company_id and rec.company_id != field.company_id:
-                    raise ValidationError(_(
-                        'You cannot change the company, as this %s (%s) '
-                        'is assigned to %s (%s).'
-                    ) % (rec._name, rec.display_name,
-                         field._name, field.display_name))
-
     @api.onchange('employee_id')
     def _onchange_employee_id(self):
         if self.employee_id:
