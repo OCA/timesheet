@@ -10,7 +10,7 @@
         <field name="arch" type="xml">
             <tree decoration-info="state == 'draft'" decoration-muted="state == 'done'" decoration-bf="message_needaction == True" string="Timesheet Sheets">
                 <field name="employee_id"/>
-                <field name="display_name" string="Period"/>
+                <field name="name" string="Period"/>
                 <field name="date_start"/>
                 <field name="date_end"/>
                 <field name="department_id" invisible="1"/>
@@ -44,7 +44,6 @@
                         <group name="dates" string="Period">
                             <label for="date_start" string="Timesheet Period"/>
                             <div style="display: inline;"><field name="date_start" class="oe_inline"/> to <field name="date_end" class="oe_inline"/></div>
-                            <field name="name" invisible="1"/>
                             <field name="department_id" invisible="1"/>
                             <field name="company_id" groups="base.group_multi_company"/>
                         </group>
