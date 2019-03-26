@@ -22,7 +22,7 @@ class Sheet(models.Model):
 
     def _default_date_start(self):
         user = self.env['res.users'].browse(self.env.uid)
-        r = user.company_id and user.company_id.sheet_range or WEEKLY
+        r = user.company_id.sheet_range or WEEKLY
         today = fields.Date.from_string(fields.Date.context_today(self))
         if r == WEEKLY:
             if user.company_id.timesheet_week_start:
@@ -38,7 +38,7 @@ class Sheet(models.Model):
 
     def _default_date_end(self):
         user = self.env['res.users'].browse(self.env.uid)
-        r = user.company_id and user.company_id.sheet_range or WEEKLY
+        r = user.company_id.sheet_range or WEEKLY
         today = fields.Date.from_string(fields.Date.context_today(self))
         if r == WEEKLY:
             if user.company_id.timesheet_week_start:
@@ -127,6 +127,7 @@ class Sheet(models.Model):
         string='Company',
         default=lambda self: self.env['res.company']._company_default_get(),
         readonly=True,
+        states={'new': [('readonly', False)]},
     )
     department_id = fields.Many2one(
         comodel_name='hr.department',
@@ -161,21 +162,26 @@ class Sheet(models.Model):
                 raise ValidationError(
                     _('The start date cannot be later than the end date.'))
 
-    @api.constrains('date_start', 'date_end', 'employee_id')
+    @api.constrains('date_start', 'date_end', 'employee_id', 'company_id')
     def _check_sheet_date(self, forced_user_id=False):
         for sheet in self:
             new_user_id = forced_user_id or sheet.user_id.id
             if new_user_id:
-                self.env.cr.execute(
-                    """
+                query_params = [
+                    sheet.date_end, sheet.date_start, new_user_id, sheet.id]
+                if sheet.company_id:
+                    query_params.append(sheet.company_id.id)
+                query = """
                     SELECT id
                     FROM hr_timesheet_sheet
                     WHERE (date_start <= %s and %s <= date_end)
                         AND user_id=%s
+                        AND id <> %s"""
+                if sheet.company_id:
+                    query += """
                         AND company_id=%s
-                        AND id <> %s""",
-                    (sheet.date_end, sheet.date_start, new_user_id,
-                     sheet.company_id.id, sheet.id))
+                    """
+                self.env.cr.execute(query, query_params)
                 if any(self.env.cr.fetchall()):
                     raise ValidationError(
                         _('You cannot have 2 sheets that overlap!\n'
@@ -243,13 +249,15 @@ class Sheet(models.Model):
 
     def _get_timesheet_sheet_lines_domain(self):
         self.ensure_one()
-        return [
+        domain = [
             ('project_id', '!=', False),
             ('date', '<=', self.date_end),
             ('date', '>=', self.date_start),
             ('employee_id', '=', self.employee_id.id),
-            ('company_id', '=', self.employee_id.company_id.id),
         ]
+        if self.company_id:
+            domain += [('company_id', '=', self.company_id.id)]
+        return domain
 
     @api.multi
     def _compute_line_ids(self):
@@ -289,6 +297,10 @@ class Sheet(models.Model):
         self.link_timesheets_to_sheet(timesheets)
         self.timesheet_ids = timesheets
 
+    @api.onchange('company_id')
+    def _onchange_company(self):
+        self._onchange_dates()
+
     @api.onchange('timesheet_ids')
     def _onchange_timesheets(self):
         self._compute_line_ids()
@@ -325,7 +337,6 @@ class Sheet(models.Model):
                 raise UserError(
                     _('In order to create a sheet for this employee, '
                       'you must link him/her to an user.'))
-            vals['company_id'] = employee.company_id.id
         res = super(Sheet, self).create(vals)
         res.write({'state': 'draft'})
         self.delete_empty_lines(True)
