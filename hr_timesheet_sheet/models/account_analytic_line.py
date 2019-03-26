@@ -24,13 +24,21 @@ class AccountAnalyticLine(models.Model):
                 ('employee_id', '=', timesheet.employee_id.id),
                 ('company_id', 'in', [timesheet.company_id.id, False]),
                 ('state', 'in', ['new', 'draft']),
-            ], limit=1)
+            ], limit=2)
+            if len(sheet) > 1:
+                sheet = sheet.filtered(lambda s: s.company_id)
             if timesheet.sheet_id != sheet:
                 timesheet.sheet_id = sheet
 
     @api.model
     def create(self, values):
         res = super(AccountAnalyticLine, self).create(values)
+        if values.get('sheet_id'):
+            sheet = self.env['hr_timesheet.sheet'].browse(values['sheet_id'])
+            if sheet.company_id and sheet.company_id != res.company_id:
+                raise UserError(
+                    _('You cannot create an timesheet in a timesheet sheet '
+                      'with a different company.'))
         res._compute_sheet()
         return res
 
