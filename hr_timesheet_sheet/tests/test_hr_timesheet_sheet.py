@@ -603,3 +603,13 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(line.unit_amount, 2.0)
         self.assertEqual(len(sheet.timesheet_ids), 1)
         self.assertEqual(len(sheet.line_ids), 7)
+
+    def test_13(self):
+        sheet = self.sheet_model.sudo(self.user).create({
+            'company_id': self.user.company_id.id,
+        })
+
+        self.assertIsNotNone(sheet.name)
+
+        sheet.date_end = sheet.date_start + relativedelta(years=1)
+        self.assertIsNotNone(sheet.name)
