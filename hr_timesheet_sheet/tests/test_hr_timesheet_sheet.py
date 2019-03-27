@@ -620,3 +620,38 @@ class TestHrTimesheetSheet(TransactionCase):
 
         sheet.date_end = sheet.date_start + relativedelta(years=1)
         self.assertIsNotNone(sheet.name)
+
+    def test_14(self):
+        department = self.department_model.create({
+            'name': "Department test",
+            'company_id': False,
+        })
+        new_employee = self.employee_model.create({
+            'name': "Test User",
+            'user_id': self.user.id,
+            'company_id': False,
+            'department_id': department.id,
+        })
+        self.assertFalse(new_employee.company_id)
+        sheet_no_department = self.sheet_model.sudo(self.user).create({
+            'employee_id': new_employee.id,
+            'department_id': False,
+            'date_start': self.sheet_model._default_date_start(),
+            'date_end': self.sheet_model._default_date_end(),
+        })
+        self.assertFalse(sheet_no_department.department_id)
+        sheet_no_department._onchange_employee_id()
+        self.assertTrue(sheet_no_department.department_id)
+        self.assertEqual(sheet_no_department.department_id, department)
+        self.assertTrue(sheet_no_department.company_id)
+
+        sheet_no_department.unlink()
+        sheet_no_employee = self.sheet_model.sudo(self.user).create({
+            'date_start': self.sheet_model._default_date_start(),
+            'date_end': self.sheet_model._default_date_end(),
+        })
+        self.assertTrue(sheet_no_employee.employee_id)
+        self.assertFalse(sheet_no_employee.department_id)
+        sheet_no_employee._onchange_employee_id()
+        self.assertFalse(sheet_no_employee.department_id)
+        self.assertTrue(sheet_no_employee.company_id)
