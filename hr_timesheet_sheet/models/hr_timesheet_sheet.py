@@ -171,6 +171,8 @@ class Sheet(models.Model):
                     sheet.date_end, sheet.date_start, new_user_id, sheet.id]
                 if sheet.company_id:
                     query_params.append(sheet.company_id.id)
+                elif sheet.employee_id.company_id:
+                    query_params.append(sheet.employee_id.company_id.id)
                 query = """
                     SELECT id
                     FROM hr_timesheet_sheet
@@ -180,6 +182,10 @@ class Sheet(models.Model):
                 if sheet.company_id:
                     query += """
                         AND company_id=%s
+                    """
+                elif sheet.employee_id.company_id:
+                    query += """
+                        AND company_id <> %s
                     """
                 self.env.cr.execute(query, query_params)
                 if any(self.env.cr.fetchall()):
