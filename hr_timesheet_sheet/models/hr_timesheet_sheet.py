@@ -53,11 +53,10 @@ class Sheet(models.Model):
 
     def _default_employee(self):
         company = self.env['res.company']._company_default_get()
-        employee = self.env['hr.employee'].search([
+        return self.env['hr.employee'].search([
             ('user_id', '=', self.env.uid),
-            ('company_id', '=', company.id),
-        ], limit=1)
-        return employee
+            ('company_id', 'in', [company.id, False]),
+        ], limit=1, order="company_id ASC")
 
     name = fields.Char(
         string="Note",
@@ -126,6 +125,7 @@ class Sheet(models.Model):
         comodel_name='res.company',
         string='Company',
         default=lambda self: self.env['res.company']._company_default_get(),
+        required=True,
         readonly=True,
     )
     department_id = fields.Many2one(
@@ -222,11 +222,19 @@ class Sheet(models.Model):
                     _('The Company in the Timesheet Sheet and in '
                       'the Task must be the same.'))
 
+    def _get_timesheet_sheet_company(self):
+        self.ensure_one()
+        employee = self.employee_id
+        company = employee.company_id or employee.department_id.company_id
+        if not company:
+            company = employee.user_id.company_id
+        return company
+
     @api.onchange('employee_id')
     def _onchange_employee_id(self):
         if self.employee_id:
             self.department_id = self.employee_id.department_id
-            self.company_id = self.employee_id.company_id
+            self.company_id = self._get_timesheet_sheet_company()
 
     def _get_timesheet_sheet_lines_domain(self):
         self.ensure_one()
@@ -235,7 +243,7 @@ class Sheet(models.Model):
             ('date', '<=', self.date_end),
             ('date', '>=', self.date_start),
             ('employee_id', '=', self.employee_id.id),
-            ('company_id', '=', self.employee_id.company_id.id),
+            ('company_id', '=', self._get_timesheet_sheet_company().id),
         ]
 
     @api.multi
@@ -312,7 +320,6 @@ class Sheet(models.Model):
                 raise UserError(
                     _('In order to create a sheet for this employee, '
                       'you must link him/her to an user.'))
-            vals['company_id'] = employee.company_id.id
         res = super(Sheet, self).create(vals)
         res.write({'state': 'draft'})
         self.delete_empty_lines(True)
