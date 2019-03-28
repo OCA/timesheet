@@ -29,9 +29,18 @@ class AccountAnalyticLine(models.Model):
             if timesheet.sheet_id != sheet:
                 timesheet.sheet_id = sheet
 
+    def _check_sheet_company_id(self, sheet_id):
+        self.ensure_one()
+        sheet = self.env['hr_timesheet.sheet'].browse(sheet_id)
+        if sheet.company_id and sheet.company_id != self.company_id:
+            raise UserError(
+                _('You cannot create a timesheet of a different company '
+                  'than the one of the timesheet sheet.'))
+
     @api.model
     def create(self, values):
         res = super(AccountAnalyticLine, self).create(values)
+        res._check_sheet_company_id(values.get('sheet_id'))
         res._compute_sheet()
         return res
 
