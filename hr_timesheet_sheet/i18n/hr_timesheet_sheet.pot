@@ -743,6 +743,12 @@ msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:37
+#, python-format
+msgid "You cannot create a timesheet of a different company than the one of the timesheet sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:380
 #, python-format
 msgid "You cannot delete a timesheet sheet which is already confirmed."
@@ -762,7 +768,7 @@ msgid "You cannot have 2 sheets that overlap!\n"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:87
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:96
 #, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet."
 msgstr ""
