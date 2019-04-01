@@ -332,25 +332,25 @@ class TestHrTimesheetSheet(TransactionCase):
             'unit_amount': 2.0,
         })
         timesheet_2 = self.aal_model.create({
-            'name': 'w',
+            'name': 'v',
             'project_id': self.project_1.id,
             'employee_id': self.employee.id,
             'unit_amount': 2.0,
         })
         timesheet_3 = self.aal_model.create({
-            'name': 'x',
+            'name': 'w',
             'project_id': self.project_1.id,
             'employee_id': self.employee.id,
             'unit_amount': 2.0,
         })
         timesheet_4 = self.aal_model.create({
-            'name': 'y',
+            'name': 'x',
             'project_id': self.project_1.id,
             'employee_id': self.employee.id,
             'unit_amount': 2.0,
         })
         timesheet_5 = self.aal_model.create({
-            'name': 'z',
+            'name': 'y',
             'project_id': self.project_1.id,
             'employee_id': self.employee.id,
             'unit_amount': 2.0,
@@ -391,11 +391,12 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(len(timesheet_3_4_and_5), 3)
 
         timesheet_6 = self.aal_model.create({
-            'name': '/',
+            'name': 'z',
             'project_id': self.project_1.id,
             'employee_id': self.employee.id,
             'unit_amount': 2.0,
         })
+        timesheet_5.name = '/'
         sheet._onchange_timesheets()
         self.assertEqual(len(sheet.timesheet_ids), 4)
         line = sheet.line_ids.filtered(lambda l: l.unit_amount != 0.0)
