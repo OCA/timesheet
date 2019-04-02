@@ -64,8 +64,8 @@ class Sheet(models.Model):
         ], limit=1)
 
     name = fields.Char(
-        string="Note",
-        states={'confirm': [('readonly', True)], 'done': [('readonly', True)]},
+        compute='_compute_name',
+        context_dependent=True,
     )
     employee_id = fields.Many2one(
         comodel_name='hr.employee',
@@ -152,6 +152,29 @@ class Sheet(models.Model):
         compute='_compute_total_time',
         store=True,
     )
+
+    @api.multi
+    @api.depends('date_start', 'date_end')
+    def _compute_name(self):
+        for sheet in self:
+            period_start = sheet.date_start.strftime(
+                '%V, %Y'
+            )
+            period_end = sheet.date_end.strftime(
+                '%V, %Y'
+            )
+
+            if period_start == period_end:
+                sheet.name = '%s %s' % (
+                    _('Week'),
+                    period_start,
+                )
+            else:
+                sheet.name = '%s %s - %s' % (
+                    _('Weeks'),
+                    period_start,
+                    period_end,
+                )
 
     @api.depends('timesheet_ids.unit_amount')
     def _compute_total_time(self):
@@ -352,14 +375,6 @@ class Sheet(models.Model):
             if rec.state == 'draft':
                 rec.delete_empty_lines(True)
         return res
-
-    @api.multi
-    def name_get(self):
-        # week number according to ISO 8601 Calendar
-        return [(r['id'], _('Week %s') % (str(
-            r['date_start'].isocalendar()[1])))
-            for r in self.sudo().read(['date_start'], load='_classic_write')]
-        # It's a cheesy name because you may have ranges different of weeks.
 
     @api.multi
     def unlink(self):
