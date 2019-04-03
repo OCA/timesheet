@@ -392,10 +392,10 @@ class Sheet(models.Model):
         return super().unlink()
 
     def _timesheet_subscribe_users(self):
-        for sheet in self:
-            if sheet.employee_id.parent_id.user_id:
-                self.message_subscribe_users(
-                    user_ids=[sheet.employee_id.parent_id.user_id.id])
+        for sheet in self.sudo():
+            manager = sheet.employee_id.parent_id.user_id.partner_id
+            if manager:
+                self.message_subscribe(partner_ids=manager.ids)
 
     @api.multi
     def action_timesheet_draft(self):
