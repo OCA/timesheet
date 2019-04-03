@@ -62,9 +62,16 @@ class TestHrTimesheetSheet(TransactionCase):
              'company_ids': [(4, self.company_2.id)],
              })
 
+        employee_manager = self.employee_model.create({
+            'name': "Test Manager",
+            'user_id': self.user_2.id,
+            'company_id': self.user.company_id.id,
+        })
+
         self.employee = self.employee_model.create({
             'name': "Test User",
             'user_id': self.user.id,
+            'parent_id': employee_manager.id,
             'company_id': self.user.company_id.id,
         })
 
