@@ -47,4 +47,17 @@ class HrAnalyticTimesheet(models.Model):
                 [f for f in self._columns.keys() if f != 'account_name'],
                 trigger[2],
             )
+        store_specs = self.pool._store_function.get(self._name, [])
+        for store_spec in store_specs:
+            if store_spec[1] == 'sheet_id' and store_spec[3] is None:
+                store_specs.remove(store_spec)
+                store_specs.append(tuple(
+                    list(store_spec[:3]) +
+                    [
+                        self._columns['sheet_id']
+                        .store['hr.analytic.timesheet'][1]
+                    ] +
+                    list(store_spec[4:])
+                ))
+                break
         return super(HrAnalyticTimesheet, self)._register_hook(cr)
