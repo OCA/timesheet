@@ -44,7 +44,7 @@ class HrAnalyticTimesheet(models.Model):
             trigger = self._columns['sheet_id'].store['hr.analytic.timesheet']
             self._columns['sheet_id'].store['hr.analytic.timesheet'] = (
                 trigger[0],
-                [f for f in self._columns.keys() if f != 'account_name'],
+                tuple(f for f in self._columns.keys() if f != 'account_name'),
                 trigger[2],
             )
         store_specs = self.pool._store_function.get(self._name, [])
