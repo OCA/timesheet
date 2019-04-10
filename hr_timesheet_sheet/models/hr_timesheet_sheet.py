@@ -367,7 +367,7 @@ class Sheet(models.Model):
     def _timesheet_subscribe_users(self):
         for sheet in self:
             if sheet.employee_id.parent_id.user_id:
-                self.message_subscribe_users(
+                self.sudo().message_subscribe_users(
                     user_ids=[sheet.employee_id.parent_id.user_id.id])
 
     @api.multi
