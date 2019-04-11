@@ -1,6 +1,3 @@
-* When you change values on the `Summary` tab, a save should be performed
-  to ensure the data shown on the `Details` tab is correct. This limitation could be
-  perhaps avoided by including a .js file that aligns the `Details` tab.
 * The timesheet grid is limited to display a max. of 1M cells, due to a
   limitation of the tree view limit parameter not being able to dynamically
   set a limit. Since default value of odoo, 40 records is too small, we decided
