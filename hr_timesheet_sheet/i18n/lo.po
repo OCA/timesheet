@@ -21,6 +21,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line_abstract
+msgid "Abstract Timesheet Sheet Line"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_warning
 msgid "Access warning"
 msgstr ""
@@ -46,6 +51,11 @@ msgid "Add new line"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
+msgid "Analytic Account"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_line
 msgid "Analytic Line"
 msgstr ""
@@ -67,7 +77,7 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:400
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:431
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
@@ -89,6 +99,9 @@ msgstr "ບໍລິສັດ"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__company_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__company_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__company_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__company_id
 msgid "Company"
 msgstr "ບໍລິສັດ"
 
@@ -103,19 +116,16 @@ msgid "Confirmed Timesheet Sheets"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__count_timesheets
-msgid "Count Timesheets"
-msgstr ""
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__create_uid
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__create_uid
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__create_uid
 msgid "Created by"
 msgstr "ສ້າງ ໂດຍ"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__create_date
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__create_date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__create_date
 msgid "Created on"
 msgstr "ສ້າງ ເມື່ອ"
 
@@ -126,6 +136,8 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__date
 msgid "Date"
 msgstr ""
 
@@ -164,12 +176,17 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__display_name
 msgid "Display Name"
 msgstr "ຊື່ທີ່ສະແດງອອກ"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_employee
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__employee_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__employee_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__employee_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__employee_id
 msgid "Employee"
 msgstr ""
 
@@ -181,12 +198,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Employees"
-msgstr ""
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:662
-#, python-format
-msgid "Error code: Cannot have 0 timesheets."
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -228,6 +239,8 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__id
 msgid "ID"
 msgstr "ເລກລຳດັບ"
 
@@ -266,8 +279,8 @@ msgid "In Draft"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:328
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:342
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:362
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:378
 #, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
@@ -282,18 +295,22 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line____last_update
 msgid "Last Modified on"
 msgstr "ແກ້ໄຂລ້າສຸດ ເມື່ອ"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__write_uid
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__write_uid
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__write_uid
 msgid "Last Updated by"
 msgstr "ປັບປຸງລ້າສຸດ ໂດຍ"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__write_date
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__write_date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__write_date
 msgid "Last Updated on"
 msgstr "ປັບປຸງລ້າສຸດ ເມື່ອ"
 
@@ -330,6 +347,22 @@ msgid "My Timesheet Sheets"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
+#, fuzzy
+msgid "Name"
+msgstr "ຊື່ທີ່ສະແດງອອກ"
+
+#. module: hr_timesheet_sheet
+#: selection:hr_timesheet.sheet,state:0
+msgid "New"
+msgstr "ສ້າງໃໝ່"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__new_line_id
+msgid "New Line"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 msgid "New timesheet sheet."
 msgstr ""
@@ -353,11 +386,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_type_id
 msgid "Next Activity Type"
 msgstr ""
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
-msgid "Note"
-msgstr "ໝາຍເຫດ"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction_counter
@@ -386,13 +414,13 @@ msgid "Number of unread messages"
 msgstr "ຂໍ້ຄວາມບໍ່ທັນໄດ້ອ່ານ"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:398
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:429
 #, python-format
 msgid "Only an HR Officer or Manager can approve sheets."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:378
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:415
 #, python-format
 msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 msgstr ""
@@ -409,6 +437,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified
 msgid "Period"
 msgstr ""
 
@@ -424,6 +453,8 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__project_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__project_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__project_id
 msgid "Project"
 msgstr ""
 
@@ -434,6 +465,8 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__unit_amount
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__unit_amount
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__unit_amount
 msgid "Quantity"
 msgstr ""
 
@@ -455,6 +488,12 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_week_start:0
 msgid "Saturday"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:676
+#, python-format
+msgid "Save the Timesheet Sheet first."
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -485,6 +524,8 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__sheet_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__sheet_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__sheet_id
 msgid "Sheet"
 msgstr ""
 
@@ -524,31 +565,38 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__task_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__task_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__task_id
 msgid "Task"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:203
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__new_line_ids
+msgid "Temporary Timesheets"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:240
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Department must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:193
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:230
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Employee must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:213
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:250
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Project must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:223
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:260
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Task must be the same."
 msgstr ""
@@ -560,7 +608,7 @@ msgid "The range of your Timesheet Sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:163
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:200
 #, python-format
 msgid "The start date cannot be later than the end date."
 msgstr ""
@@ -599,6 +647,11 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__line_ids
 msgid "Timesheet Sheet Lines"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_new_analytic_line
+msgid "Timesheet Sheet New Analytic Line"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -708,6 +761,12 @@ msgid "Waiting Approval"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:675
+#, python-format
+msgid "Warning"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__website_message_ids
 #, fuzzy
 msgid "Website Messages"
@@ -724,14 +783,10 @@ msgid "Wednesday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:180
 #: selection:res.company,sheet_range:0
-msgid "Week"
-msgstr ""
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:354
 #, python-format
-msgid "Week %s"
+msgid "Week"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -745,27 +800,41 @@ msgid "Week start day"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:185
+#, python-format
+msgid "Weeks"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:41
-#: code:addons/hr_timesheet_sheet/models/hr_employee.py:35
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:234
+#: code:addons/hr_timesheet_sheet/models/hr_employee.py:36
 #, python-format
 msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:365
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:37
+#, python-format
+msgid ""
+"You cannot create a timesheet of a different company than the one of the "
+"timesheet sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:396
 #, python-format
 msgid "You cannot delete a timesheet sheet which is already confirmed."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:320
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:353
 #, python-format
 msgid "You cannot duplicate a sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:182
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:219
 #, python-format
 msgid ""
 "You cannot have 2 sheets that overlap!\n"
@@ -773,7 +842,7 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:86
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:96
 #, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet."
 msgstr ""
@@ -805,11 +874,11 @@ msgstr "ຫາ"
 msgid "waiting approval"
 msgstr ""
 
+#~ msgid "Note"
+#~ msgstr "ໝາຍເຫດ"
+
 #~ msgid "More Info"
 #~ msgstr "ຂໍ້ມູນເພີ່ມຕື່ມ"
-
-#~ msgid "New"
-#~ msgstr "ສ້າງໃໝ່"
 
 #~ msgid "Total"
 #~ msgstr "ລວມທັງໝົດ"
