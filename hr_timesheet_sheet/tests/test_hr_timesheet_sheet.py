@@ -1,4 +1,4 @@
-# Copyright 2018 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2018-2019 Eficent Business and IT Consulting Services, S.L.
 # Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
 # Copyright 2018-2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
@@ -105,10 +105,12 @@ class TestHrTimesheetSheet(TransactionCase):
             'company_id': self.user.company_id.id,
         })
 
-    def test_1(self):
+    def test_0(self):
         sheet = self.sheet_model.sudo(self.user).create({
             'company_id': self.user.company_id.id,
         })
+        sheet._onchange_dates()
+        sheet._onchange_timesheets()
         self.assertEqual(len(sheet.timesheet_ids), 0)
         self.assertEqual(len(sheet.line_ids), 0)
         self.assertTrue(sheet.employee_id)
@@ -116,8 +118,8 @@ class TestHrTimesheetSheet(TransactionCase):
         sheet.add_line_project_id = self.project_1
         sheet.onchange_add_project_id()
         sheet.sudo(self.user).button_add_line()
-        sheet._onchange_timesheets()
         self.assertEqual(len(sheet.timesheet_ids), 1)
+        sheet._onchange_timesheets()
         self.assertEqual(len(sheet.line_ids), 7)
 
         sheet.date_end = fields.Date.to_string(
@@ -126,12 +128,95 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(len(sheet.timesheet_ids), 0)
         self.assertEqual(len(sheet.line_ids), 0)
 
+    def test_1(self):
+        sheet = self.sheet_model.sudo(self.user).new({
+            'employee_id': self.employee.id,
+            'company_id': self.user.company_id.id,
+            'date_start': self.sheet_model._default_date_start(),
+            'date_end': self.sheet_model._default_date_end(),
+            'state': 'new',
+        })
+        sheet._onchange_dates()
+        sheet._onchange_timesheets()
+        self.assertEqual(len(sheet.timesheet_ids), 0)
+        self.assertEqual(len(sheet.line_ids), 0)
+
+        timesheet = self.aal_model.create({
+            'name': 'test',
+            'project_id': self.project_1.id,
+            'employee_id': self.employee.id,
+            'sheet_id': sheet.id,
+        })
+        sheet.timesheet_ids = timesheet
+        sheet._onchange_timesheets()
+        self.assertEqual(len(sheet.timesheet_ids), 1)
+        self.assertEqual(len(sheet.line_ids), 7)
+        self.assertFalse(any([l.unit_amount for l in sheet.line_ids]))
+        self.assertEqual(timesheet.unit_amount, 0)
+
+        timesheet.unit_amount = 1.0
+        self.assertEqual(len(sheet.timesheet_ids), 1)
+        sheet._onchange_timesheets()
+        self.assertEqual(len(sheet.timesheet_ids), 1)
+        self.assertEqual(len(sheet.line_ids), 7)
+        self.assertTrue(any([l.unit_amount for l in sheet.line_ids]))
+
+        line = sheet.line_ids.filtered(lambda l: l.unit_amount)
+        line.unit_amount = 2.0
+        line.onchange_unit_amount()
+        self.assertEqual(line.unit_amount, 2.0)
+        self.assertEqual(timesheet.unit_amount, 1.0)
+
+        sheet = self.sheet_model.sudo(self.user).create(
+            sheet._convert_to_write(sheet._cache))
+        self.assertEqual(len(sheet.timesheet_ids), 1)
+        self.assertEqual(len(sheet.line_ids), 7)
+
+    def test_1_B(self):
+        sheet = self.sheet_model.sudo(self.user).new({
+            'employee_id': self.employee.id,
+            'company_id': self.user.company_id.id,
+            'date_start': self.sheet_model._default_date_start(),
+            'date_end': self.sheet_model._default_date_end(),
+            'state': 'new',
+            'timesheet_ids': [(0, 0, {
+                'name': empty_name,
+                'date': self.sheet_model._default_date_start(),
+                'project_id': self.project_1.id,
+                'employee_id': self.employee.id,
+                'unit_amount': 1,
+            })],
+        })
+        sheet._onchange_dates()
+        sheet._onchange_timesheets()
+        self.assertEqual(len(sheet.timesheet_ids), 0)
+        self.assertEqual(len(sheet.line_ids), 0)
+        self.assertEqual(sheet.state, 'new')
+
+        line = self.sheet_line_model.new({
+            'date': self.sheet_model._default_date_start(),
+            'project_id': self.project_1.id,
+            'employee_id': self.employee.id,
+            'sheet_id': sheet.id,
+            'unit_amount': 1,
+        })
+        line.onchange_unit_amount()
+        self.assertEqual(len(sheet.timesheet_ids), 0)
+        self.assertEqual(len(sheet.line_ids), 0)
+        self.assertEqual(sheet.state, 'new')
+
+        created_sheet = self.sheet_model.sudo(self.user).create(
+            sheet._convert_to_write(sheet._cache))
+        self.assertEqual(created_sheet.state, 'draft')
+
     def test_2(self):
         sheet = self.sheet_model.sudo(self.user).create({
             'employee_id': self.employee.id,
             'company_id': self.user.company_id.id,
             'department_id': self.department.id,
         })
+        sheet._onchange_dates()
+        sheet._onchange_timesheets()
         self.assertEqual(len(sheet.timesheet_ids), 0)
         self.assertEqual(len(sheet.line_ids), 0)
 
@@ -143,31 +228,44 @@ class TestHrTimesheetSheet(TransactionCase):
         sheet.add_line_project_id = self.project_1
         sheet.onchange_add_project_id()
         sheet.sudo(self.user).button_add_line()
+        self.assertFalse(sheet.add_line_project_id.id)
+        self.assertEqual(len(sheet.timesheet_ids), 1)
         sheet._onchange_timesheets()
-        sheet.onchange_add_project_id()
-        self.assertEqual(sheet.add_line_project_id.id, False)
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertEqual(len(sheet.timesheet_ids), 1)
-        timesheet = sheet.timesheet_ids[0]
 
-        line = sheet.line_ids.filtered(lambda l: l.date != timesheet.date)[0]
-        self.assertEqual(line.unit_amount, 0.0)
-        line._cache.update(
-            line._convert_to_cache(
-                {'unit_amount': 1.0}, update=True))
+        line = fields.first(sheet.line_ids)
+        line.unit_amount = 2.0
         line.onchange_unit_amount()
-        self.assertEqual(line.unit_amount, 1.0)
+        self.assertEqual(len(sheet.new_line_ids), 1)
+        new_line = fields.first(sheet.new_line_ids)
+        sheet.write({
+            'line_ids': [(1, 0, {'new_line_id': new_line.id})]
+        })
+        self.assertEqual(line.unit_amount, 2.0)
+        self.assertEqual(len(sheet.timesheet_ids), 1)
+        timesheet = fields.first(sheet.timesheet_ids)
+
+        other_lines = sheet.line_ids.filtered(
+            lambda l: l.date != timesheet.date)
+        line2 = fields.first(other_lines)
+        self.assertEqual(line2.unit_amount, 0.0)
+        line2.unit_amount = 1.0
+        line2.onchange_unit_amount()
+        self.assertEqual(len(sheet.new_line_ids), 1)
+        new_line = fields.first(sheet.new_line_ids)
+        sheet.write({
+            'line_ids': [(1, 0, {'new_line_id': new_line.id})]
+        })
+        self.assertEqual(line2.unit_amount, 1.0)
         self.assertEqual(len(sheet.timesheet_ids), 2)
 
         sheet.add_line_project_id = self.project_2
         sheet.onchange_add_project_id()
         sheet.sudo(self.user).button_add_line()
-        sheet._onchange_timesheets()
-        self.assertEqual(len(sheet.timesheet_ids), 2)
-        self.assertNotIn(timesheet.id, sheet.timesheet_ids.ids)
-        self.assertEqual(len(sheet.line_ids), 14)
-        timesheet = sheet.timesheet_ids.filtered(
-            lambda t: t.unit_amount != 0.0)
+        self.assertEqual(len(sheet.timesheet_ids), 3)
+        self.assertIn(timesheet.id, sheet.timesheet_ids.ids)
+        self.assertEqual(len(sheet.line_ids), 7)
 
         self.assertEqual(sheet.state, 'draft')
         sheet.action_timesheet_confirm()
@@ -178,7 +276,7 @@ class TestHrTimesheetSheet(TransactionCase):
         # Confirmed timesheet cannot be modified
         with self.assertRaises(UserError):
             timesheet.unit_amount = 0.0
-        self.assertEqual(timesheet.unit_amount, 1.0)
+        self.assertEqual(timesheet.unit_amount, 2.0)
 
         # Force confirmed timesheet to be modified
         timesheet.with_context(skip_check_state=True).unit_amount = 0.0
@@ -205,9 +303,10 @@ class TestHrTimesheetSheet(TransactionCase):
             'company_id': self.user.company_id.id,
             'date_start': self.sheet_model._default_date_start(),
             'date_end': self.sheet_model._default_date_end(),
-            'state': 'draft',
+            'state': 'new',
         })
         sheet._onchange_dates()
+        sheet._onchange_timesheets()
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertEqual(len(sheet.timesheet_ids), 1)
         self.assertTrue(self.aal_model.search([('id', '=', timesheet.id)]))
@@ -261,21 +360,28 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(timesheet_3.unit_amount, 0.0)
 
         line = sheet.line_ids.filtered(lambda l: l.unit_amount != 0.0)
+        self.assertEqual(len(line), 1)
         self.assertEqual(line.unit_amount, 1.0)
         line.unit_amount = 0.0
         line.onchange_unit_amount()
-        sheet._onchange_timesheets()
+        self.assertEqual(len(sheet.new_line_ids), 1)
+        new_line = fields.first(sheet.new_line_ids)
+        sheet.write({
+            'line_ids': [(1, 0, {'new_line_id': new_line.id})]
+        })
+        self.assertEqual(line.unit_amount, 0.0)
         self.assertEqual(len(sheet.timesheet_ids), 1)
         self.assertFalse(self.aal_model.search(
             [('id', '=', timesheet_1_or_2.id)]))
 
         timesheet_3.name = empty_name
+        sheet._onchange_timesheets()
         sheet.add_line_project_id = self.project_2
         sheet.onchange_add_project_id()
         sheet.add_line_task_id = self.task_2
         sheet.sudo(self.user).button_add_line()
-        sheet._onchange_timesheets()
         self.assertEqual(len(sheet.timesheet_ids), 1)
+        sheet._onchange_timesheets()
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertFalse(self.aal_model.search(
             [('id', '=', timesheet_3.id)]))
@@ -305,33 +411,41 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(line.unit_amount, 4.0)
 
         timesheet_2.name = empty_name
-        line._cache.update(
-            line._convert_to_cache(
-                {'unit_amount': 3.0}, update=True))
-        line.onchange_unit_amount()
         sheet._onchange_timesheets()
+        line.unit_amount = 3.0
+        line.onchange_unit_amount()
+        self.assertEqual(len(sheet.new_line_ids), 1)
+        new_line = fields.first(sheet.new_line_ids)
+        sheet.write({
+            'line_ids': [(1, 0, {'new_line_id': new_line.id})]
+        })
         self.assertEqual(len(sheet.timesheet_ids), 1)
-        self.assertEqual(sheet.timesheet_ids[0].unit_amount, 3.0)
+        self.assertEqual(fields.first(sheet.timesheet_ids).unit_amount, 3.0)
 
         timesheet_1_or_2 = self.aal_model.search(
             [('id', 'in', [timesheet_1.id, timesheet_2.id])])
         self.assertEqual(len(timesheet_1_or_2), 1)
         self.assertEqual(timesheet_1_or_2.unit_amount, 3.0)
 
-        line._cache.update(
-            line._convert_to_cache(
-                {'unit_amount': 4.0}, update=True))
+        line = sheet.line_ids.filtered(lambda l: l.unit_amount != 0.0)
+        line.unit_amount = 4.0
         line.onchange_unit_amount()
-        sheet._onchange_timesheets()
+        self.assertEqual(len(sheet.new_line_ids), 1)
+        new_line = fields.first(sheet.new_line_ids)
+        sheet.write({
+            'line_ids': [(1, 0, {'new_line_id': new_line.id})]
+        })
         self.assertEqual(len(sheet.timesheet_ids), 1)
-        self.assertEqual(sheet.timesheet_ids[0].unit_amount, 4.0)
+        self.assertEqual(fields.first(sheet.timesheet_ids).unit_amount, 4.0)
         self.assertEqual(timesheet_1_or_2.unit_amount, 4.0)
 
-        line._cache.update(
-            line._convert_to_cache(
-                {'unit_amount': -1.0}, update=True))
+        line.unit_amount = -1.0
         line.onchange_unit_amount()
-        sheet._onchange_timesheets()
+        self.assertEqual(len(sheet.new_line_ids), 1)
+        new_line = fields.first(sheet.new_line_ids)
+        sheet.write({
+            'line_ids': [(1, 0, {'new_line_id': new_line.id})]
+        })
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertEqual(len(sheet.timesheet_ids), 1)
 
@@ -378,21 +492,29 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(line.unit_amount, 10.0)
 
         timesheet_2.name = empty_name
-        line._cache.update(
-            line._convert_to_cache(
-                {'unit_amount': 6.0}, update=True))
-        line.onchange_unit_amount()
         sheet._onchange_timesheets()
+        line = sheet.line_ids.filtered(lambda l: l.unit_amount != 0.0)
+        line.unit_amount = 6.0
+        line.onchange_unit_amount()
+        self.assertEqual(len(sheet.new_line_ids), 1)
+        new_line = fields.first(sheet.new_line_ids)
+        sheet.write({
+            'line_ids': [(1, 0, {'new_line_id': new_line.id})]
+        })
         self.assertEqual(len(sheet.timesheet_ids), 3)
 
         timesheet_1_or_2 = self.aal_model.search(
             [('id', 'in', [timesheet_1.id, timesheet_2.id])])
         self.assertFalse(timesheet_1_or_2)
 
-        line._cache.update(
-            line._convert_to_cache(
-                {'unit_amount': 3.0}, update=True))
+        line.unit_amount = 3.0
         line.onchange_unit_amount()
+        self.assertEqual(len(sheet.new_line_ids), 1)
+        new_line = fields.first(sheet.new_line_ids)
+        sheet.write({
+            'line_ids': [(1, 0, {'new_line_id': new_line.id})]
+        })
+        self.assertEqual(len(sheet.timesheet_ids), 4)
         sheet._onchange_timesheets()
         self.assertEqual(len(sheet.timesheet_ids), 4)
         self.assertEqual(line.unit_amount, 3.0)
@@ -414,13 +536,15 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(len(line), 1)
         self.assertEqual(line.unit_amount, 5.0)
 
-        line._cache.update(
-            line._convert_to_cache(
-                {'unit_amount': 1.0}, update=True))
+        line.unit_amount = 1.0
         line.onchange_unit_amount()
-        sheet._onchange_timesheets()
+        self.assertEqual(len(sheet.new_line_ids), 1)
+        new_line = fields.first(sheet.new_line_ids)
+        sheet.write({
+            'line_ids': [(1, 0, {'new_line_id': new_line.id})]
+        })
         self.assertEqual(len(sheet.timesheet_ids), 4)
-        self.assertTrue(self.aal_model.search([('id', '=', timesheet_6.id)]))
+        self.assertTrue(timesheet_6.exists().ids)
 
     def test_7(self):
         sheet = self.sheet_model.sudo(self.user).new({
@@ -428,8 +552,9 @@ class TestHrTimesheetSheet(TransactionCase):
             'company_id': self.user.company_id.id,
             'date_start': self.sheet_model._default_date_end(),
             'date_end': self.sheet_model._default_date_start(),
-            'state': 'draft',
+            'state': 'new',
         })
+        sheet._onchange_dates()
         sheet._onchange_timesheets()
         self.assertEqual(len(sheet.line_ids), 0)
         self.assertEqual(len(sheet.timesheet_ids), 0)
@@ -441,6 +566,7 @@ class TestHrTimesheetSheet(TransactionCase):
             'employee_id': self.employee.id,
             'company_id': self.user.company_id.id,
         })
+        sheet._onchange_dates()
         with self.assertRaises(UserError):
             sheet.sudo(self.user).copy()
         with self.assertRaises(ValidationError):
@@ -474,6 +600,8 @@ class TestHrTimesheetSheet(TransactionCase):
             'company_id': self.user.company_id.id,
             'department_id': self.department.id,
         })
+        sheet._onchange_dates()
+        sheet._onchange_timesheets()
         with self.assertRaises(ValidationError):
             sheet.company_id = self.user_2.company_id.id
         sheet.company_id = self.user.company_id.id
@@ -492,12 +620,11 @@ class TestHrTimesheetSheet(TransactionCase):
             'company_id': self.user.company_id.id,
             'department_id': self.department.id,
         })
-
+        sheet._onchange_dates()
+        sheet._onchange_timesheets()
         sheet.add_line_project_id = self.project_1
         sheet.onchange_add_project_id()
         sheet.sudo(self.user).button_add_line()
-        sheet._onchange_timesheets()
-        sheet.onchange_add_project_id()
         self.assertEqual(len(sheet.timesheet_ids), 1)
 
         sheet.action_timesheet_confirm()
@@ -519,6 +646,8 @@ class TestHrTimesheetSheet(TransactionCase):
             'employee_id': self.employee.id,
             'company_id': self.company.id,
         })
+        sheet._onchange_dates()
+        sheet._onchange_timesheets()
         date_start = fields.Date.from_string(sheet.date_start)
         date_end = fields.Date.from_string(sheet.date_end)
         weekday_from = date_start.weekday()
@@ -526,7 +655,6 @@ class TestHrTimesheetSheet(TransactionCase):
 
         self.assertEqual(weekday_from, 6, "The timesheet should start on "
                                           "Sunday")
-
         self.assertEqual(weekday_to, 5, "The timesheet should end on Saturday")
 
     def test_11_onchange_unit_amount(self):
@@ -551,13 +679,14 @@ class TestHrTimesheetSheet(TransactionCase):
             'department_id': self.department.id,
             'date_start': self.sheet_model._default_date_start(),
             'date_end': self.sheet_model._default_date_end(),
-            'state': 'draft',
+            'state': 'new',
         })
         sheet._onchange_dates()
         sheet._onchange_timesheets()
         self.assertEqual(len(sheet.timesheet_ids), 2)
         self.assertEqual(len(sheet.line_ids), 7)
 
+        unit_amount = 0.0
         for line in sheet.line_ids:
             if line.unit_amount:
                 line.sheet_id = False
@@ -569,15 +698,12 @@ class TestHrTimesheetSheet(TransactionCase):
                 self.assertFalse(res_onchange)
                 self.assertEqual(line.unit_amount, unit_amount + 1.0)
 
-        sheet._onchange_dates()
-        self.assertEqual(len(sheet.timesheet_ids), 3)
+        self.assertEqual(len(sheet.timesheet_ids), 2)
         self.assertEqual(len(sheet.line_ids), 7)
+        self.assertEqual(len(sheet.new_line_ids), 1)
 
-        new_timesheet = sheet.timesheet_ids.filtered(
-            lambda t: t.name == empty_name
-        )
-        self.assertEqual(len(new_timesheet), 1)
-        self.assertEqual(new_timesheet.unit_amount, 1.0)
+        new_line = fields.first(sheet.new_line_ids)
+        self.assertEqual(new_line.unit_amount, unit_amount + 1.0)
 
         for line in sheet.line_ids:
             if line.unit_amount:
@@ -676,6 +802,7 @@ class TestHrTimesheetSheet(TransactionCase):
         })
         self.assertEqual(sheet.company_id, self.company)
         sheet._onchange_dates()
+        sheet._onchange_timesheets()
         self.assertEqual(len(sheet.timesheet_ids), 1)
         self.assertEqual(sheet.timesheet_ids.company_id, self.company)
 
@@ -685,7 +812,7 @@ class TestHrTimesheetSheet(TransactionCase):
         with self.assertRaises(ValidationError):
             analytic_account.company_id = self.company_2
 
-    def test_14(self):
+    def test_15(self):
         department = self.department_model.create({
             'name': "Department test",
             'company_id': False,
