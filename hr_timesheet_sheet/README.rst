@@ -52,12 +52,18 @@ If you want other default ranges different from weekly, you need to go:
   and select in **Timesheet Sheet Range** the default range you want.
 * When you have a weekly range you can also specify the **Week Start Day**.
 
+Usage
+=====
+
+If you modify the `Details` tab, automatically the `Summary` tab is updated.
+But if you modify the `Summary` tab, you need to save in order to have the `Details` tab updated.
+
+In case you modify the unit amount of both tabs, the `Details` tab will prevail.
+If you modify the `Summary` tab, and you need to do a change in the `Details` tab, please save before.
+
 Known issues / Roadmap
 ======================
 
-* When you change values on the `Summary` tab, a save should be performed
-  to ensure the data shown on the `Details` tab is correct. This limitation could be
-  perhaps avoided by including a .js file that aligns the `Details` tab.
 * The timesheet grid is limited to display a max. of 1M cells, due to a
   limitation of the tree view limit parameter not being able to dynamically
   set a limit. Since default value of odoo, 40 records is too small, we decided
