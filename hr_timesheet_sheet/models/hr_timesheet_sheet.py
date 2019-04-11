@@ -106,7 +106,7 @@ class Sheet(models.Model):
         states={
             'new': [('readonly', False)],
             'draft': [('readonly', False)],
-        }
+        },
     )
     line_ids = fields.One2many(
         comodel_name='hr_timesheet.sheet.line',
@@ -116,7 +116,17 @@ class Sheet(models.Model):
         states={
             'new': [('readonly', False)],
             'draft': [('readonly', False)],
-        }
+        },
+    )
+    new_line_ids = fields.One2many(
+        comodel_name='hr_timesheet.sheet.new.analytic.line',
+        inverse_name='sheet_id',
+        string='Temporary Timesheets',
+        readonly=True,
+        states={
+            'new': [('readonly', False)],
+            'draft': [('readonly', False)],
+        },
     )
     state = fields.Selection([
         ('new', 'New'),
@@ -275,6 +285,7 @@ class Sheet(models.Model):
         ]
 
     @api.multi
+    @api.depends('date_start', 'date_end')
     def _compute_line_ids(self):
         SheetLine = self.env['hr_timesheet.sheet.line']
         for sheet in self:
@@ -352,8 +363,10 @@ class Sheet(models.Model):
                       'you must link him/her to an user.'))
         res = super().create(vals)
         res.write({'state': 'draft'})
-        self.delete_empty_lines(True)
         return res
+
+    def _sheet_write(self, field, recs):
+        self.with_context(sheet_write=True).write({field: [(6, 0, recs.ids)]})
 
     @api.multi
     def write(self, vals):
@@ -367,8 +380,11 @@ class Sheet(models.Model):
             self._check_sheet_date(forced_user_id=new_user_id)
         res = super().write(vals)
         for rec in self:
-            if rec.state == 'draft':
-                rec.delete_empty_lines(True)
+            if rec.state == 'draft' and \
+                    not self.env.context.get('sheet_write'):
+                rec._update_analytic_lines_from_new_lines(vals)
+                if 'add_line_project_id' not in vals:
+                    rec.delete_empty_lines(True)
         return res
 
     @api.multi
@@ -475,6 +491,8 @@ class Sheet(models.Model):
             'project_id': item[1].id,
             'task_id': item[2].id,
             'unit_amount': sum(t.unit_amount for t in matrix[item]),
+            'employee_id': self.employee_id.id,
+            'company_id': self.company_id.id,
         }
         if self.id:
             values.update({'sheet_id': self.id})
@@ -497,9 +515,10 @@ class Sheet(models.Model):
         if self.add_line_project_id:
             values = self._prepare_empty_analytic_line()
             name_line = self._get_new_line_name()
-            if self.line_ids.mapped('value_y'):
+            name_list = list(set(self.line_ids.mapped('value_y')))
+            if name_list:
                 self.delete_empty_lines(False)
-            if name_line not in self.line_ids.mapped('value_y'):
+            if name_line not in name_list:
                 self.timesheet_ids |= \
                     self.env['account.analytic.line'].create(values)
 
@@ -516,21 +535,74 @@ class Sheet(models.Model):
         return timesheets
 
     def delete_empty_lines(self, delete_empty_rows=False):
-        for name in self.line_ids.mapped('value_y'):
+        for name in list(set(self.line_ids.mapped('value_y'))):
             row = self.line_ids.filtered(lambda l: l.value_y == name)
             if row:
-                ts_row = self.timesheet_ids.filtered(
-                    lambda x: x.project_id.id == row[0].project_id.id
-                    and x.task_id.id == row[0].task_id.id
-                )
-                if delete_empty_rows and self.add_line_project_id:
+                row_0 = fields.first(row)
+                is_add_line = self.add_line_project_id == row_0.project_id \
+                    and self.add_line_task_id == row_0.task_id
+                if delete_empty_rows and is_add_line:
                     check = any([l.unit_amount for l in row])
                 else:
                     check = not all([l.unit_amount for l in row])
                 if check:
+                    ts_row = self.timesheet_ids.filtered(
+                        lambda t: t.project_id.id == row_0.project_id.id
+                        and t.task_id.id == row_0.task_id.id
+                    )
                     ts_row.filtered(
                         lambda t: t.name == empty_name and not t.unit_amount
                     ).unlink()
+                    self._sheet_write(
+                        'timesheet_ids', self.timesheet_ids.exists())
+
+    @api.multi
+    def _update_analytic_lines_from_new_lines(self, vals):
+        self.ensure_one()
+        new_line_ids_list = []
+        for line in vals.get('line_ids', []):
+            # Every time we change a value in the grid a new line in line_ids
+            # is created with the proposed changes, even though the line_ids
+            # is a computed field. We capture the value of 'new_line_ids'
+            # in the proposed dict before it disappears.
+            # This field holds the ids of the transient records
+            # of model 'hr_timesheet.sheet.new.analytic.line'.
+            if line[0] == 1 and line[2] and line[2].get('new_line_id'):
+                new_line_ids_list += [line[2].get('new_line_id')]
+        for new_line in self.new_line_ids.exists():
+            if new_line.id in new_line_ids_list:
+                new_line._update_analytic_lines()
+        self.new_line_ids.exists().unlink()
+        self._sheet_write('new_line_ids', self.new_line_ids.exists())
+
+    @api.model
+    def _prepare_new_line(self, line):
+        return {
+            'sheet_id': line.sheet_id.id,
+            'date': line.date,
+            'project_id': line.project_id.id,
+            'task_id': line.task_id.id,
+            'unit_amount': line.unit_amount,
+            'company_id': line.company_id.id,
+            'employee_id': line.employee_id.id,
+        }
+
+    @api.multi
+    def add_new_line(self, line):
+        self.ensure_one()
+        new_line_model = self.env['hr_timesheet.sheet.new.analytic.line']
+        new_line = self.new_line_ids.filtered(
+            lambda l: l.project_id.id == line.project_id.id
+            and l.task_id.id == line.task_id.id
+            and l.date == line.date
+        )
+        if new_line:
+            new_line.write({'unit_amount': line.unit_amount})
+        else:
+            vals = self._prepare_new_line(line)
+            new_line = new_line_model.create(vals)
+        self._sheet_write('new_line_ids', self.new_line_ids | new_line)
+        line.new_line_id = new_line.id
 
     # ------------------------------------------------
     # OpenChatter methods and notifications
@@ -547,17 +619,15 @@ class Sheet(models.Model):
         return super()._track_subtype(init_values)
 
 
-class SheetLine(models.TransientModel):
-    _name = 'hr_timesheet.sheet.line'
-    _description = 'Timesheet Sheet Line'
+class AbstractSheetLine(models.AbstractModel):
+    _name = 'hr_timesheet.sheet.line.abstract'
+    _description = 'Abstract Timesheet Sheet Line'
 
     sheet_id = fields.Many2one(
         comodel_name='hr_timesheet.sheet',
         ondelete='cascade',
     )
-    date = fields.Date(
-        string='Date',
-    )
+    date = fields.Date()
     project_id = fields.Many2one(
         comodel_name='project.project',
         string='Project',
@@ -566,36 +636,66 @@ class SheetLine(models.TransientModel):
         comodel_name='project.task',
         string='Task',
     )
+    unit_amount = fields.Float(
+        string="Quantity",
+        default=0.0,
+    )
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        string='Company',
+    )
+    employee_id = fields.Many2one(
+        comodel_name='hr.employee',
+        string='Employee',
+    )
+
+
+class SheetLine(models.TransientModel):
+    _name = 'hr_timesheet.sheet.line'
+    _inherit = 'hr_timesheet.sheet.line.abstract'
+    _description = 'Timesheet Sheet Line'
+
     value_x = fields.Char(
         string='Date Name',
     )
     value_y = fields.Char(
         string='Project Name',
     )
-    unit_amount = fields.Float(
-        string="Quantity",
-        default=0.0,
+    new_line_id = fields.Integer(
+        default=0,
     )
 
     @api.onchange('unit_amount')
     def onchange_unit_amount(self):
-        """This method is called when filling a cell of the matrix.
-        It checks if there exists timesheets associated  to that cell.
-        If yes, it does several comparisons to see if the unit_amount of
-        the timesheets should be updated accordingly."""
+        """ This method is called when filling a cell of the matrix. """
         self.ensure_one()
+        sheet = self._get_sheet()
+        if not sheet:
+            return {'warning': {
+                'title': _("Warning"),
+                'message': _("Save the Timesheet Sheet first."),
+            }}
+        sheet.add_new_line(self)
 
+    @api.model
+    def _get_sheet(self):
         sheet = self.sheet_id
         if not sheet:
             model = self.env.context.get('params', {}).get('model', '')
             obj_id = self.env.context.get('params', {}).get('id')
             if model == 'hr_timesheet.sheet' and isinstance(obj_id, int):
                 sheet = self.env['hr_timesheet.sheet'].browse(obj_id)
-        if not sheet:
-            return {'warning': {
-                'title': _("Warning"),
-                'message': _("Save the Timesheet Sheet first.")
-            }}
+        return sheet
+
+
+class SheetNewAnalyticLine(models.TransientModel):
+    _name = 'hr_timesheet.sheet.new.analytic.line'
+    _inherit = 'hr_timesheet.sheet.line.abstract'
+    _description = 'Timesheet Sheet New Analytic Line'
+
+    @api.model
+    def _update_analytic_lines(self):
+        sheet = self.sheet_id
         timesheets = sheet.timesheet_ids.filtered(
             lambda t: t.date == self.date
             and t.project_id.id == self.project_id.id
@@ -604,26 +704,23 @@ class SheetLine(models.TransientModel):
         new_ts = timesheets.filtered(lambda t: t.name == empty_name)
         amount = sum(t.unit_amount for t in timesheets)
         diff_amount = self.unit_amount - amount
+        if len(new_ts) > 1:
+            new_ts = new_ts.merge_timesheets()
+            sheet._sheet_write('timesheet_ids', sheet.timesheet_ids.exists())
         if not diff_amount:
             return
         if new_ts:
-            if len(new_ts) > 1:
-                new_ts = new_ts.merge_timesheets()
             unit_amount = new_ts.unit_amount + diff_amount
-            new_ts.write({'unit_amount': unit_amount})
+            if unit_amount:
+                new_ts.write({'unit_amount': unit_amount})
+            else:
+                new_ts.unlink()
+                sheet._sheet_write(
+                    'timesheet_ids', sheet.timesheet_ids.exists())
         else:
-            new_ts_values = self._line_to_timesheet(diff_amount)
+            new_ts_values = sheet._prepare_new_line(self)
+            new_ts_values.update({
+                'name': empty_name,
+                'unit_amount': diff_amount,
+            })
             self.env['account.analytic.line'].create(new_ts_values)
-
-    @api.model
-    def _line_to_timesheet(self, amount):
-        return {
-            'name': empty_name,
-            'employee_id': self.sheet_id.employee_id.id,
-            'date': self.date,
-            'project_id': self.project_id.id,
-            'task_id': self.task_id.id,
-            'sheet_id': self.sheet_id.id,
-            'unit_amount': amount,
-            'company_id': self.sheet_id.company_id.id,
-        }
