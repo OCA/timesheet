@@ -616,7 +616,44 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(len(sheet.timesheet_ids), 1)
         self.assertEqual(len(sheet.line_ids), 7)
 
-    def test_13(self):
+    def test_13_analytic_account_multicompany(self):
+        new_employee = self.employee_model.create({
+            'name': "Test New Employee",
+            'user_id': self.user_2.id,
+            'company_id': self.company_2.id,
+        })
+        sheet = self.sheet_model.sudo(self.user_2).create({
+            'employee_id': new_employee.id,
+            'date_start': self.sheet_model._default_date_start(),
+            'date_end': self.sheet_model._default_date_end(),
+        })
+        self.assertEqual(sheet.company_id, self.company_2)
+
+        with self.assertRaises(UserError):
+            self.aal_model.create({
+                'name': 'test1',
+                'sheet_id': sheet.id,
+                'project_id': self.project_1.id,
+                'employee_id': new_employee.id,
+                'unit_amount': 1.0,
+                'date': self.sheet_model._default_date_start(),
+            })
+
+        new_project = self.project_model.create({
+            'name': "Project Test",
+            'company_id': self.company_2.id,
+            'allow_timesheets': True,
+        })
+        self.aal_model.create({
+            'name': 'test1',
+            'sheet_id': sheet.id,
+            'project_id': new_project.id,
+            'employee_id': new_employee.id,
+            'unit_amount': 1.0,
+            'date': self.sheet_model._default_date_start(),
+        })
+
+    def test_14(self):
         """Test company constraint in Account Analytic Account."""
         self.aal_model.create({
             'name': 'test1',
