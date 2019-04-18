@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_task_required
+# 	* hr_timesheet_task_required
 #
 msgid ""
 msgstr ""
@@ -15,6 +15,14 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.5.1\n"
+
+#. module: hr_timesheet_task_required
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.res_config_settings_view_form
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-specific."
+"\" groups=\"base.group_multi_company\"/>"
+msgstr ""
 
 #. module: hr_timesheet_task_required
 #: model:ir.model,name:hr_timesheet_task_required.model_account_analytic_line
