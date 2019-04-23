@@ -4,7 +4,7 @@
 
 {
     'name': 'HR Timesheet Sheet',
-    'version': '11.0.1.3.3',
+    'version': '11.0.1.4.0',
     'category': 'Human Resources',
     'sequence': 80,
     'summary': 'Timesheet Sheets, Activities',
@@ -22,6 +22,7 @@
         'views/hr_timesheet_sheet_views.xml',
         'views/hr_department_views.xml',
         'views/res_config_settings_views.xml',
+        'templates/assets.xml',
     ],
     'installable': True,
     'auto_install': False,
