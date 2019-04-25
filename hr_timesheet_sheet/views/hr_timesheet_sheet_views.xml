@@ -50,7 +50,7 @@
                     </group>
                     <notebook>
                         <page string="Summary">
-                            <group name="Sheet">
+                            <group name="Sheet" class="hr_timesheet_sheet_summary">
                                 <field name="line_ids" nolabel="1" attrs="{'readonly': [('state', 'not in', ['new', 'draft'])]}"
                                        widget="x2many_2d_matrix"
                                        field_x_axis="value_x"
@@ -64,7 +64,7 @@
                                     <tree limit="1000000">
                                         <field name="value_x"/>
                                         <field name="value_y"/>
-                                        <field name="unit_amount"/>
+                                        <field name="unit_amount" widget="float_time"/>
                                         <field name="sheet_id"/>
                                         <field name="date"/>
                                         <field name="project_id"/>
