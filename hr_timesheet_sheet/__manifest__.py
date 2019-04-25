@@ -5,7 +5,7 @@
 
 {
     'name': 'HR Timesheet Sheet',
-    'version': '12.0.1.1.2',
+    'version': '12.0.1.1.3',
     'category': 'Human Resources',
     'sequence': 80,
     'summary': 'Timesheet Sheets, Activities',
@@ -29,5 +29,6 @@
         'views/hr_timesheet_sheet_views.xml',
         'views/hr_department_views.xml',
         'views/res_config_settings_views.xml',
+        'templates/assets.xml',
     ],
 }
