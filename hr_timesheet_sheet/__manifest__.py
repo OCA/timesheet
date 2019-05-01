@@ -1,5 +1,5 @@
 # Copyright 2018 Eficent
-# Copyright 2018-2019 Brainbean Apps
+# Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
 # Copyright 2018-2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
