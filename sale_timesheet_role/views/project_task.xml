@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2020 CorporateHub (https://corporatehub.eu)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="project_task_view_form_inherit_sale_timesheet" model="ir.ui.view">
+        <field name="name">project.task.form.inherit.timesheet</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="sale_timesheet.project_task_view_form_inherit_sale_timesheet"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='so_line']" position="attributes">
+                <attribute name="attrs">{'column_invisible': ['|', ('parent.billable_type', '!=', 'employee_rate'), ('parent.billable_type', '!=', 'employee_role_rate')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
