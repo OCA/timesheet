@@ -399,11 +399,12 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(len(timesheet_3_4_and_5), 3)
 
         timesheet_6 = self.aal_model.create({
-            'name': empty_name,
+            'name': 'z',
             'project_id': self.project_1.id,
             'employee_id': self.employee.id,
             'unit_amount': 2.0,
         })
+        timesheet_5.name = empty_name
         sheet._onchange_timesheets()
         self.assertEqual(len(sheet.timesheet_ids), 4)
         line = sheet.line_ids.filtered(lambda l: l.unit_amount != 0.0)
@@ -416,14 +417,7 @@ class TestHrTimesheetSheet(TransactionCase):
         line.onchange_unit_amount()
         sheet._onchange_timesheets()
         self.assertEqual(len(sheet.timesheet_ids), 4)
-
-        new_timesheet = sheet.timesheet_ids.filtered(
-            lambda t: t.name == empty_name
-        )
-        self.assertEqual(len(new_timesheet), 1)
-        timesheet_6_or_new = self.aal_model.search(
-            [('id', 'in', [timesheet_6.id, new_timesheet.id])])
-        self.assertEqual(len(timesheet_6_or_new), 1)
+        self.assertTrue(self.aal_model.search([('id', '=', timesheet_6.id)]))
 
     def test_7(self):
         sheet = self.sheet_model.sudo(self.user).new({
