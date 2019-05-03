@@ -4,8 +4,8 @@ with open('VERSION.txt', 'r') as f:
     version = f.read().strip()
 
 setuptools.setup(
-    name="odoo11-addons-oca-hr-timesheet",
-    description="Meta package for oca-hr-timesheet Odoo addons",
+    name="odoo11-addons-oca-timesheet",
+    description="Meta package for oca-timesheet Odoo addons",
     version=version,
     install_requires=[
         'odoo11-addon-crm_timesheet',
