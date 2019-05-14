@@ -1,5 +1,6 @@
 # Copyright 2018 ACSONE SA/NV
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
@@ -18,7 +19,7 @@ class AccountAnalyticLine(models.Model):
         for rec in self:
             task = rec.task_id
             stage = task.stage_id
-            if task and not stage.allow_timesheet:
+            if task and stage and not stage.allow_timesheet:
                 raise ValidationError(_(
                     "You can't link a timesheet line to a task if its stage "
                     "doesn't allow it. (Task: %s, Stage: %s)"
