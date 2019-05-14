@@ -5,7 +5,7 @@
     'name': 'Sales Timesheet: exclude Task from Sale Order',
     'version': '12.0.1.0.0',
     'category': 'Sales',
-    'website': 'https://github.com/OCA/sale-workflow',
+    'website': 'https://github.com/OCA/timesheet',
     'author':
         'Brainbean Apps, '
         'Odoo Community Association (OCA)',
