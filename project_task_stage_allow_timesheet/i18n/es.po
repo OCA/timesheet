@@ -38,7 +38,7 @@ msgid "Task Stage"
 msgstr "Etapa de tarea"
 
 #. module: project_task_stage_allow_timesheet
-#: code:addons/project_task_stage_allow_timesheet/models/account_analytic_line.py:22
+#: code:addons/project_task_stage_allow_timesheet/models/account_analytic_line.py:23
 #, python-format
 msgid ""
 "You can't link a timesheet line to a task if its stage doesn't allow it. "
