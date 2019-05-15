@@ -18,9 +18,9 @@
     <field name="model">product.template</field>
     <field name="inherit_id" ref="product.product_template_form_view"/>
     <field name="arch" type="xml">
-      <xpath expr="//field[@name='service_policy']" position="after">
+      <field name="service_policy" position="after">
           <field name="seniority_level_id" attrs="{'required': [('service_policy', '=', 'delivered_timesheet')], 'invisible': ['|', ('type', '!=', 'service'), ('service_policy', '!=', 'delivered_timesheet')]}"/>
-      </xpath>
+      </field>
     </field>
   </record>
 

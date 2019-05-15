@@ -6,7 +6,6 @@ from odoo.tests.common import SavepointCase
 
 
 class TestSaleProjectTimesheetBySeniority(SavepointCase):
-    """  """
 
     @classmethod
     def setUpClass(cls):

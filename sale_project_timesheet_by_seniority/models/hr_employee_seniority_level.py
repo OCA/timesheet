@@ -10,6 +10,6 @@ class HrEmployeeSeniorityLevel(models.Model):
     _description = 'Hr Employee Seniority Level'
     _order = 'sequence'
 
-    sequence = fields.Integer(name="Sequence", required=True)
+    sequence = fields.Integer(name='Sequence', required=True)
     code = fields.Char(name='Code', required=True)
     name = fields.Char(name='Name', required=True, translate=True)
