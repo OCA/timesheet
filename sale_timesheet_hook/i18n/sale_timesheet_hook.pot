@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_timesheet_hook
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_timesheet_hook
+#: model:ir.model,name:sale_timesheet_hook.model_account_analytic_line
+msgid "Analytic Line"
+msgstr ""
+
+#. module: sale_timesheet_hook
+#: code:addons/sale_timesheet_hook/wizard/project_create_sale_order.py:52
+#, python-format
+msgid "At least one line should be filled."
+msgstr ""
+
+#. module: sale_timesheet_hook
+#: model:ir.model,name:sale_timesheet_hook.model_project_create_sale_order
+msgid "Create SO from project"
+msgstr ""
+
+#. module: sale_timesheet_hook
+#: code:addons/sale_timesheet_hook/wizard/project_create_sale_order.py:61
+#, python-format
+msgid "The Sales Order cannot be created because you did not enter some employees that entered timesheets on this project. Please list all the relevant employees before creating the Sales Order.\n"
+"Missing employee(s): %s"
+msgstr ""
+
+#. module: sale_timesheet_hook
+#: code:addons/sale_timesheet_hook/wizard/project_create_sale_order.py:45
+#, python-format
+msgid "The project is already linked to a sales order item."
+msgstr ""
+
+#. module: sale_timesheet_hook
+#: code:addons/sale_timesheet_hook/wizard/project_create_sale_order.py:76
+#, python-format
+msgid "The sales order cannot be created because some timesheets of this project are already linked to another sales order."
+msgstr ""
+
+#. module: sale_timesheet_hook
+#: code:addons/sale_timesheet_hook/models/account_analytic_line.py:17
+#, python-format
+msgid "This timesheet line cannot be billed: there is no Sale Order Item defined on the task, nor on the project. Please define one to save your timesheet line."
+msgstr ""
+
