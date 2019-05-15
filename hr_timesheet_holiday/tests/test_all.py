@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import time
 from openerp.tests.common import TransactionCase
-from openerp.exceptions import ValidationError
+from openerp.exceptions import UserError, ValidationError
 
 
 class TimesheetHolidayTest(TransactionCase):
@@ -49,6 +49,10 @@ class TimesheetHolidayTest(TransactionCase):
         self.assertRaises(ValidationError, self.account.line_ids[0].write, {
             'unit_amount': 5.0
         })
+
+        # Test deletion of lines forbidden
+        with self.assertRaises(UserError):
+            leave.timesheet_ids.unlink()
 
         # Test force editing of lines allowed
         self.account.line_ids[0].with_context(force_write=True).write({
