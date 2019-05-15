@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="project_project_form_inherit" model="ir.ui.view">
+        <field name="name">project.project.form.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//group[@name='misc']" position="after">
+                <group name="rounding">
+                    <group string="Time rounding" name="time_rounding_parameters">
+                        <field name="timesheet_rounding_method"/>
+                        <field name="timesheet_rounding_unit" attrs="{'invisible': [('timesheet_rounding_method', '=', 'NO')]}"/>
+                        <field name="timesheet_rounding_factor" attrs="{'invisible': [('timesheet_rounding_method', '=', 'NO')]}"/>
+                    </group>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
