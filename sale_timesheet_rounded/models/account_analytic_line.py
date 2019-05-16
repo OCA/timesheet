@@ -1,7 +1,11 @@
 # Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+import logging
+
 from odoo import api, fields, models
 from odoo.tools.float_utils import float_round
+
+_logger = logging.getLogger(__name__)
 
 
 class AccountAnalyticLine(models.Model):
@@ -12,6 +16,21 @@ class AccountAnalyticLine(models.Model):
         string="Quantity rounded",
         default=0.0,
     )
+
+    @api.model_cr_context
+    def _init_column(self, column_name):
+        """ Initialize the value of the given column for existing rows.
+            Overridden here because we need to have different default values
+            for unit_amount_rounded for every analytic line.
+        """
+        if column_name != 'unit_amount_rounded':
+            super()._init_column(column_name)
+        else:
+            _logger.info('Initializing column `unit_amount_rounded` with the '
+                         'value of `unit_amount`')
+            query = 'UPDATE "%s" SET unit_amount_rounded = unit_amount;' % \
+                    self._table
+            self.env.cr.execute(query)
 
     @api.onchange('unit_amount')
     def _onchange_unit_amount(self):
@@ -38,20 +57,24 @@ class AccountAnalyticLine(models.Model):
             if rec.unit_amount_rounded and not force_compute:
                 # already set, no forcing: do nothing
                 continue
-            rec.unit_amount_rounded = self._calc_rounded_amount(
-                rec.project_id.timesheet_rounding_granularity,
-                rec.project_id.timesheet_rounding_method,
-                rec.project_id.timesheet_invoicing_factor,
-                rec.unit_amount,
-            )
+            if rec.project_id.timesheet_rounding_method == 'NO':
+                # No rounding to apply: copy the value
+                rec.unit_amount_rounded = rec.unit_amount
+            else:
+                rec.unit_amount_rounded = self._calc_rounded_amount(
+                    rec.project_id.timesheet_rounding_unit,
+                    rec.project_id.timesheet_rounding_method,
+                    rec.project_id.timesheet_rounding_factor,
+                    rec.unit_amount,
+                )
 
     @staticmethod
-    def _calc_rounded_amount(granularity, rounding_method, factor, amount):
+    def _calc_rounded_amount(rounding_unit, rounding_method, factor, amount):
         factor = factor / 100.0
-        if granularity:
+        if rounding_unit:
             unit_amount_rounded = float_round(
                 amount * factor,
-                precision_rounding=granularity,
+                precision_rounding=rounding_unit,
                 rounding_method=rounding_method
             )
         else:
@@ -65,10 +88,18 @@ class AccountAnalyticLine(models.Model):
         # and the consequent call to write,
         # event though it might be still useful for the onchange.
         # NOTE: we don't have to replace `amount` value.
-        if not self.env.context.get('update_unit_amount_rounded'):
-            if not values.get('unit_amount_rounded'):
+        if (
+            not self.env.context.get('update_unit_amount_rounded')
+            and not self.env.context.get('_no_rounding')
+        ):
+            if values.get('unit_amount_rounded') is None:
                 self._update_unit_amount_rounded()
-        return super()._timesheet_postprocess(values)
+        # Add no rounding key to avoid triggering
+        # _update_unit_amount_rounded on the write from
+        # _timesheet_postprocess to update the amount
+        return super(
+            AccountAnalyticLine, self.with_context(_no_rounding=True)
+        )._timesheet_postprocess(values)
 
     ####################################################
     # ORM Overrides
@@ -84,11 +115,12 @@ class AccountAnalyticLine(models.Model):
         which in turns compute the delivered qty on SO line.
         """
         ctx_ts_rounded = self.env.context.get('timesheet_rounding')
+        fields_local = fields.copy() if fields else []
         if ctx_ts_rounded:
             # To add the unit_amount_rounded value on read_group
-            fields.append('unit_amount_rounded')
+            fields_local.append('unit_amount_rounded')
         res = super().read_group(
-            domain, fields, groupby, offset=offset,
+            domain, fields_local, groupby, offset=offset,
             limit=limit, orderby=orderby, lazy=lazy
         )
         if ctx_ts_rounded:
@@ -97,6 +129,7 @@ class AccountAnalyticLine(models.Model):
                 rec['unit_amount'] = rec['unit_amount_rounded']
         return res
 
+    @api.multi
     def read(self, fields=None, load='_classic_read'):
         """Replace the value of unit_amount by unit_amount_rounded.
 

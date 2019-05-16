@@ -7,8 +7,8 @@ class ProjectProject(models.Model):
 
     _inherit = 'project.project'
 
-    timesheet_rounding_granularity = fields.Float(
-        string='Timesheet rounding granularity',
+    timesheet_rounding_unit = fields.Float(
+        string='Timesheet rounding unit',
         default=0.0,
         help="""1.0 = hour
             0.25 = 15 min
@@ -19,24 +19,25 @@ class ProjectProject(models.Model):
     timesheet_rounding_method = fields.Selection(
         string='Timesheet rounding method',
         selection=[
+            ('NO', 'No rounding'),
             ('UP', 'Up'),
             ('HALF_UP', 'Closest'),
             ('DOWN', 'Down'),
         ],
-        default='UP',
+        default='NO',
         required=True
     )
-    timesheet_invoicing_factor = fields.Float(
-        string='Timesheet invoicing factor in percentage',
+    timesheet_rounding_factor = fields.Float(
+        string='Timesheet rounding factor in percentage',
         default=100.0
     )
 
     _sql_constraints = [
         (
-            'check_timesheet_invoicing_factor',
-            'CHECK(0 <= timesheet_invoicing_factor '
-            'AND timesheet_invoicing_factor <= 500)',
-            'Timesheet invoicing factor should stay between 0 and 500,'
+            'check_timesheet_rounding_factor',
+            'CHECK(0 <= timesheet_rounding_factor '
+            'AND timesheet_rounding_factor <= 500)',
+            'Timesheet rounding factor should stay between 0 and 500,'
             ' endpoints included.'
         )
     ]

@@ -9,9 +9,9 @@
             <xpath expr="//group[@name='misc']" position="after">
                 <group name="rounding">
                     <group string="Time rounding" name="time_rounding_parameters">
-                        <field name="timesheet_rounding_granularity"/>
                         <field name="timesheet_rounding_method"/>
-                        <field name="timesheet_invoicing_factor"/>
+                        <field name="timesheet_rounding_unit" attrs="{'invisible': [('timesheet_rounding_method', '=', 'NO')]}"/>
+                        <field name="timesheet_rounding_factor" attrs="{'invisible': [('timesheet_rounding_method', '=', 'NO')]}"/>
                     </group>
                 </group>
             </xpath>

@@ -18,7 +18,7 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
         cls.setUpEmployees()
         cls.setUpServiceProducts()
         cls.sale_order = cls.env['sale.order'].create({
-            # 'analytic_account_id': cls.project_global.analytic_account_id.id,
+            'analytic_account_id': cls.project_global.analytic_account_id.id,
             'partner_id': cls.partner_customer_usd.id,
             'partner_invoice_id': cls.partner_customer_usd.id,
             'partner_shipping_id': cls.partner_customer_usd.id,
@@ -34,9 +34,9 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
         sale_order_line.product_id_change()
         cls.sale_order.action_confirm()
         cls.project_global.write({
-            'timesheet_rounding_granularity': 0.25,
+            'timesheet_rounding_unit': 0.25,
             'timesheet_rounding_method': 'UP',
-            'timesheet_invoicing_factor': 200,
+            'timesheet_rounding_factor': 200,
         })
         cls.product_expense = cls.env['product.product'].create({
             'name': "Service delivered, EXPENSE",
@@ -59,31 +59,41 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
             'name': 'Rounded test line',
             'date': fields.Date.today(),
             'unit_amount': 0,
-            'unit_amount_rounded': 0,
             'product_id': self.product_delivery_timesheet2.id,
             'employee_id': self.employee_user.id,
         }
         values.update(kw)
         return self.env['account.analytic.line'].create(values)
 
+    def test_analytic_line_init_no_rounding(self):
+        lines = self.env['account.analytic.line'].search([])
+        for line in lines:
+            self.assertEqual(line.unit_amount_rounded, line.unit_amount)
+
     def test_analytic_line_create_no_rounding(self):
         self.project_global.write({
-            'timesheet_rounding_granularity': False,
-            'timesheet_invoicing_factor': False,
+            'timesheet_rounding_method': 'NO',
         })
         # no rounding enabled
         line = self.create_analytic_line(unit_amount=1)
-        self.assertEqual(line.unit_amount_rounded, 0.0)
+        self.assertEqual(line.unit_amount, 1.0)
+        self.assertEqual(line.unit_amount_rounded, line.unit_amount)
 
     def test_analytic_line_create(self):
         line = self.create_analytic_line(unit_amount=1)
         self.assertEqual(line.unit_amount_rounded, 2.0)
+        line._onchange_unit_amount()
+        self.assertEqual(line.unit_amount_rounded, 2.0)
+        line = self.create_analytic_line(unit_amount=1, unit_amount_rounded=0)
+        self.assertEqual(line.unit_amount_rounded, 0.0)
 
     def test_analytic_line_create_and_update_amount_rounded(self):
         line = self.create_analytic_line(unit_amount=2)
         self.assertEqual(line.unit_amount_rounded, 4.0)
-        line.unit_amount_rounded = 5.0
+        line.write({'unit_amount_rounded': 5.0})
         self.assertEqual(line.unit_amount_rounded, 5.0)
+        line.write({'unit_amount_rounded': 0.0})
+        self.assertEqual(line.unit_amount_rounded, 0.0)
 
     def test_analytic_line_create_and_update_amount(self):
         line = self.create_analytic_line(unit_amount=2)
@@ -97,20 +107,30 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
         # without context the unit_amount should be the inital
         # with the context the value of unit_amount should be replace by the
         # unit_amount_rounded
-        line = self.create_analytic_line(unit_amount=1)
+        line = self.env['account.analytic.line']
+        self.create_analytic_line(unit_amount=1)
         domain = [('project_id', '=', self.project_global.id)]
-        fields = ['so_line', 'unit_amount', 'product_uom_id']
+        fields_list = ['so_line', 'unit_amount', 'product_uom_id']
         groupby = ['product_uom_id', 'so_line']
 
-        data_ctx_f = line.with_context(timesheet_rounding=False).read_group(
-            domain, fields, groupby,
-        )
+        data_ctx_f = line.read_group(domain, fields_list, groupby,)
         self.assertEqual(data_ctx_f[0]['unit_amount'], 1.0)
 
         data_ctx_t = line.with_context(timesheet_rounding=True).read_group(
-            domain, fields, groupby,
+            domain, fields_list, groupby,
         )
         self.assertEqual(data_ctx_t[0]['unit_amount'], 2.0)
+
+        self.create_analytic_line(unit_amount=1.1)
+        data_ctx_f = line.with_context(timesheet_rounding=False).read_group(
+            domain, fields_list, groupby,
+        )
+        self.assertEqual(data_ctx_f[0]['unit_amount'], 2.1)
+
+        data_ctx_f = line.with_context(timesheet_rounding=True).read_group(
+            domain, fields_list, groupby,
+        )
+        self.assertEqual(data_ctx_f[0]['unit_amount'], 4.25)
 
     def test_analytic_line_read_override(self):
         # Cases for not rounding:
@@ -171,9 +191,9 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
     def test_sale_order_qty_3(self):
         # amount=0.9
         # should be rounded to 2 by the invoicing_factor with the project
-        # timesheet_rounding_granularity: 0.25
+        # timesheet_rounding_unit: 0.25
         # timesheet_rounding_method: 'UP'
-        # timesheet_invoicing_factor: 200
+        # timesheet_rounding_factor: 200
         self.create_analytic_line(unit_amount=0.9)
         self.assertAlmostEqual(self.sale_order.order_line.qty_delivered, 2.0)
         self.assertAlmostEqual(self.sale_order.order_line.qty_to_invoice, 2.0)
@@ -182,10 +202,10 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
     def test_sale_order_qty_4(self):
         # amount=0.9
         # should be rounded to 2 by the invoicing_factor with the project
-        # timesheet_rounding_granularity: 0.25
+        # timesheet_rounding_unit: 0.25
         # timesheet_rounding_method: 'UP'
-        # timesheet_invoicing_factor: 200
-        self.project_global.timesheet_invoicing_factor = 400
+        # timesheet_rounding_factor: 200
+        self.project_global.timesheet_rounding_factor = 400
         self.create_analytic_line(unit_amount=1.0)
         self.assertAlmostEqual(self.sale_order.order_line.qty_delivered, 4.0)
         self.assertAlmostEqual(self.sale_order.order_line.qty_to_invoice, 4.0)
@@ -193,61 +213,61 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
 
     def test_calc_rounded_amount_method(self):
         aal = self.env['account.analytic.line']
-        granularity = 0.25
+        rounding_unit = 0.25
         rounding_method = 'UP'
         factor = 200
         amount = 1
         self.assertEqual(
             aal._calc_rounded_amount(
-                granularity, rounding_method, factor, amount
+                rounding_unit, rounding_method, factor, amount
             ), 2)
 
-        granularity = 0.0
+        rounding_unit = 0.0
         rounding_method = 'UP'
         factor = 200
         amount = 1
         self.assertEqual(
             aal._calc_rounded_amount(
-                granularity, rounding_method, factor, amount
+                rounding_unit, rounding_method, factor, amount
             ), 2
         )
 
-        granularity = 0.25
+        rounding_unit = 0.25
         rounding_method = 'UP'
         factor = 100
         amount = 1.0
         self.assertEqual(
             aal._calc_rounded_amount(
-                granularity, rounding_method, factor, amount
+                rounding_unit, rounding_method, factor, amount
             ), 1
         )
 
-        granularity = 0.25
+        rounding_unit = 0.25
         rounding_method = 'UP'
         factor = 200
         amount = 0.9
         self.assertEqual(
             aal._calc_rounded_amount(
-                granularity, rounding_method, factor, amount
+                rounding_unit, rounding_method, factor, amount
             ), 2
         )
 
-        granularity = 1.0
+        rounding_unit = 1.0
         rounding_method = 'UP'
         factor = 200
         amount = 0.6
         self.assertEqual(
             aal._calc_rounded_amount(
-                granularity, rounding_method, factor, amount
+                rounding_unit, rounding_method, factor, amount
             ), 2
         )
 
-        granularity = 0.25
+        rounding_unit = 0.25
         rounding_method = 'HALF_UP'
         factor = 200
         amount = 1.01
         self.assertEqual(
             aal._calc_rounded_amount(
-                granularity, rounding_method, factor, amount
+                rounding_unit, rounding_method, factor, amount
             ), 2
         )
