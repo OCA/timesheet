@@ -18,6 +18,6 @@ class HrAnalyticTimesheet(models.Model):
                 'draft', 'cancel', 'refuse',
         ]):
             raise UserError(_(
-                'You can\'t delete timesheet lines with active leaves',
+                "You can't delete timesheet lines with active leaves",
             ))
         return super(HrAnalyticTimesheet, self).unlink()
