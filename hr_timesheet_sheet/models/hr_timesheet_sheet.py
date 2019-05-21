@@ -4,12 +4,14 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import babel.dates
+import json
 import logging
 import re
 from collections import namedtuple
 from datetime import datetime, time
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import MONTHLY, WEEKLY
+from lxml import etree
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
@@ -21,10 +23,11 @@ empty_name = '/'
 
 class Sheet(models.Model):
     _name = 'hr_timesheet.sheet'
+    _description = 'Timesheet Sheet'
     _inherit = ['mail.thread', 'mail.activity.mixin', 'portal.mixin']
     _table = 'hr_timesheet_sheet'
     _order = 'id desc'
-    _description = 'Timesheet Sheet'
+    _rec_name = 'complete_name'
 
     def _default_date_start(self):
         user = self.env['res.users'].browse(self.env.uid)
@@ -57,12 +60,23 @@ class Sheet(models.Model):
             return today + relativedelta(months=1, day=1, days=-1)
         return today
 
+    def _selection_review_policy(self):
+        ResCompany = self.env['res.company']
+        return ResCompany._fields['timesheet_sheet_review_policy'].selection
+
+    def _default_review_policy(self):
+        company = self.env['res.company']._company_default_get()
+        return company.timesheet_sheet_review_policy
+
     def _default_employee(self):
         company = self.env['res.company']._company_default_get()
         return self.env['hr.employee'].search([
             ('user_id', '=', self.env.uid),
             ('company_id', 'in', [company.id, False]),
         ], limit=1, order="company_id ASC")
+
+    def _default_department_id(self):
+        return self._default_employee().department_id
 
     name = fields.Char(
         compute='_compute_name',
@@ -132,7 +146,7 @@ class Sheet(models.Model):
     state = fields.Selection([
         ('new', 'New'),
         ('draft', 'Open'),
-        ('confirm', 'Waiting Approval'),
+        ('confirm', 'Waiting Review'),
         ('done', 'Approved')],
         default='new', track_visibility='onchange',
         string='Status', required=True, readonly=True, index=True,
@@ -144,9 +158,30 @@ class Sheet(models.Model):
         required=True,
         readonly=True,
     )
+    review_policy = fields.Selection(
+        selection=lambda self: self._selection_review_policy(),
+        default=lambda self: self._default_review_policy(),
+        required=True,
+        readonly=True,
+    )
     department_id = fields.Many2one(
         comodel_name='hr.department',
         string='Department',
+        default=lambda self: self._default_department_id(),
+        readonly=True,
+        states={'new': [('readonly', False)]},
+    )
+    project_id = fields.Many2one(
+        string='Project',
+        comodel_name='project.project',
+        readonly=True,
+        states={'new': [('readonly', False)]},
+    )
+    reviewer_id = fields.Many2one(
+        comodel_name='hr.employee',
+        string='Reviewer',
+        readonly=True,
+        track_visibility='onchange',
     )
     add_line_project_id = fields.Many2one(
         comodel_name='project.project',
@@ -164,6 +199,59 @@ class Sheet(models.Model):
         compute='_compute_total_time',
         store=True,
     )
+    possible_reviewer_ids = fields.Many2many(
+        string='Possible Reviewers',
+        comodel_name='res.users',
+        compute='_compute_possible_reviewer_ids',
+        store=True,
+    )
+    can_review = fields.Boolean(
+        string='Can Review',
+        compute='_compute_can_review',
+        search='_search_can_review',
+    )
+    complete_name = fields.Char(
+        string='Complete Name',
+        compute='_compute_complete_name',
+    )
+
+    @api.model
+    def fields_view_get(self,
+                        view_id=None, view_type='form', toolbar=False,
+                        submenu=False):
+        res = super().fields_view_get(
+            view_id=view_id,
+            view_type=view_type,
+            toolbar=toolbar,
+            submenu=submenu,
+        )
+
+        view = etree.XML(res['arch'])
+        self._modify_view_for_policy(view_type, view)
+        res['arch'] = etree.tostring(
+            view,
+            encoding='unicode',
+        ).replace('\t', '')
+
+        return res
+
+    @api.model
+    def _modify_view_for_policy(self, view_type, view):
+        """ Hook for extensions """
+        review_policy = self.env.user.company_id.timesheet_sheet_review_policy
+        field = None
+        if review_policy == 'project_manager' and view_type == 'tree':
+            field = view.find(".//field[@name='project_id']")
+        elif review_policy == 'department_manager' and view_type == 'tree':
+            field = view.find(".//field[@name='department_id']")
+
+        if field is not None:
+            field.set('invisible', '0')
+            modifiers = json.loads(field.get('modifiers'))
+            modifiers.update({
+                'column_invisible': False,
+            })
+            field.set('modifiers', json.dumps(modifiers))
 
     @api.multi
     @api.depends('date_start', 'date_end')
@@ -202,6 +290,44 @@ class Sheet(models.Model):
         for sheet in self:
             sheet.total_time = sum(sheet.mapped('timesheet_ids.unit_amount'))
 
+    @api.multi
+    @api.depends(
+        'review_policy',
+        'department_id.manager_id.user_id',
+        'employee_id.parent_id.user_id',
+        'project_id.user_id'
+    )
+    def _compute_possible_reviewer_ids(self):
+        for sheet in self:
+            sheet.possible_reviewer_ids = sheet._get_possible_reviewers()
+
+    @api.multi
+    @api.depends('possible_reviewer_ids')
+    def _compute_can_review(self):
+        for sheet in self:
+            sheet.can_review = self.env.user in sheet.possible_reviewer_ids
+
+    @api.model
+    def _search_can_review(self, operator, value):
+        if (operator == '=' and value) \
+                or (operator in ['<>', '!='] and not value):
+            operator = '='
+        else:
+            operator = '!='
+        return [('possible_reviewer_ids', operator, self.env.uid)]
+
+    @api.depends('name', 'employee_id', 'project_id')
+    def _compute_complete_name(self):
+        for sheet in self:
+            complete_name = sheet.name
+            complete_name_components = sheet._get_complete_name_components()
+            if complete_name_components:
+                complete_name = '%s (%s)' % (
+                    complete_name,
+                    ', '.join(complete_name_components)
+                )
+            sheet.complete_name = complete_name
+
     @api.constrains('date_start', 'date_end')
     def _check_start_end_dates(self):
         for sheet in self:
@@ -210,28 +336,49 @@ class Sheet(models.Model):
                     _('The start date cannot be later than the end date.'))
 
     @api.multi
-    def _get_overlapping_sheet_domain(self, user_id=False):
+    def _get_complete_name_components(self):
+        """ Hook for extensions """
+        self.ensure_one()
+        result = [self.employee_id.name_get()[0][1]]
+        if self.review_policy == 'department_manager':
+            result += [self.department_id.name_get()[0][1]]
+        elif self.review_policy == 'project_manager':
+            result += [self.project_id.name_get()[0][1]]
+        return result
+
+    @api.multi
+    def _get_overlapping_sheet_domain(self):
         """ Hook for extensions """
         self.ensure_one()
         domain = [
             ('id', '!=', self.id),
             ('date_start', '<=', self.date_end),
             ('date_end', '>=', self.date_start),
-            ('user_id', '=', user_id or self.user_id.id),
+            ('employee_id', '=', self.employee_id.id),
             ('company_id', '=', self._get_timesheet_sheet_company().id),
         ]
+        if self.review_policy == 'project_manager':
+            domain += [
+                ('project_id', '=', self.project_id.id)
+            ]
         return domain
 
-    @api.constrains('date_start', 'date_end', 'employee_id')
-    def _check_sheet_date(self, user_id=False):
-        sheets = self if user_id else self.filtered('user_id')
-        for sheet in sheets:
-            domain = sheet._get_overlapping_sheet_domain(user_id=user_id)
-            if self.search(domain, limit=1):
-                raise ValidationError(
-                    _('You cannot have 2 sheets that overlap!\n'
-                        'Please use the menu \'Timesheet Sheet\' '
-                        'to avoid this problem.'))
+    @api.constrains(
+        'date_start',
+        'date_end',
+        'company_id',
+        'project_id',
+        'employee_id',
+        'review_policy',
+    )
+    def _check_overlapping_sheets(self):
+        for sheet in self:
+            if self.search(sheet._get_overlapping_sheet_domain(), limit=1):
+                raise ValidationError(_(
+                    'You cannot have 2 sheets that overlap!\n'
+                    'Please use the menu "Timesheet Sheet" '
+                    'to avoid this problem.'
+                ))
 
     @api.multi
     @api.constrains('company_id', 'employee_id')
@@ -254,6 +401,16 @@ class Sheet(models.Model):
                       'the Department must be the same.'))
 
     @api.multi
+    @api.constrains('company_id', 'project_id')
+    def _check_company_id_project_id(self):
+        for rec in self.sudo():
+            if rec.company_id and rec.project_id.company_id and \
+                    rec.company_id != rec.project_id.company_id:
+                raise ValidationError(
+                    _('The Company in the Timesheet Sheet and in '
+                      'the Project must be the same.'))
+
+    @api.multi
     @api.constrains('company_id', 'add_line_project_id')
     def _check_company_id_add_line_project_id(self):
         for rec in self.sudo():
@@ -274,6 +431,21 @@ class Sheet(models.Model):
                       'the Task must be the same.'))
 
     @api.multi
+    def _get_possible_reviewers(self):
+        self.ensure_one()
+        ResUsers = self.env['res.users']
+        result = ResUsers
+        if self.review_policy == 'hr':
+            result |= self.env.ref('hr.group_hr_user').users
+        elif self.review_policy == 'department_manager':
+            result |= self.department_id.manager_id.user_id
+        elif self.review_policy == 'direct_manager':
+            result |= self.employee_id.parent_id.user_id
+        elif self.review_policy == 'project_manager':
+            result |= self.project_id.user_id
+        return result
+
+    @api.multi
     def _get_timesheet_sheet_company(self):
         self.ensure_one()
         employee = self.employee_id
@@ -287,6 +459,7 @@ class Sheet(models.Model):
         if self.employee_id:
             company = self._get_timesheet_sheet_company()
             self.company_id = company
+            self.review_policy = company.timesheet_sheet_review_policy
             self.department_id = self.employee_id.department_id
 
     @api.multi
@@ -299,6 +472,14 @@ class Sheet(models.Model):
             ('company_id', '=', self._get_timesheet_sheet_company().id),
             ('project_id', '!=', False),
         ]
+        if self.review_policy == 'project_manager':
+            domain += [
+                ('project_id', '=', self.project_id.id)
+            ]
+        else:
+            domain += [
+                ('project_id', '!=', False),
+            ]
         return domain
 
     @api.multi
@@ -376,7 +557,7 @@ class Sheet(models.Model):
             sheet.link_timesheets_to_sheet(timesheets)
             sheet.timesheet_ids = timesheets
 
-    @api.onchange('date_start', 'date_end', 'employee_id')
+    @api.onchange('date_start', 'date_end', 'employee_id', 'project_id')
     def _onchange_scope(self):
         self._compute_timesheet_ids()
 
@@ -388,6 +569,11 @@ class Sheet(models.Model):
     @api.onchange('timesheet_ids')
     def _onchange_timesheets(self):
         self._compute_line_ids()
+
+    @api.onchange('project_id')
+    def _onchange_project_id(self):
+        self.add_line_project_id = self.project_id
+        return self.onchange_add_project_id()
 
     @api.onchange('add_line_project_id')
     def onchange_add_project_id(self):
@@ -429,6 +615,14 @@ class Sheet(models.Model):
     @api.model
     def create(self, vals):
         self._check_employee_user_link(vals)
+        review_policy = vals.get(
+            'review_policy',
+            self.default_get(['review_policy'])['review_policy']
+        )
+        if review_policy == 'project_manager' and not vals.get('project_id'):
+            raise UserError(_(
+                'Review policy "By Project Manager" requires Project to be set'
+            ))
         res = super().create(vals)
         res.write({'state': 'draft'})
         return res
@@ -438,9 +632,12 @@ class Sheet(models.Model):
 
     @api.multi
     def write(self, vals):
-        new_user_id = self._check_employee_user_link(vals)
-        if new_user_id:
-            self._check_sheet_date(user_id=new_user_id)
+        self._check_employee_user_link(vals)
+        if self.filtered(lambda x: x.review_policy == 'project_manager') \
+                and 'project_id' in vals and not vals.get('project_id'):
+            raise UserError(_(
+                'Review policy "By Project Manager" requires Project to be set'
+            ))
         res = super().write(vals)
         for rec in self:
             if rec.state == 'draft' and \
@@ -461,13 +658,15 @@ class Sheet(models.Model):
         return super().unlink()
 
     def _get_informables(self):
-        """ Hook for extensions """
         self.ensure_one()
-        return self.employee_id.parent_id.user_id.partner_id
+        if self.review_policy != 'direct_manager':
+            return self.employee_id.parent_id.user_id.partner_id
+        return self.env['res.partner']
 
     def _timesheet_subscribe_users(self):
         for sheet in self.sudo():
-            subscribers = sheet._get_informables()
+            subscribers = sheet._get_possible_reviewers().mapped('partner_id')
+            subscribers |= sheet._get_informables()
             if subscribers:
                 self.message_subscribe(partner_ids=subscribers.ids)
 
@@ -475,12 +674,10 @@ class Sheet(models.Model):
     def action_timesheet_draft(self):
         if self.filtered(lambda sheet: sheet.state != 'done'):
             raise UserError(_('Cannot revert to draft a non-approved sheet.'))
-        if not self.env.user.has_group('hr_timesheet.group_hr_timesheet_user'):
-            raise UserError(
-                _('Only an HR Officer or Manager can refuse sheets '
-                  'or reset them to draft.'))
+        self._check_can_review()
         self.write({
             'state': 'draft',
+            'reviewer_id': False,
         })
 
     @api.multi
@@ -493,20 +690,54 @@ class Sheet(models.Model):
     def action_timesheet_done(self):
         if self.filtered(lambda sheet: sheet.state != 'confirm'):
             raise UserError(_('Cannot approve a non-submitted sheet.'))
-        if not self.env.user.has_group('hr_timesheet.group_hr_timesheet_user'):
-            raise UserError(
-                _('Only an HR Officer or Manager can approve sheets.'))
+        self._check_can_review()
         self.write({
             'state': 'done',
+            'reviewer_id': self._get_current_reviewer().id,
         })
 
     @api.multi
     def action_timesheet_refuse(self):
         if self.filtered(lambda sheet: sheet.state != 'confirm'):
             raise UserError(_('Cannot reject a non-submitted sheet.'))
+        self._check_can_review()
         self.write({
             'state': 'draft',
+            'reviewer_id': False,
         })
+
+    @api.model
+    def _get_current_reviewer(self):
+        reviewer = self.env['hr.employee'].search(
+            [('user_id', '=', self.env.uid)],
+            limit=1
+        )
+        if not reviewer:
+            raise UserError(_(
+                'In order to review a timesheet sheet, your user needs to be'
+                ' linked to an employee.'
+            ))
+        return reviewer
+
+    @api.multi
+    def _check_can_review(self):
+        for sheet in self.filtered(lambda x: not x.can_review):
+            if sheet.review_policy == 'hr':
+                raise UserError(_(
+                    'Only a HR Officer or Manager can review the sheet.'
+                ))
+            elif sheet.review_policy == 'department_manager':
+                raise UserError(_(
+                    'Only a Department\'s Manager can review the sheet.'
+                ))
+            elif sheet.review_policy == 'direct_manager':
+                raise UserError(_(
+                    'Only a direct employee\'s Manager can review the sheet.'
+                ))
+            elif sheet.review_policy == 'project_manager':
+                raise UserError(_(
+                    'Only a Project Manager can review the sheet.'
+                ))
 
     @api.multi
     def button_add_line(self):
@@ -517,7 +748,7 @@ class Sheet(models.Model):
 
     def reset_add_line(self):
         self.write({
-            'add_line_project_id': False,
+            'add_line_project_id': self.project_id.id,
             'add_line_task_id': False,
         })
 
@@ -602,7 +833,7 @@ class Sheet(models.Model):
                 self.delete_empty_lines(False)
             if name_line not in name_list:
                 self.timesheet_ids |= \
-                    self.env['account.analytic.line'].create(values)
+                    self.env['account.analytic.line']._sheet_create(values)
 
     def link_timesheets_to_sheet(self, timesheets):
         self.ensure_one()
@@ -831,4 +1062,4 @@ class SheetNewAnalyticLine(models.TransientModel):
                 'name': empty_name,
                 'unit_amount': diff_amount,
             })
-            self.env['account.analytic.line'].create(new_ts_values)
+            self.env['account.analytic.line']._sheet_create(new_ts_values)

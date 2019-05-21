@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
-    <!--
-        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-    -->
+<!--
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
 
     <!-- Timesheet sheet related subtypes for messaging / Chatter -->
     <record id="mt_timesheet_confirmed" model="mail.message.subtype">
-        <field name="name">Waiting Approval</field>
+        <field name="name">Waiting Review</field>
         <field name="res_model">hr_timesheet.sheet</field>
         <field name="default" eval="True"/>
-        <field name="description">waiting approval</field>
+        <field name="description">Waiting review</field>
     </record>
     <record id="mt_timesheet_approved" model="mail.message.subtype">
         <field name="name">Approved</field>

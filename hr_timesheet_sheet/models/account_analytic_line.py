@@ -3,7 +3,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class AccountAnalyticLine(models.Model):
@@ -12,6 +15,10 @@ class AccountAnalyticLine(models.Model):
     sheet_id = fields.Many2one(
         comodel_name='hr_timesheet.sheet',
         string='Sheet',
+    )
+    sheet_state = fields.Selection(
+        string='Steet State',
+        related='sheet_id.state',
     )
 
     @api.multi
@@ -25,6 +32,10 @@ class AccountAnalyticLine(models.Model):
             ('company_id', 'in', [self.company_id.id, False]),
             ('state', 'in', ['new', 'draft']),
         ]
+        if self.company_id.timesheet_sheet_review_policy == 'project_manager':
+            domain += [
+                ('project_id', '=', self.project_id.id)
+            ]
         return domain
 
     @api.multi
@@ -43,20 +54,28 @@ class AccountAnalyticLine(models.Model):
             if timesheet.sheet_id != sheet:
                 timesheet.sheet_id = sheet
 
-    def _check_sheet_company_id(self, sheet_id):
-        self.ensure_one()
-        sheet = self.env['hr_timesheet.sheet'].browse(sheet_id)
-        if sheet.company_id and sheet.company_id != self.company_id:
-            raise UserError(
-                _('You cannot create a timesheet of a different company '
-                  'than the one of the timesheet sheet.'))
+    @api.multi
+    @api.constrains('company_id', 'sheet_id')
+    def _check_company_id_sheet_id(self):
+        for timesheet in self.sudo():
+            if timesheet.company_id and timesheet.sheet_id.company_id and \
+                    timesheet.company_id != timesheet.sheet_id.company_id:
+                raise ValidationError(_(
+                    'You cannot create a timesheet of a different company '
+                    'than the one of the timesheet sheet.'
+                ))
 
     @api.model
     def create(self, values):
+        if not self.env.context.get('sheet_create') and 'sheet_id' in values:
+            del values['sheet_id']
         res = super().create(values)
-        res._check_sheet_company_id(values.get('sheet_id'))
         res._compute_sheet()
         return res
+
+    @api.model
+    def _sheet_create(self, values):
+        return self.with_context(sheet_create=True).create(values)
 
     @api.multi
     def write(self, values):

@@ -7,7 +7,7 @@
 -->
 <odoo>
 
-    <record id="hr_timesheet_sheet_tree_simplified" model="ir.ui.view">
+    <record id="hr_timesheet_sheet_tree" model="ir.ui.view">
         <field name="name">hr.timesheet.sheet.tree</field>
         <field name="model">hr_timesheet.sheet</field>
         <field name="arch" type="xml">
@@ -19,8 +19,11 @@
             >
                 <field name="employee_id"/>
                 <field name="name" string="Period"/>
+                <field name="project_id" invisible="1"/>
+                <field name="department_id" invisible="1"/>
                 <field name="date_start"/>
                 <field name="date_end"/>
+                <field name="reviewer_id"/>
                 <field name="state"/>
                 <field name="total_time" widget="float_time"/>
                 <field name="message_needaction" invisible="1"/>
@@ -28,18 +31,54 @@
         </field>
     </record>
 
+    <record id="hr_timesheet_sheet_tree_my" model="ir.ui.view">
+        <field name="name">hr.timesheet.sheet.tree.my</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="inherit_id" ref="hr_timesheet_sheet_tree"/>
+        <field name="mode">primary</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='employee_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
     <record id="hr_timesheet_sheet_form" model="ir.ui.view">
         <field name="name">hr_timesheet.sheet.form</field>
         <field name="model">hr_timesheet.sheet</field>
-        <field name="priority">1</field>
         <field name="arch" type="xml">
             <form string="Timesheet Sheet">
+                <field name="can_review" invisible="1"/>
                 <field name="user_id" invisible="1"/>
+                <field name="review_policy" invisible="1"/>
                 <header>
-                    <button name="action_timesheet_confirm" states="draft" string="Submit to Manager" type="object" class="oe_highlight"/>
-                    <button name="action_timesheet_done" states="confirm" string="Approve" type="object" groups="hr_timesheet.group_timesheet_manager" class="oe_highlight"/>
-                    <button name="action_timesheet_draft" states="done" string="Set to Draft" type="object" groups="hr_timesheet.group_timesheet_manager"/>
-                    <button name="action_timesheet_refuse" states="confirm" string="Refuse" type="object" groups="hr_timesheet.group_timesheet_manager"/>
+                    <button
+                        name="action_timesheet_confirm"
+                        string="Submit to Reviewer"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                    />
+                    <button
+                        name="action_timesheet_done"
+                        string="Approve"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|', ('can_review', '!=', True), ('state', '!=', 'confirm')]}"
+                    />
+                    <button
+                        name="action_timesheet_draft"
+                        string="Set to Draft"
+                        type="object"
+                        attrs="{'invisible': ['|', ('can_review', '!=', True), ('state', '!=', 'done')]}"
+                    />
+                    <button
+                        name="action_timesheet_refuse"
+                        string="Refuse"
+                        type="object"
+                        attrs="{'invisible': ['|', ('can_review', '!=', True), ('state', '!=', 'confirm')]}"
+                    />
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
                 </header>
                 <sheet>
@@ -51,7 +90,10 @@
                         <group name="dates">
                             <label for="date_start" string="Timesheet Period"/>
                             <div style="display: inline;"><field name="date_start" class="oe_inline"/> to <field name="date_end" class="oe_inline"/></div>
-                            <field name="department_id" invisible="1"/>
+                        </group>
+                        <group name="details">
+                            <field name="department_id" attrs="{'invisible': [('review_policy', '!=', 'department_manager')], 'required': [('review_policy', '=', 'department_manager')]}"/>
+                            <field name="project_id" attrs="{'invisible': [('review_policy', '!=', 'project_manager')], 'required': [('review_policy', '=', 'project_manager')]}"/>
                             <field name="company_id" groups="base.group_multi_company" force_save="1"/>
                         </group>
                     </group>
@@ -86,6 +128,7 @@
                                     <field
                                         name="add_line_project_id"
                                         domain="[('company_id', '=', company_id), ('allow_timesheets', '=', True)]"
+                                        attrs="{'invisible': [('review_policy', '=', 'project_manager')]}"
                                     />
                                     <field
                                         name="add_line_task_id"
@@ -108,7 +151,7 @@
                                 context="{'user_id': user_id}">
                                 <tree editable="bottom" string="Timesheet Activities">
                                     <field name="date"/>
-                                    <field name="project_id" required="1"/>
+                                    <field name="project_id" required="1" attrs="{'column_invisible': [('parent.review_policy', '=', 'project_manager')]}"/>
                                     <field name="task_id" domain="[('project_id', '=', project_id)]" context="{'default_project_id': project_id}"/>
                                     <field name="name"/>
                                     <field name="unit_amount" widget="float_time" string="Hours" sum="Hours"/>
@@ -118,7 +161,7 @@
                                     <group>
                                         <field name="date"/>
                                         <field name="name"/>
-                                        <field name="project_id" required="1"/>
+                                        <field name="project_id" required="1" attrs="{'column_invisible': [('parent.review_policy', '=', 'project_manager')]}"/>
                                         <field name="task_id" domain="[('project_id', '=', project_id)]" context="{'default_project_id': project_id}"/>
                                         <field name="unit_amount" widget="float_time" string="Hours"/>
                                         <field name="user_id" invisible="1"/>
@@ -135,20 +178,39 @@
             </form>
         </field>
     </record>
+
+    <record id="hr_timesheet_sheet_form_my" model="ir.ui.view">
+        <field name="name">hr.timesheet.sheet.form.my</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="inherit_id" ref="hr_timesheet_sheet_form"/>
+        <field name="mode">primary</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
     <record id="view_hr_timesheet_sheet_filter" model="ir.ui.view">
         <field name="name">hr_timesheet.sheet.filter</field>
         <field name="model">hr_timesheet.sheet</field>
         <field name="arch" type="xml">
             <search string="Search Timesheet">
                 <field name="date_start"/>
-                <filter name="draft" string="In Draft" domain="[('state','=','draft')]" help="Unvalidated Timesheet Sheets"/>
-                <filter name="to_approve" string="To Approve" domain="[('state','=','confirm')]" help="Confirmed Timesheet Sheets" groups="hr_timesheet.group_timesheet_manager"/>
+                <filter name="draft" string="In Draft" domain="[('state','=','draft')]" help="Draft Timesheet Sheets"/>
+                <filter name="confirm" string="Submitted" domain="[('state','=','confirm')]" help="Submitted Timesheet Sheets"/>
+                <filter name="to_review" string="To Review" domain="[('state','=','confirm')]" help="Timesheet Sheets to Review"/>
                 <filter name="message_needaction" string="Unread Messages" domain="[('message_needaction','=',True)]"/>
                 <field name="employee_id"/>
                 <field name="department_id"/>
+                <field name="project_id"/>
+                <field name="reviewer_id"/>
                 <group expand="0" string="Group By">
                     <filter name="groupby_employees" string="Employees" domain="[]" context="{'group_by':'employee_id'}"/>
                     <filter name="groupby_department" string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter name="groupby_project" string="Project" domain="[]" context="{'group_by':'project_id'}"/>
+                    <filter name="groupby_reviewer" string="Reviewer" domain="[]" context="{'group_by':'reviewer_id'}"/>
                 </group>
             </search>
         </field>
@@ -166,13 +228,27 @@
              New timesheet sheet.
             </p><p>
              You must record timesheets in the sheet every day and confirm at the end
-             of the week. Once the timesheet sheet is confirmed, it should be
-             validated by a manager.
+             of the repording period. Once the timesheet sheet is confirmed, it should be
+             validated by a reviewer.
             </p><p>
              Timesheet sheets can also be invoiced to customers, depending on
              the configuration of each project's related contract.
             </p>
         </field>
+    </record>
+
+    <record id="act_hr_timesheet_sheet_my_timesheets_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="4"/>
+        <field name="view_id" ref="hr_timesheet_sheet_tree_my"/>
+        <field name="act_window_id" ref="act_hr_timesheet_sheet_my_timesheets"/>
+    </record>
+
+    <record id="act_hr_timesheet_sheet_my_timesheets_form" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="sequence" eval="5"/>
+        <field name="view_id" ref="hr_timesheet_sheet_form_my"/>
+        <field name="act_window_id" ref="act_hr_timesheet_sheet_my_timesheets"/>
     </record>
 
     <record id="act_hr_timesheet_sheet_all_timesheets" model="ir.actions.act_window">
@@ -186,8 +262,8 @@
              Timesheet sheets.
             </p><p>
              Employees must record timesheets in the sheet every day and confirm at the end
-             of the week. Once the timesheet sheet is confirmed, it should be
-             validated by a manager.
+             of the repording period. Once the timesheet sheet is confirmed, it should be
+             validated by a reviewer.
             </p><p>
              Timesheet sheets can also be invoiced to customers, depending on
              the configuration of each project's related contract.
@@ -210,21 +286,22 @@
         groups="hr_timesheet.group_timesheet_manager"
     />
 
-    <record id="act_hr_timesheet_sheet_form" model="ir.actions.act_window">
-        <field name="name">Timesheet Sheets to Approve</field>
+    <record id="act_hr_timesheet_sheet_to_review" model="ir.actions.act_window">
+        <field name="name">Timesheet Sheets to Review</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hr_timesheet.sheet</field>
         <field name="view_type">form</field>
         <field name="view_id" eval="False"/>
-        <field name="context">{'search_default_to_approve':1}</field>
+        <field name="context">{'search_default_to_review':1}</field>
+        <field name="domain">[('can_review','=',True)]</field>
         <field name="search_view_id" ref="view_hr_timesheet_sheet_filter"/>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
-            Timesheets to approve.
+            Timesheets to review.
           </p><p>
             Employees must record timesheets every day and confirm at the end
-            of the week. Once the timesheet sheet is confirmed, it should be
-            validated by a manager.
+            of the repording period. Once the timesheet sheet is confirmed, it should be
+            validated by a reviewer.
           </p><p>
             Timesheets can also be invoiced to customers, depending on the
             configuration of each project's related contract.
@@ -233,17 +310,16 @@
     </record>
 
     <menuitem
-        id="menu_hr_to_approve"
-        name="To Approve"
+        id="menu_hr_to_review"
+        name="To Review"
         parent="hr_timesheet.timesheet_menu_root"
         sequence="7"
-        groups="hr_timesheet.group_timesheet_manager"
     />
 
     <menuitem
-        action="act_hr_timesheet_sheet_form"
-        id="menu_act_hr_timesheet_sheet_form"
-        parent="menu_hr_to_approve"
+        action="act_hr_timesheet_sheet_to_review"
+        id="menu_act_hr_timesheet_sheet_to_review"
+        parent="menu_hr_to_review"
         sequence="11"
     />
 
