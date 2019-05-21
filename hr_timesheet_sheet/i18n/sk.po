@@ -87,6 +87,7 @@ msgstr "Schváliť"
 
 #. module: hr_timesheet_sheet
 #: selection:hr_timesheet.sheet,state:0
+#: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_approved
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_approved
 msgid "Approved"
 msgstr "Schválené"
@@ -97,19 +98,45 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:495
+#: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+msgid "By Department Manager"
+msgstr "Oddelenie"
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
+msgid "By Direct Manager"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
+msgid "By HR Manager/Officer"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
+msgid "By Project Manager"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
+msgid "Can Review"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:590
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:600
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:477
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:574
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr ""
@@ -118,6 +145,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose the week start day."
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
+#, fuzzy
+msgid "Choose timesheet sheets review policy."
+msgstr "nový časový rozvrh"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
@@ -138,16 +171,17 @@ msgid "Company"
 msgstr "Spoločnosť"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__complete_name
+#, fuzzy
+#| msgid "Employee's Name"
+msgid "Complete Name"
+msgstr "Meno zamestnanca"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_res_config_settings
 #, fuzzy
 msgid "Config Settings"
 msgstr "project.config.settings "
-
-#. module: hr_timesheet_sheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-#, fuzzy
-msgid "Confirmed Timesheet Sheets"
-msgstr "Potvrdené časové rozvrhy"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__create_uid
@@ -217,6 +251,12 @@ msgid "Display Name"
 msgstr "Názov obrazovky "
 
 #. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+#, fuzzy
+msgid "Draft Timesheet Sheets"
+msgstr "Riadky časového rozvrhu"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_employee
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__employee_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__employee_id
@@ -236,13 +276,14 @@ msgid "Employees"
 msgstr "Zamestnanci"
 
 #. module: hr_timesheet_sheet
-#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #, fuzzy
 msgid ""
 "Employees must record timesheets every day and confirm at the end\n"
-"            of the week. Once the timesheet sheet is confirmed, it should "
-"be\n"
-"            validated by a manager."
+"            of the repording period. Once the timesheet sheet is confirmed, "
+"it should be\n"
+"            validated by a reviewer."
 msgstr ""
 "Musíte vytvárať časové rozvrhy každý deň a potvrdiť na konci\n"
 "týždňa. Akonáhle je časový rozvrh potvrdený, mal by byť\n"
@@ -254,9 +295,9 @@ msgstr ""
 msgid ""
 "Employees must record timesheets in the sheet every day and confirm at the "
 "end\n"
-"             of the week. Once the timesheet sheet is confirmed, it should "
-"be\n"
-"             validated by a manager."
+"             of the repording period. Once the timesheet sheet is confirmed, "
+"it should be\n"
+"             validated by a reviewer."
 msgstr ""
 "Musíte vytvárať časové rozvrhy každý deň a potvrdiť na konci\n"
 "týždňa. Akonáhle je časový rozvrh potvrdený, mal by byť\n"
@@ -297,6 +338,13 @@ msgstr "Oddelenie"
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Hours"
 msgstr "Hodiny"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
+#, fuzzy
+msgid "How Timesheet Sheets review is performed."
+msgstr "Časové rozvrhy na schválenie"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__id
@@ -341,11 +389,21 @@ msgid "In Draft"
 msgstr "V návrhu"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:418
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:516
 #, fuzzy, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user."
+msgstr ""
+"V záujme vytvorenia časového rozvrhu pre tohto zamestnanca, je nutné ho / ju "
+"prepojiť  s užívateľom."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:614
+#, fuzzy, python-format
+msgid ""
+"In order to review a timesheet sheet, your user needs to be linked to an "
+"employee."
 msgstr ""
 "V záujme vytvorenia časového rozvrhu pre tohto zamestnanca, je nutné ho / ju "
 "prepojiť  s užívateľom."
@@ -474,15 +532,9 @@ msgid "Number of unread messages"
 msgstr "Neprečítané správy"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:498
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:624
 #, python-format
-msgid "Only an HR Officer or Manager can approve sheets."
-msgstr ""
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:480
-#, python-format
-msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
+msgid "Only a HR Officer or Manager can review the sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -496,7 +548,7 @@ msgid "Overdue"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
 msgid "Period"
 msgstr ""
 
@@ -508,6 +560,11 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_url
 msgid "Portal Access URL"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__possible_reviewer_ids
+msgid "Possible Reviewers"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -545,12 +602,23 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__review_policy
+msgid "Review Policy"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__reviewer_id
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+msgid "Reviewer"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_week_start:0
 msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:779
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:896
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Riadky časového rozvrhu"
@@ -609,9 +677,30 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
+msgid "Steet State"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
-msgid "Submit to Manager"
+#, fuzzy
+#| msgid "Submit to Manager"
+msgid "Submit to Reviewer"
 msgstr "Predložiť manažérovi"
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+#, fuzzy
+#| msgid "Submit to Manager"
+msgid "Submitted"
+msgstr "Predložiť manažérovi"
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+#, fuzzy
+msgid "Submitted Timesheet Sheets"
+msgstr "Neoverené časové rozvrhy"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -638,27 +727,27 @@ msgid "Temporary Timesheets"
 msgstr "Vyhľadávanie časového rozvrhu"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:253
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:343
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Department must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:243
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:333
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Employee must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:263
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:353
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Project must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:273
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:363
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Task must be the same."
 msgstr ""
@@ -670,7 +759,7 @@ msgid "The range of your Timesheet Sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:285
 #, python-format
 msgid "The start date cannot be later than the end date."
 msgstr ""
@@ -729,8 +818,15 @@ msgid "Timesheet Sheet Range"
 msgstr "Rozsah časového rozvrhu"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
+#, fuzzy
+msgid "Timesheet Sheet Review Policy"
+msgstr "Riadky časového rozvrhu"
+
+#. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
 #, fuzzy
 msgid "Timesheet Sheets"
 msgstr "Riadky časového rozvrhu"
@@ -742,17 +838,18 @@ msgid "Timesheet Sheets Count"
 msgstr "Riadky časového rozvrhu"
 
 #. module: hr_timesheet_sheet
-#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_form
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department__timesheet_sheet_to_approve_count
-#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_form
 #, fuzzy
 msgid "Timesheet Sheets to Approve"
 msgstr "Časové rozvrhy na schválenie"
 
 #. module: hr_timesheet_sheet
-#: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_approved
-msgid "Timesheet approved"
-msgstr "Časový rozvrh schválený"
+#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_to_review
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
+#, fuzzy
+msgid "Timesheet Sheets to Review"
+msgstr "Časové rozvrhy na schválenie"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
@@ -779,7 +876,8 @@ msgid "Timesheets"
 msgstr "Časové rozvrhy"
 
 #. module: hr_timesheet_sheet
-#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #, fuzzy
 msgid ""
 "Timesheets can also be invoiced to customers, depending on the\n"
@@ -790,21 +888,37 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
-msgid "Timesheets to Approve"
-msgstr "Časové rozvrhy na schválenie"
-
-#. module: hr_timesheet_sheet
-#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
 #, fuzzy
 #| msgid "Timesheets to Approve"
-msgid "Timesheets to approve."
+msgid "Timesheets to Review"
 msgstr "Časové rozvrhy na schválenie"
 
 #. module: hr_timesheet_sheet
-#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_hr_to_approve
+#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit
+#, fuzzy
+msgid "Timesheets to Submit"
+msgstr "Časový rozvrh"
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
+#, fuzzy
+#| msgid "Timesheets to Approve"
+msgid "Timesheets to review."
+msgstr "Časové rozvrhy na schválenie"
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
+#, fuzzy
+#| msgid "Timesheets to Approve"
+msgid "Timesheets to submit."
+msgstr "Časové rozvrhy na schválenie"
+
+#. module: hr_timesheet_sheet
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_hr_to_review
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-msgid "To Approve"
-msgstr "Na schválenie"
+msgid "To Review"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: selection:hr_timesheet.sheet,activity_state:0
@@ -834,12 +948,6 @@ msgid "Unread Messages Counter"
 msgstr "Neprečítané správy"
 
 #. module: hr_timesheet_sheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-#, fuzzy
-msgid "Unvalidated Timesheet Sheets"
-msgstr "Neoverené časové rozvrhy"
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__user_id
 msgid "User"
 msgstr "Používateľ"
@@ -847,11 +955,20 @@ msgstr "Používateľ"
 #. module: hr_timesheet_sheet
 #: selection:hr_timesheet.sheet,state:0
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_confirmed
-msgid "Waiting Approval"
+#, fuzzy
+#| msgid "Waiting Approval"
+msgid "Waiting Review"
 msgstr "Čaká na schválenie"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:778
+#: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
+#, fuzzy
+#| msgid "Waiting Approval"
+msgid "Waiting review"
+msgstr "Čaká na schválenie"
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:895
 #, python-format
 msgid "Warning"
 msgstr ""
@@ -873,7 +990,7 @@ msgid "Wednesday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:190
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:232
 #: selection:res.company,sheet_range:0
 #, python-format
 msgid "Week"
@@ -890,7 +1007,7 @@ msgid "Week start day"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:195
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:237
 #, fuzzy, python-format
 #| msgid "Week"
 msgid "Weeks"
@@ -905,38 +1022,42 @@ msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:51
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
 #, fuzzy, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
-"timesheet sheet."
+"timesheet sheet:\n"
+" - %s of %s\n"
+" - %s of %s"
 msgstr "Nemôžete upraviť vstup v potvrdenom časovom rozvrhu."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:459
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
 #, fuzzy, python-format
 msgid "You cannot delete a timesheet sheet which is already confirmed."
 msgstr "Nemžete zmazať časový rozvrh ktorý už bol potvrdený."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:426
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:524
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "Nemžete duplikovať časový rozvrh."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:232
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:322
 #, fuzzy, python-format
 msgid ""
-"You cannot have 2 sheets that overlap!\n"
-"Please use the menu 'Timesheet Sheet' to avoid this problem."
+"You cannot have 2 or more sheets that overlap!\n"
+"Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
+"Conflicting sheets:\n"
+" - %s"
 msgstr ""
 "Nemôźete mať 2 časové rozvrhy ktoré sa prekrývajú!\n"
 "Prosím použite menu \"Môj aktuálny časový rozvrh\" aby ste sa vyhli tomuto "
 "problému."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:119
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:137
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet."
 msgstr "Nemôžete upraviť vstup v potvrdenom časovom rozvrhu."
@@ -946,9 +1067,9 @@ msgstr "Nemôžete upraviť vstup v potvrdenom časovom rozvrhu."
 #, fuzzy
 msgid ""
 "You must record timesheets in the sheet every day and confirm at the end\n"
-"             of the week. Once the timesheet sheet is confirmed, it should "
-"be\n"
-"             validated by a manager."
+"             of the repording period. Once the timesheet sheet is confirmed, "
+"it should be\n"
+"             validated by a reviewer."
 msgstr ""
 "Musíte vytvárať časové rozvrhy každý deň a potvrdiť na konci\n"
 "týždňa. Akonáhle je časový rozvrh potvrdený, mal by byť\n"
@@ -959,10 +1080,33 @@ msgstr ""
 msgid "to"
 msgstr "na"
 
-#. module: hr_timesheet_sheet
-#: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
-msgid "waiting approval"
-msgstr "čaká na schválenie"
+#, fuzzy
+#~ msgid ""
+#~ "You cannot create a timesheet of a different company than the one of the "
+#~ "timesheet sheet."
+#~ msgstr "Nemôžete upraviť vstup v potvrdenom časovom rozvrhu."
+
+#, fuzzy
+#~ msgid ""
+#~ "You cannot have 2 sheets that overlap!\n"
+#~ "Please use the menu 'Timesheet Sheet' to avoid this problem."
+#~ msgstr ""
+#~ "Nemôźete mať 2 časové rozvrhy ktoré sa prekrývajú!\n"
+#~ "Prosím použite menu \"Môj aktuálny časový rozvrh\" aby ste sa vyhli "
+#~ "tomuto problému."
+
+#, fuzzy
+#~ msgid "Confirmed Timesheet Sheets"
+#~ msgstr "Potvrdené časové rozvrhy"
+
+#~ msgid "Timesheet approved"
+#~ msgstr "Časový rozvrh schválený"
+
+#~ msgid "To Approve"
+#~ msgstr "Na schválenie"
+
+#~ msgid "waiting approval"
+#~ msgstr "čaká na schválenie"
 
 #~ msgid "New timesheet to approve."
 #~ msgstr "Nový časový rozvrh na schválenie."

@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class AccountAnalyticLine(models.Model):
@@ -13,19 +13,22 @@ class AccountAnalyticLine(models.Model):
         comodel_name='hr_timesheet.sheet',
         string='Sheet',
     )
+    sheet_state = fields.Selection(
+        string='Steet State',
+        related='sheet_id.state',
+    )
 
     @api.multi
     def _get_sheet_domain(self):
         """ Hook for extensions """
         self.ensure_one()
-        domain = [
+        return [
             ('date_end', '>=', self.date),
             ('date_start', '<=', self.date),
             ('employee_id', '=', self.employee_id.id),
             ('company_id', 'in', [self.company_id.id, False]),
             ('state', 'in', ['new', 'draft']),
         ]
-        return domain
 
     @api.multi
     def _determine_sheet(self):
@@ -43,20 +46,35 @@ class AccountAnalyticLine(models.Model):
             if timesheet.sheet_id != sheet:
                 timesheet.sheet_id = sheet
 
-    def _check_sheet_company_id(self, sheet_id):
-        self.ensure_one()
-        sheet = self.env['hr_timesheet.sheet'].browse(sheet_id)
-        if sheet.company_id and sheet.company_id != self.company_id:
-            raise UserError(
-                _('You cannot create a timesheet of a different company '
-                  'than the one of the timesheet sheet.'))
+    @api.multi
+    @api.constrains('company_id', 'sheet_id')
+    def _check_company_id_sheet_id(self):
+        for aal in self.sudo():
+            if aal.company_id and aal.sheet_id.company_id and \
+                    aal.company_id != aal.sheet_id.company_id:
+                raise ValidationError(_(
+                    'You cannot create a timesheet of a different company '
+                    'than the one of the timesheet sheet:'
+                    '\n - %s of %s'
+                    '\n - %s of %s' % (
+                        aal.sheet_id.complete_name,
+                        aal.sheet_id.company_id.name,
+                        aal.name,
+                        aal.company_id.name,
+                    )
+                ))
 
     @api.model
     def create(self, values):
+        if not self.env.context.get('sheet_create') and 'sheet_id' in values:
+            del values['sheet_id']
         res = super().create(values)
-        res._check_sheet_company_id(values.get('sheet_id'))
         res._compute_sheet()
         return res
+
+    @api.model
+    def _sheet_create(self, values):
+        return self.with_context(sheet_create=True).create(values)
 
     @api.multi
     def write(self, values):
