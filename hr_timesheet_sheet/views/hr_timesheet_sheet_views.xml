@@ -19,6 +19,7 @@
             >
                 <field name="employee_id"/>
                 <field name="name" string="Period"/>
+                <field name="project_id" invisible="1"/>
                 <field name="department_id" invisible="1"/>
                 <field name="date_start"/>
                 <field name="date_end"/>
@@ -91,6 +92,8 @@
                             <div style="display: inline;"><field name="date_start" class="oe_inline"/> to <field name="date_end" class="oe_inline"/></div>
                         </group>
                         <group name="details">
+                            <field name="department_id" attrs="{'invisible': [('review_policy', '!=', 'department_manager')], 'required': [('review_policy', '=', 'department_manager')]}"/>
+                            <field name="project_id" attrs="{'invisible': [('review_policy', '!=', 'project_manager')], 'required': [('review_policy', '=', 'project_manager')]}"/>
                             <field name="company_id" groups="base.group_multi_company" force_save="1"/>
                             <field name="department_id" invisible="1"/>
                         </group>
@@ -126,6 +129,7 @@
                                     <field
                                         name="add_line_project_id"
                                         domain="[('company_id', '=', company_id), ('allow_timesheets', '=', True)]"
+                                        attrs="{'invisible': [('review_policy', '=', 'project_manager')]}"
                                     />
                                     <field
                                         name="add_line_task_id"
@@ -148,7 +152,7 @@
                                 context="{'user_id': user_id}">
                                 <tree editable="bottom" string="Timesheet Activities">
                                     <field name="date"/>
-                                    <field name="project_id" required="1"/>
+                                    <field name="project_id" required="1" attrs="{'column_invisible': [('parent.review_policy', '=', 'project_manager')]}"/>
                                     <field name="task_id" domain="[('project_id', '=', project_id)]" context="{'default_project_id': project_id}"/>
                                     <field name="name"/>
                                     <field name="unit_amount" widget="float_time" string="Hours" sum="Hours"/>
@@ -158,7 +162,7 @@
                                     <group>
                                         <field name="date"/>
                                         <field name="name"/>
-                                        <field name="project_id" required="1"/>
+                                        <field name="project_id" required="1" attrs="{'column_invisible': [('parent.review_policy', '=', 'project_manager')]}"/>
                                         <field name="task_id" domain="[('project_id', '=', project_id)]" context="{'default_project_id': project_id}"/>
                                         <field name="unit_amount" widget="float_time" string="Hours"/>
                                         <field name="user_id" invisible="1"/>
@@ -201,10 +205,12 @@
                 <filter name="message_needaction" string="Unread Messages" domain="[('message_needaction','=',True)]"/>
                 <field name="employee_id"/>
                 <field name="department_id"/>
+                <field name="project_id"/>
                 <field name="reviewer_id"/>
                 <group expand="0" string="Group By">
                     <filter name="groupby_employees" string="Employees" domain="[]" context="{'group_by':'employee_id'}"/>
                     <filter name="groupby_department" string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter name="groupby_project" string="Project" domain="[]" context="{'group_by':'project_id'}"/>
                     <filter name="groupby_reviewer" string="Reviewer" domain="[]" context="{'group_by':'reviewer_id'}"/>
                 </group>
             </search>

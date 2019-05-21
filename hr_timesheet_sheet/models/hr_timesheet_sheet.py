@@ -4,12 +4,14 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import babel.dates
+import json
 import logging
 import re
 from collections import namedtuple
 from datetime import datetime, time
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import MONTHLY, WEEKLY
+from lxml import etree
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
@@ -169,6 +171,12 @@ class Sheet(models.Model):
         readonly=True,
         states={'new': [('readonly', False)]},
     )
+    project_id = fields.Many2one(
+        string='Project',
+        comodel_name='project.project',
+        readonly=True,
+        states={'new': [('readonly', False)]},
+    )
     reviewer_id = fields.Many2one(
         comodel_name='hr.employee',
         string='Reviewer',
@@ -206,6 +214,44 @@ class Sheet(models.Model):
         string='Complete Name',
         compute='_compute_complete_name',
     )
+
+    @api.model
+    def fields_view_get(self,
+                        view_id=None, view_type='form', toolbar=False,
+                        submenu=False):
+        res = super().fields_view_get(
+            view_id=view_id,
+            view_type=view_type,
+            toolbar=toolbar,
+            submenu=submenu,
+        )
+
+        view = etree.XML(res['arch'])
+        self._modify_view_for_policy(view_type, view)
+        res['arch'] = etree.tostring(
+            view,
+            encoding='unicode',
+        ).replace('\t', '')
+
+        return res
+
+    @api.model
+    def _modify_view_for_policy(self, view_type, view):
+        """ Hook for extensions """
+        review_policy = self.env.user.company_id.timesheet_sheet_review_policy
+        field = None
+        if review_policy == 'project_manager' and view_type == 'tree':
+            field = view.find(".//field[@name='project_id']")
+        elif review_policy == 'department_manager' and view_type == 'tree':
+            field = view.find(".//field[@name='department_id']")
+
+        if field is not None:
+            field.set('invisible', '0')
+            modifiers = json.loads(field.get('modifiers'))
+            modifiers.update({
+                'column_invisible': False,
+            })
+            field.set('modifiers', json.dumps(modifiers))
 
     @api.multi
     @api.depends('date_start', 'date_end')
@@ -245,7 +291,12 @@ class Sheet(models.Model):
             sheet.total_time = sum(sheet.mapped('timesheet_ids.unit_amount'))
 
     @api.multi
-    @api.depends('review_policy')
+    @api.depends(
+        'review_policy',
+        'department_id.manager_id.user_id',
+        'employee_id.parent_id.user_id',
+        'project_id.user_id'
+    )
     def _compute_possible_reviewer_ids(self):
         for sheet in self:
             sheet.possible_reviewer_ids = sheet._get_possible_reviewers()
@@ -265,7 +316,7 @@ class Sheet(models.Model):
             operator = '!='
         return [('possible_reviewer_ids', operator, self.env.uid)]
 
-    @api.depends('name', 'employee_id')
+    @api.depends('name', 'employee_id', 'project_id')
     def _compute_complete_name(self):
         for sheet in self:
             complete_name = sheet.name
@@ -288,24 +339,35 @@ class Sheet(models.Model):
     def _get_complete_name_components(self):
         """ Hook for extensions """
         self.ensure_one()
-        return [self.employee_id.name_get()[0][1]]
+        result = [self.employee_id.name_get()[0][1]]
+        if self.review_policy == 'department_manager':
+            result += [self.department_id.name_get()[0][1]]
+        elif self.review_policy == 'project_manager':
+            result += [self.project_id.name_get()[0][1]]
+        return result
 
     @api.multi
     def _get_overlapping_sheet_domain(self):
         """ Hook for extensions """
         self.ensure_one()
-        return [
+        domain = [
             ('id', '!=', self.id),
             ('date_start', '<=', self.date_end),
             ('date_end', '>=', self.date_start),
             ('employee_id', '=', self.employee_id.id),
             ('company_id', '=', self._get_timesheet_sheet_company().id),
         ]
+        if self.review_policy == 'project_manager':
+            domain += [
+                ('project_id', '=', self.project_id.id)
+            ]
+        return domain
 
     @api.constrains(
         'date_start',
         'date_end',
         'company_id',
+        'project_id',
         'employee_id',
         'review_policy',
     )
@@ -344,6 +406,16 @@ class Sheet(models.Model):
                       'the Department must be the same.'))
 
     @api.multi
+    @api.constrains('company_id', 'project_id')
+    def _check_company_id_project_id(self):
+        for rec in self.sudo():
+            if rec.company_id and rec.project_id.company_id and \
+                    rec.company_id != rec.project_id.company_id:
+                raise ValidationError(
+                    _('The Company in the Timesheet Sheet and in '
+                      'the Project must be the same.'))
+
+    @api.multi
     @api.constrains('company_id', 'add_line_project_id')
     def _check_company_id_add_line_project_id(self):
         for rec in self.sudo():
@@ -369,6 +441,12 @@ class Sheet(models.Model):
         result = self.env['res.users']
         if self.review_policy == 'hr':
             result |= self.env.ref('hr.group_hr_user').users
+        elif self.review_policy == 'department_manager':
+            result |= self.department_id.manager_id.user_id
+        elif self.review_policy == 'direct_manager':
+            result |= self.employee_id.parent_id.user_id
+        elif self.review_policy == 'project_manager':
+            result |= self.project_id.user_id
         return result
 
     @api.multi
@@ -391,13 +469,22 @@ class Sheet(models.Model):
     @api.multi
     def _get_timesheet_sheet_lines_domain(self):
         self.ensure_one()
-        return [
+        domain = [
             ('date', '<=', self.date_end),
             ('date', '>=', self.date_start),
             ('employee_id', '=', self.employee_id.id),
             ('company_id', '=', self._get_timesheet_sheet_company().id),
             ('project_id', '!=', False),
         ]
+        if self.review_policy == 'project_manager':
+            domain += [
+                ('project_id', '=', self.project_id.id)
+            ]
+        else:
+            domain += [
+                ('project_id', '!=', False),
+            ]
+        return domain
 
     @api.multi
     @api.depends('date_start', 'date_end')
@@ -474,7 +561,7 @@ class Sheet(models.Model):
             sheet.link_timesheets_to_sheet(timesheets)
             sheet.timesheet_ids = timesheets
 
-    @api.onchange('date_start', 'date_end', 'employee_id')
+    @api.onchange('date_start', 'date_end', 'employee_id', 'project_id')
     def _onchange_scope(self):
         self._compute_timesheet_ids()
 
@@ -486,6 +573,11 @@ class Sheet(models.Model):
     @api.onchange('timesheet_ids')
     def _onchange_timesheets(self):
         self._compute_line_ids()
+
+    @api.onchange('project_id')
+    def _onchange_project_id(self):
+        self.add_line_project_id = self.project_id
+        return self.onchange_add_project_id()
 
     @api.onchange('add_line_project_id')
     def onchange_add_project_id(self):
@@ -530,6 +622,14 @@ class Sheet(models.Model):
     @api.model
     def create(self, vals):
         self._check_employee_user_link(vals)
+        review_policy = vals.get(
+            'review_policy',
+            self.default_get(['review_policy'])['review_policy']
+        )
+        if review_policy == 'project_manager' and not vals.get('project_id'):
+            raise UserError(_(
+                'Review policy "By Project Manager" requires Project to be set'
+            ))
         res = super().create(vals)
         res.write({'state': 'draft'})
         return res
@@ -540,6 +640,11 @@ class Sheet(models.Model):
     @api.multi
     def write(self, vals):
         self._check_employee_user_link(vals)
+        if self.filtered(lambda x: x.review_policy == 'project_manager') \
+                and 'project_id' in vals and not vals.get('project_id'):
+            raise UserError(_(
+                'Review policy "By Project Manager" requires Project to be set'
+            ))
         res = super().write(vals)
         for rec in self:
             if rec.state == 'draft' and \
@@ -563,7 +668,9 @@ class Sheet(models.Model):
     def _get_informables(self):
         """ Hook for extensions """
         self.ensure_one()
-        return self.employee_id.parent_id.user_id.partner_id
+        if self.review_policy != 'direct_manager':
+            return self.employee_id.parent_id.user_id.partner_id
+        return self.env['res.partner']
 
     def _timesheet_subscribe_users(self):
         for sheet in self.sudo():
@@ -623,11 +730,23 @@ class Sheet(models.Model):
 
     @api.multi
     def _check_can_review(self):
-        if self.filtered(
-                lambda x: not x.can_review and x.review_policy == 'hr'):
-            raise UserError(_(
-                'Only a HR Officer or Manager can review the sheet.'
-            ))
+        for sheet in self.filtered(lambda x: not x.can_review):
+            if sheet.review_policy == 'hr':
+                raise UserError(_(
+                    'Only a HR Officer or Manager can review the sheet.'
+                ))
+            elif sheet.review_policy == 'department_manager':
+                raise UserError(_(
+                    'Only a Department\'s Manager can review the sheet.'
+                ))
+            elif sheet.review_policy == 'direct_manager':
+                raise UserError(_(
+                    'Only a direct employee\'s Manager can review the sheet.'
+                ))
+            elif sheet.review_policy == 'project_manager':
+                raise UserError(_(
+                    'Only a Project Manager can review the sheet.'
+                ))
 
     @api.multi
     def button_add_line(self):
@@ -638,7 +757,7 @@ class Sheet(models.Model):
 
     def reset_add_line(self):
         self.write({
-            'add_line_project_id': False,
+            'add_line_project_id': self.project_id.id,
             'add_line_task_id': False,
         })
 

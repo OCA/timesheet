@@ -22,13 +22,18 @@ class AccountAnalyticLine(models.Model):
     def _get_sheet_domain(self):
         """ Hook for extensions """
         self.ensure_one()
-        return [
+        domain = [
             ('date_end', '>=', self.date),
             ('date_start', '<=', self.date),
             ('employee_id', '=', self.employee_id.id),
             ('company_id', 'in', [self.company_id.id, False]),
             ('state', 'in', ['new', 'draft']),
         ]
+        if self.company_id.timesheet_sheet_review_policy == 'project_manager':
+            domain += [
+                ('project_id', '=', self.project_id.id)
+            ]
+        return domain
 
     @api.multi
     def _determine_sheet(self):

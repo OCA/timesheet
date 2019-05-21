@@ -1023,3 +1023,174 @@ class TestHrTimesheetSheet(TransactionCase):
         })
         self.assertEqual(sheet.review_policy, 'hr')
         sheet.unlink()
+
+    def test_review_policy_capture(self):
+        self.company.timesheet_sheet_review_policy = 'department_manager'
+        sheet = self.sheet_model.sudo(self.user).create({
+            'company_id': self.user.company_id.id,
+        })
+        self.assertEqual(sheet.review_policy, 'department_manager')
+        self.company.timesheet_sheet_review_policy = 'hr'
+        self.assertEqual(sheet.review_policy, 'department_manager')
+        sheet.unlink()
+
+    def test_department_manager_review_policy(self):
+        self.company.timesheet_sheet_review_policy = 'department_manager'
+
+        self.sheet_model.sudo(self.user).fields_view_get(view_type='form')
+        self.sheet_model.sudo(self.user).fields_view_get(view_type='tree')
+
+        sheet = self.sheet_model.sudo(self.user).create({
+            'company_id': self.user.company_id.id,
+            'department_id': self.department_2.id,
+        })
+        self.company.timesheet_sheet_review_policy = 'hr'
+
+        sheet._compute_complete_name()
+
+        sheet.action_timesheet_confirm()
+        self.assertFalse(sheet.sudo(self.user_4).can_review)
+        self.assertEqual(
+            self.sheet_model.sudo(self.user_4).search_count(
+                [('can_review', '=', True)]
+            ),
+            0
+        )
+        with self.assertRaises(UserError):
+            sheet.sudo(self.user_4).action_timesheet_done()
+        sheet.sudo(self.user_3).action_timesheet_done()
+        sheet.sudo(self.user_3).action_timesheet_draft()
+        sheet.unlink()
+
+    def test_direct_manager_review_policy(self):
+        self.company.timesheet_sheet_review_policy = 'direct_manager'
+
+        self.sheet_model.sudo(self.user).fields_view_get(view_type='form')
+        self.sheet_model.sudo(self.user).fields_view_get(view_type='tree')
+
+        sheet = self.sheet_model.sudo(self.user_4).create({
+            'company_id': self.user.company_id.id,
+        })
+        self.company.timesheet_sheet_review_policy = 'hr'
+
+        sheet._compute_complete_name()
+
+        sheet.action_timesheet_confirm()
+        self.assertFalse(sheet.sudo(self.user).can_review)
+        self.assertEqual(
+            self.sheet_model.sudo(self.user).search_count(
+                [('can_review', '=', True)]
+            ),
+            0
+        )
+        with self.assertRaises(UserError):
+            sheet.sudo(self.user).action_timesheet_done()
+        sheet.sudo(self.user_3).action_timesheet_done()
+        sheet.sudo(self.user_3).action_timesheet_draft()
+        sheet.unlink()
+
+    def test_project_manager_review_policy(self):
+        self.company.timesheet_sheet_review_policy = 'project_manager'
+
+        self.sheet_model.sudo(self.user).fields_view_get(view_type='form')
+        self.sheet_model.sudo(self.user).fields_view_get(view_type='tree')
+
+        timesheet_0 = self.aal_model.sudo(self.user).create({
+            'name': 'test',
+            'project_id': self.project_2.id,
+            'employee_id': self.employee.id,
+        })
+        timesheet_1 = self.aal_model.sudo(self.user).create({
+            'name': 'test',
+            'project_id': self.project_1.id,
+            'employee_id': self.employee.id,
+        })
+
+        with self.assertRaises(UserError):
+            self.sheet_model.sudo(self.user).create({
+                'company_id': self.user.company_id.id,
+            })
+        sheet = self.sheet_model.sudo(self.user).create({
+            'company_id': self.user.company_id.id,
+            'project_id': self.project_1.id,
+        })
+        with self.assertRaises(UserError):
+            sheet.project_id = False
+        self.company.timesheet_sheet_review_policy = 'hr'
+
+        sheet._compute_complete_name()
+
+        sheet._onchange_project_id()
+        sheet._onchange_scope()
+        sheet._onchange_timesheets()
+        self.assertEqual(len(sheet.timesheet_ids), 1)
+        self.assertEqual(len(sheet.line_ids), 7)
+
+        with self.assertRaises(UserError):
+            sheet.sudo(self.user_3).action_timesheet_done()
+
+        with self.assertRaises(UserError):
+            sheet.sudo(self.user_3).action_timesheet_draft()
+
+        sheet.action_timesheet_confirm()
+        self.assertFalse(sheet.sudo(self.user_4).can_review)
+        self.assertEqual(
+            self.sheet_model.sudo(self.user_4).search_count(
+                [('can_review', '=', True)]
+            ),
+            0
+        )
+        with self.assertRaises(UserError):
+            sheet.sudo(self.user_4).action_timesheet_done()
+        sheet.sudo(self.user_3).action_timesheet_done()
+        sheet.sudo(self.user_3).action_timesheet_draft()
+        sheet.unlink()
+
+        timesheet_0.unlink()
+        timesheet_1.unlink()
+
+    def test_project_manager_review_policy_project_required(self):
+        sheet = self.sheet_model.sudo(self.user).new({
+            'employee_id': self.employee.id,
+            'company_id': self.user.company_id.id,
+            'date_start': self.sheet_model._default_date_start(),
+            'date_end': self.sheet_model._default_date_end(),
+            'review_policy': 'project_manager',
+            'state': 'new',
+        })
+        values = sheet._convert_to_write(sheet._cache)
+        with self.assertRaises(UserError):
+            self.sheet_model.sudo(self.user).create(values)
+        sheet.project_id = self.project_1
+        values.update(sheet._convert_to_write(sheet._cache))
+        sheet = self.sheet_model.sudo(self.user).create(values)
+        with self.assertRaises(UserError):
+            sheet.project_id = False
+        sheet.unlink()
+
+    def test_project_manager_review_policy_overlapping(self):
+        self.company.timesheet_sheet_review_policy = 'project_manager'
+
+        sheet1 = self.sheet_model.sudo(self.user).create({
+            'company_id': self.user.company_id.id,
+            'project_id': self.project_1.id,
+        })
+        with self.assertRaises(ValidationError):
+            sheet2 = self.sheet_model.sudo(self.user).create({
+                'company_id': self.user.company_id.id,
+                'project_id': self.project_1.id,
+            })
+
+        sheet2 = self.sheet_model.sudo(self.user).create({
+            'company_id': self.user.company_id.id,
+            'project_id': self.project_2.id,
+        })
+        with self.assertRaises(ValidationError):
+            sheet2.write({
+                'project_id': self.project_1.id,
+            })
+
+        self.company.timesheet_sheet_review_policy = 'hr'
+
+        sheet1.unlink()
+        sheet2.unlink()
