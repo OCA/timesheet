@@ -19,3 +19,8 @@ class ResConfig(models.TransientModel):
         string="Week Start Day",
         help="Starting day for Timesheet Sheets.",
         readonly=False)
+
+    timesheet_sheet_review_policy = fields.Selection(
+        related='company_id.timesheet_sheet_review_policy',
+        readonly=False,
+    )
