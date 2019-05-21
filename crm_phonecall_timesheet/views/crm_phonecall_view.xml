@@ -17,14 +17,14 @@
                     attrs="{'invisible': [('duration', '>', 0)]}"/>
         </field>
         <field name="name" position="after">
-            <field name="analytic_account_id"
+            <field name="project_id"
                 options="{'no_open': True, 'no_create': True}"/>
         </field>
         <field name="date" position="attributes">
-            <attribute name="attrs">{'required': [('analytic_account_id', '!=', False)]}</attribute>
+            <attribute name="attrs">{'required': [('project_id', '!=', False)]}</attribute>
         </field>
         <field name="user_id" position="attributes">
-            <attribute name="attrs">{'required': [('analytic_account_id', '!=', False)]}</attribute>
+            <attribute name="attrs">{'required': [('project_id', '!=', False)]}</attribute>
         </field>
     </field>
 </record>
@@ -34,18 +34,25 @@
     <field name="model">crm.phonecall</field>
     <field name="inherit_id" ref="crm_phonecall.crm_case_inbound_phone_tree_view"/>
     <field name="arch" type="xml">
+        <field name="medium_id" position="after">
+            <button name="button_end_call"
+                    string="Stop"
+                    type="object"
+                    icon="fa-stop-circle"
+                    attrs="{'invisible': [('duration', '>', 0)]}"/>
+        </field>
         <field name="date" position="after">
             <field name="duration" widget="float_time" />
         </field>
         <field name="name" position="after">
-            <field name="analytic_account_id"
+            <field name="project_id"
                 options="{'no_open': True, 'no_create': True}"/>
         </field>
         <field name="date" position="attributes">
-            <attribute name="attrs">{'required': [('analytic_account_id', '!=', False)]}</attribute>
+            <attribute name="attrs">{'required': [('project_id', '!=', False)]}</attribute>
         </field>
         <field name="user_id" position="attributes">
-            <attribute name="attrs">{'required': [('analytic_account_id', '!=', False)]}</attribute>
+            <attribute name="attrs">{'required': [('project_id', '!=', False)]}</attribute>
         </field>
     </field>
 </record>
@@ -56,15 +63,14 @@
     <field name="inherit_id" ref="crm_phonecall.crm_case_phone_form_view"/>
     <field name="arch" type="xml">
         <field name="opportunity_id" position="after">
-            <field name="analytic_account_id"
+            <field name="project_id"
                 options="{'no_open': True, 'no_create': True}"/>
         </field>
         <field name="description" position="after">
             <notebook>
                 <page string="Timesheet">
                     <field name="timesheet_ids"
-                        context="{'default_account_id': analytic_account_id,
-                                  'default_user_id': uid}" />
+                           context="{'tree_view_ref': 'hr_timesheet.hr_timesheet_line_tree','default_project_id': project_id, 'default_user_id': uid}"/>
                 </page>
             </notebook>
         </field>
