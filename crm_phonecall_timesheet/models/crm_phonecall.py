@@ -1,23 +1,26 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # Copyright 2015 Javier Iniesta <javieria@antiun.com>
 # Copyright 2017 David Vidal <david.vidal@tecnativa.com>
+# Copyright 2019 Alexandre Díaz <alexandre.diaz@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import logging
 from odoo import _, api, fields, models
 from odoo.fields import DATE_LENGTH
 from datetime import datetime
 from odoo.exceptions import UserError
+_logger = logging.getLogger(__name__)
 
 
 class CrmPhonecall(models.Model):
     _inherit = 'crm.phonecall'
 
-    analytic_account_id = fields.Many2one(
-        comodel_name='account.analytic.account')
+    project_id = fields.Many2one(
+        comodel_name='project.project')
     timesheet_ids = fields.One2many(comodel_name='account.analytic.line',
                                     inverse_name='phonecall_id')
 
+    @api.model
     def _timesheet_prepare(self, vals):
         """
             param: vals
@@ -26,18 +29,19 @@ class CrmPhonecall(models.Model):
         """
         if len(self) > 0:
             self.ensure_one()
-        date = vals.get('date', self.date)
+        date = vals.get(
+            'date',
+            fields.Date.to_string(self.date))
         if not date:
             raise UserError(_('Date field must be filled.'))
+        project_id = vals.get('project_id', self.project_id)
         user_id = vals.get('user_id', self.user_id.id)
-        account_id = vals.get('analytic_account_id',
-                              self.analytic_account_id.id)
         unit_amount = vals.get('duration', self.duration)
         res = {
             'date': date[:DATE_LENGTH],
             'user_id': user_id,
             'name': vals.get('name', self.name),
-            'account_id': account_id,
+            'project_id': project_id,
             'unit_amount': unit_amount / 60.0,
             'code': 'phone',
         }
@@ -45,31 +49,38 @@ class CrmPhonecall(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals.get('analytic_account_id') and vals.get('duration', 0) > 0:
+        if vals.get('project_id') and vals.get('duration', 0) > 0:
             timesheet_data = self._timesheet_prepare(vals)
             vals['timesheet_ids'] = vals.get('timesheet_ids', [])
             vals['timesheet_ids'].append((0, 0, timesheet_data))
-        res = super(CrmPhonecall, self).create(vals)
+        res = super().create(vals)
         return res
 
     @api.multi
     def write(self, vals):
-        timesheet = self.env['account.analytic.line'].search([
-            ('code', '=', 'phone'), ('phonecall_id', '=', self.id)])
-        analytic_account_id = vals.get('analytic_account_id',
-                                       self.analytic_account_id)
-        duration = vals.get('duration', 0)
-        if timesheet:
-            if ('analytic_account_id' in vals and not vals[
-                    'analytic_account_id']):
-                vals['timesheet_ids'] = [(2, timesheet.id, 0)]
-            else:
-                vals['timesheet_ids'] = [(1, timesheet.id,
-                                         self._timesheet_prepare(vals))]
-        elif analytic_account_id and duration > 0:
-            vals['timesheet_ids'] = [(0, 0, self._timesheet_prepare(vals))]
-        res = super(CrmPhonecall, self).write(vals)
-        return res
+        AccountAnalitycLineObj = self.env['account.analytic.line']
+        for record in self:
+            timesheet = AccountAnalitycLineObj.search([
+                ('phonecall_id', '=', record.id),
+                ('code', '=', 'phone'),
+            ])
+            project_id = vals.get('project_id', record.project_id.id)
+            duration = vals.get('duration', record.duration) or 0
+            can_create_ts = project_id and duration > 0
+            if can_create_ts:
+                vals.update({
+                    'project_id': project_id,
+                    'duration': duration,
+                })
+            if timesheet:
+                if not can_create_ts:
+                    vals['timesheet_ids'] = [(2, timesheet.id, 0)]
+                else:
+                    vals['timesheet_ids'] = [(1, timesheet.id,
+                                              self._timesheet_prepare(vals))]
+            elif can_create_ts:
+                vals['timesheet_ids'] = [(0, 0, self._timesheet_prepare(vals))]
+        return super().write(vals)
 
     @api.multi
     def button_end_call(self):

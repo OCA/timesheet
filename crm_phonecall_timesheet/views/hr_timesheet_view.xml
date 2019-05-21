@@ -6,7 +6,7 @@
     <field name="model">account.analytic.line</field>
     <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
     <field name="arch" type="xml">
-        <field name="lead_id" position="after">
+        <field name="project_id" position="after">
             <field name="phonecall_id" />
         </field>
     </field>

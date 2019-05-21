@@ -1,11 +1,12 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Tecnativa - David Vidal
+# Copyright 2019 Tecnativa - Alexandre Díaz
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
 from odoo.tests import common
 from odoo.exceptions import UserError
-from odoo.fields import DATE_LENGTH
 import datetime
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class CrmPhonecallCase(common.SavepointCase):
@@ -19,6 +20,14 @@ class CrmPhonecallCase(common.SavepointCase):
         cls.analytic_account_2 = cls.env['account.analytic.account'].create({
             'name': 'Test Account 2',
         })
+        cls.project_1 = cls.env['project.project'].create({
+            'name': 'Test Project 1',
+            'analytic_account_id': cls.analytic_account_1.id,
+        })
+        cls.project_2 = cls.env['project.project'].create({
+            'name': 'Test Project 2',
+            'analytic_account_id': cls.analytic_account_1.id,
+        })
         cls.partner_1 = cls.env['res.partner'].create({
             'name': 'Test Partner 1',
         })
@@ -31,10 +40,9 @@ class CrmPhonecallCase(common.SavepointCase):
         return phonecall
 
     def _test_phonecall_timesheet_asserts(self, phonecall, timesheet):
-        self.assertEqual(phonecall.date[:DATE_LENGTH], timesheet.date)
+        self.assertEqual(phonecall.date.date(), timesheet.date)
         self.assertEqual(phonecall.user_id, timesheet.user_id)
         self.assertEqual(phonecall.name, timesheet.name)
-        self.assertEqual(phonecall.analytic_account_id, timesheet.account_id)
         self.assertAlmostEqual(phonecall.duration / 60.0,
                                timesheet.unit_amount, places=1)
 
@@ -75,13 +83,13 @@ class CrmPhonecallCase(common.SavepointCase):
             {'date': '2017-08-21 10:15:00',
              'duration': 15,
              'name': 'test_01',
-             'analytic_account_id': self.analytic_account_1.id,
+             'project_id': self.project_1.id,
              'partner_id': self.partner_1.id,
              'user_id': self.uid},
             {'date': '2017-08-21 10:15:00',
              'duration': 30,
              'name': 'test_02',
-             'analytic_account_id': self.analytic_account_1.id,
+             'project_id': self.project_1.id,
              'partner_id': self.partner_1.id,
              'user_id': self.uid}
         )
@@ -89,20 +97,25 @@ class CrmPhonecallCase(common.SavepointCase):
             {'date': '2017-08-20 11:20:00'},
             {'duration': 20},
             {'partner_id': self.partner_2.id},
-            {'analytic_account_id': self.analytic_account_2.id},
-            {'duration': 0},
-            {'duration': -20},
+            {'project_id': self.project_2.id},
             {'partner_id': False}
         )
+
+        create_count = 0
         for create_vals in create_cases:
             phonecall = self._phonecall_create(create_vals)
-            self._test_phonecall_timesheet_asserts(
-                phonecall, phonecall.timesheet_ids[0])
+            self._test_phonecall_timesheet_asserts(phonecall,
+                                                   phonecall.timesheet_ids[0])
             for write_vals in write_cases:
                 phonecall.write(write_vals)
                 self._test_phonecall_timesheet_asserts(
                     phonecall, phonecall.timesheet_ids[0])
             with self.assertRaises(UserError):
                 phonecall.write({'date': False})
-            phonecall.write({'analytic_account_id': False})
-            self.assertFalse(phonecall.timesheet_ids)
+            if create_count == 0:
+                phonecall.write({'project_id': False})
+                self.assertFalse(phonecall.timesheet_ids)
+            else:
+                phonecall.write({'duration': 0})
+                self.assertFalse(phonecall.timesheet_ids)
+            create_count += 1
