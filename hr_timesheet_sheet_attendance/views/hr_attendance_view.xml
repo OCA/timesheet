@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo >
+<odoo>
 
     <!-- hr_attendance inherited filter view-->
-    <record model="ir.ui.view" id="hr_attendance_view_filter_inherit">
+    <record id="hr_attendance_view_filter" model="ir.ui.view">
         <field name="name" >view_hr_attendance_filter</field>
         <field name="model" >hr.attendance</field>
         <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter"/>
@@ -14,7 +14,7 @@
     </record>
 
     <!-- hr_attendance inherited form view-->
-    <record id="view_attendance_form_inherit" model="ir.ui.view" >
+    <record id="hr_attendance_view_form" model="ir.ui.view">
         <field name="name" >hr.attendance.form</field>
         <field name="model" >hr.attendance</field>
         <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
@@ -27,7 +27,7 @@
     </record>
 
     <!-- hr_attendance inherited tree view-->
-    <record id="view_attendance_tree_inherit" model="ir.ui.view">
+    <record id="view_attendance_tree" model="ir.ui.view">
         <field name="name" >hr.attendance.tree</field>
         <field name="model" >hr.attendance</field>
         <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>

@@ -4,8 +4,7 @@
     'category': 'Human Resources',
     'sequence': 80,
     'license': 'AGPL-3',
-    "author": "BizzAppDev, "
-    "Odoo Community Association (OCA)",
+    "author": "BizzAppDev, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/hr-timesheet/",
     'depends': [
         'hr_attendance',
@@ -16,5 +15,4 @@
         'views/hr_attendance_view.xml',
     ],
     'installable': True,
-    'auto_install': False,
 }
