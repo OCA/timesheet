@@ -165,7 +165,7 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
         unit_amount_ret = line.with_context(
             timesheet_rounding=True
         ).read(fields, load)[0]['unit_amount']
-        self.assertEqual(unit_amount_ret, 1)
+        self.assertEqual(unit_amount_ret, 2)
 
         # context = True + project_id - product_expense
         line = self.create_analytic_line(unit_amount=1)

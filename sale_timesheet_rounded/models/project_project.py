@@ -25,7 +25,10 @@ class ProjectProject(models.Model):
             ('DOWN', 'Down'),
         ],
         default='NO',
-        required=True
+        required=True,
+        help="If you activate the rounding of timesheet lines, only new "
+             "entries will be rounded (i.e. existing lines will not be "
+             "rounded automatically).",
     )
     timesheet_rounding_factor = fields.Float(
         string='Timesheet rounding factor in percentage',

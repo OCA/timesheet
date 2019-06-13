@@ -10,7 +10,7 @@ If you want to round to 15 min set `0.25`.
 
 * Timesheet rounding method
 
-Options: "Closest", "Up" (default), "Down".
+Options: "No" (default), "Closest", "Up", "Down".
 
 Please refer to `odoo.tools.float_utils.float_round` to understand the difference.
 
