@@ -25,24 +25,19 @@ msgid "Analytic Line"
 msgstr "Analytická linka"
 
 #. module: crm_phonecall_timesheet
-#: model:ir.model.fields,field_description:crm_phonecall_timesheet.field_crm_phonecall_analytic_account_id
-msgid "Analytic account id"
-msgstr "Analytický účet id"
-
-#. module: crm_phonecall_timesheet
-#: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:31
+#: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:36
 #, python-format
 msgid "Date field must be filled."
 msgstr "Pole Datum musí být vyplněno."
 
 #. module: crm_phonecall_timesheet
-#: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:87
+#: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:98
 #, python-format
 msgid "End date must be datetime."
 msgstr "Datum ukončení musí být datum."
 
 #. module: crm_phonecall_timesheet
-#: model:ir.model.fields,field_description:crm_phonecall_timesheet.field_account_analytic_line_phonecall_id
+#: model:ir.model.fields,field_description:crm_phonecall_timesheet.field_account_analytic_line__phonecall_id
 msgid "Phone Call"
 msgstr "Telefonní hovor"
 
@@ -52,22 +47,30 @@ msgid "Phonecall"
 msgstr "Telefonát"
 
 #. module: crm_phonecall_timesheet
-#: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:85
+#: model:ir.model.fields,field_description:crm_phonecall_timesheet.field_crm_phonecall__project_id
+msgid "Project"
+msgstr ""
+
+#. module: crm_phonecall_timesheet
+#: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:96
 #, python-format
 msgid "Start date must be datetime."
 msgstr "Datum zahájení musí být datum."
 
 #. module: crm_phonecall_timesheet
-#: model:ir.ui.view,arch_db:crm_phonecall_timesheet.crm_case_phone_tree_view
+#: model_terms:ir.ui.view,arch_db:crm_phonecall_timesheet.crm_case_inbound_phone_tree_view
+#: model_terms:ir.ui.view,arch_db:crm_phonecall_timesheet.crm_case_phone_tree_view
 msgid "Stop"
 msgstr "Zastavit"
 
 #. module: crm_phonecall_timesheet
-#: model:ir.ui.view,arch_db:crm_phonecall_timesheet.crm_case_phone_form_view
+#: model:ir.model.fields,field_description:crm_phonecall_timesheet.field_crm_phonecall__timesheet_ids
+#: model_terms:ir.ui.view,arch_db:crm_phonecall_timesheet.crm_case_phone_form_view
 msgid "Timesheet"
 msgstr "Rozvrh hodin"
 
-#. module: crm_phonecall_timesheet
-#: model:ir.model.fields,field_description:crm_phonecall_timesheet.field_crm_phonecall_timesheet_ids
-msgid "Timesheet ids"
-msgstr "Časové listy"
+#~ msgid "Analytic account id"
+#~ msgstr "Analytický účet id"
+
+#~ msgid "Timesheet ids"
+#~ msgstr "Časové listy"
