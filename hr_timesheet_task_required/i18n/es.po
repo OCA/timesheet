@@ -6,21 +6,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2019-06-24 10:42+0000\n"
+"Last-Translator: j-zaballa <jonzaballa@digital5.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #. module: hr_timesheet_task_required
 #: model:ir.model,name:hr_timesheet_task_required.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Entrada analítica"
 
 #. module: hr_timesheet_task_required
 #: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:19
 #, python-format
 msgid "You must specify a task for timesheet lines."
-msgstr ""
+msgstr "Debes especificar una tarea para las líneas de partes de horas."
