@@ -152,3 +152,16 @@ class AccountAnalyticLine(models.Model):
             for rec in res:
                 rec['unit_amount'] = rec['unit_amount_rounded']
         return res
+
+    @api.model
+    def _sale_get_fields_delivered_qty(self):
+        """Add unit_amount_rounded to fields impacting the delivered_qty"""
+        res = super()._sale_get_fields_delivered_qty()
+        res.append('unit_amount_rounded')
+        return res
+
+    @api.multi
+    def _sale_determine_order_line(self):
+        """Set context to read a.a.l unit_amount from unit_amount_rounded"""
+        self = self.with_context(timesheet_rounding=True)
+        return super()._sale_determine_order_line()

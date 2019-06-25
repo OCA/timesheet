@@ -1,11 +1,10 @@
 # Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import fields
-from odoo.addons.sale_timesheet.tests.common \
-    import TestCommonSaleTimesheetNoChart
+from .common import TestSaleTimesheetCommon
 
 
-class TestRounded(TestCommonSaleTimesheetNoChart):
+class TestRounded(TestSaleTimesheetCommon):
 
     at_install = False
     post_install = True
@@ -48,6 +47,21 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
             'uom_id': cls.product_delivery_timesheet2.uom_id.id,
             'uom_po_id': cls.product_delivery_timesheet2.uom_id.id,
         })
+        cls.sale_order_no_project = cls.env['sale.order'].create({
+            'partner_id': cls.partner_customer_usd.id,
+            'partner_invoice_id': cls.partner_customer_usd.id,
+            'partner_shipping_id': cls.partner_customer_usd.id,
+        })
+        sale_order_line = cls.env['sale.order.line'].create({
+            'order_id': cls.sale_order_no_project.id,
+            'name': cls.product_expense.name,
+            'product_id': cls.product_expense.id,
+            'product_uom_qty': 1,
+            'product_uom': cls.product_expense.uom_id.id,
+            'price_unit': cls.product_expense.list_price
+        })
+        sale_order_line.product_id_change()
+        cls.sale_order_no_project.action_confirm()
         cls.avg_analytic_account = \
             cls.env['account.analytic.account'].create({'name': 'AVG account'})
 
@@ -210,6 +224,23 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
         self.assertAlmostEqual(self.sale_order.order_line.qty_delivered, 4.0)
         self.assertAlmostEqual(self.sale_order.order_line.qty_to_invoice, 4.0)
         self.assertAlmostEqual(self.sale_order.order_line.qty_invoiced, 0)
+
+    def test_sale_order_no_project(self):
+        # Creating an analytic line on the analytic account linked to a sale
+        # order with a expense product to re-invoice must create a new sale
+        # order line, with the qty_delivered = unit_amount
+        self.assertEqual(len(self.sale_order_no_project.order_line), 1)
+        existing_line = self.sale_order_no_project.order_line
+        self.create_analytic_line(
+            unit_amount=2.0, project_id=False,
+            account_id=self.sale_order_no_project.analytic_account_id.id,
+            task_id=False, product_id=self.product_expense.id,
+        )
+        self.assertEqual(len(self.sale_order_no_project.order_line), 2)
+        new_line = self.sale_order_no_project.order_line - existing_line
+        self.assertAlmostEqual(new_line.qty_delivered, 2.0)
+        self.assertAlmostEqual(new_line.qty_to_invoice, 0)
+        self.assertAlmostEqual(new_line.qty_invoiced, 0)
 
     def test_calc_rounded_amount_method(self):
         aal = self.env['account.analytic.line']

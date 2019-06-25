@@ -8,7 +8,7 @@
     <field name="arch" type="xml">
 
       <xpath expr="//field[@name='unit_amount']" position="after">
-          <field name="unit_amount_rounded" string="Time Rounded" widget="float_time"/>
+          <field name="unit_amount_rounded" string="Quantity Rounded" widget="float_time"/>
       </xpath>
 
     </field>
@@ -36,7 +36,7 @@
     <field name="arch" type="xml">
 
       <xpath expr="//field[@name='unit_amount']" position="after">
-        <field name="unit_amount_rounded" string="Time rounded (Hours)" sum="Total time rounded" widget="float_time"/>
+        <field name="unit_amount_rounded" string="Quantity rounded (Hours)" sum="Total time rounded" widget="float_time"/>
       </xpath>
 
     </field>
