@@ -3,6 +3,7 @@
 
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
+from odoo.tools import config
 
 
 class AccountAnalyticLine(models.Model):
@@ -15,6 +16,11 @@ class AccountAnalyticLine(models.Model):
 
     @api.constrains('task_id')
     def _check_task_allow_timesheet(self):
+        if (
+            config['test_enable'] and
+            not self.env.context.get('test_task_stage_allow_timesheet')
+        ):
+            return
         for rec in self:
             task = rec.task_id
             stage = task.stage_id

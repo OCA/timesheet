@@ -10,6 +10,10 @@ class TestProjectTaskStageAllowTimesheet(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestProjectTaskStageAllowTimesheet, cls).setUpClass()
+        cls.env = cls.env(context=dict(
+            cls.env.context, tracking_disable=True,
+            test_task_stage_allow_timesheet=True
+        ))
         cls.AnalyticLine = cls.env['account.analytic.line']
 
         cls.project_1 = cls.env.ref('project.project_project_1')
