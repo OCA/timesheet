@@ -1,6 +1,6 @@
 # Copyright 2018 Eficent Business and IT Consulting Services, S.L.
 # Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
@@ -14,18 +14,32 @@ class AccountAnalyticLine(models.Model):
         string='Sheet',
     )
 
+    @api.multi
+    def _get_sheet_domain(self):
+        """ Hook for extensions """
+        self.ensure_one()
+        domain = [
+            ('date_end', '>=', self.date),
+            ('date_start', '<=', self.date),
+            ('employee_id', '=', self.employee_id.id),
+            ('company_id', 'in', [self.company_id.id, False]),
+            ('state', 'in', ['new', 'draft']),
+        ]
+        return domain
+
+    @api.multi
+    def _determine_sheet(self):
+        """ Hook for extensions """
+        self.ensure_one()
+        return self.env['hr_timesheet.sheet'].search(
+            self._get_sheet_domain(),
+            limit=1,
+        )
+
     def _compute_sheet(self):
         """Links the timesheet line to the corresponding sheet"""
-        for timesheet in self:
-            if not timesheet.project_id:
-                continue
-            sheet = self.env['hr_timesheet.sheet'].search([
-                ('date_end', '>=', timesheet.date),
-                ('date_start', '<=', timesheet.date),
-                ('employee_id', '=', timesheet.employee_id.id),
-                ('company_id', 'in', [timesheet.company_id.id, False]),
-                ('state', 'in', ['new', 'draft']),
-            ], limit=1)
+        for timesheet in self.filtered('project_id'):
+            sheet = timesheet._determine_sheet()
             if timesheet.sheet_id != sheet:
                 timesheet.sheet_id = sheet
 
@@ -39,7 +53,7 @@ class AccountAnalyticLine(models.Model):
 
     @api.model
     def create(self, values):
-        res = super(AccountAnalyticLine, self).create(values)
+        res = super().create(values)
         res._check_sheet_company_id(values.get('sheet_id'))
         res._compute_sheet()
         return res
@@ -48,8 +62,7 @@ class AccountAnalyticLine(models.Model):
     def write(self, values):
         self._check_state_on_write(values)
         res = super().write(values)
-        vals_do_compute = ['date', 'employee_id', 'project_id', 'company_id']
-        if any(val in vals_do_compute for val in values):
+        if self._timesheet_should_compute_sheet(values):
             self._compute_sheet()
         return res
 
@@ -71,6 +84,11 @@ class AccountAnalyticLine(models.Model):
                     set(values.keys()))
 
     @api.model
+    def _timesheet_should_compute_sheet(self, values):
+        """ Hook for extensions """
+        return any(f in self._get_sheet_affecting_fields() for f in values)
+
+    @api.model
     def _get_timesheet_protected_fields(self):
         """ Hook for extensions """
         return [
@@ -86,12 +104,17 @@ class AccountAnalyticLine(models.Model):
             'sheet_id',
         ]
 
+    @api.model
+    def _get_sheet_affecting_fields(self):
+        """ Hook for extensions """
+        return ['date', 'employee_id', 'project_id', 'company_id']
+
     @api.multi
     def _check_state(self):
         if self.env.context.get('skip_check_state'):
             return
-        for line in self:
-            if line.sheet_id and line.sheet_id.state not in ['new', 'draft']:
+        for line in self.filtered('sheet_id'):
+            if line.sheet_id.state not in ['new', 'draft']:
                 raise UserError(
                     _('You cannot modify an entry in a confirmed '
                       'timesheet sheet.'))
