@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
     <!--
-        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
     -->
 
     <!-- Timesheet sheet related subtypes for messaging / Chatter -->
@@ -16,23 +16,6 @@
         <field name="res_model">hr_timesheet.sheet</field>
         <field name="default" eval="True"/>
         <field name="description">Timesheet approved</field>
-    </record>
-    <!-- Department (Parent) related subtypes for messaging / Chatter -->
-    <record id="mt_department_timesheet_confirmed" model="mail.message.subtype">
-        <field name="name">Timesheets to Approve</field>
-        <field name="res_model">hr.department</field>
-        <field name="default" eval="False"/>
-        <field name="parent_id" eval="ref('mt_timesheet_confirmed')"/>
-        <field name="relation_field">department_id</field>
-        <field name="sequence" eval="5"/>
-    </record>
-    <record id="mt_department_timesheet_approved" model="mail.message.subtype">
-        <field name="name">Timesheets Approved</field>
-        <field name="res_model">hr.department</field>
-        <field name="default" eval="False"/>
-        <field name="parent_id" eval="ref('mt_timesheet_approved')"/>
-        <field name="relation_field">department_id</field>
-        <field name="sequence" eval="5"/>
     </record>
 
 </odoo>
