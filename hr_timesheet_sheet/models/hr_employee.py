@@ -1,5 +1,6 @@
 # Copyright 2018 Eficent Business and IT Consulting Services, S.L.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
@@ -7,25 +8,22 @@ from odoo.exceptions import ValidationError
 
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
-    _description = 'Employee'
 
-    timesheet_count = fields.Integer(
-        compute='_compute_timesheet_count',
-        string='Timesheet Sheets',
+    timesheet_sheet_count = fields.Integer(
+        compute='_compute_timesheet_sheet_count',
+        string='Timesheet Sheets Count',
     )
 
     @api.multi
-    def _compute_timesheet_count(self):
+    def _compute_timesheet_sheet_count(self):
         Sheet = self.env['hr_timesheet.sheet']
         for employee in self:
-            employee.timesheet_count = Sheet.search_count([
+            employee.timesheet_sheet_count = Sheet.search_count([
                 ('employee_id', '=', employee.id)])
 
     @api.constrains('company_id')
     def _check_company_id(self):
-        for rec in self.sudo():
-            if not rec.company_id:
-                continue
+        for rec in self.sudo().filtered('company_id'):
             for field in [rec.env['hr_timesheet.sheet'].search([
                 ('employee_id', '=', rec.id),
                 ('company_id', '!=', rec.company_id.id),

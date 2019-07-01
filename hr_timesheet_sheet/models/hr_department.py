@@ -1,5 +1,5 @@
 # Copyright 2018 Eficent Business and IT Consulting Services, S.L.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
@@ -28,9 +28,7 @@ class HrDepartment(models.Model):
 
     @api.constrains('company_id')
     def _check_company_id(self):
-        for rec in self.sudo():
-            if not rec.company_id:
-                continue
+        for rec in self.sudo().filtered('company_id'):
             for field in [rec.env['hr_timesheet.sheet'].search([
                 ('department_id', '=', rec.id),
                 ('company_id', '!=', rec.company_id.id),
