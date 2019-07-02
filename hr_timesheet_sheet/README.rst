@@ -87,6 +87,7 @@ Authors
 
 * Eficent
 * Onestein
+* Brainbean Apps
 
 Contributors
 ~~~~~~~~~~~~
