@@ -9,7 +9,7 @@ class HrAnalyticTimesheet(models.Model):
     """Link leave requests to analytic timesheet entries"""
     _inherit = 'hr.analytic.timesheet'
 
-    leave_id = fields.Many2one('hr.holidays', 'Leave id')
+    leave_id = fields.Many2one('hr.holidays', 'Leave id', ondelete='restrict')
 
     @api.multi
     def unlink(self):
