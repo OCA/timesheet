@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_timesheet_line_exclude
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-07-12 13:43+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.7.1\n"
+
+#. module: sale_timesheet_line_exclude
+#: model:ir.model,name:sale_timesheet_line_exclude.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Kostenstellenbuchung"
+
+#. module: sale_timesheet_line_exclude
+#: model:ir.model.fields,help:sale_timesheet_line_exclude.field_account_analytic_line__exclude_from_sale_order
+#: model:ir.model.fields,help:sale_timesheet_line_exclude.field_hr_timesheet_switch__exclude_from_sale_order
+msgid "Checking this would exclude this timesheet entry from Sale Order"
+msgstr ""
+"Wenn der Haken gesetzt ist, wird diese Zeiterfassung für die Abrechnung über "
+"einen Verkaufsauftrag ausgeschlossen."
+
+#. module: sale_timesheet_line_exclude
+#: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_account_analytic_line__exclude_from_sale_order
+#: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_hr_timesheet_switch__exclude_from_sale_order
+msgid "Exclude from Sale Order"
+msgstr "von Abrechnung ausschließen"
+
+#. module: sale_timesheet_line_exclude
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_line_exclude.account_analytic_line_search
+msgid "Excluded From Sale Order"
+msgstr "von Abrechnung ausgeschlossen"
+
+#. module: sale_timesheet_line_exclude
+#: code:addons/sale_timesheet_line_exclude/models/account_analytic_line.py:38
+#, python-format
+msgid ""
+"You can not modify timesheets in a way that would affect invoices since "
+"these timesheets were already invoiced."
+msgstr ""
+"Es ist nicht erlaubt, Zeiterfassungen zu verändern, die bereits abgerechnet "
+"sind."
