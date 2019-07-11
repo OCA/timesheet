@@ -6,96 +6,107 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2019-07-11 11:43+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.model,name:hr_timesheet_sheet_attendance.model_hr_attendance
 msgid "Attendance"
-msgstr ""
+msgstr "Anwesenheit"
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet_attendance_count
 msgid "Attendance Count"
-msgstr ""
+msgstr "Anwesenheitsdauer"
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.actions.act_window,name:hr_timesheet_sheet_attendance.action_hr_timeseet_sheet_attendance
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet_attendances_ids
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet_attendance.hr_timesheet_sheet_inherit_form_simplified
 msgid "Attendances"
-msgstr ""
+msgstr "Anwesenheiten"
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet_attendance.hr_timesheet_sheet_inherit_form_simplified
 msgid "Check In"
-msgstr ""
+msgstr "Anmelden"
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet_attendance.hr_timesheet_sheet_inherit_form_simplified
 msgid "Check Out"
-msgstr ""
+msgstr "Abmelden"
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet_attendance_state
 msgid "Current Status"
-msgstr ""
+msgstr "Aktueller Status"
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet_total_difference
 msgid "Difference"
-msgstr ""
+msgstr "Differenz"
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_attendance_sheet_id
 msgid "Sheet"
-msgstr ""
+msgstr "Zettel"
 
 #. module: hr_timesheet_sheet_attendance
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_timesheet_sheet.py:82
 #, python-format
 msgid "The timesheet cannot be validated as it does not contain an equal number of sign ins and sign outs."
 msgstr ""
+"Der Stundenzettel kann nicht zur Genehmigung freigegeben werden, weil die "
+"Anzahl der An- und Abmeldungen unterschiedlich ist."
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.ui.view,arch_db:hr_timesheet_sheet_attendance.hr_timesheet_sheet_inherit_form_simplified
 msgid "Timesheet"
-msgstr ""
+msgstr "Zeiterfassung"
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.actions.act_window,name:hr_timesheet_sheet_attendance.action_hr_timeseet_sheet_analytic_line
 msgid "Timesheet Activities"
-msgstr ""
+msgstr "Zeiterfassungsaktivitäten"
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.model,name:hr_timesheet_sheet_attendance.model_hr_timesheet_sheet
 msgid "Timesheet Sheet"
-msgstr ""
+msgstr "Stundenzettel"
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet_total_attendance
 msgid "Total Attendance"
-msgstr ""
+msgstr "Gesamt-Anwesenheit"
 
 #. module: hr_timesheet_sheet_attendance
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:106
 #, python-format
 msgid "You can not enter an attendance date outside the current timesheet dates."
 msgstr ""
+"Das Datum der Anwesenheit darf nicht außerhalb des Zeitraums des aktuell "
+"verwendeten Stundenzettels liegen."
 
 #. module: hr_timesheet_sheet_attendance
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:89
 #, python-format
 msgid "You can not enter an attendance in a submitted timesheet. Ask your manager to reset it before adding attendance."
 msgstr ""
+"Eine Anwesenheit kann nicht in bereits zur Genehmigung freigegebenen bzw. "
+"genehmigten Stundenzetteln eingetragen werden. Der Manager muss zuvor den "
+"Stundenzettel zurückweisen, sodass diese Anwesenheit hinzugefügt werden kann."
 
 #. module: hr_timesheet_sheet_attendance
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:68
 #, python-format
 msgid "You cannot modify an entry in a confirmed timesheet"
 msgstr ""
+"Ein Zeiteintrag in bereits zur Genehmigung freigegebenen bzw. genehmigten "
+"Stundenzetteln kann nicht geändert werden."
