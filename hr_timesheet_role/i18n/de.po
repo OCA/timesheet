@@ -6,19 +6,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2019-07-11 12:43+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #. module: hr_timesheet_role
 #: code:addons/hr_timesheet_role/models/account_analytic_line.py:33
 #, python-format
 msgid "%s can not act as %s on %s project"
-msgstr ""
+msgstr "Der Benutzer %s darf nicht als Rolle '%s' in dem Projekt '%s' agieren."
 
 #. module: hr_timesheet_role
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
@@ -28,32 +30,36 @@ msgstr ""
 #. module: hr_timesheet_role
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.report_timesheet
 msgid "<span>Role</span>"
-msgstr ""
+msgstr "<span>Rolle</span>"
 
 #. module: hr_timesheet_role
 #: model:ir.model,name:hr_timesheet_role.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Kostenstellenbuchung"
 
 #. module: hr_timesheet_role
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
 msgid "Check to limit role selection to current assignments only."
 msgstr ""
+"Wenn der Haken gesetzt ist, wird die Rollenauswahl bei der Zeiterfassung auf "
+"diejenigen beschränkt, die dem Projekt zugeordnet sind."
 
 #. module: hr_timesheet_role
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
 msgid "Check to require role to be selected when using Timesheets."
 msgstr ""
+"Wenn der Haken gesetzt ist, muss bei der Zeiterfassung eine Rolle "
+"eingetragen werden."
 
 #. module: hr_timesheet_role
 #: model:ir.model,name:hr_timesheet_role.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: hr_timesheet_role
 #: model:ir.model,name:hr_timesheet_role.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Konfigurationseinstellungen"
 
 #. module: hr_timesheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__limit_role_to_assignments
@@ -61,26 +67,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_res_company__limit_timesheet_role_to_assignments
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_res_config_settings__limit_timesheet_role_to_assignments
 msgid "Limit Timesheet Role to Assignments"
-msgstr ""
+msgstr "nur projektspezifische Rollen bei der Zeiterfassung erlauben"
 
 #. module: hr_timesheet_role
 #: model:ir.model,name:hr_timesheet_role.model_project_project
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #. module: hr_timesheet_role
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.edit_project
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.project_project_view_form_simplified
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
 msgid "Require role in Timesheets"
-msgstr ""
+msgstr "Rolle bei Zeiterfassung obligatorisch"
 
 #. module: hr_timesheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__role_id
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.account_analytic_line_search
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.portal_my_task
 msgid "Role"
-msgstr ""
+msgstr "Rolle"
 
 #. module: hr_timesheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__is_role_required
@@ -88,10 +94,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_res_company__is_timesheet_role_required
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_res_config_settings__is_timesheet_role_required
 msgid "Timesheet Role Required"
-msgstr ""
+msgstr "Rolle bei Zeiterfassung obligatorisch"
 
 #. module: hr_timesheet_role
 #: code:addons/hr_timesheet_role/models/account_analytic_line.py:37
 #, python-format
 msgid "unassigned"
-msgstr ""
+msgstr "nicht zugewiesen"
