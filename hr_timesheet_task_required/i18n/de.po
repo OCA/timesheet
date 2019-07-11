@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-07-10 07:43+0000\n"
+"PO-Revision-Date: 2019-07-11 11:43+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: hr_timesheet_task_required
 #: model:ir.model,name:hr_timesheet_task_required.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Kostenstellenbuchung"
 
 #. module: hr_timesheet_task_required
 #: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:19
