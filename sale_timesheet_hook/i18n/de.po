@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-07-11 12:43+0000\n"
+"PO-Revision-Date: 2019-07-12 13:43+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -25,12 +25,12 @@ msgstr "Kostenstellenbuchung"
 #: code:addons/sale_timesheet_hook/wizard/project_create_sale_order.py:52
 #, python-format
 msgid "At least one line should be filled."
-msgstr ""
+msgstr "Es sollte mindestens eine Zeile hinzugefügt werden."
 
 #. module: sale_timesheet_hook
 #: model:ir.model,name:sale_timesheet_hook.model_project_create_sale_order
 msgid "Create SO from project"
-msgstr ""
+msgstr "Verkaufsauftrag erstellen"
 
 #. module: sale_timesheet_hook
 #: code:addons/sale_timesheet_hook/wizard/project_create_sale_order.py:61
@@ -38,21 +38,31 @@ msgstr ""
 msgid "The Sales Order cannot be created because you did not enter some employees that entered timesheets on this project. Please list all the relevant employees before creating the Sales Order.\n"
 "Missing employee(s): %s"
 msgstr ""
+"Der Verkaufsauftrag kann nicht erstellt werden, weil keine Mitarbeiter "
+"eingetragen wurden, die Zeit auf dieses Projekt gebucht haben. Es sollten "
+"alle relevanten Mitarbeiter aufgelistet werden, bevor der Auftrag erstellt "
+"wird.\n"
+"Fehlende Mitarbeiter: %s"
 
 #. module: sale_timesheet_hook
 #: code:addons/sale_timesheet_hook/wizard/project_create_sale_order.py:45
 #, python-format
 msgid "The project is already linked to a sales order item."
-msgstr ""
+msgstr "Das Projekt ist bereits mit einer Verkaufsauftragszeile verbunden."
 
 #. module: sale_timesheet_hook
 #: code:addons/sale_timesheet_hook/wizard/project_create_sale_order.py:76
 #, python-format
 msgid "The sales order cannot be created because some timesheets of this project are already linked to another sales order."
 msgstr ""
+"Der Verkaufsauftrag kann nicht erstellt werden, weil einige Zeiterfassungen "
+"des Projekts schon zu einem anderen Verkaufsauftrag gehören."
 
 #. module: sale_timesheet_hook
 #: code:addons/sale_timesheet_hook/models/account_analytic_line.py:17
 #, python-format
 msgid "This timesheet line cannot be billed: there is no Sale Order Item defined on the task, nor on the project. Please define one to save your timesheet line."
 msgstr ""
+"Die Zeiterfassung kann nicht in Rechnung gestellt werden: Es gibt keine "
+"verbundene Verkaufsauftragszeile für die Aufgabe oder das Projekt. Es sollte "
+"eine definiert werden, damit die Zeiterfassung gespeichert werden kann."
