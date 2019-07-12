@@ -226,7 +226,7 @@ class Sheet(models.Model):
     def _check_sheet_date(self, user_id=False):
         sheets = self if user_id else self.filtered('user_id')
         for sheet in sheets:
-            domain = self._get_overlapping_sheet_domain(user_id=user_id)
+            domain = sheet._get_overlapping_sheet_domain(user_id=user_id)
             if self.search(domain, limit=1):
                 raise ValidationError(
                     _('You cannot have 2 sheets that overlap!\n'
