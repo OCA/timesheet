@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-07-11 12:43+0000\n"
+"PO-Revision-Date: 2019-07-12 10:43+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: project_task_stage_allow_timesheet
 #: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_project_task_type__allow_timesheet
 msgid "Allow timesheets"
-msgstr ""
+msgstr "Zeiterfassungen erlauben"
 
 #. module: project_task_stage_allow_timesheet
 #: model:ir.model,name:project_task_stage_allow_timesheet.model_account_analytic_line
@@ -29,15 +29,17 @@ msgstr "Kostenstellenbuchung"
 #. module: project_task_stage_allow_timesheet
 #: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_account_analytic_line__task_id
 msgid "Task"
-msgstr ""
+msgstr "Aufgabe"
 
 #. module: project_task_stage_allow_timesheet
 #: model:ir.model,name:project_task_stage_allow_timesheet.model_project_task_type
 msgid "Task Stage"
-msgstr ""
+msgstr "Aufgabenstufe"
 
 #. module: project_task_stage_allow_timesheet
 #: code:addons/project_task_stage_allow_timesheet/models/account_analytic_line.py:23
 #, python-format
 msgid "You can't link a timesheet line to a task if its stage doesn't allow it. (Task: %s, Stage: %s)"
 msgstr ""
+"Es können keine Zeiten für eine Aufgabe in einer Projektstufe erfasst "
+"werden, die dies nicht erlaubt. (Aufgabe: %s, Stufe: %s)"
