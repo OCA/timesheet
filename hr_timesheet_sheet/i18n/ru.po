@@ -29,6 +29,14 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line_abstract
 #, fuzzy
 msgid "Abstract Timesheet Sheet Line"
@@ -62,6 +70,13 @@ msgid "Add new line"
 msgstr "Добавить строку"
 
 #. module: hr_timesheet_sheet
+#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_all_timesheets
+#, fuzzy
+msgid "All Timesheet Sheets"
+msgstr "Строки табеля"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 #, fuzzy
 #| msgid "Analytic accounts"
@@ -90,9 +105,21 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:431
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:500
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
+msgstr "Нельзя одобрить неподтверждённый табель."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:511
+#, fuzzy, python-format
+msgid "Cannot reject a non-submitted sheet."
+msgstr "Нельзя одобрить неподтверждённый табель."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:482
+#, fuzzy, python-format
+msgid "Cannot revert to draft a non-approved sheet."
 msgstr "Нельзя одобрить неподтверждённый табель."
 
 #. module: hr_timesheet_sheet
@@ -217,6 +244,33 @@ msgid "Employees"
 msgstr "Сотрудники"
 
 #. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+#, fuzzy
+msgid ""
+"Employees must record timesheets every day and confirm at the end\n"
+"            of the week. Once the timesheet sheet is confirmed, it should "
+"be\n"
+"            validated by a manager."
+msgstr ""
+"Вы должны заполнять табели каждый день и утверждать в\n"
+"конце недели. Как только табель утверждён, он должен\n"
+"быть проверен менеджером."
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
+#, fuzzy
+msgid ""
+"Employees must record timesheets in the sheet every day and confirm at the "
+"end\n"
+"             of the week. Once the timesheet sheet is confirmed, it should "
+"be\n"
+"             validated by a manager."
+msgstr ""
+"Вы должны заполнять табели каждый день и утверждать в\n"
+"конце недели. Как только табель утверждён, он должен\n"
+"быть проверен менеджером."
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
 msgid "Followers"
 msgstr ""
@@ -295,8 +349,7 @@ msgid "In Draft"
 msgstr "Черновик"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:362
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:378
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:418
 #, fuzzy, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
@@ -388,11 +441,6 @@ msgid "New timesheet sheet."
 msgstr "новый табель."
 
 #. module: hr_timesheet_sheet
-#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
-msgid "New timesheet to approve."
-msgstr "Новый табель на одобрение."
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr ""
@@ -434,13 +482,13 @@ msgid "Number of unread messages"
 msgstr "Непрочитанные Сообщения"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:429
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:503
 #, fuzzy, python-format
 msgid "Only an HR Officer or Manager can approve sheets."
 msgstr "Только сотрудник по кадрам или менеджер могут утверждать табеля."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:415
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:485
 #, fuzzy, python-format
 msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 msgstr ""
@@ -458,7 +506,6 @@ msgid "Overdue"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified
 msgid "Period"
 msgstr ""
@@ -513,7 +560,7 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:676
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:784
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Строки табеля"
@@ -600,27 +647,27 @@ msgid "Temporary Timesheets"
 msgstr "Поиск табеля"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:240
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:253
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Department must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:230
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:243
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Employee must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:250
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:263
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Project must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:260
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:273
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Task must be the same."
 msgstr ""
@@ -632,7 +679,7 @@ msgid "The range of your Timesheet Sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:200
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
 #, python-format
 msgid "The start date cannot be later than the end date."
 msgstr ""
@@ -692,10 +739,15 @@ msgstr "Диапазон табеля"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_count
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified
 #, fuzzy
 msgid "Timesheet Sheets"
+msgstr "Строки табеля"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_sheet_count
+#, fuzzy
+msgid "Timesheet Sheets Count"
 msgstr "Строки табеля"
 
 #. module: hr_timesheet_sheet
@@ -712,6 +764,7 @@ msgid "Timesheet approved"
 msgstr "Табель утверждён"
 
 #. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 #, fuzzy
 msgid ""
@@ -722,16 +775,17 @@ msgstr ""
 "от особенностей договоров каждого проекта."
 
 #. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
+#, fuzzy
+msgid "Timesheet sheets."
+msgstr "Строки табеля"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__timesheet_ids
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_department_view_kanban
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_employee_extd_form
 msgid "Timesheets"
 msgstr "Табели"
-
-#. module: hr_timesheet_sheet
-#: model:mail.message.subtype,name:hr_timesheet_sheet.mt_department_timesheet_approved
-msgid "Timesheets Approved"
-msgstr "Утверждённые табели"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
@@ -745,8 +799,14 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
-#: model:mail.message.subtype,name:hr_timesheet_sheet.mt_department_timesheet_confirmed
 msgid "Timesheets to Approve"
+msgstr "Табели на одобрение"
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+#, fuzzy
+#| msgid "Timesheets to Approve"
+msgid "Timesheets to approve."
 msgstr "Табели на одобрение"
 
 #. module: hr_timesheet_sheet
@@ -800,7 +860,7 @@ msgid "Waiting Approval"
 msgstr "Ожидает одобрения"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:675
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:783
 #, python-format
 msgid "Warning"
 msgstr ""
@@ -822,7 +882,7 @@ msgid "Wednesday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:180
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:190
 #: selection:res.company,sheet_range:0
 #, python-format
 msgid "Week"
@@ -839,7 +899,7 @@ msgid "Week start day"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:185
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:195
 #, fuzzy, python-format
 #| msgid "Week"
 msgid "Weeks"
@@ -847,14 +907,14 @@ msgstr "Неделя"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
-#: code:addons/hr_timesheet_sheet/models/hr_department.py:41
-#: code:addons/hr_timesheet_sheet/models/hr_employee.py:36
+#: code:addons/hr_timesheet_sheet/models/hr_department.py:39
+#: code:addons/hr_timesheet_sheet/models/hr_employee.py:34
 #, python-format
 msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:37
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:51
 #, fuzzy, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
@@ -862,19 +922,19 @@ msgid ""
 msgstr "Вы не можете изменить запись в утверждённом табеле."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:396
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:459
 #, fuzzy, python-format
 msgid "You cannot delete a timesheet sheet which is already confirmed."
 msgstr "Вы не можете удалить уже подтверждённый табель."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:353
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:426
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "Вы не можете дублировать табель."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:219
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:232
 #, fuzzy, python-format
 msgid ""
 "You cannot have 2 sheets that overlap!\n"
@@ -885,22 +945,10 @@ msgstr ""
 "проблемы.."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:96
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:119
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet."
 msgstr "Вы не можете изменить запись в утверждённом табеле."
-
-#. module: hr_timesheet_sheet
-#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
-#, fuzzy
-msgid ""
-"You must record timesheets every day and confirm at the end\n"
-"            of the week. Once the timesheet is confirmed, it should be\n"
-"            validated by a manager."
-msgstr ""
-"Вы должны заполнять табели каждый день и утверждать в\n"
-"конце недели. Как только табель утверждён, он должен\n"
-"быть проверен менеджером."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
@@ -924,6 +972,12 @@ msgstr "для"
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
 msgid "waiting approval"
 msgstr "ожидает утверждения"
+
+#~ msgid "New timesheet to approve."
+#~ msgstr "Новый табель на одобрение."
+
+#~ msgid "Timesheets Approved"
+#~ msgstr "Утверждённые табели"
 
 #, fuzzy
 #~ msgid "Count Timesheets"
