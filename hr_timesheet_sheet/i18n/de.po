@@ -31,6 +31,14 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 
 #. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line_abstract
 msgid "Abstract Timesheet Sheet Line"
 msgstr "Abstrakte Stundenzettelzeilen"
@@ -61,6 +69,14 @@ msgid "Add new line"
 msgstr "Eintrag hinzufügen"
 
 #. module: hr_timesheet_sheet
+#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_all_timesheets
+#, fuzzy
+#| msgid "Timesheet Sheets"
+msgid "All Timesheet Sheets"
+msgstr "Stundenzettel"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 msgid "Analytic Account"
 msgstr "Kostenstelle"
@@ -87,9 +103,27 @@ msgid "Attachment Count"
 msgstr "Anhangsanzahl"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:431
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:500
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
+msgstr ""
+"Ein nicht zur Genehmigung freigegebener Stundenzettel kann nicht genehmigt "
+"werden."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:511
+#, fuzzy, python-format
+#| msgid "Cannot approve a non-submitted sheet."
+msgid "Cannot reject a non-submitted sheet."
+msgstr ""
+"Ein nicht zur Genehmigung freigegebener Stundenzettel kann nicht genehmigt "
+"werden."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:482
+#, fuzzy, python-format
+#| msgid "Cannot approve a non-submitted sheet."
+msgid "Cannot revert to draft a non-approved sheet."
 msgstr ""
 "Ein nicht zur Genehmigung freigegebener Stundenzettel kann nicht genehmigt "
 "werden."
@@ -214,6 +248,42 @@ msgid "Employees"
 msgstr "Mitarbeiter"
 
 #. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+#, fuzzy
+#| msgid ""
+#| "You must record timesheets every day and confirm at the end\n"
+#| "            of the week. Once the timesheet is confirmed, it should be\n"
+#| "            validated by a manager."
+msgid ""
+"Employees must record timesheets every day and confirm at the end\n"
+"            of the week. Once the timesheet sheet is confirmed, it should "
+"be\n"
+"            validated by a manager."
+msgstr ""
+"Sie müssen jeden Tag ihre Zeit erfassen und am Ende des gewählten Zeitraums "
+"dem Manager zur Genehmigung vorlegen. Danach wird der Manager den "
+"Stundenzettel überprüfen."
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
+#, fuzzy
+#| msgid ""
+#| "You must record timesheets in the sheet every day and confirm at the end\n"
+#| "             of the week. Once the timesheet sheet is confirmed, it "
+#| "should be\n"
+#| "             validated by a manager."
+msgid ""
+"Employees must record timesheets in the sheet every day and confirm at the "
+"end\n"
+"             of the week. Once the timesheet sheet is confirmed, it should "
+"be\n"
+"             validated by a manager."
+msgstr ""
+"Sie müssen jeden Tag ihre Zeit erfassen und am Ende des gewählten Zeitraums "
+"dem Manager zur Genehmigung vorlegen. Danach wird der Manager den "
+"Stundenzettel überprüfen."
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
 msgid "Followers"
 msgstr "Abonnenten"
@@ -296,8 +366,7 @@ msgid "In Draft"
 msgstr "Im Entwurf"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:362
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:378
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:418
 #, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
@@ -385,11 +454,6 @@ msgid "New timesheet sheet."
 msgstr "Neuer Stundenzettel."
 
 #. module: hr_timesheet_sheet
-#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
-msgid "New timesheet to approve."
-msgstr "Neuer, zu genehmigender Stundenzettel."
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr "Frist für die nächste Aktivität"
@@ -430,13 +494,13 @@ msgid "Number of unread messages"
 msgstr "Dies ist die Anzahl von ungelesenen Nachrichten."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:429
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:503
 #, python-format
 msgid "Only an HR Officer or Manager can approve sheets."
 msgstr "Nur ein Personalmanager kann Stundenzettel genehmigen."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:415
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:485
 #, python-format
 msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 msgstr ""
@@ -454,7 +518,6 @@ msgid "Overdue"
 msgstr "Überfällig"
 
 #. module: hr_timesheet_sheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified
 msgid "Period"
 msgstr "Zeitraum"
@@ -511,7 +574,7 @@ msgid "Saturday"
 msgstr "Samstag"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:676
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:784
 #, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Bitte zuerst den Stundenzettel speichern."
@@ -601,7 +664,7 @@ msgid "Temporary Timesheets"
 msgstr "Temporäre Zeiterfassungen"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:240
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:253
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Department must be the same."
@@ -609,7 +672,7 @@ msgstr ""
 "Das Unternehmen im Stundenzettel muss dasselbe sein wie in der Abteilung."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:230
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:243
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Employee must be the same."
@@ -617,16 +680,17 @@ msgstr ""
 "Das Unternehmen im Stundenzettel muss dasselbe sein wie vom Mitarbeiter."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:250
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:263
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Project must be the same."
 msgstr "Das Unternehmen im Stundenzettel muss dasselbe sein wie im Projekt."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:260
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:273
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Task must be the same."
-msgstr "Das Unternehmen im Stundenzettel muss dasselbe sein wie in der Aufgabe."
+msgstr ""
+"Das Unternehmen im Stundenzettel muss dasselbe sein wie in der Aufgabe."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company__sheet_range
@@ -635,7 +699,7 @@ msgid "The range of your Timesheet Sheet."
 msgstr "Dies ist der standardmäßig verwendete Zeitraum für Stundenzettel."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:200
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
 #, python-format
 msgid "The start date cannot be later than the end date."
 msgstr "Das Startdatum darf nicht nach dem Enddatum liegen."
@@ -689,9 +753,15 @@ msgstr "Stundenzettel-Zeitraum"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_count
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified
 msgid "Timesheet Sheets"
+msgstr "Stundenzettel"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_sheet_count
+#, fuzzy
+#| msgid "Timesheet Sheets"
+msgid "Timesheet Sheets Count"
 msgstr "Stundenzettel"
 
 #. module: hr_timesheet_sheet
@@ -707,6 +777,7 @@ msgid "Timesheet approved"
 msgstr "Stundenzettel genehmigt"
 
 #. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 msgid ""
 "Timesheet sheets can also be invoiced to customers, depending on\n"
@@ -716,16 +787,18 @@ msgstr ""
 "Vertrag des verbundenen Projektes dies erlaubt."
 
 #. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
+#, fuzzy
+#| msgid "Timesheet Sheets"
+msgid "Timesheet sheets."
+msgstr "Stundenzettel"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__timesheet_ids
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_department_view_kanban
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_employee_extd_form
 msgid "Timesheets"
 msgstr "Zeiterfassungen"
-
-#. module: hr_timesheet_sheet
-#: model:mail.message.subtype,name:hr_timesheet_sheet.mt_department_timesheet_approved
-msgid "Timesheets Approved"
-msgstr "Stundenzettel genehmigt"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
@@ -738,8 +811,14 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
-#: model:mail.message.subtype,name:hr_timesheet_sheet.mt_department_timesheet_confirmed
 msgid "Timesheets to Approve"
+msgstr "Zu genehmigende Stundenzettel"
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
+#, fuzzy
+#| msgid "Timesheets to Approve"
+msgid "Timesheets to approve."
 msgstr "Zu genehmigende Stundenzettel"
 
 #. module: hr_timesheet_sheet
@@ -791,7 +870,7 @@ msgid "Waiting Approval"
 msgstr "Erwarte Genehmigung"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:675
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:783
 #, python-format
 msgid "Warning"
 msgstr "Warnung"
@@ -812,7 +891,7 @@ msgid "Wednesday"
 msgstr "Mittwoch"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:180
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:190
 #: selection:res.company,sheet_range:0
 #, python-format
 msgid "Week"
@@ -829,23 +908,23 @@ msgid "Week start day"
 msgstr "Tag des Wochenstarts"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:185
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:195
 #, python-format
 msgid "Weeks"
 msgstr "Wochen"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
-#: code:addons/hr_timesheet_sheet/models/hr_department.py:41
-#: code:addons/hr_timesheet_sheet/models/hr_employee.py:36
+#: code:addons/hr_timesheet_sheet/models/hr_department.py:39
+#: code:addons/hr_timesheet_sheet/models/hr_employee.py:34
 #, python-format
 msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
-"Das Unternehmen kann nicht geändert werden, weil %s (%s) mit dem Feld %s (%s)"
-" verknüpft ist."
+"Das Unternehmen kann nicht geändert werden, weil %s (%s) mit dem Feld %s "
+"(%s) verknüpft ist."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:37
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:51
 #, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
@@ -855,7 +934,7 @@ msgstr ""
 "Stundenzettel."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:396
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:459
 #, python-format
 msgid "You cannot delete a timesheet sheet which is already confirmed."
 msgstr ""
@@ -863,13 +942,13 @@ msgstr ""
 "Genehmigung vorliegt oder bereits genehmigt wurde."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:353
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:426
 #, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "Ein Stundenzettel kann nicht kopiert werden."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:219
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:232
 #, python-format
 msgid ""
 "You cannot have 2 sheets that overlap!\n"
@@ -881,22 +960,11 @@ msgstr ""
 "umgehen."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:96
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:119
 #, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet."
 msgstr ""
 "Ein Eintrag eines genehmigten Stundenzettels darf nicht bearbeitet werden."
-
-#. module: hr_timesheet_sheet
-#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_form
-msgid ""
-"You must record timesheets every day and confirm at the end\n"
-"            of the week. Once the timesheet is confirmed, it should be\n"
-"            validated by a manager."
-msgstr ""
-"Sie müssen jeden Tag ihre Zeit erfassen und am Ende des gewählten Zeitraums "
-"dem Manager zur Genehmigung vorlegen. Danach wird der Manager den "
-"Stundenzettel überprüfen."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
@@ -919,6 +987,12 @@ msgstr "bis"
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
 msgid "waiting approval"
 msgstr "Erwarte Genehmigung"
+
+#~ msgid "New timesheet to approve."
+#~ msgstr "Neuer, zu genehmigender Stundenzettel."
+
+#~ msgid "Timesheets Approved"
+#~ msgstr "Stundenzettel genehmigt"
 
 #, fuzzy
 #~ msgid "Count Timesheets"
