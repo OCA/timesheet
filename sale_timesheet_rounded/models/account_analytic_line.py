@@ -14,7 +14,13 @@ class AccountAnalyticLine(models.Model):
 
     unit_amount_rounded = fields.Float(
         string="Quantity rounded",
-        default=0.0,
+        # Important: do NOT pass a default here.
+        # Passing a default will break computation at create
+        # since we want to allow to pass specific values
+        # we must check if the value is there or not.
+        # If you set a default, you are going to get it as value at create
+        # and the computation won't happen.
+        # default=0.0,
         copy=False,
     )
 
