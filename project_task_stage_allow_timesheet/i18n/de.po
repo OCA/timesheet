@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* project_task_stage_allow_timesheet
+# 	* project_task_stage_allow_timesheet
 #
 msgid ""
 msgstr ""
@@ -28,6 +28,7 @@ msgstr "Kostenstellenbuchung"
 
 #. module: project_task_stage_allow_timesheet
 #: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_account_analytic_line__task_id
+#: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_hr_timesheet_switch__task_id
 msgid "Task"
 msgstr "Aufgabe"
 
@@ -39,7 +40,9 @@ msgstr "Aufgabenstufe"
 #. module: project_task_stage_allow_timesheet
 #: code:addons/project_task_stage_allow_timesheet/models/account_analytic_line.py:23
 #, python-format
-msgid "You can't link a timesheet line to a task if its stage doesn't allow it. (Task: %s, Stage: %s)"
+msgid ""
+"You can't link a timesheet line to a task if its stage doesn't allow it. "
+"(Task: %s, Stage: %s)"
 msgstr ""
 "Es können keine Zeiten für eine Aufgabe in einer Projektstufe erfasst "
 "werden, die dies nicht erlaubt. (Aufgabe: %s, Stufe: %s)"
