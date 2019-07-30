@@ -103,19 +103,19 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:500
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:495
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Non puoi approvare un timesheet non inviato all'approvazione"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:511
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
 #, fuzzy, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Non puoi approvare un timesheet non inviato all'approvazione"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:482
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:477
 #, fuzzy, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr "Non puoi approvare un timesheet non inviato all'approvazione"
@@ -479,13 +479,13 @@ msgid "Number of unread messages"
 msgstr "Messaggi non letti"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:503
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:498
 #, fuzzy, python-format
 msgid "Only an HR Officer or Manager can approve sheets."
 msgstr "Solo un Responsabile HR o un Manager piò approvare i timesheet."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:485
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:480
 #, fuzzy, python-format
 msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 msgstr ""
@@ -556,7 +556,7 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:784
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:779
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Righe Timesheet"
@@ -856,7 +856,7 @@ msgid "Waiting Approval"
 msgstr "In attesa di approvazione"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:783
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:778
 #, python-format
 msgid "Warning"
 msgstr ""
