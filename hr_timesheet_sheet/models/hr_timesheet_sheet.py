@@ -458,11 +458,6 @@ class Sheet(models.Model):
                 raise UserError(
                     _('You cannot delete a timesheet sheet '
                       'which is already confirmed.'))
-        analytic_timesheet_toremove = self.env['account.analytic.line']
-        for sheet in self:
-            analytic_timesheet_toremove += \
-                sheet.timesheet_ids.filtered(lambda t: t.name == empty_name)
-        analytic_timesheet_toremove.unlink()
         return super().unlink()
 
     def _get_informables(self):
