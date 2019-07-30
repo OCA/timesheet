@@ -96,19 +96,19 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:500
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:495
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:511
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:482
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:477
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr ""
@@ -465,13 +465,13 @@ msgid "Number of unread messages"
 msgstr "未读消息"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:503
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:498
 #, python-format
 msgid "Only an HR Officer or Manager can approve sheets."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:485
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:480
 #, python-format
 msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 msgstr ""
@@ -541,7 +541,7 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:784
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:779
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "工时表明细"
@@ -837,7 +837,7 @@ msgid "Waiting Approval"
 msgstr "等待审批"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:783
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:778
 #, python-format
 msgid "Warning"
 msgstr ""
