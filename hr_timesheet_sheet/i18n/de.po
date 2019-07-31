@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2019-07-11 12:43+0000\n"
+"PO-Revision-Date: 2019-07-31 09:44+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: German (https://www.transifex.com/odoo/teams/41243/de/)\n"
 "Language: de\n"
@@ -835,7 +835,7 @@ msgstr "Heute"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__total_time
 msgid "Total Time"
-msgstr "Gesamtzeit"
+msgstr "Gebuchte Gesamtzeit"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_week_start:0
