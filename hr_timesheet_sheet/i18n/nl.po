@@ -58,7 +58,7 @@ msgid "Approved"
 msgstr "Goedgekeurd"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:415
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:410
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Een niet ingediende urenstaat kan niet goedgekeurd worden."
@@ -298,13 +298,13 @@ msgid "Note"
 msgstr "Notitie"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:413
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:408
 #, fuzzy, python-format
 msgid "Only an HR Officer or Manager can approve sheets."
 msgstr "Alleen een HR functionaris of manager kan urenstaten goedkeuren."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:396
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:391
 #, fuzzy, python-format
 msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 msgstr ""
@@ -357,7 +357,7 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:650
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:645
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Urenstaat regels"
@@ -613,7 +613,7 @@ msgid "Waiting Approval"
 msgstr "Wachtend op goedkeuring"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:649
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:644
 #, python-format
 msgid "Warning"
 msgstr ""

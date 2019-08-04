@@ -61,7 +61,7 @@ msgid "Approved"
 msgstr "Aprovada"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:415
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:410
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Não é possível aprovar um quadro de horários não enviado."
@@ -301,13 +301,13 @@ msgid "Note"
 msgstr "Nota"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:413
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:408
 #, fuzzy, python-format
 msgid "Only an HR Officer or Manager can approve sheets."
 msgstr "Apenas um gerente ou gerente de RH pode aprovar planilhas de horas."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:396
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:391
 #, fuzzy, python-format
 msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 msgstr ""
@@ -360,7 +360,7 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:650
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:645
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Linhas do apontamento de horas"
@@ -616,7 +616,7 @@ msgid "Waiting Approval"
 msgstr "Aguardando Aprovação"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:649
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:644
 #, python-format
 msgid "Warning"
 msgstr ""
