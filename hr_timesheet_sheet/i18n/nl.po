@@ -100,20 +100,20 @@ msgid "Attachment Count"
 msgstr "Aantal bijlages"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:500
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:495
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Een niet ingediende urenstaat kan niet goedgekeurd worden."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:511
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
 #, fuzzy, python-format
 #| msgid "Cannot approve a non-submitted sheet."
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Een niet ingediende urenstaat kan niet goedgekeurd worden."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:482
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:477
 #, fuzzy, python-format
 #| msgid "Cannot approve a non-submitted sheet."
 msgid "Cannot revert to draft a non-approved sheet."
@@ -484,13 +484,13 @@ msgid "Number of unread messages"
 msgstr "Aantal ongelezen berichten"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:503
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:498
 #, python-format
 msgid "Only an HR Officer or Manager can approve sheets."
 msgstr "Alleen een HR functionaris of manager kan urenstaten goedkeuren."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:485
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:480
 #, python-format
 msgid "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 msgstr ""
@@ -562,7 +562,7 @@ msgid "Saturday"
 msgstr "Zaterdag"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:784
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:779
 #, fuzzy, python-format
 #| msgid "Timesheet Sheet Lines"
 msgid "Save the Timesheet Sheet first."
@@ -859,7 +859,7 @@ msgid "Waiting Approval"
 msgstr "Wachtend op goedkeuring"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:783
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:778
 #, python-format
 msgid "Warning"
 msgstr ""
