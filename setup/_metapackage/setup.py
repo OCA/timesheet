@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo12-addon-hr_timesheet_employee_required',
         'odoo12-addon-hr_timesheet_role',
         'odoo12-addon-hr_timesheet_sheet',
+        'odoo12-addon-hr_timesheet_sheet_period',
         'odoo12-addon-hr_timesheet_sheet_role',
         'odoo12-addon-hr_timesheet_task_domain',
         'odoo12-addon-hr_timesheet_task_required',
