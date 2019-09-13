@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_holiday
+# 	* hr_timesheet_holiday
 #
 msgid ""
 msgstr ""
@@ -89,7 +89,10 @@ msgstr "Permessi"
 
 #. module: hr_timesheet_holiday
 #: model:ir.model.fields,help:hr_timesheet_holiday.field_hr_holidays_status_analytic_account_id
-msgid "Link this project to an analytic account if you need financial management on projects. It enables you to connect projects with budgets, planning, cost and revenue analysis, timesheets on projects, etc."
+msgid ""
+"Link this project to an analytic account if you need financial management on "
+"projects. It enables you to connect projects with budgets, planning, cost "
+"and revenue analysis, timesheets on projects, etc."
 msgstr ""
 
 #. module: hr_timesheet_holiday
@@ -110,9 +113,11 @@ msgid "Project"
 msgstr "Progetto"
 
 #. module: hr_timesheet_holiday
-#: code:addons/hr_timesheet_holiday/models/analytic_line.py:40
+#: code:addons/hr_timesheet_holiday/models/analytic_line.py:41
 #, python-format
-msgid "This line is protected against editing because it was created automatically by a leave request. Please edit the leave request instead."
+msgid ""
+"This line is protected against editing because it was created automatically "
+"by a leave request. Please edit the leave request instead."
 msgstr ""
 
 #. module: hr_timesheet_holiday
