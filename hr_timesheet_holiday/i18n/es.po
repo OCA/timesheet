@@ -120,7 +120,7 @@ msgid "Project"
 msgstr "Proyecto"
 
 #. module: hr_timesheet_holiday
-#: code:addons/hr_timesheet_holiday/models/analytic_line.py:40
+#: code:addons/hr_timesheet_holiday/models/analytic_line.py:41
 #, python-format
 msgid ""
 "This line is protected against editing because it was created automatically "
