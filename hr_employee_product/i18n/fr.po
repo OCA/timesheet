@@ -19,8 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: hr_employee_product
-#: model:ir.model.fields,field_description:hr_employee_product.field_product_product_is_employee
-#: model:ir.model.fields,field_description:hr_employee_product.field_product_template_is_employee
+#: model:ir.model.fields,field_description:hr_employee_product.field_product_product__is_employee
+#: model:ir.model.fields,field_description:hr_employee_product.field_product_template__is_employee
 msgid "Is an Employee"
 msgstr "Est un employé"
 
