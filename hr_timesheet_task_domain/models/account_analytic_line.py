@@ -13,8 +13,8 @@ class AccountAnalyticLine(models.Model):
     @api.onchange('project_id')
     def onchange_project_id(self):
         # Check if 'closed' field exists (provided by project_stage_closed)
-        project_stage_closed = 'project.stage' in self.env \
-            and 'closed' in self.env['project.stage']._fields
+        project_stage_closed = 'project.task.type' in self.env \
+            and 'closed' in self.env['project.task.type']._fields
 
         task = self.task_id
         res = super().onchange_project_id()
