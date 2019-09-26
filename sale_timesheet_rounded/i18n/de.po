@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2019-09-26 14:24+0000\n"
+"Last-Translator: Akim Juillerat <akim.juillerat@camptocamp.com>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: sale_timesheet_rounded
 #: model:ir.model.fields,help:sale_timesheet_rounded.field_project_project__timesheet_rounding_unit
@@ -22,95 +24,106 @@ msgid "1.0 = hour\n"
 "            0.017 ~= 1 min\n"
 "            "
 msgstr ""
+"1.0 = Stunde\n"
+"            0.25 = 15 Min\n"
+"            0.084 ~= 5 Min\n"
+"            0.017 ~= 1 Min\n"
+"            "
 
 #. module: sale_timesheet_rounded
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_rounded.account_analytic_line_kanban_inherit
 msgid "<br/>\n"
 "        <strong>Rounded: </strong>"
 msgstr ""
+"<br/>\n"
+"        <strong>Gerundet: </strong>"
 
 #. module: sale_timesheet_rounded
 #: model:ir.model,name:sale_timesheet_rounded.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Kostenstellen Buchung"
 
 #. module: sale_timesheet_rounded
 #: selection:project.project,timesheet_rounding_method:0
 msgid "Closest"
-msgstr ""
+msgstr "Am nächsten"
 
 #. module: sale_timesheet_rounded
 #: selection:project.project,timesheet_rounding_method:0
 msgid "Down"
-msgstr ""
+msgstr "Nach unten"
 
 #. module: sale_timesheet_rounded
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_rounded.hr_timesheet_view_task_form2_inherited_inherit
 msgid "Duration (rounded)"
-msgstr ""
+msgstr "Geleistete Stunden (gerundet)"
 
 #. module: sale_timesheet_rounded
 #: model:ir.model.fields,help:sale_timesheet_rounded.field_project_project__timesheet_rounding_method
 msgid "If you activate the rounding of timesheet lines, only new entries will be rounded (i.e. existing lines will not be rounded automatically)."
 msgstr ""
+"Wenn Sie die Rundung von Zeiterfassungszeilen aktivieren, werden nur neue "
+"Einträge gerundet (d.h. bestehende Zeilen werden nicht automatisch gerundet)."
 
 #. module: sale_timesheet_rounded
 #: selection:project.project,timesheet_rounding_method:0
 msgid "No rounding"
-msgstr ""
+msgstr "Keine Rundung"
 
 #. module: sale_timesheet_rounded
 #: model:ir.model,name:sale_timesheet_rounded.model_project_project
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #. module: sale_timesheet_rounded
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_rounded.view_account_analytic_line_form_inherit
 msgid "Quantity Rounded"
-msgstr ""
+msgstr "Gerundete Menge"
 
 #. module: sale_timesheet_rounded
 #: model:ir.model.fields,field_description:sale_timesheet_rounded.field_account_analytic_line__unit_amount_rounded
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_rounded.account_analytic_line_tree_inherit
 msgid "Quantity rounded"
-msgstr ""
+msgstr "Gerundete Menge"
 
 #. module: sale_timesheet_rounded
 #: model:ir.model,name:sale_timesheet_rounded.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Auftragzeile"
 
 #. module: sale_timesheet_rounded
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_rounded.project_project_form_inherit
 msgid "Time rounding"
-msgstr ""
+msgstr "Zeit Rundung"
 
 #. module: sale_timesheet_rounded
 #: model:ir.model.fields,field_description:sale_timesheet_rounded.field_project_project__timesheet_rounding_factor
 msgid "Timesheet rounding factor in percentage"
-msgstr ""
+msgstr "Stundenzettel Rundungsfaktor (in Prozent)"
 
 #. module: sale_timesheet_rounded
 #: sql_constraint:project.project:0
 msgid "Timesheet rounding factor should stay between 0 and 500, endpoints included."
 msgstr ""
+"Der Stundezettel Rundungsfaktor muss inzwischen 0 und 500 sein, Endpunkte "
+"inklusive."
 
 #. module: sale_timesheet_rounded
 #: model:ir.model.fields,field_description:sale_timesheet_rounded.field_project_project__timesheet_rounding_method
 msgid "Timesheet rounding method"
-msgstr ""
+msgstr "Stundenzettel Rundungsmethode"
 
 #. module: sale_timesheet_rounded
 #: model:ir.model.fields,field_description:sale_timesheet_rounded.field_project_project__timesheet_rounding_unit
 msgid "Timesheet rounding unit"
-msgstr ""
+msgstr "Stundenzettel Rundungseinheit"
 
 #. module: sale_timesheet_rounded
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_rounded.account_analytic_line_tree_inherit
 msgid "Total quantity rounded"
-msgstr ""
+msgstr "Total gerundete Menge"
 
 #. module: sale_timesheet_rounded
 #: selection:project.project,timesheet_rounding_method:0
 msgid "Up"
-msgstr ""
+msgstr "Nach oben"
