@@ -22,11 +22,7 @@ class TestAttendanceByDay(HrTimesheetTestCases):
             checkOut=fields.Datetime.from_string('2019-04-01 15:00:00')
         )
         res = self.timesheet.get_attendance_by_day()
-        self.assertEqual(res[0], 5.0)
-        self.assertEqual(res[1], 0.0)
-        self.assertEqual(res[2], 0.0)
-        self.assertEqual(res[3], 0.0)
-        self.assertEqual(res[4], 0.0)
+        self.assertEqual(res, [5.0, 0.0, 0.0, 0.0, 0.0])
 
     def test_attendance_gap_day(self):
         self._create_attendance(
@@ -40,11 +36,7 @@ class TestAttendanceByDay(HrTimesheetTestCases):
             checkOut=fields.Datetime.from_string('2019-04-03 15:00:00')
         )
         res = self.timesheet.get_attendance_by_day()
-        self.assertEqual(res[0], 5.0)
-        self.assertEqual(res[1], 0.0)
-        self.assertEqual(res[2], 5.0)
-        self.assertEqual(res[3], 0.0)
-        self.assertEqual(res[4], 0.0)
+        self.assertEqual(res, [5.0, 0.0, 5.0, 0.0, 0.0])
 
     def test_accross_midnight(self):
         self._create_attendance(
@@ -53,11 +45,7 @@ class TestAttendanceByDay(HrTimesheetTestCases):
             checkOut=fields.Datetime.from_string('2019-04-02 05:00:00')
         )
         res = self.timesheet.get_attendance_by_day()
-        self.assertEqual(res[0], 5.0)
-        self.assertEqual(res[1], 5.0)
-        self.assertEqual(res[2], 0.0)
-        self.assertEqual(res[3], 0.0)
-        self.assertEqual(res[4], 0.0)
+        self.assertEqual(res, [5.0, 5.0, 0.0, 0.0, 0.0])
 
     def test_spanning_multiple_days(self):
         self._create_attendance(
@@ -66,8 +54,18 @@ class TestAttendanceByDay(HrTimesheetTestCases):
             checkOut=fields.Datetime.from_string('2019-04-03 05:00:00')
         )
         res = self.timesheet.get_attendance_by_day()
-        self.assertEqual(res[0], 5.0)
-        self.assertEqual(res[1], 24.0)
-        self.assertEqual(res[2], 5.0)
-        self.assertEqual(res[3], 0.0)
-        self.assertEqual(res[4], 0.0)
+        self.assertEqual(res, [5.0, 24.0, 0.0, 0.0, 0.0])
+
+    def test_accross_midnight_with_gap(self):
+        self._create_attendance(
+            employee=self.employee,
+            checkIn=fields.Datetime.from_string('2019-04-01 19:00:00'),
+            checkOut=fields.Datetime.from_string('2019-04-02 05:00:00')
+        )
+        self._create_attendance(
+            employee=self.employee,
+            checkIn=fields.Datetime.from_string('2019-04-02 19:00:00'),
+            checkOut=fields.Datetime.from_string('2019-04-03 05:00:00')
+        )
+        res = self.timesheet.get_attendance_by_day()
+        self.assertEqual(res, [5.0, 10.0, 5.0, 0.0, 0.0])

@@ -90,8 +90,7 @@ class HrTimesheetSheet(models.Model):
         date_end = fields.Date.from_string(self.date_end)
         date_start = fields.Date.from_string(self.date_start)
         date_range = (date_end - date_start).days
-        for delta in range(0, date_range + 1):
-            result.append(0)
+        result = [0] * (date_range + 1)
         for attendance in self.attendances_ids:
             checkin_date = fields.Date.from_string(attendance.check_in)
             checkout_date = fields.Date.from_string(attendance.check_out)
