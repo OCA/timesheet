@@ -15,6 +15,7 @@
                 <button
                     name="action_close_task"
                     string="Close task"
+                    tabindex="-1"
                     type="object"
                     icon="fa-folder-o"
                     attrs="{'invisible': ['|', ('is_task_closed', '=', True), ('task_id', '=', False)]}"
@@ -22,6 +23,7 @@
                 <button
                     name="action_open_task"
                     string="Open task"
+                    tabindex="-1"
                     type="object"
                     icon="fa-folder-open-o"
                     attrs="{'invisible': ['|', ('is_task_closed', '=', False), ('task_id', '=', False)]}"
