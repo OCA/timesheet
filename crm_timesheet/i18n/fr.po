@@ -24,14 +24,62 @@ msgid "Analytic Line"
 msgstr "Ligne analytique"
 
 #. module: crm_timesheet
+#: model:ir.model,name:crm_timesheet.model_hr_timesheet_switch
+msgid "Helper to quickly switch between timesheet lines"
+msgstr ""
+
+#. module: crm_timesheet
+#: model:ir.model.fields,help:crm_timesheet.field_crm_lead__show_time_control
+msgid "Indicate which time control button to show, if any."
+msgstr ""
+
+#. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_crm_lead
 #: model:ir.model.fields,field_description:crm_timesheet.field_account_analytic_line__lead_id
+#: model:ir.model.fields,field_description:crm_timesheet.field_hr_timesheet_switch__lead_id
 msgid "Lead/Opportunity"
 msgstr "Piste/Opportunité"
 
 #. module: crm_timesheet
 #: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__project_id
 msgid "Project"
+msgstr ""
+
+#. module: crm_timesheet
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__show_time_control
+msgid "Show Time Control"
+msgstr ""
+
+#. module: crm_timesheet
+#: selection:crm.lead,show_time_control:0
+msgid "Start"
+msgstr ""
+
+#. module: crm_timesheet
+#: code:addons/crm_timesheet/models/crm_lead.py:58
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_oppor
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
+#, python-format
+msgid "Start work"
+msgstr ""
+
+#. module: crm_timesheet
+#: selection:crm.lead,show_time_control:0
+msgid "Stop"
+msgstr ""
+
+#. module: crm_timesheet
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_oppor
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
+msgid "Stop work"
 msgstr ""
 
 #. module: crm_timesheet
