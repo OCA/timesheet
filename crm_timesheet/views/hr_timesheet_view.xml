@@ -8,7 +8,19 @@
         <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
         <field name="arch" type="xml">
             <field name="task_id" position="after">
-                <field name="lead_id" invisible="context.get('from_lead')"/>
+                <field name="lead_id" invisible="context.get('base_model_name') == 'crm.lead'"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_timesheet_line_form" model="ir.ui.view">
+        <field name="name">Lead/opportunity in timesheet line form</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet_task_stage.account_analytic_line_form"/>
+        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+        <field name="arch" type="xml">
+            <field name="task_id" position="after">
+                <field name="lead_id"/>
             </field>
         </field>
     </record>

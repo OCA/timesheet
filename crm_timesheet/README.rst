@@ -73,6 +73,7 @@ Contributors
   * Javier Iniesta
   * David Vidal
   * Vicent Cubells
+  * Jairo Llopis
 
 Maintainers
 ~~~~~~~~~~~
