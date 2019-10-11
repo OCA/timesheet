@@ -20,11 +20,13 @@ msgstr ""
 
 #. module: sale_timesheet_line_exclude
 #: model:ir.model.fields,help:sale_timesheet_line_exclude.field_account_analytic_line__exclude_from_sale_order
+#: model:ir.model.fields,help:sale_timesheet_line_exclude.field_hr_timesheet_switch__exclude_from_sale_order
 msgid "Checking this would exclude this timesheet entry from Sale Order"
 msgstr ""
 
 #. module: sale_timesheet_line_exclude
 #: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_account_analytic_line__exclude_from_sale_order
+#: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_hr_timesheet_switch__exclude_from_sale_order
 msgid "Exclude from Sale Order"
 msgstr ""
 
