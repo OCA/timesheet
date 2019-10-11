@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_timesheet_line_exclude
+# 	* sale_timesheet_line_exclude
 #
 msgid ""
 msgstr ""
@@ -23,6 +23,7 @@ msgstr "Kostenstellenbuchung"
 
 #. module: sale_timesheet_line_exclude
 #: model:ir.model.fields,help:sale_timesheet_line_exclude.field_account_analytic_line__exclude_from_sale_order
+#: model:ir.model.fields,help:sale_timesheet_line_exclude.field_hr_timesheet_switch__exclude_from_sale_order
 msgid "Checking this would exclude this timesheet entry from Sale Order"
 msgstr ""
 "Wenn der Haken gesetzt ist, wird diese Zeiterfassung für die Abrechnung über "
@@ -30,6 +31,7 @@ msgstr ""
 
 #. module: sale_timesheet_line_exclude
 #: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_account_analytic_line__exclude_from_sale_order
+#: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_hr_timesheet_switch__exclude_from_sale_order
 msgid "Exclude from Sale Order"
 msgstr "von Abrechnung ausschließen"
 
@@ -41,7 +43,9 @@ msgstr "von Abrechnung ausgeschlossen"
 #. module: sale_timesheet_line_exclude
 #: code:addons/sale_timesheet_line_exclude/models/account_analytic_line.py:38
 #, python-format
-msgid "You can not modify timesheets in a way that would affect invoices since these timesheets were already invoiced."
+msgid ""
+"You can not modify timesheets in a way that would affect invoices since "
+"these timesheets were already invoiced."
 msgstr ""
 "Es ist nicht erlaubt, Zeiterfassungen zu verändern, die bereits abgerechnet "
 "sind."
