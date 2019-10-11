@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_task_required
+# 	* hr_timesheet_task_required
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,10 @@ msgstr ""
 
 #. module: hr_timesheet_task_required
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.res_config_settings_view_form
-msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-specific."
+"\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Die hier gesetzten Werte sind "
 "firmenspezifisch.\" role=\"img\" aria-label=\"Die hier gesetzten Werte sind "
@@ -41,6 +44,7 @@ msgstr "Konfigurationseinstellungen"
 
 #. module: hr_timesheet_task_required
 #: model:ir.model.fields,field_description:hr_timesheet_task_required.field_account_analytic_line__is_task_required
+#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_hr_timesheet_switch__is_task_required
 msgid "Is Task Required"
 msgstr "Aufgabe ist obligatorisch"
 
