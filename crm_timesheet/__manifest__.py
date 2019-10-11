@@ -9,7 +9,7 @@
     'version': '12.0.1.0.0',
     'depends': [
         'crm',
-        'hr_timesheet'
+        'project_timesheet_time_control'
     ],
     'data': [
         'views/crm_lead_view.xml',
