@@ -29,6 +29,7 @@ msgstr "Línea analítica"
 
 #. module: project_task_stage_allow_timesheet
 #: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_account_analytic_line__task_id
+#: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_hr_timesheet_switch__task_id
 msgid "Task"
 msgstr ""
 
