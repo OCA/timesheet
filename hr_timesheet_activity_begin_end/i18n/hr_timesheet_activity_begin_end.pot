@@ -20,11 +20,13 @@ msgstr ""
 
 #. module: hr_timesheet_activity_begin_end
 #: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_account_analytic_line__time_start
+#: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_hr_timesheet_switch__time_start
 msgid "Begin Hour"
 msgstr ""
 
 #. module: hr_timesheet_activity_begin_end
 #: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_account_analytic_line__time_stop
+#: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_hr_timesheet_switch__time_stop
 msgid "End Hour"
 msgstr ""
 
