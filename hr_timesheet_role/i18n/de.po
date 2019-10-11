@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_role
+# 	* hr_timesheet_role
 #
 msgid ""
 msgstr ""
@@ -24,7 +24,10 @@ msgstr "Der Benutzer %s darf nicht als Rolle '%s' in dem Projekt '%s' agieren."
 
 #. module: hr_timesheet_role
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
-msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-specific."
+"\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Die hier gesetzten Werte sind "
 "firmenspezifisch.\" role=\"img\" aria-label=\"Die hier gesetzten Werte sind "
@@ -66,6 +69,7 @@ msgstr "Konfigurationseinstellungen"
 
 #. module: hr_timesheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__limit_role_to_assignments
+#: model:ir.model.fields,field_description:hr_timesheet_role.field_hr_timesheet_switch__limit_role_to_assignments
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_project_project__limit_timesheet_role_to_assignments
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_res_company__limit_timesheet_role_to_assignments
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_res_config_settings__limit_timesheet_role_to_assignments
@@ -86,6 +90,7 @@ msgstr "Rolle bei Zeiterfassung obligatorisch"
 
 #. module: hr_timesheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__role_id
+#: model:ir.model.fields,field_description:hr_timesheet_role.field_hr_timesheet_switch__role_id
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.account_analytic_line_search
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.portal_my_task
 msgid "Role"
@@ -93,6 +98,7 @@ msgstr "Rolle"
 
 #. module: hr_timesheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__is_role_required
+#: model:ir.model.fields,field_description:hr_timesheet_role.field_hr_timesheet_switch__is_role_required
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_project_project__is_timesheet_role_required
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_res_company__is_timesheet_role_required
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_res_config_settings__is_timesheet_role_required
