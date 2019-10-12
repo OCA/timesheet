@@ -4,7 +4,7 @@
 Odoo Timesheet Management Modules
 =================================
 
-This project aim to deal with modules related to manage timesheet in a generic 
+This project aim to deal with modules related to manage timesheet in a generic
 way. You'll find modules that:
 
  - Fulfill timesheet from holidays
@@ -12,6 +12,3 @@ way. You'll find modules that:
  - Send reminder to employees
  - Integrate timesheet with project
  - ...
-
-
-
