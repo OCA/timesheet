@@ -1,46 +1,42 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * crm_timesheet
+#	* crm_timesheet
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2018
-# enjolras <yo@miguelrevilla.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-03 05:20+0000\n"
-"PO-Revision-Date: 2020-05-18 12:19+0000\n"
-"Last-Translator: Josep M <jmyepes@mac.com>\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
-"Language: es\n"
+"PO-Revision-Date: 2020-05-26 00:19+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
+"Language-Team: none\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.10\n"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_account_analytic_line
 msgid "Analytic Line"
-msgstr "Línea analítica"
+msgstr "Linha Analítica"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_hr_timesheet_switch
 msgid "Helper to quickly switch between timesheet lines"
-msgstr "Asistente para cambiar entre lineas de partes de horas"
+msgstr "Ajudante para alternar rapidamente entre linhas de folhas de horas"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_crm_lead
 #: model:ir.model.fields,field_description:crm_timesheet.field_account_analytic_line__lead_id
 #: model:ir.model.fields,field_description:crm_timesheet.field_hr_timesheet_switch__lead_id
 msgid "Lead/Opportunity"
-msgstr "Iniciativa/Oportunidad"
+msgstr "Lead/Oportunidade"
 
 #. module: crm_timesheet
 #: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__project_id
 msgid "Project"
-msgstr "Proyecto"
+msgstr "Projeto"
 
 #. module: crm_timesheet
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_leads
@@ -50,7 +46,7 @@ msgstr "Proyecto"
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
 msgid "Start work"
-msgstr "Iniciar tarea"
+msgstr "Iniciar Trabalho"
 
 #. module: crm_timesheet
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_leads
@@ -60,11 +56,11 @@ msgstr "Iniciar tarea"
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
 msgid "Stop work"
-msgstr "Detener tarea"
+msgstr "Parar Trabalho"
 
 #. module: crm_timesheet
 #: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__timesheet_ids
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_leads
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_oppor
 msgid "Timesheet"
-msgstr "Parte de horas"
+msgstr "Registo de horas"
