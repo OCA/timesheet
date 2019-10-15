@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import date, datetime, timedelta
+from odoo import exceptions
 from odoo.tests.common import SavepointCase
 
 
@@ -73,6 +74,9 @@ class AccountAnalyticLineCase(SavepointCase):
         # Running line found, stop the timer
         self.assertEqual(self.lead.show_time_control, "stop")
         self.lead.button_end_work()
+        # No more running lines, cannot stop again
+        with self.assertRaises(exceptions.UserError):
+            self.lead.button_end_work()
         # All lines stopped, start new one
         self.lead.invalidate_cache()
         self.assertEqual(self.lead.show_time_control, "start")
