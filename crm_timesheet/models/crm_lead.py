@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class CrmLead(models.Model):
@@ -68,4 +69,9 @@ class CrmLead(models.Model):
         running_lines = self.env["account.analytic.line"].search(
             self._timesheet_running_domain(),
         )
+        if not running_lines:
+            raise UserError(
+                _("No running timer found in lead/opportunity %s. "
+                  "Refresh the page and check again.") % self.display_name,
+            )
         return running_lines.button_end_work()
