@@ -39,14 +39,12 @@ msgid "Project"
 msgstr "Projekt"
 
 #. module: crm_timesheet
-#: code:addons/crm_timesheet/models/crm_lead.py:58
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_leads
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_oppor
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_leads
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
-#, python-format
 msgid "Start work"
 msgstr ""
 
