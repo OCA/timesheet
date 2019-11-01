@@ -1,4 +1,4 @@
-# Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields
@@ -11,177 +11,217 @@ class TestHrTimesheetRole(common.TransactionCase):
     def setUp(self):
         super().setUp()
 
-        self.now = fields.Datetime.now()
+        self.ResUsers = self.env['res.users']
         self.Company = self.env['res.company']
-        self.SudoCompany = self.Company.sudo()
         self.Project = self.env['project.project']
-        self.SudoProject = self.Project.sudo()
         self.Role = self.env['project.role']
-        self.SudoRole = self.Role.sudo()
         self.HrEmployee = self.env['hr.employee']
-        self.SudoHrEmployee = self.HrEmployee.sudo()
         self.Assignment = self.env['project.assignment']
-        self.SudoAssignment = self.Assignment.sudo()
         self.AccountAnalyticLine = self.env['account.analytic.line']
-        self.SudoAccountAnalyticLine = self.AccountAnalyticLine.sudo()
+        self.company_id = self.env['res.company']._company_default_get()
+        self.now = fields.Datetime.now()
 
-    def test_1(self):
-        project = self.SudoProject.create({
-            'name': 'Project #1',
+    def test_defaults(self):
+        user = self.ResUsers.sudo().create({
+            'name': 'User',
+            'login': 'user',
+            'email': 'user@example.com',
+            'company_id': self.company_id.id,
         })
-        role = self.SudoRole.create({
-            'name': 'Role #1',
+        project = self.Project.create({
+            'name': 'Project',
         })
-        employee = self.SudoHrEmployee.create({
-            'name': 'Employee #1',
-            'user_id': self.env.user.id,
+        role = self.Role.create({
+            'name': 'Role',
         })
-        self.SudoAssignment.create({
+        employee = self.HrEmployee.create({
+            'name': 'Employee',
+            'user_id': user.id,
+        })
+        self.Assignment.create({
             'project_id': project.id,
             'role_id': role.id,
             'user_id': employee.user_id.id,
         })
-
-        self.SudoAccountAnalyticLine.create({
+        self.AccountAnalyticLine.create({
             'project_id': project.id,
             'role_id': role.id,
             'employee_id': employee.id,
-            'name': 'Time Entry #1',
+            'name': 'Time Entry',
         })
 
-    def test_2(self):
-        project = self.SudoProject.create({
-            'name': 'Project #2',
-            'limit_timesheet_role_to_assignments': True,
+    def test_no_required_assignment(self):
+        user = self.ResUsers.sudo().create({
+            'name': 'User',
+            'login': 'user',
+            'email': 'user@example.com',
+            'company_id': self.company_id.id,
         })
-        role = self.SudoRole.create({
-            'name': 'Role #2',
+        project = self.Project.create({
+            'name': 'Project',
+            'limit_role_to_assignments': True,
         })
-        employee = self.SudoHrEmployee.create({
-            'name': 'Employee #2',
-            'user_id': self.env.user.id,
+        role = self.Role.create({
+            'name': 'Role',
+        })
+        employee = self.HrEmployee.create({
+            'name': 'Employee',
+            'user_id': user.id,
         })
 
         with self.assertRaises(ValidationError):
-            self.SudoAccountAnalyticLine.create({
+            self.AccountAnalyticLine.create({
                 'project_id': project.id,
                 'role_id': role.id,
                 'employee_id': employee.id,
-                'name': 'Time Entry #2',
+                'name': 'Time Entry',
             })
 
-    def test_3(self):
-        project = self.SudoProject.create({
-            'name': 'Project #3',
-            'limit_timesheet_role_to_assignments': True,
+    def test_no_required_role(self):
+        user = self.ResUsers.sudo().create({
+            'name': 'User',
+            'login': 'user',
+            'email': 'user@example.com',
+            'company_id': self.company_id.id,
         })
-        employee = self.SudoHrEmployee.create({
-            'name': 'Employee #3',
-            'user_id': self.env.user.id,
+        project = self.Project.create({
+            'name': 'Project',
+            'limit_role_to_assignments': True,
+        })
+        employee = self.HrEmployee.create({
+            'name': 'Employee',
+            'user_id': user.id,
         })
 
         with self.assertRaises(ValidationError):
-            self.SudoAccountAnalyticLine.create({
+            self.AccountAnalyticLine.create({
                 'project_id': project.id,
                 'employee_id': employee.id,
-                'name': 'Time Entry #3',
+                'name': 'Time Entry',
             })
 
-    def test_4(self):
-        project = self.SudoProject.create({
-            'name': 'Project #4',
+    def test_no_role_allowed(self):
+        user = self.ResUsers.sudo().create({
+            'name': 'User',
+            'login': 'user',
+            'email': 'user@example.com',
+            'company_id': self.company_id.id,
+        })
+        project = self.Project.create({
+            'name': 'Project',
             'is_timesheet_role_required': False,
         })
-        employee = self.SudoHrEmployee.create({
-            'name': 'Employee #4',
-            'user_id': self.env.user.id,
+        employee = self.HrEmployee.create({
+            'name': 'Employee',
+            'user_id': user.id,
         })
 
-        self.SudoAccountAnalyticLine.create({
+        self.AccountAnalyticLine.create({
             'project_id': project.id,
             'employee_id': employee.id,
-            'name': 'Time Entry #4',
+            'name': 'Time Entry',
         })
 
-    def test_5(self):
-        project = self.SudoProject.create({
-            'name': 'Project #5',
-            'company_id': self.env.user.company_id.id,
+    def test_no_assignment_allowed(self):
+        user = self.ResUsers.sudo().create({
+            'name': 'User',
+            'login': 'user',
+            'email': 'user@example.com',
+            'company_id': self.company_id.id,
         })
-        role = self.SudoRole.create({
-            'name': 'Role #5',
+        project = self.Project.create({
+            'name': 'Project',
+            'company_id': self.company_id.id,
         })
-        employee = self.SudoHrEmployee.create({
-            'name': 'Employee #5',
-            'user_id': self.env.user.id,
+        role = self.Role.create({
+            'name': 'Role',
+        })
+        employee = self.HrEmployee.create({
+            'name': 'Employee',
+            'user_id': user.id,
         })
 
-        self.SudoAccountAnalyticLine.create({
+        self.AccountAnalyticLine.create({
             'project_id': project.id,
             'role_id': role.id,
             'employee_id': employee.id,
-            'name': 'Time Entry #5',
+            'name': 'Time Entry',
         })
 
-    def test_6(self):
-        project_1 = self.SudoProject.create({
-            'name': 'Project #6-1',
-            'limit_timesheet_role_to_assignments': False,
+    def test_change_project(self):
+        user = self.ResUsers.sudo().create({
+            'name': 'User',
+            'login': 'user',
+            'email': 'user@example.com',
+            'company_id': self.company_id.id,
         })
-        project_2 = self.SudoProject.create({
-            'name': 'Project #6-2',
-            'limit_timesheet_role_to_assignments': False,
+        project_1 = self.Project.create({
+            'name': 'Project 1',
+            'limit_role_to_assignments': True,
         })
-        role_1 = self.SudoRole.create({
-            'name': 'Role #6-1',
+        project_2 = self.Project.create({
+            'name': 'Project 2',
+            'limit_role_to_assignments': True,
         })
-        role_2 = self.SudoRole.create({
-            'name': 'Role #6-2',
+        role_1 = self.Role.create({
+            'name': 'Role 1',
         })
-        employee = self.SudoHrEmployee.create({
-            'name': 'Employee #6',
-            'user_id': self.env.user.id,
+        role_2 = self.Role.create({
+            'name': 'Role 2',
         })
-        self.SudoAssignment.create({
+        employee = self.HrEmployee.create({
+            'name': 'Employee',
+            'user_id': user.id,
+        })
+        self.Assignment.create({
             'project_id': project_1.id,
             'role_id': role_1.id,
-            'user_id': employee.user_id.id,
+            'user_id': user.id,
         })
-        self.SudoAssignment.create({
+        self.Assignment.create({
             'project_id': project_2.id,
             'role_id': role_2.id,
-            'user_id': employee.user_id.id,
+            'user_id': user.id,
         })
-        account_analytic_line = self.SudoAccountAnalyticLine.create({
+        account_analytic_line = self.AccountAnalyticLine.create({
             'project_id': project_1.id,
             'role_id': role_1.id,
             'employee_id': employee.id,
-            'name': 'Time Entry #6',
+            'name': 'Time Entry',
         })
 
-        account_analytic_line.project_id = project_2
-        account_analytic_line._onchange_project_or_employee()
-        self.assertEqual(account_analytic_line.role_id.id, False)
+        with common.Form(
+                account_analytic_line,
+                view='hr_timesheet.timesheet_view_form_user') as form:
+            form.project_id = project_2
+            self.assertFalse(form.role_id)
+            form.role_id = role_2
 
-    def test_7(self):
-        role = self.SudoRole.create({
-            'name': 'Role #7',
+    def test_creation_defaults(self):
+        user = self.ResUsers.sudo().create({
+            'name': 'User',
+            'login': 'user',
+            'email': 'user@example.com',
+            'company_id': self.company_id.id,
         })
-        company = self.SudoCompany.create({
-            'name': 'Company #7',
+        role = self.Role.create({
+            'name': 'Role',
+        })
+        company = self.Company.create({
+            'name': 'Company',
             'is_timesheet_role_required': False,
-            'limit_timesheet_role_to_assignments': True,
+            'project_limit_role_to_assignments': True,
         })
-        project = self.SudoProject.create({
-            'name': 'Project #7',
+        project = self.Project.create({
+            'name': 'Project',
             'company_id': company.id,
         })
-        employee = self.SudoHrEmployee.create({
+        employee = self.HrEmployee.create({
             'company_id': company.id,
-            'name': 'Employee #6',
-            'user_id': self.env.user.id,
+            'name': 'Employee',
+            'user_id': user.id,
         })
-        self.SudoAssignment.create({
+        self.Assignment.create({
             'project_id': project.id,
             'role_id': role.id,
             'user_id': employee.user_id.id,
@@ -194,16 +234,12 @@ class TestHrTimesheetRole(common.TransactionCase):
             project.is_timesheet_role_required,
             company.is_timesheet_role_required
         )
-        self.assertEqual(
-            project.limit_timesheet_role_to_assignments,
-            company.limit_timesheet_role_to_assignments
-        )
 
-        account_analytic_line = self.SudoAccountAnalyticLine.create({
+        account_analytic_line = self.AccountAnalyticLine.create({
             'company_id': company.id,
             'project_id': project.id,
             'role_id': role.id,
             'employee_id': employee.id,
-            'name': 'Time Entry #6',
+            'name': 'Time Entry',
         })
         account_analytic_line._onchange_project_or_employee()

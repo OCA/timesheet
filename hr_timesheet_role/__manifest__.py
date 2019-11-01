@@ -3,7 +3,7 @@
 
 {
     'name': 'Task Logs by Role',
-    'version': '12.0.1.0.1',
+    'version': '12.0.2.0.0',
     'category': 'Human Resources',
     'website': 'https://github.com/OCA/hr-timesheet',
     'author':
