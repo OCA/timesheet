@@ -1,4 +1,4 @@
-# Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models, api, _
@@ -21,7 +21,7 @@ class AccountAnalyticLine(models.Model):
         related='project_id.is_timesheet_role_required',
     )
     limit_role_to_assignments = fields.Boolean(
-        related='project_id.limit_timesheet_role_to_assignments',
+        related='project_id.limit_role_to_assignments',
     )
 
     @api.multi
@@ -63,16 +63,6 @@ class AccountAnalyticLine(models.Model):
             self._default_user()
         )
 
-        _logger.debug(
-            (
-                'Validating role assignment: %s as user, %s as role,'
-                ' %s as project'
-            ),
-            user_id,
-            self.role_id,
-            self.project_id,
-        )
-
         # If there's no role set, is_role_required defines if that's ok
         if not self.role_id:
             return not self.is_role_required
@@ -82,24 +72,24 @@ class AccountAnalyticLine(models.Model):
         if not self.project_id or not user_id:  # pragma: no cover
             return False
 
-        return (self.env['project.assignment'].search_count([
-            ('project_id', '=', self.project_id.id),
-            ('role_id', '=', self.role_id.id),
-            ('user_id', '=', user_id.id),
-        ]) > 0)
+        role_ids = self.env['project.role'].get_available_roles(
+            user_id,
+            self.project_id
+        )
+        return self.role_id in role_ids
 
     def _domain_role_id(self):
         user_id = self.employee_id.user_id or self.env['res.users'].browse(
             self._default_user()
         )
 
-        if not self.project_id or \
-                not self.project_id.limit_timesheet_role_to_assignments:
-            return [('company_id', 'in', [False, user_id.company_id.id])]
-
-        assignments = self.env['project.assignment'].search([
-            ('project_id', '=', self.project_id.id),
-            ('user_id', '=', user_id.id),
-        ])
-
-        return [('id', 'in', assignments.mapped('role_id').ids)]
+        if not self.project_id:
+            role_ids = self.env['project.role'].search([
+                ('company_id', 'in', [False, user_id.company_id.id]),
+            ])
+        else:
+            role_ids = self.env['project.role'].get_available_roles(
+                user_id,
+                self.project_id
+            )
+        return [('id', 'in', role_ids.ids)]

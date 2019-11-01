@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
 <odoo>
-    <!--
-        Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
-        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-    -->
 
     <record id="res_config_settings_view_form" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.hr_timesheet_timetracker</field>
@@ -21,18 +21,6 @@
                             <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." role="img" aria-label="Values set here are company-specific." groups="base.group_multi_company"/>
                             <div class="text-muted">
                                 Check to require role to be selected when using Timesheets.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane">
-                            <field name="limit_timesheet_role_to_assignments"/>
-                        </div>
-                        <div class="o_setting_right_pane">
-                            <label for="limit_timesheet_role_to_assignments"/>
-                            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." role="img" aria-label="Values set here are company-specific." groups="base.group_multi_company"/>
-                            <div class="text-muted">
-                                Check to limit role selection to current assignments only.
                             </div>
                         </div>
                     </div>
