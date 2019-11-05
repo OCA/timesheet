@@ -101,23 +101,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
-#, fuzzy
-msgid "By Department Manager"
-msgstr "部門"
-
-#. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_sheet_review_policy:0
-msgid "By Direct Manager"
-msgstr ""
-
-#. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By HR Manager/Officer"
-msgstr ""
-
-#. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_sheet_review_policy:0
-msgid "By Project Manager"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -1063,6 +1047,10 @@ msgstr "必須每天輸入工時表並在週末確認，一旦工時單被確認
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "到"
+
+#, fuzzy
+#~ msgid "By Department Manager"
+#~ msgstr "部門"
 
 #, fuzzy
 #~ msgid "Only an HR Officer or Manager can approve sheets."
