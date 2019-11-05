@@ -36,9 +36,6 @@ class ResCompany(models.Model):
         string='Timesheet Sheet Review Policy',
         selection=[
             ('hr', 'By HR Manager/Officer'),
-            ('department_manager', 'By Department Manager'),
-            ('direct_manager', 'By Direct Manager'),
-            ('project_manager', 'By Project Manager'),
         ],
         default='hr',
         help='How Timesheet Sheets review is performed.',
