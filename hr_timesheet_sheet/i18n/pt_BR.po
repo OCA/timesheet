@@ -101,27 +101,8 @@ msgstr "Contagem de Anexos"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
-#, fuzzy
-#| msgid "HR Department"
-msgid "By Department Manager"
-msgstr "Departamento de RH"
-
-#. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_sheet_review_policy:0
-msgid "By Direct Manager"
-msgstr ""
-
-#. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By HR Manager/Officer"
 msgstr ""
-
-#. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_sheet_review_policy:0
-#, fuzzy
-#| msgid "Project Name"
-msgid "By Project Manager"
-msgstr "Nome do Projeto"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
@@ -1109,6 +1090,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "até"
+
+#, fuzzy
+#~| msgid "HR Department"
+#~ msgid "By Department Manager"
+#~ msgstr "Departamento de RH"
+
+#, fuzzy
+#~| msgid "Project Name"
+#~ msgid "By Project Manager"
+#~ msgstr "Nome do Projeto"
 
 #~ msgid "Only an HR Officer or Manager can approve sheets."
 #~ msgstr "Apenas um Gerente ou Gerente de RH pode aprovar planilhas."
