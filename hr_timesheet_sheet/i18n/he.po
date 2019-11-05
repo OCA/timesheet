@@ -98,23 +98,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
-#, fuzzy
-msgid "By Department Manager"
-msgstr "מחלקה"
-
-#. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_sheet_review_policy:0
-msgid "By Direct Manager"
-msgstr ""
-
-#. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By HR Manager/Officer"
-msgstr ""
-
-#. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_sheet_review_policy:0
-msgid "By Project Manager"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -1016,6 +1000,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "אל"
+
+#, fuzzy
+#~ msgid "By Department Manager"
+#~ msgstr "מחלקה"
 
 #~ msgid "To Approve"
 #~ msgstr "על מנת לאשר"
