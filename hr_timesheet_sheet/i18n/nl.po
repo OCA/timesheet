@@ -102,27 +102,8 @@ msgstr "Aantal bijlages"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
-#, fuzzy
-#| msgid "HR Department"
-msgid "By Department Manager"
-msgstr "HR afdeling"
-
-#. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_sheet_review_policy:0
-msgid "By Direct Manager"
-msgstr ""
-
-#. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By HR Manager/Officer"
 msgstr ""
-
-#. module: hr_timesheet_sheet
-#: selection:res.company,timesheet_sheet_review_policy:0
-#, fuzzy
-#| msgid "Project Name"
-msgid "By Project Manager"
-msgstr "Project naam"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
@@ -1114,6 +1095,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "tot"
+
+#, fuzzy
+#~| msgid "HR Department"
+#~ msgid "By Department Manager"
+#~ msgstr "HR afdeling"
+
+#, fuzzy
+#~| msgid "Project Name"
+#~ msgid "By Project Manager"
+#~ msgstr "Project naam"
 
 #~ msgid "Only an HR Officer or Manager can approve sheets."
 #~ msgstr "Alleen een HR functionaris of manager kan urenstaten goedkeuren."
