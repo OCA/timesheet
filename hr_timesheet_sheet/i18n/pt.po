@@ -110,19 +110,19 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:590
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:600
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:574
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr ""
@@ -367,17 +367,17 @@ msgid "In Draft"
 msgstr "Em rascunho"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:516
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
-"user."
+"user: %s"
 msgstr ""
 "Para poder criar um registo de horas para este funcionário, deve associá-"
 "lo(a) a um utilizador."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:614
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 msgid ""
 "In order to review a timesheet sheet, your user needs to be linked to an "
@@ -510,7 +510,7 @@ msgid "Number of unread messages"
 msgstr "Mensagens Não Lidas"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:624
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
 msgstr ""
@@ -523,6 +523,11 @@ msgstr "Aberto"
 #. module: hr_timesheet_sheet
 #: selection:hr_timesheet.sheet,activity_state:0
 msgid "Overdue"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,sheet_range:0
+msgid "Payroll Period"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -596,7 +601,7 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:896
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Linhas do Registo de Horas"
@@ -940,7 +945,7 @@ msgid "Waiting review"
 msgstr "Aprovação em espera"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:895
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
 msgstr ""
@@ -1004,13 +1009,15 @@ msgid ""
 msgstr "Não pode modificar um movimento num registo de horas confirmado."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
-msgid "You cannot delete a timesheet sheet which is already confirmed."
+msgid ""
+"You cannot delete a timesheet sheet which is already submitted or confirmed: "
+"%s"
 msgstr "Não pode eliminar um registo de horas que já foi confirmado."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:524
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "Não pode duplicar um registo de horas."
@@ -1026,9 +1033,9 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:137
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
 #, fuzzy, python-format
-msgid "You cannot modify an entry in a confirmed timesheet sheet."
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr "Não pode modificar um movimento num registo de horas confirmado."
 
 #. module: hr_timesheet_sheet
@@ -1044,6 +1051,22 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "para"
+
+#, fuzzy
+#~ msgid ""
+#~ "In order to create a sheet for this employee, you must link him/her to an "
+#~ "user."
+#~ msgstr ""
+#~ "Para poder criar um registo de horas para este funcionário, deve associá-"
+#~ "lo(a) a um utilizador."
+
+#, fuzzy
+#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
+#~ msgstr "Não pode eliminar um registo de horas que já foi confirmado."
+
+#, fuzzy
+#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
+#~ msgstr "Não pode modificar um movimento num registo de horas confirmado."
 
 #, fuzzy
 #~ msgid "By Department Manager"

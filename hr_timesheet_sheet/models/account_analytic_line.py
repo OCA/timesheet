@@ -133,9 +133,12 @@ class AccountAnalyticLine(models.Model):
             return
         for line in self.filtered('sheet_id'):
             if line.sheet_id.state not in ['new', 'draft']:
-                raise UserError(
-                    _('You cannot modify an entry in a confirmed '
-                      'timesheet sheet.'))
+                raise UserError(_(
+                    'You cannot modify an entry in a confirmed timesheet sheet'
+                    ': %s'
+                ) % (
+                    line.sheet_id.complete_name,
+                ))
 
     @api.multi
     def merge_timesheets(self):
