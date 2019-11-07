@@ -25,7 +25,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_role.field_hr_timesheet_sheet__add_line_limit_role_to_assignments
-msgid "Limit Timesheet Role to Assignments"
+msgid "Limit role to assignments"
 msgstr ""
 
 #. module: hr_timesheet_sheet_role
