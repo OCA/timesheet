@@ -1,4 +1,4 @@
-# Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from dateutil.relativedelta import relativedelta
@@ -15,37 +15,30 @@ class TestHrTimesheetRole(common.TransactionCase):
 
         self.now = fields.Datetime.now()
         self.Company = self.env['res.company']
-        self.SudoCompany = self.Company.sudo()
         self.Project = self.env['project.project']
-        self.SudoProject = self.Project.sudo()
         self.Role = self.env['project.role']
-        self.SudoRole = self.Role.sudo()
         self.HrEmployee = self.env['hr.employee']
-        self.SudoHrEmployee = self.HrEmployee.sudo()
         self.Assignment = self.env['project.assignment']
-        self.SudoAssignment = self.Assignment.sudo()
         self.AccountAnalyticLine = self.env['account.analytic.line']
-        self.SudoAccountAnalyticLine = self.AccountAnalyticLine.sudo()
         self.HrTimesheetSheet = self.env['hr_timesheet.sheet']
-        self.SudoHrTimesheetSheet = self.HrTimesheetSheet.sudo()
 
     def test_1(self):
-        project = self.SudoProject.create({
+        project = self.Project.create({
             'name': 'Project #1',
         })
-        role = self.SudoRole.create({
+        role = self.Role.create({
             'name': 'Role #1',
         })
-        employee = self.SudoHrEmployee.create({
+        employee = self.HrEmployee.create({
             'name': 'Employee #1',
             'user_id': self.env.user.id,
         })
-        self.SudoAssignment.create({
+        self.Assignment.create({
             'project_id': project.id,
             'role_id': role.id,
             'user_id': employee.user_id.id,
         })
-        sheet = self.SudoHrTimesheetSheet.create({
+        sheet = self.HrTimesheetSheet.create({
             'employee_id': employee.id,
         })
         sheet._onchange_scope()
@@ -69,28 +62,28 @@ class TestHrTimesheetRole(common.TransactionCase):
         self.assertEqual(len(sheet.line_ids), 0)
 
     def test_2(self):
-        company = self.SudoCompany.create({
+        company = self.Company.create({
             'name': 'Company #2',
             'is_timesheet_role_required': False,
-            'limit_timesheet_role_to_assignments': True,
+            'limit_role_to_assignments': True,
         })
-        project = self.SudoProject.create({
+        project = self.Project.create({
             'name': 'Project #2',
         })
-        role = self.SudoRole.create({
+        role = self.Role.create({
             'name': 'Role #2',
             'company_id': company.id,
         })
-        employee = self.SudoHrEmployee.create({
+        employee = self.HrEmployee.create({
             'name': 'Employee #2',
             'user_id': self.env.user.id,
         })
-        self.SudoAssignment.create({
+        self.Assignment.create({
             'project_id': project.id,
             'role_id': role.id,
             'user_id': employee.user_id.id,
         })
-        sheet = self.SudoHrTimesheetSheet.create({
+        sheet = self.HrTimesheetSheet.create({
             'employee_id': employee.id,
         })
         sheet._onchange_scope()
@@ -105,23 +98,23 @@ class TestHrTimesheetRole(common.TransactionCase):
             sheet.add_line_role_id = role
 
     def test_3(self):
-        project = self.SudoProject.create({
+        project = self.Project.create({
             'name': 'Project #3',
-            'limit_timesheet_role_to_assignments': True,
+            'limit_role_to_assignments': True,
         })
-        role = self.SudoRole.create({
+        role = self.Role.create({
             'name': 'Role #3',
         })
-        employee = self.SudoHrEmployee.create({
+        employee = self.HrEmployee.create({
             'name': 'Employee #3',
             'user_id': self.env.user.id,
         })
-        self.SudoAssignment.create({
+        self.Assignment.create({
             'project_id': project.id,
             'role_id': role.id,
             'user_id': employee.user_id.id,
         })
-        sheet = self.SudoHrTimesheetSheet.create({
+        sheet = self.HrTimesheetSheet.create({
             'employee_id': employee.id,
         })
         sheet._onchange_scope()

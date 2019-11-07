@@ -1,9 +1,9 @@
-# Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     'name': 'HR Timesheet Sheet by Role',
-    'version': '12.0.1.0.0',
+    'version': '12.0.2.0.0',
     'category': 'Human Resources',
     'website': 'https://github.com/OCA/hr-timesheet',
     'author':

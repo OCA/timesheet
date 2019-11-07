@@ -21,7 +21,7 @@ class HrTimesheetSheet(models.Model):
         },
     )
     add_line_limit_role_to_assignments = fields.Boolean(
-        related='add_line_project_id.limit_timesheet_role_to_assignments',
+        related='add_line_project_id.limit_role_to_assignments',
     )
 
     @api.multi
@@ -46,16 +46,16 @@ class HrTimesheetSheet(models.Model):
         return result
 
     def _domain_add_line_role_id(self):
-        if not self.add_line_project_id or \
-                not self.add_line_limit_role_to_assignments:
-            return [('company_id', 'in', [False, self.user_id.company_id.id])]
-
-        assignments = self.env['project.assignment'].search([
-            ('project_id', '=', self.add_line_project_id.id),
-            ('user_id', '=', self.user_id.id),
-        ])
-
-        return [('id', 'in', assignments.mapped('role_id').ids)]
+        if not self.add_line_project_id:
+            role_ids = self.env['project.role'].search([
+                ('company_id', 'in', [False, self.user_id.company_id.id]),
+            ])
+        else:
+            role_ids = self.env['project.role'].get_available_roles(
+                self.user_id,
+                self.add_line_project_id
+            )
+        return [('id', 'in', role_ids.ids)]
 
     @api.model
     def _matrix_key_attributes(self):

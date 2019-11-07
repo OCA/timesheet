@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
 <odoo>
-    <!--
-        Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
-        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-    -->
 
     <record id="project_project_view_form_simplified" model="ir.ui.view">
         <field name="name">project.project.view.form.simplified.timetracker</field>
@@ -12,7 +12,6 @@
         <field name="arch" type="xml">
             <field name="allow_timesheets" position="after">
                 <field name="is_timesheet_role_required" attrs="{'invisible': [('allow_timesheets', '=', False)]}" string="Require role in Timesheets"/>
-                <field name="limit_timesheet_role_to_assignments" attrs="{'invisible': [('allow_timesheets', '=', False)]}"/>
             </field>
         </field>
     </record>
@@ -26,10 +25,6 @@
                 <div attrs="{'invisible': [('allow_timesheets', '=', False)]}">
                     <field name="is_timesheet_role_required" class="oe_inline"/>
                     <label for="is_timesheet_role_required" string="Require role in Timesheets"/>
-                </div>
-                <div attrs="{'invisible': [('allow_timesheets', '=', False)]}">
-                    <field name="limit_timesheet_role_to_assignments" class="oe_inline"/>
-                    <label for="limit_timesheet_role_to_assignments"/>
                 </div>
             </xpath>
         </field>
