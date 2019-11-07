@@ -45,13 +45,6 @@ msgstr "Kostenstellenbuchung"
 
 #. module: hr_timesheet_role
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
-msgid "Check to limit role selection to current assignments only."
-msgstr ""
-"Wenn der Haken gesetzt ist, wird die Rollenauswahl bei der Zeiterfassung auf "
-"diejenigen beschränkt, die dem Projekt zugeordnet sind."
-
-#. module: hr_timesheet_role
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
 msgid "Check to require role to be selected when using Timesheets."
 msgstr ""
 "Wenn der Haken gesetzt ist, muss bei der Zeiterfassung eine Rolle "
@@ -70,10 +63,9 @@ msgstr "Konfigurationseinstellungen"
 #. module: hr_timesheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__limit_role_to_assignments
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_hr_timesheet_switch__limit_role_to_assignments
-#: model:ir.model.fields,field_description:hr_timesheet_role.field_project_project__limit_timesheet_role_to_assignments
-#: model:ir.model.fields,field_description:hr_timesheet_role.field_res_company__limit_timesheet_role_to_assignments
-#: model:ir.model.fields,field_description:hr_timesheet_role.field_res_config_settings__limit_timesheet_role_to_assignments
-msgid "Limit Timesheet Role to Assignments"
+#, fuzzy
+#| msgid "Limit Timesheet Role to Assignments"
+msgid "Limit role to assignments"
 msgstr "nur projektspezif. Rollen bei Zeiterfassung erlauben"
 
 #. module: hr_timesheet_role
@@ -110,3 +102,8 @@ msgstr "Rolle bei Zeiterfassung obligatorisch"
 #, python-format
 msgid "unassigned"
 msgstr "nicht zugewiesen"
+
+#~ msgid "Check to limit role selection to current assignments only."
+#~ msgstr ""
+#~ "Wenn der Haken gesetzt ist, wird die Rollenauswahl bei der Zeiterfassung "
+#~ "auf diejenigen beschränkt, die dem Projekt zugeordnet sind."
