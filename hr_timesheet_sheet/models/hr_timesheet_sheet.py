@@ -512,9 +512,12 @@ class Sheet(models.Model):
         if 'employee_id' in vals:
             employee = self.env['hr.employee'].browse(vals['employee_id'])
             if not employee.user_id:
-                raise UserError(
-                    _('In order to create a sheet for this employee, '
-                      'you must link him/her to an user.'))
+                raise UserError(_(
+                    'In order to create a sheet for this employee, you must'
+                    ' link him/her to an user: %s'
+                ) % (
+                    employee.name,
+                ))
             return employee.user_id.id
         return False
 
@@ -548,12 +551,13 @@ class Sheet(models.Model):
 
     @api.multi
     def unlink(self):
-        sheets = self.read(['state'])
-        for sheet in sheets:
-            if sheet['state'] in ('confirm', 'done'):
-                raise UserError(
-                    _('You cannot delete a timesheet sheet '
-                      'which is already confirmed.'))
+        for sheet in self:
+            if sheet.state in ('confirm', 'done'):
+                raise UserError(_(
+                    'You cannot delete a timesheet sheet which is already'
+                    ' submitted or confirmed: %s') % (
+                        sheet.complete_name,
+                    ))
         return super().unlink()
 
     def _get_informables(self):
