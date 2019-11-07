@@ -111,19 +111,19 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:590
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Kan ikke godkende en timeseddel der ikke er indsendt"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:600
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, fuzzy, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Kan ikke godkende en timeseddel der ikke er indsendt"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:574
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, fuzzy, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr "Kan ikke godkende en timeseddel der ikke er indsendt"
@@ -368,17 +368,17 @@ msgid "In Draft"
 msgstr "I udkast status"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:516
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
-"user."
+"user: %s"
 msgstr ""
 "For at oprette et tidsskema for denne medarbejder, skal du linke ham/hende "
 "til en bruger."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:614
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 msgid ""
 "In order to review a timesheet sheet, your user needs to be linked to an "
@@ -511,7 +511,7 @@ msgid "Number of unread messages"
 msgstr "Ulæste beskeder"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:624
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
 msgstr ""
@@ -524,6 +524,11 @@ msgstr "Åbn"
 #. module: hr_timesheet_sheet
 #: selection:hr_timesheet.sheet,activity_state:0
 msgid "Overdue"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,sheet_range:0
+msgid "Payroll Period"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -597,7 +602,7 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:896
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Tidsskema linier"
@@ -941,7 +946,7 @@ msgid "Waiting review"
 msgstr "Afventer godkendelse"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:895
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
 msgstr ""
@@ -1005,13 +1010,15 @@ msgid ""
 msgstr "Du kan ikke ændre en indtastning i et tidsskema der er bekræftet."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
-msgid "You cannot delete a timesheet sheet which is already confirmed."
+msgid ""
+"You cannot delete a timesheet sheet which is already submitted or confirmed: "
+"%s"
 msgstr "Du kan ikke slette et tidsskema, som allerede er godkendt."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:524
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "Du kan ikke kopiere et tidsskema."
@@ -1029,9 +1036,9 @@ msgstr ""
 "Brug menuen \"mit aktuelle tidsskema\" for at undgå dette problem."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:137
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
 #, fuzzy, python-format
-msgid "You cannot modify an entry in a confirmed timesheet sheet."
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr "Du kan ikke ændre en indtastning i et tidsskema der er bekræftet."
 
 #. module: hr_timesheet_sheet
@@ -1047,6 +1054,22 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "til"
+
+#, fuzzy
+#~ msgid ""
+#~ "In order to create a sheet for this employee, you must link him/her to an "
+#~ "user."
+#~ msgstr ""
+#~ "For at oprette et tidsskema for denne medarbejder, skal du linke ham/"
+#~ "hende til en bruger."
+
+#, fuzzy
+#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
+#~ msgstr "Du kan ikke slette et tidsskema, som allerede er godkendt."
+
+#, fuzzy
+#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
+#~ msgstr "Du kan ikke ændre en indtastning i et tidsskema der er bekræftet."
 
 #, fuzzy
 #~ msgid "By Department Manager"
