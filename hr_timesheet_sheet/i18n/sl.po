@@ -109,21 +109,18 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:590
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:600
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:574
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -369,15 +366,6 @@ msgid "In Draft"
 msgstr "V osnutku"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:516
-#, fuzzy, python-format
-msgid ""
-"In order to create a sheet for this employee, you must link him/her to an "
-"user."
-msgstr ""
-"Delojemalec mora biti povezan z uporabnikom, da se lahko ustvari časovnica."
-
-#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 msgid ""
@@ -387,7 +375,6 @@ msgstr ""
 "Delojemalec mora biti povezan z uporabnikom, da se lahko ustvari časovnica."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:614
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 msgid ""
@@ -520,7 +507,6 @@ msgid "Number of unread messages"
 msgstr "Neprebrana sporočila"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:624
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -607,7 +593,6 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:896
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
@@ -949,7 +934,6 @@ msgid "Waiting review"
 msgstr "Čaka Odobritev"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:895
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
@@ -1014,12 +998,6 @@ msgid ""
 msgstr "Vnosov v potrjeno časovnico ni mogoče spreminjati."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
-#, fuzzy, python-format
-msgid "You cannot delete a timesheet sheet which is already confirmed."
-msgstr "Potrjene časovnice ne morete izbrisati."
-
-#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
 msgid ""
@@ -1028,7 +1006,6 @@ msgid ""
 msgstr "Potrjene časovnice ne morete izbrisati."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:524
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
@@ -1045,12 +1022,6 @@ msgid ""
 msgstr ""
 "Dveh prekrivajočih se časovnic ne morete imeti!\n"
 "Uporabite meni 'Moje tekoče časovnice' v izogib temu problemu."
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:137
-#, fuzzy, python-format
-msgid "You cannot modify an entry in a confirmed timesheet sheet."
-msgstr "Vnosov v potrjeno časovnico ni mogoče spreminjati."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
@@ -1071,6 +1042,22 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "za"
+
+#, fuzzy
+#~ msgid ""
+#~ "In order to create a sheet for this employee, you must link him/her to an "
+#~ "user."
+#~ msgstr ""
+#~ "Delojemalec mora biti povezan z uporabnikom, da se lahko ustvari "
+#~ "časovnica."
+
+#, fuzzy
+#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
+#~ msgstr "Potrjene časovnice ne morete izbrisati."
+
+#, fuzzy
+#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
+#~ msgstr "Vnosov v potrjeno časovnico ni mogoče spreminjati."
 
 #, fuzzy
 #~ msgid "By Department Manager"

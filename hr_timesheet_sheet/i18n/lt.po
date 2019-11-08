@@ -114,21 +114,18 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:590
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Negalima patvirtinti nepateikto darbo apskaitos žiniaraščio."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:600
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, fuzzy, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Negalima patvirtinti nepateikto darbo apskaitos žiniaraščio."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:574
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, fuzzy, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -374,16 +371,6 @@ msgid "In Draft"
 msgstr "Juodraštis"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:516
-#, fuzzy, python-format
-msgid ""
-"In order to create a sheet for this employee, you must link him/her to an "
-"user."
-msgstr ""
-"Norint sukurti darbo laiko žiniaraštį šiam darbuotojui, Jūs privalote "
-"priskirti šį darbuotoją atitinkamui sistemos vartotojui."
-
-#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 msgid ""
@@ -394,7 +381,6 @@ msgstr ""
 "priskirti šį darbuotoją atitinkamui sistemos vartotojui."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:614
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 msgid ""
@@ -528,7 +514,6 @@ msgid "Number of unread messages"
 msgstr "Neskaityti pranešimai"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:624
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, fuzzy, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -615,7 +600,6 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:896
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
@@ -960,7 +944,6 @@ msgid "Waiting review"
 msgstr "Laukiama patvirtinimo"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:895
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
@@ -1027,13 +1010,6 @@ msgstr ""
 "žiniaraštyje."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
-#, fuzzy, python-format
-msgid "You cannot delete a timesheet sheet which is already confirmed."
-msgstr ""
-"Jūs negalite ištrinti darbo laiko žiniaraščio, kuris yra jau patvirtintas."
-
-#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
 msgid ""
@@ -1043,7 +1019,6 @@ msgstr ""
 "Jūs negalite ištrinti darbo laiko žiniaraščio, kuris yra jau patvirtintas."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:524
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
@@ -1061,14 +1036,6 @@ msgstr ""
 "Jūs negalite turėti 2 darbo laiko žiniaraščių, kurie iš dalies sutampa!\n"
 "Prašome naudoti meniu \"Mano dabartinis darbo laiko žiniaraštis\", norint "
 "išvengti šios problemos."
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:137
-#, fuzzy, python-format
-msgid "You cannot modify an entry in a confirmed timesheet sheet."
-msgstr ""
-"Jūs negalite modifkuoti įrašo, kuris yra patvirtintame darbo laiko "
-"žiniaraštyje."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
@@ -1091,6 +1058,25 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "iki"
+
+#, fuzzy
+#~ msgid ""
+#~ "In order to create a sheet for this employee, you must link him/her to an "
+#~ "user."
+#~ msgstr ""
+#~ "Norint sukurti darbo laiko žiniaraštį šiam darbuotojui, Jūs privalote "
+#~ "priskirti šį darbuotoją atitinkamui sistemos vartotojui."
+
+#, fuzzy
+#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
+#~ msgstr ""
+#~ "Jūs negalite ištrinti darbo laiko žiniaraščio, kuris yra jau patvirtintas."
+
+#, fuzzy
+#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
+#~ msgstr ""
+#~ "Jūs negalite modifkuoti įrašo, kuris yra patvirtintame darbo laiko "
+#~ "žiniaraštyje."
 
 #, fuzzy
 #~ msgid "By Department Manager"
