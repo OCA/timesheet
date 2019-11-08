@@ -116,21 +116,18 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:590
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Нельзя одобрить неподтверждённый табель."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:600
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, fuzzy, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Нельзя одобрить неподтверждённый табель."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:574
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, fuzzy, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -384,16 +381,6 @@ msgid "In Draft"
 msgstr "Черновик"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:516
-#, fuzzy, python-format
-msgid ""
-"In order to create a sheet for this employee, you must link him/her to an "
-"user."
-msgstr ""
-"В целях создания табеля для этого сотрудника, вам необходимо связать его/её "
-"с пользователем."
-
-#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 msgid ""
@@ -404,7 +391,6 @@ msgstr ""
 "с пользователем."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:614
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 msgid ""
@@ -538,7 +524,6 @@ msgid "Number of unread messages"
 msgstr "Непрочитанные Сообщения"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:624
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, fuzzy, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -625,7 +610,6 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:896
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
@@ -976,7 +960,6 @@ msgid "Waiting review"
 msgstr "Ожидает одобрения"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:895
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
@@ -1041,12 +1024,6 @@ msgid ""
 msgstr "Вы не можете изменить запись в утверждённом табеле."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
-#, fuzzy, python-format
-msgid "You cannot delete a timesheet sheet which is already confirmed."
-msgstr "Вы не можете удалить уже подтверждённый табель."
-
-#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
 msgid ""
@@ -1055,7 +1032,6 @@ msgid ""
 msgstr "Вы не можете удалить уже подтверждённый табель."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:524
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
@@ -1073,12 +1049,6 @@ msgstr ""
 "Вы не может иметь 2 табеля, которые перекрываются!\n"
 "Пожалуйста, используйте меню 'Мой текущий табель', чтобы избежать этой "
 "проблемы.."
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:137
-#, fuzzy, python-format
-msgid "You cannot modify an entry in a confirmed timesheet sheet."
-msgstr "Вы не можете изменить запись в утверждённом табеле."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
@@ -1103,6 +1073,22 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "для"
+
+#, fuzzy
+#~ msgid ""
+#~ "In order to create a sheet for this employee, you must link him/her to an "
+#~ "user."
+#~ msgstr ""
+#~ "В целях создания табеля для этого сотрудника, вам необходимо связать его/"
+#~ "её с пользователем."
+
+#, fuzzy
+#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
+#~ msgstr "Вы не можете удалить уже подтверждённый табель."
+
+#, fuzzy
+#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
+#~ msgstr "Вы не можете изменить запись в утверждённом табеле."
 
 #, fuzzy
 #~ msgid "By Department Manager"

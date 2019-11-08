@@ -111,14 +111,12 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:590
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Een niet ingediende urenstaat kan niet goedgekeurd worden."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:600
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, fuzzy, python-format
 #| msgid "Cannot approve a non-submitted sheet."
@@ -126,7 +124,6 @@ msgid "Cannot reject a non-submitted sheet."
 msgstr "Een niet ingediende urenstaat kan niet goedgekeurd worden."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:574
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, fuzzy, python-format
 #| msgid "Cannot approve a non-submitted sheet."
@@ -393,16 +390,6 @@ msgid "In Draft"
 msgstr "In concept"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:516
-#, python-format
-msgid ""
-"In order to create a sheet for this employee, you must link him/her to an "
-"user."
-msgstr ""
-"Om een urenstaat voor deze medewerker aan te maken, moet u hem/haar eerst "
-"linken aan een gebruiker."
-
-#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 #| msgid ""
@@ -416,7 +403,6 @@ msgstr ""
 "linken aan een gebruiker."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:614
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 #| msgid ""
@@ -550,7 +536,6 @@ msgid "Number of unread messages"
 msgstr "Aantal ongelezen berichten"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:624
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, fuzzy, python-format
 #| msgid "Only an HR Officer or Manager can approve sheets."
@@ -638,7 +623,6 @@ msgid "Saturday"
 msgstr "Zaterdag"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:896
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 #| msgid "Timesheet Sheet Lines"
@@ -993,7 +977,6 @@ msgid "Waiting review"
 msgstr "Wachtend op goedkeuring"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:895
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
@@ -1060,12 +1043,6 @@ msgid ""
 msgstr "U kunt geen wijziging doen in een geaccordeerde urenstaatregel."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
-#, python-format
-msgid "You cannot delete a timesheet sheet which is already confirmed."
-msgstr "U kunt geen urenstaat verwijderen welke al is bevestigd."
-
-#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
 #| msgid "You cannot delete a timesheet sheet which is already confirmed."
@@ -1075,7 +1052,6 @@ msgid ""
 msgstr "U kunt geen urenstaat verwijderen welke al is bevestigd."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:524
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, python-format
 msgid "You cannot duplicate a sheet."
@@ -1096,12 +1072,6 @@ msgstr ""
 "Het is niet toegestaan om 2 urenstaten te hebben die overlappen!\n"
 "U dient het menu \"Mijn huidige urenstaat\" te gebruiken om dit probleem te "
 "voorkomen."
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:137
-#, python-format
-msgid "You cannot modify an entry in a confirmed timesheet sheet."
-msgstr "U kunt geen wijziging doen in een geaccordeerde urenstaatregel."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
@@ -1132,6 +1102,19 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "tot"
+
+#~ msgid ""
+#~ "In order to create a sheet for this employee, you must link him/her to an "
+#~ "user."
+#~ msgstr ""
+#~ "Om een urenstaat voor deze medewerker aan te maken, moet u hem/haar eerst "
+#~ "linken aan een gebruiker."
+
+#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
+#~ msgstr "U kunt geen urenstaat verwijderen welke al is bevestigd."
+
+#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
+#~ msgstr "U kunt geen wijziging doen in een geaccordeerde urenstaatregel."
 
 #, fuzzy
 #~| msgid "HR Department"

@@ -107,21 +107,18 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:590
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:600
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:574
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -367,14 +364,6 @@ msgid "In Draft"
 msgstr "อยู่ในสถานะร่าง"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:516
-#, python-format
-msgid ""
-"In order to create a sheet for this employee, you must link him/her to an "
-"user."
-msgstr ""
-
-#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, python-format
 msgid ""
@@ -383,7 +372,6 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:614
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, python-format
 msgid ""
@@ -515,7 +503,6 @@ msgid "Number of unread messages"
 msgstr "ข้อความที่ยังไม่ได้อ่าน"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:624
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -602,7 +589,6 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:896
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
@@ -947,7 +933,6 @@ msgid "Waiting review"
 msgstr "กำลังรอการอนุมัติ"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:895
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
@@ -1012,12 +997,6 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
-#, python-format
-msgid "You cannot delete a timesheet sheet which is already confirmed."
-msgstr ""
-
-#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, python-format
 msgid ""
@@ -1026,7 +1005,6 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:524
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, python-format
 msgid "You cannot duplicate a sheet."
@@ -1040,12 +1018,6 @@ msgid ""
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
 "Conflicting sheets:\n"
 " - %s"
-msgstr ""
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:137
-#, python-format
-msgid "You cannot modify an entry in a confirmed timesheet sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet

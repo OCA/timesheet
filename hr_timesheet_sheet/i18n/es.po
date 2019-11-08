@@ -121,21 +121,18 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:590
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "No es posible aprobar un parte de horas no confirmado."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:600
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, fuzzy, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "No es posible aprobar un parte de horas no confirmado."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:574
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, fuzzy, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -389,16 +386,6 @@ msgid "In Draft"
 msgstr "En borrador"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:516
-#, fuzzy, python-format
-msgid ""
-"In order to create a sheet for this employee, you must link him/her to an "
-"user."
-msgstr ""
-"Para crear un parte de horas para este empleado, debe enlazarlo con un "
-"usuario."
-
-#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 msgid ""
@@ -409,7 +396,6 @@ msgstr ""
 "usuario."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:614
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 msgid ""
@@ -543,7 +529,6 @@ msgid "Number of unread messages"
 msgstr "Mensajes por leer"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:624
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, fuzzy, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -630,7 +615,6 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:896
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
@@ -983,7 +967,6 @@ msgid "Waiting review"
 msgstr "Esperando aprobación"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:895
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
@@ -1048,12 +1031,6 @@ msgid ""
 msgstr "No puede modificar un registro de un parte de horas confirmado."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
-#, fuzzy, python-format
-msgid "You cannot delete a timesheet sheet which is already confirmed."
-msgstr "No puede eliminar un parte de horas que ya está confirmado."
-
-#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
 msgid ""
@@ -1062,7 +1039,6 @@ msgid ""
 msgstr "No puede eliminar un parte de horas que ya está confirmado."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:524
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
@@ -1079,12 +1055,6 @@ msgid ""
 msgstr ""
 "¡No puede tener 2 partes de horas que se solapen!\n"
 "Debería usar el menú 'Mi parte de horas actual' para evitar este problema."
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:137
-#, fuzzy, python-format
-msgid "You cannot modify an entry in a confirmed timesheet sheet."
-msgstr "No puede modificar un registro de un parte de horas confirmado."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
@@ -1109,6 +1079,22 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "a"
+
+#, fuzzy
+#~ msgid ""
+#~ "In order to create a sheet for this employee, you must link him/her to an "
+#~ "user."
+#~ msgstr ""
+#~ "Para crear un parte de horas para este empleado, debe enlazarlo con un "
+#~ "usuario."
+
+#, fuzzy
+#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
+#~ msgstr "No puede eliminar un parte de horas que ya está confirmado."
+
+#, fuzzy
+#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
+#~ msgstr "No puede modificar un registro de un parte de horas confirmado."
 
 #, fuzzy
 #~ msgid "By Department Manager"
