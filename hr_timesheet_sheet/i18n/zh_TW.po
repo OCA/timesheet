@@ -110,19 +110,19 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:590
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "無法批准未提交的時間表。"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:600
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, fuzzy, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "無法批准未提交的時間表。"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:574
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, fuzzy, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr "無法批准未提交的時間表。"
@@ -369,15 +369,15 @@ msgid "In Draft"
 msgstr "在草稿"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:516
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
-"user."
+"user: %s"
 msgstr "要為員工創建工時表，您必須關聯他/她到一個使用者。"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:614
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 msgid ""
 "In order to review a timesheet sheet, your user needs to be linked to an "
@@ -508,7 +508,7 @@ msgid "Number of unread messages"
 msgstr "未讀消息"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:624
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, fuzzy, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
 msgstr "只有人力資源主管或經理可以批准時間表。"
@@ -521,6 +521,11 @@ msgstr "打開"
 #. module: hr_timesheet_sheet
 #: selection:hr_timesheet.sheet,activity_state:0
 msgid "Overdue"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,sheet_range:0
+msgid "Payroll Period"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -594,7 +599,7 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:896
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "工時表明細"
@@ -940,7 +945,7 @@ msgid "Waiting review"
 msgstr "等待審批"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:895
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
 msgstr ""
@@ -1004,13 +1009,15 @@ msgid ""
 msgstr "您不能修改已確認的工時表的條目"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
-msgid "You cannot delete a timesheet sheet which is already confirmed."
+msgid ""
+"You cannot delete a timesheet sheet which is already submitted or confirmed: "
+"%s"
 msgstr "您無法刪除一張已確認的工時表。"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:524
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "您無法複製工時表。"
@@ -1028,9 +1035,9 @@ msgstr ""
 "請使用選單“我當前的時間表”來避免這個問題。"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:137
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
 #, fuzzy, python-format
-msgid "You cannot modify an entry in a confirmed timesheet sheet."
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr "您不能修改已確認的工時表的條目"
 
 #. module: hr_timesheet_sheet
@@ -1047,6 +1054,20 @@ msgstr "必須每天輸入工時表並在週末確認，一旦工時單被確認
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "到"
+
+#, fuzzy
+#~ msgid ""
+#~ "In order to create a sheet for this employee, you must link him/her to an "
+#~ "user."
+#~ msgstr "要為員工創建工時表，您必須關聯他/她到一個使用者。"
+
+#, fuzzy
+#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
+#~ msgstr "您無法刪除一張已確認的工時表。"
+
+#, fuzzy
+#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
+#~ msgstr "您不能修改已確認的工時表的條目"
 
 #, fuzzy
 #~ msgid "By Department Manager"
