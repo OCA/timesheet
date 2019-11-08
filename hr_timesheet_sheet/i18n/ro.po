@@ -110,18 +110,21 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:590
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:600
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:574
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr ""
@@ -374,7 +377,16 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
+#, python-format
+msgid ""
+"In order to create a sheet for this employee, you must link him/her to an "
+"user: %s"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:614
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, python-format
 msgid ""
 "In order to review a timesheet sheet, your user needs to be linked to an "
@@ -506,6 +518,7 @@ msgstr "Mesaje necitite"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:624
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
 msgstr ""
@@ -592,6 +605,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:896
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Linii fisa de pontaj"
@@ -936,6 +950,7 @@ msgstr "Asteapta aprobare"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:895
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
 msgstr ""
@@ -1005,7 +1020,16 @@ msgid "You cannot delete a timesheet sheet which is already confirmed."
 msgstr "Nu puteti sterge o fisa de pontaj care este deja confirmata."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
+#, fuzzy, python-format
+msgid ""
+"You cannot delete a timesheet sheet which is already submitted or confirmed: "
+"%s"
+msgstr "Nu puteti sterge o fisa de pontaj care este deja confirmata."
+
+#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:524
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "Nu puteti copia o fisa de pontaj."
@@ -1027,6 +1051,12 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:137
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet."
+msgstr "Nu puteti modifica o inregistrare intr-o fisa de pontaj confirmata."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
+#, fuzzy, python-format
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr "Nu puteti modifica o inregistrare intr-o fisa de pontaj confirmata."
 
 #. module: hr_timesheet_sheet

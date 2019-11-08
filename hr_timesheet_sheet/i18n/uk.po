@@ -111,18 +111,21 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:590
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Не вдається затвердити непредставлений табель."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:600
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, fuzzy, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Не вдається затвердити непредставлений табель."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:574
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, fuzzy, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr "Не вдається затвердити непредставлений табель."
@@ -385,7 +388,18 @@ msgstr ""
 "користувачем."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
+#, fuzzy, python-format
+msgid ""
+"In order to create a sheet for this employee, you must link him/her to an "
+"user: %s"
+msgstr ""
+"Щоб створити табель для цього співробітника, ви повинні зв'язати його з "
+"користувачем."
+
+#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:614
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 msgid ""
 "In order to review a timesheet sheet, your user needs to be linked to an "
@@ -519,6 +533,7 @@ msgstr "Непрочитані повідомлення"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:624
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, fuzzy, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
 msgstr "Тільки менеджер відділу кадрів може затвердити табель."
@@ -605,6 +620,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:896
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Записи табелю"
@@ -955,6 +971,7 @@ msgstr "Очікує затвердження"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:895
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
 msgstr ""
@@ -1024,7 +1041,16 @@ msgid "You cannot delete a timesheet sheet which is already confirmed."
 msgstr "Ви не можете видалити табель, який повністю підтверджений."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
+#, fuzzy, python-format
+msgid ""
+"You cannot delete a timesheet sheet which is already submitted or confirmed: "
+"%s"
+msgstr "Ви не можете видалити табель, який повністю підтверджений."
+
+#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:524
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "Ви не можете дублювати табель."
@@ -1045,6 +1071,12 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:137
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet."
+msgstr "Ви не можете змінити запис на підтвердженому табелі."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
+#, fuzzy, python-format
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr "Ви не можете змінити запис на підтвердженому табелі."
 
 #. module: hr_timesheet_sheet

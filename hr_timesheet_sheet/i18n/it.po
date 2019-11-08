@@ -115,18 +115,21 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:590
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Non puoi approvare un timesheet non inviato all'approvazione"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:600
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, fuzzy, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Non puoi approvare un timesheet non inviato all'approvazione"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:574
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, fuzzy, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr "Non puoi approvare un timesheet non inviato all'approvazione"
@@ -388,7 +391,17 @@ msgstr ""
 "Per generare un timesheet per questo dipendente, devi collegarlo ad un utente"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
+#, fuzzy, python-format
+msgid ""
+"In order to create a sheet for this employee, you must link him/her to an "
+"user: %s"
+msgstr ""
+"Per generare un timesheet per questo dipendente, devi collegarlo ad un utente"
+
+#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:614
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 msgid ""
 "In order to review a timesheet sheet, your user needs to be linked to an "
@@ -521,6 +534,7 @@ msgstr "Messaggi non letti"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:624
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, fuzzy, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
 msgstr "Solo un Responsabile HR o un Manager piò approvare i timesheet."
@@ -607,6 +621,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:896
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Righe Timesheet"
@@ -957,6 +972,7 @@ msgstr "In attesa di approvazione"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:895
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
 msgstr ""
@@ -1026,7 +1042,16 @@ msgid "You cannot delete a timesheet sheet which is already confirmed."
 msgstr "Non si può eliminare un timesheet che è già stato confermato."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
+#, fuzzy, python-format
+msgid ""
+"You cannot delete a timesheet sheet which is already submitted or confirmed: "
+"%s"
+msgstr "Non si può eliminare un timesheet che è già stato confermato."
+
+#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:524
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "Non è possibile duplicare un timesheet."
@@ -1045,6 +1070,12 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:137
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet."
+msgstr "Non è possibile modificare le righe di un timesheet confermato."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
+#, fuzzy, python-format
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr "Non è possibile modificare le righe di un timesheet confermato."
 
 #. module: hr_timesheet_sheet
