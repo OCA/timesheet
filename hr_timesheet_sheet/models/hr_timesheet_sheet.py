@@ -366,10 +366,9 @@ class Sheet(models.Model):
     @api.multi
     def _get_possible_reviewers(self):
         self.ensure_one()
-        result = self.env['res.users']
         if self.review_policy == 'hr':
-            result |= self.env.ref('hr.group_hr_user').users
-        return result
+            return self.env.ref('hr.group_hr_user').users
+        return self.env['res.users']
 
     @api.multi
     def _get_timesheet_sheet_company(self):
