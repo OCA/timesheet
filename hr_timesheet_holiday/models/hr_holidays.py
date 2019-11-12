@@ -26,7 +26,9 @@ class HrHolidays(models.Model):
         projects = account.project_ids.filtered(
             lambda p: p.active is True)
         if not projects:
-            raise UserError('No active projects for this Analytic Account')
+            raise UserError(_('No active projects for this Analytic Account'))
+        # User exists because already checked during the action_approve
+        user = self.employee_id.user_id
         self.sudo().with_context(force_write=True).write(
             {'analytic_line_ids': [(0, False, {
                 'name': description,
@@ -35,6 +37,9 @@ class HrHolidays(models.Model):
                 'company_id': self.employee_id.company_id.id,
                 'account_id': account.id,
                 'project_id': projects[0].id,
+                # Due to the sudo(), we have to force the user here.
+                # Otherwise Odoo will put the Admin user as user_id.
+                'user_id': user.id,
             })]})
 
     @api.model

@@ -81,7 +81,12 @@ class TimesheetHolidayTest(TestHrHolidaysBase):
         })
         hours_after = sum(account.line_ids.mapped('unit_amount'))
         self.assertEqual(hours_after - hours_before, 33.0)
-
+        # Ensure the user_id defined on generated analytic lines is the user
+        # set on the employee
+        user_employee = self.env['hr.employee'].browse(
+            self.employee_emp_id).user_id
+        self.assertTrue(user_employee)
+        self.assertEqual(account.line_ids.mapped("user_id"), user_employee)
         # Refuse leave and check hours removed from account
         leave.action_refuse()
         hours_final = sum(account.line_ids.mapped('unit_amount'))
