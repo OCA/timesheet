@@ -102,8 +102,26 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+msgid "By Department Manager"
+msgstr "HR部"
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+msgid "By Direct Manager"
+msgstr "HR部"
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By HR Manager/Officer"
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+msgid "By Project Manager"
+msgstr "HR部"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
@@ -111,19 +129,19 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:593
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "未提出のタイムシートを承認できません。"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #, fuzzy, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "未提出のタイムシートを承認できません。"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:577
 #, fuzzy, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr "未提出のタイムシートを承認できません。"
@@ -374,7 +392,7 @@ msgid "In Draft"
 msgstr "原案中"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:514
 #, fuzzy, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
@@ -384,7 +402,7 @@ msgstr ""
 "があります。"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:617
 #, fuzzy, python-format
 msgid ""
 "In order to review a timesheet sheet, your user needs to be linked to an "
@@ -517,7 +535,7 @@ msgid "Number of unread messages"
 msgstr "未読メッセージ"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:627
 #, fuzzy, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
 msgstr "HR担当者またはマネージャのみがタイムシートを承認できます。"
@@ -608,7 +626,7 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "勤務表の行"
@@ -958,7 +976,7 @@ msgid "Waiting review"
 msgstr "承認待ち"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:898
 #, python-format
 msgid "Warning"
 msgstr ""
@@ -1022,7 +1040,7 @@ msgid ""
 msgstr "確認済のタイムシート内のエントリは変更できません。"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
 #, fuzzy, python-format
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
@@ -1030,7 +1048,7 @@ msgid ""
 msgstr "既に承認済のタイムシートを削除することはできません。"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:526
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "勤怠表を複製することはできません。"
@@ -1083,10 +1101,6 @@ msgstr "～"
 #, fuzzy
 #~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
 #~ msgstr "確認済のタイムシート内のエントリは変更できません。"
-
-#, fuzzy
-#~ msgid "By Department Manager"
-#~ msgstr "HR部"
 
 #, fuzzy
 #~ msgid "Only an HR Officer or Manager can approve sheets."
