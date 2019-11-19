@@ -496,6 +496,11 @@ msgid "Overdue"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: selection:res.company,sheet_range:0
+msgid "Payroll Period"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
 msgid "Period"
 msgstr ""
