@@ -98,8 +98,26 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+msgid "By Department Manager"
+msgstr "部门"
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+msgid "By Direct Manager"
+msgstr "部门"
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By HR Manager/Officer"
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+msgid "By Project Manager"
+msgstr "部门"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
@@ -107,18 +125,21 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:593
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:577
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -366,6 +387,7 @@ msgid "In Draft"
 msgstr "在草稿"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:514
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 msgid ""
@@ -374,6 +396,7 @@ msgid ""
 msgstr "要为员工创建工时表，你必须关联他/她到一个用户。"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:617
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 msgid ""
@@ -505,6 +528,7 @@ msgid "Number of unread messages"
 msgstr "未读消息"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:627
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -596,6 +620,7 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
@@ -942,6 +967,7 @@ msgid "Waiting review"
 msgstr "等待审批"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:898
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
@@ -1006,6 +1032,7 @@ msgid ""
 msgstr "你不能修改已确认的工时表的条目"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
 msgid ""
@@ -1014,6 +1041,7 @@ msgid ""
 msgstr "你无法删除一张已确认的工时表。"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:526
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
@@ -1065,10 +1093,6 @@ msgstr "到"
 #, fuzzy
 #~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
 #~ msgstr "你不能修改已确认的工时表的条目"
-
-#, fuzzy
-#~ msgid "By Department Manager"
-#~ msgstr "部门"
 
 #, fuzzy
 #~ msgid ""

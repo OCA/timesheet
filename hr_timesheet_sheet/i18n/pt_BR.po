@@ -101,8 +101,29 @@ msgstr "Contagem de Anexos"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+#| msgid "HR Department"
+msgid "By Department Manager"
+msgstr "Departamento de RH"
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+#| msgid "Project Name"
+msgid "By Direct Manager"
+msgstr "Nome do Projeto"
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By HR Manager/Officer"
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+#| msgid "Project Name"
+msgid "By Project Manager"
+msgstr "Nome do Projeto"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
@@ -110,18 +131,21 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:593
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Não é possível aprovar uma planilha não enviada."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Não é possível rejeitar uma planilha não enviada."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:577
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -393,6 +417,7 @@ msgid "In Draft"
 msgstr "Rascunho"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:514
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 #| msgid ""
@@ -406,6 +431,7 @@ msgstr ""
 "a um usuário."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:617
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 #| msgid ""
@@ -537,6 +563,7 @@ msgid "Number of unread messages"
 msgstr "Número de mensagens não lidas"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:627
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, fuzzy, python-format
 #| msgid "Only an HR Officer or Manager can approve sheets."
@@ -631,6 +658,7 @@ msgid "Saturday"
 msgstr "Sábado"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, python-format
 msgid "Save the Timesheet Sheet first."
@@ -976,6 +1004,7 @@ msgid "Waiting review"
 msgstr "Aguardando Aprovação"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:898
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
@@ -1044,6 +1073,7 @@ msgstr ""
 "da planilha de horas."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
 #| msgid "You cannot delete a timesheet sheet which is already confirmed."
@@ -1053,6 +1083,7 @@ msgid ""
 msgstr "Você não pode excluir uma planilha de horas que já foi confirmada."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:526
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, python-format
 msgid "You cannot duplicate a sheet."
@@ -1118,16 +1149,6 @@ msgstr "até"
 #~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
 #~ msgstr ""
 #~ "Você não pode modificar um lançamento em uma planilha de horas confirmada."
-
-#, fuzzy
-#~| msgid "HR Department"
-#~ msgid "By Department Manager"
-#~ msgstr "Departamento de RH"
-
-#, fuzzy
-#~| msgid "Project Name"
-#~ msgid "By Project Manager"
-#~ msgstr "Nome do Projeto"
 
 #~ msgid "Only an HR Officer or Manager can approve sheets."
 #~ msgstr "Apenas um Gerente ou Gerente de RH pode aprovar planilhas."
