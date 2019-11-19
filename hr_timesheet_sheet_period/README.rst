@@ -37,8 +37,16 @@ employee or if not then will match the nearest payroll period.
 Configuration
 =============
 
-Create first the Payroll Fiscal Years and Payroll
-Periods from 'Human Resources > Configuration > Payroll'
+Configure *Timesheet Sheets*:
+
+#. Go to *Timesheets > Configuration > Settings*
+#. Set *Timesheet Sheet Range* to *Payroll Period*
+
+Configure *Payroll Fiscal Years* and *Payroll Periods*:
+
+#. Go to *Human Resources > Configuration > Payroll*
+#. Configure *Payroll Fiscal Years*
+#. Configure *Payroll Periods*:
 
 Usage
 =====
@@ -72,6 +80,7 @@ Contributors
 
 * Jordi Ballester Alomar <jordi.ballester@eficent.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+* Alexey Pelykh <alexey.pelykh@brainbeanapps.com>
 
 Maintainers
 ~~~~~~~~~~~
