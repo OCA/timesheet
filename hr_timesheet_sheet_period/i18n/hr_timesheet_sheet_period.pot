@@ -51,14 +51,12 @@ msgstr ""
 
 #. module: hr_timesheet_sheet_period
 #: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:103
-#: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:104
 #, python-format
 msgid "The Date From of Timesheet must match with that of date start '%s' of the Payroll period '%s'."
 msgstr ""
 
 #. module: hr_timesheet_sheet_period
 #: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:109
-#: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:110
 #, python-format
 msgid "The Date To of Timesheet must match with that of date stop '%s' of the Payroll period '%s'."
 msgstr ""
