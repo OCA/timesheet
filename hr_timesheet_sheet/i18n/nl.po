@@ -102,8 +102,29 @@ msgstr "Aantal bijlages"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+#| msgid "HR Department"
+msgid "By Department Manager"
+msgstr "HR afdeling"
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+#| msgid "Project Name"
+msgid "By Direct Manager"
+msgstr "Project naam"
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By HR Manager/Officer"
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+#| msgid "Project Name"
+msgid "By Project Manager"
+msgstr "Project naam"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
@@ -111,12 +132,14 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:593
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Een niet ingediende urenstaat kan niet goedgekeurd worden."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, fuzzy, python-format
 #| msgid "Cannot approve a non-submitted sheet."
@@ -124,6 +147,7 @@ msgid "Cannot reject a non-submitted sheet."
 msgstr "Een niet ingediende urenstaat kan niet goedgekeurd worden."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:577
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, fuzzy, python-format
 #| msgid "Cannot approve a non-submitted sheet."
@@ -390,6 +414,7 @@ msgid "In Draft"
 msgstr "In concept"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:514
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 #| msgid ""
@@ -403,6 +428,7 @@ msgstr ""
 "linken aan een gebruiker."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:617
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 #| msgid ""
@@ -536,6 +562,7 @@ msgid "Number of unread messages"
 msgstr "Aantal ongelezen berichten"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:627
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, fuzzy, python-format
 #| msgid "Only an HR Officer or Manager can approve sheets."
@@ -630,6 +657,7 @@ msgid "Saturday"
 msgstr "Zaterdag"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 #| msgid "Timesheet Sheet Lines"
@@ -984,6 +1012,7 @@ msgid "Waiting review"
 msgstr "Wachtend op goedkeuring"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:898
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
@@ -1050,6 +1079,7 @@ msgid ""
 msgstr "U kunt geen wijziging doen in een geaccordeerde urenstaatregel."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
 #| msgid "You cannot delete a timesheet sheet which is already confirmed."
@@ -1059,6 +1089,7 @@ msgid ""
 msgstr "U kunt geen urenstaat verwijderen welke al is bevestigd."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:526
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, python-format
 msgid "You cannot duplicate a sheet."
@@ -1122,16 +1153,6 @@ msgstr "tot"
 
 #~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
 #~ msgstr "U kunt geen wijziging doen in een geaccordeerde urenstaatregel."
-
-#, fuzzy
-#~| msgid "HR Department"
-#~ msgid "By Department Manager"
-#~ msgstr "HR afdeling"
-
-#, fuzzy
-#~| msgid "Project Name"
-#~ msgid "By Project Manager"
-#~ msgstr "Project naam"
 
 #~ msgid "Only an HR Officer or Manager can approve sheets."
 #~ msgstr "Alleen een HR functionaris of manager kan urenstaten goedkeuren."

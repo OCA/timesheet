@@ -105,8 +105,29 @@ msgstr "Anhangsanzahl"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+#| msgid "HR Department"
+msgid "By Department Manager"
+msgstr "HR Abteilung"
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+#| msgid "Project Name"
+msgid "By Direct Manager"
+msgstr "Projektname"
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By HR Manager/Officer"
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+#| msgid "Project Name"
+msgid "By Project Manager"
+msgstr "Projektname"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
@@ -114,6 +135,7 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:593
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
@@ -122,6 +144,7 @@ msgstr ""
 "werden."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, fuzzy, python-format
 #| msgid "Cannot approve a non-submitted sheet."
@@ -131,6 +154,7 @@ msgstr ""
 "werden."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:577
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, fuzzy, python-format
 #| msgid "Cannot approve a non-submitted sheet."
@@ -402,6 +426,7 @@ msgid "In Draft"
 msgstr "Im Entwurf"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:514
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 #| msgid ""
@@ -415,6 +440,7 @@ msgstr ""
 "einem Benutzer verbunden sein."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:617
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 #| msgid ""
@@ -546,6 +572,7 @@ msgid "Number of unread messages"
 msgstr "Dies ist die Anzahl von ungelesenen Nachrichten."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:627
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, fuzzy, python-format
 #| msgid "Only an HR Officer or Manager can approve sheets."
@@ -642,6 +669,7 @@ msgid "Saturday"
 msgstr "Samstag"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, python-format
 msgid "Save the Timesheet Sheet first."
@@ -995,6 +1023,7 @@ msgid "Waiting review"
 msgstr "Erwarte Genehmigung"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:898
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
@@ -1064,6 +1093,7 @@ msgstr ""
 "Stundenzettel."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
 #| msgid "You cannot delete a timesheet sheet which is already confirmed."
@@ -1075,6 +1105,7 @@ msgstr ""
 "Genehmigung vorliegt oder bereits genehmigt wurde."
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:526
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, python-format
 msgid "You cannot duplicate a sheet."
@@ -1143,16 +1174,6 @@ msgstr "bis"
 #~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
 #~ msgstr ""
 #~ "Ein Eintrag eines genehmigten Stundenzettels darf nicht bearbeitet werden."
-
-#, fuzzy
-#~| msgid "HR Department"
-#~ msgid "By Department Manager"
-#~ msgstr "HR Abteilung"
-
-#, fuzzy
-#~| msgid "Project Name"
-#~ msgid "By Project Manager"
-#~ msgstr "Projektname"
 
 #~ msgid "Only an HR Officer or Manager can approve sheets."
 #~ msgstr "Nur ein Personalmanager kann Stundenzettel genehmigen."
