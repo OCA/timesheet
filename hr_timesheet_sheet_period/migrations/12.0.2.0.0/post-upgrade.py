@@ -8,7 +8,7 @@ from openupgradelib import openupgrade
 def migrate(env, version):
     openupgrade.logged_query(
         env.cr,
-        """"
+        """
         UPDATE res_company
         SET sheet_range = 100
         """
