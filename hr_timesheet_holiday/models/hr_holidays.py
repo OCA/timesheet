@@ -142,7 +142,7 @@ class HrHolidays(models.Model):
                 start_dt=start_dt,
                 end_dt=end_dt,
                 compute_leaves=False,
-                resource_id=self.employee_id.id,
+                resource_id=self.employee_id.resource_id.id,
             )
             self.add_timesheet_line(
                 description=self.name or self.holiday_status_id.name,
