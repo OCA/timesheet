@@ -487,6 +487,20 @@ msgid "My Timesheet Sheets"
 msgstr "Mes feuilles de temps"
 
 #. module: hr_timesheet_sheet
+#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit_my
+#, fuzzy
+msgid "My Timesheets to Submit"
+msgstr "Feuille de présence"
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
+#, fuzzy
+#| msgid "Timesheets to Approve"
+msgid "My timesheets to submit."
+msgstr "Feuilles de temps à approuver"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
 #, fuzzy
 msgid "Name"
@@ -522,6 +536,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_type_id
 msgid "Next Activity Type"
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_line_search
+#, fuzzy
+#| msgid "Submit to Manager"
+msgid "Not Submitted"
+msgstr "Soumettre au responsable"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction_counter
@@ -1088,6 +1109,19 @@ msgstr ""
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr ""
 "Vous ne pouvez pas modifier une entrée dans une feuille de temps confirmée."
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
+#, fuzzy
+msgid ""
+"You must record timesheets every day and confirm at the end\n"
+"            of the repording period. Once the timesheet sheet is confirmed, "
+"it should be\n"
+"            validated by a reviewer."
+msgstr ""
+"Vous devez remplir votre feuille de temps chaque jour, et les confirmer\n"
+"à la fin de la semaine. Une fois la feuille confirmée, elle doit être\n"
+"validée par un gestionnaire."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
