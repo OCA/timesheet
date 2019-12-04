@@ -26,6 +26,10 @@
             <field name="date" position="before">
                 <field name="sheet_id"/>
             </field>
+            <filter name="mine" position="before">
+                <filter name="unsubmitted" string="Not Submitted" domain="['|',('sheet_id','=',False),('sheet_id.state','=','draft')]"/>
+                <separator/>
+            </filter>
         </field>
     </record>
 
@@ -37,9 +41,9 @@
         <field name="view_id" eval="False"/>
         <field name="context">
             {
-                'search_default_week': 1,
                 'search_default_groupby_employee': 1,
                 'search_default_groupby_project': 1,
+                'search_default_groupby_date': 1,
             }
         </field>
         <field name="domain">[('project_id.active','=',True),'|',('sheet_id','=',False),('sheet_id.state','=','draft')]</field>
@@ -57,11 +61,43 @@
         </field>
     </record>
 
+    <record id="act_hr_timesheet_line_to_submit_my" model="ir.actions.act_window">
+        <field name="name">My Timesheets to Submit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_type">form</field>
+        <field name="view_id" eval="False"/>
+        <field name="context">
+            {
+                'search_default_groupby_project': 1,
+                'search_default_groupby_date': 1,
+            }
+        </field>
+        <field name="domain">[('user_id', '=', uid),('project_id.active','=',True),'|',('sheet_id','=',False),('sheet_id.state','=','draft')]</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            My timesheets to submit.
+          </p><p>
+            You must record timesheets every day and confirm at the end
+            of the repording period. Once the timesheet sheet is confirmed, it should be
+            validated by a reviewer.
+          </p>
+        </field>
+    </record>
+
     <menuitem
         action="act_hr_timesheet_line_to_submit"
         id="menu_act_hr_timesheet_line_to_submit"
-        parent="menu_hr_to_review"
-        sequence="21"
+        parent="hr_timesheet.menu_hr_time_tracking"
+        groups="hr_timesheet.group_timesheet_manager"
+        sequence="6"
+    />
+
+    <menuitem
+        action="act_hr_timesheet_line_to_submit_my"
+        id="menu_act_hr_timesheet_line_to_submit_my"
+        parent="hr_timesheet.menu_hr_time_tracking"
+        sequence="5"
     />
 
 </odoo>

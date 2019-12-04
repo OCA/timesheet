@@ -464,6 +464,19 @@ msgid "My Timesheet Sheets"
 msgstr "나의 일정표"
 
 #. module: hr_timesheet_sheet
+#: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit_my
+#, fuzzy
+msgid "My Timesheets to Submit"
+msgstr "작업표"
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
+#, fuzzy
+msgid "My timesheets to submit."
+msgstr "작업표 기록기간"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
 #, fuzzy
 msgid "Name"
@@ -499,6 +512,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_type_id
 msgid "Next Activity Type"
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_line_search
+#, fuzzy
+#| msgid "Submit to Manager"
+msgid "Not Submitted"
+msgstr "관리자에게 제출"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction_counter
@@ -1053,6 +1073,15 @@ msgstr ""
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr "확정된 작업표의 항목은 수정할 수 없습니다!"
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
+msgid ""
+"You must record timesheets every day and confirm at the end\n"
+"            of the repording period. Once the timesheet sheet is confirmed, "
+"it should be\n"
+"            validated by a reviewer."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
