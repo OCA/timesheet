@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2019-12-10 20:04+0000\n"
+"PO-Revision-Date: 2019-12-16 10:05+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: German (https://www.transifex.com/odoo/teams/41243/de/)\n"
 "Language: de\n"
@@ -480,12 +480,12 @@ msgstr "Meine Stundenzettel"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit_my
 msgid "My Timesheets to Submit"
-msgstr "Meine dem Manager vorzulegenden Stundenzettel"
+msgstr "Meine zur Prüfung vorzulegenden Stundenzettel"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 msgid "My timesheets to submit."
-msgstr "Dies sind die meine dem Manager vorzulegenden Stundenzettel."
+msgstr "Dies sind meine zur Prüfung vorzulegenden Stundenzettel."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
@@ -912,7 +912,7 @@ msgstr "Zu prüfende Stundenzettel"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit
 msgid "Timesheets to Submit"
-msgstr "Alle dem Manager vorzulegende Stundenzettel"
+msgstr "Alle zur Prüfung vorzulegenden Stundenzettel"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
@@ -922,7 +922,7 @@ msgstr "Die sind die zu prüfenden Stundenzettel."
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 msgid "Timesheets to submit."
-msgstr "Dies sind die dem Manager vorzulegenden Stundenzettel."
+msgstr "Dies sind die zur Prüfung vorzulegenden Stundenzettel."
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_hr_to_review
