@@ -27,11 +27,12 @@ class TestBeginEnd(common.TransactionCase):
 
     def setUp(self):
         super(TestBeginEnd, self).setUp()
-        self.timesheet_line_model = self.env['hr.analytic.timesheet']
-        self.consultant = self.env.ref('product.product_product_consultant')
-        self.analytic = self.env.ref('account.analytic_administratif')
-        self.expense = self.env.ref('account.a_expense')
-        self.journal = self.env.ref('hr_timesheet.analytic_journal')
+        self.timesheet_line_model = self.env['account.analytic.line']
+        self.consultant = self.env.ref('product.product_product_1')
+        self.analytic = self.env.ref('analytic.analytic_administratif')
+        expenses_id = self.env.ref('account.data_account_type_expenses').id
+        self.expense = self.env['account.account'].search(
+            [('user_type_id', '=', expenses_id)], limit=1)
         self.hour = self.env.ref('product.product_uom_hour')
         self.user = self.env.ref('base.user_root')
         self.base_line = {
@@ -46,7 +47,6 @@ class TestBeginEnd(common.TransactionCase):
             'account_id': self.analytic.id,
             'amount': -60.,
             'general_account_id': self.expense.id,
-            'journal_id': self.journal.id,
         }
 
     def test_onchange(self):
@@ -58,6 +58,15 @@ class TestBeginEnd(common.TransactionCase):
         line.onchange_hours_start_stop()
         self.assertEquals(line.unit_amount, 2)
 
+    def test_onchange_begin_before_end(self):
+        line = self.timesheet_line_model.new({
+            'name': 'test',
+            'time_start': 12.,
+            'time_stop': 10.,
+        })
+        line.onchange_hours_start_stop()
+        self.assertEquals(line.unit_amount, False)
+
     def test_check_begin_before_end(self):
         message_re = (r"The beginning hour \(\d\d:\d\d\) must precede "
                       r"the ending hour \(\d\d:\d\d\)\.")
@@ -65,6 +74,17 @@ class TestBeginEnd(common.TransactionCase):
         line.update({
             'time_start': 12.,
             'time_stop': 10.,
+        })
+        with self.assertRaisesRegexp(exceptions.ValidationError, message_re):
+            self.timesheet_line_model.create(line)
+
+    def test_float_time_convert(self):
+        message_re = (r"The beginning hour \(\d\d:\d\d\) must precede "
+                      r"the ending hour \(\d\d:00\)\.")
+        line = self.base_line.copy()
+        line.update({
+            'time_start': 12.,
+            'time_stop': 10.995,
         })
         with self.assertRaisesRegexp(exceptions.ValidationError, message_re):
             self.timesheet_line_model.create(line)
