@@ -54,9 +54,10 @@ class HrTimesheetSheet(models.Model):
     @api.multi
     def _get_possible_reviewers(self):
         self.ensure_one()
+        res = super()._get_possible_reviewers()
         if self.review_policy == 'department_manager':
-            return self.department_id.manager_id.user_id
-        return super()._get_possible_reviewers()
+            res |= self.department_id.manager_id.user_id
+        return res
 
     @api.multi
     def _check_can_review(self):
