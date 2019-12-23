@@ -1007,6 +1007,24 @@ class TestHrTimesheetSheet(TransactionCase):
             ),
             0
         )
+        self.assertEqual(
+            self.sheet_model.sudo(self.user_3).search_count(
+                [('can_review', '!=', False)]
+            ),
+            0
+        )
+        self.assertEqual(
+            self.sheet_model.sudo(self.user_3).search_count(
+                [('can_review', '=', False)]
+            ),
+            1
+        )
+        self.assertEqual(
+            self.sheet_model.sudo(self.user_3).search_count(
+                [('can_review', '!=', True)]
+            ),
+            1
+        )
         with self.assertRaises(UserError):
             sheet.sudo(self.user_3).action_timesheet_draft()
         sheet.action_timesheet_done()
