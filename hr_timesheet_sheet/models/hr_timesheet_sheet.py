@@ -191,12 +191,6 @@ class Sheet(models.Model):
         compute='_compute_total_time',
         store=True,
     )
-    possible_reviewer_ids = fields.Many2many(
-        string='Possible Reviewers',
-        comodel_name='res.users',
-        compute='_compute_possible_reviewer_ids',
-        store=True,
-    )
     can_review = fields.Boolean(
         string='Can Review',
         compute='_compute_can_review',
@@ -246,24 +240,29 @@ class Sheet(models.Model):
 
     @api.multi
     @api.depends('review_policy')
-    def _compute_possible_reviewer_ids(self):
-        for sheet in self:
-            sheet.possible_reviewer_ids = sheet._get_possible_reviewers()
-
-    @api.multi
-    @api.depends('possible_reviewer_ids')
     def _compute_can_review(self):
         for sheet in self:
-            sheet.can_review = self.env.user in sheet.possible_reviewer_ids
+            sheet.can_review = self.env.user in sheet._get_possible_reviewers()
 
     @api.model
     def _search_can_review(self, operator, value):
+
+        def check_in(users):
+            return self.env.user in users
+
+        def check_not_in(users):
+            return self.env.user not in users
+
         if (operator == '=' and value) \
                 or (operator in ['<>', '!='] and not value):
-            operator = '='
+            check = check_in
         else:
-            operator = '!='
-        return [('possible_reviewer_ids', operator, self.env.uid)]
+            check = check_not_in
+
+        sheets = self.search([]).filtered(
+            lambda sheet: check(sheet._get_possible_reviewers())
+        )
+        return [('id', 'in', sheets.ids)]
 
     @api.depends('name', 'employee_id')
     def _compute_complete_name(self):
