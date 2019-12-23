@@ -3,7 +3,7 @@
 
 {
     'name': 'HR Timesheet Sheet: Department Manager Policy',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.1.0',
     'author':
         'Brainbean Apps, '
         'Odoo Community Association (OCA)',
