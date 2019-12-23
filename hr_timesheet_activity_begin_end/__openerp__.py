@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# © 2015 Camptocamp SA (author: Guewen Baconnier)
-# © 2017 Martronic SA
+# Copyright 2015 Camptocamp SA (author: Guewen Baconnier)
+# Copyright 2017 Martronic SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {'name': 'Timesheet Activities - Begin/End Hours',
