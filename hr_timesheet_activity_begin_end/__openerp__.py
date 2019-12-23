@@ -10,7 +10,6 @@
  'category': 'Human Resources',
  'depends': [
      'hr_timesheet_sheet',
-     'float_time_hms',
      ],
  'website': 'http://www.camptocamp.com',
  'data': ['views/hr_analytic_timesheet.xml',
