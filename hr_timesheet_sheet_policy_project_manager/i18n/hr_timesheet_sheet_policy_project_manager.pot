@@ -49,7 +49,6 @@ msgid "How Timesheet Sheets review is performed."
 msgstr ""
 
 #. module: hr_timesheet_sheet_policy_project_manager
-#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:98
 #: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:99
 #, python-format
 msgid "Only a Project Manager can review the sheet."
@@ -62,9 +61,7 @@ msgid "Project"
 msgstr ""
 
 #. module: hr_timesheet_sheet_policy_project_manager
-#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:116
 #: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:117
-#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:125
 #: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:126
 #, python-format
 msgid "Review policy \"By Project Manager\" requires Project to be set"
