@@ -134,21 +134,18 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:593
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Нельзя одобрить неподтверждённый табель."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, fuzzy, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Нельзя одобрить неподтверждённый табель."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:577
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, fuzzy, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -402,7 +399,6 @@ msgid "In Draft"
 msgstr "Черновик"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:514
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 msgid ""
@@ -413,7 +409,6 @@ msgstr ""
 "с пользователем."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:617
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 msgid ""
@@ -568,7 +563,6 @@ msgid "Number of unread messages"
 msgstr "Непрочитанные Сообщения"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:627
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, fuzzy, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -660,7 +654,6 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
@@ -1011,7 +1004,6 @@ msgid "Waiting review"
 msgstr "Ожидает одобрения"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:898
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
@@ -1076,7 +1068,6 @@ msgid ""
 msgstr "Вы не можете изменить запись в утверждённом табеле."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
 msgid ""
@@ -1085,7 +1076,6 @@ msgid ""
 msgstr "Вы не можете удалить уже подтверждённый табель."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:526
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."

@@ -128,21 +128,18 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:593
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Илгээгээгүй цагийн хуудсыг зөвшөөрөх боломжгүй."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
 #, fuzzy, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Илгээгээгүй цагийн хуудсыг зөвшөөрөх боломжгүй."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:577
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
 #, fuzzy, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -394,7 +391,6 @@ msgid "In Draft"
 msgstr "Ноорог"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:514
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
 #, fuzzy, python-format
 msgid ""
@@ -405,7 +401,6 @@ msgstr ""
 "ёстой."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:617
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
 #, fuzzy, python-format
 msgid ""
@@ -560,7 +555,6 @@ msgid "Number of unread messages"
 msgstr "Уншаагүй Зурвасууд"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:627
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
 #, fuzzy, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -652,7 +646,6 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
@@ -1003,7 +996,6 @@ msgid "Waiting review"
 msgstr "Зөвшөөрөл хүлээж байгаа"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:898
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
 #, python-format
 msgid "Warning"
@@ -1068,7 +1060,6 @@ msgid ""
 msgstr "Та баталгаажсан цагийн хуудсыг орж өөрчлөх боломжгүй."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:555
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
 #, fuzzy, python-format
 msgid ""
@@ -1077,7 +1068,6 @@ msgid ""
 msgstr "Та аль хэдийн батлагдсан цагийн хуудас устгаж чадахгүй."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:526
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
 #, fuzzy, python-format
 msgid "You cannot duplicate a sheet."
