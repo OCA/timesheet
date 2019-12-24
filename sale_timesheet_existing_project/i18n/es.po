@@ -10,11 +10,11 @@ msgstr ""
 "PO-Revision-Date: 2019-12-09 21:17+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: es\n"
 "X-Generator: Poedit 2.0.6\n"
 
 #. module: sale_timesheet_existing_project
@@ -50,8 +50,12 @@ msgstr "No crear tarea"
 #. module: sale_timesheet_existing_project
 #: model:ir.model.fields,help:sale_timesheet_existing_project.field_product_product__service_tracking
 #: model:ir.model.fields,help:sale_timesheet_existing_project.field_product_template__service_tracking
-msgid "On Sales order confirmation, this product can generate a project and/or task. From those, you can track the service you are selling."
-msgstr "Este producto puede generar un proyecto o una tarea en la confirmación del pedido de venta. Partiendo de esto, puede supervisar el servicio que oferta."
+msgid ""
+"On Sales order confirmation, this product can generate a project and/or "
+"task. From those, you can track the service you are selling."
+msgstr ""
+"Este producto puede generar un proyecto o una tarea en la confirmación del "
+"pedido de venta. Partiendo de esto, puede supervisar el servicio que oferta."
 
 #. module: sale_timesheet_existing_project
 #: model:ir.model,name:sale_timesheet_existing_project.model_product_product
@@ -81,7 +85,8 @@ msgstr "Línea de pedido de venta"
 #. module: sale_timesheet_existing_project
 #: model:ir.model.fields,help:sale_timesheet_existing_project.field_sale_order__project_id
 msgid "Select a non billable project on which tasks can be created."
-msgstr "Seleccione un proyecto no facturable en el que las tareas se pueden crear."
+msgstr ""
+"Seleccione un proyecto no facturable en el que las tareas se pueden crear."
 
 #. module: sale_timesheet_existing_project
 #: model:ir.model.fields,field_description:sale_timesheet_existing_project.field_product_product__service_tracking
