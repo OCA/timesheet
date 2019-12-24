@@ -44,7 +44,6 @@ msgid "How Timesheet Sheets review is performed."
 msgstr ""
 
 #. module: hr_timesheet_sheet_policy_direct_manager
-#: code:addons/hr_timesheet_sheet_policy_direct_manager/models/hr_timesheet_sheet.py:29
 #: code:addons/hr_timesheet_sheet_policy_direct_manager/models/hr_timesheet_sheet.py:30
 #, python-format
 msgid "Only a employee's Direct Manager can review the sheet."
