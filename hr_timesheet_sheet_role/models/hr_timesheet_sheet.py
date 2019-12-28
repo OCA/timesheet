@@ -80,8 +80,8 @@ class HrTimesheetSheet(models.Model):
         return res
 
     @api.multi
-    def _get_new_line_name_values(self):
-        res = super()._get_new_line_name_values()
+    def _get_new_line_unique_id(self):
+        res = super()._get_new_line_unique_id()
         res.update({
             'role_id': self.add_line_role_id,
         })
@@ -96,7 +96,7 @@ class HrTimesheetSheet(models.Model):
             **kwargs
         )
         if role_id:
-            res += ' - %s' % (role_id.name)
+            res += ' - %s' % (role_id.name_get()[0][1])
         return res
 
     @api.multi
@@ -145,6 +145,14 @@ class AbstractSheetLine(models.AbstractModel):
         comodel_name='project.role',
         string='Role',
     )
+
+    @api.multi
+    def get_unique_id(self):
+        res = super().get_unique_id()
+        res.update({
+            'role_id': self.role_id,
+        })
+        return res
 
 
 class SheetNewAnalyticLine(models.TransientModel):
