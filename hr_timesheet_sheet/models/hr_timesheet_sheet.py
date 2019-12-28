@@ -667,12 +667,15 @@ class Sheet(models.Model):
     def _get_line_name(self, project_id, task_id=None, **kwargs):
         self.ensure_one()
         if task_id:
-            return '%s - %s' % (project_id.name, task_id.name)
+            return '%s - %s' % (
+                project_id.name_get()[0][1],
+                task_id.name_get()[0][1]
+            )
 
-        return project_id.name
+        return project_id.name_get()[0][1]
 
     @api.multi
-    def _get_new_line_name_values(self):
+    def _get_new_line_unique_id(self):
         """ Hook for extensions """
         self.ensure_one()
         return {
@@ -711,17 +714,18 @@ class Sheet(models.Model):
         }
 
     def add_line(self):
-        if self.add_line_project_id:
-            values = self._prepare_empty_analytic_line()
-            name_line = self._get_line_name(
-                **self._get_new_line_name_values()
-            )
-            name_list = list(set(self.line_ids.mapped('value_y')))
-            if name_list:
-                self.delete_empty_lines(False)
-            if name_line not in name_list:
-                self.timesheet_ids |= \
-                    self.env['account.analytic.line']._sheet_create(values)
+        if not self.add_line_project_id:
+            return
+        values = self._prepare_empty_analytic_line()
+        new_line_unique_id = self._get_new_line_unique_id()
+        existing_unique_ids = list(set(
+            [frozenset(line.get_unique_id().items()) for line in self.line_ids]
+        ))
+        if existing_unique_ids:
+            self.delete_empty_lines(False)
+        if frozenset(new_line_unique_id.items()) not in existing_unique_ids:
+            self.timesheet_ids |= \
+                self.env['account.analytic.line']._sheet_create(values)
 
     def link_timesheets_to_sheet(self, timesheets):
         self.ensure_one()
@@ -870,6 +874,15 @@ class AbstractSheetLine(models.AbstractModel):
         comodel_name='hr.employee',
         string='Employee',
     )
+
+    @api.multi
+    def get_unique_id(self):
+        """ Hook for extensions """
+        self.ensure_one()
+        return {
+            'project_id': self.project_id,
+            'task_id': self.task_id,
+        }
 
 
 class SheetLine(models.TransientModel):
