@@ -54,7 +54,7 @@ class TestAttendanceByDay(HrTimesheetTestCases):
             checkOut=fields.Datetime.from_string('2019-04-03 05:00:00')
         )
         res = self.timesheet.get_attendance_by_day()
-        self.assertEqual(res, [5.0, 24.0, 0.0, 0.0, 0.0])
+        self.assertEqual(res, [5.0, 24.0, 5.0, 0.0, 0.0])
 
     def test_accross_midnight_with_gap(self):
         self._create_attendance(
@@ -68,4 +68,6 @@ class TestAttendanceByDay(HrTimesheetTestCases):
             checkOut=fields.Datetime.from_string('2019-04-03 05:00:00')
         )
         res = self.timesheet.get_attendance_by_day()
-        self.assertEqual(res, [5.0, 10.0, 5.0, 0.0, 0.0])
+        # Default Odoo code counts overlaping attendencies hours on the first
+        # day of the attendency.
+        self.assertEqual(res, [10.0, 10.0, 0.0, 0.0, 0.0])
