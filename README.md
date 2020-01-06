@@ -24,7 +24,7 @@ addon | version | summary
 [crm_timesheet](crm_timesheet/) | 10.0.2.0.0 | CRM Timesheet
 [hr_employee_product](hr_employee_product/) | 10.0.1.0.0 | Product is an employee
 [hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 10.0.1.0.0 | Timesheet Activities - Begin/End Hours
-[hr_timesheet_holiday](hr_timesheet_holiday/) | 10.0.1.0.0 | When holidays are granted, add lines to the analytic account that is linked to the Leave Type
+[hr_timesheet_holiday](hr_timesheet_holiday/) | 10.0.1.0.1 | When holidays are granted, add lines to the analytic account that is linked to the Leave Type
 [hr_timesheet_no_closed_project_task](hr_timesheet_no_closed_project_task/) | 10.0.1.0.0 | Prevent to select closed project or task on timesheet line
 [hr_timesheet_sheet_period](hr_timesheet_sheet_period/) | 10.0.1.0.0 | HR Timesheet Sheet based on Payroll Period
 [hr_timesheet_sheet_restrict_project](hr_timesheet_sheet_restrict_project/) | 10.0.1.0.1 | Allows to restrict the analytic accounts that can be used in timesheets
