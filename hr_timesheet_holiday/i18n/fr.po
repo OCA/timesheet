@@ -99,13 +99,19 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_holiday
-#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:46
+#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:29
+#, python-format
+msgid "No active projects for this Analytic Account"
+msgstr ""
+
+#. module: hr_timesheet_holiday
+#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:51
 #, python-format
 msgid "No hours per day defined for Company '%s'"
 msgstr ""
 
 #. module: hr_timesheet_holiday
-#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:72
+#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:77
 #, python-format
 msgid "No user defined for Employee '%s'"
 msgstr ""

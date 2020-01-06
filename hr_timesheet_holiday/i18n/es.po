@@ -103,13 +103,21 @@ msgstr ""
 "costos y análisis de ingresos, horas de proyectos, etc."
 
 #. module: hr_timesheet_holiday
-#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:46
+#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:29
+#, fuzzy, python-format
+#| msgid "All the projects for the analytic account must allow timesheets."
+msgid "No active projects for this Analytic Account"
+msgstr ""
+"Todos los proyectos de la cuenta analítica deben permitir hojas de horas."
+
+#. module: hr_timesheet_holiday
+#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:51
 #, python-format
 msgid "No hours per day defined for Company '%s'"
 msgstr "No se han definido hora por día para la Compañía '%s'"
 
 #. module: hr_timesheet_holiday
-#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:72
+#: code:addons/hr_timesheet_holiday/models/hr_holidays.py:77
 #, python-format
 msgid "No user defined for Employee '%s'"
 msgstr "No se ha definido ningún usuario para el empleado '%s'"
