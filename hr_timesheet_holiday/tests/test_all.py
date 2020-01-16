@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import time
 from openerp.tests.common import TransactionCase
-from openerp.exceptions import UserError, ValidationError
+from openerp.exceptions import Warning as UserError, ValidationError
 
 
 class TimesheetHolidayTest(TransactionCase):
