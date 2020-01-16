@@ -118,3 +118,9 @@ msgstr "Ligne de prestation"
 #: field:hr.holidays,timesheet_ids:0
 msgid "Timesheet entries"
 msgstr ""
+
+#. module: hr_timesheet_holiday
+#: code:addons/hr_timesheet_holiday/models/hr_analytic_timesheet.py:20
+#, python-format
+msgid "You can't delete timesheet lines with active leaves"
+msgstr ""
