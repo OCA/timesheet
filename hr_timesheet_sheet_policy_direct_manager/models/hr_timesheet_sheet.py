@@ -18,7 +18,11 @@ class HrTimesheetSheet(models.Model):
         self.ensure_one()
         res = super()._get_possible_reviewers()
         if self.review_policy == 'direct_manager':
-            res |= self.employee_id.parent_id.user_id
+            if self.employee_id.parent_id:
+                res |= self.employee_id.parent_id.user_id
+            elif self.employee_id.child_ids:
+                # A top Manager can approve his own timesheet sheets
+                res |= self.employee_id.user_id
         return res
 
     @api.multi

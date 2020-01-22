@@ -1,4 +1,5 @@
 # Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2020 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
@@ -97,5 +98,26 @@ class TestHrTimesheetSheetPolicyDirectManager(common.TransactionCase):
         with self.assertRaises(UserError):
             sheet.sudo(self.employee_user).action_timesheet_done()
         sheet.sudo(self.direct_manager_user).action_timesheet_done()
+        sheet.sudo(self.direct_manager_user).action_timesheet_draft()
+        sheet.unlink()
+
+    def test_top_manager_review_policy(self):
+        self.company.timesheet_sheet_review_policy = 'direct_manager'
+
+        self.assertTrue(self.direct_manager.child_ids)
+        self.assertFalse(self.direct_manager.parent_id)
+        sheet = self.HrTimesheetSheet.sudo(self.direct_manager_user).create({
+            'company_id': self.company.id,
+        })
+        sheet._compute_complete_name()
+        sheet.action_timesheet_confirm()
+        self.assertFalse(sheet.sudo(self.employee_user).can_review)
+        self.assertTrue(sheet.sudo(self.direct_manager_user).can_review)
+
+        with self.assertRaises(UserError):
+            sheet.sudo(self.employee_user).action_timesheet_done()
+        sheet.sudo(self.direct_manager_user).action_timesheet_done()
+        with self.assertRaises(UserError):
+            sheet.sudo(self.employee_user).action_timesheet_draft()
         sheet.sudo(self.direct_manager_user).action_timesheet_draft()
         sheet.unlink()
