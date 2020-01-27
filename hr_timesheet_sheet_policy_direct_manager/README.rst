@@ -25,7 +25,10 @@ HR Timesheet Sheet: Direct Manager Policy
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows setting Direct Manager as Reviewer on Timesheet Sheets.
+This module allows to set the Direct Manager as Reviewer on Timesheet Sheets.
+
+The Manager with a top role in the organizational chart (no higher managers)
+is the Reviewer of own Timesheet Sheets.
 
 **Table of contents**
 
@@ -54,6 +57,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * Alexey Pelykh <alexey.pelykh@brainbeanapps.com>
+* Andrea Stirpe <a.stirpe@onestein.nl>
 
 Maintainers
 ~~~~~~~~~~~
