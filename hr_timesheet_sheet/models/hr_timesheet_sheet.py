@@ -410,7 +410,8 @@ class Sheet(models.Model):
             for key in sorted(matrix,
                               key=lambda key: self._get_matrix_sortby(key)):
                 vals_list.append(sheet._get_default_sheet_line(matrix, key))
-                sheet.clean_timesheets(matrix[key])
+                if sheet.state in ['new', 'draft']:
+                    sheet.clean_timesheets(matrix[key])
             sheet.line_ids = SheetLine.create(vals_list)
 
     @api.model
