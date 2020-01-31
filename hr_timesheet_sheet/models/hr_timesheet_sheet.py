@@ -8,7 +8,7 @@ import logging
 import re
 from collections import namedtuple
 from datetime import datetime, time
-from dateutil.relativedelta import relativedelta
+from dateutil.relativedelta import relativedelta, SU
 from dateutil.rrule import MONTHLY, WEEKLY
 
 from odoo import api, fields, models, SUPERUSER_ID, _
@@ -221,14 +221,12 @@ class Sheet(models.Model):
                 '%V, %Y'
             )
 
-            if period_start == period_end:
-                sheet.name = '%s %s' % (
-                    _('Week'),
-                    period_start,
+            if sheet.date_end <= sheet.date_start + relativedelta(weekday=SU):
+                sheet.name = _('Week %s') % (
+                    period_end,
                 )
             else:
-                sheet.name = '%s %s - %s' % (
-                    _('Weeks'),
+                sheet.name = _('Weeks %s - %s') % (
                     period_start,
                     period_end,
                 )
