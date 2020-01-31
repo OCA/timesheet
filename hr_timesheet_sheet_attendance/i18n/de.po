@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_sheet_attendance
+# 	* hr_timesheet_sheet_attendance
 #
 msgid ""
 msgstr ""
@@ -17,7 +17,10 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 
 #. module: hr_timesheet_sheet_attendance
+#. openerp-web
+#: code:addons/hr_timesheet_sheet_attendance/static/src/js/attendance_matrix_widget.js:22
 #: model:ir.model,name:hr_timesheet_sheet_attendance.model_hr_attendance
+#, python-format
 msgid "Attendance"
 msgstr "Anwesenheit"
 
@@ -61,7 +64,9 @@ msgstr "Zettel"
 #. module: hr_timesheet_sheet_attendance
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_timesheet_sheet.py:82
 #, python-format
-msgid "The timesheet cannot be validated as it does not contain an equal number of sign ins and sign outs."
+msgid ""
+"The timesheet cannot be validated as it does not contain an equal number of "
+"sign ins and sign outs."
 msgstr ""
 "Der Stundenzettel kann nicht zur Genehmigung freigegeben werden, weil die "
 "Anzahl der An- und Abmeldungen unterschiedlich ist."
@@ -89,7 +94,8 @@ msgstr "Gesamt-Anwesenheit"
 #. module: hr_timesheet_sheet_attendance
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:106
 #, python-format
-msgid "You can not enter an attendance date outside the current timesheet dates."
+msgid ""
+"You can not enter an attendance date outside the current timesheet dates."
 msgstr ""
 "Das Datum der Anwesenheit darf nicht außerhalb des Zeitraums des aktuell "
 "verwendeten Stundenzettels liegen."
@@ -97,7 +103,9 @@ msgstr ""
 #. module: hr_timesheet_sheet_attendance
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:89
 #, python-format
-msgid "You can not enter an attendance in a submitted timesheet. Ask your manager to reset it before adding attendance."
+msgid ""
+"You can not enter an attendance in a submitted timesheet. Ask your manager "
+"to reset it before adding attendance."
 msgstr ""
 "Eine Anwesenheit kann nicht in bereits zur Genehmigung freigegebenen bzw. "
 "genehmigten Stundenzetteln eingetragen werden. Der Manager muss zuvor den "
