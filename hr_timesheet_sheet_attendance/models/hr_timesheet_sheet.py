@@ -1,5 +1,5 @@
 from odoo import api, fields, models, _
-from datetime import datetime
+from datetime import datetime, timedelta, time
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.exceptions import UserError
 
@@ -82,6 +82,42 @@ class HrTimesheetSheet(models.Model):
             raise UserError(_(
                 "The timesheet cannot be validated as it does " +
                 "not contain an equal number of sign ins and sign outs."))
+
+    @api.multi
+    def get_attendance_by_day(self):
+        self.ensure_one()
+        result = []
+        date_end = fields.Date.from_string(self.date_end)
+        date_start = fields.Date.from_string(self.date_start)
+        date_range = (date_end - date_start).days
+        result = [0] * (date_range + 1)
+        for attendance in self.attendances_ids:
+            checkin_date = fields.Date.from_string(attendance.check_in)
+            checkout_date = fields.Date.from_string(attendance.check_out)
+            if checkin_date == checkout_date:
+                delta = (checkin_date - date_start).days
+                result[delta] += attendance.worked_hours
+            else:
+                attendance_range = (checkout_date - checkin_date).days
+                curr_date = datetime.combine(checkin_date, time())
+                for delta in range(0, attendance_range + 1):
+                    if curr_date == datetime.combine(checkin_date, time()):
+                        start_time = fields.Datetime.from_string(
+                            attendance.check_in
+                        )
+                    else:
+                        start_time = curr_date
+                    if curr_date == datetime.combine(checkout_date, time()):
+                        end_time = fields.Datetime.from_string(
+                            attendance.check_out
+                        )
+                    else:
+                        end_time = curr_date + timedelta(days=1)
+                    work_time = \
+                        (end_time - start_time).total_seconds() / 3600.0
+                    result[delta] += work_time
+                    curr_date = end_time
+        return result
 
     @api.model
     def create(self, vals):

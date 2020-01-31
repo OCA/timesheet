@@ -12,6 +12,7 @@
         'hr_timesheet_sheet'
     ],
     'data': [
+        'views/assets.xml',
         'views/hr_timesheet_sheet_view.xml',
         'views/hr_attendance_view.xml',
     ],
