@@ -485,3 +485,46 @@ class TestHrUtilizationReport(common.TransactionCase):
         self.IrActionReport._get_report_from_name(
             'hr_utilization_report.report'
         ).render_xlsx(report.ids, None)
+
+    def test_entry_with_no_task(self):
+        """Test empty data (task is empty)"""
+        project = self.SudoProject.create({
+            'name': 'Project #1',
+        })
+        employee = self.SudoHrEmployee.create({
+            'name': 'Employee #13',
+        })
+        self.SudoAccountAnalyticLine.create({
+            'project_id': project.id,
+            'name': 'Time Entry #13',
+            'employee_id': employee.id,
+            'date': self.wednesday,
+            'unit_amount': 1,
+        })
+
+        wizard = self.Wizard.create({
+            'date_from': self.wednesday,
+            'date_to': self.wednesday,
+            'employee_ids': [(6, False, [
+                employee.id,
+            ])],
+            'entry_field_ids': [(0, False, {
+                'sequence': 10,
+                'field_name': 'employee_id',
+            }), (0, False, {
+                'sequence': 11,
+                'field_name': 'project_id',
+            }), (0, False, {
+                'sequence': 12,
+                'field_name': 'task_id',
+            })],
+        })
+
+        wizard.action_export_xlsx()
+
+        report = self.Report.create(
+            wizard._collect_report_values()
+        )
+        self.IrActionReport._get_report_from_name(
+            'hr_utilization_report.report'
+        ).render_xlsx(report.ids, None)
