@@ -132,20 +132,20 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:594
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:592
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Een niet ingediende urenstaat kan niet goedgekeurd worden."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:604
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:602
 #, fuzzy, python-format
 #| msgid "Cannot approve a non-submitted sheet."
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Een niet ingediende urenstaat kan niet goedgekeurd worden."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:578
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:576
 #, fuzzy, python-format
 #| msgid "Cannot approve a non-submitted sheet."
 msgid "Cannot revert to draft a non-approved sheet."
@@ -411,7 +411,7 @@ msgid "In Draft"
 msgstr "In concept"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:515
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:513
 #, fuzzy, python-format
 #| msgid ""
 #| "In order to create a sheet for this employee, you must link him/her to an "
@@ -424,7 +424,7 @@ msgstr ""
 "linken aan een gebruiker."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:618
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:616
 #, fuzzy, python-format
 #| msgid ""
 #| "In order to create a sheet for this employee, you must link him/her to an "
@@ -579,7 +579,7 @@ msgid "Number of unread messages"
 msgstr "Aantal ongelezen berichten"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:628
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:626
 #, fuzzy, python-format
 #| msgid "Only an HR Officer or Manager can approve sheets."
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -668,7 +668,7 @@ msgid "Saturday"
 msgstr "Zaterdag"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:900
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:898
 #, fuzzy, python-format
 #| msgid "Timesheet Sheet Lines"
 msgid "Save the Timesheet Sheet first."
@@ -785,27 +785,27 @@ msgid "Temporary Timesheets"
 msgstr "Urenstaat zoeken"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:342
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:340
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Department must be the same."
 msgstr "Het bedrijf in de urenstaat en afdeling moeten gelijk zijn."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:332
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:330
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Employee must be the same."
 msgstr "Het bedrijf in de urenstaat en werknemer moeten gelijk zijn."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:352
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:350
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Project must be the same."
 msgstr "Het bedrijf in de urenstaat en project moeten gelijk zijn."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:362
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:360
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Task must be the same."
 msgstr "Het bedrijf in de urenstaat en taak moeten gelijk zijn."
@@ -817,7 +817,7 @@ msgid "The range of your Timesheet Sheet."
 msgstr "Bereik van uw urenstaat."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:284
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:282
 #, python-format
 msgid "The start date cannot be later than the end date."
 msgstr "The start datum kan voor de einddatum liggen."
@@ -1022,7 +1022,7 @@ msgid "Waiting review"
 msgstr "Wachtend op goedkeuring"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:899
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:897
 #, python-format
 msgid "Warning"
 msgstr ""
@@ -1043,10 +1043,15 @@ msgid "Wednesday"
 msgstr "Woensdag"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:226
 #: selection:res.company,sheet_range:0
-#, python-format
 msgid "Week"
+msgstr "Week"
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:225
+#, fuzzy, python-format
+#| msgid "Week"
+msgid "Week %s"
 msgstr "Week"
 
 #. module: hr_timesheet_sheet
@@ -1060,11 +1065,10 @@ msgid "Week start day"
 msgstr "Week startdag"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:231
-#, fuzzy, python-format
-#| msgid "Week"
-msgid "Weeks"
-msgstr "Week"
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:229
+#, python-format
+msgid "Weeks %s - %s"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
@@ -1088,7 +1092,7 @@ msgid ""
 msgstr "U kunt geen wijziging doen in een geaccordeerde urenstaatregel."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:556
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:554
 #, fuzzy, python-format
 #| msgid "You cannot delete a timesheet sheet which is already confirmed."
 msgid ""
@@ -1097,13 +1101,13 @@ msgid ""
 msgstr "U kunt geen urenstaat verwijderen welke al is bevestigd."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:527
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:525
 #, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "Het is niet mogelijk een urenstaat te dupliceren."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:321
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:319
 #, fuzzy, python-format
 #| msgid ""
 #| "You cannot have 2 sheets that overlap!\n"
@@ -1164,6 +1168,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "tot"
+
+#, fuzzy
+#~| msgid "Week"
+#~ msgid "Weeks"
+#~ msgstr "Week"
 
 #~ msgid ""
 #~ "In order to create a sheet for this employee, you must link him/her to an "
