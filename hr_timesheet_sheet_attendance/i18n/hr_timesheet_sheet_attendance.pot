@@ -14,7 +14,10 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: hr_timesheet_sheet_attendance
+#. openerp-web
+#: code:addons/hr_timesheet_sheet_attendance/static/src/js/attendance_matrix_widget.js:22
 #: model:ir.model,name:hr_timesheet_sheet_attendance.model_hr_attendance
+#, python-format
 msgid "Attendance"
 msgstr ""
 
