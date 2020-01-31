@@ -2061,7 +2061,7 @@ class Report(models.AbstractModel):
     @api.model
     def _render_value_cell(self, row, col, sheet, formats, entry, field):
         raw_value = entry.any_line_id[field.field_name]
-        value = entry.render_value(field.field_name)
+        value = entry.render_value(field.field_name) or ''
         if field.field_type == 'datetime':
             sheet.write_datetime(
                 row,
