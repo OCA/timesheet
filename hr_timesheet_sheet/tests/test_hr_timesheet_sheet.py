@@ -3,6 +3,7 @@
 # Copyright 2018-2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from datetime import date
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import MONTHLY, DAILY
 
@@ -1041,3 +1042,19 @@ class TestHrTimesheetSheet(TransactionCase):
         })
         self.assertEqual(sheet.review_policy, 'hr')
         sheet.unlink()
+
+    def test_same_week_different_years(self):
+        sheet = self.sheet_model.sudo(self.user).new({
+            'employee_id': self.employee.id,
+            'date_start': date(2019, 12, 30),
+            'date_end': date(2020, 1, 5),
+        })
+        self.assertEqual(sheet.name, 'Week 01, 2020')
+
+    def test_different_weeks_different_years(self):
+        sheet = self.sheet_model.sudo(self.user).new({
+            'employee_id': self.employee.id,
+            'date_start': date(2019, 12, 29),
+            'date_end': date(2020, 1, 5),
+        })
+        self.assertEqual(sheet.name, 'Weeks 52, 2019 - 01, 2020')
