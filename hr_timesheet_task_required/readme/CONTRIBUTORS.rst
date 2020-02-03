@@ -2,3 +2,4 @@
 * Laurent Mignon <laurent.mignon@acsone.eu>
 * Benjamin Willig <benjamin.willig@acsone.eu>
 * Alexey Pelykh <alexey.pelykh@brainbeanapps.com>
+* Saran Lim. <saranl@ecosoft.co.th>

@@ -68,7 +68,7 @@ msgstr ""
 "eingetragen werden."
 
 #. module: hr_timesheet_task_required
-#: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:24
+#: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:0
 #, python-format
 msgid "You must specify a task for timesheet lines."
 msgstr "F??r Zeiterfassungen muss eine Aufgabe eingetragen werden."
