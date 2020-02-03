@@ -1,7 +1,7 @@
 To make task selection mandatory on project's timesheets:
 
 # Go to *Project > Projects* and edit the project
-# Enable timesheets by checking *Allow timesheets*
+# Enable timesheets by checking *Timesheets*
 # Make task selection mandatory by checking *Require Tasks on Timesheets*
 
 Default setting can be changed at company level:
