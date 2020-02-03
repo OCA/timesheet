@@ -3,22 +3,17 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Hr Timesheet Task Required',
-    'summary': """
+    "name": "Hr Timesheet Task Required",
+    "summary": """
         Set task on timesheet as a mandatory field""",
-    'version': '12.0.1.0.4',
-    'license': 'AGPL-3',
-    'author':
-        'ACSONE SA/NV, '
-        'Brainbean Apps, '
-        'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/hr-timesheet',
-    'depends': [
-        'hr_timesheet',
-    ],
-    'data': [
-        'views/account_analytic_line.xml',
-        'views/project_project.xml',
-        'views/res_config_settings.xml',
+    "version": "13.0.1.0.0",
+    "license": "AGPL-3",
+    "author": "ACSONE SA/NV, " "Brainbean Apps, " "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/hr-timesheet",
+    "depends": ["hr_timesheet"],
+    "data": [
+        "views/account_analytic_line.xml",
+        "views/project_project.xml",
+        "views/res_config_settings.xml",
     ],
 }
