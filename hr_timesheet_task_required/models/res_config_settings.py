@@ -5,10 +5,10 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     is_timesheet_task_required = fields.Boolean(
-        string='Require Tasks on Timesheets',
-        related='company_id.is_timesheet_task_required',
+        string="Require Tasks on Timesheets",
+        related="company_id.is_timesheet_task_required",
         readonly=False,
     )
