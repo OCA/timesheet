@@ -644,6 +644,7 @@ msgstr "Samstag"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:898
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:911
 #, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Bitte zuerst den Stundenzettel speichern."
@@ -969,6 +970,7 @@ msgstr "Erwarte Genehmigung"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:897
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:910
 #, python-format
 msgid "Warning"
 msgstr "Warnung"

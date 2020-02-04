@@ -634,6 +634,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:898
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:911
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "작업표 명세"
@@ -975,6 +976,7 @@ msgstr "승인 대기중"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:897
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:910
 #, python-format
 msgid "Warning"
 msgstr ""
