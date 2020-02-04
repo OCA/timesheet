@@ -669,6 +669,7 @@ msgstr "Zaterdag"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:898
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:911
 #, fuzzy, python-format
 #| msgid "Timesheet Sheet Lines"
 msgid "Save the Timesheet Sheet first."
@@ -1023,6 +1024,7 @@ msgstr "Wachtend op goedkeuring"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:897
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:910
 #, python-format
 msgid "Warning"
 msgstr ""
