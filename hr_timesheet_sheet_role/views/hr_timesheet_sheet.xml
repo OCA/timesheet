@@ -24,12 +24,12 @@
             <xpath expr="//field[@name='timesheet_ids']/tree//field[@name='task_id']" position="after">
                 <field name="is_role_required" invisible="1"/>
                 <field name="limit_role_to_assignments" invisible="1"/>
-                <field name="role_id" attrs="{'required': [('is_role_required', '=', True)]}"/>
+                <field name="role_id" attrs="{'required': [('is_role_required', '=', True)]}" options="{'no_create': True}"/>
             </xpath>
             <xpath expr="//field[@name='timesheet_ids']/form//field[@name='task_id']" position="after">
                 <field name="is_role_required" invisible="1"/>
                 <field name="limit_role_to_assignments" invisible="1"/>
-                <field name="role_id" attrs="{'required': [('is_role_required', '=', True)]}"/>
+                <field name="role_id" attrs="{'required': [('is_role_required', '=', True)]}" options="{'no_create': True}"/>
             </xpath>
         </field>
     </record>
