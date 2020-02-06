@@ -1,5 +1,5 @@
 # Copyright 2018 Eficent Business and IT Consulting Services, S.L.
-# Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2018-2020 Brainbean Apps (https://brainbeanapps.com)
 # Copyright 2018-2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -28,35 +28,16 @@ class Sheet(models.Model):
     _rec_name = 'complete_name'
 
     def _default_date_start(self):
-        user = self.env['res.users'].browse(self.env.uid)
-        r = user.company_id and user.company_id.sheet_range or WEEKLY
-        today = fields.Date.context_today(self)
-        if r == WEEKLY:
-            if user.company_id.timesheet_week_start:
-                delta = relativedelta(
-                    weekday=int(user.company_id.timesheet_week_start),
-                    days=6)
-            else:
-                delta = relativedelta(days=today.weekday())
-            return today - delta
-        elif r == MONTHLY:
-            return today + relativedelta(day=1)
-        return today
+        return self._get_period_start(
+            self.env.user.company_id,
+            fields.Date.context_today(self)
+        )
 
     def _default_date_end(self):
-        user = self.env['res.users'].browse(self.env.uid)
-        r = user.company_id and user.company_id.sheet_range or WEEKLY
-        today = fields.Date.context_today(self)
-        if r == WEEKLY:
-            if user.company_id.timesheet_week_start:
-                delta = relativedelta(weekday=(int(
-                    user.company_id.timesheet_week_start) + 6) % 7)
-            else:
-                delta = relativedelta(days=6-today.weekday())
-            return today + delta
-        elif r == MONTHLY:
-            return today + relativedelta(months=1, day=1, days=-1)
-        return today
+        return self._get_period_end(
+            self.env.user.company_id,
+            fields.Date.context_today(self)
+        )
 
     def _selection_review_policy(self):
         ResCompany = self.env['res.company']
@@ -830,18 +811,46 @@ class Sheet(models.Model):
         self._sheet_write('new_line_ids', self.new_line_ids | new_line)
         line.new_line_id = new_line.id
 
+    @api.model
+    def _get_period_start(self, company, date):
+        r = company and company.sheet_range or WEEKLY
+        if r == WEEKLY:
+            if company.timesheet_week_start:
+                delta = relativedelta(
+                    weekday=int(company.timesheet_week_start),
+                    days=6)
+            else:
+                delta = relativedelta(days=date.weekday())
+            return date - delta
+        elif r == MONTHLY:
+            return date + relativedelta(day=1)
+        return date
+
+    @api.model
+    def _get_period_end(self, company, date):
+        r = company and company.sheet_range or WEEKLY
+        if r == WEEKLY:
+            if company.timesheet_week_start:
+                delta = relativedelta(weekday=(int(
+                    company.timesheet_week_start) + 6) % 7)
+            else:
+                delta = relativedelta(days=6-date.weekday())
+            return date + delta
+        elif r == MONTHLY:
+            return date + relativedelta(months=1, day=1, days=-1)
+        return date
+
     # ------------------------------------------------
     # OpenChatter methods and notifications
     # ------------------------------------------------
 
     @api.multi
     def _track_subtype(self, init_values):
-        if self:
-            record = self[0]
-            if 'state' in init_values and record.state == 'confirm':
-                return 'hr_timesheet_sheet.mt_timesheet_confirmed'
-            elif 'state' in init_values and record.state == 'done':
-                return 'hr_timesheet_sheet.mt_timesheet_approved'
+        self.ensure_one()
+        if 'state' in init_values and self.state == 'confirm':
+            return 'hr_timesheet_sheet.mt_timesheet_confirmed'
+        elif 'state' in init_values and self.state == 'done':
+            return 'hr_timesheet_sheet.mt_timesheet_approved'
         return super()._track_subtype(init_values)
 
 
