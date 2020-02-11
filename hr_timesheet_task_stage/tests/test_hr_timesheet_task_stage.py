@@ -1,8 +1,7 @@
 # Copyright 2016-2018 Tecnativa - Pedro M. Baeza
 # Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2020 Tecnativa - Manuel Calero
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-
-from datetime import datetime, timedelta
 
 from odoo.tests import common
 
@@ -25,7 +24,6 @@ class TestHrTimesheetTaskStage(common.TransactionCase):
         )
         self.line = self.env["account.analytic.line"].create(
             {
-                "date_time": datetime.now() - timedelta(hours=1),
                 "task_id": self.task.id,
                 "account_id": self.analytic_account.id,
                 "name": "Test line",
