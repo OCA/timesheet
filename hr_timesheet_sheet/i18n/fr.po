@@ -414,7 +414,7 @@ msgid ""
 "user: %s"
 msgstr ""
 "Pour créer une feuille de temps pour cet employé, vous devez lier l'employé "
-"à un utilisateur."
+"à un utilisateur: %s."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:616
@@ -1037,7 +1037,7 @@ msgstr "Semaine"
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:225
 #, fuzzy, python-format
 msgid "Week %s"
-msgstr "Semaine "
+msgstr "Semaine %s"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1053,7 +1053,7 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:229
 #, fuzzy, python-format
 msgid "Weeks %s - %s"
-msgstr "Semaine "
+msgstr "Semaines %s - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
@@ -1072,7 +1072,6 @@ msgid ""
 " - %s of %s\n"
 " - %s of %s"
 msgstr ""
-"Vous ne pouvez pas modifier une entrée dans une feuille de temps confirmée."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:554
@@ -1081,7 +1080,7 @@ msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
 msgstr ""
-"Vous ne pouvez pas supprimer des feuilles de temps qui sont déjà confirmées."
+"Vous ne pouvez pas supprimer une feuille de temps qui est déjà confirmée : %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:525
@@ -1099,14 +1098,15 @@ msgid ""
 " - %s"
 msgstr ""
 "Vous ne pouvez pas avoir 2 feuilles de temps qui se chevauchent!\n"
-"SVP utilisez le menu 'Ma feuille de temps actuelle' pour éviter ce problème."
+"SVP utilisez le menu 'Ma feuille de temps actuelle' pour éviter ce problème.\n"
+"Feuilles de temps en conflit :\n"
+" - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr ""
-"Vous ne pouvez pas modifier une entrée dans une feuille de temps confirmée."
+msgstr "Vous ne pouvez pas modifier une entrée dans une feuille de temps confirmée: %s."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
