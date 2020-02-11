@@ -4,14 +4,13 @@
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 <odoo>
-
     <record id="account_analytic_line_tree" model="ir.ui.view">
         <field name="name">account.analytic.line.tree</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
         <field name="arch" type="xml">
             <field name="task_id" position="after">
-                <field name="is_task_closed" invisible="1"/>
+                <field name="is_task_closed" invisible="1" />
                 <button
                     name="action_close_task"
                     string="Close task"
@@ -31,13 +30,12 @@
             </field>
         </field>
     </record>
-
     <record id="account_analytic_line_form" model="ir.ui.view">
         <field name="name">account.analytic.line.form</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
         <field name="arch" type="xml">
-            <field name="name" position="replace"/>
+            <field name="name" position="replace" />
             <xpath expr="//sheet/group" position="before">
                 <div class="oe_button_box" name="button_box">
                     <button
@@ -60,13 +58,12 @@
                     </button>
                 </div>
                 <div class="oe_title">
-                    <label class="oe_edit_only" for="name"/>
+                    <label class="oe_edit_only" for="name" />
                     <h1>
-                        <field name="name"/>
+                        <field name="name" />
                     </h1>
                 </div>
             </xpath>
         </field>
     </record>
-
 </odoo>
