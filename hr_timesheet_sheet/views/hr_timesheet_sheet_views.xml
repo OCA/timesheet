@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     Copyright 2018 Eficent Business and IT Consulting Services, S.L.
-    Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+    Copyright 2018-2020 Brainbean Apps (https://brainbeanapps.com)
     Copyright 2018-2019 Onestein (<https://www.onestein.eu>)
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 -->
@@ -189,6 +189,67 @@
         </field>
     </record>
 
+    <record id="view_hr_timesheet_sheet_kanban" model="ir.ui.view">
+        <field name="name">hr_timesheet.sheet.kanban</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" create="0">
+                <field name="employee_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="complete_name"/>
+                <field name="state"/>
+                <field name="total_time"/>
+                <field name="can_review"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click container">
+                            <div class="row no-gutters">
+                                <div class="col-2">
+                                    <img t-att-src="kanban_image('hr.employee', 'image_small', record.employee_id.raw_value)"
+                                        t-att-title="record.employee_id.value"
+                                        t-att-alt="record.employee_id.value"
+                                        width="40" height="40"
+                                        class="oe_kanban_avatar float-left mr4"/>
+                                </div>
+                                <div class="col-10">
+                                    <strong class="o_kanban_record_title"><t t-esc="record.employee_id.value"/></strong>
+                                    <div class="text-muted o_kanban_record_subtitle">
+                                        <t t-esc="record.complete_name.value"/>
+                                    </div>
+                                    <div class="o_dropdown_kanban dropdown" groups="base.group_user">
+                                        <a role="button" class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                            <span class="fa fa-ellipsis-v"/>
+                                        </a>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a t-if="widget.editable" role="menuitem" type="edit" class="dropdown-item">Edit</a>
+                                            <a t-if="widget.deletable" role="menuitem" type="delete" class="dropdown-item">Delete</a>
+                                            <a t-if="record.state.raw_value == 'draft'" name="action_timesheet_confirm" type="object"
+                                                role="menuitem" class="dropdown-item">Submit to Reviewer</a>
+                                            <a t-if="record.state.raw_value == 'confirm' and record.can_review.value" name="action_timesheet_done" type="object"
+                                                role="menuitem" class="dropdown-item">Approve</a>
+                                            <a t-if="record.state.raw_value == 'confirm' and record.can_review.value" name="action_timesheet_refuse" type="object"
+                                                role="menuitem" class="dropdown-item">Refuse</a>
+                                            <a t-if="record.state.raw_value == 'done' and record.can_review.value" name="action_timesheet_draft" type="object"
+                                                role="menuitem" class="dropdown-item">Set to Draft</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row no-gutters justify-content-end">
+                                <div class="col-3"><span class="text-muted text-nowrap">Period</span></div>
+                                <div class="col-7"><t t-esc="record.date_start.value"/> - <t t-esc="record.date_end.value"/></div>
+                                <div class="w-100"></div>
+                                <div class="col-3"><span class="text-muted text-nowrap">Total time</span></div>
+                                <div class="col-7"><t t-esc="record.total_time.value" t-options="{'widget': 'float_time'}"/></div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <record id="view_hr_timesheet_sheet_filter" model="ir.ui.view">
         <field name="name">hr_timesheet.sheet.filter</field>
         <field name="model">hr_timesheet.sheet</field>
@@ -215,7 +276,7 @@
         <field name="name">My Timesheet Sheets</field>
         <field name="res_model">hr_timesheet.sheet</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
         <field name="domain">[('employee_id.user_id', '=', uid)]</field>
         <field name="search_view_id" ref="view_hr_timesheet_sheet_filter"/>
         <field name="help" type="html">
@@ -250,7 +311,7 @@
         <field name="name">All Timesheet Sheets</field>
         <field name="res_model">hr_timesheet.sheet</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
         <field name="search_view_id" ref="view_hr_timesheet_sheet_filter"/>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
