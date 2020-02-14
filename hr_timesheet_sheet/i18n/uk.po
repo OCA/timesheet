@@ -140,18 +140,21 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:573
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:579
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Не вдається затвердити непредставлений табель."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:583
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:589
 #, fuzzy, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Не вдається затвердити непредставлений табель."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:557
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:563
 #, fuzzy, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr "Не вдається затвердити непредставлений табель."
@@ -430,6 +433,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:597
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #, fuzzy, python-format
 msgid ""
 "In order to review a timesheet sheet, your user needs to be linked to an "
@@ -584,6 +588,7 @@ msgstr "Непрочитані повідомлення"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:613
 #, fuzzy, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
 msgstr "Тільки менеджер відділу кадрів може затвердити табель."
@@ -671,6 +676,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:920
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Записи табелю"
@@ -1023,6 +1029,7 @@ msgstr "Очікує затвердження"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:919
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:925
 #, python-format
 msgid "Warning"
 msgstr ""
