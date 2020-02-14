@@ -146,21 +146,18 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:573
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:579
 #, fuzzy, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Gönderilmemiş Zaman Çizelgesi Onaylanamaz."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:583
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:589
 #, fuzzy, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Gönderilmemiş Zaman Çizelgesi Onaylanamaz."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:557
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:563
 #, fuzzy, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -439,7 +436,6 @@ msgstr ""
 "bağlamanız gerekir."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:597
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #, fuzzy, python-format
 msgid ""
@@ -594,7 +590,6 @@ msgid "Number of unread messages"
 msgstr "Okunmamış Mesajlar"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:613
 #, fuzzy, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -682,7 +677,6 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:920
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
@@ -1037,7 +1031,6 @@ msgid "Waiting review"
 msgstr "Onay Bekliyor"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:919
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:925
 #, python-format
 msgid "Warning"
