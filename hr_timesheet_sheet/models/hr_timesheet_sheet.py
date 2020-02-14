@@ -544,10 +544,16 @@ class Sheet(models.Model):
         self.ensure_one()
         return self.employee_id.parent_id.user_id.partner_id
 
+    def _get_subscribers(self):
+        """ Hook for extensions """
+        self.ensure_one()
+        subscribers = self._get_possible_reviewers().mapped('partner_id')
+        subscribers |= self._get_informables()
+        return subscribers
+
     def _timesheet_subscribe_users(self):
         for sheet in self.sudo():
-            subscribers = sheet._get_possible_reviewers().mapped('partner_id')
-            subscribers |= sheet._get_informables()
+            subscribers = sheet._get_subscribers()
             if subscribers:
                 self.message_subscribe(partner_ids=subscribers.ids)
 
