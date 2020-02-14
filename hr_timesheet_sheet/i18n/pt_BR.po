@@ -143,18 +143,21 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:573
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:579
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Não é possível aprovar uma planilha não enviada."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:583
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:589
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Não é possível rejeitar uma planilha não enviada."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:557
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:563
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr "Não é possível reverter para rascunho uma planilha não enviada."
@@ -454,6 +457,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:597
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #, fuzzy, python-format
 #| msgid ""
 #| "In order to create a sheet for this employee, you must link him/her to an "
@@ -607,6 +611,7 @@ msgstr "Número de mensagens não lidas"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:613
 #, fuzzy, python-format
 #| msgid "Only an HR Officer or Manager can approve sheets."
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -697,6 +702,7 @@ msgstr "Sábado"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:920
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
 #, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr "Salve a Planilha de Horas primeiro."
@@ -1044,6 +1050,7 @@ msgstr "Aguardando Aprovação"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:919
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:925
 #, python-format
 msgid "Warning"
 msgstr "Aviso"
