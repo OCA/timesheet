@@ -143,14 +143,12 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:573
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:579
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Een niet ingediende urenstaat kan niet goedgekeurd worden."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:583
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:589
 #, fuzzy, python-format
 #| msgid "Cannot approve a non-submitted sheet."
@@ -158,7 +156,6 @@ msgid "Cannot reject a non-submitted sheet."
 msgstr "Een niet ingediende urenstaat kan niet goedgekeurd worden."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:557
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:563
 #, fuzzy, python-format
 #| msgid "Cannot approve a non-submitted sheet."
@@ -453,7 +450,6 @@ msgstr ""
 "linken aan een gebruiker."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:597
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #, fuzzy, python-format
 #| msgid ""
@@ -609,7 +605,6 @@ msgid "Number of unread messages"
 msgstr "Aantal ongelezen berichten"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:613
 #, fuzzy, python-format
 #| msgid "Only an HR Officer or Manager can approve sheets."
@@ -700,7 +695,6 @@ msgid "Saturday"
 msgstr "Zaterdag"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:920
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
 #, fuzzy, python-format
 #| msgid "Timesheet Sheet Lines"
@@ -1057,7 +1051,6 @@ msgid "Waiting review"
 msgstr "Wachtend op goedkeuring"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:919
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:925
 #, python-format
 msgid "Warning"
