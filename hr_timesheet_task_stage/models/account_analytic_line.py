@@ -13,6 +13,7 @@ class AccountAnalyticLine(models.Model):
 
     is_task_closed = fields.Boolean(
         related='task_id.stage_id.closed',
+        readonly=True,
     )
 
     @api.multi
