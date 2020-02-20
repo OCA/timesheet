@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+    Copyright 2020 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="hr_employee_view_form_inherit_timesheet" model="ir.ui.view">
+        <field name="name">hr.employee.form.timesheet</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_employee_view_form_inherit_timesheet"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='timesheet_cost']/.." position="after">
+                <field name="use_manual_timesheet_cost"/>
+                <field name="timesheet_cost_manual" invisible="1"/>
+                <field name="timesheet_cost_contracts" invisible="1"/>
+            </xpath>
+            <field name="timesheet_cost" position="attributes">
+                <attribute name="attrs">{'readonly': [('use_manual_timesheet_cost', '!=', True)]}</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+    Copyright 2020 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="hr_contract_view_form" model="ir.ui.view">
+        <field name="name">hr.contract.form</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <page name="information" position="inside">
+                <group name="timesheet_cost" string="Timesheet Cost">
+                    <field name="exclude_from_employee_cost"/>
+                </group>
+            </page>
+        </field>
+    </record>
+
+</odoo>
