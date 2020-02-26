@@ -7,17 +7,12 @@ from odoo import api, fields, models
 
 
 class CrmLead(models.Model):
-    _name = 'crm.lead'
-    _inherit = ['crm.lead', "hr.timesheet.time_control.mixin"]
+    _name = "crm.lead"
+    _inherit = ["crm.lead", "hr.timesheet.time_control.mixin"]
 
-    project_id = fields.Many2one(
-        comodel_name='project.project',
-        string="Project",
-    )
+    project_id = fields.Many2one(comodel_name="project.project", string="Project")
     timesheet_ids = fields.One2many(
-        comodel_name='account.analytic.line',
-        inverse_name='lead_id',
-        string="Timesheet",
+        comodel_name="account.analytic.line", inverse_name="lead_id", string="Timesheet"
     )
 
     @api.model
@@ -30,7 +25,5 @@ class CrmLead(models.Model):
 
     def button_start_work(self):
         result = super().button_start_work()
-        result["context"].update({
-            "default_project_id": self.project_id.id,
-        })
+        result["context"].update({"default_project_id": self.project_id.id})
         return result
