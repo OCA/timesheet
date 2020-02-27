@@ -5,3 +5,4 @@
   * David Vidal
   * Vicent Cubells
   * Jairo Llopis
+  * Manuel Calero
