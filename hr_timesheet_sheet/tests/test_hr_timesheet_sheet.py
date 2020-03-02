@@ -39,7 +39,7 @@ class TestHrTimesheetSheet(TransactionCase):
 
         self.user = (
             self.env["res.users"]
-            .sudo(self.env.user)
+            .with_user(self.env.user)
             .with_context(no_reset_password=True)
             .create(
                 {
@@ -66,7 +66,7 @@ class TestHrTimesheetSheet(TransactionCase):
 
         self.user_2 = (
             self.env["res.users"]
-            .sudo(self.env.user)
+            .with_user(self.env.user)
             .with_context(no_reset_password=True)
             .create(
                 {
@@ -93,7 +93,7 @@ class TestHrTimesheetSheet(TransactionCase):
 
         self.user_3 = (
             self.env["res.users"]
-            .sudo(self.env.user)
+            .with_user(self.env.user)
             .with_context(no_reset_password=True)
             .create(
                 {
@@ -119,7 +119,7 @@ class TestHrTimesheetSheet(TransactionCase):
 
         self.user_4 = (
             self.env["res.users"]
-            .sudo(self.env.user)
+            .with_user(self.env.user)
             .with_context(no_reset_password=True)
             .create(
                 {
@@ -230,7 +230,7 @@ class TestHrTimesheetSheet(TransactionCase):
         )
 
     def test_0(self):
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"company_id": self.user.company_id.id}
         )
         sheet._onchange_scope()
@@ -241,7 +241,7 @@ class TestHrTimesheetSheet(TransactionCase):
 
         sheet.add_line_project_id = self.project_1
         sheet.onchange_add_project_id()
-        sheet.sudo(self.user).button_add_line()
+        sheet.with_user(self.user).button_add_line()
         self.assertEqual(len(sheet.timesheet_ids), 1)
         sheet._onchange_timesheets()
         self.assertEqual(len(sheet.line_ids), 7)
@@ -252,7 +252,7 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(len(sheet.line_ids), 0)
 
     def test_1(self):
-        sheet = self.sheet_model.sudo(self.user).new(
+        sheet = self.sheet_model.with_user(self.user).new(
             {
                 "employee_id": self.employee.id,
                 "company_id": self.user.company_id.id,
@@ -295,14 +295,14 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(line.unit_amount, 2.0)
         self.assertEqual(timesheet.unit_amount, 1.0)
 
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             sheet._convert_to_write(sheet._cache)
         )
         self.assertEqual(len(sheet.timesheet_ids), 1)
         self.assertEqual(len(sheet.line_ids), 7)
 
     def test_1_B(self):
-        sheet = self.sheet_model.sudo(self.user).new(
+        sheet = self.sheet_model.with_user(self.user).new(
             {
                 "employee_id": self.employee.id,
                 "company_id": self.user.company_id.id,
@@ -345,13 +345,13 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(len(sheet.line_ids), 0)
         self.assertEqual(sheet.state, "new")
 
-        created_sheet = self.sheet_model.sudo(self.user).create(
+        created_sheet = self.sheet_model.with_user(self.user).create(
             sheet._convert_to_write(sheet._cache)
         )
         self.assertEqual(created_sheet.state, "draft")
 
     def test_2(self):
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {
                 "employee_id": self.employee.id,
                 "company_id": self.user.company_id.id,
@@ -370,7 +370,7 @@ class TestHrTimesheetSheet(TransactionCase):
 
         sheet.add_line_project_id = self.project_1
         sheet.onchange_add_project_id()
-        sheet.sudo(self.user).button_add_line()
+        sheet.with_user(self.user).button_add_line()
         self.assertFalse(sheet.add_line_project_id.id)
         self.assertEqual(len(sheet.timesheet_ids), 1)
         sheet._onchange_timesheets()
@@ -400,7 +400,7 @@ class TestHrTimesheetSheet(TransactionCase):
 
         sheet.add_line_project_id = self.project_2
         sheet.onchange_add_project_id()
-        sheet.sudo(self.user).button_add_line()
+        sheet.with_user(self.user).button_add_line()
         self.assertEqual(len(sheet.timesheet_ids), 3)
         self.assertIn(timesheet.id, sheet.timesheet_ids.ids)
         self.assertEqual(len(sheet.line_ids), 7)
@@ -438,7 +438,7 @@ class TestHrTimesheetSheet(TransactionCase):
                 "employee_id": self.employee.id,
             }
         )
-        sheet = self.sheet_model.sudo(self.user).new(
+        sheet = self.sheet_model.with_user(self.user).new(
             {
                 "employee_id": self.employee.id,
                 "company_id": self.user.company_id.id,
@@ -458,7 +458,7 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertEqual(len(sheet.timesheet_ids), 1)
 
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             sheet._convert_to_write(sheet._cache)
         )
         self.assertEqual(len(sheet.line_ids), 0)
@@ -493,7 +493,7 @@ class TestHrTimesheetSheet(TransactionCase):
         days = -1 if timesheet_3.date.weekday() == 6 else 1
         timesheet_3.date = timesheet_3.date + relativedelta(days=days)
 
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"employee_id": self.employee.id, "company_id": self.user.company_id.id}
         )
         sheet._onchange_scope()
@@ -525,7 +525,7 @@ class TestHrTimesheetSheet(TransactionCase):
         sheet.add_line_project_id = self.project_2
         sheet.onchange_add_project_id()
         sheet.add_line_task_id = self.task_2
-        sheet.sudo(self.user).button_add_line()
+        sheet.with_user(self.user).button_add_line()
         self.assertEqual(len(sheet.timesheet_ids), 1)
         sheet._onchange_timesheets()
         self.assertEqual(len(sheet.line_ids), 7)
@@ -548,7 +548,7 @@ class TestHrTimesheetSheet(TransactionCase):
                 "unit_amount": 2.0,
             }
         )
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"employee_id": self.employee.id, "company_id": self.user.company_id.id}
         )
         sheet._onchange_scope()
@@ -633,7 +633,7 @@ class TestHrTimesheetSheet(TransactionCase):
                 "unit_amount": 2.0,
             }
         )
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"employee_id": self.employee.id, "company_id": self.user.company_id.id}
         )
         sheet._onchange_scope()
@@ -697,7 +697,7 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertTrue(timesheet_6.exists().ids)
 
     def test_end_date_before_start_date(self):
-        sheet = self.sheet_model.sudo(self.user).new(
+        sheet = self.sheet_model.with_user(self.user).new(
             {
                 "employee_id": self.employee.id,
                 "company_id": self.user.company_id.id,
@@ -712,25 +712,25 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(len(sheet.line_ids), 0)
         self.assertEqual(len(sheet.timesheet_ids), 0)
         with self.assertRaises(ValidationError):
-            self.sheet_model.sudo(self.user).create(
+            self.sheet_model.with_user(self.user).create(
                 sheet._convert_to_write(sheet._cache)
             )
 
     def test_no_copy(self):
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"employee_id": self.employee.id, "company_id": self.user.company_id.id}
         )
         sheet._onchange_scope()
         with self.assertRaises(UserError):
-            sheet.sudo(self.user).copy()
+            sheet.with_user(self.user).copy()
 
     def test_no_overlap(self):
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"employee_id": self.employee.id, "company_id": self.user.company_id.id}
         )
         sheet._onchange_scope()
         with self.assertRaises(ValidationError):
-            self.sheet_model.sudo(self.user).create(
+            self.sheet_model.with_user(self.user).create(
                 {"employee_id": self.employee.id, "company_id": self.user.company_id.id}
             )
 
@@ -756,7 +756,7 @@ class TestHrTimesheetSheet(TransactionCase):
                 "company_id": self.user_2.company_id.id,
             }
         )
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {
                 "employee_id": self.employee.id,
                 "company_id": self.user.company_id.id,
@@ -778,7 +778,7 @@ class TestHrTimesheetSheet(TransactionCase):
             sheet.add_line_task_id = task_3
 
     def test_9(self):
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {
                 "employee_id": self.employee.id,
                 "company_id": self.user.company_id.id,
@@ -789,7 +789,7 @@ class TestHrTimesheetSheet(TransactionCase):
         sheet._onchange_timesheets()
         sheet.add_line_project_id = self.project_1
         sheet.onchange_add_project_id()
-        sheet.sudo(self.user).button_add_line()
+        sheet.with_user(self.user).button_add_line()
         self.assertEqual(len(sheet.timesheet_ids), 1)
 
         with self.assertRaises(UserError):
@@ -816,7 +816,7 @@ class TestHrTimesheetSheet(TransactionCase):
     def test_10_start_day(self):
         """Test that the start day can be configured for weekly timesheets."""
         self.company.timesheet_week_start = "6"
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"employee_id": self.employee.id, "company_id": self.company.id}
         )
         sheet._onchange_scope()
@@ -847,7 +847,7 @@ class TestHrTimesheetSheet(TransactionCase):
                 "date": self.sheet_model._default_date_start(),
             }
         )
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {
                 "employee_id": self.employee.id,
                 "company_id": self.user.company_id.id,
@@ -903,7 +903,7 @@ class TestHrTimesheetSheet(TransactionCase):
                 "date": self.sheet_model._default_date_start(),
             }
         )
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {
                 "employee_id": self.employee.id,
                 "company_id": self.user.company_id.id,
@@ -929,7 +929,7 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(len(sheet.line_ids), 7)
 
     def test_13(self):
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"company_id": self.user.company_id.id}
         )
 
@@ -946,7 +946,7 @@ class TestHrTimesheetSheet(TransactionCase):
                 "company_id": self.company_2.id,
             }
         )
-        sheet = self.sheet_model.sudo(self.user_2).create(
+        sheet = self.sheet_model.with_user(self.user_2).create(
             {
                 "employee_id": new_employee.id,
                 "date_start": self.sheet_model._default_date_start(),
@@ -998,7 +998,7 @@ class TestHrTimesheetSheet(TransactionCase):
             }
         )
         self.assertNotEqual(self.company, self.company_2)
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"employee_id": self.employee.id, "department_id": self.department.id}
         )
         self.assertEqual(sheet.company_id, self.company)
@@ -1026,7 +1026,7 @@ class TestHrTimesheetSheet(TransactionCase):
             }
         )
         self.assertFalse(new_employee.company_id)
-        sheet_no_department = self.sheet_model.sudo(self.user).create(
+        sheet_no_department = self.sheet_model.with_user(self.user).create(
             {
                 "employee_id": new_employee.id,
                 "department_id": False,
@@ -1041,7 +1041,7 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertTrue(sheet_no_department.company_id)
 
         sheet_no_department.unlink()
-        sheet_no_employee = self.sheet_model.sudo(self.user).create(
+        sheet_no_employee = self.sheet_model.with_user(self.user).create(
             {
                 "date_start": self.sheet_model._default_date_start(),
                 "date_end": self.sheet_model._default_date_end(),
@@ -1055,7 +1055,7 @@ class TestHrTimesheetSheet(TransactionCase):
 
     def test_sheet_range_monthly(self):
         self.company.sheet_range = MONTHLY
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"employee_id": self.employee.id, "company_id": self.company.id}
         )
         sheet._onchange_scope()
@@ -1066,7 +1066,7 @@ class TestHrTimesheetSheet(TransactionCase):
 
     def test_sheet_range_daily(self):
         self.company.sheet_range = DAILY
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"employee_id": self.employee.id, "company_id": self.company.id}
         )
         sheet._onchange_scope()
@@ -1076,71 +1076,71 @@ class TestHrTimesheetSheet(TransactionCase):
 
     def test_employee_no_user(self):
         with self.assertRaises(UserError):
-            self.sheet_model.sudo(self.user).create(
+            self.sheet_model.with_user(self.user).create(
                 {"employee_id": self.employee_no_user.id, "company_id": self.company.id}
             )
 
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"employee_id": self.employee.id, "company_id": self.company.id}
         )
         with self.assertRaises(UserError):
             sheet.employee_id = self.employee_no_user
 
     def test_workflow(self):
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"company_id": self.user.company_id.id}
         )
 
-        self.sheet_model.sudo(self.user).fields_view_get(view_type="form")
-        self.sheet_model.sudo(self.user).fields_view_get(view_type="tree")
+        self.sheet_model.with_user(self.user).fields_view_get(view_type="form")
+        self.sheet_model.with_user(self.user).fields_view_get(view_type="tree")
 
         with self.assertRaises(UserError):
-            sheet.sudo(self.user_3).action_timesheet_refuse()
+            sheet.with_user(self.user_3).action_timesheet_refuse()
         with self.assertRaises(UserError):
-            sheet.sudo(self.user_3).action_timesheet_done()
+            sheet.with_user(self.user_3).action_timesheet_done()
 
         sheet.action_timesheet_confirm()
-        self.assertFalse(sheet.sudo(self.user_3).can_review)
+        self.assertFalse(sheet.with_user(self.user_3).can_review)
         self.assertEqual(
-            self.sheet_model.sudo(self.user_3).search_count(
+            self.sheet_model.with_user(self.user_3).search_count(
                 [("can_review", "=", True)]
             ),
             0,
         )
         self.assertEqual(
-            self.sheet_model.sudo(self.user_3).search_count(
+            self.sheet_model.with_user(self.user_3).search_count(
                 [("can_review", "!=", False)]
             ),
             0,
         )
         self.assertEqual(
-            self.sheet_model.sudo(self.user_3).search_count(
+            self.sheet_model.with_user(self.user_3).search_count(
                 [("can_review", "=", False)]
             ),
             1,
         )
         self.assertEqual(
-            self.sheet_model.sudo(self.user_3).search_count(
+            self.sheet_model.with_user(self.user_3).search_count(
                 [("can_review", "!=", True)]
             ),
             1,
         )
         with self.assertRaises(UserError):
-            sheet.sudo(self.user_3).action_timesheet_draft()
+            sheet.sudwith_usero(self.user_3).action_timesheet_draft()
         sheet.action_timesheet_done()
         sheet.action_timesheet_draft()
         sheet.unlink()
 
     def test_review_policy_default(self):
         self.assertEqual(self.company.timesheet_sheet_review_policy, "hr")
-        sheet = self.sheet_model.sudo(self.user).create(
+        sheet = self.sheet_model.with_user(self.user).create(
             {"company_id": self.user.company_id.id}
         )
         self.assertEqual(sheet.review_policy, "hr")
         sheet.unlink()
 
     def test_same_week_different_years(self):
-        sheet = self.sheet_model.sudo(self.user).new(
+        sheet = self.sheet_model.with_user(self.user).new(
             {
                 "employee_id": self.employee.id,
                 "date_start": date(2019, 12, 30),
@@ -1150,7 +1150,7 @@ class TestHrTimesheetSheet(TransactionCase):
         self.assertEqual(sheet.name, "Week 01, 2020")
 
     def test_different_weeks_different_years(self):
-        sheet = self.sheet_model.sudo(self.user).new(
+        sheet = self.sheet_model.with_user(self.user).new(
             {
                 "employee_id": self.employee.id,
                 "date_start": date(2019, 12, 29),
