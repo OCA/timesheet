@@ -275,7 +275,6 @@
     <record id="act_hr_timesheet_sheet_my_timesheets" model="ir.actions.act_window">
         <field name="name">My Timesheet Sheets</field>
         <field name="res_model">hr_timesheet.sheet</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,kanban,form</field>
         <field name="domain">[('employee_id.user_id', '=', uid)]</field>
         <field name="search_view_id" ref="view_hr_timesheet_sheet_filter"/>
@@ -310,7 +309,6 @@
     <record id="act_hr_timesheet_sheet_all_timesheets" model="ir.actions.act_window">
         <field name="name">All Timesheet Sheets</field>
         <field name="res_model">hr_timesheet.sheet</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,kanban,form</field>
         <field name="search_view_id" ref="view_hr_timesheet_sheet_filter"/>
         <field name="help" type="html">
@@ -346,7 +344,6 @@
         <field name="name">Timesheet Sheets to Review</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hr_timesheet.sheet</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,kanban,form</field>
         <field name="view_id" eval="False"/>
         <field name="context">{'search_default_to_review':1}</field>
