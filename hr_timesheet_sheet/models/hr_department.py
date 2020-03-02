@@ -12,7 +12,6 @@ class HrDepartment(models.Model):
         compute="_compute_timesheet_to_approve", string="Timesheet Sheets to Approve"
     )
 
-    @api.multi
     def _compute_timesheet_to_approve(self):
         timesheet_data = self.env["hr_timesheet.sheet"].read_group(
             [("department_id", "in", self.ids), ("state", "=", "confirm")],

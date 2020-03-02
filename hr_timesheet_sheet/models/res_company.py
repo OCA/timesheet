@@ -1,9 +1,6 @@
 # Copyright 2018 Eficent Business and IT Consulting Services, S.L.
 # Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
-from dateutil.rrule import DAILY, MONTHLY, WEEKLY
-
 from odoo import fields, models
 
 _WEEKDAYS = [
@@ -21,9 +18,9 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     sheet_range = fields.Selection(
-        [(MONTHLY, "Month"), (WEEKLY, "Week"), (DAILY, "Day")],
+        [('MONTHLY', "Month"), ('WEEKLY', "Week"), ('DAILY', "Day")],
         string="Timesheet Sheet Range",
-        default=WEEKLY,
+        default='WEEKLY',
         help="The range of your Timesheet Sheet.",
     )
 
