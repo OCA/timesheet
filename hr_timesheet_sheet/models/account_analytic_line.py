@@ -12,7 +12,6 @@ class AccountAnalyticLine(models.Model):
     sheet_id = fields.Many2one(comodel_name="hr_timesheet.sheet", string="Sheet")
     sheet_state = fields.Selection(string="Steet State", related="sheet_id.state")
 
-    @api.multi
     def _get_sheet_domain(self):
         """ Hook for extensions """
         self.ensure_one()
@@ -24,7 +23,6 @@ class AccountAnalyticLine(models.Model):
             ("state", "in", ["new", "draft"]),
         ]
 
-    @api.multi
     def _determine_sheet(self):
         """ Hook for extensions """
         self.ensure_one()
@@ -37,7 +35,6 @@ class AccountAnalyticLine(models.Model):
             if timesheet.sheet_id != sheet:
                 timesheet.sheet_id = sheet
 
-    @api.multi
     @api.constrains("company_id", "sheet_id")
     def _check_company_id_sheet_id(self):
         for aal in self.sudo():
@@ -73,7 +70,6 @@ class AccountAnalyticLine(models.Model):
     def _sheet_create(self, values):
         return self.with_context(sheet_create=True).create(values)
 
-    @api.multi
     def write(self, values):
         self._check_state_on_write(values)
         res = super().write(values)
@@ -81,12 +77,10 @@ class AccountAnalyticLine(models.Model):
             self._compute_sheet()
         return res
 
-    @api.multi
     def unlink(self):
         self._check_state()
         return super().unlink()
 
-    @api.multi
     def _check_state_on_write(self, values):
         """ Hook for extensions """
         if self._timesheet_should_check_write(values):
@@ -123,7 +117,6 @@ class AccountAnalyticLine(models.Model):
         """ Hook for extensions """
         return ["date", "employee_id", "project_id", "company_id"]
 
-    @api.multi
     def _check_state(self):
         if self.env.context.get("skip_check_state"):
             return
@@ -137,7 +130,6 @@ class AccountAnalyticLine(models.Model):
                     % (line.sheet_id.complete_name,)
                 )
 
-    @api.multi
     def merge_timesheets(self):
         unit_amount = sum([t.unit_amount for t in self])
         amount = sum([t.amount for t in self])

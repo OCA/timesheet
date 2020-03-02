@@ -10,7 +10,6 @@ from datetime import datetime, time
 
 import babel.dates
 from dateutil.relativedelta import SU, relativedelta
-from dateutil.rrule import MONTHLY, WEEKLY
 
 from odoo import SUPERUSER_ID, _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
@@ -170,7 +169,6 @@ class Sheet(models.Model):
         string="Complete Name", compute="_compute_complete_name"
     )
 
-    @api.multi
     @api.depends("date_start", "date_end")
     def _compute_name(self):
         locale = self.env.context.get("lang") or self.env.user.lang or "en_US"
@@ -196,7 +194,6 @@ class Sheet(models.Model):
         for sheet in self:
             sheet.total_time = sum(sheet.mapped("timesheet_ids.unit_amount"))
 
-    @api.multi
     @api.depends("review_policy")
     def _compute_can_review(self):
         for sheet in self:
@@ -240,13 +237,11 @@ class Sheet(models.Model):
                     _("The start date cannot be later than the end date.")
                 )
 
-    @api.multi
     def _get_complete_name_components(self):
         """ Hook for extensions """
         self.ensure_one()
         return [self.employee_id.name_get()[0][1]]
 
-    @api.multi
     def _get_overlapping_sheet_domain(self):
         """ Hook for extensions """
         self.ensure_one()
@@ -274,7 +269,6 @@ class Sheet(models.Model):
                     )
                 )
 
-    @api.multi
     @api.constrains("company_id", "employee_id")
     def _check_company_id_employee_id(self):
         for rec in self.sudo():
@@ -290,7 +284,6 @@ class Sheet(models.Model):
                     )
                 )
 
-    @api.multi
     @api.constrains("company_id", "department_id")
     def _check_company_id_department_id(self):
         for rec in self.sudo():
@@ -306,7 +299,6 @@ class Sheet(models.Model):
                     )
                 )
 
-    @api.multi
     @api.constrains("company_id", "add_line_project_id")
     def _check_company_id_add_line_project_id(self):
         for rec in self.sudo():
@@ -322,7 +314,6 @@ class Sheet(models.Model):
                     )
                 )
 
-    @api.multi
     @api.constrains("company_id", "add_line_task_id")
     def _check_company_id_add_line_task_id(self):
         for rec in self.sudo():
@@ -338,7 +329,6 @@ class Sheet(models.Model):
                     )
                 )
 
-    @api.multi
     def _get_possible_reviewers(self):
         self.ensure_one()
         res = self.env["res.users"].browse(SUPERUSER_ID)
@@ -346,7 +336,6 @@ class Sheet(models.Model):
             res |= self.env.ref("hr.group_hr_user").users
         return res
 
-    @api.multi
     def _get_timesheet_sheet_company(self):
         self.ensure_one()
         employee = self.employee_id
@@ -363,7 +352,6 @@ class Sheet(models.Model):
             self.review_policy = company.timesheet_sheet_review_policy
             self.department_id = self.employee_id.department_id
 
-    @api.multi
     def _get_timesheet_sheet_lines_domain(self):
         self.ensure_one()
         return [
@@ -374,7 +362,6 @@ class Sheet(models.Model):
             ("project_id", "!=", False),
         ]
 
-    @api.multi
     @api.depends("date_start", "date_end")
     def _compute_line_ids(self):
         SheetLine = self.env["hr_timesheet.sheet.line"]
@@ -416,7 +403,6 @@ class Sheet(models.Model):
             res.append(value)
         return res
 
-    @api.multi
     def _get_data_matrix(self):
         self.ensure_one()
         MatrixKey = self._matrix_key()
@@ -486,7 +472,6 @@ class Sheet(models.Model):
             return employee.user_id.id
         return False
 
-    @api.multi
     def copy(self, default=None):
         if not self.env.context.get("allow_copy_timesheet"):
             raise UserError(_("You cannot duplicate a sheet."))
@@ -502,7 +487,6 @@ class Sheet(models.Model):
     def _sheet_write(self, field, recs):
         self.with_context(sheet_write=True).write({field: [(6, 0, recs.ids)]})
 
-    @api.multi
     def write(self, vals):
         self._check_employee_user_link(vals)
         res = super().write(vals)
@@ -513,7 +497,6 @@ class Sheet(models.Model):
                     rec.delete_empty_lines(True)
         return res
 
-    @api.multi
     def unlink(self):
         for sheet in self:
             if sheet.state in ("confirm", "done"):
@@ -544,27 +527,23 @@ class Sheet(models.Model):
             if subscribers:
                 self.message_subscribe(partner_ids=subscribers.ids)
 
-    @api.multi
     def action_timesheet_draft(self):
         if self.filtered(lambda sheet: sheet.state != "done"):
             raise UserError(_("Cannot revert to draft a non-approved sheet."))
         self._check_can_review()
         self.write({"state": "draft", "reviewer_id": False})
 
-    @api.multi
     def action_timesheet_confirm(self):
         self._timesheet_subscribe_users()
         self.reset_add_line()
         self.write({"state": "confirm"})
 
-    @api.multi
     def action_timesheet_done(self):
         if self.filtered(lambda sheet: sheet.state != "confirm"):
             raise UserError(_("Cannot approve a non-submitted sheet."))
         self._check_can_review()
         self.write({"state": "done", "reviewer_id": self._get_current_reviewer().id})
 
-    @api.multi
     def action_timesheet_refuse(self):
         if self.filtered(lambda sheet: sheet.state != "confirm"):
             raise UserError(_("Cannot reject a non-submitted sheet."))
@@ -585,12 +564,10 @@ class Sheet(models.Model):
             )
         return reviewer
 
-    @api.multi
     def _check_can_review(self):
         if self.filtered(lambda x: not x.can_review and x.review_policy == "hr"):
             raise UserError(_("Only a HR Officer or Manager can review the sheet."))
 
-    @api.multi
     def button_add_line(self):
         for rec in self:
             if rec.state in ["new", "draft"]:
@@ -621,7 +598,6 @@ class Sheet(models.Model):
             dates.append(start)
         return dates
 
-    @api.multi
     def _get_line_name(self, project_id, task_id=None, **kwargs):
         self.ensure_one()
         if task_id:
@@ -629,7 +605,6 @@ class Sheet(models.Model):
 
         return project_id.name_get()[0][1]
 
-    @api.multi
     def _get_new_line_unique_id(self):
         """ Hook for extensions """
         self.ensure_one()
@@ -638,7 +613,6 @@ class Sheet(models.Model):
             "task_id": self.add_line_task_id,
         }
 
-    @api.multi
     def _get_default_sheet_line(self, matrix, key):
         self.ensure_one()
         values = {
@@ -695,7 +669,6 @@ class Sheet(models.Model):
             return repeated.merge_timesheets()
         return timesheets
 
-    @api.multi
     def _is_add_line(self, row):
         """ Hook for extensions """
         self.ensure_one()
@@ -733,7 +706,6 @@ class Sheet(models.Model):
             if self.timesheet_ids != self.timesheet_ids.exists():
                 self._sheet_write("timesheet_ids", self.timesheet_ids.exists())
 
-    @api.multi
     def _update_analytic_lines_from_new_lines(self, vals):
         self.ensure_one()
         new_line_ids_list = []
@@ -765,7 +737,6 @@ class Sheet(models.Model):
             "employee_id": line.employee_id.id,
         }
 
-    @api.multi
     def _is_compatible_new_line(self, line_a, line_b):
         """ Hook for extensions """
         self.ensure_one()
@@ -775,7 +746,6 @@ class Sheet(models.Model):
             and line_a.date == line_b.date
         )
 
-    @api.multi
     def add_new_line(self, line):
         self.ensure_one()
         new_line_model = self.env["hr_timesheet.sheet.new.analytic.line"]
@@ -792,21 +762,21 @@ class Sheet(models.Model):
 
     @api.model
     def _get_period_start(self, company, date):
-        r = company and company.sheet_range or WEEKLY
-        if r == WEEKLY:
+        r = company and company.sheet_range or 'WEEKLY'
+        if r == 'WEEKLY':
             if company.timesheet_week_start:
                 delta = relativedelta(weekday=int(company.timesheet_week_start), days=6)
             else:
                 delta = relativedelta(days=date.weekday())
             return date - delta
-        elif r == MONTHLY:
+        elif r == 'MONTHLY':
             return date + relativedelta(day=1)
         return date
 
     @api.model
     def _get_period_end(self, company, date):
-        r = company and company.sheet_range or WEEKLY
-        if r == WEEKLY:
+        r = company and company.sheet_range or 'WEEKLY'
+        if r == 'WEEKLY':
             if company.timesheet_week_start:
                 delta = relativedelta(
                     weekday=(int(company.timesheet_week_start) + 6) % 7
@@ -814,7 +784,7 @@ class Sheet(models.Model):
             else:
                 delta = relativedelta(days=6 - date.weekday())
             return date + delta
-        elif r == MONTHLY:
+        elif r == 'MONTHLY':
             return date + relativedelta(months=1, day=1, days=-1)
         return date
 
@@ -822,13 +792,12 @@ class Sheet(models.Model):
     # OpenChatter methods and notifications
     # ------------------------------------------------
 
-    @api.multi
     def _track_subtype(self, init_values):
         self.ensure_one()
         if "state" in init_values and self.state == "confirm":
-            return "hr_timesheet_sheet.mt_timesheet_confirmed"
+            return self.env.ref('hr_timesheet_sheet.mt_timesheet_confirmed')
         elif "state" in init_values and self.state == "done":
-            return "hr_timesheet_sheet.mt_timesheet_approved"
+            return self.env.ref('hr_timesheet_sheet.mt_timesheet_approved')
         return super()._track_subtype(init_values)
 
 
@@ -844,7 +813,6 @@ class AbstractSheetLine(models.AbstractModel):
     company_id = fields.Many2one(comodel_name="res.company", string="Company")
     employee_id = fields.Many2one(comodel_name="hr.employee", string="Employee")
 
-    @api.multi
     def get_unique_id(self):
         """ Hook for extensions """
         self.ensure_one()
