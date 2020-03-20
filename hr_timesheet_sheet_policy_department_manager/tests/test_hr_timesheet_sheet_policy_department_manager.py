@@ -76,6 +76,7 @@ class TestHrTimesheetSheetPolicyDepartmentManager(common.TransactionCase):
         self.company.timesheet_sheet_review_policy = 'department_manager'
         sheet = self.HrTimesheetSheet.sudo(self.employee_user).create({
             'company_id': self.company.id,
+            'department_id': self.department.id,
         })
         self.assertEqual(sheet.review_policy, 'department_manager')
         self.company.timesheet_sheet_review_policy = 'hr'
