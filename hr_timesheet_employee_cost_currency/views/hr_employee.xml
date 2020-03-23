@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+    Copyright 2020 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="hr_employee_view_form_inherit_timesheet" model="ir.ui.view">
+        <field name="name">hr.employee.form.timesheet</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_employee_view_form_inherit_timesheet"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']/.." position="attributes">
+                <attribute name="class">o_row</attribute>
+            </xpath>
+            <field name="currency_id" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="groups">base.group_multi_currency</attribute>
+            </field>
+            <field name="timesheet_cost" position="after">
+                <field name="currency_id" position="move"/>
+            </field>
+            <field name="currency_id" position="attributes">
+                <attribute name="class">oe_edit_only</attribute>
+                <attribute name="nolabel">1</attribute>
+                <attribute name="options">{'no_create': True}</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>
