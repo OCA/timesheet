@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2020 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record id="project_project_view_form_simplified_inherit_timesheet" model="ir.ui.view">
+        <field name="name">project.project.view.form.simplified.inherit.timesheet</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="hr_timesheet.project_project_view_form_simplified_inherit_timesheet"/>
+        <field name="arch" type="xml">
+            <field name="allow_timesheets" position="after">
+                <field name="is_nonpayable" attrs="{'invisible': [('allow_timesheets', '=', False)]}" string="Non-Payable (by default)"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="project_invoice_form" model="ir.ui.view">
+        <field name="name">project.invoice.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="hr_timesheet.project_invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options_active']" position="inside">
+                <div attrs="{'invisible': [('allow_timesheets', '=', False)]}">
+                    <field name="is_nonpayable" class="oe_inline"/>
+                    <label for="is_nonpayable" string="Non-Payable (by default)"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

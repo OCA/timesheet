@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2020 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record id="timesheet_view_tree_user" model="ir.ui.view">
+        <field name="name">account.analytic.line.view.tree.user</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.timesheet_view_tree_user"/>
+        <field name="arch" type="xml">
+            <field name="unit_amount" position="after">
+                <field name="is_nonpayable" invisible="1"/>
+            </field>
+            <field name="unit_amount" position="attributes">
+                <attribute name="attrs">{'readonly': [('is_nonpayable', '=', True)]}</attribute>
+            </field>
+            <tree position="attributes">
+                <attribute name="decoration-muted">is_nonpayable</attribute>
+            </tree>
+        </field>
+    </record>
+
+    <record id="timesheet_view_form_user" model="ir.ui.view">
+        <field name="name">account.analytic.line.view.form.user</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.timesheet_view_form_user"/>
+        <field name="arch" type="xml">
+            <field name="unit_amount" position="after">
+                <field name="is_nonpayable"/>
+            </field>
+            <field name="unit_amount" position="attributes">
+                <attribute name="attrs">{'readonly': [('is_nonpayable', '=', True)]}</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>
