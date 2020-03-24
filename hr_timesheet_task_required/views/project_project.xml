@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="project_project_view_form_simplified" model="ir.ui.view">
+        <field name="name">project.project.view.form.simplified</field>
+        <field name="model">project.project</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet.project_project_view_form_simplified_inherit_timesheet"
+        />
+        <field name="arch" type="xml">
+            <field name="allow_timesheets" position="after">
+                <field
+                    name="is_timesheet_task_required"
+                    attrs="{'invisible': [('allow_timesheets', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="project_invoice_form" model="ir.ui.view">
+        <field name="name">project.project.view.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="hr_timesheet.project_invoice_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options_active']" position="inside">
+                <div>
+                    <field
+                        name="is_timesheet_task_required"
+                        class="oe_inline"
+                        attrs="{'invisible': [('allow_timesheets', '=', False)]}"
+                    />
+                    <label for="is_timesheet_task_required" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
