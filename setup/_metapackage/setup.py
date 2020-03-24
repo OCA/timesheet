@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo12-addon-hr_employee_product',
         'odoo12-addon-hr_timesheet_activity_begin_end',
         'odoo12-addon-hr_timesheet_analysis',
+        'odoo12-addon-hr_timesheet_employee_cost_contract',
         'odoo12-addon-hr_timesheet_employee_cost_currency',
         'odoo12-addon-hr_timesheet_employee_required',
         'odoo12-addon-hr_timesheet_nonpayable',
