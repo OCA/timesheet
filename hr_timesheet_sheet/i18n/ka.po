@@ -1012,6 +1012,7 @@ msgstr "კვირა"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
+#| msgid "Week"
 msgid "Week %s"
 msgstr "კვირა"
 
@@ -1027,9 +1028,9 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
-#, fuzzy, python-format
+#, python-format
 msgid "Weeks %s - %s"
-msgstr "კვირა"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
@@ -1101,11 +1102,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr ""
-
-#, fuzzy
-#~| msgid "Week"
-#~ msgid "Weeks"
-#~ msgstr "კვირა"
 
 #~ msgid "Note"
 #~ msgstr "შენიშვნა"
