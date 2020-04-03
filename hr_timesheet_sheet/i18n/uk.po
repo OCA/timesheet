@@ -140,21 +140,21 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:579
-#, fuzzy, python-format
+#, python-format
 msgid "Cannot approve a non-submitted sheet."
-msgstr "Не вдається затвердити непредставлений табель."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:589
-#, fuzzy, python-format
+#, python-format
 msgid "Cannot reject a non-submitted sheet."
-msgstr "Не вдається затвердити непредставлений табель."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:563
-#, fuzzy, python-format
+#, python-format
 msgid "Cannot revert to draft a non-approved sheet."
-msgstr "Не вдається затвердити непредставлений табель."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
@@ -1051,6 +1051,7 @@ msgstr "Тиждень"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
+#| msgid "Week"
 msgid "Week %s"
 msgstr "Тиждень"
 
@@ -1066,9 +1067,9 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
-#, fuzzy, python-format
+#, python-format
 msgid "Weeks %s - %s"
-msgstr "Тиждень"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
@@ -1098,9 +1099,9 @@ msgstr "Ви не можете видалити табель, який повн�
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot duplicate a sheet."
-msgstr "Ви не можете дублювати табель."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
@@ -1152,50 +1153,11 @@ msgid "to"
 msgstr "по"
 
 #, fuzzy
-#~| msgid "Week"
-#~ msgid "Weeks"
-#~ msgstr "Тиждень"
-
-#, fuzzy
-#~ msgid ""
-#~ "In order to create a sheet for this employee, you must link him/her to an "
-#~ "user."
-#~ msgstr ""
-#~ "Щоб створити табель для цього співробітника, ви повинні зв'язати його з "
-#~ "користувачем."
-
-#, fuzzy
-#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
-#~ msgstr "Ви не можете видалити табель, який повністю підтверджений."
-
-#, fuzzy
-#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
-#~ msgstr "Ви не можете змінити запис на підтвердженому табелі."
-
-#, fuzzy
-#~ msgid "Only an HR Officer or Manager can approve sheets."
-#~ msgstr "Тільки менеджер відділу кадрів може затвердити табель."
-
-#, fuzzy
 #~ msgid ""
 #~ "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 #~ msgstr ""
 #~ "Тільки співробітник відділу кадрів або менеджер може відмовитися від "
 #~ "табелю або скинути його до чернетки."
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot create a timesheet of a different company than the one of the "
-#~ "timesheet sheet."
-#~ msgstr "Ви не можете змінити запис на підтвердженому табелі."
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot have 2 sheets that overlap!\n"
-#~ "Please use the menu 'Timesheet Sheet' to avoid this problem."
-#~ msgstr ""
-#~ "Ви не можете мати 2 табелі, які перекриваються!\n"
-#~ "Щоб уникнути цієї проблеми, скористайтеся меню \"Мій поточний табель\"."
 
 #, fuzzy
 #~ msgid "Confirmed Timesheet Sheets"
