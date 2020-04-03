@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_timesheet_sheet_activity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-04-03 08:19+0000\n"
+"Last-Translator: Cas Vissers <c.vissers@brahoo.nl>\n"
+"Language-Team: none\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: hr_timesheet_sheet_activity
+#: model:ir.actions.act_window,name:hr_timesheet_sheet_activity.action_view_hr_timesheet_sheet_mail_activity_types
+#: model:ir.ui.menu,name:hr_timesheet_sheet_activity.menu_view_hr_timesheet_sheet_mail_activity_types
+msgid "Activity Types"
+msgstr "Activiteit soorten"
+
+#. module: hr_timesheet_sheet_activity
+#: model:ir.model,name:hr_timesheet_sheet_activity.model_hr_timesheet_sheet
+msgid "Timesheet Sheet"
+msgstr "Urenstaat formulier"
+
+#. module: hr_timesheet_sheet_activity
+#: model:mail.activity.type,name:hr_timesheet_sheet_activity.activity_sheet_resubmission
+msgid "Timesheet Sheet Re-submission"
+msgstr "Urenstaat formulier opnieuw ingediend"
+
+#. module: hr_timesheet_sheet_activity
+#: model:mail.activity.type,name:hr_timesheet_sheet_activity.activity_sheet_review
+msgid "Timesheet Sheet Review"
+msgstr "Urenstaat formulier goedkeuren"
+
+#. module: hr_timesheet_sheet_activity
+#: model:mail.activity.type,name:hr_timesheet_sheet_activity.activity_sheet_submission
+msgid "Timesheet Sheet Submission"
+msgstr "Urenstaat formulier indienen"
