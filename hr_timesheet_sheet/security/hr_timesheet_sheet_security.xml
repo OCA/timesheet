@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
 <odoo>
     <data noupdate="1">
-        <!--
-            License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-        -->
         <record model="ir.rule" id="timesheet_sheet_comp_rule">
             <field name="name">Timesheet sheet multi-company</field>
             <field
@@ -14,7 +14,7 @@
             <field name="global" eval="True" />
             <field
                 name="domain_force"
-            >['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+            >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
         </record>
     </data>
 </odoo>
