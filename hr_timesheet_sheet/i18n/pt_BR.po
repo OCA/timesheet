@@ -764,7 +764,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
 #, fuzzy
 #| msgid "Activity State"
-msgid "Steet State"
+msgid "Sheet State"
 msgstr "Status da Atividade"
 
 #. module: hr_timesheet_sheet
