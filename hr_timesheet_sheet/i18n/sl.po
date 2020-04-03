@@ -1030,8 +1030,9 @@ msgstr "Teden"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
+#| msgid "Week"
 msgid "Week %s"
-msgstr "Teden "
+msgstr "Teden"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1045,9 +1046,9 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
-#, fuzzy, python-format
+#, python-format
 msgid "Weeks %s - %s"
-msgstr "Teden "
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
@@ -1077,9 +1078,9 @@ msgstr "Potrjene časovnice ne morete izbrisati."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot duplicate a sheet."
-msgstr "Časovnice ne morete podvojiti"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
@@ -1121,41 +1122,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "za"
-
-#, fuzzy
-#~| msgid "Week"
-#~ msgid "Weeks"
-#~ msgstr "Teden"
-
-#, fuzzy
-#~ msgid ""
-#~ "In order to create a sheet for this employee, you must link him/her to an "
-#~ "user."
-#~ msgstr ""
-#~ "Delojemalec mora biti povezan z uporabnikom, da se lahko ustvari "
-#~ "časovnica."
-
-#, fuzzy
-#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
-#~ msgstr "Potrjene časovnice ne morete izbrisati."
-
-#, fuzzy
-#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
-#~ msgstr "Vnosov v potrjeno časovnico ni mogoče spreminjati."
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot create a timesheet of a different company than the one of the "
-#~ "timesheet sheet."
-#~ msgstr "Vnosov v potrjeno časovnico ni mogoče spreminjati."
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot have 2 sheets that overlap!\n"
-#~ "Please use the menu 'Timesheet Sheet' to avoid this problem."
-#~ msgstr ""
-#~ "Dveh prekrivajočih se časovnic ne morete imeti!\n"
-#~ "Uporabite meni 'Moje tekoče časovnice' v izogib temu problemu."
 
 #, fuzzy
 #~ msgid "Confirmed Timesheet Sheets"

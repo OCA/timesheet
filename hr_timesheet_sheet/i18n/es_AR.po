@@ -1017,8 +1017,9 @@ msgstr "Semana"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
+#| msgid "Week"
 msgid "Week %s"
-msgstr "Semana "
+msgstr "Semana"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1032,9 +1033,9 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
-#, fuzzy, python-format
+#, python-format
 msgid "Weeks %s - %s"
-msgstr "Semana "
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
@@ -1106,21 +1107,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "a"
-
-#, fuzzy
-#~| msgid "Week"
-#~ msgid "Weeks"
-#~ msgstr "Semana"
-
-#, fuzzy
-#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
-#~ msgstr "No puede modificar una entrada en un parte de horas confirmado."
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot create a timesheet of a different company than the one of the "
-#~ "timesheet sheet."
-#~ msgstr "No puede modificar una entrada en un parte de horas confirmado."
 
 #, fuzzy
 #~ msgid "Confirmed Timesheet Sheets"
