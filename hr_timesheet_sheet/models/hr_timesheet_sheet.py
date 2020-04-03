@@ -1,4 +1,4 @@
-# Copyright 2018 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2018-2020 ForgeFlow, S.L.
 # Copyright 2018-2020 Brainbean Apps (https://brainbeanapps.com)
 # Copyright 2018-2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -42,11 +42,11 @@ class Sheet(models.Model):
         return ResCompany._fields["timesheet_sheet_review_policy"].selection
 
     def _default_review_policy(self):
-        company = self.env["res.company"]._company_default_get()
+        company = self.env.company
         return company.timesheet_sheet_review_policy
 
     def _default_employee(self):
-        company = self.env["res.company"]._company_default_get()
+        company = self.env.company
         return self.env["hr.employee"].search(
             [("user_id", "=", self.env.uid), ("company_id", "in", [company.id, False])],
             limit=1,
@@ -117,7 +117,7 @@ class Sheet(models.Model):
             ("done", "Approved"),
         ],
         default="new",
-        track_visibility="onchange",
+        tracking=True,
         string="Status",
         required=True,
         readonly=True,
@@ -126,7 +126,7 @@ class Sheet(models.Model):
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
-        default=lambda self: self.env["res.company"]._company_default_get(),
+        default=lambda self: self.env.company,
         required=True,
         readonly=True,
     )
@@ -144,10 +144,7 @@ class Sheet(models.Model):
         states={"new": [("readonly", False)]},
     )
     reviewer_id = fields.Many2one(
-        comodel_name="hr.employee",
-        string="Reviewer",
-        readonly=True,
-        track_visibility="onchange",
+        comodel_name="hr.employee", string="Reviewer", readonly=True, tracking=True
     )
     add_line_project_id = fields.Many2one(
         comodel_name="project.project",
@@ -369,11 +366,11 @@ class Sheet(models.Model):
                 continue
             matrix = sheet._get_data_matrix()
             vals_list = []
-            for key in sorted(matrix, key=lambda key: self._get_matrix_sortby(key)):
+            for key in sorted(matrix, key=lambda key: sheet._get_matrix_sortby(key)):
                 vals_list.append(sheet._get_default_sheet_line(matrix, key))
                 if sheet.state in ["new", "draft"]:
                     sheet.clean_timesheets(matrix[key])
-            sheet.line_ids = SheetLine.create(vals_list)
+            sheet.line_ids = [(6, 0, SheetLine.create(vals_list).ids)]
 
     @api.model
     def _matrix_key_attributes(self):
@@ -393,7 +390,6 @@ class Sheet(models.Model):
     def _get_matrix_sortby(self, key):
         res = []
         for attribute in key:
-            value = None
             if hasattr(attribute, "name_get"):
                 name = attribute.name_get()
                 value = name[0][1] if name else ""
@@ -425,7 +421,7 @@ class Sheet(models.Model):
             domain = sheet._get_timesheet_sheet_lines_domain()
             timesheets = AccountAnalyticLines.search(domain)
             sheet.link_timesheets_to_sheet(timesheets)
-            sheet.timesheet_ids = timesheets
+            sheet.timesheet_ids = [(6, 0, timesheets.ids)]
 
     @api.onchange("date_start", "date_end", "employee_id")
     def _onchange_scope(self):
@@ -459,7 +455,7 @@ class Sheet(models.Model):
     @api.model
     def _check_employee_user_link(self, vals):
         if "employee_id" in vals:
-            employee = self.env["hr.employee"].browse(vals["employee_id"])
+            employee = self.env["hr.employee"].sudo().browse(vals["employee_id"])
             if not employee.user_id:
                 raise UserError(
                     _(
@@ -794,11 +790,12 @@ class Sheet(models.Model):
     # ------------------------------------------------
 
     def _track_subtype(self, init_values):
-        self.ensure_one()
-        if "state" in init_values and self.state == "confirm":
-            return self.env.ref("hr_timesheet_sheet.mt_timesheet_confirmed")
-        elif "state" in init_values and self.state == "done":
-            return self.env.ref("hr_timesheet_sheet.mt_timesheet_approved")
+        if self:
+            record = self[0]
+            if "state" in init_values and record.state == "confirm":
+                return self.env.ref("hr_timesheet_sheet.mt_timesheet_confirmed")
+            elif "state" in init_values and record.state == "done":
+                return self.env.ref("hr_timesheet_sheet.mt_timesheet_approved")
         return super()._track_subtype(init_values)
 
 
@@ -845,7 +842,7 @@ class SheetLine(models.TransientModel):
 
     @api.model
     def _get_sheet(self):
-        sheet = self.sheet_id
+        sheet = (self._origin or self).sheet_id
         if not sheet:
             model = self.env.context.get("params", {}).get("model", "")
             obj_id = self.env.context.get("params", {}).get("id")
