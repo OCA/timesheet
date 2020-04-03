@@ -418,26 +418,6 @@ msgid "In Draft"
 msgstr "En esborrany"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:494
-#, fuzzy, python-format
-msgid ""
-"In order to create a sheet for this employee, you must link him/her to an "
-"user: %s"
-msgstr ""
-"Per crear una part d'hores per aquest treballador, ha d'enllaçar-lo amb un "
-"usuari."
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
-#, fuzzy, python-format
-msgid ""
-"In order to review a timesheet sheet, your user needs to be linked to an "
-"employee."
-msgstr ""
-"Per crear una part d'hores per aquest treballador, ha d'enllaçar-lo amb un "
-"usuari."
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_is_follower
 msgid "Is Follower"
 msgstr ""
@@ -667,12 +647,6 @@ msgstr ""
 #: selection:res.company,timesheet_week_start:0
 msgid "Saturday"
 msgstr ""
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
-#, fuzzy, python-format
-msgid "Save the Timesheet Sheet first."
-msgstr "Línies full de serveis"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -1048,12 +1022,6 @@ msgid "Week"
 msgstr "Setmana"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
-#, fuzzy, python-format
-msgid "Week %s"
-msgstr "Setmana"
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Week Start Day"
 msgstr ""
@@ -1064,61 +1032,12 @@ msgid "Week start day"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
-#, fuzzy, python-format
-msgid "Weeks %s - %s"
-msgstr "Setmana"
-
-#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:39
 #: code:addons/hr_timesheet_sheet/models/hr_employee.py:34
 #, python-format
 msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
-#, fuzzy, python-format
-msgid ""
-"You cannot create a timesheet of a different company than the one of the "
-"timesheet sheet:\n"
-" - %s of %s\n"
-" - %s of %s"
-msgstr "No pot modificar una entrada en la fulla d'hores confirmades."
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:535
-#, fuzzy, python-format
-msgid ""
-"You cannot delete a timesheet sheet which is already submitted or confirmed: "
-"%s"
-msgstr "No pot eliminar una fulla d'hores que ja està confirmada."
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
-#, fuzzy, python-format
-msgid "You cannot duplicate a sheet."
-msgstr "No pot duplicar una fulla d'hores."
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
-#, fuzzy, python-format
-msgid ""
-"You cannot have 2 or more sheets that overlap!\n"
-"Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
-"Conflicting sheets:\n"
-" - %s"
-msgstr ""
-"No pot tenir 2 fulles d'hores que es solapen!\n"
-"Si us plau, utilitzi el menú 'La meva fulla d'hores' per evitar aquest "
-"problema."
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
-#, fuzzy, python-format
-msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "No pot modificar una entrada en la fulla d'hores confirmades."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
