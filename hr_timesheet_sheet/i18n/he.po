@@ -986,12 +986,6 @@ msgid "Week"
 msgstr "שבוע"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
-#, fuzzy, python-format
-msgid "Week %s"
-msgstr "שבוע"
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Week Start Day"
 msgstr ""
@@ -1000,12 +994,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_week_start
 msgid "Week start day"
 msgstr ""
-
-#. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
-#, fuzzy, python-format
-msgid "Weeks %s - %s"
-msgstr "שבוע"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
