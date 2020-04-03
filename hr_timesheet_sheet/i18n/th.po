@@ -1030,8 +1030,9 @@ msgstr "สัปดาห์"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
+#| msgid "Week"
 msgid "Week %s"
-msgstr "สัปดาห์ "
+msgstr "สัปดาห์"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1045,9 +1046,9 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
-#, fuzzy, python-format
+#, python-format
 msgid "Weeks %s - %s"
-msgstr "สัปดาห์ "
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
@@ -1119,11 +1120,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "ถึง"
-
-#, fuzzy
-#~| msgid "Week"
-#~ msgid "Weeks"
-#~ msgstr "สัปดาห์"
 
 #, fuzzy
 #~ msgid "Confirmed Timesheet Sheets"
