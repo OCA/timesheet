@@ -1,4 +1,4 @@
-# Copyright 2018 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2018 ForgeFlow, S.L.
 # Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -10,7 +10,7 @@ class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
 
     sheet_id = fields.Many2one(comodel_name="hr_timesheet.sheet", string="Sheet")
-    sheet_state = fields.Selection(string="Steet State", related="sheet_id.state")
+    sheet_state = fields.Selection(string="Sheet State", related="sheet_id.state")
 
     def _get_sheet_domain(self):
         """ Hook for extensions """
@@ -120,7 +120,7 @@ class AccountAnalyticLine(models.Model):
     def _check_state(self):
         if self.env.context.get("skip_check_state"):
             return
-        for line in self.filtered("sheet_id"):
+        for line in self.exists().filtered("sheet_id"):
             if line.sheet_id.state not in ["new", "draft"]:
                 raise UserError(
                     _(
