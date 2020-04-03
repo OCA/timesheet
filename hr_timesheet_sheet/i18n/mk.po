@@ -1034,8 +1034,9 @@ msgstr "Седмица"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
+#| msgid "Week"
 msgid "Week %s"
-msgstr "Недела "
+msgstr "Седмица"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1049,9 +1050,9 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
-#, fuzzy, python-format
+#, python-format
 msgid "Weeks %s - %s"
-msgstr "Недела "
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
@@ -1081,9 +1082,9 @@ msgstr "Не може да избришете временска таблица 
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot duplicate a sheet."
-msgstr "Не може да дуплирате временски таблици."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
@@ -1123,33 +1124,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "до"
-
-#, fuzzy
-#~| msgid "Week"
-#~ msgid "Weeks"
-#~ msgstr "Седмица"
-
-#, fuzzy
-#~ msgid ""
-#~ "In order to create a sheet for this employee, you must link him/her to an "
-#~ "user."
-#~ msgstr ""
-#~ "За да креирате распоред за овој вработен мора до го/ја поврзете со "
-#~ "корисник."
-
-#, fuzzy
-#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
-#~ msgstr "Не може да избришете временска таблица која е веќе потврдена."
-
-#, fuzzy
-#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
-#~ msgstr "Не можете да измените внес во потврдена временска таблица."
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot create a timesheet of a different company than the one of the "
-#~ "timesheet sheet."
-#~ msgstr "Не можете да измените внес во потврдена временска таблица."
 
 #, fuzzy
 #~ msgid "Confirmed Timesheet Sheets"

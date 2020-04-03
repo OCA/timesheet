@@ -658,7 +658,7 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
-msgstr "Hoạt động chấm công"
+msgstr "Chấm công"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -1022,6 +1022,7 @@ msgstr "Tuần"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
+#| msgid "Week"
 msgid "Week %s"
 msgstr "Tuần"
 
@@ -1037,9 +1038,9 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
-#, fuzzy, python-format
+#, python-format
 msgid "Weeks %s - %s"
-msgstr "Tuần"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
@@ -1111,11 +1112,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "đến"
-
-#, fuzzy
-#~| msgid "Week"
-#~ msgid "Weeks"
-#~ msgstr "Tuần"
 
 #, fuzzy
 #~ msgid "Count Timesheets"
