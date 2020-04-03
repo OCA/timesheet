@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-    Copyright 2018 Eficent Business and IT Consulting Services, S.L.
+    Copyright 2018 ForgeFlow, S.L.
     Copyright 2018-2020 Brainbean Apps (https://brainbeanapps.com)
     Copyright 2018-2019 Onestein (<https://www.onestein.eu>)
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -82,6 +82,7 @@
                     />
                 </header>
                 <sheet>
+                    <field name="name" invisible="1" />
                     <div class="oe_title">
                         <label for="employee_id" class="oe_edit_only" />
                         <h1>
@@ -109,6 +110,7 @@
                             <field name="department_id" invisible="1" />
                         </group>
                     </group>
+                    <field name="new_line_ids" invisible="1" />
                     <notebook>
                         <page string="Summary">
                             <group name="Sheet" class="hr_timesheet_sheet_summary">
