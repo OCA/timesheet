@@ -140,6 +140,24 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:579
+#, python-format
+msgid "Cannot approve a non-submitted sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:589
+#, python-format
+msgid "Cannot reject a non-submitted sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:563
+#, python-format
+msgid "Cannot revert to draft a non-approved sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose the week start day."
 msgstr ""
@@ -400,6 +418,26 @@ msgid "In Draft"
 msgstr "原案中"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:494
+#, fuzzy, python-format
+msgid ""
+"In order to create a sheet for this employee, you must link him/her to an "
+"user: %s"
+msgstr ""
+"この従業員のタイムシートを作成するには、そのユーザを本人ととリンクさせる必要"
+"があります。"
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
+#, fuzzy, python-format
+msgid ""
+"In order to review a timesheet sheet, your user needs to be linked to an "
+"employee."
+msgstr ""
+"この従業員のタイムシートを作成するには、そのユーザを本人ととリンクさせる必要"
+"があります。"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_is_follower
 msgid "Is Follower"
 msgstr ""
@@ -544,6 +582,12 @@ msgid "Number of unread messages"
 msgstr "未読メッセージ"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:613
+#, fuzzy, python-format
+msgid "Only a HR Officer or Manager can review the sheet."
+msgstr "HR担当者またはマネージャのみがタイムシートを承認できます。"
+
+#. module: hr_timesheet_sheet
 #: selection:hr_timesheet.sheet,state:0
 msgid "Open"
 msgstr "オープン"
@@ -623,6 +667,12 @@ msgstr ""
 #: selection:res.company,timesheet_week_start:0
 msgid "Saturday"
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
+#, fuzzy, python-format
+msgid "Save the Timesheet Sheet first."
+msgstr "勤務表の行"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -998,6 +1048,13 @@ msgid "Week"
 msgstr "週"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
+#, fuzzy, python-format
+#| msgid "Week"
+msgid "Week %s"
+msgstr "週"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Week Start Day"
 msgstr ""
@@ -1005,6 +1062,12 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_week_start
 msgid "Week start day"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
+#, python-format
+msgid "Weeks %s - %s"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -1016,6 +1079,30 @@ msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
+#, fuzzy, python-format
+msgid ""
+"You cannot create a timesheet of a different company than the one of the "
+"timesheet sheet:\n"
+" - %s of %s\n"
+" - %s of %s"
+msgstr "確認済のタイムシート内のエントリは変更できません。"
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:535
+#, fuzzy, python-format
+msgid ""
+"You cannot delete a timesheet sheet which is already submitted or confirmed: "
+"%s"
+msgstr "既に承認済のタイムシートを削除することはできません。"
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
+#, python-format
+msgid "You cannot duplicate a sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
 #, python-format
 msgid ""
@@ -1024,6 +1111,12 @@ msgid ""
 "Conflicting sheets:\n"
 " - %s"
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
+#, fuzzy, python-format
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
+msgstr "確認済のタイムシート内のエントリは変更できません。"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
@@ -1055,42 +1148,11 @@ msgid "to"
 msgstr "～"
 
 #, fuzzy
-#~| msgid "Week"
-#~ msgid "Weeks"
-#~ msgstr "週"
-
-#, fuzzy
-#~ msgid ""
-#~ "In order to create a sheet for this employee, you must link him/her to an "
-#~ "user."
-#~ msgstr ""
-#~ "この従業員のタイムシートを作成するには、そのユーザを本人ととリンクさせる必"
-#~ "要があります。"
-
-#, fuzzy
-#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
-#~ msgstr "既に承認済のタイムシートを削除することはできません。"
-
-#, fuzzy
-#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
-#~ msgstr "確認済のタイムシート内のエントリは変更できません。"
-
-#, fuzzy
-#~ msgid "Only an HR Officer or Manager can approve sheets."
-#~ msgstr "HR担当者またはマネージャのみがタイムシートを承認できます。"
-
-#, fuzzy
 #~ msgid ""
 #~ "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 #~ msgstr ""
 #~ "HR担当者またはマネージャーのみがタイムシートを拒否したり、ドラフトにリセッ"
 #~ "トすることができます。"
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot create a timesheet of a different company than the one of the "
-#~ "timesheet sheet."
-#~ msgstr "確認済のタイムシート内のエントリは変更できません。"
 
 #, fuzzy
 #~ msgid "Confirmed Timesheet Sheets"

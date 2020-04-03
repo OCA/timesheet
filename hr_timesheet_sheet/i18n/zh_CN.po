@@ -410,6 +410,22 @@ msgid "In Draft"
 msgstr "在草稿"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:494
+#, fuzzy, python-format
+msgid ""
+"In order to create a sheet for this employee, you must link him/her to an "
+"user: %s"
+msgstr "要为员工创建工时表，你必须关联他/她到一个用户。"
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
+#, fuzzy, python-format
+msgid ""
+"In order to review a timesheet sheet, your user needs to be linked to an "
+"employee."
+msgstr "要为员工创建工时表，你必须关联他/她到一个用户。"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_is_follower
 msgid "Is Follower"
 msgstr ""
@@ -639,6 +655,12 @@ msgstr ""
 #: selection:res.company,timesheet_week_start:0
 msgid "Saturday"
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
+#, fuzzy, python-format
+msgid "Save the Timesheet Sheet first."
+msgstr "工时表明细"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -1010,6 +1032,13 @@ msgid "Week"
 msgstr "周"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
+#, fuzzy, python-format
+#| msgid "Week"
+msgid "Week %s"
+msgstr "周"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Week Start Day"
 msgstr ""
@@ -1020,12 +1049,60 @@ msgid "Week start day"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
+#, python-format
+msgid "Weeks %s - %s"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:39
 #: code:addons/hr_timesheet_sheet/models/hr_employee.py:34
 #, python-format
 msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
+#, fuzzy, python-format
+msgid ""
+"You cannot create a timesheet of a different company than the one of the "
+"timesheet sheet:\n"
+" - %s of %s\n"
+" - %s of %s"
+msgstr "你不能修改已确认的工时表的条目"
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:535
+#, fuzzy, python-format
+msgid ""
+"You cannot delete a timesheet sheet which is already submitted or confirmed: "
+"%s"
+msgstr "你无法删除一张已确认的工时表。"
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
+#, python-format
+msgid "You cannot duplicate a sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
+#, fuzzy, python-format
+msgid ""
+"You cannot have 2 or more sheets that overlap!\n"
+"Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
+"Conflicting sheets:\n"
+" - %s"
+msgstr ""
+"您不能有2张重复的工时单！\n"
+"请使用菜单’我当前的工时单‘来避免这个问题。"
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
+#, fuzzy, python-format
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
+msgstr "你不能修改已确认的工时表的条目"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
@@ -1051,39 +1128,6 @@ msgstr "必须每天输入工时表并在周末确认，一旦工时单被确认
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "到"
-
-#, fuzzy
-#~| msgid "Week"
-#~ msgid "Weeks"
-#~ msgstr "周"
-
-#, fuzzy
-#~ msgid ""
-#~ "In order to create a sheet for this employee, you must link him/her to an "
-#~ "user."
-#~ msgstr "要为员工创建工时表，你必须关联他/她到一个用户。"
-
-#, fuzzy
-#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
-#~ msgstr "你无法删除一张已确认的工时表。"
-
-#, fuzzy
-#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
-#~ msgstr "你不能修改已确认的工时表的条目"
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot create a timesheet of a different company than the one of the "
-#~ "timesheet sheet."
-#~ msgstr "你不能修改已确认的工时表的条目"
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot have 2 sheets that overlap!\n"
-#~ "Please use the menu 'Timesheet Sheet' to avoid this problem."
-#~ msgstr ""
-#~ "您不能有2张重复的工时单！\n"
-#~ "请使用菜单’我当前的工时单‘来避免这个问题。"
 
 #, fuzzy
 #~ msgid "Confirmed Timesheet Sheets"

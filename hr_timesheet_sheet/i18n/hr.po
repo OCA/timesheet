@@ -423,6 +423,26 @@ msgid "In Draft"
 msgstr "U nacrtu"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:494
+#, fuzzy, python-format
+msgid ""
+"In order to create a sheet for this employee, you must link him/her to an "
+"user: %s"
+msgstr ""
+"Kako bi se kreirali evidenciju rada za ovog djelatnika, morate njega/nju "
+"vezati na korisnika."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
+#, fuzzy, python-format
+msgid ""
+"In order to review a timesheet sheet, your user needs to be linked to an "
+"employee."
+msgstr ""
+"Kako bi se kreirali evidenciju rada za ovog djelatnika, morate njega/nju "
+"vezati na korisnika."
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_is_follower
 msgid "Is Follower"
 msgstr ""
@@ -652,6 +672,12 @@ msgstr ""
 #: selection:res.company,timesheet_week_start:0
 msgid "Saturday"
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
+#, fuzzy, python-format
+msgid "Save the Timesheet Sheet first."
+msgstr "Stavke evidencije rada"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -1027,6 +1053,13 @@ msgid "Week"
 msgstr "Tjedan"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
+#, fuzzy, python-format
+#| msgid "Week"
+msgid "Week %s"
+msgstr "Tjedan"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Week Start Day"
 msgstr ""
@@ -1037,12 +1070,61 @@ msgid "Week start day"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
+#, python-format
+msgid "Weeks %s - %s"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:39
 #: code:addons/hr_timesheet_sheet/models/hr_employee.py:34
 #, python-format
 msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
+#, fuzzy, python-format
+msgid ""
+"You cannot create a timesheet of a different company than the one of the "
+"timesheet sheet:\n"
+" - %s of %s\n"
+" - %s of %s"
+msgstr "Ne možete modificirati polje u potvrđenoj kontrolnoj kartici."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:535
+#, fuzzy, python-format
+msgid ""
+"You cannot delete a timesheet sheet which is already submitted or confirmed: "
+"%s"
+msgstr "Ne možete obrisati evidenciju rada koja je već potvrđena."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
+#, python-format
+msgid "You cannot duplicate a sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
+#, fuzzy, python-format
+msgid ""
+"You cannot have 2 or more sheets that overlap!\n"
+"Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
+"Conflicting sheets:\n"
+" - %s"
+msgstr ""
+"Ne možete imati 2 evidencije rada koje se preklapaju! \n"
+"Molimo koristite izbornik 'Moja trenutna evidencija rada' kako bi izbjegli "
+"ovaj problem."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
+#, fuzzy, python-format
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
+msgstr "Ne možete modificirati polje u potvrđenoj kontrolnoj kartici."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
@@ -1074,42 +1156,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "za"
-
-#, fuzzy
-#~| msgid "Week"
-#~ msgid "Weeks"
-#~ msgstr "Tjedan"
-
-#, fuzzy
-#~ msgid ""
-#~ "In order to create a sheet for this employee, you must link him/her to an "
-#~ "user."
-#~ msgstr ""
-#~ "Kako bi se kreirali evidenciju rada za ovog djelatnika, morate njega/nju "
-#~ "vezati na korisnika."
-
-#, fuzzy
-#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
-#~ msgstr "Ne možete obrisati evidenciju rada koja je već potvrđena."
-
-#, fuzzy
-#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
-#~ msgstr "Ne možete modificirati polje u potvrđenoj kontrolnoj kartici."
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot create a timesheet of a different company than the one of the "
-#~ "timesheet sheet."
-#~ msgstr "Ne možete modificirati polje u potvrđenoj kontrolnoj kartici."
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot have 2 sheets that overlap!\n"
-#~ "Please use the menu 'Timesheet Sheet' to avoid this problem."
-#~ msgstr ""
-#~ "Ne možete imati 2 evidencije rada koje se preklapaju! \n"
-#~ "Molimo koristite izbornik 'Moja trenutna evidencija rada' kako bi "
-#~ "izbjegli ovaj problem."
 
 #, fuzzy
 #~ msgid "Confirmed Timesheet Sheets"

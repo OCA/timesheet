@@ -1023,6 +1023,13 @@ msgid "Week"
 msgstr "Woche"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
+#, fuzzy, python-format
+#| msgid "Weeks"
+msgid "Week %s"
+msgstr "Wochen"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Week Start Day"
 msgstr "Tag des Wochenstarts"
@@ -1031,6 +1038,12 @@ msgstr "Tag des Wochenstarts"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_week_start
 msgid "Week start day"
 msgstr "Tag des Wochenstarts"
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
+#, python-format
+msgid "Weeks %s - %s"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
@@ -1123,9 +1136,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "bis"
-
-#~ msgid "Weeks"
-#~ msgstr "Wochen"
 
 #~ msgid "Possible Reviewers"
 #~ msgstr "Mögliche Prüfer"

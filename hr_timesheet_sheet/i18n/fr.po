@@ -153,6 +153,24 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:579
+#, python-format
+msgid "Cannot approve a non-submitted sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:589
+#, python-format
+msgid "Cannot reject a non-submitted sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:563
+#, python-format
+msgid "Cannot revert to draft a non-approved sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose the week start day."
 msgstr ""
@@ -415,6 +433,26 @@ msgid "In Draft"
 msgstr "A l'état \"Brouillon\""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:494
+#, fuzzy, python-format
+msgid ""
+"In order to create a sheet for this employee, you must link him/her to an "
+"user: %s"
+msgstr ""
+"Pour créer une feuille de temps pour cet employé, vous devez lier l'employé "
+"à un utilisateur."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
+#, fuzzy, python-format
+msgid ""
+"In order to review a timesheet sheet, your user needs to be linked to an "
+"employee."
+msgstr ""
+"Pour créer une feuille de temps pour cet employé, vous devez lier l'employé "
+"à un utilisateur."
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_is_follower
 msgid "Is Follower"
 msgstr ""
@@ -644,6 +682,12 @@ msgstr ""
 #: selection:res.company,timesheet_week_start:0
 msgid "Saturday"
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
+#, fuzzy, python-format
+msgid "Save the Timesheet Sheet first."
+msgstr "Lignes des feuilles de temps"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -1019,6 +1063,13 @@ msgid "Week"
 msgstr "Semaine"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
+#, fuzzy, python-format
+#| msgid "Week"
+msgid "Week %s"
+msgstr "Semaine"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Week Start Day"
 msgstr ""
@@ -1053,6 +1104,40 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:535
+#, fuzzy, python-format
+msgid ""
+"You cannot delete a timesheet sheet which is already submitted or confirmed: "
+"%s"
+msgstr ""
+"Vous ne pouvez pas supprimer des feuilles de temps qui sont déjà confirmées."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
+#, python-format
+msgid "You cannot duplicate a sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
+#, fuzzy, python-format
+msgid ""
+"You cannot have 2 or more sheets that overlap!\n"
+"Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
+"Conflicting sheets:\n"
+" - %s"
+msgstr ""
+"Vous ne pouvez pas avoir 2 feuilles de temps qui se chevauchent!\n"
+"SVP utilisez le menu 'Ma feuille de temps actuelle' pour éviter ce problème."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
+#, fuzzy, python-format
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
+msgstr ""
+"Vous ne pouvez pas modifier une entrée dans une feuille de temps confirmée."
+
+#. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #, fuzzy
 msgid ""
@@ -1084,46 +1169,12 @@ msgid "to"
 msgstr "au"
 
 #, fuzzy
-#~| msgid "Week"
-#~ msgid "Weeks"
-#~ msgstr "Semaine"
-
-#, fuzzy
-#~ msgid ""
-#~ "In order to create a sheet for this employee, you must link him/her to an "
-#~ "user."
-#~ msgstr ""
-#~ "Pour créer une feuille de temps pour cet employé, vous devez lier "
-#~ "l'employé à un utilisateur."
-
-#, fuzzy
-#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
-#~ msgstr ""
-#~ "Vous ne pouvez pas supprimer des feuilles de temps qui sont déjà "
-#~ "confirmées."
-
-#, fuzzy
-#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
-#~ msgstr ""
-#~ "Vous ne pouvez pas modifier une entrée dans une feuille de temps "
-#~ "confirmée."
-
-#, fuzzy
 #~ msgid ""
 #~ "You cannot create a timesheet of a different company than the one of the "
 #~ "timesheet sheet."
 #~ msgstr ""
 #~ "Vous ne pouvez pas modifier une entrée dans une feuille de temps "
 #~ "confirmée."
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot have 2 sheets that overlap!\n"
-#~ "Please use the menu 'Timesheet Sheet' to avoid this problem."
-#~ msgstr ""
-#~ "Vous ne pouvez pas avoir 2 feuilles de temps qui se chevauchent!\n"
-#~ "SVP utilisez le menu 'Ma feuille de temps actuelle' pour éviter ce "
-#~ "problème."
 
 #, fuzzy
 #~ msgid "Confirmed Timesheet Sheets"

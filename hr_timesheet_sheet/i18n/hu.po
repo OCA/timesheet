@@ -137,6 +137,24 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:579
+#, python-format
+msgid "Cannot approve a non-submitted sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:589
+#, python-format
+msgid "Cannot reject a non-submitted sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:563
+#, python-format
+msgid "Cannot revert to draft a non-approved sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose the week start day."
 msgstr ""
@@ -401,6 +419,26 @@ msgid "In Draft"
 msgstr "Tervezet"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:494
+#, fuzzy, python-format
+msgid ""
+"In order to create a sheet for this employee, you must link him/her to an "
+"user: %s"
+msgstr ""
+"Ahhoz, hogy munkaidőbeosztás tudjon ennek a munkavállalónak készíteni, "
+"előszöz hozzá kell rendelnie egy felhasználóhoz."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
+#, fuzzy, python-format
+msgid ""
+"In order to review a timesheet sheet, your user needs to be linked to an "
+"employee."
+msgstr ""
+"Ahhoz, hogy munkaidőbeosztás tudjon ennek a munkavállalónak készíteni, "
+"előszöz hozzá kell rendelnie egy felhasználóhoz."
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_is_follower
 msgid "Is Follower"
 msgstr ""
@@ -545,6 +583,14 @@ msgid "Number of unread messages"
 msgstr "Olvasatlan üzenetek"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:613
+#, fuzzy, python-format
+msgid "Only a HR Officer or Manager can review the sheet."
+msgstr ""
+"Csak egy HR emberi erőforrás hivatalnok vagy vezető tud jóváhagyni munkaidő-"
+"kiosztásokat."
+
+#. module: hr_timesheet_sheet
 #: selection:hr_timesheet.sheet,state:0
 msgid "Open"
 msgstr "Megnyitás"
@@ -626,6 +672,12 @@ msgstr ""
 #: selection:res.company,timesheet_week_start:0
 msgid "Saturday"
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
+#, fuzzy, python-format
+msgid "Save the Timesheet Sheet first."
+msgstr "Munkaidő-kiosztás sorok"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -1003,6 +1055,13 @@ msgid "Week"
 msgstr "Hét"
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
+#, fuzzy, python-format
+#| msgid "Week"
+msgid "Week %s"
+msgstr "Hét"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Week Start Day"
 msgstr ""
@@ -1013,12 +1072,61 @@ msgid "Week start day"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
+#, python-format
+msgid "Weeks %s - %s"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:39
 #: code:addons/hr_timesheet_sheet/models/hr_employee.py:34
 #, python-format
 msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
+#, fuzzy, python-format
+msgid ""
+"You cannot create a timesheet of a different company than the one of the "
+"timesheet sheet:\n"
+" - %s of %s\n"
+" - %s of %s"
+msgstr "Nem tud módosítani a visszaigazolt időkimutatáson."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:535
+#, fuzzy, python-format
+msgid ""
+"You cannot delete a timesheet sheet which is already submitted or confirmed: "
+"%s"
+msgstr "Nem törölhet olyan időkimutatást, mely már visszaigazolt."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
+#, python-format
+msgid "You cannot duplicate a sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
+#, fuzzy, python-format
+msgid ""
+"You cannot have 2 or more sheets that overlap!\n"
+"Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
+"Conflicting sheets:\n"
+" - %s"
+msgstr ""
+"Nem lehet 2 időkimutatása mely fedi egymást!\n"
+"Használja a 'Én aktuális időkimutatásom' menüt, ennek a problémának az "
+"elkerülésére."
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
+#, fuzzy, python-format
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
+msgstr "Nem tud módosítani a visszaigazolt időkimutatáson."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
@@ -1054,53 +1162,11 @@ msgid "to"
 msgstr "ig"
 
 #, fuzzy
-#~| msgid "Week"
-#~ msgid "Weeks"
-#~ msgstr "Hét"
-
-#, fuzzy
-#~ msgid ""
-#~ "In order to create a sheet for this employee, you must link him/her to an "
-#~ "user."
-#~ msgstr ""
-#~ "Ahhoz, hogy munkaidőbeosztás tudjon ennek a munkavállalónak készíteni, "
-#~ "előszöz hozzá kell rendelnie egy felhasználóhoz."
-
-#, fuzzy
-#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
-#~ msgstr "Nem törölhet olyan időkimutatást, mely már visszaigazolt."
-
-#, fuzzy
-#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
-#~ msgstr "Nem tud módosítani a visszaigazolt időkimutatáson."
-
-#, fuzzy
-#~ msgid "Only an HR Officer or Manager can approve sheets."
-#~ msgstr ""
-#~ "Csak egy HR emberi erőforrás hivatalnok vagy vezető tud jóváhagyni "
-#~ "munkaidő-kiosztásokat."
-
-#, fuzzy
 #~ msgid ""
 #~ "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 #~ msgstr ""
 #~ "Csak egy HR emberi erőforrás hivatalnok vagy vezető tud elutasítani vagy "
 #~ "visszaállítani tervezetnek munkaidő-kiosztásokat."
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot create a timesheet of a different company than the one of the "
-#~ "timesheet sheet."
-#~ msgstr "Nem tud módosítani a visszaigazolt időkimutatáson."
-
-#, fuzzy
-#~ msgid ""
-#~ "You cannot have 2 sheets that overlap!\n"
-#~ "Please use the menu 'Timesheet Sheet' to avoid this problem."
-#~ msgstr ""
-#~ "Nem lehet 2 időkimutatása mely fedi egymást!\n"
-#~ "Használja a 'Én aktuális időkimutatásom' menüt, ennek a problémának az "
-#~ "elkerülésére."
 
 #, fuzzy
 #~ msgid "Confirmed Timesheet Sheets"
