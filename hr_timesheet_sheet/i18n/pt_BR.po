@@ -1071,8 +1071,9 @@ msgstr "Semana"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
+#| msgid "Weeks"
 msgid "Week %s"
-msgstr "Semana "
+msgstr "Semanas"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1086,9 +1087,9 @@ msgstr "Dia de início da semana"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:210
-#, fuzzy, python-format
+#, python-format
 msgid "Weeks %s - %s"
-msgstr "Semana "
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
@@ -1195,45 +1196,11 @@ msgstr ""
 msgid "to"
 msgstr "até"
 
-#~ msgid "Weeks"
-#~ msgstr "Semanas"
-
-#~ msgid ""
-#~ "In order to create a sheet for this employee, you must link him/her to an "
-#~ "user."
-#~ msgstr ""
-#~ "Para criar uma planilha para este funcionário, você precisa conectar "
-#~ "ele(a) a um usuário."
-
-#~ msgid "You cannot delete a timesheet sheet which is already confirmed."
-#~ msgstr "Você não pode excluir uma planilha de horas que já foi confirmada."
-
-#~ msgid "You cannot modify an entry in a confirmed timesheet sheet."
-#~ msgstr ""
-#~ "Você não pode modificar um lançamento em uma planilha de horas confirmada."
-
-#~ msgid "Only an HR Officer or Manager can approve sheets."
-#~ msgstr "Apenas um Gerente ou Gerente de RH pode aprovar planilhas."
-
 #~ msgid ""
 #~ "Only an HR Officer or Manager can refuse sheets or reset them to draft."
 #~ msgstr ""
 #~ "Apenas um Gerente ou Gerente de RH pode recusar planilhas ou redefini-las "
 #~ "para rascunho."
-
-#~ msgid ""
-#~ "You cannot create a timesheet of a different company than the one of the "
-#~ "timesheet sheet."
-#~ msgstr ""
-#~ "Você não pode criar uma planilha de horas de uma empresa diferente "
-#~ "daquela da planilha de horas."
-
-#~ msgid ""
-#~ "You cannot have 2 sheets that overlap!\n"
-#~ "Please use the menu 'Timesheet Sheet' to avoid this problem."
-#~ msgstr ""
-#~ "Você não pode ter duas planilhas de horas que se sobrepõem!\n"
-#~ "Você deve usar o menu 'Planilha de Horas' para evitar este problema."
 
 #~ msgid "Confirmed Timesheet Sheets"
 #~ msgstr "Planilha de Horas Confirmadas"
