@@ -1075,11 +1075,6 @@ msgid "to"
 msgstr ""
 
 #, fuzzy
-#~| msgid "Week"
-#~ msgid "Weeks"
-#~ msgstr "Week"
-
-#, fuzzy
 #~ msgid "To Approve"
 #~ msgstr "Goedkeuren"
 
