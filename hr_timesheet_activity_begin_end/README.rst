@@ -60,6 +60,10 @@ Contributors
   * Luis M. Ontalba
   * Ernesto Tejeda
 
+* `Onestein <https://www.onestein.eu>`_:
+
+  * Andrea Stirpe
+
 Maintainers
 ~~~~~~~~~~~
 
