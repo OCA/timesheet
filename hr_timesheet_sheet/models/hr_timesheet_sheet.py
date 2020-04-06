@@ -224,8 +224,7 @@ class Sheet(models.Model):
             complete_name_components = sheet._get_complete_name_components()
             if complete_name_components:
                 complete_name = "{} ({})".format(
-                    complete_name,
-                    ", ".join(complete_name_components),
+                    complete_name, ", ".join(complete_name_components),
                 )
             sheet.complete_name = complete_name
 
@@ -601,7 +600,9 @@ class Sheet(models.Model):
     def _get_line_name(self, project_id, task_id=None, **kwargs):
         self.ensure_one()
         if task_id:
-            return "{} - {}".format(project_id.name_get()[0][1], task_id.name_get()[0][1])
+            return "{} - {}".format(
+                project_id.name_get()[0][1], task_id.name_get()[0][1]
+            )
 
         return project_id.name_get()[0][1]
 
@@ -762,21 +763,21 @@ class Sheet(models.Model):
 
     @api.model
     def _get_period_start(self, company, date):
-        r = company and company.sheet_range or 'WEEKLY'
-        if r == 'WEEKLY':
+        r = company and company.sheet_range or "WEEKLY"
+        if r == "WEEKLY":
             if company.timesheet_week_start:
                 delta = relativedelta(weekday=int(company.timesheet_week_start), days=6)
             else:
                 delta = relativedelta(days=date.weekday())
             return date - delta
-        elif r == 'MONTHLY':
+        elif r == "MONTHLY":
             return date + relativedelta(day=1)
         return date
 
     @api.model
     def _get_period_end(self, company, date):
-        r = company and company.sheet_range or 'WEEKLY'
-        if r == 'WEEKLY':
+        r = company and company.sheet_range or "WEEKLY"
+        if r == "WEEKLY":
             if company.timesheet_week_start:
                 delta = relativedelta(
                     weekday=(int(company.timesheet_week_start) + 6) % 7
@@ -784,7 +785,7 @@ class Sheet(models.Model):
             else:
                 delta = relativedelta(days=6 - date.weekday())
             return date + delta
-        elif r == 'MONTHLY':
+        elif r == "MONTHLY":
             return date + relativedelta(months=1, day=1, days=-1)
         return date
 
@@ -795,9 +796,9 @@ class Sheet(models.Model):
     def _track_subtype(self, init_values):
         self.ensure_one()
         if "state" in init_values and self.state == "confirm":
-            return self.env.ref('hr_timesheet_sheet.mt_timesheet_confirmed')
+            return self.env.ref("hr_timesheet_sheet.mt_timesheet_confirmed")
         elif "state" in init_values and self.state == "done":
-            return self.env.ref('hr_timesheet_sheet.mt_timesheet_approved')
+            return self.env.ref("hr_timesheet_sheet.mt_timesheet_approved")
         return super()._track_subtype(init_values)
 
 
