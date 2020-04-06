@@ -18,9 +18,9 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     sheet_range = fields.Selection(
-        [('MONTHLY', "Month"), ('WEEKLY', "Week"), ('DAILY', "Day")],
+        [("MONTHLY", "Month"), ("WEEKLY", "Week"), ("DAILY", "Day")],
         string="Timesheet Sheet Range",
-        default='WEEKLY',
+        default="WEEKLY",
         help="The range of your Timesheet Sheet.",
     )
 
