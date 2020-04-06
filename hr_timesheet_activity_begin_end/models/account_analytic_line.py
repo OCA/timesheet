@@ -62,3 +62,10 @@ class AccountAnalyticLine(models.Model):
         if stop < start:
             return
         self.unit_amount = (stop - start).seconds / 3600
+
+    def merge_timesheets(self):  # pragma: no cover
+        """This method is needed in case hr_timesheet_sheet is installed"""
+        lines = self.filtered(lambda l: not l.time_start and not l.time_stop)
+        if lines:
+            return super(AccountAnalyticLine, lines).merge_timesheets()
+        return self[0]
