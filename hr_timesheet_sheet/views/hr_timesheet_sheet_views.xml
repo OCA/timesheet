@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2018 ForgeFlow, S.L.
+    Copyright 2018-2020 Brainbean Apps (https://brainbeanapps.com)
+    Copyright 2018-2019 Onestein (<https://www.onestein.eu>)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="hr_timesheet_sheet_tree" model="ir.ui.view">
+        <field name="name">hr.timesheet.sheet.tree</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="arch" type="xml">
+            <tree
+                string="Timesheet Sheets"
+                decoration-info="state == 'draft'"
+                decoration-muted="state == 'done'"
+                decoration-bf="message_needaction == True"
+            >
+                <field name="employee_id" />
+                <field name="name" string="Period" />
+                <field name="department_id" invisible="1" />
+                <field name="date_start" />
+                <field name="date_end" />
+                <field name="reviewer_id" />
+                <field name="state" />
+                <field name="total_time" widget="float_time" />
+                <field name="message_needaction" invisible="1" />
+            </tree>
+        </field>
+    </record>
+    <record id="hr_timesheet_sheet_tree_my" model="ir.ui.view">
+        <field name="name">hr.timesheet.sheet.tree.my</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="inherit_id" ref="hr_timesheet_sheet_tree" />
+        <field name="mode">primary</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='employee_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="hr_timesheet_sheet_form" model="ir.ui.view">
+        <field name="name">hr_timesheet.sheet.form</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="arch" type="xml">
+            <form string="Timesheet Sheet">
+                <field name="can_review" invisible="1" />
+                <field name="user_id" invisible="1" />
+                <field name="review_policy" invisible="1" />
+                <header>
+                    <button
+                        name="action_timesheet_confirm"
+                        string="Submit to Reviewer"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                    />
+                    <button
+                        name="action_timesheet_done"
+                        string="Approve"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|', ('can_review', '!=', True), ('state', '!=', 'confirm')]}"
+                    />
+                    <button
+                        name="action_timesheet_draft"
+                        string="Set to Draft"
+                        type="object"
+                        attrs="{'invisible': ['|', ('can_review', '!=', True), ('state', '!=', 'done')]}"
+                    />
+                    <button
+                        name="action_timesheet_refuse"
+                        string="Refuse"
+                        type="object"
+                        attrs="{'invisible': ['|', ('can_review', '!=', True), ('state', '!=', 'confirm')]}"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,confirm,done"
+                    />
+                </header>
+                <sheet>
+                    <field name="name" invisible="1" />
+                    <div class="oe_title">
+                        <label for="employee_id" class="oe_edit_only" />
+                        <h1>
+                            <field
+                                name="employee_id"
+                                class="oe_inline"
+                                placeholder="Employee's Name"
+                            />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="dates">
+                            <label for="date_start" string="Timesheet Period" />
+                            <div style="display: inline;"><field
+                                    name="date_start"
+                                    class="oe_inline"
+                                /> to <field name="date_end" class="oe_inline" /></div>
+                        </group>
+                        <group name="details">
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                force_save="1"
+                            />
+                            <field name="department_id" invisible="1" />
+                        </group>
+                    </group>
+                    <field name="new_line_ids" invisible="1" />
+                    <notebook>
+                        <page string="Summary">
+                            <group name="Sheet" class="hr_timesheet_sheet_summary">
+                                <field
+                                    name="line_ids"
+                                    nolabel="1"
+                                    attrs="{'readonly': [('state', 'not in', ['new', 'draft'])]}"
+                                    widget="x2many_2d_matrix"
+                                    field_x_axis="value_x"
+                                    field_y_axis="value_y"
+                                    field_value="unit_amount"
+                                    x_axis_clickable="0"
+                                    y_axis_clickable="1"
+                                >
+                                    <!-- Well this is embarrassing... we need to set a huge limit for records to be fetched in
+                                    order to make sure that all rows are going to be displayed. At least until we find a method to
+                                    dynamically define the limit.-->
+                                    <tree limit="1000000">
+                                        <field name="value_x" />
+                                        <field name="value_y" />
+                                        <field name="unit_amount" widget="float_time" />
+                                        <field name="sheet_id" />
+                                        <field name="date" />
+                                        <field name="project_id" />
+                                        <field name="task_id" />
+                                        <field
+                                            name="company_id"
+                                            groups="base.group_multi_company"
+                                        />
+                                        <field name="employee_id" />
+                                        <field name="new_line_id" invisible="1" />
+                                        <!--  Don't remove last fields, they are technically needed for the widget to work properly.-->
+                                    </tree>
+                                </field>
+                                <group
+                                    class="oe_edit_only"
+                                    attrs="{'invisible': [('state', 'not in', ['new', 'draft'])]}"
+                                >
+                                    <field
+                                        name="add_line_project_id"
+                                        domain="[('company_id', '=', company_id), ('allow_timesheets', '=', True)]"
+                                    />
+                                    <field
+                                        name="add_line_task_id"
+                                        attrs="{'invisible': [('add_line_project_id', '=', False)]}"
+                                        context="{'default_project_id': add_line_project_id}"
+                                    />
+                                    <button
+                                        name="button_add_line"
+                                        type="object"
+                                        string="Add new line"
+                                        class="oe_highlight"
+                                        attrs="{'invisible': [('add_line_project_id', '=', False)]}"
+                                    />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Details">
+                            <field
+                                name="timesheet_ids"
+                                nolabel="1"
+                                context="{'user_id': user_id}"
+                            >
+                                <tree editable="bottom" string="Timesheet Activities">
+                                    <field name="date" />
+                                    <field name="project_id" required="1" />
+                                    <field
+                                        name="task_id"
+                                        domain="[('project_id', '=', project_id)]"
+                                        context="{'default_project_id': project_id}"
+                                    />
+                                    <field name="name" />
+                                    <field
+                                        name="unit_amount"
+                                        widget="float_time"
+                                        string="Hours"
+                                        sum="Hours"
+                                    />
+                                    <field name="user_id" invisible="1" />
+                                </tree>
+                                <form string="Timesheet Activities">
+                                    <group>
+                                        <field name="date" />
+                                        <field name="name" />
+                                        <field name="project_id" required="1" />
+                                        <field
+                                            name="task_id"
+                                            domain="[('project_id', '=', project_id)]"
+                                            context="{'default_project_id': project_id}"
+                                        />
+                                        <field
+                                            name="unit_amount"
+                                            widget="float_time"
+                                            string="Hours"
+                                        />
+                                        <field name="user_id" invisible="1" />
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="hr_timesheet_sheet_form_my" model="ir.ui.view">
+        <field name="name">hr.timesheet.sheet.form.my</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="inherit_id" ref="hr_timesheet_sheet_form" />
+        <field name="mode">primary</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_hr_timesheet_sheet_kanban" model="ir.ui.view">
+        <field name="name">hr_timesheet.sheet.kanban</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" create="0">
+                <field name="employee_id" />
+                <field name="date_start" />
+                <field name="date_end" />
+                <field name="complete_name" />
+                <field name="state" />
+                <field name="total_time" />
+                <field name="can_review" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click container">
+                            <div class="row no-gutters">
+                                <div class="col-2">
+                                    <img
+                                        t-att-src="kanban_image('hr.employee', 'image_small', record.employee_id.raw_value)"
+                                        t-att-title="record.employee_id.value"
+                                        t-att-alt="record.employee_id.value"
+                                        width="40"
+                                        height="40"
+                                        class="oe_kanban_avatar float-left mr4"
+                                    />
+                                </div>
+                                <div class="col-10">
+                                    <strong class="o_kanban_record_title">
+                                        <t t-esc="record.employee_id.value" />
+                                    </strong>
+                                    <div class="text-muted o_kanban_record_subtitle">
+                                        <t t-esc="record.complete_name.value" />
+                                    </div>
+                                    <div
+                                        class="o_dropdown_kanban dropdown"
+                                        groups="base.group_user"
+                                    >
+                                        <a
+                                            role="button"
+                                            class="dropdown-toggle o-no-caret btn"
+                                            data-toggle="dropdown"
+                                            href="#"
+                                            aria-label="Dropdown menu"
+                                            title="Dropdown menu"
+                                        >
+                                            <span class="fa fa-ellipsis-v" />
+                                        </a>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a
+                                                t-if="widget.editable"
+                                                role="menuitem"
+                                                type="edit"
+                                                class="dropdown-item"
+                                            >Edit</a>
+                                            <a
+                                                t-if="widget.deletable"
+                                                role="menuitem"
+                                                type="delete"
+                                                class="dropdown-item"
+                                            >Delete</a>
+                                            <a
+                                                t-if="record.state.raw_value == 'draft'"
+                                                name="action_timesheet_confirm"
+                                                type="object"
+                                                role="menuitem"
+                                                class="dropdown-item"
+                                            >Submit to Reviewer</a>
+                                            <a
+                                                t-if="record.state.raw_value == 'confirm' and record.can_review.value"
+                                                name="action_timesheet_done"
+                                                type="object"
+                                                role="menuitem"
+                                                class="dropdown-item"
+                                            >Approve</a>
+                                            <a
+                                                t-if="record.state.raw_value == 'confirm' and record.can_review.value"
+                                                name="action_timesheet_refuse"
+                                                type="object"
+                                                role="menuitem"
+                                                class="dropdown-item"
+                                            >Refuse</a>
+                                            <a
+                                                t-if="record.state.raw_value == 'done' and record.can_review.value"
+                                                name="action_timesheet_draft"
+                                                type="object"
+                                                role="menuitem"
+                                                class="dropdown-item"
+                                            >Set to Draft</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row no-gutters justify-content-end">
+                                <div class="col-3">
+                                    <span class="text-muted text-nowrap">Period</span>
+                                </div>
+                                <div class="col-7"><t
+                                        t-esc="record.date_start.value"
+                                    /> - <t t-esc="record.date_end.value" /></div>
+                                <div class="w-100" />
+                                <div class="col-3">
+                                    <span
+                                        class="text-muted text-nowrap"
+                                    >Total time</span>
+                                </div>
+                                <div class="col-7">
+                                    <t
+                                        t-esc="record.total_time.value"
+                                        t-options="{'widget': 'float_time'}"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="view_hr_timesheet_sheet_filter" model="ir.ui.view">
+        <field name="name">hr_timesheet.sheet.filter</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="arch" type="xml">
+            <search string="Search Timesheet">
+                <field name="date_start" />
+                <filter
+                    name="draft"
+                    string="In Draft"
+                    domain="[('state','=','draft')]"
+                    help="Draft Timesheet Sheets"
+                />
+                <filter
+                    name="confirm"
+                    string="Submitted"
+                    domain="[('state','=','confirm')]"
+                    help="Submitted Timesheet Sheets"
+                />
+                <filter
+                    name="to_review"
+                    string="To Review"
+                    domain="[('state','=','confirm')]"
+                    help="Timesheet Sheets to Review"
+                />
+                <filter
+                    name="message_needaction"
+                    string="Unread Messages"
+                    domain="[('message_needaction','=',True)]"
+                />
+                <field name="employee_id" />
+                <field name="department_id" />
+                <field name="reviewer_id" />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="groupby_employees"
+                        string="Employees"
+                        domain="[]"
+                        context="{'group_by':'employee_id'}"
+                    />
+                    <filter
+                        name="groupby_department"
+                        string="Department"
+                        domain="[]"
+                        context="{'group_by':'department_id'}"
+                    />
+                    <filter
+                        name="groupby_reviewer"
+                        string="Reviewer"
+                        domain="[]"
+                        context="{'group_by':'reviewer_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="act_hr_timesheet_sheet_my_timesheets" model="ir.actions.act_window">
+        <field name="name">My Timesheet Sheets</field>
+        <field name="res_model">hr_timesheet.sheet</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[('employee_id.user_id', '=', uid)]</field>
+        <field name="search_view_id" ref="view_hr_timesheet_sheet_filter" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+             New timesheet sheet.
+            </p>
+            <p>
+             You must record timesheets in the sheet every day and confirm at the end
+             of the repording period. Once the timesheet sheet is confirmed, it should be
+             validated by a reviewer.
+            </p>
+            <p>
+             Timesheet sheets can also be invoiced to customers, depending on
+             the configuration of each project's related contract.
+            </p>
+        </field>
+    </record>
+    <record
+        id="act_hr_timesheet_sheet_my_timesheets_tree"
+        model="ir.actions.act_window.view"
+    >
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="4" />
+        <field name="view_id" ref="hr_timesheet_sheet_tree_my" />
+        <field name="act_window_id" ref="act_hr_timesheet_sheet_my_timesheets" />
+    </record>
+    <record
+        id="act_hr_timesheet_sheet_my_timesheets_form"
+        model="ir.actions.act_window.view"
+    >
+        <field name="view_mode">form</field>
+        <field name="sequence" eval="5" />
+        <field name="view_id" ref="hr_timesheet_sheet_form_my" />
+        <field name="act_window_id" ref="act_hr_timesheet_sheet_my_timesheets" />
+    </record>
+    <record id="act_hr_timesheet_sheet_all_timesheets" model="ir.actions.act_window">
+        <field name="name">All Timesheet Sheets</field>
+        <field name="res_model">hr_timesheet.sheet</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="view_hr_timesheet_sheet_filter" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+             Timesheet sheets.
+            </p>
+            <p>
+             Employees must record timesheets in the sheet every day and confirm at the end
+             of the repording period. Once the timesheet sheet is confirmed, it should be
+             validated by a reviewer.
+            </p>
+            <p>
+             Timesheet sheets can also be invoiced to customers, depending on
+             the configuration of each project's related contract.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        action="act_hr_timesheet_sheet_my_timesheets"
+        id="menu_act_hr_timesheet_sheet_my_timesheets"
+        parent="hr_timesheet.menu_hr_time_tracking"
+        sequence="3"
+    />
+    <menuitem
+        action="act_hr_timesheet_sheet_all_timesheets"
+        id="menu_act_hr_timesheet_sheet_all_timesheets"
+        parent="hr_timesheet.menu_hr_time_tracking"
+        sequence="4"
+        groups="hr_timesheet.group_timesheet_manager"
+    />
+    <record id="act_hr_timesheet_sheet_to_review" model="ir.actions.act_window">
+        <field name="name">Timesheet Sheets to Review</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr_timesheet.sheet</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" eval="False" />
+        <field name="context">{'search_default_to_review':1}</field>
+        <field name="domain">[('can_review','=',True)]</field>
+        <field name="search_view_id" ref="view_hr_timesheet_sheet_filter" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Timesheets to review.
+          </p>
+            <p>
+            Employees must record timesheets every day and confirm at the end
+            of the repording period. Once the timesheet sheet is confirmed, it should be
+            validated by a reviewer.
+          </p>
+            <p>
+            Timesheets can also be invoiced to customers, depending on the
+            configuration of each project's related contract.
+          </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_hr_to_review"
+        name="To Review"
+        parent="hr_timesheet.timesheet_menu_root"
+        sequence="7"
+    />
+    <menuitem
+        action="act_hr_timesheet_sheet_to_review"
+        id="menu_act_hr_timesheet_sheet_to_review"
+        parent="menu_hr_to_review"
+        sequence="11"
+    />
+</odoo>
