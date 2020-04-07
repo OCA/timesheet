@@ -43,7 +43,6 @@ msgstr ""
 
 #. module: hr_timesheet_task_required
 #: model:ir.model.fields,field_description:hr_timesheet_task_required.field_account_analytic_line__is_task_required
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_hr_timesheet_switch__is_task_required
 msgid "Is Task Required"
 msgstr ""
 
@@ -65,7 +64,7 @@ msgid "Require task selection on each timesheet entry by default"
 msgstr ""
 
 #. module: hr_timesheet_task_required
-#: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:24
+#: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:0
 #, python-format
 msgid "You must specify a task for timesheet lines."
 msgstr ""
