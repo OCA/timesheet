@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-hr_timesheet_sheet',
+        'odoo13-addon-hr_timesheet_task_domain',
         'odoo13-addon-hr_timesheet_task_required',
     ],
     classifiers=[
