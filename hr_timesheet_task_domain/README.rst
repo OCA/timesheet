@@ -17,7 +17,7 @@ Task Log: limit Task by Project
     :target: https://github.com/OCA/timesheet/tree/13.0/hr_timesheet_task_domain
     :alt: OCA/timesheet
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/timesheet-12-0/timesheet-12-0-hr_timesheet_task_domain
+    :target: https://translation.odoo-community.org/projects/timesheet-13-0/timesheet-13-0-hr_timesheet_task_domain
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/117/13.0
@@ -66,7 +66,7 @@ Contributors
     * Luis M. ontalba
     * Ernesto Tejeda
     * Manuel Calero
-    
+
 * Alexey Pelykh <alexey.pelykh@brainbeanapps.com>
 
 Maintainers
