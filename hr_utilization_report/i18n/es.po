@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-05-18 17:19+0000\n"
+"PO-Revision-Date: 2020-05-18 20:19+0000\n"
 "Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -57,7 +57,6 @@ msgstr "<span>Informe de uso</span>"
 
 #. module: hr_utilization_report
 #: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_group_footer
-#, fuzzy
 msgid "<strong>Subtotal</strong>"
 msgstr "<strong>Subtotal</strong>"
 
@@ -368,7 +367,7 @@ msgstr "Asistente de informes de uso de RRHH"
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__has_multientry_blocks
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__has_multientry_blocks
 msgid "Has Multi-Entry Blocks"
-msgstr ""
+msgstr "Tiene bloques de entradas múltiples"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__id
@@ -384,12 +383,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__id
 #: model:ir.model.fields,field_description:hr_utilization_report.field_report_hr_utilization_report_report__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__is_multientry
 msgid "Is Multi-Entry"
-msgstr ""
+msgstr "Tiene entrada múltiple"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report____last_update
@@ -405,7 +404,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping____last_update
 #: model:ir.model.fields,field_description:hr_utilization_report.field_report_hr_utilization_report_report____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación el"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__write_uid
@@ -418,7 +417,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__write_uid
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última modificación por"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__write_date
@@ -431,25 +430,25 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__write_date
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización el"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: hr_utilization_report
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:1003
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:1027
 #, python-format
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__only_active_employees
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__only_active_employees
 msgid "Only Active Employees"
-msgstr ""
+msgstr "Solo Empleados activos"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field__report_id
@@ -457,19 +456,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__report_id
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__report_id
 msgid "Report"
-msgstr ""
+msgstr "Informe"
 
 #. module: hr_utilization_report
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:894
 #, python-format
 msgid "Report %s"
-msgstr ""
+msgstr "Informe %s"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__scope
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__scope
 msgid "Scope"
-msgstr ""
+msgstr "Alcance"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__sequence
@@ -482,50 +481,50 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__sequence
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__split_by_field_name
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__split_by_field_name
 msgid "Split-By Field"
-msgstr ""
+msgstr "Dividir por campo"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__split_by_field_title
 msgid "Split-By Field Title"
-msgstr ""
+msgstr "Dividir por Título del campo"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__date_from
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__date_from
 msgid "Start Date"
-msgstr ""
+msgstr "Fecha inicio"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__time_format
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__time_format
 msgid "Time format"
-msgstr ""
+msgstr "Formato hora"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field__field_title
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__field_title
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__field_title
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #. module: hr_utilization_report
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:1656
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:1663
 #, python-format
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__total_capacity
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__total_capacity
 msgid "Total Capacity"
-msgstr ""
+msgstr "Capacidad total"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__total_unit_amount_a
@@ -533,7 +532,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__total_unit_amount_a
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__total_unit_amount_a
 msgid "Total Quantity (A)"
-msgstr ""
+msgstr "Cantidad total (A)"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__total_unit_amount_b
@@ -541,7 +540,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__total_unit_amount_b
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__total_unit_amount_b
 msgid "Total Quantity (B)"
-msgstr ""
+msgstr "Cantidad total (B)"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__total_utilization_a
@@ -549,7 +548,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__total_utilization_a
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__total_utilization_a
 msgid "Total Utilization (A)"
-msgstr ""
+msgstr "Uso total (A)"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__total_utilization_b
@@ -557,70 +556,70 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__total_utilization_b
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__total_utilization_b
 msgid "Total Utilization (B)"
-msgstr ""
+msgstr "Uso total (B)"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field__field_type
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__field_type
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__field_type
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: hr_utilization_report
 #: model:ir.actions.report,name:hr_utilization_report.action_report_qweb_html
 #: model:ir.actions.report,name:hr_utilization_report.action_report_qweb_pdf
 #: model:ir.actions.report,name:hr_utilization_report.action_report_xlsx
 msgid "Utilization Report"
-msgstr ""
+msgstr "Informe uso"
 
 #. module: hr_utilization_report
 #: model:ir.ui.menu,name:hr_utilization_report.menu_timesheet_report_wizard
 msgid "Utilization Report Wizard"
-msgstr ""
+msgstr "Asistente informe uso"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__utilization_format
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__utilization_format
 msgid "Utilization format"
-msgstr ""
+msgstr "Formato uso"
 
 #. module: hr_utilization_report
 #: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_group_header
 msgid "Utilization,"
-msgstr ""
+msgstr "Uso,"
 
 #. module: hr_utilization_report
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:1058
 #, python-format
 msgid "Utilization, %"
-msgstr ""
+msgstr "Uso, %"
 
 #. module: hr_utilization_report
 #: model_terms:ir.ui.view,arch_db:hr_utilization_report.hr_utilization_report_wizard_form
 msgid "View"
-msgstr ""
+msgstr "Vista"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field__wizard_id
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__wizard_id
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Asistente"
 
 #. module: hr_utilization_report
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:995
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:1019
 #, python-format
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_report_hr_utilization_report_report
 msgid "report.hr_utilization_report.report"
-msgstr ""
+msgstr "report.hr_utilization_report.report"
 
 #. module: hr_utilization_report
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:232
 #, python-format
 msgid "{l} » {r}"
-msgstr ""
+msgstr "{l} » {r}"
