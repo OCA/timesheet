@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2020-05-18 12:19+0000\n"
+"PO-Revision-Date: 2020-05-18 20:19+0000\n"
 "Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/odoo/teams/41243/es/)\n"
 "Language: es\n"
@@ -59,7 +59,7 @@ msgstr "<span class=\"text-muted text-nowrap\">Tiempo total</span>"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line_abstract
 msgid "Abstract Timesheet Sheet Line"
-msgstr "Línea de Hoja de Servicios"
+msgstr "Línea resumen Parte de horas"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_warning
@@ -100,7 +100,7 @@ msgstr "Cuentas analíticas"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_line
 msgid "Analytic Line"
-msgstr "Línea Analítica"
+msgstr "Línea analítica"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -449,14 +449,14 @@ msgstr "Es seguidor"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line____last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última modificación el"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__write_uid
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__write_uid
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Última modificación por"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__write_date
@@ -591,7 +591,7 @@ msgstr "Atrasada"
 #. module: hr_timesheet_sheet
 #: selection:res.company,sheet_range:0
 msgid "Payroll Period"
-msgstr "Periodo Salarial"
+msgstr "Periodo de nómina"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
@@ -787,7 +787,7 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:331
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Project must be the same."
-msgstr "La Compañía del Parte de horas y la del Proyecto deben coincidir."
+msgstr "La empresa en el parte de horas y en el proyecto deben ser la misma."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:341
@@ -799,7 +799,7 @@ msgstr "La Compañía de la Hoja de Servicios y de la Tarea debe coincidir."
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company__sheet_range
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__sheet_range
 msgid "The range of your Timesheet Sheet."
-msgstr "Rango de tu Hoja de Servicios."
+msgstr "Rango de tu hoja de Parte de horas."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:263
@@ -832,7 +832,7 @@ msgstr "Periodo del parte de horas"
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Timesheet Sheet"
-msgstr "Parte de horas"
+msgstr "Hoja Parte de horas"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line
@@ -847,19 +847,19 @@ msgstr "Líneas de Hoja de Servicios"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_new_analytic_line
 msgid "Timesheet Sheet New Analytic Line"
-msgstr "Nueva línea de parte de horas"
+msgstr "Nueva línea de hoja de Parte de horas"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__sheet_range
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__sheet_range
 msgid "Timesheet Sheet Range"
-msgstr "Rango de la Hoja de Servicios"
+msgstr "Rango de la hoja del Parte de horas"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
 msgid "Timesheet Sheet Review Policy"
-msgstr "Política de Revisión del Parte de horas"
+msgstr "Política de Revisión de la hoja de Parte de horas"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
