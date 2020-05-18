@@ -1,0 +1,625 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_utilization_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-05-18 20:19+0000\n"
+"Last-Translator: Josep M <jmyepes@mac.com>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:314
+#, python-format
+msgid "\"%s\" report type is not supported"
+msgstr "\"%s\" tipo de informe no es compatible"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:328
+#, python-format
+msgid "\"%s\" report with \"%s\" type not found"
+msgstr "\"%s\" informe con \"%s\" tipo no encontrados"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/wizards/hr_utilization_report_wizard.py:125
+#, python-format
+msgid "\"Employee\" must be listed in Details Fields"
+msgstr "\"Empleado\" debe aparecer en los campos de detalles"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:224
+#, python-format
+msgid "%s not set"
+msgstr "%s no establecido"
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_header
+msgid "<span> of </span>"
+msgstr "<span> de </span>"
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_header
+msgid "<span>Date Range:</span>"
+msgstr "<span>Rango fecha:</span>"
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_header
+msgid "<span>Utilization Report</span>"
+msgstr "<span>Informe de uso</span>"
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_group_footer
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>Subtotal</strong>"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__any_line_id
+msgid "Account Analytics Lines"
+msgstr "Líneas cuentas analíticas"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field__aggregation
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__aggregation
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__aggregation
+msgid "Aggregation"
+msgstr "Agregación"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1011
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1066
+#, python-format
+msgid "Amount, %s"
+msgstr "Cantidad, %s"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/wizards/hr_utilization_report_wizard.py:120
+#, python-format
+msgid "At least one field must be listed in Details Fields"
+msgstr "Al menos un campo debe estar listado en Detalles Campos"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__block_id
+msgid "Block"
+msgstr "Bloque"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__block_ids
+msgid "Blocks"
+msgstr "Bloques"
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.hr_utilization_report_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__capacity
+msgid "Capacity"
+msgstr "Capacidad"
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_group_header
+msgid "Capacity,"
+msgstr "Capacidad,"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1035
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1072
+#, python-format
+msgid "Capacity, %s"
+msgstr "Capacidad, %s"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__cell_classes
+msgid "Cell classes"
+msgstr "Clases de celdas"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__create_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__create_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__create_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__create_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__create_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__create_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__create_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__create_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__create_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__create_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__create_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__create_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__create_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__create_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__create_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__create_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:153
+#, python-format
+msgid "Date-To can not be earlier than Date-From"
+msgstr "Fecha hasta no puede ser anterior a Fecha desde"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__department_ids
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__department_ids
+msgid "Departments"
+msgstr "Departamentos"
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_header
+msgid "Departments:"
+msgstr "Departamentos:"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__entry_field_ids
+msgid "Details Fields"
+msgstr "Detalle Campos"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__display_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__display_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__display_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field__display_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__display_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__display_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__display_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__display_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field__display_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__display_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__display_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_report_hr_utilization_report_report__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__employee_category_ids
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__employee_category_ids
+msgid "Employee Tags"
+msgstr "Etiquetas empleados"
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_header
+msgid "Employee Tags:"
+msgstr "Etiquetas empleados:"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__employee_ids
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__employee_ids
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_header
+msgid "Employees:"
+msgstr "Empleados:"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__date_to
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__date_to
+msgid "End Date"
+msgstr "Fecha fin"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__entry_ids
+msgid "Entries"
+msgstr "Entradas"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__entry_field_ids
+msgid "Entry Fields"
+msgstr "Campos entrada"
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.hr_utilization_report_wizard_form
+msgid "Export to PDF"
+msgstr "Exportar a PDF"
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.hr_utilization_report_wizard_form
+msgid "Export to XLSX"
+msgstr "Exportar a XLSX"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field__field_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__field_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__field_name
+msgid "Field"
+msgstr "Campo"
+
+#. module: hr_utilization_report
+#: sql_constraint:hr.utilization.report.field:0
+#: sql_constraint:hr.utilization.report.field.entry:0
+#: sql_constraint:hr.utilization.report.field.groupby:0
+msgid "Field can be reported only once!"
+msgstr "¡El campo solo se puede informar una vez!"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field__field_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__field_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__field_name
+msgid "Field name"
+msgstr "Nombre campo"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field__field_title
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__field_title
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__field_title
+msgid "Field title"
+msgstr "Título campo"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field__field_type
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__field_type
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__field_type
+msgid "Field type"
+msgstr "Tipo campo"
+
+#. module: hr_utilization_report
+#: model:ir.actions.act_window,name:hr_utilization_report.action_utilization_report_wizard
+#: model:ir.actions.server,name:hr_utilization_report.action_utilization_report_wizard_from_departments
+#: model:ir.actions.server,name:hr_utilization_report.action_utilization_report_wizard_from_employees
+msgid "Generate Utilization Report"
+msgstr "Generar informe de uso"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__group_id
+msgid "Group"
+msgstr "Grupo"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__groupby_field_ids
+msgid "Group-By Fields"
+msgstr "Agrupar por Campos"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field__groupby
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__groupby
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__groupby
+msgid "Group-by expression"
+msgstr "Agrupar por expresión"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__grouping_field_ids
+msgid "Grouping Fields"
+msgstr "Campos agrupados"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__group_ids
+msgid "Groups"
+msgstr "Grupos"
+
+#. module: hr_utilization_report
+#: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_wizard_field_grouping
+msgid "HR Uimesheet Report Wizard field (grouping)"
+msgstr "Campo Asistente del informe de Parte de horas de RRHH (agrupación)"
+
+#. module: hr_utilization_report
+#: model:ir.model,name:hr_utilization_report.model_hr_utilization_report
+msgid "HR Utilization Report"
+msgstr "Informe de uso RRHH"
+
+#. module: hr_utilization_report
+#: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_wizard_field
+msgid "HR Utilization Report Wizard field"
+msgstr "Campo Asistente del informe de uso de RRHH"
+
+#. module: hr_utilization_report
+#: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_wizard_field_details
+msgid "HR Utilization Report Wizard field (details)"
+msgstr "Campo Asistente del informe de uso de RRHH (detalles)"
+
+#. module: hr_utilization_report
+#: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_block
+msgid "HR Utilization Report block"
+msgstr "Bloque de informe de uso de RRHH"
+
+#. module: hr_utilization_report
+#: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_entry
+msgid "HR Utilization Report entry"
+msgstr "Entrada del informe de uso de RRHH"
+
+#. module: hr_utilization_report
+#: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_field
+msgid "HR Utilization Report field"
+msgstr "Campo Informe de uso de RRHH"
+
+#. module: hr_utilization_report
+#: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_field_entry
+msgid "HR Utilization Report field (entry)"
+msgstr "Campo Informe de uso de RRHH (entrada)"
+
+#. module: hr_utilization_report
+#: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_field_groupby
+msgid "HR Utilization Report field (groupby)"
+msgstr "Campo Informe de uso de RRHH (agrupado)"
+
+#. module: hr_utilization_report
+#: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_group
+msgid "HR Utilization Report group"
+msgstr "Grupo de informe de uso de RRHH"
+
+#. module: hr_utilization_report
+#: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_wizard
+msgid "HR utilization Report Wizard"
+msgstr "Asistente de informes de uso de RRHH"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__has_multientry_blocks
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__has_multientry_blocks
+msgid "Has Multi-Entry Blocks"
+msgstr "Tiene bloques de entradas múltiples"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field__id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field__id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_report_hr_utilization_report_report__id
+msgid "ID"
+msgstr "ID"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__is_multientry
+msgid "Is Multi-Entry"
+msgstr "Tiene entrada múltiple"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report____last_update
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block____last_update
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry____last_update
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field____last_update
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry____last_update
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby____last_update
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group____last_update
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard____last_update
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field____last_update
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details____last_update
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping____last_update
+#: model:ir.model.fields,field_description:hr_utilization_report.field_report_hr_utilization_report_report____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__write_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__write_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__write_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__write_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__write_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__write_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__write_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__write_uid
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__write_uid
+msgid "Last Updated by"
+msgstr "Última modificación por"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__write_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__write_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__write_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__write_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__write_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__write_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__write_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__write_date
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1003
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1027
+#, python-format
+msgid "No"
+msgstr "No"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__only_active_employees
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__only_active_employees
+msgid "Only Active Employees"
+msgstr "Solo Empleados activos"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field__report_id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__report_id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__report_id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__report_id
+msgid "Report"
+msgstr "Informe"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:894
+#, python-format
+msgid "Report %s"
+msgstr "Informe %s"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__scope
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__scope
+msgid "Scope"
+msgstr "Alcance"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__sequence
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__sequence
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field__sequence
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_entry__sequence
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field_groupby__sequence
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__sequence
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field__sequence
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__sequence
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__split_by_field_name
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__split_by_field_name
+msgid "Split-By Field"
+msgstr "Dividir por campo"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__split_by_field_title
+msgid "Split-By Field Title"
+msgstr "Dividir por Título del campo"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__date_from
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__date_from
+msgid "Start Date"
+msgstr "Fecha inicio"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__time_format
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__time_format
+msgid "Time format"
+msgstr "Formato hora"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field__field_title
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__field_title
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__field_title
+msgid "Title"
+msgstr "Título"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1656
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1663
+#, python-format
+msgid "Total"
+msgstr "Total"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__total_capacity
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__total_capacity
+msgid "Total Capacity"
+msgstr "Capacidad total"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__total_unit_amount_a
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__total_unit_amount_a
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__total_unit_amount_a
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__total_unit_amount_a
+msgid "Total Quantity (A)"
+msgstr "Cantidad total (A)"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__total_unit_amount_b
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__total_unit_amount_b
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__total_unit_amount_b
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__total_unit_amount_b
+msgid "Total Quantity (B)"
+msgstr "Cantidad total (B)"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__total_utilization_a
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__total_utilization_a
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__total_utilization_a
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__total_utilization_a
+msgid "Total Utilization (A)"
+msgstr "Uso total (A)"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__total_utilization_b
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__total_utilization_b
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__total_utilization_b
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_group__total_utilization_b
+msgid "Total Utilization (B)"
+msgstr "Uso total (B)"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field__field_type
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__field_type
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__field_type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: hr_utilization_report
+#: model:ir.actions.report,name:hr_utilization_report.action_report_qweb_html
+#: model:ir.actions.report,name:hr_utilization_report.action_report_qweb_pdf
+#: model:ir.actions.report,name:hr_utilization_report.action_report_xlsx
+msgid "Utilization Report"
+msgstr "Informe uso"
+
+#. module: hr_utilization_report
+#: model:ir.ui.menu,name:hr_utilization_report.menu_timesheet_report_wizard
+msgid "Utilization Report Wizard"
+msgstr "Asistente informe uso"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__utilization_format
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__utilization_format
+msgid "Utilization format"
+msgstr "Formato uso"
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_group_header
+msgid "Utilization,"
+msgstr "Uso,"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1058
+#, python-format
+msgid "Utilization, %"
+msgstr "Uso, %"
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.hr_utilization_report_wizard_form
+msgid "View"
+msgstr "Vista"
+
+#. module: hr_utilization_report
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field__wizard_id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_details__wizard_id
+#: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard_field_grouping__wizard_id
+msgid "Wizard"
+msgstr "Asistente"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:995
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1019
+#, python-format
+msgid "Yes"
+msgstr "Sí"
+
+#. module: hr_utilization_report
+#: model:ir.model,name:hr_utilization_report.model_report_hr_utilization_report_report
+msgid "report.hr_utilization_report.report"
+msgstr "report.hr_utilization_report.report"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:232
+#, python-format
+msgid "{l} » {r}"
+msgstr "{l} » {r}"
