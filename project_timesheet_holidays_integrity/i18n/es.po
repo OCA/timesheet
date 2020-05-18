@@ -6,36 +6,38 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-05-18 20:19+0000\n"
+"Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: project_timesheet_holidays_integrity
 #: model:ir.model,name:project_timesheet_holidays_integrity.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Línea analítica"
 
 #. module: project_timesheet_holidays_integrity
 #: model:ir.model,name:project_timesheet_holidays_integrity.model_hr_leave
 msgid "Leave"
-msgstr ""
+msgstr "Hoja"
 
 #. module: project_timesheet_holidays_integrity
 #: model:ir.actions.server,name:project_timesheet_holidays_integrity.action_restore_data_integrity_with_leaves
 msgid "Restore data integrity with Leaves"
-msgstr ""
+msgstr "Restaurar la integridad de los datos con las hojas"
 
 #. module: project_timesheet_holidays_integrity
 #: model:ir.actions.server,name:project_timesheet_holidays_integrity.action_restore_data_integrity_with_timesheets
 msgid "Restore data integrity with Timesheets"
-msgstr ""
+msgstr "Restaurar la integridad de los datos con los Partes de horas"
 
 #. module: project_timesheet_holidays_integrity
 #: code:addons/project_timesheet_holidays_integrity/models/account_analytic_line.py:85
 #, python-format
 msgid "You cannot modify timesheet lines attached to a leave"
-msgstr ""
+msgstr "No puede modificar las líneas del Parte de horas adjuntas a una hoja"
