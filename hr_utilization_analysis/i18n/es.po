@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-05-18 17:19+0000\n"
+"PO-Revision-Date: 2020-05-18 20:19+0000\n"
 "Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: sql_constraint:hr.utilization.analysis.entry:0
 msgid "An analysis entry for employee/date pair has to be unique!"
 msgstr ""
-"¡Una entrada de análisis para la combinación empleado / fecha debe ser única!"
+"Una entrada de análisis para la combinación empleado / fecha debe ser única!"
 
 #. module: hr_utilization_analysis
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__analysis_id
@@ -90,7 +90,7 @@ msgstr "Diferencia"
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__display_name
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Nombre a mostrar"
 
 #. module: hr_utilization_analysis
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__employee_id
