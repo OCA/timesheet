@@ -25,12 +25,22 @@ msgstr ""
 
 #. module: hr_timesheet_sheet_policy_department_manager
 #: selection:res.company,timesheet_sheet_review_policy:0
-msgid "By HR Manager/Officer"
+msgid "By HR Managers"
+msgstr ""
+
+#. module: hr_timesheet_sheet_policy_department_manager
+#: selection:res.company,timesheet_sheet_review_policy:0
+msgid "By HR Officers"
 msgstr ""
 
 #. module: hr_timesheet_sheet_policy_department_manager
 #: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By Project Manager"
+msgstr ""
+
+#. module: hr_timesheet_sheet_policy_department_manager
+#: selection:res.company,timesheet_sheet_review_policy:0
+msgid "By Timesheets Managers"
 msgstr ""
 
 #. module: hr_timesheet_sheet_policy_department_manager
