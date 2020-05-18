@@ -7,20 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-20 09:25+0000\n"
-"PO-Revision-Date: 2017-06-20 11:31+0200\n"
-"Last-Translator: David <david.vidal@tecnativa.com>\n"
+"PO-Revision-Date: 2020-05-18 12:19+0000\n"
+"Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: crm_phonecall_timesheet
 #: model:ir.model,name:crm_phonecall_timesheet.model_account_analytic_line
 msgid "Analytic Line"
-msgstr "Línea Analítica"
+msgstr "Línea analítica"
 
 #. module: crm_phonecall_timesheet
 #: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:36
@@ -47,7 +47,7 @@ msgstr "Llamada telefónica"
 #. module: crm_phonecall_timesheet
 #: model:ir.model.fields,field_description:crm_phonecall_timesheet.field_crm_phonecall__project_id
 msgid "Project"
-msgstr ""
+msgstr "Proyecto"
 
 #. module: crm_phonecall_timesheet
 #: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:96
