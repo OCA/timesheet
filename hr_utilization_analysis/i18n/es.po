@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-04-13 13:19+0000\n"
-"Last-Translator: lromero-solvos <luis.romero@solvos.es>\n"
+"PO-Revision-Date: 2020-05-18 17:19+0000\n"
+"Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,8 @@ msgstr ""
 #. module: hr_utilization_analysis
 #: sql_constraint:hr.utilization.analysis.entry:0
 msgid "An analysis entry for employee/date pair has to be unique!"
-msgstr "¡Una entrada de análisis para el par empleado / fecha debe ser única!"
+msgstr ""
+"¡Una entrada de análisis para la combinación empleado / fecha debe ser única!"
 
 #. module: hr_utilization_analysis
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__analysis_id
@@ -65,7 +66,7 @@ msgstr "Fecha"
 #: code:addons/hr_utilization_analysis/report/hr_utilization_analysis.py:52
 #, python-format
 msgid "Date-To can not be earlier than Date-From"
-msgstr "Fecha-Hasta no puede ser anterior a Fecha-Desde"
+msgstr "Fecha hasta no puede ser anterior a Fecha desde"
 
 #. module: hr_utilization_analysis
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__department_id
@@ -123,22 +124,22 @@ msgstr "Entradas"
 #. module: hr_utilization_analysis
 #: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_search
 msgid "Group By"
-msgstr "Agrupado por"
+msgstr "Agrupar por"
 
 #. module: hr_utilization_analysis
 #: model:ir.model,name:hr_utilization_analysis.model_hr_utilization_analysis
 msgid "HR Utilization Analysis"
-msgstr "RR.HH. Análisis de Utilización"
+msgstr "Análisis de uso RRHH"
 
 #. module: hr_utilization_analysis
 #: model:ir.model,name:hr_utilization_analysis.model_hr_utilization_analysis_wizard
 msgid "HR Utilization Analysis Wizard"
-msgstr "RR.HH. Asistente de Análisis de Utilización"
+msgstr "Asistente de Análisis de uso RRHH"
 
 #. module: hr_utilization_analysis
 #: model:ir.model,name:hr_utilization_analysis.model_hr_utilization_analysis_entry
 msgid "HR Utilization Analysis entry"
-msgstr "RR.HH. Entrada de Análisis de Utilización"
+msgstr "Entrada de Análisis de uso RRHH"
 
 #. module: hr_utilization_analysis
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__id
@@ -172,7 +173,7 @@ msgstr "Última actualización el"
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__manager_id
 #: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_search
 msgid "Manager"
-msgstr "Administrador"
+msgstr "Responsable"
 
 #. module: hr_utilization_analysis
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__name
@@ -200,7 +201,7 @@ msgstr "Fecha Inicio"
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__line_ids
 #: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_form
 msgid "Timesheet Lines"
-msgstr "Líneas de Partes"
+msgstr "Líneas de Partes de horas"
 
 #. module: hr_utilization_analysis
 #: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_tree
@@ -222,19 +223,19 @@ msgstr "Diferencia Total"
 #: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_pivot
 #: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_search
 msgid "Utilization"
-msgstr "Utilización"
+msgstr "Uso"
 
 #. module: hr_utilization_analysis
 #: code:addons/hr_utilization_analysis/wizards/hr_utilization_analysis_wizard.py:55
 #, python-format
 msgid "Utilization Analysis"
-msgstr "Análisis de Utilización"
+msgstr "Análisis de uso"
 
 #. module: hr_utilization_analysis
 #: model:ir.actions.act_window,name:hr_utilization_analysis.action_utilization_analysis_wizard
 #: model:ir.ui.menu,name:hr_utilization_analysis.menu_timesheet_analysis_wizard
 msgid "Utilization Analysis Wizard"
-msgstr "Asistente de Análisis de Utilización"
+msgstr "Asistente de Análisis de uso"
 
 #. module: hr_utilization_analysis
 #: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_wizard_form
@@ -245,4 +246,4 @@ msgstr "Vista"
 #: model:ir.actions.server,name:hr_utilization_analysis.action_utilization_analysis_wizard_from_departments
 #: model:ir.actions.server,name:hr_utilization_analysis.action_utilization_analysis_wizard_from_employees
 msgid "View Utilization Analysis"
-msgstr "Vista de Análisis de Utilización"
+msgstr "Vista de Análisis de uso"
