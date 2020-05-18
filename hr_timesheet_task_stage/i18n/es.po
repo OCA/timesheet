@@ -6,52 +6,57 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-05-18 17:19+0000\n"
+"Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model,name:hr_timesheet_task_stage.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Línea analítica"
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
 msgid "Close task"
-msgstr ""
+msgstr "Cerrar tarea"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
 msgid "Closed"
-msgstr ""
+msgstr "Cerrado"
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
 msgid "Open task"
-msgstr ""
+msgstr "Abrir tarea"
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_form
 msgid "Open/Close timesheet line automatically open/close its tasks. Do you want to proceed?"
 msgstr ""
+"Abrir / Cerrar línea del Parte de horas abre / cierra automáticamente sus "
+"tareas. Quiere continuar?"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
 msgid "Tasks in this stage are considered closed."
-msgstr ""
+msgstr "Las tareas de esta etapa se consideran cerradas."
 
 #. module: hr_timesheet_task_stage
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:47
 #, python-format
 msgid "There isn't any stage with \"Closed\" checked. Please mark any."
-msgstr ""
+msgstr "No hay ninguna etapa con \"Cerrado\" marcado. Por favor marque alguna."
 
 #. module: hr_timesheet_task_stage
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:29
 #, python-format
 msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
 msgstr ""
+"No hay ninguna etapa con \"Cerrado\" sin marcar. Por favor, desmarque alguna."
