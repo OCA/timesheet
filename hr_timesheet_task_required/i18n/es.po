@@ -6,59 +6,67 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-05-18 17:19+0000\n"
+"Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: hr_timesheet_task_required
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.res_config_settings_view_form
 msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Los valores establecidos aquí "
+"son específicos de la compañía.\" role=\"img\" aria-label=\"Los valores "
+"establecidos aquí son específicos de la compañía.\" groups=\"base."
+"group_multi_company\"/>"
 
 #. module: hr_timesheet_task_required
 #: model:ir.model,name:hr_timesheet_task_required.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Línea analítica"
 
 #. module: hr_timesheet_task_required
 #: model:ir.model,name:hr_timesheet_task_required.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Compañias"
 
 #. module: hr_timesheet_task_required
 #: model:ir.model,name:hr_timesheet_task_required.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Parámetros de configuración"
 
 #. module: hr_timesheet_task_required
 #: model:ir.model.fields,field_description:hr_timesheet_task_required.field_account_analytic_line__is_task_required
 #: model:ir.model.fields,field_description:hr_timesheet_task_required.field_hr_timesheet_switch__is_task_required
 msgid "Is Task Required"
-msgstr ""
+msgstr "Es una tarea requerida"
 
 #. module: hr_timesheet_task_required
 #: model:ir.model,name:hr_timesheet_task_required.model_project_project
 msgid "Project"
-msgstr ""
+msgstr "Proyecto"
 
 #. module: hr_timesheet_task_required
 #: model:ir.model.fields,field_description:hr_timesheet_task_required.field_project_project__is_timesheet_task_required
 #: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_company__is_timesheet_task_required
 #: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_config_settings__is_timesheet_task_required
 msgid "Require Tasks on Timesheets"
-msgstr ""
+msgstr "Requerir tareas en Partes de horas"
 
 #. module: hr_timesheet_task_required
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.res_config_settings_view_form
 msgid "Require task selection on each timesheet entry by default"
 msgstr ""
+"Requerir selección de tarea en cada entrada del Parte de horas de forma "
+"predeterminada"
 
 #. module: hr_timesheet_task_required
 #: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:24
 #, python-format
 msgid "You must specify a task for timesheet lines."
-msgstr ""
+msgstr "Debe especificar una tarea para las líneas del Parte de horas."
