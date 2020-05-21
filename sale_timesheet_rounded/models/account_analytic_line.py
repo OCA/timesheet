@@ -24,7 +24,7 @@ class AccountAnalyticLine(models.Model):
         copy=False,
     )
 
-    @api.model_cr_context
+    @api.model
     def _init_column(self, column_name):
         """ Initialize the value of the given column for existing rows.
             Overridden here because we need to have different default values
@@ -98,7 +98,6 @@ class AccountAnalyticLine(models.Model):
             res.write({"unit_amount_rounded": res._calc_unit_amount_rounded()})
         return res
 
-    @api.multi
     def write(self, values):
         res = super().write(values)
         no_rounding = self.env.context.get("_no_rounding")
@@ -126,7 +125,7 @@ class AccountAnalyticLine(models.Model):
         which in turns compute the delivered qty on SO line.
         """
         ctx_ts_rounded = self.env.context.get("timesheet_rounding")
-        fields_local = fields.copy() if fields else []
+        fields_local = list(fields) if fields else []
         if ctx_ts_rounded and "unit_amount_rounded" not in fields_local:
             # To add the unit_amount_rounded value on read_group
             fields_local.append("unit_amount_rounded")
@@ -145,13 +144,12 @@ class AccountAnalyticLine(models.Model):
                 rec["unit_amount"] = rec["unit_amount_rounded"]
         return res
 
-    @api.multi
     def read(self, fields=None, load="_classic_read"):
         """Replace the value of unit_amount by unit_amount_rounded.
 
         When context key `timesheet_rounding` is True
         we change the value of unit_amount with the rounded one.
-        This affects `account_anaytic_line._sale_determine_order_line`.
+        This affects `account_analytic_line._sale_determine_order_line`.
         """
         ctx_ts_rounded = self.env.context.get("timesheet_rounding")
         fields_local = fields.copy() if fields else []
