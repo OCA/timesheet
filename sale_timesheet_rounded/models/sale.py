@@ -18,6 +18,6 @@ class SaleOrderLine(models.Model):
         return super()._get_delivered_quantity_by_analytic(additional_domain)
 
     @api.multi
-    @api.depends('analytic_line_ids.unit_amount_rounded')
+    @api.depends("analytic_line_ids.unit_amount_rounded")
     def _compute_qty_delivered(self):
         super()._compute_qty_delivered()
