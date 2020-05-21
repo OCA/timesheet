@@ -85,6 +85,7 @@ class HrContract(models.Model):
                 work_data = contract.employee_id.get_work_days_data(
                     datetime.combine(period_start, time.min),
                     datetime.combine(period_end, time.max),
+                    calendar=contract.resource_calendar_id,
                     domain=leaves_domain,
                 )
                 hourly_rates += contract.currency_id._convert(
@@ -106,6 +107,7 @@ class HrContract(models.Model):
                 hours = contract.employee_id.get_work_days_data(
                     datetime.combine(month_start, time.min),
                     datetime.combine(month_end, time.max),
+                    calendar=contract.resource_calendar_id,
                     domain=leaves_domain,
                 )['hours']
                 if has_approximate_wage and not contract.is_wage_accurate:
