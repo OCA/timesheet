@@ -111,8 +111,8 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
 
     def test_analytic_line_read_group_override(self):
         # Test of the read group with an without timesheet_rounding context
-        # without context the unit_amount should be the inital
-        # with the context the value of unit_amount should be replace by the
+        # without context the unit_amount should be the initial
+        # with the context the value of unit_amount should be replaced by the
         # unit_amount_rounded
         line = self.env["account.analytic.line"]
         self.create_analytic_line(unit_amount=1)
