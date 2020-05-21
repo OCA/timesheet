@@ -7,7 +7,6 @@ from odoo import api, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.multi
     def _get_delivered_quantity_by_analytic(self, additional_domain):
         # If we land here is only because we are dealing w/ SO lines
         # having `qty_delivered_method` equal to `analytic` or `timesheet`.
@@ -17,7 +16,6 @@ class SaleOrderLine(models.Model):
         self = self.with_context(timesheet_rounding=True)
         return super()._get_delivered_quantity_by_analytic(additional_domain)
 
-    @api.multi
     @api.depends("analytic_line_ids.unit_amount_rounded")
     def _compute_qty_delivered(self):
         super()._compute_qty_delivered()
