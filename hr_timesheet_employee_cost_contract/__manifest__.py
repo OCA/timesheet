@@ -3,7 +3,7 @@
 
 {
     'name': 'HR Timesheet: Employee Cost from Contract',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Human Resources',
     'website': 'https://github.com/OCA/timesheet',
     'author':
