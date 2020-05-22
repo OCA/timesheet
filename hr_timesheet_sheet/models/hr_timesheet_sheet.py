@@ -689,9 +689,9 @@ class Sheet(models.Model):
                 continue
             row = fields.first(rows)
             if delete_empty_rows and self._is_add_line(row):
-                check = any([l.unit_amount for l in rows])
+                check = any([line.unit_amount for line in rows])
             else:
-                check = not all([l.unit_amount for l in rows])
+                check = not all([line.unit_amount for line in rows])
             if not check:
                 continue
             row_lines = self.timesheet_ids.filtered(
