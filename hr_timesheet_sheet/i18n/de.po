@@ -558,7 +558,6 @@ msgstr "Anzahl der Aktionen"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error_counter
 #, fuzzy
-#| msgid "Number of error"
 msgid "Number of errors"
 msgstr "Anzahl der Fehler"
 
@@ -651,7 +650,6 @@ msgstr "Prüfer"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
 #, fuzzy
-#| msgid "Message Delivery error"
 msgid "SMS Delivery error"
 msgstr "Nachrichten-Übertragungsfehler"
 
@@ -697,11 +695,13 @@ msgstr "Auf Entwurf setzen"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__sheet_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_id
 msgid "Sheet"
 msgstr "Zettel"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
 msgid "Sheet State"
 msgstr "Status"
 
@@ -1014,7 +1014,6 @@ msgstr "Woche"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, fuzzy, python-format
-#| msgid "Weeks"
 msgid "Week %s"
 msgstr "Wochen"
 

@@ -82,7 +82,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 #, fuzzy
-#| msgid "Analytic Line"
 msgid "Analytic Account"
 msgstr "ပိုငျးခွားနိုငျသော လိုငျး"
 
@@ -168,7 +167,6 @@ msgstr "ကုမ္ပဏီ"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__complete_name
 #, fuzzy
-#| msgid "Employee's Name"
 msgid "Complete Name"
 msgstr "၀န်ထမ်းအမည်"
 
@@ -661,11 +659,13 @@ msgstr "Set to Draft"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__sheet_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_id
 msgid "Sheet"
 msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
 msgid "Sheet State"
 msgstr ""
 
