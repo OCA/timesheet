@@ -6,49 +6,52 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-05-26 00:19+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model,name:hr_timesheet_sheet_period.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Empresas"
 
 #. module: hr_timesheet_sheet_period
 #: selection:res.company,sheet_range:0
 msgid "Day"
-msgstr ""
+msgstr "Dia"
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_period.field_hr_timesheet_sheet__is_hr_period_required
 msgid "Is Hr Period Required"
-msgstr ""
+msgstr "É Requerido Período de HR?"
 
 #. module: hr_timesheet_sheet_period
 #: selection:res.company,sheet_range:0
 msgid "Month"
-msgstr ""
+msgstr "Mês"
 
 #. module: hr_timesheet_sheet_period
 #: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:95
 #, python-format
 msgid "No suitable Payroll period found!"
 msgstr ""
+"Não foi encontrado qualquer período adequado de processamento de vencimentos!"
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_period.field_hr_timesheet_sheet__hr_period_id
 msgid "Pay Period"
-msgstr ""
+msgstr "Período de Pagamento"
 
 #. module: hr_timesheet_sheet_period
 #: selection:res.company,sheet_range:0
 msgid "Payroll Period"
-msgstr ""
+msgstr "Período do Processamento de Vencimentos"
 
 #. module: hr_timesheet_sheet_period
 #: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:103
@@ -65,19 +68,19 @@ msgstr ""
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,help:hr_timesheet_sheet_period.field_res_company__sheet_range
 msgid "The range of your Timesheet Sheet."
-msgstr ""
+msgstr "O intervalo da sua Folha de Horas."
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model,name:hr_timesheet_sheet_period.model_hr_timesheet_sheet
 msgid "Timesheet Sheet"
-msgstr ""
+msgstr "Folha de Horas"
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_period.field_res_company__sheet_range
 msgid "Timesheet Sheet Range"
-msgstr ""
+msgstr "Intervalo de Folhas de Horas"
 
 #. module: hr_timesheet_sheet_period
 #: selection:res.company,sheet_range:0
 msgid "Week"
-msgstr ""
+msgstr "Semana"
