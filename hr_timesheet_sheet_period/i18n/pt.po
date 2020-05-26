@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-05-26 00:19+0000\n"
+"PO-Revision-Date: 2020-05-26 16:19+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
@@ -29,7 +29,7 @@ msgstr "Dia"
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_period.field_hr_timesheet_sheet__is_hr_period_required
 msgid "Is Hr Period Required"
-msgstr "É Requerido Período de HR?"
+msgstr "É Requerido Período de HR"
 
 #. module: hr_timesheet_sheet_period
 #: selection:res.company,sheet_range:0
@@ -58,12 +58,16 @@ msgstr "Período do Processamento de Vencimentos"
 #, python-format
 msgid "The Date From of Timesheet must match with that of date start '%s' of the Payroll period '%s'."
 msgstr ""
+"A Data de Início da Folha de Horas tem que corresponder à data inicial '%s' "
+"do período de processamento de vencimentos '%s'."
 
 #. module: hr_timesheet_sheet_period
 #: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:109
 #, python-format
 msgid "The Date To of Timesheet must match with that of date stop '%s' of the Payroll period '%s'."
 msgstr ""
+"A Data de Fim da Folha de Horas tem que corresponder à data final '%s' do "
+"período de processamento de vencimentos '%s'."
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,help:hr_timesheet_sheet_period.field_res_company__sheet_range
