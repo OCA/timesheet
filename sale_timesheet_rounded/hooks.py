@@ -16,12 +16,12 @@ def pre_init_hook(cr):
     )
     table = sql.Identifier("account_analytic_line")
     column = sql.Identifier("unit_amount_rounded")
-    cr.execute(
+    cr.execute(  # pylint: disable=E8103
         sql.SQL("ALTER TABLE {} ADD COLUMN IF NOT EXISTS {} NUMERIC").format(
             table, column
         )
     )
-    cr.execute(
+    cr.execute(  # pylint: disable=E8103
         sql.SQL(
             "UPDATE {table} SET {column} = unit_amount WHERE {column} IS NULL"
         ).format(table=table, column=column),
