@@ -33,9 +33,10 @@ msgstr ""
 
 #. module: sale_timesheet_rounded
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_rounded.account_analytic_line_kanban_inherit
+#, fuzzy
 msgid ""
 "<br/>\n"
-"        <strong>Rounded: </strong>"
+"                <strong>Rounded: </strong>"
 msgstr ""
 "<br/>\n"
 "        <strong>Gerundet: </strong>"
@@ -46,12 +47,12 @@ msgid "Analytic Line"
 msgstr "Kostenstellen Buchung"
 
 #. module: sale_timesheet_rounded
-#: selection:project.project,timesheet_rounding_method:0
+#: model:ir.model.fields.selection,name:sale_timesheet_rounded.selection__project_project__timesheet_rounding_method__half_up
 msgid "Closest"
 msgstr "Am nächsten"
 
 #. module: sale_timesheet_rounded
-#: selection:project.project,timesheet_rounding_method:0
+#: model:ir.model.fields.selection,name:sale_timesheet_rounded.selection__project_project__timesheet_rounding_method__down
 msgid "Down"
 msgstr "Nach unten"
 
@@ -70,7 +71,7 @@ msgstr ""
 "Einträge gerundet (d.h. bestehende Zeilen werden nicht automatisch gerundet)."
 
 #. module: sale_timesheet_rounded
-#: selection:project.project,timesheet_rounding_method:0
+#: model:ir.model.fields.selection,name:sale_timesheet_rounded.selection__project_project__timesheet_rounding_method__no
 msgid "No rounding"
 msgstr "Keine Rundung"
 
@@ -107,7 +108,7 @@ msgid "Timesheet rounding factor in percentage"
 msgstr "Stundenzettel Rundungsfaktor (in Prozent)"
 
 #. module: sale_timesheet_rounded
-#: sql_constraint:project.project:0
+#: model:ir.model.constraint,message:sale_timesheet_rounded.constraint_project_project_check_timesheet_rounding_factor
 msgid ""
 "Timesheet rounding factor should stay between 0 and 500, endpoints included."
 msgstr ""
@@ -130,6 +131,6 @@ msgid "Total quantity rounded"
 msgstr "Total gerundete Menge"
 
 #. module: sale_timesheet_rounded
-#: selection:project.project,timesheet_rounding_method:0
+#: model:ir.model.fields.selection,name:sale_timesheet_rounded.selection__project_project__timesheet_rounding_method__up
 msgid "Up"
 msgstr "Nach oben"

@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_timesheet_rounded
+# 	* sale_timesheet_rounded
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,8 @@ msgstr ""
 
 #. module: sale_timesheet_rounded
 #: model:ir.model.fields,help:sale_timesheet_rounded.field_project_project__timesheet_rounding_unit
-msgid "1.0 = hour\n"
+msgid ""
+"1.0 = hour\n"
 "            0.25 = 15 min\n"
 "            0.084 ~= 5 min\n"
 "            0.017 ~= 1 min\n"
@@ -32,8 +33,10 @@ msgstr ""
 
 #. module: sale_timesheet_rounded
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_rounded.account_analytic_line_kanban_inherit
-msgid "<br/>\n"
-"        <strong>Rounded: </strong>"
+#, fuzzy
+msgid ""
+"<br/>\n"
+"                <strong>Rounded: </strong>"
 msgstr ""
 "<br/>\n"
 "        <strong>Redondeo: </strong>"
@@ -44,12 +47,12 @@ msgid "Analytic Line"
 msgstr "Línea analítica"
 
 #. module: sale_timesheet_rounded
-#: selection:project.project,timesheet_rounding_method:0
+#: model:ir.model.fields.selection,name:sale_timesheet_rounded.selection__project_project__timesheet_rounding_method__half_up
 msgid "Closest"
 msgstr "Más cercano"
 
 #. module: sale_timesheet_rounded
-#: selection:project.project,timesheet_rounding_method:0
+#: model:ir.model.fields.selection,name:sale_timesheet_rounded.selection__project_project__timesheet_rounding_method__down
 msgid "Down"
 msgstr "Abajo"
 
@@ -60,14 +63,16 @@ msgstr "Duración (redondeado)"
 
 #. module: sale_timesheet_rounded
 #: model:ir.model.fields,help:sale_timesheet_rounded.field_project_project__timesheet_rounding_method
-msgid "If you activate the rounding of timesheet lines, only new entries will be rounded (i.e. existing lines will not be rounded automatically)."
+msgid ""
+"If you activate the rounding of timesheet lines, only new entries will be "
+"rounded (i.e. existing lines will not be rounded automatically)."
 msgstr ""
 "Si activa el redondeo de las líneas del parte de horas, solo se redondearán "
 "las nuevas entradas (es decir, las líneas existentes no se redondearán "
 "automáticamente)."
 
 #. module: sale_timesheet_rounded
-#: selection:project.project,timesheet_rounding_method:0
+#: model:ir.model.fields.selection,name:sale_timesheet_rounded.selection__project_project__timesheet_rounding_method__no
 msgid "No rounding"
 msgstr "Sin redondeo"
 
@@ -104,8 +109,9 @@ msgid "Timesheet rounding factor in percentage"
 msgstr "Factor de redondeo del Parte de horas en porcentaje"
 
 #. module: sale_timesheet_rounded
-#: sql_constraint:project.project:0
-msgid "Timesheet rounding factor should stay between 0 and 500, endpoints included."
+#: model:ir.model.constraint,message:sale_timesheet_rounded.constraint_project_project_check_timesheet_rounding_factor
+msgid ""
+"Timesheet rounding factor should stay between 0 and 500, endpoints included."
 msgstr ""
 "El factor de redondeo del Parte de horas debe estar entre 0 y 500, incluidos "
 "los puntos finales."
@@ -126,6 +132,6 @@ msgid "Total quantity rounded"
 msgstr "Cantidad total redondeada"
 
 #. module: sale_timesheet_rounded
-#: selection:project.project,timesheet_rounding_method:0
+#: model:ir.model.fields.selection,name:sale_timesheet_rounded.selection__project_project__timesheet_rounding_method__up
 msgid "Up"
 msgstr "Arriba"

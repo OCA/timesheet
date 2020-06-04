@@ -13,9 +13,11 @@ class SaleOrderLine(models.Model):
         # The 1st case matches expenses lines the latter TS lines.
         # Expenses are already discarded in our a.a.l. overrides
         # so it's fine to set the ctx key here anyway.
-        self = self.with_context(timesheet_rounding=True)
-        return super()._get_delivered_quantity_by_analytic(additional_domain)
+        return super(
+            SaleOrderLine, self.with_context(timesheet_rounding=True)
+        )._get_delivered_quantity_by_analytic(additional_domain)
 
     @api.depends("analytic_line_ids.unit_amount_rounded")
     def _compute_qty_delivered(self):
+        """Adds the dependency on unit_amount_rounded."""
         super()._compute_qty_delivered()
