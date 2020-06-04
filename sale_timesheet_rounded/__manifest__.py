@@ -1,4 +1,5 @@
 # Copyright 2019 Camptocamp SA
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 {
     "name": "Sale Timesheet Rounded",
@@ -16,4 +17,5 @@
         "views/project_task.xml",
     ],
     "installable": True,
+    "pre_init_hook": "pre_init_hook",
 }
