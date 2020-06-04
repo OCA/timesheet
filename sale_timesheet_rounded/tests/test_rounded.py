@@ -6,10 +6,6 @@ from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheetNoCha
 
 
 class TestRounded(TestCommonSaleTimesheetNoChart):
-
-    at_install = False
-    post_install = True
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -89,8 +85,6 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
     def test_analytic_line_create(self):
         line = self.create_analytic_line(unit_amount=1)
         self.assertEqual(line.unit_amount_rounded, 2.0)
-        line._onchange_unit_amount()
-        self.assertEqual(line.unit_amount_rounded, 2.0)
         line = self.create_analytic_line(unit_amount=1, unit_amount_rounded=0)
         self.assertEqual(line.unit_amount_rounded, 0.0)
 
@@ -106,7 +100,6 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
         line = self.create_analytic_line(unit_amount=2)
         self.assertEqual(line.unit_amount_rounded, 4.0)
         line.unit_amount = 5.0
-        line._onchange_unit_amount()
         self.assertEqual(line.unit_amount_rounded, 10.0)
 
     def test_analytic_line_read_group_override(self):
