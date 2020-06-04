@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_project_time_type_tree" model="ir.ui.view">
+        <field name="name">project.time.type.tree</field>
+        <field name="model">project.time.type</field>
+        <field name="arch" type="xml">
+            <tree string="Time Type">
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_project_time_type_form" model="ir.ui.view">
+        <field name="name">project.time.type.form</field>
+        <field name="model">project.time.type</field>
+        <field name="arch" type="xml">
+            <form string="Time Type">
+                <sheet>
+                    <group col="4" string="Task Activity">
+                        <field name="name"/>
+                        <field name="code"/>
+                    </group>
+                    <div>
+                        <field name="description" placeholder="Description..."/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="open_project_time_type_tree" model="ir.actions.act_window">
+        <field name="name">Time Type</field>
+        <field name="res_model">project.time.type</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_project_time_type_tree"/>
+    </record>
+    <menuitem action="open_project_time_type_tree" id="menu_project_task_time_type" parent="project.menu_project_config" sequence="11" groups="project.group_project_manager"/>
+</odoo>
