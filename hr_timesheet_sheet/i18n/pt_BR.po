@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2020-06-05 20:19+0000\n"
+"PO-Revision-Date: 2020-06-06 06:19+0000\n"
 "Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/"
 "41243/pt_BR/)\n"
@@ -39,12 +39,12 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 msgid "<span class=\"text-muted text-nowrap\">Period</span>"
-msgstr ""
+msgstr "<span class=\"text-mudrap text-nowrap\">Período</span>"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 msgid "<span class=\"text-muted text-nowrap\">Total time</span>"
-msgstr ""
+msgstr "<span class=\"text-muted text-nowrap\">Tempo Total</span>"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line_abstract
@@ -717,10 +717,8 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
-#, fuzzy
-#| msgid "Activity State"
 msgid "Steet State"
-msgstr "Status da Atividade"
+msgstr "Situação do quadro de horários"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
