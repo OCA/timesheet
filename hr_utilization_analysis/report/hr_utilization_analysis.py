@@ -1,11 +1,11 @@
-# Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2018-2020 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime, time, timedelta
 
 import pytz
 
-from odoo import _, api, fields, models
+from odoo import SUPERUSER_ID, _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -33,14 +33,12 @@ class HrUtilizationAnalysis(models.TransientModel):
         store=True,
     )
 
-    @api.multi
     @api.constrains("date_from", "date_to")
     def _check_dates(self):
         for analysis in self:
             if analysis.date_from > analysis.date_to:
                 raise ValidationError(_("Date-To can not be earlier than Date-From"))
 
-    @api.multi
     @api.depends(
         "only_active_employees",
         "employee_ids",
@@ -65,7 +63,6 @@ class HrUtilizationAnalysis(models.TransientModel):
 
             analysis.entry_ids = entry_ids
 
-    @api.multi
     def _get_employees_domain(self):
         self.ensure_one()
 
@@ -131,7 +128,6 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
         ),
     ]
 
-    @api.multi
     @api.depends("employee_id", "date")
     def _compute_line_ids(self):
         AccountAnalyticLine = self.env["account.analytic.line"]
@@ -145,13 +141,12 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
                 ]
             )
 
-    @api.multi
     @api.depends("employee_id", "date")
     def _compute_capacity(self):
         HrEmployee = self.env["hr.employee"]
         Module = self.env["ir.module.module"]
 
-        project_timesheet_holidays = Module.sudo().search(
+        project_timesheet_holidays = Module.with_user(SUPERUSER_ID).search(
             [("name", "=", "project_timesheet_holidays"), ("state", "=", "installed")],
             limit=1,
         )
@@ -161,14 +156,14 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
             from_datetime = datetime.combine(entry.date, time.min).replace(tzinfo=tz)
             to_datetime = datetime.combine(entry.date, time.max).replace(tzinfo=tz)
 
-            capacity = entry.employee_id.get_work_days_data(
+            capacity = entry.employee_id._get_work_days_data(
                 from_datetime,
                 to_datetime,
                 compute_leaves=not project_timesheet_holidays,
             )["hours"]
 
             if project_timesheet_holidays:
-                capacity -= HrEmployee.get_leave_days_data(
+                capacity -= HrEmployee._get_leave_days_data(
                     from_datetime,
                     to_datetime,
                     calendar=entry.employee_id.resource_calendar_id,
@@ -176,7 +171,6 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
 
             entry.capacity = max(capacity, 0)
 
-    @api.multi
     @api.depends("line_ids")
     def _compute_amount(self):
         uom_hour = self.env.ref("uom.product_uom_hour")
@@ -189,7 +183,6 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
                 )
             entry.amount = amount
 
-    @api.multi
     @api.depends("amount", "capacity")
     def _compute_difference(self):
         for entry in self:

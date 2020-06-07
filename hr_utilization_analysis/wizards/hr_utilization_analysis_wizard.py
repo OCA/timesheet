@@ -1,7 +1,7 @@
-# Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2018-2020 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 
 
 class HrUtilizationAnalysisWizard(models.TransientModel):
@@ -21,7 +21,6 @@ class HrUtilizationAnalysisWizard(models.TransientModel):
         string="Departments", comodel_name="hr.department",
     )
 
-    @api.multi
     def action_view(self):
         self.ensure_one()
 
@@ -38,7 +37,6 @@ class HrUtilizationAnalysisWizard(models.TransientModel):
             "name": _("Utilization Analysis"),
         }
 
-    @api.multi
     def _collect_analysis_values(self):
         self.ensure_one()
 
