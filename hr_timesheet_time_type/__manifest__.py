@@ -9,7 +9,7 @@
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "category": "Timesheet",
     "website": "https://github.com/OCA/timesheet",
-    "depends": ["hr_timesheet", "project"],
+    "depends": ["hr_timesheet"],
     "data": [
         "security/ir.model.access.csv",
         "views/project_time_type_view.xml",
