@@ -1,10 +1,9 @@
-# Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2018-2020 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields
-from odoo.tests import common
+from datetime import date
 
-from dateutil.relativedelta import relativedelta
+from odoo.tests import common
 
 
 class TestHrUtilizationAnalysis(common.TransactionCase):
@@ -12,48 +11,44 @@ class TestHrUtilizationAnalysis(common.TransactionCase):
     def setUp(self):
         super().setUp()
 
-        self.today = fields.Date.today()
         self.Project = self.env['project.project']
-        self.SudoProject = self.Project.sudo()
         self.HrEmployee = self.env['hr.employee']
-        self.SudoHrEmployee = self.HrEmployee.sudo()
         self.AccountAnalyticLine = self.env['account.analytic.line']
-        self.SudoAccountAnalyticLine = self.AccountAnalyticLine.sudo()
         self.Wizard = self.env['hr.utilization.analysis.wizard']
         self.Analysis = self.env['hr.utilization.analysis']
 
-    def test_1(self):
-        project = self.SudoProject.create({
-            'name': 'Project #1',
+    def test_computation(self):
+        project = self.Project.create({
+            'name': 'Project',
         })
-        employee_1 = self.SudoHrEmployee.create({
-            'name': 'Employee #1-1',
+        employee_1 = self.HrEmployee.create({
+            'name': 'Employee 1',
         })
-        employee_2 = self.SudoHrEmployee.create({
-            'name': 'Employee #1-2',
+        employee_2 = self.HrEmployee.create({
+            'name': 'Employee  2',
             'active': False,
         })
-        employee_3 = self.SudoHrEmployee.create({
-            'name': 'Employee #1-3',
+        employee_3 = self.HrEmployee.create({
+            'name': 'Employee  3',
         })
-        self.SudoAccountAnalyticLine.create({
+        self.AccountAnalyticLine.create({
             'project_id': project.id,
-            'name': 'Time Entry #1-1',
+            'name': 'Time Entry 1',
             'employee_id': employee_1.id,
-            'date': self.today,
+            'date': date(2020, 6, 5),
             'unit_amount': 4,
         })
-        self.SudoAccountAnalyticLine.create({
+        self.AccountAnalyticLine.create({
             'project_id': project.id,
-            'name': 'Time Entry #1-2',
+            'name': 'Time Entry 2',
             'employee_id': employee_1.id,
-            'date': self.today - relativedelta(days=1),
+            'date': date(2020, 6, 8),
             'unit_amount': 4,
         })
 
         wizard = self.Wizard.create({
-            'date_from': self.today,
-            'date_to': self.today,
+            'date_from': date(2020, 6, 1),
+            'date_to': date(2020, 6, 14),
             'employee_ids': [(6, False, [
                 employee_1.id,
                 employee_2.id,
@@ -65,4 +60,21 @@ class TestHrUtilizationAnalysis(common.TransactionCase):
         analysis = self.Analysis.create(
             wizard._collect_analysis_values()
         )
-        self.assertEqual(len(analysis.entry_ids), 2)
+        self.assertEqual(len(analysis.entry_ids), 28)
+
+        employee_1_entries = analysis.entry_ids.filtered(
+            lambda entry: entry.employee_id == employee_1
+        )
+        self.assertEqual(sum(employee_1_entries.mapped('capacity')), 80)
+        self.assertEqual(sum(employee_1_entries.mapped('amount')), 8)
+        self.assertEqual(sum(employee_1_entries.mapped('difference')), 72)
+
+        entry_1 = employee_1_entries.filtered(
+            lambda entry: entry.date == date(2020, 6, 5)
+        )
+        self.assertEqual(entry_1.difference, 4)
+
+        entry_2 = employee_1_entries.filtered(
+            lambda entry: entry.date == date(2020, 6, 8)
+        )
+        self.assertEqual(entry_2.difference, 4)
