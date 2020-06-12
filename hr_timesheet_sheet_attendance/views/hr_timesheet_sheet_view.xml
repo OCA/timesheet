@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- create action for Attendances view-->
+    <record id="hr_timesheet_sheet_action_sheet_attendance" model="ir.actions.act_window">
+        <field name="context">{'search_default_sheet_id': [active_id],}</field>
+        <field name="name">Attendances</field>
+        <field name="res_model">hr.attendance</field>
+    </record>
+
+    <!-- create action for Timesheet view-->
+    <record id="hr_timesheet_sheet_action_sheet_activities" model="ir.actions.act_window">
+        <field name="context">{'search_default_sheet_id': [active_id], 'default_is_timesheet' : 1}</field>
+        <field name="name">Timesheet Activities</field>
+        <field name="res_model">account.analytic.line</field>
+    </record>
+
+    <!-- hr_timesheet_sheet inherited view-->
+    <record id="hr_timesheet_sheet_form" model="ir.ui.view">
+        <field name="name">hr_timesheet.sheet.inherit.form</field>
+        <field name="model" >hr_timesheet.sheet</field>
+        <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[hasclass('oe_title')]" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button type="action"
+                        name="%(hr_timesheet_sheet_attendance.hr_timesheet_sheet_action_sheet_activities)d"
+                        class="oe_stat_button"
+                        icon="fa-clock-o">
+                        <field name="total_time" widget="float_time" string="Timesheet"/>
+                    </button>
+                    <button type="action"
+                        groups="hr_attendance.group_hr_attendance"
+                        class="oe_stat_button oe_right" icon="fa-users"
+                        name="%(hr_timesheet_sheet_attendance.hr_timesheet_sheet_action_sheet_attendance)d">
+                        <field name="attendance_count" widget="statinfo" string="Attendances"/>
+                    </button>
+                </div>
+            </xpath>
+            <xpath expr="//sheet/group" position="inside">
+                <group groups="hr_attendance.group_hr_attendance">
+                    <field name="total_attendance" widget="float_time"/>
+                    <field name="total_difference" widget="float_time"/>
+                </group>
+            </xpath>
+            <xpath expr="//sheet/notebook" position="inside" >
+                <page string="Attendances"
+                    groups="hr_attendance.group_hr_attendance">
+                    <group colspan="4">
+                        <group>
+                            <label for="attendance_state"/>
+                            <div>
+                                <field name="attendance_state"/>
+                                <button name="attendance_action_change" attrs="{'invisible': [('attendance_state', '=', 'checked_in')]}" type="object" string="Check In" style="margin-left: 20px"/>
+                                <button name="attendance_action_change" attrs="{'invisible': ['|', ('attendance_state','=',False), ('attendance_state', '=', 'checked_out')]}" type="object" string="Check Out"  style="margin-left: 20px"/>
+                            </div>
+                        </group>
+                        <field name="attendances_ids" nolabel="1" context="{'default_employee_id': employee_id}" colspan="4">
+                            <tree editable="bottom" create="false">
+                                <field name="check_in"/>
+                                <field name="check_out"/>
+                                <field invisible="1" name="employee_id"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
