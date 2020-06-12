@@ -29,7 +29,7 @@ addon | version | summary
 [hr_timesheet_sheet_period](hr_timesheet_sheet_period/) | 10.0.1.0.0 | HR Timesheet Sheet based on Payroll Period
 [hr_timesheet_sheet_restrict_project](hr_timesheet_sheet_restrict_project/) | 10.0.1.0.1 | Allows to restrict the analytic accounts that can be used in timesheets
 [hr_timesheet_sheet_week_start_day](hr_timesheet_sheet_week_start_day/) | 10.0.1.0.0 | Allows to define the week start date for Timesheets at company level
-[hr_timesheet_task](hr_timesheet_task/) | 10.0.1.0.1 | Allow the user to select task in a timesheet
+[hr_timesheet_task](hr_timesheet_task/) | 10.0.1.0.2 | Allow the user to select task in a timesheet
 [hr_timesheet_task_required](hr_timesheet_task_required/) | 10.0.1.0.1 | Set task on timesheet as a mandatory field
 
 
