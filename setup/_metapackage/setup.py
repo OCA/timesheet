@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo12-addon-hr_timesheet_role',
         'odoo12-addon-hr_timesheet_sheet',
         'odoo12-addon-hr_timesheet_sheet_activity',
+        'odoo12-addon-hr_timesheet_sheet_attendance',
         'odoo12-addon-hr_timesheet_sheet_autodraft',
         'odoo12-addon-hr_timesheet_sheet_autodraft_project',
         'odoo12-addon-hr_timesheet_sheet_no_create',
