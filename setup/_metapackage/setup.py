@@ -39,6 +39,7 @@ setuptools.setup(
         'odoo12-addon-project_timesheet_holidays_integrity',
         'odoo12-addon-sale_timesheet_existing_project',
         'odoo12-addon-sale_timesheet_hook',
+        'odoo12-addon-sale_timesheet_limit_date',
         'odoo12-addon-sale_timesheet_line_exclude',
         'odoo12-addon-sale_timesheet_order_line_sync',
         'odoo12-addon-sale_timesheet_rounded',
