@@ -123,7 +123,7 @@ class AccountAnalyticLine(models.Model):
         which in turns compute the delivered qty on SO line.
         """
         ctx_ts_rounded = self.env.context.get('timesheet_rounding')
-        fields_local = fields.copy() if fields else []
+        fields_local = list(fields) if fields else []
         if ctx_ts_rounded and 'unit_amount_rounded' not in fields_local:
             # To add the unit_amount_rounded value on read_group
             fields_local.append('unit_amount_rounded')
@@ -146,7 +146,7 @@ class AccountAnalyticLine(models.Model):
         This affects `account_anaytic_line._sale_determine_order_line`.
         """
         ctx_ts_rounded = self.env.context.get('timesheet_rounding')
-        fields_local = fields.copy() if fields else []
+        fields_local = list(fields) if fields else []
         read_unit_amount = 'unit_amount' in fields_local or not fields_local
         if ctx_ts_rounded and read_unit_amount and fields_local:
             if 'unit_amount_rounded' not in fields_local:
