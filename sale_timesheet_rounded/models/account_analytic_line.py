@@ -94,7 +94,7 @@ class AccountAnalyticLine(models.Model):
         This affects `account_analytic_line._sale_determine_order_line`.
         """
         ctx_ts_rounded = self.env.context.get("timesheet_rounding")
-        fields_local = fields.copy() if fields else []
+        fields_local = list(fields) if fields else []
         read_unit_amount = "unit_amount" in fields_local or not fields_local
         if ctx_ts_rounded and read_unit_amount and fields_local:
             if "unit_amount_rounded" not in fields_local:
