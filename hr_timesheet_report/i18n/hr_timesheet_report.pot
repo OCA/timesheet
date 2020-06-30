@@ -1,0 +1,523 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_timesheet_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_timesheet_report
+#: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:207
+#, python-format
+msgid "\"%s\" report type is not supported"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:221
+#, python-format
+msgid "\"%s\" report with \"%s\" type not found"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:154
+#, python-format
+msgid "%s not set"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
+msgid "<span>Date Range:</span>"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
+msgid "<span>Timesheets Report</span>"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
+msgid "<strong>Subtotal</strong>"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__line_ids
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__any_line_id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__line_ids
+msgid "Account Analytics Lines"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__aggregation
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__aggregation
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__aggregation
+msgid "Aggregation"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model,name:hr_timesheet_report.model_account_analytic_line
+msgid "Analytic Line"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: code:addons/hr_timesheet_report/wizards/hr_timesheet_report_wizard.py:73
+#, python-format
+msgid "At least one Details field must be specified!"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: code:addons/hr_timesheet_report/wizards/hr_timesheet_report_wizard.py:129
+#, python-format
+msgid "At least one field must be listed in Details Fields"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.hr_timesheet_report_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__cell_classes
+msgid "Cell classes"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__create_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__create_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__create_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__create_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__create_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__create_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__create_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__create_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__create_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__create_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__create_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__create_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__create_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__create_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__department_ids
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__department_ids
+msgid "Departments"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
+msgid "Departments:"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__entry_field_ids
+msgid "Details Fields"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_report_hr_timesheet_report_report__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__employee_category_ids
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__employee_category_ids
+msgid "Employee Tags"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
+msgid "Employee Tags:"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__employee_ids
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__employee_ids
+msgid "Employees"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
+msgid "Employees:"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__date_to
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__date_to
+msgid "End Date"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__entry_ids
+msgid "Entries"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__entry_field_ids
+msgid "Entry Fields"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.hr_timesheet_report_wizard_form
+msgid "Export to PDF"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.hr_timesheet_report_wizard_form
+msgid "Export to XLSX"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field__field_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__field_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__field_name
+msgid "Field"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: sql_constraint:hr.timesheet.report.field:0
+#: sql_constraint:hr.timesheet.report.field.entry:0
+#: sql_constraint:hr.timesheet.report.field.groupby:0
+msgid "Field can be reported only once!"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__field_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__field_name
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__field_name
+msgid "Field name"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__field_title
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__field_title
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__field_title
+msgid "Field title"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__field_type
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__field_type
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__field_type
+msgid "Field type"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.actions.act_window,name:hr_timesheet_report.action_timesheet_report_wizard
+#: model:ir.actions.server,name:hr_timesheet_report.action_timesheet_report_wizard_from_selection
+msgid "Generate Timesheet Report"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__group_id
+msgid "Group"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__groupby_field_ids
+msgid "Group-By Fields"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__groupby
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__groupby
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__groupby
+msgid "Group-by expression"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__grouping_field_ids
+msgid "Grouping Fields"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__group_ids
+msgid "Groups"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report
+msgid "HR Timesheet Report"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_wizard
+msgid "HR Timesheet Report Wizard"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_wizard_field
+msgid "HR Timesheet Report Wizard field"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_wizard_field_details
+msgid "HR Timesheet Report Wizard field (details)"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_wizard_field_grouping
+msgid "HR Timesheet Report Wizard field (grouping)"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_entry
+msgid "HR Timesheet Report entry"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_field
+msgid "HR Timesheet Report field"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_field_entry
+msgid "HR Timesheet Report field (entry)"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_field_groupby
+msgid "HR Timesheet Report field (groupby)"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_group
+msgid "HR Timesheet Report group"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__has_line_ids
+msgid "Has lines (technical)"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field__id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_report_hr_timesheet_report_report__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_report_hr_timesheet_report_report____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__write_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__write_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__write_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__write_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__write_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__write_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__write_uid
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__write_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__write_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__write_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__write_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__write_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__write_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__write_date
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__name
+msgid "Name"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__project_ids
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__project_ids
+msgid "Projects"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
+msgid "Projects:"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__report_id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__report_id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__report_id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__report_id
+msgid "Report"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:490
+#, python-format
+msgid "Report %s"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__scope
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__scope
+msgid "Scope"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__sequence
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__sequence
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__sequence
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__sequence
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__sequence
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field__sequence
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__sequence
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__date_from
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__date_from
+msgid "Start Date"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__task_ids
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__task_ids
+msgid "Tasks"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
+msgid "Tasks:"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__time_format
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__time_format
+msgid "Time format"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.actions.report,name:hr_timesheet_report.action_report_qweb_html
+#: model:ir.actions.report,name:hr_timesheet_report.action_report_qweb_pdf
+#: model:ir.actions.report,name:hr_timesheet_report.action_report_xlsx
+msgid "Timesheet Report"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.ui.menu,name:hr_timesheet_report.menu_timesheet_report_wizard
+msgid "Timesheet Report Wizard"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field__field_title
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__field_title
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__field_title
+msgid "Title"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:586
+#: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:593
+#, python-format
+msgid "Total"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__total_unit_amount
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__total_unit_amount
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__total_unit_amount
+msgid "Total Quantity"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field__field_type
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__field_type
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__field_type
+msgid "Type"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.hr_timesheet_report_wizard_form
+msgid "View"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field__wizard_id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__wizard_id
+#: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
+msgid "on"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model:ir.model,name:hr_timesheet_report.model_report_hr_timesheet_report_report
+msgid "report.hr_timesheet_report.report"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
+msgid "selected entries"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
+msgid "since"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
+msgid "until"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:161
+#, python-format
+msgid "{l} » {r}"
+msgstr ""
+
