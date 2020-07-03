@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="account_analytic_line_tree" model="ir.ui.view">
+        <field name="name">account.analytic.line.tree</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+        <field name="arch" type="xml">
+            <field name="task_id" position="after">
+                <field name="is_task_closed" invisible="1" />
+                <button
+                    name="action_close_task"
+                    string="Close task"
+                    tabindex="-1"
+                    type="object"
+                    icon="fa-folder-o"
+                    attrs="{'invisible': ['|', ('is_task_closed', '=', True), ('task_id', '=', False)]}"
+                />
+                <button
+                    name="action_open_task"
+                    string="Open task"
+                    tabindex="-1"
+                    type="object"
+                    icon="fa-folder-open-o"
+                    attrs="{'invisible': ['|', ('is_task_closed', '=', False), ('task_id', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="account_analytic_line_form" model="ir.ui.view">
+        <field name="name">account.analytic.line.form</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <field name="is_task_closed" invisible="1" />
+                    <button
+                        name="action_toggle_task_stage"
+                        attrs="{'invisible': [('is_task_closed', '=', True)]}"
+                        class="oe_stat_button"
+                        type="object"
+                        icon="fa-folder"
+                    >
+                        <div class="o_stat_info o_field_widget">
+                            <span class="text-danger">Closed</span>
+                        </div>
+                    </button>
+                    <button
+                        name="action_toggle_task_stage"
+                        attrs="{'invisible': [('is_task_closed', '=', False)]}"
+                        class="oe_stat_button"
+                        type="object"
+                        icon="fa-folder-open"
+                    >
+                        <div class="o_stat_info o_field_widget">
+                            <span class="text-success">Open</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="oe_title">
+                    <label class="oe_edit_only" for="name" />
+                    <h1>
+                        <field name="name" position="move" />
+                    </h1>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
