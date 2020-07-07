@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_timesheet_task_line_inherit_form" model="ir.ui.view">
+        <field name="name">view.hr.timesheet.task.line.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='employee_id']" position="replace">
+                <field name="employee_id" required="1" context="{'from_task_timesheet_line':True}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_analytic_account_line_inherit_tree" model="ir.ui.view">
+        <field name="name">view.analytic.account.line.tree.inherit</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.timesheet_view_tree_user"/>
+        <field name="arch" type="xml">
+            <field name="employee_id" position="replace">
+                <field name="employee_id" required="1" options="{&quot;no_open&quot;: True}" context="{'from_task_timesheet_line':True}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

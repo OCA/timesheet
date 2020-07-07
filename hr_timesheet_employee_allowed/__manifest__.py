@@ -13,7 +13,7 @@
     "depends": ["hr_timesheet"],
     "data": [
         "views/hr_employee_view.xml",
-        "views/account_analytic_line_view.xml",
+        "views/hr_timesheet_view.xml",
     ],
     "installable": True,
 }
