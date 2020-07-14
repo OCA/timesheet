@@ -10,6 +10,7 @@ from odoo.tools.float_utils import float_compare
 
 class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
+    _order = 'date desc, time_start desc, id desc'
 
     time_start = fields.Float(string='Begin Hour')
     time_stop = fields.Float(string='End Hour')
