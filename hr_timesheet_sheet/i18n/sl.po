@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2020-07-15 10:19+0000\n"
+"PO-Revision-Date: 2020-07-15 14:19+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@matmoz.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/odoo/teams/41243/sl/)\n"
 "Language: sl\n"
@@ -164,7 +164,7 @@ msgstr "Izberi revizijska pravila za časovnice."
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose which timesheet sheet ranges should be used by default"
-msgstr ""
+msgstr "Izberite privzete obsege časovnice"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_res_company
@@ -206,7 +206,7 @@ msgstr "Ustvarjeno"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__access_url
 msgid "Customer Portal URL"
-msgstr ""
+msgstr "URL portala kupcev"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__date
@@ -302,6 +302,9 @@ msgid ""
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
+"Delojemalci morajo zapisovati časovnice vsak dan in jih potrditi ob\n"
+"            koncu obdobja za poročanje. Ko je časovnica potrjena, jo mora\n"
+"            potrditi revizor."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
@@ -312,6 +315,9 @@ msgid ""
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
+"Delojemalci morajo zapisovati časovnice vsak dan in jih potrditi ob\n"
+"             koncu obdobja za poročanje. Ko je časovnica potrjena, jo mora\n"
+"             potrditi revizor."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
