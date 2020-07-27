@@ -6,60 +6,62 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-07-27 18:19+0000\n"
+"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: crm_phonecall_timesheet
 #: model:ir.model,name:crm_phonecall_timesheet.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Linha Analítica"
 
 #. module: crm_phonecall_timesheet
 #: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:36
 #, python-format
 msgid "Date field must be filled."
-msgstr ""
+msgstr "O Campo Data precisa ser preenchido."
 
 #. module: crm_phonecall_timesheet
 #: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:98
 #, python-format
 msgid "End date must be datetime."
-msgstr ""
+msgstr "A data de término deve ser do tipo Data/Hora."
 
 #. module: crm_phonecall_timesheet
 #: model:ir.model.fields,field_description:crm_phonecall_timesheet.field_account_analytic_line__phonecall_id
 msgid "Phone Call"
-msgstr ""
+msgstr "Chamada Telefônica"
 
 #. module: crm_phonecall_timesheet
 #: model:ir.model,name:crm_phonecall_timesheet.model_crm_phonecall
 msgid "Phonecall"
-msgstr ""
+msgstr "Chamada Telefônica"
 
 #. module: crm_phonecall_timesheet
 #: model:ir.model.fields,field_description:crm_phonecall_timesheet.field_crm_phonecall__project_id
 msgid "Project"
-msgstr ""
+msgstr "Projeto"
 
 #. module: crm_phonecall_timesheet
 #: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:96
 #, python-format
 msgid "Start date must be datetime."
-msgstr ""
+msgstr "A Data de Início precisa ser do tipo Data/Hora"
 
 #. module: crm_phonecall_timesheet
 #: model_terms:ir.ui.view,arch_db:crm_phonecall_timesheet.crm_case_inbound_phone_tree_view
 #: model_terms:ir.ui.view,arch_db:crm_phonecall_timesheet.crm_case_phone_tree_view
 msgid "Stop"
-msgstr ""
+msgstr "Parar"
 
 #. module: crm_phonecall_timesheet
 #: model:ir.model.fields,field_description:crm_phonecall_timesheet.field_crm_phonecall__timesheet_ids
 #: model_terms:ir.ui.view,arch_db:crm_phonecall_timesheet.crm_case_phone_form_view
 msgid "Timesheet"
-msgstr ""
+msgstr "Planilha de Horas"
