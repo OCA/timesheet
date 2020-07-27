@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_task_stage
+# 	* hr_timesheet_task_stage
 #
 msgid ""
 msgstr ""
@@ -15,6 +15,16 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.7.1\n"
+
+#. module: hr_timesheet_task_stage
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_form
+msgid "<span class=\"text-danger\">Closed</span>"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_form
+msgid "<span class=\"text-success\">Open</span>"
+msgstr ""
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model,name:hr_timesheet_task_stage.model_account_analytic_line
@@ -37,19 +47,12 @@ msgid "Open task"
 msgstr "Aufgabe öffnen"
 
 #. module: hr_timesheet_task_stage
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_form
-msgid "Open/Close timesheet line automatically open/close its tasks. Do you want to proceed?"
-msgstr ""
-"Das Öffnen / Schließen von diesem Zeiteintrag aus wird die zugehörige "
-"Aufgabe öffnen / schließen. Wollen Sie fortfahren?"
-
-#. module: hr_timesheet_task_stage
 #: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
 msgid "Tasks in this stage are considered closed."
 msgstr "Aufgaben in dieser Stufe werden als geschlossen interpretiert."
 
 #. module: hr_timesheet_task_stage
-#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:47
+#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" checked. Please mark any."
 msgstr ""
@@ -57,9 +60,16 @@ msgstr ""
 "einer Stufe das Merkmal setzen."
 
 #. module: hr_timesheet_task_stage
-#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:29
+#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
 msgstr ""
 "Es gibt keine Stufe, die nicht als \"Geschlossen\" interpretiert wird. Bitte "
 "bei einer Stufe das Merkmal entfernen."
+
+#~ msgid ""
+#~ "Open/Close timesheet line automatically open/close its tasks. Do you want "
+#~ "to proceed?"
+#~ msgstr ""
+#~ "Das Öffnen / Schließen von diesem Zeiteintrag aus wird die zugehörige "
+#~ "Aufgabe öffnen / schließen. Wollen Sie fortfahren?"
