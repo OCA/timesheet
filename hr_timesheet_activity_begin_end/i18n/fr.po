@@ -25,30 +25,28 @@ msgstr "Ligne analytique"
 
 #. module: hr_timesheet_activity_begin_end
 #: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_account_analytic_line__time_start
-#: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_hr_timesheet_switch__time_start
 msgid "Begin Hour"
 msgstr "Heure de d├⌐but"
 
 #. module: hr_timesheet_activity_begin_end
 #: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_account_analytic_line__time_stop
-#: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_hr_timesheet_switch__time_stop
 msgid "End Hour"
 msgstr "Heure de fin"
 
 #. module: hr_timesheet_activity_begin_end
-#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:48
+#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:0
 #, python-format
 msgid "Lines can't overlap:\n"
 msgstr "Les lignes ne peuvent pas se chevaucher :\n"
 
 #. module: hr_timesheet_activity_begin_end
-#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:25
+#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:0
 #, python-format
 msgid "The beginning hour (%s) must precede the ending hour (%s)."
 msgstr "L'heure de d├⌐but (%s) doit pr├⌐c├⌐der l'heure de fin (%s)."
 
 #. module: hr_timesheet_activity_begin_end
-#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:34
+#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:0
 #, python-format
 msgid ""
 "The duration (%s) must be equal to the difference between the hours (%s)."
