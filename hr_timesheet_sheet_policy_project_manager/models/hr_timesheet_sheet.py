@@ -15,7 +15,6 @@ class HrTimesheetSheet(models.Model):
         states={"new": [("readonly", False)]},
     )
 
-    @api.multi
     @api.depends("project_id.user_id")
     def _compute_project_manager_as_reviewer(self):
         self._compute_possible_reviewer_ids()
@@ -24,7 +23,6 @@ class HrTimesheetSheet(models.Model):
     def _compute_complete_name_project_id(self):
         self._compute_complete_name()
 
-    @api.multi
     def _get_complete_name_components(self):
         self.ensure_one()
         result = super()._get_complete_name_components()
@@ -32,7 +30,6 @@ class HrTimesheetSheet(models.Model):
             result += [self.project_id.name_get()[0][1]]
         return result
 
-    @api.multi
     def _get_overlapping_sheet_domain(self):
         domain = super()._get_overlapping_sheet_domain()
         if self.review_policy == "project_manager":
@@ -50,7 +47,6 @@ class HrTimesheetSheet(models.Model):
     def _check_overlapping_sheets_project_id(self):
         self._check_overlapping_sheets()
 
-    @api.multi
     @api.constrains("company_id", "project_id")
     def _check_company_id_project_id(self):
         for rec in self.sudo():
@@ -66,7 +62,6 @@ class HrTimesheetSheet(models.Model):
                     )
                 )
 
-    @api.multi
     def _get_possible_reviewers(self):
         self.ensure_one()
         res = super()._get_possible_reviewers()
@@ -74,7 +69,6 @@ class HrTimesheetSheet(models.Model):
             res |= self.project_id.user_id
         return res
 
-    @api.multi
     def _get_timesheet_sheet_lines_domain(self):
         domain = super()._get_timesheet_sheet_lines_domain()
         if self.review_policy == "project_manager":
@@ -89,7 +83,6 @@ class HrTimesheetSheet(models.Model):
         self._compute_timesheet_ids()
         return self.onchange_add_project_id()
 
-    @api.multi
     def _check_can_review(self):
         super()._check_can_review()
         if self.filtered(
@@ -98,7 +91,6 @@ class HrTimesheetSheet(models.Model):
         ):
             raise UserError(_("Only a Project Manager can review the sheet."))
 
-    @api.multi
     def reset_add_line(self):
         super().reset_add_line()
         self.write({"add_line_project_id": self.project_id.id})
@@ -114,7 +106,6 @@ class HrTimesheetSheet(models.Model):
             )
         return super().create(vals)
 
-    @api.multi
     def write(self, vals):
         if (
             self.filtered(lambda x: x.review_policy == "project_manager")

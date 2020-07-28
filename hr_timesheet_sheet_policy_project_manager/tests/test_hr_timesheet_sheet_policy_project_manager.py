@@ -131,7 +131,7 @@ class TestHrTimesheetSheetPolicyProjectManager(common.TransactionCase):
 
     def test_review_policy_capture(self):
         self.company.timesheet_sheet_review_policy = "project_manager"
-        sheet = self.HrTimesheetSheet.sudo(self.employee_user).create(
+        sheet = self.HrTimesheetSheet.with_user(self.employee_user).create(
             {"company_id": self.company.id, "project_id": self.project_1.id}
         )
         self.assertEqual(sheet.review_policy, "project_manager")
@@ -142,14 +142,14 @@ class TestHrTimesheetSheetPolicyProjectManager(common.TransactionCase):
     def test_project_manager_review_policy(self):
         self.company.timesheet_sheet_review_policy = "project_manager"
 
-        timesheet_0 = self.AccountAnalyticLine.sudo(self.employee_user).create(
+        timesheet_0 = self.AccountAnalyticLine.with_user(self.employee_user).create(
             {
                 "name": "test",
                 "project_id": self.project_2.id,
                 "employee_id": self.employee.id,
             }
         )
-        timesheet_1 = self.AccountAnalyticLine.sudo(self.employee_user).create(
+        timesheet_1 = self.AccountAnalyticLine.with_user(self.employee_user).create(
             {
                 "name": "test",
                 "project_id": self.project_1.id,
@@ -158,10 +158,10 @@ class TestHrTimesheetSheetPolicyProjectManager(common.TransactionCase):
         )
 
         with self.assertRaises(UserError):
-            self.HrTimesheetSheet.sudo(self.employee_user).create(
+            self.HrTimesheetSheet.with_user(self.employee_user).create(
                 {"company_id": self.employee_user.company_id.id}
             )
-        sheet = self.HrTimesheetSheet.sudo(self.employee_user).create(
+        sheet = self.HrTimesheetSheet.with_user(self.employee_user).create(
             {
                 "company_id": self.employee_user.company_id.id,
                 "project_id": self.project_1.id,
@@ -180,30 +180,30 @@ class TestHrTimesheetSheetPolicyProjectManager(common.TransactionCase):
         self.assertEqual(len(sheet.line_ids), 7)
 
         with self.assertRaises(UserError):
-            sheet.sudo(self.project_manager_user_2).action_timesheet_done()
+            sheet.with_user(self.project_manager_user_2).action_timesheet_done()
 
         with self.assertRaises(UserError):
-            sheet.sudo(self.project_manager_user_2).action_timesheet_draft()
+            sheet.with_user(self.project_manager_user_2).action_timesheet_draft()
 
         sheet.action_timesheet_confirm()
-        self.assertFalse(sheet.sudo(self.employee_user).can_review)
+        self.assertFalse(sheet.with_user(self.employee_user).can_review)
         self.assertEqual(
-            self.HrTimesheetSheet.sudo(self.employee_user).search_count(
+            self.HrTimesheetSheet.with_user(self.employee_user).search_count(
                 [("can_review", "=", True)]
             ),
             0,
         )
         with self.assertRaises(UserError):
-            sheet.sudo(self.employee_user).action_timesheet_done()
-        sheet.sudo(self.project_manager_user_1).action_timesheet_done()
-        sheet.sudo(self.project_manager_user_1).action_timesheet_draft()
+            sheet.with_user(self.employee_user).action_timesheet_done()
+        sheet.with_user(self.project_manager_user_1).action_timesheet_done()
+        sheet.with_user(self.project_manager_user_1).action_timesheet_draft()
         sheet.unlink()
 
         timesheet_0.unlink()
         timesheet_1.unlink()
 
     def test_project_manager_review_policy_project_required(self):
-        sheet = self.HrTimesheetSheet.sudo(self.employee_user).new(
+        sheet = self.HrTimesheetSheet.with_user(self.employee_user).new(
             {
                 "employee_id": self.employee.id,
                 "company_id": self.company.id,
@@ -215,10 +215,10 @@ class TestHrTimesheetSheetPolicyProjectManager(common.TransactionCase):
         )
         values = sheet._convert_to_write(sheet._cache)
         with self.assertRaises(UserError):
-            self.HrTimesheetSheet.sudo(self.employee_user).create(values)
+            self.HrTimesheetSheet.with_user(self.employee_user).create(values)
         sheet.project_id = self.project_1
         values.update(sheet._convert_to_write(sheet._cache))
-        sheet = self.HrTimesheetSheet.sudo(self.employee_user).create(values)
+        sheet = self.HrTimesheetSheet.with_user(self.employee_user).create(values)
         with self.assertRaises(UserError):
             sheet.project_id = False
         sheet.unlink()
@@ -226,15 +226,15 @@ class TestHrTimesheetSheetPolicyProjectManager(common.TransactionCase):
     def test_project_manager_review_policy_overlapping(self):
         self.company.timesheet_sheet_review_policy = "project_manager"
 
-        sheet1 = self.HrTimesheetSheet.sudo(self.employee_user).create(
+        sheet1 = self.HrTimesheetSheet.with_user(self.employee_user).create(
             {"company_id": self.company.id, "project_id": self.project_1.id}
         )
         with self.assertRaises(ValidationError):
-            sheet2 = self.HrTimesheetSheet.sudo(self.employee_user).create(
+            sheet2 = self.HrTimesheetSheet.with_user(self.employee_user).create(
                 {"company_id": self.company.id, "project_id": self.project_1.id}
             )
 
-        sheet2 = self.HrTimesheetSheet.sudo(self.employee_user).create(
+        sheet2 = self.HrTimesheetSheet.with_user(self.employee_user).create(
             {"company_id": self.company.id, "project_id": self.project_2.id}
         )
         with self.assertRaises(ValidationError):
