@@ -3,7 +3,7 @@
 
 {
     "name": "HR Timesheet Sheet: Project Manager Policy",
-    "version": "12.0.1.1.0",
+    "version": "13.0.1.0.0",
     "author": "Brainbean Apps, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/timesheet/",
     "license": "AGPL-3",
