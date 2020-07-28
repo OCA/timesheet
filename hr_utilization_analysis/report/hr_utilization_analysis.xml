@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+    -->
+    <record id="hr_utilization_analysis_entry_form" model="ir.ui.view">
+        <field name="name">hr.utilization.analysis.entry.form</field>
+        <field name="model">hr.utilization.analysis.entry</field>
+        <field name="arch" type="xml">
+            <form string="Analysis Entry">
+                <group>
+                    <group>
+                        <field name="employee_id" />
+                        <field name="date" />
+                    </group>
+                    <group>
+                        <field name="capacity" widget="timesheet_uom" />
+                        <field name="amount" widget="timesheet_uom" />
+                        <field name="difference" widget="timesheet_uom" />
+                    </group>
+                </group>
+                <group string="Timesheet Lines">
+                    <field name="line_ids" nolabel="1" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="hr_utilization_analysis_entry_tree" model="ir.ui.view">
+        <field name="name">hr.utilization.analysis.entry.tree</field>
+        <field name="model">hr.utilization.analysis.entry</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id" />
+                <field name="date" />
+                <field name="capacity" widget="timesheet_uom" sum="Total Capacity" />
+                <field name="amount" widget="timesheet_uom" sum="Total Amount" />
+                <field
+                    name="difference"
+                    widget="timesheet_uom"
+                    sum="Total Difference"
+                />
+            </tree>
+        </field>
+    </record>
+    <record id="hr_utilization_analysis_entry_pivot" model="ir.ui.view">
+        <field name="name">hr.utilization.analysis.entry.pivot</field>
+        <field name="model">hr.utilization.analysis.entry</field>
+        <field name="arch" type="xml">
+            <pivot string="Utilization">
+                <field name="employee_id" type="row" />
+                <field name="date" type="col" />
+                <field name="capacity" type="measure" widget="timesheet_uom" />
+                <field name="amount" type="measure" widget="timesheet_uom" />
+                <field name="difference" type="measure" widget="timesheet_uom" />
+            </pivot>
+        </field>
+    </record>
+    <record id="hr_utilization_analysis_entry_graph" model="ir.ui.view">
+        <field name="name">hr.utilization.analysis.entry.graph</field>
+        <field name="model">hr.utilization.analysis.entry</field>
+        <field name="arch" type="xml">
+            <graph string="Utilization">
+                <field name="date" type="row" />
+                <field name="employee_id" type="col" />
+                <field name="capacity" type="measure" />
+                <field name="amount" type="measure" />
+                <field name="difference" type="measure" />
+            </graph>
+        </field>
+    </record>
+    <record id="hr_utilization_analysis_entry_search" model="ir.ui.view">
+        <field name="name">hr.utilization.analysis.entry.search</field>
+        <field name="model">hr.utilization.analysis.entry</field>
+        <field name="arch" type="xml">
+            <search string="Utilization">
+                <field name="employee_id" string="Employee" />
+                <field name="department_id" />
+                <field name="manager_id" />
+                <field name="date" />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Employee"
+                        name="employee"
+                        context="{'group_by':'employee_id'}"
+                    />
+                    <filter
+                        string="Department"
+                        name="department"
+                        context="{'group_by':'department_id'}"
+                    />
+                    <filter
+                        string="Manager"
+                        name="manager"
+                        context="{'group_by':'manager_id'}"
+                    />
+                    <separator orientation="vertical" />
+                    <filter string="Date" name="date" context="{'group_by':'date'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>
