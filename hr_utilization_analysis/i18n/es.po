@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_utilization_analysis
+# 	* hr_utilization_analysis
 #
 msgid ""
 msgstr ""
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: hr_utilization_analysis
-#: sql_constraint:hr.utilization.analysis.entry:0
+#: model:ir.model.constraint,message:hr_utilization_analysis.constraint_hr_utilization_analysis_entry_entry_uniq
 msgid "An analysis entry for employee/date pair has to be unique!"
 msgstr ""
 "Una entrada de análisis para la combinación empleado / fecha debe ser única!"
@@ -63,7 +63,7 @@ msgid "Date"
 msgstr "Fecha"
 
 #. module: hr_utilization_analysis
-#: code:addons/hr_utilization_analysis/report/hr_utilization_analysis.py:52
+#: code:addons/hr_utilization_analysis/report/hr_utilization_analysis.py:0
 #, python-format
 msgid "Date-To can not be earlier than Date-From"
 msgstr "Fecha hasta no puede ser anterior a Fecha desde"
@@ -97,6 +97,13 @@ msgstr "Nombre a mostrar"
 #: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_search
 msgid "Employee"
 msgstr "Empleado"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__name
+#, fuzzy
+#| msgid "Employee Tags"
+msgid "Employee Name"
+msgstr "Etiquetas de Empleado"
 
 #. module: hr_utilization_analysis
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__employee_category_ids
@@ -176,11 +183,6 @@ msgid "Manager"
 msgstr "Responsable"
 
 #. module: hr_utilization_analysis
-#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__name
-msgid "Name"
-msgstr "Nombre"
-
-#. module: hr_utilization_analysis
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__only_active_employees
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__only_active_employees
 msgid "Only Active Employees"
@@ -226,7 +228,7 @@ msgid "Utilization"
 msgstr "Uso"
 
 #. module: hr_utilization_analysis
-#: code:addons/hr_utilization_analysis/wizards/hr_utilization_analysis_wizard.py:55
+#: code:addons/hr_utilization_analysis/wizards/hr_utilization_analysis_wizard.py:0
 #, python-format
 msgid "Utilization Analysis"
 msgstr "Análisis de uso"
@@ -247,3 +249,6 @@ msgstr "Vista"
 #: model:ir.actions.server,name:hr_utilization_analysis.action_utilization_analysis_wizard_from_employees
 msgid "View Utilization Analysis"
 msgstr "Vista de Análisis de uso"
+
+#~ msgid "Name"
+#~ msgstr "Nombre"
