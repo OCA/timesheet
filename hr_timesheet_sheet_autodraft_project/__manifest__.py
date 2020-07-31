@@ -16,5 +16,6 @@
     'depends': [
         'hr_timesheet_sheet',
         'hr_timesheet_sheet_policy_project_manager',
+        'hr_timesheet_sheet_autodraft',
     ],
 }
