@@ -89,7 +89,7 @@ class TestHrTimesheetSheetAutodraft(common.TransactionCase):
             }
         )
 
-        aal_1.sheet_id.sudo(user).action_timesheet_confirm()
+        aal_1.sheet_id.with_user(user).action_timesheet_confirm()
 
         aal_2 = self.AccountAnalyticLine.create(
             {
@@ -119,7 +119,7 @@ class TestHrTimesheetSheetAutodraft(common.TransactionCase):
         )
         sheet = aal.sheet_id
 
-        aal.sheet_id.sudo(user).action_timesheet_confirm()
+        aal.sheet_id.with_user(user).action_timesheet_confirm()
 
         aal.action_autodraft_timesheet_sheets()
 

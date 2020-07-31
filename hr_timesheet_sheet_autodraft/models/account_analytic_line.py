@@ -1,20 +1,18 @@
 # Copyright 2020 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import models
 
 
 class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
 
-    @api.multi
     def _determine_sheet(self):
         sheet = super()._determine_sheet()
         if sheet or not self.company_id.timesheet_sheets_autodraft:
             return sheet
         return self._autodraft_sheet()
 
-    @api.multi
     def _autodraft_sheet(self):
         """ Hook for extensions """
         self.ensure_one()
@@ -35,7 +33,6 @@ class AccountAnalyticLine(models.Model):
         sheet._compute_timesheet_ids()
         return sheet
 
-    @api.multi
     def _get_autodraft_sheet_values(self):
         """ Hook for extensions """
         self.ensure_one()
@@ -49,7 +46,6 @@ class AccountAnalyticLine(models.Model):
             "date_end": HrTimesheetSheet._get_period_end(self.company_id, self.date),
         }
 
-    @api.multi
     def action_autodraft_timesheet_sheets(self):
         self.filtered(lambda aal: not aal.sheet_id).with_context(
             manual_autodraft_timesheet_sheet=True
