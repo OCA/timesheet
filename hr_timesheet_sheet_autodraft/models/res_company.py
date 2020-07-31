@@ -5,8 +5,6 @@ from odoo import fields, models
 
 
 class ResCompany(models.Model):
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
-    timesheet_sheets_autodraft = fields.Boolean(
-        string='Timesheet Sheets Auto-draft',
-    )
+    timesheet_sheets_autodraft = fields.Boolean(string="Timesheet Sheets Auto-draft")
