@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_sheet_policy_project_manager
+# 	* hr_timesheet_sheet_policy_project_manager
 #
 msgid ""
 msgstr ""
@@ -22,22 +22,7 @@ msgid "Analytic Line"
 msgstr "Línea analítica"
 
 #. module: hr_timesheet_sheet_policy_project_manager
-#: selection:res.company,timesheet_sheet_review_policy:0
-msgid "By Department Manager"
-msgstr "Por el responsable del departamento"
-
-#. module: hr_timesheet_sheet_policy_project_manager
-#: selection:res.company,timesheet_sheet_review_policy:0
-msgid "By Direct Manager"
-msgstr "Por responsable directo"
-
-#. module: hr_timesheet_sheet_policy_project_manager
-#: selection:res.company,timesheet_sheet_review_policy:0
-msgid "By HR Manager/Officer"
-msgstr "Por Reponsable de RRHH"
-
-#. module: hr_timesheet_sheet_policy_project_manager
-#: selection:res.company,timesheet_sheet_review_policy:0
+#: model:ir.model.fields.selection,name:hr_timesheet_sheet_policy_project_manager.selection__res_company__timesheet_sheet_review_policy__project_manager
 msgid "By Project Manager"
 msgstr "Por responsable de proyecto"
 
@@ -52,7 +37,7 @@ msgid "How Timesheet Sheets review is performed."
 msgstr "Cómo ser realiza la revisión de Partes de horas."
 
 #. module: hr_timesheet_sheet_policy_project_manager
-#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:99
+#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Only a Project Manager can review the sheet."
 msgstr "Solo un responsable de proyecto puede revisar el parte."
@@ -64,8 +49,7 @@ msgid "Project"
 msgstr "Proyecto"
 
 #. module: hr_timesheet_sheet_policy_project_manager
-#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:117
-#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:126
+#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Review policy \"By Project Manager\" requires Project to be set"
 msgstr ""
@@ -73,7 +57,7 @@ msgstr ""
 "el proyecto"
 
 #. module: hr_timesheet_sheet_policy_project_manager
-#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:61
+#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Project must be the same."
 msgstr "La empresa en el parte de horas y en el proyecto deben ser la misma."
@@ -87,3 +71,12 @@ msgstr "Parte de horas"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_project_manager.field_res_company__timesheet_sheet_review_policy
 msgid "Timesheet Sheet Review Policy"
 msgstr "Política de revisión de Parte de horas"
+
+#~ msgid "By Department Manager"
+#~ msgstr "Por el responsable del departamento"
+
+#~ msgid "By Direct Manager"
+#~ msgstr "Por responsable directo"
+
+#~ msgid "By HR Manager/Officer"
+#~ msgstr "Por Reponsable de RRHH"
