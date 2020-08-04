@@ -1025,7 +1025,7 @@ msgstr "Εβδομάδα"
 #, fuzzy, python-format
 #| msgid "Week"
 msgid "Week %s"
-msgstr "Εβδομάδα"
+msgstr "Εβδομάδα %s"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
