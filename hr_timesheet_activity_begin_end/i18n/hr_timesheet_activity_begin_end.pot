@@ -30,6 +30,7 @@ msgstr ""
 
 #. module: hr_timesheet_activity_begin_end
 #: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:0
+#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:0
 #, python-format
 msgid "Lines can't overlap:\n"
 msgstr ""
@@ -41,6 +42,7 @@ msgid "The beginning hour (%s) must precede the ending hour (%s)."
 msgstr ""
 
 #. module: hr_timesheet_activity_begin_end
+#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:0
 #: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:0
 #, python-format
 msgid ""
