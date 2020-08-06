@@ -30,7 +30,10 @@ class AccountAnalyticLine(models.Model):
                     )
                 )
             hours = (stop - start).seconds / 3600
-            if hours and float_compare(hours, line.unit_amount, precision_digits=4):
+            rounding = self.env.ref("uom.product_uom_hour").rounding
+            if hours and float_compare(
+                hours, line.unit_amount, precision_rounding=rounding
+            ):
                 raise exceptions.ValidationError(
                     _(
                         "The duration (%s) must be equal to the difference "
