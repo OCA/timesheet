@@ -38,6 +38,7 @@ msgstr "Koncová hodina"
 
 #. module: hr_timesheet_activity_begin_end
 #: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:49
+#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:50
 #, python-format
 msgid "Lines can't overlap:\n"
 msgstr "Linky se nemohou překrývat:\n"
@@ -50,6 +51,7 @@ msgstr "Počáteční hodina (%s) musí předcházet koncovou hodinu (%s)."
 
 #. module: hr_timesheet_activity_begin_end
 #: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:35
+#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:36
 #, python-format
 msgid ""
 "The duration (%s) must be equal to the difference between the hours (%s)."
