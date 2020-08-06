@@ -75,3 +75,8 @@ class TestBeginEnd(common.TransactionCase):
         line3.update({'time_start': 8., 'time_stop': 15, 'unit_amount': 7.})
         with self.assertRaisesRegexp(exceptions.ValidationError, message_re):
             self.timesheet_line_model.create(line3)
+
+    def test_check_precision(self):
+        line1 = self.base_line.copy()
+        line1.update({"time_start": 19.0, "time_stop": 20.314, "unit_amount": 1.314})
+        self.timesheet_line_model.create(line1)
