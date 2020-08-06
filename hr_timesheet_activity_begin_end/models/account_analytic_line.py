@@ -29,8 +29,9 @@ class AccountAnalyticLine(models.Model):
                  value_to_html(self.time_stop, None))
             )
         hours = (stop - start).seconds / 3600
+        rounding = self.env.ref("uom.product_uom_hour").rounding
         if (hours and
-                float_compare(hours, self.unit_amount, precision_digits=4)):
+                float_compare(hours, self.unit_amount, precision_rounding=rounding)):
             raise exceptions.ValidationError(
                 _('The duration (%s) must be equal to the difference '
                   'between the hours (%s).') %
