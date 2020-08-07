@@ -1,5 +1,4 @@
-from odoo.addons.hr_timesheet_sheet_attendance.tests.\
-    hr_timesheet_sheet_test_cases import HrTimesheetTestCases
+from .hr_timesheet_sheet_test_cases import HrTimesheetTestCases
 from odoo.exceptions import ValidationError, UserError
 from odoo import fields
 

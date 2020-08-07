@@ -15,13 +15,13 @@ odoo.define('hr_timesheet_sheet_attendance.matrixwidget', function (require) {
             this._rpc({
                 model: 'hr_timesheet.sheet',
                 method: 'get_attendance_by_day',
-                args: [this.recordData.id]
+                args: [this.recordData.id],
             }).then(function (data) {
-                var row =  $('<tr>', {'class': 'attendance_row'});
+                var row = $('<tr>', {'class':'attendance_row'});
                 var title = $('<td>');
                 title.text(_t('Attendance'));
                 row.append(title);
-                data.forEach(function(element) {
+                data.forEach(function (element) {
                     var cell = $('<td>', {'class':'text-right'});
                     cell.text(element.toFixed(2));
                     row.append(cell);
@@ -30,7 +30,7 @@ odoo.define('hr_timesheet_sheet_attendance.matrixwidget', function (require) {
                 this.$el.find('tfoot').append(row);
             }.bind(this));
             return res;
-        }
+        },
     });
     field_registry.add('attendace_matrix_widget', AttendanceMatrixWidget);
 

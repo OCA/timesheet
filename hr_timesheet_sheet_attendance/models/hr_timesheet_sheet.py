@@ -85,8 +85,10 @@ class HrTimesheetSheet(models.Model):
 
     @api.multi
     def get_attendance_by_day(self):
-        self.ensure_one()
         result = []
+        if not self:
+            return result
+        self.ensure_one()
         date_end = fields.Date.from_string(self.date_end)
         date_start = fields.Date.from_string(self.date_start)
         date_range = (date_end - date_start).days
@@ -107,7 +109,8 @@ class HrTimesheetSheet(models.Model):
                         )
                     else:
                         start_time = curr_date
-                    if curr_date == datetime.combine(checkout_date, time()):
+                    if curr_date == datetime.combine(
+                            checkout_date, time()):
                         end_time = fields.Datetime.from_string(
                             attendance.check_out
                         )
