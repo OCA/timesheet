@@ -151,7 +151,6 @@ msgstr "Escolha o dia de início da semana."
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 #, fuzzy
-#| msgid "New timesheet sheet."
 msgid "Choose timesheet sheets review policy."
 msgstr "Nova planilha de horas."
 
@@ -177,7 +176,6 @@ msgstr "Empresa"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__complete_name
 #, fuzzy
-#| msgid "Employee's Name"
 msgid "Complete Name"
 msgstr "Nome do Funcionário"
 
@@ -259,7 +257,6 @@ msgstr "Exibir Nome"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 #, fuzzy
-#| msgid "Timesheet Sheets"
 msgid "Draft Timesheet Sheets"
 msgstr "Planilha de Horas"
 
@@ -296,11 +293,6 @@ msgstr "Funcionários"
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #, fuzzy
-#| msgid ""
-#| "Employees must record timesheets every day and confirm at the end\n"
-#| "            of the week. Once the timesheet sheet is confirmed, it should "
-#| "be\n"
-#| "            validated by a manager."
 msgid ""
 "Employees must record timesheets every day and confirm at the end\n"
 "            of the repording period. Once the timesheet sheet is confirmed, "
@@ -315,12 +307,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 #, fuzzy
-#| msgid ""
-#| "Employees must record timesheets in the sheet every day and confirm at "
-#| "the end\n"
-#| "             of the week. Once the timesheet sheet is confirmed, it "
-#| "should be\n"
-#| "             validated by a manager."
 msgid ""
 "Employees must record timesheets in the sheet every day and confirm at the "
 "end\n"
@@ -373,7 +359,6 @@ msgstr "Horas"
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
 #, fuzzy
-#| msgid "Timesheet Sheets to Approve"
 msgid "How Timesheet Sheets review is performed."
 msgstr "Planilha de Horas para Aprovar"
 
@@ -433,9 +418,6 @@ msgstr "Rascunho"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, fuzzy, python-format
-#| msgid ""
-#| "In order to create a sheet for this employee, you must link him/her to an "
-#| "user."
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
@@ -446,9 +428,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, fuzzy, python-format
-#| msgid ""
-#| "In order to create a sheet for this employee, you must link him/her to an "
-#| "user."
 msgid ""
 "In order to review a timesheet sheet, your user needs to be linked to an "
 "employee."
@@ -518,14 +497,12 @@ msgstr "Minhas Planilhas de Horas"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit_my
 #, fuzzy
-#| msgid "Timesheet Sheet"
 msgid "My Timesheets to Submit"
 msgstr "Planilha de Horas"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #, fuzzy
-#| msgid "Timesheets to approve."
 msgid "My timesheets to submit."
 msgstr "Planilha de Horas para aprovar."
 
@@ -567,7 +544,6 @@ msgstr "Tipo da Próxima Atividade"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_line_search
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Not Submitted"
 msgstr "Enviar ao Gerente"
 
@@ -579,7 +555,6 @@ msgstr "Número de Ações"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error_counter
 #, fuzzy
-#| msgid "Number of error"
 msgid "Number of errors"
 msgstr "Número de erros"
 
@@ -601,7 +576,6 @@ msgstr "Número de mensagens não lidas"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, fuzzy, python-format
-#| msgid "Only an HR Officer or Manager can approve sheets."
 msgid "Only a HR Officer or Manager can review the sheet."
 msgstr "Apenas um Gerente ou Gerente de RH pode aprovar planilhas."
 
@@ -669,7 +643,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
 #, fuzzy
-#| msgid "Message Delivery error"
 msgid "SMS Delivery error"
 msgstr "Erro de Entrega de Mensagem"
 
@@ -721,7 +694,6 @@ msgstr "Planilha"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
 #, fuzzy
-#| msgid "Activity State"
 msgid "Sheet State"
 msgstr "Status da Atividade"
 
@@ -752,21 +724,18 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Submit to Reviewer"
 msgstr "Enviar ao Gerente"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Submitted"
 msgstr "Enviar ao Gerente"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 #, fuzzy
-#| msgid "Unvalidated Timesheet Sheets"
 msgid "Submitted Timesheet Sheets"
 msgstr "Planilhas de Horas Não Validadas"
 
@@ -881,7 +850,6 @@ msgstr "Intervalo da Planilha de Horas"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
 #, fuzzy
-#| msgid "Timesheet Sheet Line"
 msgid "Timesheet Sheet Review Policy"
 msgstr "Linhas da Planilha de Horas"
 
@@ -906,7 +874,6 @@ msgstr "Planilha de Horas para Aprovar"
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_to_review
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 #, fuzzy
-#| msgid "Timesheet Sheets to Approve"
 msgid "Timesheet Sheets to Review"
 msgstr "Planilha de Horas para Aprovar"
 
@@ -945,7 +912,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "Timesheets to Review"
 msgstr "Planilha de Horas para Aprovar"
 
@@ -953,21 +919,18 @@ msgstr "Planilha de Horas para Aprovar"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit
 #, fuzzy
-#| msgid "Timesheet Sheet"
 msgid "Timesheets to Submit"
 msgstr "Planilha de Horas"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #, fuzzy
-#| msgid "Timesheets to approve."
 msgid "Timesheets to review."
 msgstr "Planilha de Horas para aprovar."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #, fuzzy
-#| msgid "Timesheets to approve."
 msgid "Timesheets to submit."
 msgstr "Planilha de Horas para aprovar."
 
@@ -1012,14 +975,12 @@ msgstr "Usuário"
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__hr_timesheet_sheet__state__confirm
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting Review"
 msgstr "Aguardando Aprovação"
 
 #. module: hr_timesheet_sheet
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting review"
 msgstr "Aguardando Aprovação"
 
@@ -1052,7 +1013,6 @@ msgstr "Semana"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, fuzzy, python-format
-#| msgid "Weeks"
 msgid "Week %s"
 msgstr "Semanas"
 
@@ -1084,9 +1044,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
 #, fuzzy, python-format
-#| msgid ""
-#| "You cannot create a timesheet of a different company than the one of the "
-#| "timesheet sheet."
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
@@ -1099,7 +1056,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, fuzzy, python-format
-#| msgid "You cannot delete a timesheet sheet which is already confirmed."
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
@@ -1114,9 +1070,6 @@ msgstr "Você não pode duplicar uma planilha de horas."
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, fuzzy, python-format
-#| msgid ""
-#| "You cannot have 2 sheets that overlap!\n"
-#| "Please use the menu 'Timesheet Sheet' to avoid this problem."
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
@@ -1129,7 +1082,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
 #, fuzzy, python-format
-#| msgid "You cannot modify an entry in a confirmed timesheet sheet."
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr ""
 "Você não pode modificar um lançamento em uma planilha de horas confirmada."
@@ -1137,11 +1089,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #, fuzzy
-#| msgid ""
-#| "Employees must record timesheets every day and confirm at the end\n"
-#| "            of the week. Once the timesheet sheet is confirmed, it should "
-#| "be\n"
-#| "            validated by a manager."
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
 "            of the repording period. Once the timesheet sheet is confirmed, "
@@ -1156,11 +1103,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 #, fuzzy
-#| msgid ""
-#| "You must record timesheets in the sheet every day and confirm at the end\n"
-#| "             of the week. Once the timesheet sheet is confirmed, it "
-#| "should be\n"
-#| "             validated by a manager."
 msgid ""
 "You must record timesheets in the sheet every day and confirm at the end\n"
 "             of the repording period. Once the timesheet sheet is confirmed, "
