@@ -51,7 +51,6 @@ msgstr "Ajouter une ligne"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 #, fuzzy
-#| msgid "Analytic accounts"
 msgid "Analytic Account"
 msgstr "Compte analytique"
 
@@ -437,7 +436,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_line_ids
 #, fuzzy
-#| msgid "Search Timesheet"
 msgid "Temporary Timesheets"
 msgstr "Rechercher dans les feuilles de temps"
 

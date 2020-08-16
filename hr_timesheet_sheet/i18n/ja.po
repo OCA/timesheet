@@ -38,7 +38,6 @@ msgstr "明細を追加"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 #, fuzzy
-#| msgid "Analytic accounts"
 msgid "Analytic Account"
 msgstr "分析勘定"
 
@@ -426,7 +425,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_line_ids
 #, fuzzy
-#| msgid "Search Timesheet"
 msgid "Temporary Timesheets"
 msgstr "勤務表を検索"
 

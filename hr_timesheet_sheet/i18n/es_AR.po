@@ -32,7 +32,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 #, fuzzy
-#| msgid "Project / Analytic Account"
 msgid "Analytic Account"
 msgstr "Proyecto / Cuenta Analítica"
 

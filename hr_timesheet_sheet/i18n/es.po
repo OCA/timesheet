@@ -37,7 +37,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line_abstract
 #, fuzzy
-#| msgid "Timesheet Sheet Line"
 msgid "Abstract Timesheet Sheet Line"
 msgstr "Línea del parte de horas"
 
@@ -49,7 +48,6 @@ msgstr "Nueva línea"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 #, fuzzy
-#| msgid "Analytic accounts"
 msgid "Analytic Account"
 msgstr "Cuentas analíticas"
 
@@ -369,7 +367,6 @@ msgstr "Sábado"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:645
 #, fuzzy, python-format
-#| msgid "Timesheet Sheets"
 msgid "Save the Timesheet Sheet first."
 msgstr "Partes de horas"
 
@@ -436,7 +433,6 @@ msgstr "Tarea"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_line_ids
 #, fuzzy
-#| msgid "Search Timesheet"
 msgid "Temporary Timesheets"
 msgstr "Buscar parte de horas"
 
@@ -512,7 +508,6 @@ msgstr "Línea del parte de horas"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_new_analytic_line
 #, fuzzy
-#| msgid "Timesheet Sheet Line"
 msgid "Timesheet Sheet New Analytic Line"
 msgstr "Línea del parte de horas"
 
@@ -662,7 +657,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:36
 #, fuzzy, python-format
-#| msgid "You cannot modify an entry in a confirmed timesheet sheet."
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet."
