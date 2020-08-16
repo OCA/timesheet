@@ -87,7 +87,6 @@ msgstr "Linii fisa de pontaj"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 #, fuzzy
-#| msgid "Analytic accounts"
 msgid "Analytic Account"
 msgstr "Conturi analitice"
 
@@ -174,7 +173,6 @@ msgstr "Companie"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__complete_name
 #, fuzzy
-#| msgid "Employee's Name"
 msgid "Complete Name"
 msgstr "Numele angajatului"
 
@@ -489,7 +487,6 @@ msgstr "Fisa de pontaj"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "My timesheets to submit."
 msgstr "Pontaje de aprobat"
 
@@ -533,7 +530,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_line_search
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Not Submitted"
 msgstr "Trimiteti Directorului"
 
@@ -708,14 +704,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Submit to Reviewer"
 msgstr "Trimiteti Directorului"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Submitted"
 msgstr "Trimiteti Directorului"
 
@@ -745,7 +739,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__new_line_ids
 #, fuzzy
-#| msgid "Search Timesheet"
 msgid "Temporary Timesheets"
 msgstr "Cautati Fisa de pontaj"
 
@@ -906,7 +899,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "Timesheets to Review"
 msgstr "Pontaje de aprobat"
 
@@ -920,14 +912,12 @@ msgstr "Fisa de pontaj"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "Timesheets to review."
 msgstr "Pontaje de aprobat"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "Timesheets to submit."
 msgstr "Pontaje de aprobat"
 
@@ -973,14 +963,12 @@ msgstr "Utilizator"
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__hr_timesheet_sheet__state__confirm
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting Review"
 msgstr "Asteapta aprobare"
 
 #. module: hr_timesheet_sheet
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting review"
 msgstr "Asteapta aprobare"
 
@@ -1014,7 +1002,6 @@ msgstr "Săptămână"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, fuzzy, python-format
-#| msgid "Week"
 msgid "Week %s"
 msgstr "Săptămână"
 

@@ -89,7 +89,6 @@ msgstr "Tööajalehe read"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 #, fuzzy
-#| msgid "Analytic accounts"
 msgid "Analytic Account"
 msgstr "Analüütilised kontod"
 
@@ -176,7 +175,6 @@ msgstr "Ettevõte"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__complete_name
 #, fuzzy
-#| msgid "Employee's Name"
 msgid "Complete Name"
 msgstr "Töötaja nimi"
 
@@ -533,7 +531,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_line_search
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Not Submitted"
 msgstr "Esitage juhile"
 
@@ -708,14 +705,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Submit to Reviewer"
 msgstr "Esitage juhile"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Submitted"
 msgstr "Esitage juhile"
 
@@ -968,14 +963,12 @@ msgstr "Kasutaja"
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__hr_timesheet_sheet__state__confirm
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting Review"
 msgstr "Ootab heakskiitu"
 
 #. module: hr_timesheet_sheet
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting review"
 msgstr "Ootab heakskiitu"
 
@@ -1009,7 +1002,6 @@ msgstr "Nädal"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, fuzzy, python-format
-#| msgid "Week"
 msgid "Week %s"
 msgstr "Nädal"
 

@@ -479,7 +479,6 @@ msgstr "Tydstate"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #, fuzzy
-#| msgid "Timesheets"
 msgid "My timesheets to submit."
 msgstr "Tydstate"
 
@@ -887,7 +886,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
 #, fuzzy
-#| msgid "Timesheets"
 msgid "Timesheets to Review"
 msgstr "Tydstate"
 
@@ -901,14 +899,12 @@ msgstr "Tydstate"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #, fuzzy
-#| msgid "Timesheets"
 msgid "Timesheets to review."
 msgstr "Tydstate"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #, fuzzy
-#| msgid "Timesheets"
 msgid "Timesheets to submit."
 msgstr "Tydstate"
 
