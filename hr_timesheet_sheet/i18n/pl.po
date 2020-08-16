@@ -86,7 +86,6 @@ msgstr "Pozycje karty czasu pracy"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 #, fuzzy
-#| msgid "Analytic accounts"
 msgid "Analytic Account"
 msgstr "Konta analityczne"
 
@@ -191,7 +190,6 @@ msgstr "Firma"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__complete_name
 #, fuzzy
-#| msgid "Employee's Name"
 msgid "Complete Name"
 msgstr "Nazwisko pracownika"
 
@@ -503,7 +501,6 @@ msgstr "Karta czasu pracy"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "My timesheets to submit."
 msgstr "Karty pracy do aprobaty"
 
@@ -547,7 +544,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_line_search
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Not Submitted"
 msgstr "Wyślij do menedżera"
 
@@ -734,14 +730,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Submit to Reviewer"
 msgstr "Wyślij do menedżera"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Submitted"
 msgstr "Wyślij do menedżera"
 
@@ -771,7 +765,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__new_line_ids
 #, fuzzy
-#| msgid "Search Timesheet"
 msgid "Temporary Timesheets"
 msgstr "Szukaj kart pracy"
 
@@ -932,7 +925,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "Timesheets to Review"
 msgstr "Karty pracy do aprobaty"
 
@@ -946,14 +938,12 @@ msgstr "Karta czasu pracy"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "Timesheets to review."
 msgstr "Karty pracy do aprobaty"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "Timesheets to submit."
 msgstr "Karty pracy do aprobaty"
 
@@ -999,14 +989,12 @@ msgstr "Użytkownik"
 #: selection:hr_timesheet.sheet,state:0
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting Review"
 msgstr "Oczekuje na aprobatę"
 
 #. module: hr_timesheet_sheet
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting review"
 msgstr "Oczekuje na aprobatę"
 
@@ -1040,7 +1028,6 @@ msgstr "Tydzień"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
-#| msgid "Week"
 msgid "Week %s"
 msgstr "Tydzień"
 

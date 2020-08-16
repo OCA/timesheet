@@ -83,7 +83,6 @@ msgstr "Записи табелю"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 #, fuzzy
-#| msgid "Analytic accounts"
 msgid "Analytic Account"
 msgstr "Аналітичні рахунки"
 
@@ -188,7 +187,6 @@ msgstr "Компанія"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__complete_name
 #, fuzzy
-#| msgid "Employee's Name"
 msgid "Complete Name"
 msgstr "Ім'я співробітника"
 
@@ -508,7 +506,6 @@ msgstr "Табель часу"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "My timesheets to submit."
 msgstr "Табелів необхідно затвердити"
 
@@ -552,7 +549,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_line_search
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Not Submitted"
 msgstr "Відправити керівнику"
 
@@ -739,14 +735,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Submit to Reviewer"
 msgstr "Відправити керівнику"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Submitted"
 msgstr "Відправити керівнику"
 
@@ -776,7 +770,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__new_line_ids
 #, fuzzy
-#| msgid "Search Timesheet"
 msgid "Temporary Timesheets"
 msgstr "Пошук табелю"
 
@@ -943,7 +936,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "Timesheets to Review"
 msgstr "Табелів необхідно затвердити"
 
@@ -957,14 +949,12 @@ msgstr "Табель часу"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "Timesheets to review."
 msgstr "Табелів необхідно затвердити"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "Timesheets to submit."
 msgstr "Табелів необхідно затвердити"
 
@@ -1010,14 +1000,12 @@ msgstr "Користувач"
 #: selection:hr_timesheet.sheet,state:0
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting Review"
 msgstr "Очікує затвердження"
 
 #. module: hr_timesheet_sheet
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting review"
 msgstr "Очікує затвердження"
 
@@ -1051,7 +1039,6 @@ msgstr "Тиждень"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
-#| msgid "Week"
 msgid "Week %s"
 msgstr "Тиждень"
 

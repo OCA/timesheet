@@ -83,7 +83,6 @@ msgstr "График"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 #, fuzzy
-#| msgid "Analytic accounts"
 msgid "Analytic Account"
 msgstr "Аналитични сметки"
 
@@ -188,7 +187,6 @@ msgstr "Фирма"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__complete_name
 #, fuzzy
-#| msgid "Employee's Name"
 msgid "Complete Name"
 msgstr "Име на Служители"
 
@@ -496,7 +494,6 @@ msgstr "График с дейности"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #, fuzzy
-#| msgid "Timesheets by Period"
 msgid "My timesheets to submit."
 msgstr "Графици по период"
 
@@ -758,7 +755,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__new_line_ids
 #, fuzzy
-#| msgid "My Timesheet"
 msgid "Temporary Timesheets"
 msgstr "Моят график"
 
@@ -918,7 +914,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
 #, fuzzy
-#| msgid "Timesheets by Period"
 msgid "Timesheets to Review"
 msgstr "Графици по период"
 
@@ -932,14 +927,12 @@ msgstr "График с дейности"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #, fuzzy
-#| msgid "Timesheets by Period"
 msgid "Timesheets to review."
 msgstr "Графици по период"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #, fuzzy
-#| msgid "Timesheets by Period"
 msgid "Timesheets to submit."
 msgstr "Графици по период"
 
@@ -985,14 +978,12 @@ msgstr "Потребител"
 #: selection:hr_timesheet.sheet,state:0
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting Review"
 msgstr "Чака одобрение"
 
 #. module: hr_timesheet_sheet
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting review"
 msgstr "Чака одобрение"
 
@@ -1026,7 +1017,6 @@ msgstr "Седмица"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
-#| msgid "Week"
 msgid "Week %s"
 msgstr "Седмица"
 

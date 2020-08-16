@@ -80,7 +80,6 @@ msgstr "รายการสมุดจดเวลาทำงาน"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 #, fuzzy
-#| msgid "Project / Analytic Account"
 msgid "Analytic Account"
 msgstr "โปรเจค / วิเคราะห์ บัญชี"
 
@@ -185,7 +184,6 @@ msgstr "บริษัท"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__complete_name
 #, fuzzy
-#| msgid "Employee's Name"
 msgid "Complete Name"
 msgstr "ชื่อบุคลากร"
 
@@ -493,7 +491,6 @@ msgstr "เวลาทำงาน"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "My timesheets to submit."
 msgstr "สมุดจดเวลาทำงานที่จะอนุมัติ"
 
@@ -537,7 +534,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_line_search
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Not Submitted"
 msgstr "ส่งไปยังผู้จัดการ"
 
@@ -724,14 +720,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Submit to Reviewer"
 msgstr "ส่งไปยังผู้จัดการ"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 #, fuzzy
-#| msgid "Submit to Manager"
 msgid "Submitted"
 msgstr "ส่งไปยังผู้จัดการ"
 
@@ -761,7 +755,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__new_line_ids
 #, fuzzy
-#| msgid "Search Timesheet"
 msgid "Temporary Timesheets"
 msgstr "ค้นหาสมุดจดเวลาทำงาน"
 
@@ -922,7 +915,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "Timesheets to Review"
 msgstr "สมุดจดเวลาทำงานที่จะอนุมัติ"
 
@@ -936,14 +928,12 @@ msgstr "เวลาทำงาน"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "Timesheets to review."
 msgstr "สมุดจดเวลาทำงานที่จะอนุมัติ"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #, fuzzy
-#| msgid "Timesheets to Approve"
 msgid "Timesheets to submit."
 msgstr "สมุดจดเวลาทำงานที่จะอนุมัติ"
 
@@ -989,14 +979,12 @@ msgstr "ผู้ใช้"
 #: selection:hr_timesheet.sheet,state:0
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting Review"
 msgstr "กำลังรอการอนุมัติ"
 
 #. module: hr_timesheet_sheet
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
 #, fuzzy
-#| msgid "Waiting Approval"
 msgid "Waiting review"
 msgstr "กำลังรอการอนุมัติ"
 
@@ -1030,7 +1018,6 @@ msgstr "สัปดาห์"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
-#| msgid "Week"
 msgid "Week %s"
 msgstr "สัปดาห์"
 

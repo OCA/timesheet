@@ -84,7 +84,6 @@ msgstr "Denbora-orriak"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
 #, fuzzy
-#| msgid "Analytic Line"
 msgid "Analytic Account"
 msgstr "Lerro analitikoa"
 
@@ -189,7 +188,6 @@ msgstr "Enpresa"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__complete_name
 #, fuzzy
-#| msgid "Employee's Name"
 msgid "Complete Name"
 msgstr "Langilearen izena "
 
@@ -495,7 +493,6 @@ msgstr "Denbora-orriak"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #, fuzzy
-#| msgid "Timesheets"
 msgid "My timesheets to submit."
 msgstr "Denbora-orriak"
 
@@ -915,7 +912,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
 #, fuzzy
-#| msgid "Timesheets"
 msgid "Timesheets to Review"
 msgstr "Denbora-orriak"
 
@@ -929,14 +925,12 @@ msgstr "Denbora-orriak"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #, fuzzy
-#| msgid "Timesheets"
 msgid "Timesheets to review."
 msgstr "Denbora-orriak"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #, fuzzy
-#| msgid "Timesheets"
 msgid "Timesheets to submit."
 msgstr "Denbora-orriak"
 
@@ -1019,7 +1013,6 @@ msgstr "Astea"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
-#| msgid "Week"
 msgid "Week %s"
 msgstr "Astea"
 
