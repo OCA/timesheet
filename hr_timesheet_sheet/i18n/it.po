@@ -495,14 +495,12 @@ msgstr "I miei prospetti foglio ore"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit_my
 #, fuzzy
-#| msgid "Timesheets to Submit"
 msgid "My Timesheets to Submit"
 msgstr "Fogli ore da inviare"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #, fuzzy
-#| msgid "Timesheets to submit."
 msgid "My timesheets to submit."
 msgstr "Fogli ore da inviare."
 
@@ -544,7 +542,6 @@ msgstr "Tipologia prossima attività"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_line_search
 #, fuzzy
-#| msgid "Submitted"
 msgid "Not Submitted"
 msgstr "Inviato"
 
@@ -556,7 +553,6 @@ msgstr "Numero di azioni"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error_counter
 #, fuzzy
-#| msgid "Number of error"
 msgid "Number of errors"
 msgstr "Numero di errori"
 
@@ -645,7 +641,6 @@ msgstr "Revisore"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
 #, fuzzy
-#| msgid "Message Delivery error"
 msgid "SMS Delivery error"
 msgstr "Errore di consegna messaggio"
 
@@ -1088,11 +1083,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #, fuzzy
-#| msgid ""
-#| "Employees must record timesheets every day and confirm at the end\n"
-#| "            of the repording period. Once the timesheet sheet is "
-#| "confirmed, it should be\n"
-#| "            validated by a reviewer."
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
 "            of the repording period. Once the timesheet sheet is confirmed, "
