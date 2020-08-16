@@ -101,7 +101,6 @@ msgstr "Empleado"
 #. module: hr_utilization_analysis
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__name
 #, fuzzy
-#| msgid "Employee Tags"
 msgid "Employee Name"
 msgstr "Etiquetas de Empleado"
 
