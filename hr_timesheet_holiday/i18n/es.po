@@ -105,7 +105,6 @@ msgstr ""
 #. module: hr_timesheet_holiday
 #: code:addons/hr_timesheet_holiday/models/hr_holidays.py:29
 #, fuzzy, python-format
-#| msgid "All the projects for the analytic account must allow timesheets."
 msgid "No active projects for this Analytic Account"
 msgstr ""
 "Todos los proyectos de la cuenta analítica deben permitir hojas de horas."
