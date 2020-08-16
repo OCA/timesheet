@@ -64,7 +64,6 @@ msgstr "Konfigurationseinstellungen"
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__limit_role_to_assignments
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_hr_timesheet_switch__limit_role_to_assignments
 #, fuzzy
-#| msgid "Limit Timesheet Role to Assignments"
 msgid "Limit role to assignments"
 msgstr "nur projektspezif. Rollen bei Zeiterfassung erlauben"
 
