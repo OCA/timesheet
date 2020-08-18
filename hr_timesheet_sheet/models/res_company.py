@@ -35,7 +35,9 @@ class ResCompany(models.Model):
     timesheet_sheet_review_policy = fields.Selection(
         string='Timesheet Sheet Review Policy',
         selection=[
-            ('hr', 'By HR Manager/Officer'),
+            ('hr', 'By HR Officers'),
+            ('hr_manager', 'By HR Managers'),
+            ('timesheet_manager', 'By Timesheets Managers'),
         ],
         default='hr',
         help='How Timesheet Sheets review is performed.',
