@@ -155,21 +155,18 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:579
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:583
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:589
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:593
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:563
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:567
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -437,7 +434,6 @@ msgid "In Draft"
 msgstr "Taslak"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:494
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:498
 #, fuzzy, python-format
 msgid ""
@@ -448,7 +444,6 @@ msgstr ""
 "bağlamanız gerekir."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
 #, fuzzy, python-format
 msgid ""
@@ -601,7 +596,6 @@ msgid "Number of unread messages"
 msgstr "Okunmamış Mesajlar"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:613
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:617
 #, fuzzy, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -689,7 +683,6 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:930
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
@@ -1036,7 +1029,6 @@ msgid "Waiting review"
 msgstr "Onay Bekliyor"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:925
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:929
 #, python-format
 msgid "Warning"
@@ -1104,7 +1096,6 @@ msgid ""
 msgstr "Onaylamış zaman çizelgesi bir girişi değiştiremezsiniz."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:535
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
 #, fuzzy, python-format
 msgid ""
@@ -1113,7 +1104,6 @@ msgid ""
 msgstr "Onaylandıktan sonra bir zaman çizelgesini silemezsiniz."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:510
 #, python-format
 msgid "You cannot duplicate a sheet."

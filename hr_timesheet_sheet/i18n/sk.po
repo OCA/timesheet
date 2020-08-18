@@ -146,21 +146,18 @@ msgid "Can Review"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:579
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:583
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:589
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:593
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:563
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:567
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -428,7 +425,6 @@ msgid "In Draft"
 msgstr "V návrhu"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:494
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:498
 #, fuzzy, python-format
 msgid ""
@@ -439,7 +435,6 @@ msgstr ""
 "prepojiť  s užívateľom."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
 #, fuzzy, python-format
 msgid ""
@@ -592,7 +587,6 @@ msgid "Number of unread messages"
 msgstr "Neprečítané správy"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:613
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:617
 #, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -680,7 +674,6 @@ msgid "Saturday"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:930
 #, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
@@ -1025,7 +1018,6 @@ msgid "Waiting review"
 msgstr "Čaká na schválenie"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:925
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:929
 #, python-format
 msgid "Warning"
@@ -1093,7 +1085,6 @@ msgid ""
 msgstr "Nemôžete upraviť vstup v potvrdenom časovom rozvrhu."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:535
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
 #, fuzzy, python-format
 msgid ""
@@ -1102,7 +1093,6 @@ msgid ""
 msgstr "Nemžete zmazať časový rozvrh ktorý už bol potvrdený."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:510
 #, python-format
 msgid "You cannot duplicate a sheet."

@@ -146,21 +146,18 @@ msgid "Can Review"
 msgstr "Pode Rever"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:579
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:583
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Não é possível aprovar uma planilha não enviada."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:589
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:593
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Não é possível rejeitar uma planilha não enviada."
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:563
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:567
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -423,7 +420,6 @@ msgid "In Draft"
 msgstr "Rascunho"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:494
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:498
 #, python-format
 msgid ""
@@ -434,7 +430,6 @@ msgstr ""
 "usuário: %s"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:603
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
 #, python-format
 msgid ""
@@ -579,7 +574,6 @@ msgid "Number of unread messages"
 msgstr "Número de mensagens não lidas"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:613
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:617
 #, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -667,7 +661,6 @@ msgid "Saturday"
 msgstr "Sábado"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:926
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:930
 #, python-format
 msgid "Save the Timesheet Sheet first."
@@ -991,7 +984,6 @@ msgid "Waiting review"
 msgstr "Aguardando revisão"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:925
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:929
 #, python-format
 msgid "Warning"
@@ -1063,7 +1055,6 @@ msgstr ""
 "  - %s de %s"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:535
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
 #, python-format
 msgid ""
@@ -1074,7 +1065,6 @@ msgstr ""
 "%s"
 
 #. module: hr_timesheet_sheet
-#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:506
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:510
 #, python-format
 msgid "You cannot duplicate a sheet."
