@@ -6,3 +6,6 @@ If you want other default ranges different from weekly, you need to go:
 
 To change who reviews submitted sheets, go to *Configuration > Settings > Timesheet Options*
 and configure **Timesheet Sheet Review Policy** accordingly.
+
+For adding more review policies, look at the *hr_timesheet_sheet_policy_xxx*
+extra modules.

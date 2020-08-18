@@ -121,9 +121,19 @@ msgid "Attachment Count"
 msgstr "Anhangsanzahl"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr_manager
+msgid "By HR Managers"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr
-msgid "By HR Manager/Officer"
-msgstr "Durch Personalsachbearbeiter / Manager"
+msgid "By HR Officers"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__timesheet_manager
+msgid "By Timesheets Managers"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
@@ -1124,6 +1134,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "bis"
+
+#~ msgid "By HR Manager/Officer"
+#~ msgstr "Durch Personalsachbearbeiter / Manager"
 
 #~ msgid "By Department Manager"
 #~ msgstr "Durch den Abteilungsmanager"
