@@ -347,6 +347,10 @@ class Sheet(models.Model):
         res = self.env['res.users'].browse(SUPERUSER_ID)
         if self.review_policy == 'hr':
             res |= self.env.ref('hr.group_hr_user').users
+        elif self.review_policy == 'hr_manager':
+            res |= self.env.ref('hr.group_hr_manager').users
+        elif self.review_policy == 'timesheet_manager':
+            res |= self.env.ref('hr_timesheet.group_timesheet_manager').users
         return res
 
     @api.multi
