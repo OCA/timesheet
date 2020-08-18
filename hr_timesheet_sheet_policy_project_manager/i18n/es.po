@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_sheet_policy_project_manager
+# 	* hr_timesheet_sheet_policy_project_manager
 #
 msgid ""
 msgstr ""
@@ -33,13 +33,29 @@ msgstr "Por responsable directo"
 
 #. module: hr_timesheet_sheet_policy_project_manager
 #: selection:res.company,timesheet_sheet_review_policy:0
-msgid "By HR Manager/Officer"
+#, fuzzy
+#| msgid "By HR Manager/Officer"
+msgid "By HR Managers"
+msgstr "Por Reponsable de RRHH"
+
+#. module: hr_timesheet_sheet_policy_project_manager
+#: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+#| msgid "By HR Manager/Officer"
+msgid "By HR Officers"
 msgstr "Por Reponsable de RRHH"
 
 #. module: hr_timesheet_sheet_policy_project_manager
 #: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By Project Manager"
 msgstr "Por responsable de proyecto"
+
+#. module: hr_timesheet_sheet_policy_project_manager
+#: selection:res.company,timesheet_sheet_review_policy:0
+#, fuzzy
+#| msgid "By Direct Manager"
+msgid "By Timesheets Managers"
+msgstr "Por responsable directo"
 
 #. module: hr_timesheet_sheet_policy_project_manager
 #: model:ir.model,name:hr_timesheet_sheet_policy_project_manager.model_res_company
