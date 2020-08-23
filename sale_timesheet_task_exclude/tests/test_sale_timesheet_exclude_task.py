@@ -42,7 +42,7 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
             }
         )
         project = self.SudoProject.create(
-            {"name": "Project #1", "allow_timesheets": True,}
+            {"name": "Project #1", "allow_timesheets": True}
         )
         product = self.SudoProductProduct.create(
             {
@@ -62,7 +62,7 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
             }
         )
         employee = self.SudoEmployee.create(
-            {"name": "Employee #1", "timesheet_cost": 42,}
+            {"name": "Employee #1", "timesheet_cost": 42}
         )
         account_payable = self.SudoAccountAccount.create(
             {
