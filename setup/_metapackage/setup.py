@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo13-addon-hr_timesheet_task_stage',
         'odoo13-addon-hr_utilization_analysis',
         'odoo13-addon-sale_timesheet_rounded',
+        'odoo13-addon-sale_timesheet_task_exclude',
     ],
     classifiers=[
         'Programming Language :: Python',
