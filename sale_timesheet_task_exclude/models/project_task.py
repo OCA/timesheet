@@ -15,14 +15,12 @@ class ProjectTask(models.Model):
         ),
     )
 
-    @api.multi
     @api.depends("exclude_from_sale_order")
     def _compute_billable_type(self):
         super()._compute_billable_type()
         for task in self.filtered("exclude_from_sale_order"):
             task.billable_type = "no"
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if "exclude_from_sale_order" in vals:
