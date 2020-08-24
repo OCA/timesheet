@@ -42,7 +42,7 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
             }
         )
         project = self.SudoProject.create(
-            {"name": "Project #1", "allow_timesheets": True,}
+            {"name": "Project #1", "allow_timesheets": True}
         )
         product = self.SudoProductProduct.create(
             {
@@ -62,7 +62,7 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
             }
         )
         employee = self.SudoEmployee.create(
-            {"name": "Employee #1", "timesheet_cost": 42,}
+            {"name": "Employee #1", "timesheet_cost": 42}
         )
         account_payable = self.SudoAccountAccount.create(
             {
@@ -84,7 +84,6 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
             {
                 "name": "Partner #1",
                 "email": "partner1@localhost",
-                "customer": True,
                 "property_account_payable_id": account_payable.id,
                 "property_account_receivable_id": account_receivable.id,
             }
@@ -128,7 +127,18 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
         self.assertEqual(task.billable_type, "task_rate")
         self.assertTrue(timesheet.so_line)
 
-        sale_order.action_invoice_create()
+        payment = (
+            self.env["sale.advance.payment.inv"]
+            .with_context(
+                {
+                    "active_model": "sale.order",
+                    "active_ids": [sale_order.id],
+                    "active_id": sale_order.id,
+                }
+            )
+            .create({"advance_payment_method": "delivered"})
+        )
+        payment.create_invoices()
 
         task.exclude_from_sale_order = True
         self.assertTrue(timesheet.so_line)
