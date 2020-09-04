@@ -95,7 +95,7 @@ odoo.define('hr_timesheet_task.sheet', function (require) {
                     var days = _.map(dates, function(date) {
                         var day = {day: date, lines: index[time.date_to_str(date)] || []};
                         // add line where we will insert/remove hours
-                        var to_add = _.find(day.lines, function(line) { return line.name === self.description_line; });
+                        var to_add = _.find(day.lines, function(line) { return self.check_to_add_line(line) });
                         if (to_add) {
                             day.lines = _.without(day.lines, to_add);
                             day.lines.unshift(to_add);
@@ -262,6 +262,10 @@ odoo.define('hr_timesheet_task.sheet', function (require) {
 
         get_box: function(project, day_count) {
             return this.$('[data-project-task="' + project.project_task + '"][data-day-count="' + day_count + '"]');
+        },
+
+        check_to_add_line: function(line) {
+            return line.name === this.description_line;
         },
     });
 });
