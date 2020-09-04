@@ -84,6 +84,7 @@ class HrTimesheetSheet(models.Model):
     def create(self, vals):
         res = super(HrTimesheetSheet, self).create(vals)
         attendances = self.env['hr.attendance'].search([
+            ('employee_id', '=', res.employee_id.id),
             ('sheet_id', '=', False),
             ('check_in', '>=', res.date_start),
             ('check_in', '<=', res.date_end),
