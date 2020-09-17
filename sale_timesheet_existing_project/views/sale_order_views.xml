@@ -11,7 +11,9 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='analytic_account_id']" position="after">
                 <field name="visible_project" invisible="1"/>
-                <field name="project_id" options="{'no_create': True}" attrs="{'invisible': [('visible_project', '=', False)]}"/>
+                <field name="project_id" options="{'no_create': True}"
+                       attrs="{'invisible': [('visible_project', '=', False)],
+                               'required': [('visible_project', '=', True)]}"/>
             </xpath>
         </field>
     </record>
