@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests import common
+from odoo.exceptions import UserError
 
 
 class TestSaleTimesheetExistingProject(common.SavepointCase):
@@ -24,6 +25,13 @@ class TestSaleTimesheetExistingProject(common.SavepointCase):
         cls.line = cls.env['sale.order.line'].create({
             'order_id': cls.order.id,
             'product_id': cls.product.id,
+        })
+        cls.order1 = cls.env['sale.order'].create({
+            'partner_id': cls.partner.id,
+        })
+        cls.line1 = cls.env['sale.order.line'].create({
+            'order_id': cls.order1.id,
+            'product_id': cls.env.ref('product.product_product_10').id,
         })
 
     def test_onchange_product_service_tracking(self):
@@ -63,3 +71,18 @@ class TestSaleTimesheetExistingProject(common.SavepointCase):
         self.assertNotEqual(self.line.task_id.project_id, self.project)
         self.assertIn(self.order.name, self.line.project_id.name)
         self.assertEqual(line2.project_id, self.line.project_id)
+
+    def test_sale_timesheet_new_project_set_in_sale_state(self):
+        self.product.project_template_id = False
+        self.order1.action_confirm()
+        self.assertEqual(self.order1.state, 'sale')
+        with self.assertRaises(UserError):
+            self.env['sale.order.line'].create({
+                'order_id': self.order1.id,
+                'product_id': self.product.id,
+            })
+        self.order1.project_id = self.project.id
+        self.env['sale.order.line'].create({
+            'order_id': self.order1.id,
+            'product_id': self.product.id,
+        })

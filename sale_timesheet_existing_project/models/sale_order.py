@@ -1,7 +1,9 @@
 # Copyright 2019 Tecnativa - Pedro M. Baeza
+# Copyright 2020 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
 class SaleOrder(models.Model):
@@ -17,7 +19,8 @@ class SaleOrder(models.Model):
                " ('analytic_account_id', '!=', False),"
                " ('company_id', '=', company_id)]",
         readonly=True,
-        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
+        states={'draft': [('readonly', False)], 'sent': [('readonly', False)],
+                'sale': [('readonly', False)]},
         help='Select a non billable project on which tasks can be created.')
 
     @api.depends('order_line.product_id.service_tracking')
@@ -31,6 +34,15 @@ class SaleOrder(models.Model):
                 for service_tracking
                 in order.order_line.mapped('product_id.service_tracking')
             )
+
+    @api.multi
+    def write(self, vals):
+        res = super(SaleOrder, self).write(vals)
+        for order in self:
+            if order.state == 'sale' and order.visible_project and not \
+                    order.project_id:
+                raise UserError(_('Missing project in sale order!'))
+        return res
 
 
 class SaleOrderLine(models.Model):
