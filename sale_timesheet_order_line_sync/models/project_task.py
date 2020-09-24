@@ -18,6 +18,6 @@ class ProjectTask(models.Model):
         ).filtered(
             lambda l: (not l.timesheet_invoice_id and l.so_line.id != sale_line_id)
         ).write(
-            {"so_line": sale_line_id,}
+            {"so_line": sale_line_id}
         )
         return res

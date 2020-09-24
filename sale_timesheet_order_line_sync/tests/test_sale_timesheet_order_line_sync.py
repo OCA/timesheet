@@ -1,4 +1,5 @@
 # Copyright 2020 Tecnativa - Carlos Dauden
+# Copyright 2020 Tecnativa - João Marques
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
@@ -42,7 +43,7 @@ class TestSaleTimesheetOrderLineSync(common.TransactionCase):
             }
         )
         project = self.SudoProject.create(
-            {"name": "Project #1", "allow_timesheets": True,}
+            {"name": "Project #1", "allow_timesheets": True}
         )
         product = self.SudoProductProduct.create(
             {
@@ -62,7 +63,7 @@ class TestSaleTimesheetOrderLineSync(common.TransactionCase):
             }
         )
         employee = self.SudoEmployee.create(
-            {"name": "Employee #1", "timesheet_cost": 42,}
+            {"name": "Employee #1", "timesheet_cost": 42}
         )
         account_payable = self.SudoAccountAccount.create(
             {
@@ -84,7 +85,6 @@ class TestSaleTimesheetOrderLineSync(common.TransactionCase):
             {
                 "name": "Partner #1",
                 "email": "partner1@localhost",
-                "customer": True,
                 "property_account_payable_id": account_payable.id,
                 "property_account_receivable_id": account_receivable.id,
             }
