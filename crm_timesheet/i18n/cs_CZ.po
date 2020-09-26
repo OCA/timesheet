@@ -42,28 +42,25 @@ msgid "Project"
 msgstr "Projekt"
 
 #. module: crm_timesheet
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_leads
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_oppor
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_leads
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
 msgid "Start work"
 msgstr ""
 
 #. module: crm_timesheet
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_leads
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_oppor
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_leads
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
 msgid "Stop work"
 msgstr ""
 
 #. module: crm_timesheet
 #: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__timesheet_ids
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_leads
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_form_view_oppor
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
 msgid "Timesheet"
 msgstr "Rozvrh hodin"
