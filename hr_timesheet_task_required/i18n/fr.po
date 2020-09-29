@@ -43,6 +43,7 @@ msgstr ""
 
 #. module: hr_timesheet_task_required
 #: model:ir.model.fields,field_description:hr_timesheet_task_required.field_account_analytic_line__is_task_required
+#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_hr_timesheet_switch__is_task_required
 msgid "Is Task Required"
 msgstr ""
 
