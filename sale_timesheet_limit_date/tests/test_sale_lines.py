@@ -37,7 +37,8 @@ class TestSale(TestCommonMixin):
         order_2.timesheet_limit_date = '2019-05-08'
         new_task = self.env['project.task'].create({
             'name': 'Test',
-            'sale_line_id': order_2.order_line[0].id
+            'sale_line_id': order_2.order_line[0].id,
+            'project_id': self.project.id,
         })
         new_lines = self.aal_model
         new_lines += self.create_analytic_line(
