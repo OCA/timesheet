@@ -43,6 +43,7 @@ setuptools.setup(
         'odoo12-addon-sale_timesheet_limit_date',
         'odoo12-addon-sale_timesheet_line_exclude',
         'odoo12-addon-sale_timesheet_order_line_sync',
+        'odoo12-addon-sale_timesheet_purchase',
         'odoo12-addon-sale_timesheet_rounded',
         'odoo12-addon-sale_timesheet_task_exclude',
     ],
