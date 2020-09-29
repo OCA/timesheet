@@ -25,10 +25,10 @@ Sales Timesheet Purchase
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-sale_timesheet_purchase:
+Allows to access purchase orders from Project Overview.
 
-Bridge module between Sales Timesheet and Purchase.
-The module is already in odoo v13. So, We contributed the same module in OCA v12.
+This is a bridge module between Sales Timesheet and Purchase.
+It is an Odoo 13 standard module. This is a backport to Odoo 12.
 
 **Table of contents**
 
@@ -57,6 +57,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * Chandresh Thakkar <cthakkar@opensourceintegrators.com>
+* Daniel Reis <dreis@opensourceintegrators.com>
 
 Other credits
 ~~~~~~~~~~~~~
