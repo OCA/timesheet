@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-timesheet Odoo addons",
     version=version,
     install_requires=[
+        'odoo13-addon-crm_timesheet',
         'odoo13-addon-hr_timesheet_activity_begin_end',
         'odoo13-addon-hr_timesheet_analysis',
         'odoo13-addon-hr_timesheet_sheet',
