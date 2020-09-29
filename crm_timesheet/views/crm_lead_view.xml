@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Both -->
+    <record id="crm_lead_view_form" model="ir.ui.view">
+        <field name="name">CRM - Leads with timesheets</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field
+            name="groups_id"
+            eval="[(6, 0, [ref('hr_timesheet.group_hr_timesheet_user')])]"
+        />
+        <field name="arch" type="xml">
+            <!-- Main task form action buttons -->
+            <div name="button_box" position="inside">
+                <field name="show_time_control" invisible="1" />
+                <button
+                    name="button_start_work"
+                    string="Start work"
+                    type="object"
+                    icon="fa-play-circle text-success"
+                    attrs="{'invisible': [('show_time_control', '!=', 'start')]}"
+                    class="oe_stat_button"
+                />
+                <button
+                    name="button_end_work"
+                    string="Stop work"
+                    type="object"
+                    icon="fa-stop-circle text-warning"
+                    attrs="{'invisible': [('show_time_control', '!=', 'stop')]}"
+                    class="oe_stat_button"
+                />
+            </div>
+            <!-- New fields -->
+            <field name="user_id" position="after">
+                <field name="project_id" />
+            </field>
+            <page name="extra" position="after">
+                <page string="Timesheet">
+                    <field
+                        name="timesheet_ids"
+                        context="{'default_project_id': project_id, 'default_user_id': uid, 'tree_view_ref': 'hr_timesheet.timesheet_view_tree_user', 'form_view_ref': 'hr_timesheet.hr_timesheet_line_form'}"
+                    />
+                </page>
+            </page>
+        </field>
+    </record>
+    <!-- Leads -->
+    <record id="view_crm_lead_kanban" model="ir.ui.view">
+        <field name="name">Add timesheet time controls to lead kanban</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_lead_kanban" />
+        <field
+            name="groups_id"
+            eval="[(6, 0, [ref('hr_timesheet.group_hr_timesheet_user')])]"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//*[hasclass('oe_kanban_bottom_left')]" position="inside">
+                <field name="show_time_control" invisible="1" />
+                <a
+                    name="button_start_work"
+                    attrs="{'invisible': [('show_time_control', '!=', 'start')]}"
+                    class="o_kanban_inline_block fa fa-lg fa-play-circle text-success"
+                    string="Start work"
+                    tabindex="-1"
+                    type="object"
+                />
+                <a
+                    name="button_end_work"
+                    attrs="{'invisible': [('show_time_control', '!=', 'stop')]}"
+                    class="o_kanban_inline_block fa fa-lg fa-stop-circle text-warning"
+                    string="Stop work"
+                    tabindex="-1"
+                    type="object"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="crm_case_tree_view_leads" model="ir.ui.view">
+        <field name="name">Add timesheet time controls to lead tree</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
+        <field
+            name="groups_id"
+            eval="[(6, 0, [ref('hr_timesheet.group_hr_timesheet_user')])]"
+        />
+        <field name="arch" type="xml">
+            <tree position="inside">
+                <field name="show_time_control" invisible="1" />
+                <button
+                    name="button_start_work"
+                    string="Start work"
+                    tabindex="-1"
+                    type="object"
+                    icon="fa-play-circle text-success"
+                    attrs="{'invisible': [('show_time_control', '!=', 'start')]}"
+                    class="oe_stat_button"
+                />
+                <button
+                    name="button_end_work"
+                    string="Stop work"
+                    tabindex="-1"
+                    type="object"
+                    icon="fa-stop-circle text-warning"
+                    attrs="{'invisible': [('show_time_control', '!=', 'stop')]}"
+                    class="oe_stat_button"
+                />
+            </tree>
+        </field>
+    </record>
+    <!-- Opportunities -->
+    <record id="crm_case_kanban_view_leads" model="ir.ui.view">
+        <field name="name">Add timesheet time controls to opportunity kanban</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
+        <field
+            name="groups_id"
+            eval="[(6, 0, [ref('hr_timesheet.group_hr_timesheet_user')])]"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//*[hasclass('oe_kanban_bottom_left')]" position="inside">
+                <field name="show_time_control" invisible="1" />
+                <a
+                    name="button_start_work"
+                    attrs="{'invisible': [('show_time_control', '!=', 'start')]}"
+                    class="o_kanban_inline_block fa fa-lg fa-play-circle text-success"
+                    string="Start work"
+                    tabindex="-1"
+                    type="object"
+                />
+                <a
+                    name="button_end_work"
+                    attrs="{'invisible': [('show_time_control', '!=', 'stop')]}"
+                    class="o_kanban_inline_block fa fa-lg fa-stop-circle text-warning"
+                    string="Stop work"
+                    tabindex="-1"
+                    type="object"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="crm_case_tree_view_oppor" model="ir.ui.view">
+        <field name="name">Add timesheet time controls to opportunity tree</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field
+            name="groups_id"
+            eval="[(6, 0, [ref('hr_timesheet.group_hr_timesheet_user')])]"
+        />
+        <field name="arch" type="xml">
+            <tree position="inside">
+                <field name="show_time_control" invisible="1" />
+                <button
+                    name="button_start_work"
+                    string="Start work"
+                    tabindex="-1"
+                    type="object"
+                    icon="fa-play-circle text-success"
+                    attrs="{'invisible': [('show_time_control', '!=', 'start')]}"
+                    class="oe_stat_button"
+                />
+                <button
+                    name="button_end_work"
+                    string="Stop work"
+                    tabindex="-1"
+                    type="object"
+                    icon="fa-stop-circle text-warning"
+                    attrs="{'invisible': [('show_time_control', '!=', 'stop')]}"
+                    class="oe_stat_button"
+                />
+            </tree>
+        </field>
+    </record>
+</odoo>
