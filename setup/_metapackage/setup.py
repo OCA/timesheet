@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo11-addon-hr_timesheet_task_required',
         'odoo11-addon-hr_timesheet_task_stage',
         'odoo11-addon-project_task_stage_allow_timesheet',
+        'odoo11-addon-sale_timesheet_draft_invoice',
     ],
     classifiers=[
         'Programming Language :: Python',
