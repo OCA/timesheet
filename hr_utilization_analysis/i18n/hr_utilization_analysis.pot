@@ -60,7 +60,6 @@ msgstr ""
 
 #. module: hr_utilization_analysis
 #: code:addons/hr_utilization_analysis/report/hr_utilization_analysis.py:0
-#: code:addons/hr_utilization_analysis/report/hr_utilization_analysis.py:0
 #, python-format
 msgid "Date-To can not be earlier than Date-From"
 msgstr ""
