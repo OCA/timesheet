@@ -1,4 +1,5 @@
 # Copyright 2018-2020 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2020 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime, time, timedelta
@@ -143,7 +144,6 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
 
     @api.depends("employee_id", "date")
     def _compute_capacity(self):
-        HrEmployee = self.env["hr.employee"]
         Module = self.env["ir.module.module"]
 
         project_timesheet_holidays = Module.with_user(SUPERUSER_ID).search(
@@ -163,7 +163,7 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
             )["hours"]
 
             if project_timesheet_holidays:
-                capacity -= HrEmployee._get_leave_days_data(
+                capacity -= entry.employee_id._get_leave_days_data(
                     from_datetime,
                     to_datetime,
                     calendar=entry.employee_id.resource_calendar_id,
