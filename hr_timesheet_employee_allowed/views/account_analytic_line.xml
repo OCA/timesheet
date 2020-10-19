@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_timesheet_line_list_inherit" model="ir.ui.view">
+        <field name="name">view.timesheet.line.list.inherit</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.timesheet_view_tree_user"/>
+        <field name="arch" type="xml">
+            <field name="employee_id" position="after">
+                <field name="timesheet_emp_ids" invisible="1"/>
+            </field>
+            <field name="employee_id" position="attributes">
+                <attribute name="domain">[('id','in',timesheet_emp_ids)]</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
