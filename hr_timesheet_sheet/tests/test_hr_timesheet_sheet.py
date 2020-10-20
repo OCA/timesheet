@@ -435,7 +435,7 @@ class TestHrTimesheetSheet(SavepointCase):
         timesheets = [x.get("id") for x in sheet_form.timesheet_ids._records]
         sheet = sheet_form.save()
         # analytic line cleaned up on form save
-        self.assertFalse(self.aal_model.search([("id", "=", timesheets)]))
+        self.assertFalse(self.aal_model.search([("id", "in", timesheets)]))
         self.assertEqual(len(sheet.line_ids), 0)
         self.assertEqual(len(sheet.timesheet_ids), 0)
         self.assertFalse(self.aal_model.search([("id", "=", timesheet.id)]))
