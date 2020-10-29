@@ -21,7 +21,7 @@
             </field>
         </field>
     </record>
-    <record id="view_hr_timesheet_time_form_inherit" model="ir.ui.view">
+    <!-- <record id="view_hr_timesheet_time_form_inherit" model="ir.ui.view">
         <field name="name">view.hr.timesheet.time.inherit</field>
         <field name="model">project.task</field>
         <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited"/>
@@ -33,5 +33,5 @@
                 <field name="time_type_id"/>
             </xpath>
         </field>
-    </record>
+    </record> -->
 </odoo>
