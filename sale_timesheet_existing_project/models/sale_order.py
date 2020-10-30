@@ -40,8 +40,10 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self).write(vals)
         for order in self:
             if order.state == 'sale' and order.visible_project and not \
-                    order.project_id:
-                raise UserError(_('Missing project in sale order!'))
+                    order.project_id and any(order.mapped('order_line.project_id')):
+                raise UserError(_('Missing project in sale order, but almost one '
+                                  'line of the order have a project: assign one of '
+                                  'these projects to the sale order!'))
         return res
 
 
