@@ -20,7 +20,7 @@ class SaleOrder(models.Model):
                " ('company_id', '=', company_id)]",
         readonly=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)],
-                'sale': [('readonly', False)]},
+                'sale': [('readonly', False)], 'done': [('readonly', False)]},
         help='Select a non billable project on which tasks can be created.')
 
     @api.depends('order_line.product_id.service_tracking')
