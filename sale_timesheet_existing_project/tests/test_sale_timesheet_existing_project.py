@@ -74,15 +74,23 @@ class TestSaleTimesheetExistingProject(common.SavepointCase):
 
     def test_sale_timesheet_new_project_set_in_sale_state(self):
         self.product.project_template_id = False
+        self.order1.write({
+            'order_line': [(
+                0, 0, {'product_id': self.product.id}
+            )]
+        })
         self.order1.action_confirm()
         self.assertEqual(self.order1.state, 'sale')
+        self.assertEqual(len(self.order1.mapped('order_line.project_id')), 1)
         with self.assertRaises(UserError):
-            self.env['sale.order.line'].create({
-                'order_id': self.order1.id,
-                'product_id': self.product.id,
+            self.order1.write({
+                'order_line': [(
+                    0, 0, {'product_id': self.product.id}
+                )]
             })
         self.order1.project_id = self.project.id
-        self.env['sale.order.line'].create({
-            'order_id': self.order1.id,
-            'product_id': self.product.id,
+        self.order1.write({
+            'order_line': [(
+                0, 0, {'product_id': self.product.id}
+            )]
         })
