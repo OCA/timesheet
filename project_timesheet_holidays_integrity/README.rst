@@ -23,7 +23,7 @@ Timesheets from Leaves: data integrity
     :target: https://runbot.odoo-community.org/runbot/117/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module ensures data integrity between Leaves and generated Timesheets, as
 well as allows to restore data integrity.

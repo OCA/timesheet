@@ -23,7 +23,7 @@ Task Log: limit Task by Project
     :target: https://runbot.odoo-community.org/runbot/117/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module adjusts the domain applied to task field in order to limit task
 selection to currently-selected project. If `project_stage_closed` module is

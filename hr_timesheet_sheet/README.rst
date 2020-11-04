@@ -23,7 +23,7 @@ HR Timesheet Sheet
     :target: https://runbot.odoo-community.org/runbot/117/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module supplies a new screen enabling you to manage your work encoding
 (timesheet) by period. Timesheet entries are made by employees each day. At the
