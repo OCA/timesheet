@@ -23,7 +23,7 @@ HR Timesheet Sheet based on Payroll Period
     :target: https://runbot.odoo-community.org/runbot/117/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module allows to create timesheets with start and end dates matching with the
 payroll period of the schedule pay that is specified in the contract of the
