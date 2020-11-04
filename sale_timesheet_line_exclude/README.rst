@@ -23,7 +23,7 @@ Sales Timesheet: exclude Timesheet Line from Sale Order
     :target: https://runbot.odoo-community.org/runbot/117/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Allows to exclude specific *Timesheet* line from Sale Order.
 
