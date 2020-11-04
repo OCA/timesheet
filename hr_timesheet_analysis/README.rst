@@ -23,7 +23,7 @@ Task Logs Analysis
     :target: https://runbot.odoo-community.org/runbot/117/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows analyzing tracked time in Pivot, Graph views.
 
@@ -48,12 +48,14 @@ Credits
 Authors
 ~~~~~~~
 
-* Brainbean Apps
+* CorporateHub
 
 Contributors
 ~~~~~~~~~~~~
 
-* Alexey Pelykh <alexey.pelykh@brainbeanapps.com>
+* `CorporateHub <https://corporatehub.eu/>`__
+
+  * Alexey Pelykh <alexey.pelykh@corphub.eu>
 
 Maintainers
 ~~~~~~~~~~~
@@ -74,7 +76,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-alexey-pelykh| 
+|maintainer-alexey-pelykh|
 
 This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/12.0/hr_timesheet_analysis>`_ project on GitHub.
 

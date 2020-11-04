@@ -1,6 +1,7 @@
 # Copyright 2018 Eficent
 # Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
 # Copyright 2018-2019 Onestein (<https://www.onestein.eu>)
+# Copyright 2020 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
@@ -13,7 +14,7 @@
     'author': (
         'Eficent, '
         'Onestein, '
-        'Brainbean Apps, '
+        'CorporateHub, '
         'Odoo Community Association (OCA)'
     ),
     'website': 'https://github.com/OCA/timesheet',
