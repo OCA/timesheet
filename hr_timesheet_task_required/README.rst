@@ -23,7 +23,7 @@ Hr Timesheet Task Required
     :target: https://runbot.odoo-community.org/runbot/117/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows to configure project as having task on timesheet as a
 mandatory field.
@@ -64,7 +64,7 @@ Authors
 ~~~~~~~
 
 * ACSONE SA/NV
-* Brainbean Apps
+* CorporateHub
 
 Contributors
 ~~~~~~~~~~~~
@@ -72,7 +72,9 @@ Contributors
 * Adrien Peiffer <adrien.peiffer@acsone.eu>
 * Laurent Mignon <laurent.mignon@acsone.eu>
 * Benjamin Willig <benjamin.willig@acsone.eu>
-* Alexey Pelykh <alexey.pelykh@brainbeanapps.com>
+* `CorporateHub <https://corporatehub.eu/>`__
+
+  * Alexey Pelykh <alexey.pelykh@corphub.eu>
 
 Maintainers
 ~~~~~~~~~~~
