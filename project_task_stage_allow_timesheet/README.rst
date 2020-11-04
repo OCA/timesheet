@@ -23,7 +23,7 @@ Project Task Stage Allow Timesheet
     :target: https://runbot.odoo-community.org/runbot/117/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Allows to tell that a task stage is opened for timesheets
 
@@ -63,7 +63,9 @@ Contributors
 
 * Benjamin Willig <benjamin.willig@acsone.eu>
 * Numigi (tm) and all its contributors (https://bit.ly/numigiens)
-* Alexey Pelykh <alexey.pelykh@brainbeanapps.com>
+* `CorporateHub <https://corporatehub.eu/>`__
+
+  * Alexey Pelykh <alexey.pelykh@corphub.eu>
 
 Maintainers
 ~~~~~~~~~~~
