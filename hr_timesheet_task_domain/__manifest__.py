@@ -4,6 +4,7 @@
 # Copyright 2018 Tecnativa - Ernesto Tejeda
 # Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
 # Copyright 2020 Tecnativa - Manuel Calero
+# Copyright 2020 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
@@ -11,7 +12,7 @@
     "version": "13.0.1.0.0",
     "category": "Human Resources",
     "website": "https://github.com/OCA/hr-timesheet",
-    "author": "Tecnativa, " "Brainbean Apps, " "Odoo Community Association (OCA)",
+    "author": "Tecnativa, " "CorporateHub, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "application": False,
