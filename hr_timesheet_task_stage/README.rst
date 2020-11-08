@@ -51,7 +51,7 @@ Authors
 ~~~~~~~
 
 * Tecnativa
-* Brainbean Apps
+* CorporateHub
 
 Contributors
 ~~~~~~~~~~~~
@@ -66,7 +66,9 @@ Contributors
     * Ernesto Tejeda
     * Manuel Calero
 
-* Alexey Pelykh <alexey.pelykh@brainbeanapps.com>
+* `CorporateHub <https://corporatehub.eu/>`__
+
+  * Alexey Pelykh <alexey.pelykh@corphub.eu>
 
 Maintainers
 ~~~~~~~~~~~
