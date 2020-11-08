@@ -92,7 +92,7 @@ Authors
 
 * ForgeFlow
 * Onestein
-* Brainbean Apps
+* CorporateHub
 
 Contributors
 ~~~~~~~~~~~~
@@ -100,7 +100,10 @@ Contributors
 * Miquel Raïch <miquel.raich@forgeflow.com>
 * Andrea Stirpe <a.stirpe@onestein.nl>
 * Lois Rilo <lois.rilo@forgeflow.com>
-* Alexey Pelykh <alexey.pelykh@brainbeanapps.com>
+* `CorporateHub <https://corporatehub.eu/>`__
+
+  * Alexey Pelykh <alexey.pelykh@corphub.eu>
+
 * Dennis Sluijk <d.sluijk@onestein.nl>
 
 Maintainers
