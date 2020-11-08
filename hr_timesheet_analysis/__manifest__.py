@@ -1,4 +1,5 @@
 # Copyright 2018-2020 Brainbean Apps
+# Copyright 2020 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
@@ -7,7 +8,7 @@
     "category": "Human Resources",
     "maintainers": ["alexey-pelykh"],
     "website": "https://github.com/OCA/timesheet",
-    "author": "Brainbean Apps, Odoo Community Association (OCA)",
+    "author": "CorporateHub, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "application": False,
