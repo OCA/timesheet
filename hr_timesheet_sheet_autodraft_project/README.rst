@@ -57,7 +57,6 @@ Contributors
 
   * Alexey Pelykh <alexey.pelykh@corphub.eu>
 
-
 Maintainers
 ~~~~~~~~~~~
 
