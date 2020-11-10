@@ -5,6 +5,6 @@ from odoo import fields, models
 
 
 class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+    _inherit = "account.invoice"
 
-    timesheet_limit_date = fields.Date(string='Timesheet Limit Date')
+    timesheet_limit_date = fields.Date(string="Timesheet Limit Date")

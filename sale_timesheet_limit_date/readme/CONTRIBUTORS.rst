@@ -2,3 +2,4 @@
 * Guewen Baconnier <guewen.baconnier@camptocamp.com>
 * Vincent Renaville <vincent.renaville@camptocamp.com>
 * Iryna Vyshnevska <i.vyshnevska@mobilunity.com>
+* Jevin Dement <jdement@opensourceintegrators.com>

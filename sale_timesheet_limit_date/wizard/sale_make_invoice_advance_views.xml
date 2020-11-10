@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_advance_payment_inv_timesheet_limit_date" model="ir.ui.view">
+        <field name ="name">Invoice Orders</field>
+        <field name ="model">sale.advance.payment.inv</field>
+        <field name ="inherit_id" ref="sale.view_sale_advance_payment_inv"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='count']" position="after">
+                <field name="timesheet_limit_date" 
+                    attrs="{'invisible': [('count','&gt;',1)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
