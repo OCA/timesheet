@@ -38,6 +38,7 @@ setuptools.setup(
         'odoo12-addon-hr_utilization_report',
         'odoo12-addon-project_task_stage_allow_timesheet',
         'odoo12-addon-project_timesheet_holidays_integrity',
+        'odoo12-addon-sale_project_timesheet_by_seniority',
         'odoo12-addon-sale_timesheet_existing_project',
         'odoo12-addon-sale_timesheet_hook',
         'odoo12-addon-sale_timesheet_limit_date',
