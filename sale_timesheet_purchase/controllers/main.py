@@ -10,8 +10,10 @@ from odoo.http import request
 
 
 class SaleTimesheetControllerNew(SaleTimesheetController):
+
     def _plan_get_stat_button(self, projects):
-        res = super(SaleTimesheetControllerNew, self)._plan_get_stat_button(projects)
+        res = super(SaleTimesheetControllerNew,
+                    self)._plan_get_stat_button(projects)
         if request.env.user.has_group("purchase.group_purchase_user"):
             accounts = projects.mapped("analytic_account_id.id")
             purchase_order_lines = request.env["purchase.order.line"].search(
@@ -49,13 +51,14 @@ class SaleTimesheetControllerNew(SaleTimesheetController):
 
     @http.route("/timesheet/plan/action", type="json", auth="user")
     def plan_stat_button(
-        self, domain=None, res_model="account.analytic.line", res_id=False
-    ):
+            self, domain=None, res_model="account.analytic.line",
+            res_id=False):
         if domain is None:
             domain = []
-        res = super(SaleTimesheetControllerNew, self).plan_stat_button(
-            domain=domain, res_model=res_model, res_id=res_id
-        )
+        res = super(SaleTimesheetControllerNew,
+                    self).plan_stat_button(domain=domain,
+                                           res_model=res_model,
+                                           res_id=res_id)
         if res_model == "purchase.order":
             res = clean_action(
                 request.env.ref("purchase.purchase_form_action").read()[0]

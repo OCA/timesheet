@@ -1,0 +1,62 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_timesheet_task_stage
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-09-08 17:00+0000\n"
+"Last-Translator: Lorenzo Battistini <lb@takobi.online>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model,name:hr_timesheet_task_stage.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Riga analitica"
+
+#. module: hr_timesheet_task_stage
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
+msgid "Close task"
+msgstr "Chiudere lavoro"
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
+msgid "Closed"
+msgstr "Chiuso"
+
+#. module: hr_timesheet_task_stage
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
+msgid "Open task"
+msgstr "Aprire lavoro"
+
+#. module: hr_timesheet_task_stage
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_form
+msgid "Open/Close timesheet line automatically open/close its tasks. Do you want to proceed?"
+msgstr ""
+"Aprire/chiudere una riga di foglio ore apre/chiude automaticamente i suoi "
+"lavori. Vuoi procedere?"
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
+msgid "Tasks in this stage are considered closed."
+msgstr "I lavori in questa fase sono considerati chiusi."
+
+#. module: hr_timesheet_task_stage
+#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:47
+#, python-format
+msgid "There isn't any stage with \"Closed\" checked. Please mark any."
+msgstr "Non c'è alcuna fase impostata \"chiusa\". Prego impostarle."
+
+#. module: hr_timesheet_task_stage
+#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:29
+#, python-format
+msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
+msgstr ""
+"Non c'è alcuna fase non impostata \"chiusa\". Prego deselezionarne alcune."
