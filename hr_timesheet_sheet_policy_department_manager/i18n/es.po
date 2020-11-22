@@ -29,14 +29,12 @@ msgstr "Por responsable directo"
 #. module: hr_timesheet_sheet_policy_department_manager
 #: selection:res.company,timesheet_sheet_review_policy:0
 #, fuzzy
-#| msgid "By HR Manager/Officer"
 msgid "By HR Managers"
 msgstr "Por Reponsable de RRHH"
 
 #. module: hr_timesheet_sheet_policy_department_manager
 #: selection:res.company,timesheet_sheet_review_policy:0
 #, fuzzy
-#| msgid "By HR Manager/Officer"
 msgid "By HR Officers"
 msgstr "Por Reponsable de RRHH"
 
@@ -48,7 +46,6 @@ msgstr "Por responsable de proyecto"
 #. module: hr_timesheet_sheet_policy_department_manager
 #: selection:res.company,timesheet_sheet_review_policy:0
 #, fuzzy
-#| msgid "By Direct Manager"
 msgid "By Timesheets Managers"
 msgstr "Por responsable directo"
 
