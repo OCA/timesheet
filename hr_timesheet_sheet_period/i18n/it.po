@@ -50,7 +50,6 @@ msgstr "Periodo di paga"
 #. module: hr_timesheet_sheet_period
 #: selection:res.company,sheet_range:0
 #, fuzzy
-#| msgid "Pay Period"
 msgid "Payroll Period"
 msgstr "Periodo di paga"
 
@@ -73,21 +72,18 @@ msgstr ""
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,help:hr_timesheet_sheet_period.field_res_company__sheet_range
 #, fuzzy
-#| msgid "Timesheet"
 msgid "The range of your Timesheet Sheet."
 msgstr "Foglio ore"
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model,name:hr_timesheet_sheet_period.model_hr_timesheet_sheet
 #, fuzzy
-#| msgid "Timesheet"
 msgid "Timesheet Sheet"
 msgstr "Foglio ore"
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_period.field_res_company__sheet_range
 #, fuzzy
-#| msgid "Timesheet"
 msgid "Timesheet Sheet Range"
 msgstr "Foglio ore"
 
