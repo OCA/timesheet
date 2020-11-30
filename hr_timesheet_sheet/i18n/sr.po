@@ -108,8 +108,18 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr_manager
+msgid "By HR Managers"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr
-msgid "By HR Manager/Officer"
+msgid "By HR Officers"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__timesheet_manager
+msgid "By Timesheets Managers"
 msgstr ""
 
 #. module: hr_timesheet_sheet
