@@ -52,17 +52,72 @@ class HrUtilizationAnalysis(models.TransientModel):
         for analysis in self:
             employee_ids = HrEmployee.search(analysis._get_employees_domain())
 
-            entry_ids = [(5, False, False)]
-            for employee_id in employee_ids:
-                date = analysis.date_from
-                one_day = timedelta(days=1)
-                while date <= analysis.date_to:
-                    entry_ids.append(
-                        (0, False, {"employee_id": employee_id.id, "date": date})
-                    )
-                    date += one_day
+            dates = []
+            date = analysis.date_from
+            one_day = timedelta(days=1)
+            while date <= analysis.date_to:
+                dates.append(date)
+                date += one_day
+
+            entry_ids = [(5, False, False)] + [
+                (0, False, d) for d in self._get_entry_values(employee_ids, dates)
+            ]
 
             analysis.entry_ids = entry_ids
+
+    def _get_entry_values(self, employees, dates):
+        Module = self.env["ir.module.module"]
+        AccountAnalyticLine = self.env["account.analytic.line"]
+
+        project_timesheet_holidays = Module.with_user(SUPERUSER_ID).search(
+            [("name", "=", "project_timesheet_holidays"), ("state", "=", "installed")],
+            limit=1,
+        )
+
+        uom_hour = self.env.ref("uom.product_uom_hour")
+
+        all_line_ids = AccountAnalyticLine.search(
+            [
+                ("project_id", "!=", False),
+                ("employee_id", "in", employees.ids),
+                ("date", "in", dates),
+            ]
+        )
+        entries = []
+        for employee in employees:
+            tz = pytz.timezone(employee.resource_calendar_id.tz)
+            from_datetime = datetime.combine(min(dates), time.min).replace(tzinfo=tz)
+            to_datetime = datetime.combine(max(dates), time.max).replace(tzinfo=tz)
+            work_time = employee.list_work_time_per_day(from_datetime, to_datetime)
+            hours_dict = {w[0]: w[1] for w in work_time}
+            if project_timesheet_holidays:
+                leaves = employee.list_leaves(from_datetime, to_datetime)
+                leaves_dict = {e[0]: e[1] for e in leaves}
+
+            for date in dates:
+                line_ids = all_line_ids.filtered(
+                    lambda l: l.employee_id == employee and l.date == date
+                )
+                entry = {"employee_id": employee.id, "date": date}
+                entry["line_ids"] = [(4, _id) for _id in line_ids.ids]
+
+                capacity = hours_dict.get(date, 0)
+                if project_timesheet_holidays:
+                    capacity -= leaves_dict.get(date, 0)
+                capacity = max(capacity, 0)
+
+                amount = 0.0
+                for line_id in line_ids:
+                    amount += line_id.product_uom_id._compute_quantity(
+                        line_id.unit_amount, uom_hour
+                    )
+
+                entry["capacity"] = capacity
+                entry["amount"] = amount
+                entry["difference"] = capacity - amount
+                entries.append(entry)
+
+        return entries
 
     def _get_employees_domain(self):
         self.ensure_one()
@@ -108,18 +163,14 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
         related="employee_id.parent_id",
         store=True,
     )
-    date = fields.Date(string="Date", required=True)
+    date = fields.Date(required=True)
     line_ids = fields.Many2many(
-        string="Timesheet Lines",
-        comodel_name="account.analytic.line",
-        compute="_compute_line_ids",
-        store=True,
+        string="Timesheet Lines", comodel_name="account.analytic.line",
     )
-    capacity = fields.Float(string="Capacity", compute="_compute_capacity", store=True)
-    amount = fields.Float(string="Quantity", compute="_compute_amount", store=True)
-    difference = fields.Float(
-        string="Difference", compute="_compute_difference", store=True,
-    )
+
+    capacity = fields.Float()
+    amount = fields.Float(string="Quantity")
+    difference = fields.Float()
 
     _sql_constraints = [
         (
@@ -128,62 +179,3 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
             "An analysis entry for employee/date pair has to be unique!",
         ),
     ]
-
-    @api.depends("employee_id", "date")
-    def _compute_line_ids(self):
-        AccountAnalyticLine = self.env["account.analytic.line"]
-
-        for entry in self:
-            entry.line_ids = AccountAnalyticLine.search(
-                [
-                    ("project_id", "!=", False),
-                    ("employee_id", "=", entry.employee_id.id),
-                    ("date", "=", entry.date),
-                ]
-            )
-
-    @api.depends("employee_id", "date")
-    def _compute_capacity(self):
-        Module = self.env["ir.module.module"]
-
-        project_timesheet_holidays = Module.with_user(SUPERUSER_ID).search(
-            [("name", "=", "project_timesheet_holidays"), ("state", "=", "installed")],
-            limit=1,
-        )
-
-        for entry in self:
-            tz = pytz.timezone(entry.employee_id.resource_calendar_id.tz)
-            from_datetime = datetime.combine(entry.date, time.min).replace(tzinfo=tz)
-            to_datetime = datetime.combine(entry.date, time.max).replace(tzinfo=tz)
-
-            capacity = entry.employee_id._get_work_days_data(
-                from_datetime,
-                to_datetime,
-                compute_leaves=not project_timesheet_holidays,
-            )["hours"]
-
-            if project_timesheet_holidays:
-                capacity -= entry.employee_id._get_leave_days_data(
-                    from_datetime,
-                    to_datetime,
-                    calendar=entry.employee_id.resource_calendar_id,
-                )["hours"]
-
-            entry.capacity = max(capacity, 0)
-
-    @api.depends("line_ids")
-    def _compute_amount(self):
-        uom_hour = self.env.ref("uom.product_uom_hour")
-
-        for entry in self:
-            amount = 0.0
-            for line_id in entry.line_ids:
-                amount += line_id.product_uom_id._compute_quantity(
-                    line_id.unit_amount, uom_hour
-                )
-            entry.amount = amount
-
-    @api.depends("amount", "capacity")
-    def _compute_difference(self):
-        for entry in self:
-            entry.difference = entry.capacity - entry.amount
