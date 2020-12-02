@@ -98,24 +98,39 @@ class HrUtilizationAnalysis(models.TransientModel):
                 line_ids = all_line_ids.filtered(
                     lambda l: l.employee_id == employee and l.date == date
                 )
-                entry = {"employee_id": employee.id, "date": date}
-                entry["line_ids"] = [(4, _id) for _id in line_ids.ids]
+                base_entry = {"employee_id": employee.id, "date": date}
 
                 capacity = hours_dict.get(date, 0)
                 if project_timesheet_holidays:
                     capacity -= leaves_dict.get(date, 0)
                 capacity = max(capacity, 0)
 
-                amount = 0.0
-                for line_id in line_ids:
-                    amount += line_id.product_uom_id._compute_quantity(
-                        line_id.unit_amount, uom_hour
-                    )
+                projects = line_ids.mapped("project_id")
+                if not projects:
+                    entry = base_entry.copy()
+                    entry["amount"] = 0.0
+                    entry["line_ids"] = [(4, _id) for _id in line_ids.ids]
+                    entry["capacity"] = entry["difference"] = capacity
+                    entries.append(entry)
+                    continue
 
-                entry["capacity"] = capacity
-                entry["amount"] = amount
-                entry["difference"] = capacity - amount
-                entries.append(entry)
+                capacity = capacity / len(projects)  # TODO: improve
+                for project in projects:
+                    amount = 0.0
+                    project_line_ids = line_ids.filtered(
+                        lambda l: l.project_id == project
+                    )
+                    entry = base_entry.copy()
+                    entry["line_ids"] = [(4, _id) for _id in project_line_ids.ids]
+                    for line_id in project_line_ids:
+                        amount += line_id.product_uom_id._compute_quantity(
+                            line_id.unit_amount, uom_hour
+                        )
+                    entry["amount"] = amount
+                    entry["capacity"] = capacity
+                    entry["difference"] = capacity - amount
+                    entry["project_id"] = project.id
+                    entries.append(entry)
 
         return entries
 
@@ -163,6 +178,7 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
         related="employee_id.parent_id",
         store=True,
     )
+    project_id = fields.Many2one(string="Project", comodel_name="project.project")
     date = fields.Date(required=True)
     line_ids = fields.Many2many(
         string="Timesheet Lines", comodel_name="account.analytic.line",
@@ -175,7 +191,7 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
     _sql_constraints = [
         (
             "entry_uniq",
-            "UNIQUE(analysis_id, employee_id, date)",
-            "An analysis entry for employee/date pair has to be unique!",
+            "UNIQUE(analysis_id, project_id, employee_id, date)",
+            "An analysis entry for employee/date/project combination has to be unique!",
         ),
     ]

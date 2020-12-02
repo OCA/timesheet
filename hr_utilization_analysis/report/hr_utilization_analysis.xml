@@ -74,6 +74,7 @@
         <field name="model">hr.utilization.analysis.entry</field>
         <field name="arch" type="xml">
             <search string="Utilization">
+                <field name="project_id" string="Project" />
                 <field name="employee_id" string="Employee" />
                 <field name="department_id" />
                 <field name="manager_id" />
@@ -93,6 +94,11 @@
                         string="Manager"
                         name="manager"
                         context="{'group_by':'manager_id'}"
+                    />
+                    <filter
+                        string="Project"
+                        name="project"
+                        context="{'group_by':'project_id'}"
                     />
                     <separator orientation="vertical" />
                     <filter string="Date" name="date" context="{'group_by':'date'}" />

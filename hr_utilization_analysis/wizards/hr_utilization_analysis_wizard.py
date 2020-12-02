@@ -24,7 +24,6 @@ class HrUtilizationAnalysisWizard(models.TransientModel):
 
     @api.onchange("date_range_id")
     def onchange_date_range_id(self):
-        """Handle date range change."""
         self.date_from = self.date_range_id.date_start
         self.date_to = self.date_range_id.date_end
 
