@@ -41,17 +41,15 @@ This functionality is not available in Odoo, reported in `odoo/odoo#31043 <https
 Usage
 =====
 
-To exclude a specific timesheet entry from Sale Order:
+To exclude a specific timesheet entry from invoicing:
 
-# Go to *Timesheets > Timesheet > All Timesheets*
-# Check *Exclude From Billing* for a specific timesheet entry
+  # Go to *Timesheets > Timesheet > All Timesheets*
+  # On the Timesheet list view, check *Non-billable* for specific timesheet entries
 
 or:
 
-# Go to *Project > All Tasks*
-# Open specific task for editing
-# Switch to *Timesheets* tab
-# Check *Exclude From Billing* for a specific timesheet entry
+  # Go to *Project > All Tasks*, ans open a specific Task form
+  # On the Task form, *Timesheets* tab, check *Non-billable* for specific timesheet entries
 
 Bug Tracker
 ===========
