@@ -9,7 +9,7 @@ class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
     exclude_from_sale_order = fields.Boolean(
-        string='Exclude from Sale Order',
+        string='Non-billable',
         help=(
             'Checking this would exclude this timesheet entry from Sale Order'
         ),
