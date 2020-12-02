@@ -1,13 +1,14 @@
 # Copyright 2018-2020 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 
 
 class HrUtilizationAnalysisWizard(models.TransientModel):
     _name = "hr.utilization.analysis.wizard"
     _description = "HR Utilization Analysis Wizard"
 
+    date_range_id = fields.Many2one(comodel_name="date.range", string="Date range")
     date_from = fields.Date(string="Start Date", required=True)
     date_to = fields.Date(string="End Date", required=True)
     only_active_employees = fields.Boolean(
@@ -20,6 +21,12 @@ class HrUtilizationAnalysisWizard(models.TransientModel):
     department_ids = fields.Many2many(
         string="Departments", comodel_name="hr.department",
     )
+
+    @api.onchange("date_range_id")
+    def onchange_date_range_id(self):
+        """Handle date range change."""
+        self.date_from = self.date_range_id.date_start
+        self.date_to = self.date_range_id.date_end
 
     def action_view(self):
         self.ensure_one()
