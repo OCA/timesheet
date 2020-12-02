@@ -13,7 +13,7 @@
     "installable": True,
     "application": False,
     "summary": "View Utilization Analysis from Task Logs.",
-    "depends": ["hr_timesheet"],
+    "depends": ["hr_timesheet", "date_range"],
     "data": [
         "views/hr_department.xml",
         "views/hr_employee.xml",
