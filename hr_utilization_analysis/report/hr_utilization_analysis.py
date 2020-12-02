@@ -59,11 +59,10 @@ class HrUtilizationAnalysis(models.TransientModel):
                 dates.append(date)
                 date += one_day
 
-            entry_ids = [(5, False, False)] + [
-                (0, False, d) for d in self._get_entry_values(employee_ids, dates)
+            analysis.entry_ids = [
+                (5, False, False),
+                *[(0, False, d) for d in self._get_entry_values(employee_ids, dates)],
             ]
-
-            analysis.entry_ids = entry_ids
 
     def _get_entry_values(self, employees, dates):
         Module = self.env["ir.module.module"]
@@ -89,21 +88,19 @@ class HrUtilizationAnalysis(models.TransientModel):
             from_datetime = datetime.combine(min(dates), time.min).replace(tzinfo=tz)
             to_datetime = datetime.combine(max(dates), time.max).replace(tzinfo=tz)
             work_time = employee.list_work_time_per_day(from_datetime, to_datetime)
-            hours_dict = {w[0]: w[1] for w in work_time}
+            work_time_by_date = {w[0]: w[1] for w in work_time}
             if project_timesheet_holidays:
                 leaves = employee.list_leaves(from_datetime, to_datetime)
-                leaves_dict = {e[0]: e[1] for e in leaves}
+                leaves_by_date = {leave[0]: leave[1] for leave in leaves}
 
             for date in dates:
                 line_ids = all_line_ids.filtered(
                     lambda l: l.employee_id == employee and l.date == date
                 )
-                entry = {"employee_id": employee.id, "date": date}
-                entry["line_ids"] = [(4, _id) for _id in line_ids.ids]
 
-                capacity = hours_dict.get(date, 0)
+                capacity = work_time_by_date.get(date, 0)
                 if project_timesheet_holidays:
-                    capacity -= leaves_dict.get(date, 0)
+                    capacity -= leaves_by_date.get(date, 0)
                 capacity = max(capacity, 0)
 
                 amount = 0.0
@@ -112,10 +109,16 @@ class HrUtilizationAnalysis(models.TransientModel):
                         line_id.unit_amount, uom_hour
                     )
 
-                entry["capacity"] = capacity
-                entry["amount"] = amount
-                entry["difference"] = capacity - amount
-                entries.append(entry)
+                entries.append(
+                    {
+                        "employee_id": employee.id,
+                        "date": date,
+                        "line_ids": [(4, _id) for _id in line_ids.ids],
+                        "capacity": capacity,
+                        "amount": amount,
+                        "difference": capacity - amount,
+                    }
+                )
 
         return entries
 
