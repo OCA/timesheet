@@ -18,6 +18,8 @@
                         <field name="capacity" widget="timesheet_uom" />
                         <field name="amount" widget="timesheet_uom" />
                         <field name="difference" widget="timesheet_uom" />
+                        <field name="planned_amount" widget="timesheet_uom" />
+                        <field name="planned_difference" widget="timesheet_uom" />
                     </group>
                 </group>
                 <group string="Timesheet Lines">
@@ -38,7 +40,17 @@
                 <field
                     name="difference"
                     widget="timesheet_uom"
-                    sum="Total Difference"
+                    sum="Total Remaining Capacity"
+                />
+                <field
+                    name="planned_amount"
+                    widget="timesheet_uom"
+                    sum="Total Amount"
+                />
+                <field
+                    name="planned_difference"
+                    widget="timesheet_uom"
+                    sum="Total Still Plannable"
                 />
             </tree>
         </field>
@@ -52,7 +64,18 @@
                 <field name="date" type="col" />
                 <field name="capacity" type="measure" widget="timesheet_uom" />
                 <field name="amount" type="measure" widget="timesheet_uom" />
-                <field name="difference" type="measure" widget="timesheet_uom" />
+                <field
+                    name="difference"
+                    string="Remaining"
+                    type="measure"
+                    widget="timesheet_uom"
+                />
+                <field name="planned_amount" type="measure" widget="timesheet_uom" />
+                <field
+                    name="planned_difference"
+                    type="measure"
+                    widget="timesheet_uom"
+                />
             </pivot>
         </field>
     </record>
@@ -66,6 +89,8 @@
                 <field name="capacity" type="measure" />
                 <field name="amount" type="measure" />
                 <field name="difference" type="measure" />
+                <field name="planned_amount" type="measure" />
+                <field name="planned_difference" type="measure" />
             </graph>
         </field>
     </record>

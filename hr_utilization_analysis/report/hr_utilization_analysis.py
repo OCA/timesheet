@@ -68,6 +68,7 @@ class HrUtilizationAnalysis(models.TransientModel):
     def _get_entry_values(self, employees, dates):
         Module = self.env["ir.module.module"]
         AccountAnalyticLine = self.env["account.analytic.line"]
+        Task = self.env["project.task"]
 
         project_timesheet_holidays = Module.with_user(SUPERUSER_ID).search(
             [("name", "=", "project_timesheet_holidays"), ("state", "=", "installed")],
@@ -81,6 +82,13 @@ class HrUtilizationAnalysis(models.TransientModel):
                 ("project_id", "!=", False),
                 ("employee_id", "in", employees.ids),
                 ("date", "in", dates),
+            ]
+        )
+        all_tasks = Task.search(
+            [
+                ("user_id", "in", employees.mapped("user_id").ids),
+                ("date_assign", ">=", min(dates)),
+                ("date_assign", "<=", max(dates)),
             ]
         )
         entries = []
@@ -105,12 +113,20 @@ class HrUtilizationAnalysis(models.TransientModel):
                     capacity -= leaves_dict.get(date, 0)
                 capacity = max(capacity, 0)
 
+                tasks = all_tasks.filtered(
+                    lambda t: t.user_id == employee.user_id
+                    and t.date_assign.date() == date
+                )
+                planned_hours = sum(tasks.mapped("planned_hours"))
+
                 projects = line_ids.mapped("project_id")
                 if not projects:
                     entry = base_entry.copy()
                     entry["amount"] = 0.0
                     entry["line_ids"] = [(4, _id) for _id in line_ids.ids]
                     entry["capacity"] = entry["difference"] = capacity
+                    entry["planned_amount"] = planned_hours
+                    entry["planned_difference"] = capacity - planned_hours
                     entries.append(entry)
                     continue
 
@@ -126,10 +142,14 @@ class HrUtilizationAnalysis(models.TransientModel):
                         amount += line_id.product_uom_id._compute_quantity(
                             line_id.unit_amount, uom_hour
                         )
+                    project_tasks = tasks.filtered(lambda t: t.project_id == project)
+                    planned_hours = sum(project_tasks.mapped("planned_hours"))
                     entry["amount"] = amount
                     entry["capacity"] = capacity
                     entry["difference"] = capacity - amount
                     entry["project_id"] = project.id
+                    entry["planned_amount"] = planned_hours
+                    entry["planned_difference"] = planned_hours - capacity
                     entries.append(entry)
 
         return entries
@@ -185,8 +205,10 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
     )
 
     capacity = fields.Float()
-    amount = fields.Float(string="Quantity")
-    difference = fields.Float()
+    amount = fields.Float(string="Real")
+    difference = fields.Float(string="Capacity remaining")
+    planned_amount = fields.Float(string="Planned")
+    planned_difference = fields.Float(string="Still to plan")
 
     _sql_constraints = [
         (
