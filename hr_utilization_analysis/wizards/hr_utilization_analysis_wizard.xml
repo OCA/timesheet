@@ -10,6 +10,11 @@
         <field name="arch" type="xml">
             <form>
                 <group name="filter">
+                    <group name="date_range_widget" colspan="2">
+                        <group>
+                            <field name="date_range_id" />
+                        </group>
+                    </group>
                     <group name="date_range" colspan="2">
                         <group>
                             <field name="date_from" />
