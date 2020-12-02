@@ -17,6 +17,7 @@
     'summary': 'View Utilization Analysis from Task Logs.',
     'depends': [
         'hr_timesheet',
+        'date_range',
     ],
     'data': [
         'views/hr_department.xml',
