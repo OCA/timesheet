@@ -25,7 +25,7 @@ msgstr ""
 
 #. module: sale_timesheet_task_exclude
 #: model:ir.model.fields,field_description:sale_timesheet_task_exclude.field_project_task__exclude_from_sale_order
-msgid "Exclude from Sale Order"
+msgid "Non-billable"
 msgstr "von Abrechnung ausschließen"
 
 #. module: sale_timesheet_task_exclude
