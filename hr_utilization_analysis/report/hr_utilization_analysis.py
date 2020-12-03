@@ -116,7 +116,6 @@ class HrUtilizationAnalysis(models.TransientModel):
                         "line_ids": [(4, _id) for _id in line_ids.ids],
                         "capacity": capacity,
                         "amount": amount,
-                        "difference": capacity - amount,
                     }
                 )
 
@@ -173,7 +172,12 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
 
     capacity = fields.Float()
     amount = fields.Float(string="Quantity")
-    difference = fields.Float()
+    difference = fields.Float(compute="_compute_difference")
+
+    @api.depends("capacity", "amount")
+    def _compute_difference(self):
+        for entry in self:
+            entry.difference = entry.capacity - entry.amount
 
     _sql_constraints = [
         (
