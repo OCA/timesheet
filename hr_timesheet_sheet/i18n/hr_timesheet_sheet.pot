@@ -285,7 +285,7 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 msgid ""
 "Employees must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, it should be\n"
+"            of the reporting period. Once the timesheet sheet is confirmed, it should be\n"
 "            validated by a reviewer."
 msgstr ""
 
@@ -293,7 +293,7 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 msgid ""
 "Employees must record timesheets in the sheet every day and confirm at the end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, it should be\n"
+"             of the reporting period. Once the timesheet sheet is confirmed, it should be\n"
 "             validated by a reviewer."
 msgstr ""
 
@@ -1029,7 +1029,7 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, it should be\n"
+"            of the reporting period. Once the timesheet sheet is confirmed, it should be\n"
 "            validated by a reviewer."
 msgstr ""
 
@@ -1037,7 +1037,7 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 msgid ""
 "You must record timesheets in the sheet every day and confirm at the end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, it should be\n"
+"             of the reporting period. Once the timesheet sheet is confirmed, it should be\n"
 "             validated by a reviewer."
 msgstr ""
 

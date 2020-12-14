@@ -306,28 +306,22 @@ msgstr "Työntekijät"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
-#, fuzzy
 msgid ""
 "Employees must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"Kirjaa työtuntisi päivittäin ja vahvista tuntikorttisi viikon päätteeksi. "
-"Kun tuntikortti on vahvistettu, esimiehesi voi hyväksyä sen."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
-#, fuzzy
 msgid ""
 "Employees must record timesheets in the sheet every day and confirm at the "
 "end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"Kirjaa työtuntisi päivittäin ja vahvista tuntikorttisi viikon päätteeksi. "
-"Kun tuntikortti on vahvistettu, esimiehesi voi hyväksyä sen."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
@@ -1106,32 +1100,67 @@ msgstr "Et voi muuttaa vahvistetulla tuntikortilla olevaa tietoa."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
-#, fuzzy
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"Kirjaa työtuntisi päivittäin ja vahvista tuntikorttisi viikon päätteeksi. "
-"Kun tuntikortti on vahvistettu, esimiehesi voi hyväksyä sen."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
-#, fuzzy
 msgid ""
 "You must record timesheets in the sheet every day and confirm at the end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"Kirjaa työtuntisi päivittäin ja vahvista tuntikorttisi viikon päätteeksi. "
-"Kun tuntikortti on vahvistettu, esimiehesi voi hyväksyä sen."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "-"
+
+#, fuzzy
+#~ msgid ""
+#~ "Employees must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "Kirjaa työtuntisi päivittäin ja vahvista tuntikorttisi viikon päätteeksi. "
+#~ "Kun tuntikortti on vahvistettu, esimiehesi voi hyväksyä sen."
+
+#, fuzzy
+#~ msgid ""
+#~ "Employees must record timesheets in the sheet every day and confirm at "
+#~ "the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "Kirjaa työtuntisi päivittäin ja vahvista tuntikorttisi viikon päätteeksi. "
+#~ "Kun tuntikortti on vahvistettu, esimiehesi voi hyväksyä sen."
+
+#, fuzzy
+#~ msgid ""
+#~ "You must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "Kirjaa työtuntisi päivittäin ja vahvista tuntikorttisi viikon päätteeksi. "
+#~ "Kun tuntikortti on vahvistettu, esimiehesi voi hyväksyä sen."
+
+#, fuzzy
+#~ msgid ""
+#~ "You must record timesheets in the sheet every day and confirm at the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "Kirjaa työtuntisi päivittäin ja vahvista tuntikorttisi viikon päätteeksi. "
+#~ "Kun tuntikortti on vahvistettu, esimiehesi voi hyväksyä sen."
 
 #, fuzzy
 #~ msgid "By Department Manager"
