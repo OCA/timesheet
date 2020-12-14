@@ -14,7 +14,7 @@ class AccountAnalyticLine(models.Model):
         string='Sheet',
     )
     sheet_state = fields.Selection(
-        string='Steet State',
+        string='Sheet State',
         related='sheet_id.state',
     )
 
