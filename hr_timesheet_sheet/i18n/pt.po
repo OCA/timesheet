@@ -308,26 +308,20 @@ msgstr "Funcionários"
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 msgid ""
 "Employees must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"Os funcionários devem registar as folhas de horas diariamente e confirmar no "
-"final do período de reporting. Assim que a folha de horas estiver "
-"confirmada, deve ser validada por um revisor."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 msgid ""
 "Employees must record timesheets in the sheet every day and confirm at the "
 "end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"Os funcionários devem registar as folhas de horas diariamente e confirmar no "
-"final do período de reporting. Assim que a folha de horas estiver "
-"confirmada, deve ser validada por um revisor."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
@@ -699,6 +693,12 @@ msgid "Sheet"
 msgstr "Folha"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
+msgid "Sheet State"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Starting day for Timesheet Sheets."
 msgstr "Dia de início para Folhas de Horas."
@@ -720,12 +720,6 @@ msgstr ""
 "Vencido: A data limite já foi ultrapassada\n"
 "Hoje: A data da atividade é hoje\n"
 "Planeada: Atividades futuras."
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
-msgid "Steet State"
-msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -1089,30 +1083,65 @@ msgstr "Não pode modificar um registo numa folha de horas confirmada: %s"
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"Deve registar folhas de horas todos os dias e confirmar no final do período "
-"de reporting. Assim que a folha estiver confirmada, deve ser validade por um "
-"revisor."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 msgid ""
 "You must record timesheets in the sheet every day and confirm at the end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"Deve registar folhas de horas todos os dias e confirmar no final do período "
-"de reporting. Assim que a folha estiver confirmada, deve ser validade por um "
-"revisor."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "até"
+
+#~ msgid ""
+#~ "Employees must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "Os funcionários devem registar as folhas de horas diariamente e confirmar "
+#~ "no final do período de reporting. Assim que a folha de horas estiver "
+#~ "confirmada, deve ser validada por um revisor."
+
+#~ msgid ""
+#~ "Employees must record timesheets in the sheet every day and confirm at "
+#~ "the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "Os funcionários devem registar as folhas de horas diariamente e confirmar "
+#~ "no final do período de reporting. Assim que a folha de horas estiver "
+#~ "confirmada, deve ser validada por um revisor."
+
+#~ msgid ""
+#~ "You must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "Deve registar folhas de horas todos os dias e confirmar no final do "
+#~ "período de reporting. Assim que a folha estiver confirmada, deve ser "
+#~ "validade por um revisor."
+
+#~ msgid ""
+#~ "You must record timesheets in the sheet every day and confirm at the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "Deve registar folhas de horas todos os dias e confirmar no final do "
+#~ "período de reporting. Assim que a folha estiver confirmada, deve ser "
+#~ "validade por um revisor."
 
 #~ msgid "By HR Manager/Officer"
 #~ msgstr "Por Gestor/Diretor de RH"

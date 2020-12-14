@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_sheet
+# 	* hr_timesheet_sheet
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,10 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
-msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\" role=\"img\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" aria-label=\"Values set here are company-specific.\" groups="
@@ -297,27 +300,22 @@ msgstr "Employés"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
-msgid "Employees must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, it should be\n"
+msgid ""
+"Employees must record timesheets every day and confirm at the end\n"
+"            of the reporting period. Once the timesheet sheet is confirmed, "
+"it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"Les employés doivent enregistrer les feuilles de temps tous les jours et "
-"confirmer à la fin\n"
-"            de la période de référence. Une fois le relevé de feuille de "
-"temps confirmé, il doit être\n"
-"            validée par un examinateur."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
-msgid "Employees must record timesheets in the sheet every day and confirm at the end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, it should be\n"
+msgid ""
+"Employees must record timesheets in the sheet every day and confirm at the "
+"end\n"
+"             of the reporting period. Once the timesheet sheet is confirmed, "
+"it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"Les employés doivent enregistrer les feuilles de temps dans le relevé tous "
-"les jours et confirmer à la fin\n"
-"              de la période de référence. Une fois le relevé de feuille de "
-"temps confirmé, il doit être\n"
-"              validé par un examinateur."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
@@ -385,14 +383,18 @@ msgstr "Si coché, des messages n'ont pas pu être livré."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_project_id
-msgid "If selected, the associated project is added to the timesheet sheet when clicked the button."
+msgid ""
+"If selected, the associated project is added to the timesheet sheet when "
+"clicked the button."
 msgstr ""
 "Si sélectionné, le projet associé est ajouté au relevé de feuille de temps "
 "lorsque vous cliquez sur le bouton."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_task_id
-msgid "If selected, the associated task is added to the timesheet sheet when clicked the button."
+msgid ""
+"If selected, the associated task is added to the timesheet sheet when "
+"clicked the button."
 msgstr ""
 "Si sélectionné, la tâche associée est ajoutée au relevé de feuille de temps "
 "lorsque vous cliquez sur le bouton."
@@ -405,7 +407,9 @@ msgstr "A l'état \"Brouillon\""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:498
 #, python-format
-msgid "In order to create a sheet for this employee, you must link him/her to an user: %s"
+msgid ""
+"In order to create a sheet for this employee, you must link him/her to an "
+"user: %s"
 msgstr ""
 "Afin de créer une feuille pour cet employé, vous devez le/la lier à un "
 "utilisateur : %s"
@@ -413,7 +417,9 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
 #, python-format
-msgid "In order to review a timesheet sheet, your user needs to be linked to an employee."
+msgid ""
+"In order to review a timesheet sheet, your user needs to be linked to an "
+"employee."
 msgstr ""
 "Pour examiner un relevé de feuille de temps, votre utilisateur doit être lié "
 "à un employé."
@@ -681,6 +687,12 @@ msgid "Sheet"
 msgstr "Feuille"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
+msgid "Sheet State"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Starting day for Timesheet Sheets."
 msgstr "Jour de début pour les relevés de feuilles de temps."
@@ -692,7 +704,8 @@ msgstr "État"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_state
-msgid "Status based on activities\n"
+msgid ""
+"Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
@@ -701,12 +714,6 @@ msgstr ""
 "En retard : La date d'échéance est déjà dépassée\n"
 "Aujourd'hui : L'activité est planifiée pour aujourd'hui\n"
 "Planifiées : activités futures."
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
-msgid "Steet State"
-msgstr "État de la feuille"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -749,7 +756,8 @@ msgstr "Feuilles de temps temporaires"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:321
 #, python-format
-msgid "The Company in the Timesheet Sheet and in the Department must be the same."
+msgid ""
+"The Company in the Timesheet Sheet and in the Department must be the same."
 msgstr ""
 "La société dans le relevé de feuille de temps et dans le département doit "
 "être la même."
@@ -757,7 +765,8 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:311
 #, python-format
-msgid "The Company in the Timesheet Sheet and in the Employee must be the same."
+msgid ""
+"The Company in the Timesheet Sheet and in the Employee must be the same."
 msgstr ""
 "La société dans le relevé de feuille de temps et dans l'employé doit être la "
 "même."
@@ -869,7 +878,8 @@ msgstr "Relevés de feuilles de temps à examiner"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
-msgid "Timesheet sheets can also be invoiced to customers, depending on\n"
+msgid ""
+"Timesheet sheets can also be invoiced to customers, depending on\n"
 "             the configuration of each project's related contract."
 msgstr ""
 "Les relevés de feuilles de temps peuvent également être facturés aux "
@@ -891,7 +901,8 @@ msgstr "Feuilles de temps"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
-msgid "Timesheets can also be invoiced to customers, depending on the\n"
+msgid ""
+"Timesheets can also be invoiced to customers, depending on the\n"
 "            configuration of each project's related contract."
 msgstr ""
 "Les feuilles de temps peuvent également être facturées aux clients, selon "
@@ -1027,7 +1038,9 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
 #, python-format
-msgid "You cannot create a timesheet of a different company than the one of the timesheet sheet:\n"
+msgid ""
+"You cannot create a timesheet of a different company than the one of the "
+"timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
 msgstr ""
@@ -1039,7 +1052,9 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
 #, python-format
-msgid "You cannot delete a timesheet sheet which is already submitted or confirmed: %s"
+msgid ""
+"You cannot delete a timesheet sheet which is already submitted or confirmed: "
+"%s"
 msgstr ""
 "Vous ne pouvez pas supprimer un relevé de feuille de temps déjà soumis ou "
 "confirmé : %s"
@@ -1053,7 +1068,8 @@ msgstr "Vous ne pouvez pas dupliquer une feuille."
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
 #, python-format
-msgid "You cannot have 2 or more sheets that overlap!\n"
+msgid ""
+"You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
 "Conflicting sheets:\n"
 " - %s"
@@ -1074,29 +1090,75 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
-msgid "You must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, it should be\n"
+msgid ""
+"You must record timesheets every day and confirm at the end\n"
+"            of the reporting period. Once the timesheet sheet is confirmed, "
+"it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"Vous devez enregistrer les feuilles de temps tous les jours et confirmer à "
-"la fin\n"
-"             de la période de référence. Une fois la feuille de temps "
-"confirmée, elle doit être\n"
-"             validé par un examinateur."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
-msgid "You must record timesheets in the sheet every day and confirm at the end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, it should be\n"
+msgid ""
+"You must record timesheets in the sheet every day and confirm at the end\n"
+"             of the reporting period. Once the timesheet sheet is confirmed, "
+"it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"Vous devez enregistrer les feuilles de temps dans le relevé tous les jours "
-"et confirmer à la fin\n"
-"              de la période de référence. Une fois le relevé de feuilles de "
-"temps confirmé, il doit être\n"
-"              validé par un examinateur."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "à"
+
+#~ msgid ""
+#~ "Employees must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "Les employés doivent enregistrer les feuilles de temps tous les jours et "
+#~ "confirmer à la fin\n"
+#~ "            de la période de référence. Une fois le relevé de feuille de "
+#~ "temps confirmé, il doit être\n"
+#~ "            validée par un examinateur."
+
+#~ msgid ""
+#~ "Employees must record timesheets in the sheet every day and confirm at "
+#~ "the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "Les employés doivent enregistrer les feuilles de temps dans le relevé "
+#~ "tous les jours et confirmer à la fin\n"
+#~ "              de la période de référence. Une fois le relevé de feuille "
+#~ "de temps confirmé, il doit être\n"
+#~ "              validé par un examinateur."
+
+#~ msgid "Steet State"
+#~ msgstr "État de la feuille"
+
+#~ msgid ""
+#~ "You must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "Vous devez enregistrer les feuilles de temps tous les jours et confirmer "
+#~ "à la fin\n"
+#~ "             de la période de référence. Une fois la feuille de temps "
+#~ "confirmée, elle doit être\n"
+#~ "             validé par un examinateur."
+
+#~ msgid ""
+#~ "You must record timesheets in the sheet every day and confirm at the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "Vous devez enregistrer les feuilles de temps dans le relevé tous les "
+#~ "jours et confirmer à la fin\n"
+#~ "              de la période de référence. Une fois le relevé de feuilles "
+#~ "de temps confirmé, il doit être\n"
+#~ "              validé par un examinateur."

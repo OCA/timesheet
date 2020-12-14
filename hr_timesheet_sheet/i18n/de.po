@@ -323,26 +323,20 @@ msgstr "Mitarbeiter"
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 msgid ""
 "Employees must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"Mitarbeiter müssen jeden Tag ihre Zeit erfassen und am Ende des gewählten "
-"Zeitraums dem Manager zur Genehmigung vorlegen. Danach wird der Manager den "
-"Stundenzettel überprüfen."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 msgid ""
 "Employees must record timesheets in the sheet every day and confirm at the "
 "end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"Mitarbeiter müssen jeden Tag ihre Zeit erfassen und am Ende des gewählten "
-"Zeitraums dem Manager zur Genehmigung vorlegen. Danach wird der Manager den "
-"Stundenzettel überprüfen."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
@@ -721,6 +715,12 @@ msgid "Sheet"
 msgstr "Zettel"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
+msgid "Sheet State"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Starting day for Timesheet Sheets."
 msgstr ""
@@ -743,12 +743,6 @@ msgstr ""
 "Überfällig: Das Fälligkeitsdatum der Aktivität ist überschritten.\n"
 "Heute: Die Aktivität findet heute statt.\n"
 "Geplant: Die Aktivitäten findet in der Zukunft statt."
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
-msgid "Steet State"
-msgstr "Status"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -1121,30 +1115,68 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"Sie müssen jeden Tag ihre Zeit erfassen und am Ende des gewählten Zeitraums "
-"dem Manager zur Genehmigung vorlegen. Danach wird der Manager den "
-"Stundenzettel überprüfen."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 msgid ""
 "You must record timesheets in the sheet every day and confirm at the end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"Sie müssen jeden Tag ihre Zeit erfassen und am Ende des gewählten Zeitraums "
-"dem Manager zur Genehmigung vorlegen. Danach wird der Manager den "
-"Stundenzettel überprüfen."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "bis"
+
+#~ msgid ""
+#~ "Employees must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "Mitarbeiter müssen jeden Tag ihre Zeit erfassen und am Ende des gewählten "
+#~ "Zeitraums dem Manager zur Genehmigung vorlegen. Danach wird der Manager "
+#~ "den Stundenzettel überprüfen."
+
+#~ msgid ""
+#~ "Employees must record timesheets in the sheet every day and confirm at "
+#~ "the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "Mitarbeiter müssen jeden Tag ihre Zeit erfassen und am Ende des gewählten "
+#~ "Zeitraums dem Manager zur Genehmigung vorlegen. Danach wird der Manager "
+#~ "den Stundenzettel überprüfen."
+
+#~ msgid "Steet State"
+#~ msgstr "Status"
+
+#~ msgid ""
+#~ "You must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "Sie müssen jeden Tag ihre Zeit erfassen und am Ende des gewählten "
+#~ "Zeitraums dem Manager zur Genehmigung vorlegen. Danach wird der Manager "
+#~ "den Stundenzettel überprüfen."
+
+#~ msgid ""
+#~ "You must record timesheets in the sheet every day and confirm at the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "Sie müssen jeden Tag ihre Zeit erfassen und am Ende des gewählten "
+#~ "Zeitraums dem Manager zur Genehmigung vorlegen. Danach wird der Manager "
+#~ "den Stundenzettel überprüfen."
 
 #~ msgid "By HR Manager/Officer"
 #~ msgstr "Durch Personalsachbearbeiter / Manager"

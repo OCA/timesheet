@@ -314,30 +314,20 @@ msgstr "Dipendenti"
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 msgid ""
 "Employees must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"I fogli ore devono essere registrati giornalmente dai dipendenti e "
-"confermati\n"
-"            al termine del periodo di rendicontazione. Dopo la conferma, il "
-"prospetto deve essere\n"
-"            approvato da un revisore."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 msgid ""
 "Employees must record timesheets in the sheet every day and confirm at the "
 "end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"I dipendenti devono registrare giornalmente i fogli ore nel prospetto e "
-"confermarli al\n"
-"            termine del periodo di rendicontazione. Dopo la conferma, il "
-"prospetto deve essere\n"
-"            approvato da un revisore."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
@@ -712,6 +702,12 @@ msgid "Sheet"
 msgstr "Prospetto"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
+msgid "Sheet State"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Starting day for Timesheet Sheets."
 msgstr "Giorno iniziale per i prospetti foglio ore."
@@ -733,12 +729,6 @@ msgstr ""
 "In ritardo: data di scadenza già superata\n"
 "Oggi: attività in data odierna\n"
 "Pianificato: attività future."
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
-msgid "Steet State"
-msgstr "Stato prospetto"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -1105,37 +1095,79 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
-#, fuzzy
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"I fogli ore devono essere registrati giornalmente dai dipendenti e "
-"confermati\n"
-"            al termine del periodo di rendicontazione. Dopo la conferma, il "
-"prospetto deve essere\n"
-"            approvato da un revisore."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 msgid ""
 "You must record timesheets in the sheet every day and confirm at the end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"I fogli ore devono essere registrati giornalmente nel prospetto e confermati "
-"al\n"
-"            termine del periodo di rendicontazione. Dopo la conferma, il "
-"prospetto deve essere\n"
-"            approvato da un revisore."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "fino al"
+
+#~ msgid ""
+#~ "Employees must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "I fogli ore devono essere registrati giornalmente dai dipendenti e "
+#~ "confermati\n"
+#~ "            al termine del periodo di rendicontazione. Dopo la conferma, "
+#~ "il prospetto deve essere\n"
+#~ "            approvato da un revisore."
+
+#~ msgid ""
+#~ "Employees must record timesheets in the sheet every day and confirm at "
+#~ "the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "I dipendenti devono registrare giornalmente i fogli ore nel prospetto e "
+#~ "confermarli al\n"
+#~ "            termine del periodo di rendicontazione. Dopo la conferma, il "
+#~ "prospetto deve essere\n"
+#~ "            approvato da un revisore."
+
+#~ msgid "Steet State"
+#~ msgstr "Stato prospetto"
+
+#, fuzzy
+#~ msgid ""
+#~ "You must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "I fogli ore devono essere registrati giornalmente dai dipendenti e "
+#~ "confermati\n"
+#~ "            al termine del periodo di rendicontazione. Dopo la conferma, "
+#~ "il prospetto deve essere\n"
+#~ "            approvato da un revisore."
+
+#~ msgid ""
+#~ "You must record timesheets in the sheet every day and confirm at the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "I fogli ore devono essere registrati giornalmente nel prospetto e "
+#~ "confermati al\n"
+#~ "            termine del periodo di rendicontazione. Dopo la conferma, il "
+#~ "prospetto deve essere\n"
+#~ "            approvato da un revisore."
 
 #~ msgid "By HR Manager/Officer"
 #~ msgstr "Per responsabile/direttore RU"

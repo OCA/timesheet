@@ -309,26 +309,20 @@ msgstr "Werknemers"
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 msgid ""
 "Employees must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"U moet uw urenstaat elke dag invullen en bevestigen op het einde\n"
-"van de week. Eenmaal de urenstaat ingediend is, moet hij bevestigd\n"
-"worden door een goedkeurder."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 msgid ""
 "Employees must record timesheets in the sheet every day and confirm at the "
 "end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"U moet uw urenstaat elke dag invullen en bevestigen op het einde\n"
-"van de week. Eenmaal de urenstaat ingediend is, moet hij bevestigd\n"
-"worden door een goedkeurder."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
@@ -700,6 +694,12 @@ msgid "Sheet"
 msgstr "Formulier"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
+msgid "Sheet State"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Starting day for Timesheet Sheets."
 msgstr "Startdag for urenstaten."
@@ -721,12 +721,6 @@ msgstr ""
 "Vervallen: Verval datum is reeds verstreken\n"
 "Vandaag: Activiteit is vandaag\n"
 "Gepland: Activiteit is in de toekomst."
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
-msgid "Steet State"
-msgstr "Urenstaat status"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -1094,30 +1088,68 @@ msgstr "U kunt geen wijziging doen in een goedgekeurde urenstaatregel: %s"
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"U moet uw urenstaat elke dag invullen en bevestigen op het einde\n"
-"van de week. Eenmaal de urenstaat ingediend is, moet hij bevestigd\n"
-"worden door een goedkeurder."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 msgid ""
 "You must record timesheets in the sheet every day and confirm at the end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"U moet uw urenstaat elke dag invullen en bevestigen op het einde\n"
-"van de week. Eenmaal de urenstaat ingediend is, moet hij bevestigd\n"
-"worden door een goedkeurder."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "tot"
+
+#~ msgid ""
+#~ "Employees must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "U moet uw urenstaat elke dag invullen en bevestigen op het einde\n"
+#~ "van de week. Eenmaal de urenstaat ingediend is, moet hij bevestigd\n"
+#~ "worden door een goedkeurder."
+
+#~ msgid ""
+#~ "Employees must record timesheets in the sheet every day and confirm at "
+#~ "the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "U moet uw urenstaat elke dag invullen en bevestigen op het einde\n"
+#~ "van de week. Eenmaal de urenstaat ingediend is, moet hij bevestigd\n"
+#~ "worden door een goedkeurder."
+
+#~ msgid "Steet State"
+#~ msgstr "Urenstaat status"
+
+#~ msgid ""
+#~ "You must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "U moet uw urenstaat elke dag invullen en bevestigen op het einde\n"
+#~ "van de week. Eenmaal de urenstaat ingediend is, moet hij bevestigd\n"
+#~ "worden door een goedkeurder."
+
+#~ msgid ""
+#~ "You must record timesheets in the sheet every day and confirm at the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "U moet uw urenstaat elke dag invullen en bevestigen op het einde\n"
+#~ "van de week. Eenmaal de urenstaat ingediend is, moet hij bevestigd\n"
+#~ "worden door een goedkeurder."
 
 #~ msgid "By HR Manager/Officer"
 #~ msgstr "Door HR manager/functionaris"
