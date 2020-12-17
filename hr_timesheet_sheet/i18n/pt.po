@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2020-05-26 00:19+0000\n"
+"PO-Revision-Date: 2020-12-17 13:19+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: Portuguese (https://www.transifex.com/odoo/teams/41243/pt/)\n"
 "Language: pt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
@@ -121,12 +121,12 @@ msgstr "Por Gestor Direto"
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By HR Managers"
-msgstr ""
+msgstr "Por Gestores de RH"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By HR Officers"
-msgstr ""
+msgstr "Por Diretores de RH"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
@@ -136,7 +136,7 @@ msgstr "Por Gestor de Projeto"
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By Timesheets Managers"
-msgstr ""
+msgstr "Por Gestores de Registos de Horas"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
@@ -197,7 +197,7 @@ msgstr "Nome Completo"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Parâmetros de Configuração"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__create_uid
@@ -312,6 +312,9 @@ msgid ""
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
+"Os empregados têm que preencher as folhas de horas todos os dias e confirmar "
+"no final do período de reporting. Assim que uma folha de horas é confirmada, "
+"deve ser validada por uma revisor."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
@@ -322,6 +325,9 @@ msgid ""
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
+"Os funcionários devem preencher as folhas de horas todos os dias e confirmá-"
+"las no final do período de reporting. Assim que a folha de horas é "
+"confirmada, deve ser validada por um revisor."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
@@ -696,7 +702,7 @@ msgstr "Folha"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
 msgid "Sheet State"
-msgstr ""
+msgstr "Estado da Folha"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -880,7 +886,7 @@ msgid ""
 "Timesheet sheets can also be invoiced to customers, depending on\n"
 "             the configuration of each project's related contract."
 msgstr ""
-"As folhas de horas também podem ser faturas aos clientes, dependendo da "
+"As folhas de horas também podem ser faturadas aos clientes, dependendo da "
 "configuração do contrato relacionado com cada projeto."
 
 #. module: hr_timesheet_sheet
@@ -902,7 +908,7 @@ msgid ""
 "Timesheets can also be invoiced to customers, depending on the\n"
 "            configuration of each project's related contract."
 msgstr ""
-"As folhas de horas também podem ser faturas aos clientes, dependendo da "
+"As folhas de horas também podem ser faturadas aos clientes, dependendo da "
 "configuração do contrato relacionado com cada projeto."
 
 #. module: hr_timesheet_sheet
@@ -1070,7 +1076,7 @@ msgid ""
 " - %s"
 msgstr ""
 "Não pode ter 2 ou mais folhas de horas sobrepostas! Por favor, use o menu "
-"\"Folha de Horas\" para evitar este problema. Folhas com coflito:\n"
+"\"Folha de Horas\" para evitar este problema. Folhas com conflito:\n"
 " - %s"
 
 #. module: hr_timesheet_sheet
@@ -1087,6 +1093,9 @@ msgid ""
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
+"Deve preencher as folhas de horas todos os dias e confirmá-las no final do "
+"período de reporting. Assim que a folha de horas estiver confirmada, deve "
+"ser validada por um revisor."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
@@ -1096,6 +1105,9 @@ msgid ""
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
+"Devem preencher as folhas de horas todos os dias e confirmá-las no final do "
+"período de reporting. Assim que a folha de horas estiver confirmada, deve "
+"ser validada por um revisor."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
