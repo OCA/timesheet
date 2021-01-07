@@ -301,32 +301,22 @@ msgstr "Alkalmazottak"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
-#, fuzzy
 msgid ""
 "Employees must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"Rögzítenie kell a munkaóra kimutatásait minden nap és le kell jelentenie\n"
-"                 a hét végén. Ha a munkaidő-kiosztás lejelentett és "
-"elfogadott\n"
-"                akkor a főnökének le kell igazolnia."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
-#, fuzzy
 msgid ""
 "Employees must record timesheets in the sheet every day and confirm at the "
 "end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"Rögzítenie kell a munkaóra kimutatásait minden nap és le kell jelentenie\n"
-"                 a hét végén. Ha a munkaidő-kiosztás lejelentett és "
-"elfogadott\n"
-"                akkor a főnökének le kell igazolnia."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
@@ -1111,36 +1101,75 @@ msgstr "Nem tud módosítani a visszaigazolt időkimutatáson."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
-#, fuzzy
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"Rögzítenie kell a munkaóra kimutatásait minden nap és le kell jelentenie\n"
-"                 a hét végén. Ha a munkaidő-kiosztás lejelentett és "
-"elfogadott\n"
-"                akkor a főnökének le kell igazolnia."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
-#, fuzzy
 msgid ""
 "You must record timesheets in the sheet every day and confirm at the end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"Rögzítenie kell a munkaóra kimutatásait minden nap és le kell jelentenie\n"
-"                 a hét végén. Ha a munkaidő-kiosztás lejelentett és "
-"elfogadott\n"
-"                akkor a főnökének le kell igazolnia."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "ig"
+
+#, fuzzy
+#~ msgid ""
+#~ "Employees must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "Rögzítenie kell a munkaóra kimutatásait minden nap és le kell jelentenie\n"
+#~ "                 a hét végén. Ha a munkaidő-kiosztás lejelentett és "
+#~ "elfogadott\n"
+#~ "                akkor a főnökének le kell igazolnia."
+
+#, fuzzy
+#~ msgid ""
+#~ "Employees must record timesheets in the sheet every day and confirm at "
+#~ "the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "Rögzítenie kell a munkaóra kimutatásait minden nap és le kell jelentenie\n"
+#~ "                 a hét végén. Ha a munkaidő-kiosztás lejelentett és "
+#~ "elfogadott\n"
+#~ "                akkor a főnökének le kell igazolnia."
+
+#, fuzzy
+#~ msgid ""
+#~ "You must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "Rögzítenie kell a munkaóra kimutatásait minden nap és le kell jelentenie\n"
+#~ "                 a hét végén. Ha a munkaidő-kiosztás lejelentett és "
+#~ "elfogadott\n"
+#~ "                akkor a főnökének le kell igazolnia."
+
+#, fuzzy
+#~ msgid ""
+#~ "You must record timesheets in the sheet every day and confirm at the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "Rögzítenie kell a munkaóra kimutatásait minden nap és le kell jelentenie\n"
+#~ "                 a hét végén. Ha a munkaidő-kiosztás lejelentett és "
+#~ "elfogadott\n"
+#~ "                akkor a főnökének le kell igazolnia."
 
 #, fuzzy
 #~ msgid "By Department Manager"
