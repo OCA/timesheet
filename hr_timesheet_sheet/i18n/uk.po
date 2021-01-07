@@ -303,30 +303,22 @@ msgstr "Співробітники"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
-#, fuzzy
 msgid ""
 "Employees must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"Ви повинні реєструвати розклади щодня і підтверджувати в кінці\n"
-"тижня. Як тільки табель буде підтверджено, він повинен бути\n"
-"підтверджений менеджером."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
-#, fuzzy
 msgid ""
 "Employees must record timesheets in the sheet every day and confirm at the "
 "end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"Ви повинні реєструвати розклади щодня і підтверджувати в кінці\n"
-"тижня. Як тільки табель буде підтверджено, він повинен бути\n"
-"підтверджений менеджером."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
@@ -1104,34 +1096,71 @@ msgstr "Ви не можете змінити запис на підтвердж
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
-#, fuzzy
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
-"            of the repording period. Once the timesheet sheet is confirmed, "
+"            of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"Ви повинні реєструвати розклади щодня і підтверджувати в кінці\n"
-"тижня. Як тільки табель буде підтверджено, він повинен бути\n"
-"підтверджений менеджером."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
-#, fuzzy
 msgid ""
 "You must record timesheets in the sheet every day and confirm at the end\n"
-"             of the repording period. Once the timesheet sheet is confirmed, "
+"             of the reporting period. Once the timesheet sheet is confirmed, "
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
-"Ви повинні реєструвати розклади щодня і підтверджувати в кінці\n"
-"тижня. Як тільки табель буде підтверджено, він повинен бути\n"
-"підтверджений менеджером."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "по"
+
+#, fuzzy
+#~ msgid ""
+#~ "Employees must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "Ви повинні реєструвати розклади щодня і підтверджувати в кінці\n"
+#~ "тижня. Як тільки табель буде підтверджено, він повинен бути\n"
+#~ "підтверджений менеджером."
+
+#, fuzzy
+#~ msgid ""
+#~ "Employees must record timesheets in the sheet every day and confirm at "
+#~ "the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "Ви повинні реєструвати розклади щодня і підтверджувати в кінці\n"
+#~ "тижня. Як тільки табель буде підтверджено, він повинен бути\n"
+#~ "підтверджений менеджером."
+
+#, fuzzy
+#~ msgid ""
+#~ "You must record timesheets every day and confirm at the end\n"
+#~ "            of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "            validated by a reviewer."
+#~ msgstr ""
+#~ "Ви повинні реєструвати розклади щодня і підтверджувати в кінці\n"
+#~ "тижня. Як тільки табель буде підтверджено, він повинен бути\n"
+#~ "підтверджений менеджером."
+
+#, fuzzy
+#~ msgid ""
+#~ "You must record timesheets in the sheet every day and confirm at the end\n"
+#~ "             of the repording period. Once the timesheet sheet is "
+#~ "confirmed, it should be\n"
+#~ "             validated by a reviewer."
+#~ msgstr ""
+#~ "Ви повинні реєструвати розклади щодня і підтверджувати в кінці\n"
+#~ "тижня. Як тільки табель буде підтверджено, він повинен бути\n"
+#~ "підтверджений менеджером."
 
 #, fuzzy
 #~ msgid "By Department Manager"
