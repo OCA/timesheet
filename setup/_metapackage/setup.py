@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo8-addon-hr_timesheet_invoice_hide_to_invoice',
         'odoo8-addon-hr_timesheet_invoice_hide_to_invoice_task',
         'odoo8-addon-hr_timesheet_no_closed_project_task',
+        'odoo8-addon-hr_timesheet_print_employee_timesheet',
         'odoo8-addon-hr_timesheet_sheet_change_period',
         'odoo8-addon-hr_timesheet_task',
         'odoo8-addon-hr_timesheet_task_required',
