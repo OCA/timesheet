@@ -8,7 +8,7 @@ class ProjectTask(models.Model):
     _inherit = 'project.task'
 
     exclude_from_sale_order = fields.Boolean(
-        string='Exclude from Sale Order',
+        string='Non-billable',
         help=(
             'Checking this would exclude any timesheet entries logged towards'
             ' this task from Sale Order'
