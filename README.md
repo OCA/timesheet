@@ -29,6 +29,7 @@ addon | version | summary
 [hr_timesheet_invoice_hide_to_invoice](hr_timesheet_invoice_hide_to_invoice/) | 8.0.1.0.0 | Adding a security group to display invoicing rate field on timesheet line
 [hr_timesheet_invoice_hide_to_invoice_task](hr_timesheet_invoice_hide_to_invoice_task/) | 8.0.1.0.0 | Hide invoicing rate field on task work
 [hr_timesheet_no_closed_project_task](hr_timesheet_no_closed_project_task/) | 8.0.1.0.0 | Prevent to select closed project or task on timesheet line
+[hr_timesheet_print_employee_timesheet](hr_timesheet_print_employee_timesheet/) | 8.0.1.0.0 | Lets you print timesheets per employee and month
 [hr_timesheet_sheet_change_period](hr_timesheet_sheet_change_period/) | 8.0.1.0.0 | Allows to change covered period while the timesheet is in the 'draft' state
 [hr_timesheet_task](hr_timesheet_task/) | 8.0.0.3.0 | Task in time sheet
 [hr_timesheet_task_required](hr_timesheet_task_required/) | 8.0.1.0.0 | Set task on timesheet as a mandatory field
