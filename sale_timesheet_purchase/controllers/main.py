@@ -57,8 +57,8 @@ class SaleTimesheetControllerNew(SaleTimesheetController):
             domain = []
         res = super(SaleTimesheetControllerNew,
                     self).plan_stat_button(domain=domain,
-                                           res_model="account.analytic.line",
-                                           res_id=False)
+                                           res_model=res_model,
+                                           res_id=res_id)
         if res_model == "purchase.order":
             res = clean_action(
                 request.env.ref("purchase.purchase_form_action").read()[0]
