@@ -42,10 +42,10 @@ This functionality is not available in Odoo, reported in `odoo/odoo#31042 <https
 Usage
 =====
 
+To set a Task as non billable:
 
-# Go to *Project > All Tasks*
-# Open specific task for editing
-# Check *Exclude From Billing*
+  # Go to *Project > All Tasks*, and open a specific Task form
+  # On the Task form, check *Non-billable*
 
 Known issues / Roadmap
 ======================
