@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_timesheet_task_exclude
+# 	* sale_timesheet_task_exclude
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,9 @@ msgstr ""
 
 #. module: sale_timesheet_task_exclude
 #: model:ir.model.fields,help:sale_timesheet_task_exclude.field_project_task__exclude_from_sale_order
-msgid "Checking this would exclude any timesheet entries logged towards this task from Sale Order"
+msgid ""
+"Checking this would exclude any timesheet entries logged towards this task "
+"from Sale Order"
 msgstr ""
 "Marcando esto excluirá cualquier entrada del Parte de horas registrada para "
 "esta tarea del pedido de venta"
