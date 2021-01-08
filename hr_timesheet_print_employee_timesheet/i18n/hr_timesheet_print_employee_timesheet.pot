@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-23 08:44+0000\n"
-"PO-Revision-Date: 2015-07-23 08:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,6 +29,11 @@ msgid "Created on"
 msgstr ""
 
 #. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
 #: model:ir.actions.act_window,name:hr_timesheet_print_employee_timesheet.action_hr_analytical_timesheet_employees
 msgid "Employee timesheets"
 msgstr ""
@@ -48,6 +51,11 @@ msgstr ""
 #. module: hr_timesheet_print_employee_timesheet
 #: field:hr.analytical.timesheet.employees,id:0
 msgid "ID"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,__last_update:0
+msgid "Last Modified on"
 msgstr ""
 
 #. module: hr_timesheet_print_employee_timesheet
@@ -71,6 +79,11 @@ msgid "Print timesheets per employee"
 msgstr ""
 
 #. module: hr_timesheet_print_employee_timesheet
+#: model:ir.model,name:hr_timesheet_print_employee_timesheet.model_report
+msgid "Report"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
 #: field:hr.analytical.timesheet.employees,short_account_names:0
 msgid "Short account names"
 msgstr ""
@@ -78,6 +91,12 @@ msgstr ""
 #. module: hr_timesheet_print_employee_timesheet
 #: field:hr.analytical.timesheet.employees,date_start:0
 msgid "Start date"
+msgstr ""
+
+#. module: hr_timesheet_print_employee_timesheet
+#: code:addons/hr_timesheet_print_employee_timesheet/wizard/hr_analytical_timesheet_employees.py:123
+#, python-format
+msgid "Start date must be greater than end date"
 msgstr ""
 
 #. module: hr_timesheet_print_employee_timesheet
@@ -102,7 +121,7 @@ msgstr ""
 
 #. module: hr_timesheet_print_employee_timesheet
 #: model:ir.model,name:hr_timesheet_print_employee_timesheet.model_hr_analytic_timesheet
-msgid "Timesheet line"
+msgid "Timesheet Line"
 msgstr ""
 
 #. module: hr_timesheet_print_employee_timesheet
