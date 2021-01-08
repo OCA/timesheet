@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="form_hr_analytical_timesheet_employees" model="ir.ui.view">
+            <field name="model">hr.analytical.timesheet.employees</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="date_start" />
+                        <field name="date_end" />
+                        <field name="short_account_names" />
+                        <field name="employee_ids" widget="many2many_tags" options="{'create': false}" />
+                    </group>
+                    <footer>
+                        <button type="object" name="button_print" string="Print" class="oe_highlight" />
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_hr_analytical_timesheet_employees"
+            name="Employee timesheets"
+            src_model="hr.employee"
+            res_model="hr.analytical.timesheet.employees"
+            target="new"
+            view_mode="form"
+            view_type="form"
+            key2="client_print_multi"
+        />
+    </data>
+</openerp>

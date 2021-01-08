@@ -1,0 +1,122 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_timesheet_print_employee_timesheet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-23 08:44+0000\n"
+"PO-Revision-Date: 2015-07-23 08:44+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: view:hr.analytical.timesheet.employees:hr_timesheet_print_employee_timesheet.form_hr_analytical_timesheet_employees
+msgid "Cancel"
+msgstr "Annuleren"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,create_uid:0
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,create_date:0
+msgid "Created on"
+msgstr "Aangemaakt op"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: model:ir.actions.act_window,name:hr_timesheet_print_employee_timesheet.action_hr_analytical_timesheet_employees
+msgid "Employee timesheets"
+msgstr "Urenstaten per medewerker"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,employee_ids:0
+msgid "Employees"
+msgstr "Medewerker"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,date_end:0
+msgid "End date"
+msgstr "Einddatum"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,write_uid:0
+msgid "Last Updated by"
+msgstr "Laatst gewijzigd door"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,write_date:0
+msgid "Last Updated on"
+msgstr "Laatst gewijzigd op"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: view:hr.analytical.timesheet.employees:hr_timesheet_print_employee_timesheet.form_hr_analytical_timesheet_employees
+msgid "Print"
+msgstr "Afdrukken"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: model:ir.model,name:hr_timesheet_print_employee_timesheet.model_hr_analytical_timesheet_employees
+msgid "Print timesheets per employee"
+msgstr "Urenstaten per medewerker afdrukken"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,short_account_names:0
+msgid "Short account names"
+msgstr "Korte kostenplaatsnamen"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: field:hr.analytical.timesheet.employees,date_start:0
+msgid "Start date"
+msgstr "Begindatum"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: view:website:hr_timesheet_print_employee_timesheet.qweb_hr_analytical_timesheet_employees
+msgid "Sum"
+msgstr "Totaal"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: help:hr.analytical.timesheet.employees,date_start:0
+msgid "This will be normalized to the beginning of a month"
+msgstr "Deze wordt naar het begin van de maand gezet"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: help:hr.analytical.timesheet.employees,date_end:0
+msgid "This will be normalized to the end of a month"
+msgstr "Deze wordt naar het einde van de maand gezet"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: help:hr.analytical.timesheet.employees,short_account_names:0
+msgid "This will show only the analytic account's name, not the hierarchy"
+msgstr "Hierdoor wordt alleen de naam van de kostenplaats getoond en niet de hele hierarchie"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: model:ir.model,name:hr_timesheet_print_employee_timesheet.model_hr_analytic_timesheet
+msgid "Timesheet line"
+msgstr "Urenstaatregel"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: view:website:hr_timesheet_print_employee_timesheet.qweb_hr_analytical_timesheet_employees
+msgid "Timesheets per employee"
+msgstr "Urenstaten per medewerker"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: model:ir.actions.report.xml,name:hr_timesheet_print_employee_timesheet.report_hr_analytical_timesheet_employees
+msgid "hr.analytical.timesheet.employees"
+msgstr "hr.analytical.timesheet.employees"
+
+#. module: hr_timesheet_print_employee_timesheet
+#: view:hr.analytical.timesheet.employees:hr_timesheet_print_employee_timesheet.form_hr_analytical_timesheet_employees
+msgid "or"
+msgstr "of"
+
