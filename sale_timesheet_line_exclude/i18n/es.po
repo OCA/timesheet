@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_timesheet_line_exclude
+# 	* sale_timesheet_line_exclude
 #
 msgid ""
 msgstr ""
@@ -42,7 +42,9 @@ msgstr "Excluido del pedido de venta"
 #. module: sale_timesheet_line_exclude
 #: code:addons/sale_timesheet_line_exclude/models/account_analytic_line.py:38
 #, python-format
-msgid "You can not modify timesheets in a way that would affect invoices since these timesheets were already invoiced."
+msgid ""
+"You can not modify timesheets in a way that would affect invoices since "
+"these timesheets were already invoiced."
 msgstr ""
 "No puede modificar los Partes de horas de forma que afecte las facturas ya "
 "que estos Partes de horas ya se facturaron."
