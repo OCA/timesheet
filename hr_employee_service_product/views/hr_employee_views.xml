@@ -1,0 +1,17 @@
+<odoo>
+    <record id="hr_view_employee_form_inherit_timesheet" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.timesheet</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//form/sheet/notebook/page[@name='hr_settings']"
+                position="inside"
+            >
+                <group string="Service Product">
+                    <field name="service_product_id" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
