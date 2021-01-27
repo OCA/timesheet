@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-12-14 09:42+0000\n"
+"PO-Revision-Date: 2021-01-27 15:21+0000\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: none\n"
 "Language: fr_FR\n"
@@ -306,6 +306,11 @@ msgid ""
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
+"Les employés doivent enregistrer les feuilles de temps tous les jours et "
+"confirmer à la fin\n"
+"            de la période de référence. Une fois le relevé de feuille de "
+"temps confirmé, il doit être\n"
+"            validé par un examinateur."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
@@ -316,6 +321,11 @@ msgid ""
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
+"Les employés doivent enregistrer les feuilles de temps dans le relevé tous "
+"les jours et confirmer à la fin\n"
+"              de la période de référence. Une fois le relevé de feuille de "
+"temps confirmé, il doit être\n"
+"              validé par un examinateur."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
@@ -690,7 +700,7 @@ msgstr "Feuille"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
 msgid "Sheet State"
-msgstr ""
+msgstr "État du relevé"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1096,6 +1106,11 @@ msgid ""
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
+"Vous devez enregistrer les feuilles de temps tous les jours et confirmer à "
+"la fin\n"
+"            de la période de référence. Une fois le relevé de feuilles de "
+"temps confirmé, il doit être\n"
+"            validé par un examinateur."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
@@ -1105,6 +1120,11 @@ msgid ""
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
+"Vous devez enregistrer les feuilles de temps dans le relevé tous les jours "
+"et confirmer à la fin\n"
+"             de la période de référence. Une fois le relevé de feuilles de "
+"temps confirmé, il doit être\n"
+"             validé par un examinateur."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
