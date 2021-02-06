@@ -26,11 +26,11 @@ class TestHrTimesheetTaskDomain(common.TransactionCase):
         record = self.env["account.analytic.line"].new()
         record.task_id = self.task.id
         record.project_id = self.project.id
-        action = record.onchange_project_id()
+        action = record._onchange_project_id()
         self.assertTrue(action["domain"]["task_id"])
         self.assertEqual(record.task_id, self.task)
         record.project_id = False
-        action = record.onchange_project_id()
+        action = record._onchange_project_id()
         self.assertEqual(action["domain"]["task_id"], [])
 
     def test_onchange_task_id(self):

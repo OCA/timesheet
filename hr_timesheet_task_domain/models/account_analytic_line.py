@@ -11,15 +11,15 @@ class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
 
     @api.onchange("project_id")
-    def onchange_project_id(self):
+    def _onchange_project_id(self):
         # Check if 'closed' field exists (provided by project_stage_closed)
         project_stage_closed = (
-            "project.task.type" in self.env
-            and "closed" in self.env["project.task.type"]._fields
+                "project.task.type" in self.env
+                and "closed" in self.env["project.task.type"]._fields
         )
 
         task = self.task_id
-        res = super().onchange_project_id()
+        res = super(AccountAnalyticLine, self)._onchange_project_id()
         if res is None:
             res = {}
         if self.project_id:  # Show only opened tasks
@@ -37,7 +37,5 @@ class AccountAnalyticLine(models.Model):
 
     @api.onchange("task_id")
     def _onchange_task_id(self):
-        super()._onchange_task_id()
-
         if self.task_id:
             self.project_id = self.task_id.project_id
