@@ -1,0 +1,43 @@
+/* Copyright 2021 Hunki Enterprises BV
+ * License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). */
+
+div.hr_timesheet_portal h5 i,div.hr_timesheet_portal tr i, div.hr_timesheet_portal tr:hover.edit i {
+    display: none;
+}
+div.hr_timesheet_portal:hover h5 i {
+    display: inline-block;
+    cursor: pointer;
+}
+div.hr_timesheet_portal tr[data-line-id]:hover {
+    cursor: pointer;
+}
+div.hr_timesheet_portal tr[data-line-id]:hover i {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    top: .3em;
+    background: #fff;
+    padding: .3em;
+}
+div.hr_timesheet_portal tr[data-line-id]:hover i.fa-remove {
+    right: .2em;
+}
+div.hr_timesheet_portal tr[data-line-id]:hover i.fa-edit {
+    left: .2em;
+}
+div.hr_timesheet_portal tr[data-line-id] td {
+    position: relative;
+}
+div.hr_timesheet_portal tr form {
+    display: inline-block;
+}
+div.hr_timesheet_portal tr form button {
+    margin-left: .2em;
+}
+div.hr_timesheet_portal tr td {
+    vertical-align: middle;
+}
+div.hr_timesheet_portal tr input[name="unit_amount"] {
+    width: 5em;
+    display: inline-block;
+}
