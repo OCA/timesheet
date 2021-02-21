@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 Hunki Enterprises BV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <template id="portal_my_task" inherit_id="hr_timesheet.portal_my_task">
+        <div t-if="task.timesheet_ids" position="attributes">
+            <attribute name="class" add="hr_timesheet_portal" separator=" " />
+            <attribute name="t-att-data-project-id">task.project_id.id</attribute>
+            <attribute name="t-att-data-account-id">task.project_id.analytic_account_id.id</attribute>
+            <attribute name="t-att-data-task-id">task.id</attribute>
+        </div>
+        <xpath expr="//div[@t-if='task.timesheet_ids']//h5" position="inside">
+            <i class="fa fa-plus"></i>
+        </xpath>
+        <tr t-foreach="task.timesheet_ids" position="attributes">
+            <attribute name="t-att-data-line-id">timesheet.id</attribute>
+        </tr>
+        <xpath expr="//tr[@t-foreach='task.timesheet_ids']/td" position="inside">
+            <i t-if="timesheet.user_id == request.env.user" class="fa fa-edit"></i>
+        </xpath>
+        <xpath expr="//tr[@t-foreach='task.timesheet_ids']/td[last()]" position="inside">
+            <i t-if="timesheet.user_id == request.env.user" class="fa fa-remove"></i>
+        </xpath>
+        <xpath expr="//t[@t-esc='timesheet.name']/parent::td" position="attributes">
+            <attribute name="data-field-name">name</attribute>
+        </xpath>
+        <xpath expr="//t[@t-esc='timesheet.date']/parent::td" position="attributes">
+            <attribute name="data-field-name">date</attribute>
+            <attribute name="data-field-type">date</attribute>
+            <attribute name="t-att-data-field-value">timesheet.date</attribute>
+        </xpath>
+        <xpath expr="//span[@t-field='timesheet.unit_amount']/parent::td" position="attributes">
+            <attribute name="data-field-name">unit_amount</attribute>
+            <attribute name="data-field-type">number</attribute>
+            <attribute name="t-att-data-field-value">timesheet.unit_amount</attribute>
+        </xpath>
+    </template>
+
+</odoo> 
