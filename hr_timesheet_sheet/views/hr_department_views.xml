@@ -43,22 +43,17 @@
                         <t t-esc="record.timesheet_sheet_to_approve_count.raw_value" />
                     </div>
                 </div>
-            </xpath>
-            <xpath
-                expr="//div[hasclass('o_kanban_manage_to_approve')]"
-                position="inside"
-            >
-                <div class="row">
-                    <div class="col-xs-12 text-left">
-                        <a
-                            name="%(hr_timesheet_sheet.hr_timesheet_action_from_department)d"
-                            type="action"
-                        >
-                            <t
-                                t-esc="record.timesheet_sheet_to_approve_count.raw_value or 0"
-                            /> Timesheets
-                        </a>
-                    </div>
+                <div t-if="record.timesheet_sheet_to_approve_count.raw_value &gt; 0" class="row ml16">
+                        <div class="col-9">
+                            <a
+                                name="%(hr_timesheet_sheet.hr_timesheet_action_from_department)d"
+                                type="action"
+                            > Timesheets
+                            </a>
+                        </div>
+                        <div class="col-3 text-right">
+                            <field name="timesheet_sheet_to_approve_count"/>
+                        </div>
                 </div>
             </xpath>
         </field>
