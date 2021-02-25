@@ -11,7 +11,7 @@
     "sequence": 80,
     "summary": "Timesheet Sheets, Activities",
     "license": "AGPL-3",
-    "author": "ForgeFlow, Onestein, CorporateHub, " "Odoo Community Association (OCA)",
+    "author": "ForgeFlow, Onestein, CorporateHub, STeSI" "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/timesheet",
     "installable": True,
     "auto_install": False,
