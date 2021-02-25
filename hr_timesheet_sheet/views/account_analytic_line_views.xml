@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2018 ForgeFlow, S.L.
+    Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+    Copyright 2018-2019 Onestein (<https://www.onestein.eu>)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="hr_timesheet_line_form" model="ir.ui.view">
+        <field name="name">account.analytic.line.form</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
+        <field name="arch" type="xml">
+            <field name="date" position="after">
+                <field
+                    name="sheet_id"
+                    attrs="{'invisible': [('sheet_id', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="hr_timesheet_line_search" model="ir.ui.view">
+        <field name="name">account.analytic.line.search</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search" />
+        <field name="arch" type="xml">
+            <field name="date" position="before">
+                <field name="sheet_id" />
+            </field>
+            <filter name="mine" position="before">
+                <filter
+                    name="unsubmitted"
+                    string="Not Submitted"
+                    domain="['|',('sheet_id','=',False),('sheet_id.state','=','draft')]"
+                />
+                <separator />
+            </filter>
+        </field>
+    </record>
+    <record id="act_hr_timesheet_line_to_submit" model="ir.actions.act_window">
+        <field name="name">Timesheets to Submit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_id" eval="False" />
+        <field name="context">
+            {
+                'search_default_groupby_employee': 1,
+                'search_default_groupby_project': 1,
+                'search_default_groupby_date': 1,
+            }
+        </field>
+        <field
+            name="domain"
+        >[('project_id.active','=',True),'|',('sheet_id','=',False),('sheet_id.state','=','draft')]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Timesheets to submit.
+          </p>
+            <p>
+            Employees must record timesheets every day and confirm at the end
+            of the reporting period. Once the timesheet sheet is confirmed, it should be
+            validated by a reviewer.
+          </p>
+            <p>
+            Timesheets can also be invoiced to customers, depending on the
+            configuration of each project's related contract.
+          </p>
+        </field>
+    </record>
+    <record id="act_hr_timesheet_line_to_submit_my" model="ir.actions.act_window">
+        <field name="name">My Timesheets to Submit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_id" eval="False" />
+        <field name="context">
+            {
+                'search_default_groupby_project': 1,
+                'search_default_groupby_date': 1,
+            }
+        </field>
+        <field
+            name="domain"
+        >[('user_id', '=', uid),('project_id.active','=',True),'|',('sheet_id','=',False),('sheet_id.state','=','draft')]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            My timesheets to submit.
+          </p>
+            <p>
+            You must record timesheets every day and confirm at the end
+            of the reporting period. Once the timesheet sheet is confirmed, it should be
+            validated by a reviewer.
+          </p>
+        </field>
+    </record>
+    <menuitem
+        action="act_hr_timesheet_line_to_submit"
+        id="menu_act_hr_timesheet_line_to_submit"
+        parent="hr_timesheet.menu_hr_time_tracking"
+        groups="hr_timesheet.group_timesheet_manager"
+        sequence="6"
+    />
+    <menuitem
+        action="act_hr_timesheet_line_to_submit_my"
+        id="menu_act_hr_timesheet_line_to_submit_my"
+        parent="hr_timesheet.menu_hr_time_tracking"
+        sequence="5"
+    />
+</odoo>
