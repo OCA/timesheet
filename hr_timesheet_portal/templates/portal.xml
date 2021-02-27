@@ -26,6 +26,11 @@
         <xpath expr="//t[@t-esc='timesheet.name']/parent::td" position="attributes">
             <attribute name="data-field-name">name</attribute>
         </xpath>
+        <xpath expr="//t[@t-esc='timesheet.date']/parent::td" position="attributes">
+            <attribute name="data-field-name">date</attribute>
+            <attribute name="data-field-type">date</attribute>
+            <attribute name="t-att-data-field-value">timesheet.date</attribute>
+        </xpath>
         <xpath expr="//span[@t-field='timesheet.unit_amount']/parent::td" position="attributes">
             <attribute name="data-field-name">unit_amount</attribute>
             <attribute name="data-field-type">number</attribute>
