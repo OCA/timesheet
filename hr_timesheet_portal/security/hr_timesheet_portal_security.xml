@@ -6,7 +6,7 @@
 
 <record id="group_hr_timesheet_portal" model="res.groups">
     <field name="name">Editable timesheets</field>
-    <field name="category_id" ref="base.module_category_portal"/>
+    <field name="category_id" ref="base.module_category_website"/>
     <field name="comment">Add portal users who should be allowed to edit their timesheets</field>
 </record>
 
