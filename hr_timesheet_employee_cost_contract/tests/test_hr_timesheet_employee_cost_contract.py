@@ -5,7 +5,6 @@ from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
 from pytz import timezone
 
-from odoo import fields
 from odoo.tests import common
 
 
@@ -16,7 +15,7 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
 
         self.HrEmployee = self.env['hr.employee']
         self.ResourceCalendarLeave = self.env['resource.calendar.leaves']
-        self.today = fields.Date.today()
+        self.today = datetime(2020, 2, 20)
         self.eur = self.env.ref('base.EUR')
 
     def test_defaults(self):
@@ -75,17 +74,17 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
                     'name': 'Employee Contract #1',
                     'wage': 3000.0,
                     'state': 'open',
-                    'date_start': date(2020, 1, 1),
+                    'date_start': date(self.today.year, 1, 1),
                 }),
                 (0, 0, {
                     'name': 'Employee Contract #2',
                     'wage': 1000.0,
                     'state': 'open',
-                    'date_start': date(2020, 1, 1),
+                    'date_start': date(self.today.year, 1, 1),
                 }),
             ],
         })
-        as_of_day = date(2020, 12, 31)
+        as_of_day = date(self.today.year, 12, 31)
         contracts = employee._get_timesheet_cost_contracts(as_of_day)
         self.assertEqual(len(contracts), 2)
         average_hourly_cost = contracts._compute_average_hourly_cost(
@@ -93,7 +92,7 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
             self.eur,
             as_of_day
         )
-        self.assertEqual(average_hourly_cost, 7.50)
+        self.assertEqual(average_hourly_cost, 11.53)
 
     def test_annual_avg(self):
         employee = self.HrEmployee.create({
@@ -104,17 +103,17 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
                     'name': 'Employee Contract #1',
                     'wage': 3000.0,
                     'state': 'open',
-                    'date_start': date(2020, 1, 1),
+                    'date_start': date(self.today.year, 1, 1),
                 }),
                 (0, 0, {
                     'name': 'Employee Contract #2',
                     'wage': 1000.0,
                     'state': 'open',
-                    'date_start': date(2020, 1, 1),
+                    'date_start': date(self.today.year, 1, 1),
                 }),
             ],
         })
-        as_of_day = date(2020, 12, 1)
+        as_of_day = date(self.today.year, 12, 31)
         contracts = employee._get_timesheet_cost_contracts(as_of_day)
         self.assertEqual(len(contracts), 2)
         average_hourly_cost = contracts._compute_average_hourly_cost(
@@ -122,7 +121,7 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
             self.eur,
             as_of_day
         )
-        self.assertEqual(average_hourly_cost, 7.53)
+        self.assertEqual(average_hourly_cost, 11.53)
 
     def test_monthly_avg(self):
         employee = self.HrEmployee.create({
@@ -133,17 +132,17 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
                     'name': 'Employee Contract #1',
                     'wage': 3000.0,
                     'state': 'open',
-                    'date_start': date(2020, 1, 1),
+                    'date_start': date(self.today.year, 1, 1),
                 }),
                 (0, 0, {
                     'name': 'Employee Contract #2',
                     'wage': 1000.0,
                     'state': 'open',
-                    'date_start': date(2020, 1, 1),
+                    'date_start': date(self.today.year, 1, 1),
                 }),
             ],
         })
-        as_of_day = date(2020, 1, 1)
+        as_of_day = date(self.today.year, 1, 1)
         contracts = employee._get_timesheet_cost_contracts(as_of_day)
         self.assertEqual(len(contracts), 2)
         average_hourly_cost = contracts._compute_average_hourly_cost(
@@ -151,7 +150,7 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
             self.eur,
             as_of_day
         )
-        self.assertEqual(average_hourly_cost, 8.94)
+        self.assertEqual(average_hourly_cost, 11.47)
 
     def test_leaves(self):
         employee = self.HrEmployee.create({
@@ -162,12 +161,12 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
                     'name': 'Employee Contract #1',
                     'wage': 1000.0,
                     'state': 'open',
-                    'date_start': date(2020, 1, 1),
+                    'date_start': date(self.today.year, 1, 1),
                 }),
             ],
         })
         tz = timezone(employee.tz)
-        as_of_day = date(2020, 1, 31)
+        as_of_day = date(self.today.year, 1, 31)
 
         self.assertEqual(
             employee.with_context(
@@ -186,8 +185,8 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
             'name': 'Global Leave',
             'resource_id': False,
             'calendar_id': employee.resource_calendar_id.id,
-            'date_from': datetime(2020, 1, 1, 0, 0, 0, tzinfo=tz),
-            'date_to': datetime(2020, 1, 1, 23, 59, 59, tzinfo=tz),
+            'date_from': datetime(self.today.year, 1, 1, 0, 0, 0, tzinfo=tz),
+            'date_to': datetime(self.today.year, 1, 1, 23, 59, 59, tzinfo=tz),
         })
         self.assertEqual(
             employee.with_context(
@@ -206,8 +205,8 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
             'name': 'Employee Leave',
             'resource_id': employee.resource_id.id,
             'calendar_id': employee.resource_calendar_id.id,
-            'date_from': datetime(2020, 1, 2, 0, 0, 0, tzinfo=tz),
-            'date_to': datetime(2020, 1, 2, 23, 59, 59, tzinfo=tz),
+            'date_from': datetime(self.today.year, 1, 2, 0, 0, 0, tzinfo=tz),
+            'date_to': datetime(self.today.year, 1, 2, 23, 59, 59, tzinfo=tz),
         })
         self.assertEqual(
             employee.with_context(
