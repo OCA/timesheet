@@ -29,7 +29,7 @@ class HrContract(models.Model):
         """ Hook for extensions """
         self.ensure_one()
         if policy == 'annual_avg':
-            return as_of_date + relativedelta(years=1, day=1, days=-1)
+            return as_of_date + relativedelta(years=1, month=1, day=1, days=-1)
         elif policy == 'monthly_avg':
             return as_of_date + relativedelta(months=1, day=1, days=-1)
         return self.date_end or as_of_date
