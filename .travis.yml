@@ -21,8 +21,10 @@ env:
 
   matrix:
   - LINT_CHECK="1"
-  - TESTS="1" ODOO_REPO="OCA/OCB" MAKEPOT="1"
-  - TESTS="1" ODOO_REPO="odoo/odoo"
+  - TESTS="1" ODOO_REPO="OCA/OCB" MAKEPOT="1" EXCLUDE="hr_timesheet_employee_cost_contract"
+  - TESTS="1" ODOO_REPO="OCA/OCB" MAKEPOT="1" INCLUDE="hr_timesheet_employee_cost_contract"
+  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="hr_timesheet_employee_cost_contract"
+  - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="hr_timesheet_employee_cost_contract"
 
 install:
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
