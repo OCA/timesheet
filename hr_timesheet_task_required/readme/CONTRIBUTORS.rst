@@ -6,3 +6,4 @@
   * Alexey Pelykh <alexey.pelykh@corphub.eu>
 
 * Saran Lim. <saranl@ecosoft.co.th>
+* Foram Shah <foram.shah@initos.com>
