@@ -12,7 +12,7 @@
     "license": "AGPL-3",
     "installable": True,
     "application": False,
-    "summary": "Analyze tracked time in Pivot, Graph views",
+    "summary": "Analyze tracked time in Graph views",
     "depends": ["hr_timesheet"],
     "data": ["views/account_analytic_line.xml"],
 }
