@@ -1,4 +1,4 @@
-odoo.define("hr_timesheet_sheet", function(require) {
+odoo.define("hr_timesheet_sheet", function (require) {
     "use strict";
 
     var X2Many2dMatrixRenderer = require("web_widget_x2many_2d_matrix.X2Many2dMatrixRenderer");
@@ -7,7 +7,7 @@ odoo.define("hr_timesheet_sheet", function(require) {
         /**
          * @override
          */
-        _renderBodyCell: function() {
+        _renderBodyCell: function () {
             var $cell = this._super.apply(this, arguments);
             if (this.getParent().model === "hr_timesheet.sheet") {
                 var $span = $cell.find("span");
