@@ -14,7 +14,7 @@ class TestHrTimesheetSheetAutodraft(common.TransactionCase):
         self.HrEmployee = self.env["hr.employee"]
         self.HrTimesheetSheet = self.env["hr_timesheet.sheet"]
         self.AccountAnalyticLine = self.env["account.analytic.line"]
-        self.company_id = self.Company._company_default_get()
+        self.company_id = self.env.company
 
     def test_no_autocreate_by_default(self):
         user = self.ResUsers.sudo().create(
@@ -27,6 +27,7 @@ class TestHrTimesheetSheetAutodraft(common.TransactionCase):
         )
         employee = self.HrEmployee.create({"name": "Employee", "user_id": user.id})
         project = self.Project.create({"name": "Project"})
+
         aal = self.AccountAnalyticLine.create(
             {"project_id": project.id, "employee_id": employee.id, "name": "Time Entry"}
         )
