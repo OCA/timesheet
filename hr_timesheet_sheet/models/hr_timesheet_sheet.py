@@ -221,7 +221,8 @@ class Sheet(models.Model):
             complete_name_components = sheet._get_complete_name_components()
             if complete_name_components:
                 complete_name = "{} ({})".format(
-                    complete_name, ", ".join(complete_name_components),
+                    complete_name,
+                    ", ".join(complete_name_components),
                 )
             sheet.complete_name = complete_name
 
