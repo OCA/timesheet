@@ -44,10 +44,7 @@
                     </div>
                 </div>
             </xpath>
-            <xpath
-                expr="//div[hasclass('o_kanban_manage_to_approve')]"
-                position="inside"
-            >
+            <xpath expr="//div[hasclass('o_kanban_manage_reports')]" position="inside">
                 <div class="row">
                     <div class="col-xs-12 text-left">
                         <a
