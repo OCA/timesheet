@@ -966,15 +966,28 @@ class TestHrTimesheetSheet(SavepointCase):
         department = self.department_model.create(
             {"name": "Department test", "company_id": False}
         )
+        self.user_16 = (
+            self.env["res.users"]
+            .with_user(self.env.user)
+            .with_context(no_reset_password=True)
+            .create(
+                {
+                    "name": "Test User 16",
+                    "login": "test_user_16",
+                    "email": "test16@oca.com",
+                    "company_id": self.company.id,
+                    "company_ids": [(4, self.company.id)],
+                }
+            )
+        )
         new_employee = self.employee_model.create(
             {
                 "name": "Test User",
-                "user_id": self.user.id,
-                "company_id": False,
+                "user_id": self.user_16.id,
+                "company_id": self.company.id,
                 "department_id": department.id,
             }
         )
-        self.assertFalse(new_employee.company_id)
         sheet_form = Form(self.sheet_model.with_user(self.user))
         sheet_form.employee_id = new_employee
         sheet_form.department_id = self.department_model

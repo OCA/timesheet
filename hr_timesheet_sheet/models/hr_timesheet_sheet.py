@@ -56,7 +56,7 @@ class Sheet(models.Model):
     def _default_department_id(self):
         return self._default_employee().department_id
 
-    name = fields.Char(compute="_compute_name", context_dependent=True)
+    name = fields.Char(compute="_compute_name")
     employee_id = fields.Many2one(
         comodel_name="hr.employee",
         string="Employee",
@@ -334,7 +334,7 @@ class Sheet(models.Model):
         elif self.review_policy == "hr_manager":
             res |= self.env.ref("hr.group_hr_manager").users
         elif self.review_policy == "timesheet_manager":
-            res |= self.env.ref("hr_timesheet.group_timesheet_manager").users
+            res |= self.env.ref("hr_timesheet.group_hr_timesheet_approver").users
         return res
 
     def _get_timesheet_sheet_company(self):
@@ -525,7 +525,7 @@ class Sheet(models.Model):
         for sheet in self.sudo():
             subscribers = sheet._get_subscribers()
             if subscribers:
-                self.message_subscribe(partner_ids=subscribers.ids)
+                sheet.message_subscribe(partner_ids=subscribers.ids)
 
     def action_timesheet_draft(self):
         if self.filtered(lambda sheet: sheet.state != "done"):
