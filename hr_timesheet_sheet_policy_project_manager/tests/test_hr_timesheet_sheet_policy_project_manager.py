@@ -21,6 +21,9 @@ class TestHrTimesheetSheetPolicyProjectManager(common.TransactionCase):
         self.group_hr_timesheet_user = self.env.ref(
             "hr_timesheet.group_hr_timesheet_user"
         )
+        self.group_hr_timesheet_approver = self.env.ref(
+            "hr_timesheet.group_hr_timesheet_approver"
+        )
         self.group_project_user = self.env.ref("project.group_project_user")
         self.company = self.ResCompany.create({"name": "Company"})
         self.env.user.company_ids += self.company
@@ -59,7 +62,7 @@ class TestHrTimesheetSheetPolicyProjectManager(common.TransactionCase):
                         6,
                         0,
                         [
-                            self.group_hr_timesheet_user.id,
+                            self.group_hr_timesheet_approver.id,
                             self.group_project_user.id,
                             self.group_multi_company.id,
                         ],
@@ -195,6 +198,7 @@ class TestHrTimesheetSheetPolicyProjectManager(common.TransactionCase):
         )
         with self.assertRaises(UserError):
             sheet.with_user(self.employee_user).action_timesheet_done()
+
         sheet.with_user(self.project_manager_user_1).action_timesheet_done()
         sheet.with_user(self.project_manager_user_1).action_timesheet_draft()
         sheet.unlink()
