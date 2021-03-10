@@ -15,6 +15,7 @@
     "summary": "View Utilization Analysis from Task Logs.",
     "depends": ["hr_timesheet"],
     "data": [
+        "security/ir.model.access.csv",
         "views/hr_department.xml",
         "views/hr_employee.xml",
         "report/hr_utilization_analysis.xml",

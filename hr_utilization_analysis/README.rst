@@ -14,13 +14,13 @@ Task Logs Utilization Analysis
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ftimesheet-lightgray.png?logo=github
-    :target: https://github.com/OCA/timesheet/tree/13.0/hr_utilization_analysis
+    :target: https://github.com/OCA/timesheet/tree/14.0/hr_utilization_analysis
     :alt: OCA/timesheet
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/timesheet-13-0/timesheet-13-0-hr_utilization_analysis
+    :target: https://translation.odoo-community.org/projects/timesheet-14-0/timesheet-14-0-hr_utilization_analysis
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/117/13.0
+    :target: https://runbot.odoo-community.org/runbot/117/14.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -92,6 +92,7 @@ Contributors
 * `CorporateHub <https://corporatehub.eu/>`__
 
   * Alexey Pelykh <alexey.pelykh@corphub.eu>
+* Sunanda Chhatbar <sunanda.chhatbar@initos.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -114,6 +115,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-alexey-pelykh| 
 
-This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/13.0/hr_utilization_analysis>`_ project on GitHub.
+This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/14.0/hr_utilization_analysis>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
