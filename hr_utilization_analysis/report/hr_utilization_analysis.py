@@ -6,7 +6,7 @@ from datetime import datetime, time, timedelta
 
 import pytz
 
-from odoo import SUPERUSER_ID, _, api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -153,7 +153,7 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
     def _compute_capacity(self):
         Module = self.env["ir.module.module"]
 
-        project_timesheet_holidays = Module.with_user(SUPERUSER_ID).search(
+        project_timesheet_holidays = Module.sudo().search(
             [("name", "=", "project_timesheet_holidays"), ("state", "=", "installed")],
             limit=1,
         )
