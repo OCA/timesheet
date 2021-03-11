@@ -2,23 +2,20 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import fields
 
-from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheetNoChart
+from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheet
 
 
-class TestRounded(TestCommonSaleTimesheetNoChart):
+class TestRounded(TestCommonSaleTimesheet):
     @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def setUpClass(cls, chart_template_ref=None):
+        super().setUpClass(chart_template_ref=chart_template_ref)
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        # set up
-        cls.setUpEmployees()
-        cls.setUpServiceProducts()
         cls.sale_order = cls.env["sale.order"].create(
             {
                 "analytic_account_id": cls.project_global.analytic_account_id.id,
-                "partner_id": cls.partner_customer_usd.id,
-                "partner_invoice_id": cls.partner_customer_usd.id,
-                "partner_shipping_id": cls.partner_customer_usd.id,
+                "partner_id": cls.partner_a.id,
+                "partner_invoice_id": cls.partner_a.id,
+                "partner_shipping_id": cls.partner_a.id,
             }
         )
         sale_order_line = cls.env["sale.order.line"].create(
