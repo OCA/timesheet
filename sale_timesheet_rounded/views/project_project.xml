@@ -5,7 +5,10 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project" />
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='misc']" position="after">
+            <xpath
+                expr="//page[@name='settings']/div[hasclass('o_settings_container')]"
+                position="inside"
+            >
                 <group name="rounding">
                     <group string="Time rounding" name="time_rounding_parameters">
                         <field name="timesheet_rounding_method" />
