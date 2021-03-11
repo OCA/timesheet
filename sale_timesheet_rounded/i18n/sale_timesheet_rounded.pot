@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -41,6 +41,13 @@ msgid "Closest"
 msgstr ""
 
 #. module: sale_timesheet_rounded
+#: model:ir.model.fields,field_description:sale_timesheet_rounded.field_account_analytic_line__display_name
+#: model:ir.model.fields,field_description:sale_timesheet_rounded.field_project_project__display_name
+#: model:ir.model.fields,field_description:sale_timesheet_rounded.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_timesheet_rounded
 #: model:ir.model.fields.selection,name:sale_timesheet_rounded.selection__project_project__timesheet_rounding_method__down
 msgid "Down"
 msgstr ""
@@ -51,10 +58,24 @@ msgid "Duration (rounded)"
 msgstr ""
 
 #. module: sale_timesheet_rounded
+#: model:ir.model.fields,field_description:sale_timesheet_rounded.field_account_analytic_line__id
+#: model:ir.model.fields,field_description:sale_timesheet_rounded.field_project_project__id
+#: model:ir.model.fields,field_description:sale_timesheet_rounded.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_timesheet_rounded
 #: model:ir.model.fields,help:sale_timesheet_rounded.field_project_project__timesheet_rounding_method
 msgid ""
 "If you activate the rounding of timesheet lines, only new entries will be "
 "rounded (i.e. existing lines will not be rounded automatically)."
+msgstr ""
+
+#. module: sale_timesheet_rounded
+#: model:ir.model.fields,field_description:sale_timesheet_rounded.field_account_analytic_line____last_update
+#: model:ir.model.fields,field_description:sale_timesheet_rounded.field_project_project____last_update
+#: model:ir.model.fields,field_description:sale_timesheet_rounded.field_sale_order_line____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_timesheet_rounded
