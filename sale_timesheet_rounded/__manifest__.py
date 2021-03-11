@@ -4,7 +4,7 @@
 {
     "name": "Sale Timesheet Rounded",
     "summary": "Round timesheet entries amount based on project settings.",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Sales",
