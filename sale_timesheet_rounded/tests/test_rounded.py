@@ -113,22 +113,32 @@ class TestRounded(TestCommonSaleTimesheetNoChart):
         fields_list = ["so_line", "unit_amount", "product_uom_id"]
         groupby = ["product_uom_id", "so_line"]
 
-        data_ctx_f = line.read_group(domain, fields_list, groupby,)
+        data_ctx_f = line.read_group(
+            domain,
+            fields_list,
+            groupby,
+        )
         self.assertEqual(data_ctx_f[0]["unit_amount"], 1.0)
 
         data_ctx_t = line.with_context(timesheet_rounding=True).read_group(
-            domain, fields_list, groupby,
+            domain,
+            fields_list,
+            groupby,
         )
         self.assertEqual(data_ctx_t[0]["unit_amount"], 2.0)
 
         self.create_analytic_line(unit_amount=1.1)
         data_ctx_f = line.with_context(timesheet_rounding=False).read_group(
-            domain, fields_list, groupby,
+            domain,
+            fields_list,
+            groupby,
         )
         self.assertEqual(data_ctx_f[0]["unit_amount"], 2.1)
 
         data_ctx_f = line.with_context(timesheet_rounding=True).read_group(
-            domain, fields_list, groupby,
+            domain,
+            fields_list,
+            groupby,
         )
         self.assertEqual(data_ctx_f[0]["unit_amount"], 4.25)
 
