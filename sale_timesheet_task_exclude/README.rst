@@ -83,6 +83,8 @@ Contributors
 
   * Fernando La Chica <fernandolachica@gmail.com>
 
+* Dhara Solanki <dhara.solanki@initos.com>
+
 Maintainers
 ~~~~~~~~~~~
 
