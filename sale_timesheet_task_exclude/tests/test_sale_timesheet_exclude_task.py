@@ -42,7 +42,7 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
             }
         )
         project = self.SudoProject.create(
-            {"name": "Project #1", "allow_timesheets": True}
+            {"name": "Project #1", "allow_timesheets": True, "allow_billable": True}
         )
         product = self.SudoProductProduct.create(
             {
@@ -116,15 +116,12 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
                 "employee_id": employee.id,
             }
         )
-        self.assertTrue(timesheet.so_line)
-        self.assertEqual(task.billable_type, "task_rate")
-
         task.exclude_from_sale_order = True
-        self.assertEqual(task.billable_type, "no")
+        task.allow_billable = False
         self.assertFalse(timesheet.so_line)
 
         task.exclude_from_sale_order = False
-        self.assertEqual(task.billable_type, "task_rate")
+        task.allow_billable = True
         self.assertTrue(timesheet.so_line)
 
         payment = (
