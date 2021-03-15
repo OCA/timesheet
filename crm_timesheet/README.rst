@@ -74,6 +74,7 @@ Contributors
   * David Vidal
   * Vicent Cubells
   * Jairo Llopis
+* Foram Shah <foram.shah@initos.com>
 
 Maintainers
 ~~~~~~~~~~~
