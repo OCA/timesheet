@@ -54,24 +54,24 @@
             eval="[(6, 0, [ref('hr_timesheet.group_hr_timesheet_user')])]"
         />
         <field name="arch" type="xml">
-            <xpath expr="//*[hasclass('oe_kanban_bottom_left')]" position="inside">
+            <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="inside">
                 <field name="show_time_control" invisible="1" />
                 <a
                     name="button_start_work"
                     attrs="{'invisible': [('show_time_control', '!=', 'start')]}"
-                    class="o_kanban_inline_block fa fa-lg fa-play-circle text-success"
+                    class="o_kanban_inline_block text-success"
                     string="Start work"
                     tabindex="-1"
                     type="object"
-                />
+                ><i class="fa fa-lg fa-play-circle" title="Start" /></a>
                 <a
                     name="button_end_work"
                     attrs="{'invisible': [('show_time_control', '!=', 'stop')]}"
-                    class="o_kanban_inline_block fa fa-lg fa-stop-circle text-warning"
+                    class="o_kanban_inline_block text-warning"
                     string="Stop work"
                     tabindex="-1"
                     type="object"
-                />
+                ><i class="fa fa-lg fa-stop-circle" title="Stop" /></a>
             </xpath>
         </field>
     </record>
@@ -117,24 +117,24 @@
             eval="[(6, 0, [ref('hr_timesheet.group_hr_timesheet_user')])]"
         />
         <field name="arch" type="xml">
-            <xpath expr="//*[hasclass('oe_kanban_bottom_left')]" position="inside">
+            <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="inside">
                 <field name="show_time_control" invisible="1" />
                 <a
                     name="button_start_work"
                     attrs="{'invisible': [('show_time_control', '!=', 'start')]}"
-                    class="o_kanban_inline_block fa fa-lg fa-play-circle text-success"
+                    class="o_kanban_inline_block text-success"
                     string="Start work"
                     tabindex="-1"
                     type="object"
-                />
+                ><i class="fa fa-lg fa-play-circle" title="Start" /></a>
                 <a
                     name="button_end_work"
                     attrs="{'invisible': [('show_time_control', '!=', 'stop')]}"
-                    class="o_kanban_inline_block fa fa-lg fa-stop-circle text-warning"
+                    class="o_kanban_inline_block text-warning"
                     string="Stop work"
                     tabindex="-1"
                     type="object"
-                />
+                ><i class="fa fa-lg fa-stop-circle" title="Stop" /></a>
             </xpath>
         </field>
     </record>
