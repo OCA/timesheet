@@ -12,18 +12,37 @@ class AccountAnalyticLineCase(SavepointCase):
     def setUpClass(cls):
         super().setUpClass()
         admin = cls.env.ref("base.user_admin")
+        # Stop any timer running
+        cls.env["account.analytic.line"].search(
+            [
+                ("date_time", "!=", False),
+                ("user_id", "=", admin.id),
+                ("project_id.allow_timesheets", "=", True),
+                ("unit_amount", "=", 0),
+            ]
+        ).button_end_work()
         admin.groups_id |= cls.env.ref(
             "hr_timesheet.group_hr_timesheet_user"
         ) | cls.env.ref("sales_team.group_sale_salesman")
         env = cls.env(user=admin)
         Account = env["account.analytic.account"]
         Project = env["project.project"]
-        cls.account1 = Account.create({"name": "Test Account 1"})
+        cls.account1 = Account.create(
+            {
+                "name": "Test Account 1",
+            }
+        )
         cls.project1 = Project.create(
-            {"name": "Test Project 1", "analytic_account_id": cls.account1.id}
+            {
+                "name": "Test Project 1",
+                "analytic_account_id": cls.account1.id,
+            }
         )
         cls.lead = env["crm.lead"].create(
-            {"name": "Test lead", "project_id": cls.project1.id}
+            {
+                "name": "Test lead",
+                "project_id": cls.project1.id,
+            }
         )
 
     def setUp(self):
@@ -32,7 +51,6 @@ class AccountAnalyticLineCase(SavepointCase):
 
     def _create_wizard(self, action, active_record):
         """Create a new hr.timesheet.switch wizard in the specified context.
-
         :param dict action: Action definition that creates the wizard.
         :param active_record: Record being browsed when creating the wizard.
         """
@@ -54,7 +72,11 @@ class AccountAnalyticLineCase(SavepointCase):
 
     def test_onchange_lead(self):
         """Changing the lead changes the associated project."""
-        line = self.env["account.analytic.line"].new({"lead_id": self.lead.id})
+        line = self.env["account.analytic.line"].new(
+            {
+                "lead_id": self.lead.id,
+            }
+        )
         line._onchange_lead_id()
         self.assertEqual(line.project_id, self.project1)
 
