@@ -9,7 +9,10 @@ from odoo import api, fields, models
 class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
 
-    lead_id = fields.Many2one(comodel_name="crm.lead", string="Lead/Opportunity",)
+    lead_id = fields.Many2one(
+        comodel_name="crm.lead",
+        string="Lead/Opportunity",
+    )
 
     @api.onchange("lead_id")
     def _onchange_lead_id(self):
