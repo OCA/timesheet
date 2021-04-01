@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-hr_timesheet_sheet',
+        'odoo14-addon-hr_timesheet_task_required',
     ],
     classifiers=[
         'Programming Language :: Python',
