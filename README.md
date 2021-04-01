@@ -20,6 +20,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [hr_timesheet_sheet](hr_timesheet_sheet/) | 14.0.1.0.0 | Timesheet Sheets, Activities
+[hr_timesheet_task_required](hr_timesheet_task_required/) | 14.0.1.0.0 | Set task on timesheet as a mandatory field
 
 [//]: # (end addons)
 
