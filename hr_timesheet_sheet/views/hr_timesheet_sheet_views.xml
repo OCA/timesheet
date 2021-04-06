@@ -149,6 +149,7 @@
                                     class="oe_edit_only"
                                     attrs="{'invisible': [('state', 'not in', ['new', 'draft'])]}"
                                 >
+
                                     <field
                                         name="add_line_project_id"
                                         domain="[('company_id', '=', company_id), ('allow_timesheets', '=', True)]"
@@ -157,6 +158,9 @@
                                         name="add_line_task_id"
                                         attrs="{'invisible': [('add_line_project_id', '=', False)]}"
                                         context="{'default_project_id': add_line_project_id}"
+                                        domain="use_task_ids and
+                                        [('project_id', '=', add_line_project_id), ('company_id', '=', company_id),('id', 'not in', use_task_ids)]
+                                        or [('project_id', '=', add_line_project_id), ('company_id', '=', company_id)]"
                                     />
                                     <button
                                         name="button_add_line"
@@ -169,6 +173,11 @@
                             </group>
                         </page>
                         <page string="Details">
+                            <field
+                                name="use_task_ids"
+                                widget="many2many_tags"
+                                invisible="1"
+                            />
                             <field
                                 name="timesheet_ids"
                                 nolabel="1"

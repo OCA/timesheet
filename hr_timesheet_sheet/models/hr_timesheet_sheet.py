@@ -146,6 +146,11 @@ class Sheet(models.Model):
     reviewer_id = fields.Many2one(
         comodel_name="hr.employee", string="Reviewer", readonly=True, tracking=True
     )
+    use_task_ids = fields.Many2many(
+        comodel_name="project.task",
+        string="Already Used Tasks",
+        compute="_compute_use_task_ids",
+    )
     add_line_project_id = fields.Many2one(
         comodel_name="project.project",
         string="Select Project",
@@ -195,6 +200,11 @@ class Sheet(models.Model):
     def _compute_can_review(self):
         for sheet in self:
             sheet.can_review = self.env.user in sheet._get_possible_reviewers()
+
+    @api.depends("timesheet_ids")
+    def _compute_use_task_ids(self):
+        for rec in self:
+            rec.use_task_ids = rec.timesheet_ids.mapped("task_id").ids
 
     @api.model
     def _search_can_review(self, operator, value):
@@ -440,22 +450,6 @@ class Sheet(models.Model):
     @api.onchange("timesheet_ids")
     def _onchange_timesheets(self):
         self._compute_line_ids()
-
-    @api.onchange("add_line_project_id")
-    def onchange_add_project_id(self):
-        """Load the project to the timesheet sheet"""
-        if self.add_line_project_id:
-            return {
-                "domain": {
-                    "add_line_task_id": [
-                        ("project_id", "=", self.add_line_project_id.id),
-                        ("company_id", "=", self.company_id.id),
-                        ("id", "not in", self.timesheet_ids.mapped("task_id").ids),
-                    ]
-                }
-            }
-        else:
-            return {"domain": {"add_line_task_id": [("id", "=", False)]}}
 
     @api.model
     def _check_employee_user_link(self, vals):

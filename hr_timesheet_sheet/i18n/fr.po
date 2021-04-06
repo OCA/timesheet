@@ -416,6 +416,11 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__use_task_ids
+msgid "Already Used Tasks"
+msgstr "Tâche déjà utilisée(s)"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_task_id
 msgid ""
 "If selected, the associated task is added to the timesheet sheet when "
