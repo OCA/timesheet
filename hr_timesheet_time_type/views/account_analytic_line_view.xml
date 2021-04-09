@@ -17,7 +17,7 @@
         <field name="arch" type="xml">
             <field name="employee_id" position="after">
                 <field name="time_type_id" />
-                <field invisible="1" name="time_type_name" />
+                <field name="time_type_name" invisible="1" />
             </field>
         </field>
     </record>
