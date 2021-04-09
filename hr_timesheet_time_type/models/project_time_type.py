@@ -9,5 +9,7 @@ class ProjectTimeType(models.Model):
     _description = "Define Time Types"
 
     name = fields.Char(string="Name", required=True)
-    code = fields.Char(string="Code",)
+    code = fields.Char(
+        string="Code",
+    )
     description = fields.Text(string="Description")
