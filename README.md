@@ -20,6 +20,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [hr_timesheet_sheet](hr_timesheet_sheet/) | 14.0.1.0.0 | Timesheet Sheets, Activities
+[hr_timesheet_sheet_policy_project_manager](hr_timesheet_sheet_policy_project_manager/) | 14.0.1.0.0 | Allows setting Project Manager as Reviewer
 [hr_timesheet_task_required](hr_timesheet_task_required/) | 14.0.1.0.0 | Set task on timesheet as a mandatory field
 [sale_timesheet_rounded](sale_timesheet_rounded/) | 14.0.1.0.0 | Round timesheet entries amount based on project settings.
 
