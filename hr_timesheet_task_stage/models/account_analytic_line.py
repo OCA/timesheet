@@ -12,7 +12,7 @@ from odoo.exceptions import UserError
 class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
 
-    is_task_closed = fields.Boolean(related="task_id.stage_id.closed")
+    is_task_closed = fields.Boolean(related="task_id.stage_id.is_closed")
 
     def action_open_task(self):
         ProjectTaskType = self.env["project.task.type"]
@@ -21,7 +21,7 @@ class AccountAnalyticLine(models.Model):
             stage = ProjectTaskType.search(
                 [
                     ("project_ids", "=", line.task_id.project_id.id),
-                    ("closed", "=", False),
+                    ("is_closed", "=", False),
                 ],
                 limit=1,
             )
@@ -41,7 +41,7 @@ class AccountAnalyticLine(models.Model):
             stage = ProjectTaskType.search(
                 [
                     ("project_ids", "=", line.task_id.project_id.id),
-                    ("closed", "=", True),
+                    ("is_closed", "=", True),
                 ],
                 limit=1,
             )
