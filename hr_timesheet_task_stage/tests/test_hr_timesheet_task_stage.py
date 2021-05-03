@@ -17,10 +17,18 @@ class TestHrTimesheetTaskStage(common.TransactionCase):
         )
         task_type_obj = self.env["project.task.type"]
         self.stage_open = task_type_obj.create(
-            {"name": "New", "closed": False, "project_ids": [(6, 0, self.project.ids)]}
+            {
+                "name": "New",
+                "is_closed": False,
+                "project_ids": [(6, 0, self.project.ids)],
+            }
         )
         self.stage_close = task_type_obj.create(
-            {"name": "Done", "closed": True, "project_ids": [(6, 0, self.project.ids)]}
+            {
+                "name": "Done",
+                "is_closed": True,
+                "project_ids": [(6, 0, self.project.ids)],
+            }
         )
         self.line = self.env["account.analytic.line"].create(
             {
@@ -38,8 +46,8 @@ class TestHrTimesheetTaskStage(common.TransactionCase):
 
     def test_toggle_task_stage(self):
         self.line.action_toggle_task_stage()
-        self.assertTrue(self.line.task_id.stage_id.closed)
+        self.assertTrue(self.line.task_id.stage_id.is_closed)
         self.assertTrue(self.line.is_task_closed)
         self.line.action_toggle_task_stage()
-        self.assertFalse(self.line.task_id.stage_id.closed)
+        self.assertFalse(self.line.task_id.stage_id.is_closed)
         self.assertFalse(self.line.is_task_closed)
