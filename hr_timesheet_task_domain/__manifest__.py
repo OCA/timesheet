@@ -9,10 +9,10 @@
 
 {
     "name": "Task Log: limit Task by Project",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Human Resources",
     "website": "https://github.com/OCA/timesheet",
-    "author": "Tecnativa, " "CorporateHub, " "Odoo Community Association (OCA)",
+    "author": "Tecnativa, CorporateHub, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "application": False,
