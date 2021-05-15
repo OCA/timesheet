@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * hr_timesheet_activity_begin_end
+#
+# Translators:
+# Marco Calcagni <mcalcagni@dinamicheaziendali.it>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-31 04:45+0000\n"
+"PO-Revision-Date: 2018-10-28 23:03+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2.1\n"
+
+#. module: hr_timesheet_activity_begin_end
+#: model:ir.model,name:hr_timesheet_activity_begin_end.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Riga analitica"
+
+#. module: hr_timesheet_activity_begin_end
+#: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_account_analytic_line__time_start
+#: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_hr_timesheet_switch__time_start
+msgid "Begin Hour"
+msgstr "Ora inizio"
+
+#. module: hr_timesheet_activity_begin_end
+#: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_account_analytic_line__time_stop
+#: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_hr_timesheet_switch__time_stop
+msgid "End Hour"
+msgstr "Ora fine"
+
+#. module: hr_timesheet_activity_begin_end
+#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:0
+#, python-format
+msgid "Lines can't overlap:\n"
+msgstr "Le righe non possono sovrapporsi:\n"
+
+#. module: hr_timesheet_activity_begin_end
+#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:0
+#, python-format
+msgid "The beginning hour (%s) must precede the ending hour (%s)."
+msgstr "L'ora di inizio (%s) deve essere antecedente all'ora di fine (%s)."
+
+#. module: hr_timesheet_activity_begin_end
+#: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:0
+#, python-format
+msgid ""
+"The duration (%s) must be equal to the difference between the hours (%s)."
+msgstr "La durata (%s) deve essere uguale alla differenza tra gli orari (%s)."
