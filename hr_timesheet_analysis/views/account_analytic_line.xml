@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2018-2020 Brainbean Apps
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="hr_timesheet_line_graph" model="ir.ui.view">
+        <field name="name">account.analytic.line.graph</field>
+        <field name="model">account.analytic.line</field>
+        <field name="arch" type="xml">
+            <graph string="Timesheet" stacked="True">
+                <field name="date" type="row" />
+                <field name="project_id" type="col" />
+                <field name="unit_amount" type="measure" widget="timesheet_uom" />
+            </graph>
+        </field>
+    </record>
+    <record id="act_hr_timesheet_line_view_graph" model="ir.actions.act_window.view">
+        <field name="view_mode">graph</field>
+        <field name="sequence">8</field>
+        <field name="view_id" ref="hr_timesheet_line_graph" />
+        <field name="act_window_id" ref="hr_timesheet.act_hr_timesheet_line" />
+    </record>
+    <record id="timesheet_view_graph_user" model="ir.ui.view">
+        <field name="name">account.analytic.line.graph</field>
+        <field name="model">account.analytic.line</field>
+        <field name="arch" type="xml">
+            <graph string="Timesheet" stacked="True">
+                <field name="date" type="row" />
+                <field name="employee_id" type="col" />
+                <field name="unit_amount" type="measure" widget="timesheet_uom" />
+            </graph>
+        </field>
+    </record>
+    <record
+        id="act_hr_timesheet_line_view_all_graph"
+        model="ir.actions.act_window.view"
+    >
+        <field name="view_mode">graph</field>
+        <field name="sequence">7</field>
+        <field name="view_id" ref="timesheet_view_graph_user" />
+        <field name="act_window_id" ref="hr_timesheet.timesheet_action_all" />
+    </record>
+</odoo>
