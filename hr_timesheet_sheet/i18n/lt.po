@@ -16,15 +16,17 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2016-09-07 08:56+0000\n"
-"Last-Translator: Aiste Sutkute <digitouchagencyeur@gmail.com>, 2017\n"
+"PO-Revision-Date: 2021-06-08 16:48+0000\n"
+"Last-Translator: Gailius <gailius.kaz@gmail.com>\n"
 "Language-Team: Lithuanian (https://www.transifex.com/odoo/teams/41243/lt/)\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
+"19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
+"1 : 2);\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
@@ -376,9 +378,8 @@ msgstr "Valandos"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
-#, fuzzy
 msgid "How Timesheet Sheets review is performed."
-msgstr "Darbo laiko žiniaraščiai, kuriuos reikia patvirtinti"
+msgstr "Kaip vykdomas darbo laiko žiniaraščių patvirtinamas."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__id
@@ -424,13 +425,13 @@ msgstr "Juodraštis"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:498
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
 msgstr ""
-"Norint sukurti darbo laiko žiniaraštį šiam darbuotojui, Jūs privalote "
-"priskirti šį darbuotoją atitinkamui sistemos vartotojui."
+"Norint sukurti darbo laiko žiniaraštį šiam darbuotojui, Jūs privalote šį "
+"darbuotoją priskirti atitinkamam sistemos naudotojui: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
@@ -511,9 +512,8 @@ msgstr "Darbo laiko žiniaraštis"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
-#, fuzzy
 msgid "My timesheets to submit."
-msgstr "Darbo laiko žiniaraščiai, kuriuos reikia patvirtinti"
+msgstr "Mano darbo laiko žiniaraščiai, kuriuos reikia patvirtinti."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
@@ -586,9 +586,9 @@ msgstr "Neskaityti pranešimai"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:617
-#, fuzzy, python-format
+#, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
-msgstr "Tik "
+msgstr "Žiniaraštį gali peržiūrėti tik personalo vadovai."
 
 #. module: hr_timesheet_sheet
 #: selection:hr_timesheet.sheet,state:0
@@ -648,7 +648,7 @@ msgstr "Atmesti"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__user_id
 msgid "Related user name for the resource to manage its access."
-msgstr "Susijęs naudotojo pavadinimas resurso prieigai valdyti"
+msgstr "Susijęs naudotojo pavadinimas resurso prieigai valdyti."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_user_id
@@ -673,9 +673,9 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:930
-#, fuzzy, python-format
+#, python-format
 msgid "Save the Timesheet Sheet first."
-msgstr "Darbo laiko žiniaraščio eilutės"
+msgstr "Pirmiausia išsaugokite darbo laiko apskaitos žiniaraštį."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -914,9 +914,8 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
-#, fuzzy
 msgid "Timesheet sheets."
-msgstr "Darbo laiko žiniaraščio eilutės"
+msgstr "Darbo laiko apskaitos žiniaraščiai."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__timesheet_ids
@@ -948,15 +947,13 @@ msgstr "Darbo laiko žiniaraštis"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
-#, fuzzy
 msgid "Timesheets to review."
-msgstr "Darbo laiko žiniaraščiai, kuriuos reikia patvirtinti"
+msgstr "Darbo laiko žiniaraščiai, kuriuos reikia patvirtinti."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
-#, fuzzy
 msgid "Timesheets to submit."
-msgstr "Darbo laiko žiniaraščiai, kuriuos reikia patvirtinti"
+msgstr "Darbo laiko žiniaraščiai, kuriuos reikia pateikti."
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_hr_to_review
@@ -1038,9 +1035,9 @@ msgstr "Savaitė"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
-#, fuzzy, python-format
+#, python-format
 msgid "Week %s"
-msgstr "Savaitė"
+msgstr "Savaitė %s"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1068,24 +1065,27 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
 msgstr ""
-"Jūs negalite modifkuoti įrašo, kuris yra patvirtintame darbo laiko "
-"žiniaraštyje."
+"Jūs negalite sukurti darbo laiko žiniaraščio kitai įmonei, nei nurodyta ant "
+"žiniaraščio lapo:\n"
+" - %s (%s)\n"
+" - %s (%s)"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
 msgstr ""
-"Jūs negalite ištrinti darbo laiko žiniaraščio, kuris yra jau patvirtintas."
+"Jūs negalite ištrinti darbo laiko žiniaraščio, kuris yra jau pateiktas arba "
+"patvirtintas: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:510
@@ -1095,24 +1095,25 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
 "Conflicting sheets:\n"
 " - %s"
 msgstr ""
-"Jūs negalite turėti 2 darbo laiko žiniaraščių, kurie iš dalies sutampa!\n"
-"Prašome naudoti meniu \"Mano dabartinis darbo laiko žiniaraštis\", norint "
-"išvengti šios problemos."
+"Jūs negalite turėti 2 persidengiančių darbo laiko žiniaraščių!\n"
+"Prašome naudoti meniu \"Darbo laiko žiniaraščiai\", norint išvengti šios "
+"problemos.\n"
+"Nesuderinami žiniaraščiai:\n"
+" - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr ""
-"Jūs negalite modifkuoti įrašo, kuris yra patvirtintame darbo laiko "
-"žiniaraštyje."
+"Jūs negalite modifikuoti įrašo patvirtintame darbo laiko žiniaraštyje: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
