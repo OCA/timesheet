@@ -30,7 +30,7 @@
                         <field name="total_time" widget="float_time" string="Timesheet"/>
                     </button>
                     <button type="action"
-                        groups="hr_attendance.group_hr_attendance"
+                        groups="hr_attendance.group_hr_attendance_user"
                         class="oe_stat_button oe_right" icon="fa-users"
                         name="%(hr_timesheet_sheet_attendance.hr_timesheet_sheet_action_sheet_attendance)d">
                         <field name="attendance_count" widget="statinfo" string="Attendances"/>
@@ -55,8 +55,8 @@
                                 <button name="attendance_action_change" attrs="{'invisible': ['|', ('attendance_state','=',False), ('attendance_state', '=', 'checked_out')]}" type="object" string="Check Out"  style="margin-left: 20px"/>
                             </div>
                         </group>
-                        <field name="attendances_ids" nolabel="1" context="{'default_employee_id': employee_id}" colspan="4">
-                            <tree editable="bottom" create="false">
+                        <field name="attendances_ids" nolabel="1" options="{'no_create': True, 'no_open': True}" context="{'default_employee_id': employee_id}" readonly="1">
+                            <tree>
                                 <field name="check_in"/>
                                 <field name="check_out"/>
                                 <field invisible="1" name="employee_id"/>
