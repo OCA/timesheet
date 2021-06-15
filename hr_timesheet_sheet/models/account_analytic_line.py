@@ -13,7 +13,7 @@ class AccountAnalyticLine(models.Model):
     sheet_state = fields.Selection(string="Sheet State", related="sheet_id.state")
 
     def _get_sheet_domain(self):
-        """ Hook for extensions """
+        """Hook for extensions"""
         self.ensure_one()
         return [
             ("date_end", ">=", self.date),
@@ -24,7 +24,7 @@ class AccountAnalyticLine(models.Model):
         ]
 
     def _determine_sheet(self):
-        """ Hook for extensions """
+        """Hook for extensions"""
         self.ensure_one()
         return self.env["hr_timesheet.sheet"].search(self._get_sheet_domain(), limit=1)
 
@@ -82,23 +82,23 @@ class AccountAnalyticLine(models.Model):
         return super().unlink()
 
     def _check_state_on_write(self, values):
-        """ Hook for extensions """
+        """Hook for extensions"""
         if self._timesheet_should_check_write(values):
             self._check_state()
 
     @api.model
     def _timesheet_should_check_write(self, values):
-        """ Hook for extensions """
+        """Hook for extensions"""
         return bool(set(self._get_timesheet_protected_fields()) & set(values.keys()))
 
     @api.model
     def _timesheet_should_compute_sheet(self, values):
-        """ Hook for extensions """
+        """Hook for extensions"""
         return any(f in self._get_sheet_affecting_fields() for f in values)
 
     @api.model
     def _get_timesheet_protected_fields(self):
-        """ Hook for extensions """
+        """Hook for extensions"""
         return [
             "name",
             "date",
@@ -114,7 +114,7 @@ class AccountAnalyticLine(models.Model):
 
     @api.model
     def _get_sheet_affecting_fields(self):
-        """ Hook for extensions """
+        """Hook for extensions"""
         return ["date", "employee_id", "project_id", "company_id"]
 
     def _check_state(self):
