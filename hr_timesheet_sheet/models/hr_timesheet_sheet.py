@@ -703,7 +703,9 @@ class Sheet(models.Model):
                 lambda aal: self._is_line_of_row(aal, row)
             )
             row_lines.filtered(
-                lambda t: t.name == empty_name and not t.unit_amount
+                lambda t: t.name == empty_name
+                and not t.unit_amount
+                and not t.timesheet_invoice_id
             ).unlink()
             if self.timesheet_ids != self.timesheet_ids.exists():
                 self._sheet_write("timesheet_ids", self.timesheet_ids.exists())
