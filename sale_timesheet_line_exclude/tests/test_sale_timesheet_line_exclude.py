@@ -43,7 +43,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
             }
         )
         project = self.SudoProject.create(
-            {"name": "Project #1", "allow_timesheets": True,}
+            {"name": "Project #1", "allow_timesheets": True}
         )
         product = self.SudoProductProduct.create(
             {
@@ -63,7 +63,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
             }
         )
         employee = self.SudoEmployee.create(
-            {"name": "Employee #1", "timesheet_cost": 42,}
+            {"name": "Employee #1", "timesheet_cost": 42}
         )
         account_payable = self.SudoAccountAccount.create(
             {
@@ -85,7 +85,6 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
             {
                 "name": "Partner #1",
                 "email": "partner1@localhost",
-                "customer": True,
                 "property_account_payable_id": account_payable.id,
                 "property_account_receivable_id": account_receivable.id,
             }
@@ -153,9 +152,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
         self.assertEqual(timesheet1.timesheet_invoice_type, "billable_time")
         self.assertTrue(timesheet1.so_line)
 
-        timesheet2.write(
-            {"exclude_from_sale_order": True,}
-        )
+        timesheet2.write({"exclude_from_sale_order": True})
         timesheet2._onchange_task_id_employee_id()
         self.assertEqual(timesheet2.timesheet_invoice_type, "non_billable")
         self.assertFalse(timesheet2.so_line)
@@ -169,12 +166,10 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
         self.assertEqual(sale_order_line.qty_invoiced, 0)
 
         self.assertFalse(timesheet1.timesheet_invoice_id)
-        sale_order.action_invoice_create()
+        sale_order._create_invoices()
         self.assertTrue(timesheet1.timesheet_invoice_id)
         self.assertEqual(sale_order_line.qty_delivered, 2)
         self.assertEqual(sale_order_line.qty_to_invoice, 0)
         self.assertEqual(sale_order_line.qty_invoiced, 2)
         with self.assertRaises(ValidationError):
-            timesheet1.write(
-                {"exclude_from_sale_order": True,}
-            )
+            timesheet1.write({"exclude_from_sale_order": True})
