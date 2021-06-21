@@ -10,13 +10,13 @@ class AccountAnalyticLine(models.Model):
 
     exclude_from_sale_order = fields.Boolean(
         string="Non-billable",
-        help=("Checking this would exclude this timesheet entry from Sale Order"),
+        help="Checking this would exclude this timesheet entry from Sale Order",
     )
 
     @api.onchange("task_id", "employee_id")
     def _onchange_task_id_employee_id(self):
-        """Override implementation in sale_timesheet to call
-        _timesheet_get_sale_line() instead of resolving so_line in-place"""
+        """Override implementation in sale_timesheet to call _timesheet_get_sale_line()
+        instead of resolving so_line in-place"""
         if self.project_id:  # timesheet only
             self.so_line = self._timesheet_get_sale_line()
             return
@@ -29,26 +29,24 @@ class AccountAnalyticLine(models.Model):
 
     @api.constrains("exclude_from_sale_order")
     def _constrains_exclude_from_sale_order(self):
-        if self.filtered(
-            lambda line: line.timesheet_invoice_id
-            and line.so_line.product_id.invoice_policy == "delivery"
-        ):
-            raise ValidationError(
-                _(
-                    "You can not modify timesheets in a way that would affect"
-                    " invoices since these timesheets were already invoiced."
+        for line in self:
+            if (
+                line.timesheet_invoice_id
+                and line.so_line.product_id.invoice_policy == "delivery"
+            ):
+                raise ValidationError(
+                    _(
+                        "You can not modify timesheets in a way that would affect "
+                        "invoices since these timesheets were already invoiced."
+                    )
                 )
-            )
 
-    @api.multi
     def _timesheet_get_sale_line(self):
         self.ensure_one()
-        return (
-            self._timesheet_determine_sale_line(
-                **self._timesheet_determine_sale_line_arguments()
-            )
-            if not self.exclude_from_sale_order
-            else False
+        if self.exclude_from_sale_order:
+            return self.env["sale.order.line"]
+        return self._timesheet_determine_sale_line(
+            **self._timesheet_determine_sale_line_arguments()
         )
 
     @api.model
@@ -68,48 +66,37 @@ class AccountAnalyticLine(models.Model):
             ]
         )
 
-    @api.multi
     def _timesheet_determine_sale_line_arguments(self, values=None):
-        return {
-            "task": (self.env["project.task"].sudo().browse(values["task_id"]))
-            if values and "task_id" in values
-            else self.task_id,
-            "employee": (self.env["hr.employee"].sudo().browse(values["employee_id"]))
-            if values and "employee_id" in values
-            else self.employee_id,
-        }
+        if values:
+            return {
+                "task": self.env["project.task"].sudo().browse(values.get("task_id")),
+                "employee": self.env["hr.employee"]
+                .sudo()
+                .browse(values.get("employee_id")),
+            }
+        return {"task": self.task_id, "employee": self.employee_id}
 
-    @api.multi
     @api.depends("exclude_from_sale_order")
     def _compute_timesheet_invoice_type(self):
         result = super()._compute_timesheet_invoice_type()
-        for timesheet in self.filtered(
-            lambda l: l.project_id and l.task_id and l.exclude_from_sale_order
-        ):
-            timesheet.timesheet_invoice_type = "non_billable"
+        for line in self:
+            if line.project_id and line.task_id and line.exclude_from_sale_order:
+                line.timesheet_invoice_type = "non_billable"
         return result
 
     @api.model
     def _timesheet_preprocess(self, values):
         values = super()._timesheet_preprocess(values)
         if self._timesheet_should_evaluate_so_line(values, all):
-            so_line = (
-                self._timesheet_determine_sale_line(
+            if not values.get("exclude_from_sale_order"):
+                values["so_line"] = self._timesheet_determine_sale_line(
                     **self._timesheet_determine_sale_line_arguments(values)
-                )
-                if not values.get("exclude_from_sale_order")
-                else False
-            )
-            values["so_line"] = so_line.id if so_line else False
+                ).id
         return values
 
-    @api.multi
     def _timesheet_postprocess_values(self, values):
         result = super()._timesheet_postprocess_values(values)
         if self._timesheet_should_evaluate_so_line(values, any):
-            for timesheet in self:
-                so_line = timesheet._timesheet_get_sale_line()
-                result[timesheet.id].update(
-                    {"so_line": so_line.id if so_line else False,}
-                )
+            for line in self:
+                result[line.id].update({"so_line": line._timesheet_get_sale_line().id})
         return result
