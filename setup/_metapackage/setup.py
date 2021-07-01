@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo14-addon-hr_timesheet_sheet_policy_project_manager',
         'odoo14-addon-hr_timesheet_task_required',
         'odoo14-addon-hr_timesheet_task_stage',
+        'odoo14-addon-hr_timesheet_time_type',
         'odoo14-addon-sale_timesheet_rounded',
     ],
     classifiers=[
