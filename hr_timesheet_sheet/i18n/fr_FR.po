@@ -20,8 +20,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid ""
 "<span class=\"fa fa-lg fa-building\" title=\"Values set here are company-"
-"specific.\" aria-label=\"Values set here are company-specific.\" "
-"groups=\"base.group_multi_company\" role=\"img\"/>"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-building\" title=\"Les valeurs définies ici sont "
 "propres à l'entreprise.\" aria-label=\"Les valeurs définies ici sont propres "
@@ -305,7 +305,8 @@ msgstr "Employés"
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 msgid ""
 "Employees must record timesheets every day and confirm at the end\n"
-"            of the reporting period. Once the timesheet sheet is confirmed, it should be\n"
+"            of the reporting period. Once the timesheet sheet is confirmed, "
+"it should be\n"
 "            validated by a reviewer."
 msgstr ""
 "Les employés doivent enregistrer les feuilles de temps tous les jours et les "
@@ -317,8 +318,10 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 msgid ""
-"Employees must record timesheets in the sheet every day and confirm at the end\n"
-"             of the reporting period. Once the timesheet sheet is confirmed, it should be\n"
+"Employees must record timesheets in the sheet every day and confirm at the "
+"end\n"
+"             of the reporting period. Once the timesheet sheet is confirmed, "
+"it should be\n"
 "             validated by a reviewer."
 msgstr ""
 "Les employés doivent enregistrer les feuilles de temps dans la feuille "
@@ -504,6 +507,11 @@ msgstr "Lundi"
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__sheet_range__monthly
 msgid "Month"
 msgstr "Mois"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
@@ -787,8 +795,7 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
-msgid ""
-"The Company in the Timesheet Sheet and in the Project must be the same."
+msgid "The Company in the Timesheet Sheet and in the Project must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -1046,7 +1053,8 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
 #, python-format
 msgid ""
-"You cannot create a timesheet of a different company than the one of the timesheet sheet:\n"
+"You cannot create a timesheet of a different company than the one of the "
+"timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
 msgstr ""
@@ -1055,8 +1063,8 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
-"You cannot delete a timesheet sheet which is already submitted or confirmed:"
-" %s"
+"You cannot delete a timesheet sheet which is already submitted or confirmed: "
+"%s"
 msgstr ""
 "Vous ne pouvez pas supprimer des feuilles de temps qui sont déjà confirmées: "
 "%s"
@@ -1091,7 +1099,8 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 msgid ""
 "You must record timesheets every day and confirm at the end\n"
-"            of the reporting period. Once the timesheet sheet is confirmed, it should be\n"
+"            of the reporting period. Once the timesheet sheet is confirmed, "
+"it should be\n"
 "            validated by a reviewer."
 msgstr ""
 "Vous devez enregistrer les feuilles de temps tous les jours et les confirmer "
@@ -1104,7 +1113,8 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 msgid ""
 "You must record timesheets in the sheet every day and confirm at the end\n"
-"             of the reporting period. Once the timesheet sheet is confirmed, it should be\n"
+"             of the reporting period. Once the timesheet sheet is confirmed, "
+"it should be\n"
 "             validated by a reviewer."
 msgstr ""
 "Vous devez enregistrer les feuilles de temps dans la feuille tous les jours "
