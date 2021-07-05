@@ -3,7 +3,7 @@
 {
     "name": "Invoice Sales Timesheets with a Date Limit",
     "summary": "Layouts",
-    "version": "12.0.1.0.1",
+    "version": "13.0.1.0.0",
     "author": "Camptocamp, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Sales",
