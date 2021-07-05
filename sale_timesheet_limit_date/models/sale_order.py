@@ -13,7 +13,6 @@ class SaleOrder(models.Model):
         " the date set",
     )
 
-    @api.multi
     @api.depends("timesheet_limit_date")
     def _compute_timesheet_ids(self):
         # this method copy of base method, it injects date in domain
@@ -31,7 +30,6 @@ class SaleOrder(models.Model):
                 order.timesheet_ids = []
             order.timesheet_count = len(order.timesheet_ids)
 
-    @api.multi
     def action_invoice_create(self, grouped=False, final=False):
         # and drop limit date from sale order
         res = super().action_invoice_create(grouped, final)
@@ -39,7 +37,6 @@ class SaleOrder(models.Model):
         orders_with_ts_limit.write({"timesheet_limit_date": False})
         return res
 
-    @api.multi
     def _prepare_invoice(self):
         # set appropriate limit date to new created invoice
         res = super()._prepare_invoice()

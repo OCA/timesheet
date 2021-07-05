@@ -17,7 +17,6 @@ class SaleOrderLine(models.Model):
         return domain
 
     @api.depends("order_id.timesheet_limit_date")
-    @api.multi
     def _compute_qty_delivered(self):
         """Group lines by sale order to allow application of 'per order'
          domain above"""
