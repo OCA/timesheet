@@ -4,8 +4,8 @@
 from odoo import api, models
 
 
-class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
 
     @api.model
     def create(self, values):
@@ -14,9 +14,9 @@ class AccountInvoiceLine(models.Model):
         to_clean = self.env["account.analytic.line"]
         for invoice_line in res:
             if (
-                invoice_line.invoice_id.type == "out_invoice"
-                and invoice_line.invoice_id.state == "draft"
-                and invoice_line.invoice_id.timesheet_limit_date
+                invoice_line.move_id.type == "out_invoice"
+                and invoice_line.move_id.state == "draft"
+                and invoice_line.move_id.timesheet_limit_date
             ):
                 sale_line_delivery = invoice_line.sale_line_ids.filtered(
                     lambda sol: sol.product_id.invoice_policy == "delivery"
@@ -25,8 +25,8 @@ class AccountInvoiceLine(models.Model):
                 if sale_line_delivery:
                     to_clean += self.env["account.analytic.line"].search(
                         [
-                            ("timesheet_invoice_id", "=", invoice_line.invoice_id.id),
-                            ("date", ">", invoice_line.invoice_id.timesheet_limit_date),
+                            ("timesheet_invoice_id", "=", invoice_line.move_id.id),
+                            ("date", ">", invoice_line.move_id.timesheet_limit_date),
                         ]
                     )
         to_clean.write({"timesheet_invoice_id": False})
