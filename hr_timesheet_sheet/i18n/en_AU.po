@@ -972,7 +972,7 @@ msgstr "Week"
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, fuzzy, python-format
 msgid "Week %s"
-msgstr "Week"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
