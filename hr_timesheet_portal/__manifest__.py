@@ -10,18 +10,12 @@
     "website": "https://github.com/OCA/hr-timesheet",
     "author": "Hunki Enterprises BV, Sunflower IT, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "depends": [
-        "hr_timesheet",
-        "portal",
-        "website",
-    ],
+    "depends": ["hr_timesheet", "portal", "website"],
     "data": [
         "templates/assets.xml",
         "templates/portal.xml",
         "security/hr_timesheet_portal_security.xml",
         "security/ir.model.access.csv",
     ],
-    "demo": [
-        "demo/hr_timesheet_portal.xml",
-    ],
+    "demo": ["demo/hr_timesheet_portal.xml"],
 }

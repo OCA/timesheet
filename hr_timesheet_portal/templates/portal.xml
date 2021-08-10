@@ -40,4 +40,4 @@
             <attribute name="t-att-data-field-value">timesheet.unit_amount</attribute>
         </xpath>
     </template>
-</odoo> 
+</odoo>
