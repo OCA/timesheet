@@ -25,22 +25,22 @@ You'll find modules that:
 
 Available addons
 ----------------
-addon | version | summary
---- | --- | ---
-[crm_timesheet](crm_timesheet/) | 13.0.1.0.0 | CRM Timesheet
-[hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 13.0.1.0.1 | Timesheet Activities - Begin/End Hours
-[hr_timesheet_analysis](hr_timesheet_analysis/) | 13.0.1.0.1 | Analyze tracked time in Pivot, Graph views
-[hr_timesheet_sheet](hr_timesheet_sheet/) | 13.0.1.1.1 | Timesheet Sheets, Activities
-[hr_timesheet_sheet_autodraft](hr_timesheet_sheet_autodraft/) | 13.0.1.0.0 | Automatically draft a Timesheet Sheet for every time entry that does not have a relevant Timesheet Sheet existing.
-[hr_timesheet_sheet_autodraft_project](hr_timesheet_sheet_autodraft_project/) | 13.0.1.0.0 | Support per-project Timesheet Sheets auto-drafting.
-[hr_timesheet_sheet_policy_project_manager](hr_timesheet_sheet_policy_project_manager/) | 13.0.1.0.0 | Allows setting Project Manager as Reviewer
-[hr_timesheet_task_domain](hr_timesheet_task_domain/) | 13.0.1.0.0 | Limit task selection to tasks on currently-selected project
-[hr_timesheet_task_required](hr_timesheet_task_required/) | 13.0.1.0.0 | Set task on timesheet as a mandatory field
-[hr_timesheet_task_stage](hr_timesheet_task_stage/) | 13.0.1.1.0 | Open/Close task from corresponding Task Log entry
-[hr_utilization_analysis](hr_utilization_analysis/) | 13.0.1.0.1 | View Utilization Analysis from Task Logs.
-[sale_timesheet_order_line_sync](sale_timesheet_order_line_sync/) | 13.0.1.0.0 | Propagate task order line in not invoiced timesheet lines
-[sale_timesheet_rounded](sale_timesheet_rounded/) | 13.0.1.0.0 | Round timesheet entries amount based on project settings.
-[sale_timesheet_task_exclude](sale_timesheet_task_exclude/) | 13.0.1.0.0 | Exclude Task and related Timesheets from Sale Order
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[crm_timesheet](crm_timesheet/) | 13.0.1.0.0 |  | CRM Timesheet
+[hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 13.0.1.0.1 |  | Timesheet Activities - Begin/End Hours
+[hr_timesheet_analysis](hr_timesheet_analysis/) | 13.0.1.0.1 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | Analyze tracked time in Pivot, Graph views
+[hr_timesheet_sheet](hr_timesheet_sheet/) | 13.0.1.1.1 |  | Timesheet Sheets, Activities
+[hr_timesheet_sheet_autodraft](hr_timesheet_sheet_autodraft/) | 13.0.1.0.0 |  | Automatically draft a Timesheet Sheet for every time entry that does not have a relevant Timesheet Sheet existing.
+[hr_timesheet_sheet_autodraft_project](hr_timesheet_sheet_autodraft_project/) | 13.0.1.0.0 |  | Support per-project Timesheet Sheets auto-drafting.
+[hr_timesheet_sheet_policy_project_manager](hr_timesheet_sheet_policy_project_manager/) | 13.0.1.0.0 |  | Allows setting Project Manager as Reviewer
+[hr_timesheet_task_domain](hr_timesheet_task_domain/) | 13.0.1.0.0 |  | Limit task selection to tasks on currently-selected project
+[hr_timesheet_task_required](hr_timesheet_task_required/) | 13.0.1.0.0 |  | Set task on timesheet as a mandatory field
+[hr_timesheet_task_stage](hr_timesheet_task_stage/) | 13.0.1.1.0 |  | Open/Close task from corresponding Task Log entry
+[hr_utilization_analysis](hr_utilization_analysis/) | 13.0.1.0.1 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | View Utilization Analysis from Task Logs.
+[sale_timesheet_order_line_sync](sale_timesheet_order_line_sync/) | 13.0.1.0.0 |  | Propagate task order line in not invoiced timesheet lines
+[sale_timesheet_rounded](sale_timesheet_rounded/) | 13.0.1.0.0 |  | Round timesheet entries amount based on project settings.
+[sale_timesheet_task_exclude](sale_timesheet_task_exclude/) | 13.0.1.0.0 |  | Exclude Task and related Timesheets from Sale Order
 
 [//]: # (end addons)
 
