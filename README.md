@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [hr_timesheet_sheet](hr_timesheet_sheet/) | 14.0.1.0.1 |  | Timesheet Sheets, Activities
 [hr_timesheet_sheet_autodraft](hr_timesheet_sheet_autodraft/) | 14.0.1.0.0 |  | Automatically draft a Timesheet Sheet for every time entry that does not have a relevant Timesheet Sheet existing.
 [hr_timesheet_sheet_policy_project_manager](hr_timesheet_sheet_policy_project_manager/) | 14.0.1.0.0 |  | Allows setting Project Manager as Reviewer
+[hr_timesheet_task_domain](hr_timesheet_task_domain/) | 14.0.1.0.0 |  | Limit task selection to tasks on currently-selected project
 [hr_timesheet_task_required](hr_timesheet_task_required/) | 14.0.1.0.0 |  | Set task on timesheet as a mandatory field
 [hr_timesheet_task_stage](hr_timesheet_task_stage/) | 14.0.1.0.0 |  | Open/Close task from corresponding Task Log entry
 [hr_timesheet_time_type](hr_timesheet_time_type/) | 14.0.1.0.0 |  | Ability to add time type in timesheet lines.
