@@ -1,0 +1,253 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_utilization_analysis
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-05-18 20:19+0000\n"
+"Last-Translator: Josep M <jmyepes@mac.com>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.constraint,message:hr_utilization_analysis.constraint_hr_utilization_analysis_entry_entry_uniq
+msgid "An analysis entry for employee/date pair has to be unique!"
+msgstr ""
+"Una entrada de análisis para la combinación empleado / fecha debe ser única!"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__analysis_id
+msgid "Analysis"
+msgstr "Análisis"
+
+#. module: hr_utilization_analysis
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_form
+msgid "Analysis Entry"
+msgstr "Entrada de análisis"
+
+#. module: hr_utilization_analysis
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__capacity
+msgid "Capacity"
+msgstr "Capacidad"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__create_uid
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__create_uid
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__create_date
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__create_date
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__date
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_search
+msgid "Date"
+msgstr "Fecha"
+
+#. module: hr_utilization_analysis
+#: code:addons/hr_utilization_analysis/report/hr_utilization_analysis.py:0
+#, python-format
+msgid "Date-To can not be earlier than Date-From"
+msgstr "Fecha hasta no puede ser anterior a Fecha desde"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__department_id
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_search
+msgid "Department"
+msgstr "Departamento"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__department_ids
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__department_ids
+msgid "Departments"
+msgstr "Departamentos"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__difference
+msgid "Difference"
+msgstr "Diferencia"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__display_name
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__display_name
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__employee_id
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_search
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__name
+#, fuzzy
+msgid "Employee Name"
+msgstr "Etiquetas de Empleado"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__employee_category_ids
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__employee_category_ids
+msgid "Employee Tags"
+msgstr "Etiquetas de Empleado"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__employee_ids
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__employee_ids
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__date_to
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__date_to
+msgid "End Date"
+msgstr "Fecha Fin"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__entry_ids
+msgid "Entries"
+msgstr "Entradas"
+
+#. module: hr_utilization_analysis
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: hr_utilization_analysis
+#: model:ir.model,name:hr_utilization_analysis.model_hr_utilization_analysis
+msgid "HR Utilization Analysis"
+msgstr "Análisis de uso RRHH"
+
+#. module: hr_utilization_analysis
+#: model:ir.model,name:hr_utilization_analysis.model_hr_utilization_analysis_wizard
+msgid "HR Utilization Analysis Wizard"
+msgstr "Asistente de Análisis de uso RRHH"
+
+#. module: hr_utilization_analysis
+#: model:ir.model,name:hr_utilization_analysis.model_hr_utilization_analysis_entry
+msgid "HR Utilization Analysis entry"
+msgstr "Entrada de Análisis de uso RRHH"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__id
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__id
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis____last_update
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry____last_update
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__write_uid
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__write_uid
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última modificación por"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__write_date
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__write_date
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__manager_id
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_search
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__only_active_employees
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__only_active_employees
+msgid "Only Active Employees"
+msgstr "Sólo Empleados Activos"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__amount
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__date_from
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__date_from
+msgid "Start Date"
+msgstr "Fecha Inicio"
+
+#. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__line_ids
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_form
+msgid "Timesheet Lines"
+msgstr "Líneas de Partes de horas"
+
+#. module: hr_utilization_analysis
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_tree
+msgid "Total Amount"
+msgstr "Cantidad Total"
+
+#. module: hr_utilization_analysis
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_tree
+msgid "Total Capacity"
+msgstr "Capacidad Total"
+
+#. module: hr_utilization_analysis
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_tree
+msgid "Total Difference"
+msgstr "Diferencia Total"
+
+#. module: hr_utilization_analysis
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_graph
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_pivot
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_search
+msgid "Utilization"
+msgstr "Uso"
+
+#. module: hr_utilization_analysis
+#: code:addons/hr_utilization_analysis/wizards/hr_utilization_analysis_wizard.py:0
+#, python-format
+msgid "Utilization Analysis"
+msgstr "Análisis de uso"
+
+#. module: hr_utilization_analysis
+#: model:ir.actions.act_window,name:hr_utilization_analysis.action_utilization_analysis_wizard
+#: model:ir.ui.menu,name:hr_utilization_analysis.menu_timesheet_analysis_wizard
+msgid "Utilization Analysis Wizard"
+msgstr "Asistente de Análisis de uso"
+
+#. module: hr_utilization_analysis
+#: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_wizard_form
+msgid "View"
+msgstr "Vista"
+
+#. module: hr_utilization_analysis
+#: model:ir.actions.server,name:hr_utilization_analysis.action_utilization_analysis_wizard_from_departments
+#: model:ir.actions.server,name:hr_utilization_analysis.action_utilization_analysis_wizard_from_employees
+msgid "View Utilization Analysis"
+msgstr "Vista de Análisis de uso"
+
+#~ msgid "Name"
+#~ msgstr "Nombre"

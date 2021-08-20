@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_my_wizard_user,my.wizard.user,model_hr_utilization_analysis_wizard,hr_timesheet.group_timesheet_manager,1,1,1,1
+access_my_wizard_user_utillization,my.wizard.user.utilization,model_hr_utilization_analysis,hr_timesheet.group_timesheet_manager,1,1,1,1
+access_my_wizard_user_utillization_entry,my.wizard.user.utilization.entry,model_hr_utilization_analysis_entry,hr_timesheet.group_timesheet_manager,1,1,1,1

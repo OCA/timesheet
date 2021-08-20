@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+    -->
+    <record
+        id="action_utilization_analysis_wizard_from_employees"
+        model="ir.actions.server"
+    >
+        <field name="name">View Utilization Analysis</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="hr.model_hr_employee" />
+        <field name="binding_model_id" ref="hr.model_hr_employee" />
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = {
+                    'type': 'ir.actions.act_window',
+                    'res_model': 'hr.utilization.analysis.wizard',
+                    'views': [[False, 'form']],
+                    'target': 'new',
+                    'context': {
+                        'default_employee_ids': [(6, False, records.ids)],
+                    },
+                }
+        </field>
+    </record>
+</odoo>
