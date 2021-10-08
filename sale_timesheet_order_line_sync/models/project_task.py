@@ -12,8 +12,8 @@ class ProjectTask(models.Model):
         sale_line_id = vals.get("sale_line_id", None)
         if sale_line_id is None:
             return res
-        # Avoid rewrite so_line if billable_type is employee_rate
-        self.filtered(lambda t: t.billable_type == "task_rate").sudo().mapped(
+        # Avoid rewrite so_line if pricing_type is fixed_rate
+        self.filtered(lambda t: t.pricing_type == "fixed_rate").sudo().mapped(
             "timesheet_ids"
         ).filtered(
             lambda l: (not l.timesheet_invoice_id and l.so_line.id != sale_line_id)
