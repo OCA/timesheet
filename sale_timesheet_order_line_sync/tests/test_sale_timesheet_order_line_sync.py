@@ -43,7 +43,7 @@ class TestSaleTimesheetOrderLineSync(common.TransactionCase):
             }
         )
         project = self.SudoProject.create(
-            {"name": "Project #1", "allow_timesheets": True}
+            {"name": "Project #1", "allow_timesheets": True, "allow_billable": True}
         )
         product = self.SudoProductProduct.create(
             {
@@ -118,7 +118,7 @@ class TestSaleTimesheetOrderLineSync(common.TransactionCase):
             }
         )
         self.assertEqual(timesheet.so_line, sale_order_line)
-        self.assertEqual(task.billable_type, "task_rate")
+        self.assertEqual(task.pricing_type, "fixed_rate")
         self.assertAlmostEqual(sale_order_line.qty_delivered, 1.0, 2)
 
         sale_order2 = self.SudoSaleOrder.create(
