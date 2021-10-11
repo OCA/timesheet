@@ -89,6 +89,7 @@ msgstr ""
 #. module: hr_timesheet_time_type
 #: model:ir.actions.act_window,name:hr_timesheet_time_type.open_project_time_type_tree
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_account_analytic_line__time_type_id
+#: model:ir.model.fields,field_description:hr_timesheet_time_type.field_hr_timesheet_switch__time_type_id
 #: model:ir.ui.menu,name:hr_timesheet_time_type.menu_project_task_time_type
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_type.view_project_time_type_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_type.view_project_time_type_tree
@@ -97,5 +98,6 @@ msgstr ""
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_account_analytic_line__time_type_name
+#: model:ir.model.fields,field_description:hr_timesheet_time_type.field_hr_timesheet_switch__time_type_name
 msgid "Time Type Name"
 msgstr ""
