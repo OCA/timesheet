@@ -95,6 +95,7 @@ msgstr ""
 
 #. module: sale_timesheet_rounded
 #: model:ir.model.fields,field_description:sale_timesheet_rounded.field_account_analytic_line__unit_amount_rounded
+#: model:ir.model.fields,field_description:sale_timesheet_rounded.field_hr_timesheet_switch__unit_amount_rounded
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_rounded.account_analytic_line_tree_inherit
 msgid "Quantity rounded"
 msgstr ""
