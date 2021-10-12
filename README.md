@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [hr_timesheet_task_stage](hr_timesheet_task_stage/) | 14.0.1.0.0 |  | Open/Close task from corresponding Task Log entry
 [hr_timesheet_time_type](hr_timesheet_time_type/) | 14.0.1.0.0 |  | Ability to add time type in timesheet lines.
 [hr_utilization_analysis](hr_utilization_analysis/) | 14.0.1.0.0 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | View Utilization Analysis from Task Logs.
+[sale_timesheet_order_line_sync](sale_timesheet_order_line_sync/) | 14.0.1.0.0 |  | Propagate task order line in not invoiced timesheet lines
 [sale_timesheet_rounded](sale_timesheet_rounded/) | 14.0.1.0.0 |  | Round timesheet entries amount based on project settings.
 
 [//]: # (end addons)
