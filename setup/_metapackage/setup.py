@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo14-addon-hr_timesheet_task_stage',
         'odoo14-addon-hr_timesheet_time_type',
         'odoo14-addon-hr_utilization_analysis',
+        'odoo14-addon-sale_timesheet_order_line_sync',
         'odoo14-addon-sale_timesheet_rounded',
     ],
     classifiers=[
