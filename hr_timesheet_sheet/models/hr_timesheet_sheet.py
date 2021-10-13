@@ -666,7 +666,9 @@ class Sheet(models.Model):
                 aal.write({"sheet_id": self.id})
 
     def clean_timesheets(self, timesheets):
-        repeated = timesheets.filtered(lambda t: t.name == empty_name)
+        repeated = timesheets.filtered(
+            lambda t: t.name == empty_name and not t.timesheet_invoice_id
+        )
         if len(repeated) > 1 and self.id:
             return repeated.merge_timesheets()
         return timesheets
