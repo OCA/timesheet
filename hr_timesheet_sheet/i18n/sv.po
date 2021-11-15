@@ -17,14 +17,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2016-09-07 08:56+0000\n"
-"Last-Translator: Frida E <frida.eddestal@gmail.com>, 2017\n"
+"PO-Revision-Date: 2021-11-15 16:36+0000\n"
+"Last-Translator: Simon S <simon.stromberg@vertel.se>\n"
 "Language-Team: Swedish (https://www.transifex.com/odoo/teams/41243/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
@@ -53,12 +54,12 @@ msgstr "Tidrapportrader"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_warning
 msgid "Access warning"
-msgstr ""
+msgstr "Åtkomstvarning"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Åtgärd behövs"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_ids
@@ -83,9 +84,8 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
-#, fuzzy
 msgid "Add new line"
-msgstr "Lägg till en rad"
+msgstr "Lägg till en ny rad"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
@@ -96,9 +96,8 @@ msgstr "Tidrapportrader"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
-#, fuzzy
 msgid "Analytic Account"
-msgstr "Analytiska Konton"
+msgstr "Objektkonto"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_line
@@ -121,7 +120,7 @@ msgstr "Godkänd"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Antal bilagor"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr_manager
@@ -141,41 +140,40 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
 msgid "Can Review"
-msgstr ""
+msgstr "Kan granska"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
-msgstr ""
+msgstr "Kan inte godkänna en tidrapport som inte har skickats in."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
-msgstr ""
+msgstr "Kan inte neka en tidrapport som inte har skickats in."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
-msgstr ""
+msgstr "Kan inte återställa en tidrapport som inte har godkänts till utkast."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose the week start day."
-msgstr ""
+msgstr "Välj startdag för veckan."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
-#, fuzzy
 msgid "Choose timesheet sheets review policy."
-msgstr "Tidrapporter"
+msgstr "Välj tidrapporters granskningspolicy."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose which timesheet sheet ranges should be used by default"
-msgstr ""
+msgstr "Välj vilka tidrapportsintervall som ska användas som standard"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_res_company
@@ -188,13 +186,12 @@ msgstr "Bolag"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__company_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__company_id
 msgid "Company"
-msgstr "Företag"
+msgstr "Bolag"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__complete_name
-#, fuzzy
 msgid "Complete Name"
-msgstr "Medarbetarens namn"
+msgstr "Fullständigt namn"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_res_config_settings
@@ -225,9 +222,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__date
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__date
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__date
-#, fuzzy
 msgid "Date"
-msgstr "Datum till"
+msgstr "Datum"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__date_start
@@ -236,9 +232,8 @@ msgstr "Datum från"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__value_x
-#, fuzzy
 msgid "Date Name"
-msgstr "Datum från"
+msgstr "Datum namn"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__date_end
@@ -248,12 +243,12 @@ msgstr "Datum till"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__sheet_range__daily
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 msgid "Delete"
-msgstr ""
+msgstr "Ta bort"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_department
@@ -279,23 +274,22 @@ msgstr "Detaljer"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__display_name
 msgid "Display Name"
-msgstr "Visa namn"
+msgstr "Visningsnamn"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-#, fuzzy
 msgid "Draft Timesheet Sheets"
-msgstr "Tidrapportrader"
+msgstr "Tidrapportsutkast"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 msgid "Dropdown menu"
-msgstr ""
+msgstr "Rullgardinsmeny"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 msgid "Edit"
-msgstr ""
+msgstr "Redigera"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_employee
@@ -309,7 +303,7 @@ msgstr "Anställd"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Employee's Name"
-msgstr "Medarbetarens namn"
+msgstr "Den anställdes namn"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -339,17 +333,17 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Följare"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Följare (kanaler)"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Följare (partners)"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_type_icon
@@ -359,12 +353,12 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__4
 msgid "Friday"
-msgstr ""
+msgstr "Fredag"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Group By"
-msgstr "Gruppera på"
+msgstr "Gruppera efter"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -374,9 +368,8 @@ msgstr "Timmar"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
-#, fuzzy
 msgid "How Timesheet Sheets review is performed."
-msgstr "Tidrapportperiod"
+msgstr "Hur granskning av tidrapporter genomförs."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_account__id
@@ -395,7 +388,7 @@ msgstr "ID"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Ikon"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_exception_icon
@@ -505,7 +498,7 @@ msgstr "Olästa meddelanden"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__0
 msgid "Monday"
-msgstr ""
+msgstr "Måndag"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__sheet_range__monthly
@@ -551,7 +544,7 @@ msgstr "Ny"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__new_line_id
 msgid "New Line"
-msgstr ""
+msgstr "Ny rad"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
@@ -656,7 +649,7 @@ msgstr "Neka"
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__user_id
 msgid "Related user name for the resource to manage its access."
 msgstr ""
-"Relaterat användarnamn för resursen vid administration av dess rättigheter"
+"Relaterat användarnamn för resursen vid administration av dess rättigheter."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_user_id
@@ -682,7 +675,7 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__5
 msgid "Saturday"
-msgstr ""
+msgstr "Lördag"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -759,9 +752,8 @@ msgstr "Skicka till chef"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-#, fuzzy
 msgid "Submitted"
-msgstr "Skicka till chef"
+msgstr "Inskickad"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -772,25 +764,24 @@ msgstr "Icke validerade Tidrapporter"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Summary"
-msgstr "Sammandrag"
+msgstr "Sammanfattning"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__6
 msgid "Sunday"
-msgstr ""
+msgstr "Söndag"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__task_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__task_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__task_id
 msgid "Task"
-msgstr ""
+msgstr "Aktivitet"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__new_line_ids
-#, fuzzy
 msgid "Temporary Timesheets"
-msgstr "Sök Tidrapport"
+msgstr "Tillfälliga tidrapporter"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -828,12 +819,12 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "The start date cannot be later than the end date."
-msgstr ""
+msgstr "Startdatumet kan inte vara senare än slutdatumet."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__3
 msgid "Thursday"
-msgstr ""
+msgstr "Torsdag"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -842,9 +833,8 @@ msgstr "Tidrapporteringsrader"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
-#, fuzzy
 msgid "Timesheet Options"
-msgstr "Tidrapportrader"
+msgstr "Alternativ för tidrapporter"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -860,9 +850,8 @@ msgstr "Tidrapport"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line
-#, fuzzy
 msgid "Timesheet Sheet Line"
-msgstr "Tidrapportrader"
+msgstr "Tidrapportrad"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__line_ids
@@ -879,43 +868,37 @@ msgstr "Tidrapportrader"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__sheet_range
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__sheet_range
-#, fuzzy
 msgid "Timesheet Sheet Range"
-msgstr "Tidrapport område"
+msgstr "Tidrapportsintervall"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
-#, fuzzy
 msgid "Timesheet Sheet Review Policy"
-msgstr "Tidrapportrader"
+msgstr "Policy för granskning av tidrapporter"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
-#, fuzzy
 msgid "Timesheet Sheets"
-msgstr "Tidrapportrader"
+msgstr "Tidrapporter"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_sheet_count
-#, fuzzy
 msgid "Timesheet Sheets Count"
-msgstr "Tidrapportrader"
+msgstr "Antal tidrapporter"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department__timesheet_sheet_to_approve_count
-#, fuzzy
 msgid "Timesheet Sheets to Approve"
-msgstr "Tidrapportperiod"
+msgstr "Tidrapporter att godkänna"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_to_review
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-#, fuzzy
 msgid "Timesheet Sheets to Review"
-msgstr "Tidrapportperiod"
+msgstr "Tidrapporter att granska"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
@@ -975,7 +958,7 @@ msgstr "Tidrapportperiod"
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_hr_to_review
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "To Review"
-msgstr ""
+msgstr "Att granska"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__total_time
@@ -985,7 +968,7 @@ msgstr "Totalt timmar"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__1
 msgid "Tuesday"
-msgstr ""
+msgstr "Tisdag"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_exception_decoration
@@ -1042,7 +1025,7 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__2
 msgid "Wednesday"
-msgstr ""
+msgstr "Onsdag"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__sheet_range__weekly
@@ -1069,7 +1052,7 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Weeks %s - %s"
-msgstr ""
+msgstr "Vecka %s - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:0
