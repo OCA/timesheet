@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-11-11 15:36+0000\n"
+"PO-Revision-Date: 2021-11-16 15:36+0000\n"
 "Last-Translator: Simon S <simon.stromberg@vertel.se>\n"
 "Language-Team: none\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: hr_timesheet_activity_begin_end
 #: model:ir.model,name:hr_timesheet_activity_begin_end.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Objektrad"
 
 #. module: hr_timesheet_activity_begin_end
 #: model:ir.model.fields,field_description:hr_timesheet_activity_begin_end.field_account_analytic_line__time_start
