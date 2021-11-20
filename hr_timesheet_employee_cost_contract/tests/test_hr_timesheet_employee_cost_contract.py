@@ -1,4 +1,5 @@
 # Copyright 2020 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2021 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from datetime import date, datetime
@@ -17,7 +18,6 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
         self.HrEmployee = self.env['hr.employee']
         self.ResourceCalendarLeave = self.env['resource.calendar.leaves']
         self.today = fields.Date.today()
-        self.eur = self.env.ref('base.EUR')
 
     def test_defaults(self):
         employee = self.HrEmployee.create({
@@ -90,10 +90,14 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
         self.assertEqual(len(contracts), 2)
         average_hourly_cost = contracts._compute_average_hourly_cost(
             'contract_avg',
-            self.eur,
+            employee.company_id.currency_id,
             as_of_day
         )
-        self.assertEqual(average_hourly_cost, 7.50)
+
+        # 2020 has 262 8h business days (366 days - 52 weekends), or 2096h:
+        # ~= (€3000 + €1000) * 12 / 2 / 262 / 8
+        # NOTE: The actual computation is differently thus result differs a bit
+        self.assertAlmostEqual(average_hourly_cost, 11.47)
 
     def test_annual_avg(self):
         employee = self.HrEmployee.create({
@@ -114,15 +118,20 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
                 }),
             ],
         })
+        # NOTE: Dec 1st is used to check if rounded until end-of-year
         as_of_day = date(2020, 12, 1)
         contracts = employee._get_timesheet_cost_contracts(as_of_day)
         self.assertEqual(len(contracts), 2)
         average_hourly_cost = contracts._compute_average_hourly_cost(
             'annual_avg',
-            self.eur,
+            employee.company_id.currency_id,
             as_of_day
         )
-        self.assertEqual(average_hourly_cost, 7.53)
+
+        # 2020 has 262 8h business days (366 days - 52 weekends), or 2096h:
+        # ~= (€3000 + €1000) * 12 / 2 / 262 / 8
+        # NOTE: The actual computation is differently thus result differs a bit
+        self.assertAlmostEqual(average_hourly_cost, 11.47)
 
     def test_monthly_avg(self):
         employee = self.HrEmployee.create({
@@ -147,11 +156,15 @@ class TestHrTimesheetEmployeeCostContract(common.TransactionCase):
         contracts = employee._get_timesheet_cost_contracts(as_of_day)
         self.assertEqual(len(contracts), 2)
         average_hourly_cost = contracts._compute_average_hourly_cost(
-            'annual_avg',
-            self.eur,
+            'monthly_avg',
+            employee.company_id.currency_id,
             as_of_day
         )
-        self.assertEqual(average_hourly_cost, 8.94)
+
+        # Jan 2020 has 23 8h business days:
+        # ~= (€3000 + €1000) / 2 / 23 / 8
+        # NOTE: The actual computation is differently thus result differs a bit
+        self.assertAlmostEqual(average_hourly_cost, 10.87)
 
     def test_leaves(self):
         employee = self.HrEmployee.create({

@@ -1,4 +1,5 @@
 # Copyright 2020 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2021 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, time
@@ -99,7 +100,7 @@ class HrContract(models.Model):
             month_start = period_start
             months = 0
             contract_hourly_rates = 0.0
-            while month_start < period_end:
+            while month_start <= period_end:
                 month_end = min(
                     month_start + relativedelta(months=1, day=1, days=-1),
                     period_end
