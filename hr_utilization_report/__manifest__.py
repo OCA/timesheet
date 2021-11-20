@@ -4,7 +4,7 @@
 
 {
     'name': 'Task Logs Utilization Report',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'category': 'Human Resources',
     'website': 'https://github.com/OCA/hr-timesheet',
     'author':
