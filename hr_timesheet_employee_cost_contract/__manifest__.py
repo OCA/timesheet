@@ -17,6 +17,7 @@
     'depends': [
         'hr_timesheet',
         'hr_contract',
+        'hr_holidays',
     ],
     'data': [
         'views/account_analytic_line.xml',
