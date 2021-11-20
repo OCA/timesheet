@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_timesheet_line_exclude
+# 	* sale_timesheet_line_exclude
 #
 msgid ""
 msgstr ""
@@ -30,20 +30,22 @@ msgstr ""
 "client"
 
 #. module: sale_timesheet_line_exclude
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_line_exclude.account_analytic_line_search
+msgid "Excluded From Sale Order"
+msgstr "Exclue de la commande client"
+
+#. module: sale_timesheet_line_exclude
 #: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_account_analytic_line__exclude_from_sale_order
 #: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_hr_timesheet_switch__exclude_from_sale_order
 msgid "Non-billable"
 msgstr "Non facturable"
 
 #. module: sale_timesheet_line_exclude
-#: model_terms:ir.ui.view,arch_db:sale_timesheet_line_exclude.account_analytic_line_search
-msgid "Excluded From Sale Order"
-msgstr "Exclue de la commande client"
-
-#. module: sale_timesheet_line_exclude
 #: code:addons/sale_timesheet_line_exclude/models/account_analytic_line.py:38
 #, python-format
-msgid "You can not modify timesheets in a way that would affect invoices since these timesheets were already invoiced."
+msgid ""
+"You can not modify timesheets in a way that would affect invoices since "
+"these timesheets were already invoiced."
 msgstr ""
 "Vous ne pouvez pas modifier les feuilles de temps d'une manière qui "
 "affecterait les factures puisque ces feuilles de temps étaient déjà "

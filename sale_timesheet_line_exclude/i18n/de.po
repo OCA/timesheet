@@ -30,15 +30,15 @@ msgstr ""
 "einen Verkaufsauftrag ausgeschlossen."
 
 #. module: sale_timesheet_line_exclude
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_line_exclude.account_analytic_line_search
+msgid "Excluded From Sale Order"
+msgstr "von Abrechnung ausgeschlossen"
+
+#. module: sale_timesheet_line_exclude
 #: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_account_analytic_line__exclude_from_sale_order
 #: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_hr_timesheet_switch__exclude_from_sale_order
 msgid "Non-billable"
 msgstr "von Abrechnung ausschließen"
-
-#. module: sale_timesheet_line_exclude
-#: model_terms:ir.ui.view,arch_db:sale_timesheet_line_exclude.account_analytic_line_search
-msgid "Excluded From Sale Order"
-msgstr "von Abrechnung ausgeschlossen"
 
 #. module: sale_timesheet_line_exclude
 #: code:addons/sale_timesheet_line_exclude/models/account_analytic_line.py:38

@@ -29,15 +29,15 @@ msgstr ""
 "Marcando esto excluirá esta entrada del Parte de horas del pedido de venta"
 
 #. module: sale_timesheet_line_exclude
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_line_exclude.account_analytic_line_search
+msgid "Excluded From Sale Order"
+msgstr "Excluido del pedido de venta"
+
+#. module: sale_timesheet_line_exclude
 #: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_account_analytic_line__exclude_from_sale_order
 #: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_hr_timesheet_switch__exclude_from_sale_order
 msgid "Non-billable"
 msgstr "Excluir del pedido de venta"
-
-#. module: sale_timesheet_line_exclude
-#: model_terms:ir.ui.view,arch_db:sale_timesheet_line_exclude.account_analytic_line_search
-msgid "Excluded From Sale Order"
-msgstr "Excluido del pedido de venta"
 
 #. module: sale_timesheet_line_exclude
 #: code:addons/sale_timesheet_line_exclude/models/account_analytic_line.py:38
