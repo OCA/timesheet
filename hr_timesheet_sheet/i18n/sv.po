@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2021-11-23 12:36+0000\n"
+"PO-Revision-Date: 2021-11-30 07:36+0000\n"
 "Last-Translator: Simon S <simon.stromberg@vertel.se>\n"
 "Language-Team: Swedish (https://www.transifex.com/odoo/teams/41243/sv/)\n"
 "Language: sv\n"
@@ -123,17 +123,17 @@ msgstr "Antal bilagor"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr_manager
 msgid "By HR Managers"
-msgstr ""
+msgstr "Av HR-chefer"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr
 msgid "By HR Officers"
-msgstr ""
+msgstr "Av HR-ansvariga"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__timesheet_manager
 msgid "By Timesheets Managers"
-msgstr ""
+msgstr "Av tidrapporteringsansvariga"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
@@ -317,6 +317,10 @@ msgid ""
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
+"Anställda måste fylla i tidrapporter varje dag och skicka in dem\n"
+"            i slutet av rapporteringsperioden. När tidrapporten har skickats "
+"in ska den\n"
+"            valideras av en granskare."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
@@ -327,6 +331,10 @@ msgid ""
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
+"Anställda måste skriva in tid i rapporten varje dag och skicka in rapporten\n"
+"            i slutet av rapporteringsperioden. När tidrapporten har skickats "
+"in ska den\n"
+"            valideras av en granskare."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
@@ -391,7 +399,7 @@ msgstr "Ikon"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Ikon för att indikera en undantagsaktivitet."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction
@@ -597,7 +605,7 @@ msgstr "Antal olästa meddelanden"
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
-msgstr ""
+msgstr "Endast en HR-ansvarig eller chef kan granska bladet."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__hr_timesheet_sheet__state__draft
@@ -612,7 +620,7 @@ msgstr "Period"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_url
 msgid "Portal Access URL"
-msgstr ""
+msgstr "URL för tillgång till portalen"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__project_id
@@ -965,7 +973,7 @@ msgstr "Tisdag"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Typ av undantagsaktivitet som registrerats."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread
@@ -1107,6 +1115,10 @@ msgid ""
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
+"Du måste fylla i tidrapporter varje dag och skicka in dem\n"
+"            i slutet av rapporteringsperioden. När tidrapporten har skickats "
+"in ska den\n"
+"            valideras av en granskare."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
@@ -1116,6 +1128,10 @@ msgid ""
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
+"Du måste skriva in tid i tidrapporten varje dag och skicka in dem\n"
+"            i slutet av rapporteringsperioden. När tidrapporten har skickats "
+"in ska den\n"
+"            valideras av en granskare."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
