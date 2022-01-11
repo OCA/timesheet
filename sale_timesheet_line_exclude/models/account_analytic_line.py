@@ -70,11 +70,10 @@ class AccountAnalyticLine(models.Model):
         if values:
             return {
                 "task": self.env["project.task"].sudo().browse(values.get("task_id")),
-                "employee": self.env["hr.employee"]
-                .sudo()
-                .browse(values.get("employee_id")),
+                "employee": self.env["hr.employee"].sudo().browse(values.get("employee_id")),
+                "project": self.env['project.project'].sudo().browse(values.get("project_id")),
             }
-        return {"task": self.task_id, "employee": self.employee_id}
+        return {"task": self.task_id, "employee": self.employee_id, "project": self.project_id}
 
     @api.depends("exclude_from_sale_order")
     def _compute_timesheet_invoice_type(self):
