@@ -59,7 +59,6 @@ class HrAttendance(models.Model):
         if self.sheet_id and self.sheet_id.state != "draft":
             raise UserError(_("You cannot modify an entry in a confirmed timesheet"))
 
-    @api.multi
     def unlink(self):
         # Restrict to delete attendance from confirmed timesheet-sheet
         for attendance in self:
