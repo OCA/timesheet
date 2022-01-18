@@ -1,14 +1,15 @@
 import datetime
 
-from odoo.addons.hr_timesheet_sheet_attendance.tests.\
-    hr_timesheet_sheet_test_cases import HrTimesheetTestCases
 from odoo.exceptions import UserError
+
+from odoo.addons.hr_timesheet_sheet_attendance.tests.hr_timesheet_sheet_test_cases import (
+    HrTimesheetTestCases,
+)
 
 
 class TestHrTimesheetSheet(HrTimesheetTestCases):
-
     def test_00_check_timesheet_compute_old_attendance(self):
-        """ sheet_id should compute for attendaces which
+        """sheet_id should compute for attendaces which
         were created before creation of timesheet"""
         checkInDate = datetime.datetime(2018, 11, 12, 10, 0, 0)
         self._create_attendance(
@@ -16,12 +17,13 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
             checkIn=checkInDate,
         )
         time_sheet = self._create_timesheet_sheet(
-            self.employee, datetime.date(2018, 11, 12))
+            self.employee, datetime.date(2018, 11, 12)
+        )
         self.assertEqual(
             time_sheet.attendance_count,
             1,
             "Error while computing sheet_id of already created attendances.\
-            \nMethod: create"
+            \nMethod: create",
         )
 
     def test_01_compute_total_time_and_difference(self):
@@ -40,19 +42,19 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
             self.timesheet.attendance_count,
             1,
             "Error while computing total attendance count.\
-            \nMethod: _compute_attendance_count"
+            \nMethod: _compute_attendance_count",
         )
         self.assertEqual(
             self.timesheet.total_attendance,
             2.0,
             "Error while computing total working time.\
-            \nMethod: _compute_attendance_time"
+            \nMethod: _compute_attendance_time",
         )
         self.assertEqual(
             self.timesheet.total_difference,
             2.0,
             "Error while computing total total difference.\
-            \nMethod: _compute_attendance_time"
+            \nMethod: _compute_attendance_time",
         )
 
         # Attendance - 2
@@ -68,35 +70,41 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
             self.timesheet.attendance_count,
             2,
             "Error while computing total attendance count.\
-            \nMethod: _compute_attendance_count"
+            \nMethod: _compute_attendance_count",
         )
         self.assertEqual(
             self.timesheet.total_attendance,
             3.0,
             "Error while computing total working time.\
-            \nMethod: _compute_attendance_time"
+            \nMethod: _compute_attendance_time",
         )
         self.assertEqual(
             self.timesheet.total_difference,
             3.0,
             "Error while computing total total difference.\
-            \nMethod: _compute_attendance_time"
+            \nMethod: _compute_attendance_time",
         )
 
         # Create timesheet lines
-        self.timesheet.timesheet_ids = [(0, 0, {
-            'employee_id': self.employee.id,
-            'date': datetime.date(2018, 12, 12),
-            'project_id': self.project_id.id,
-            'task_id': self.task_1.id,
-            'name': 'testing',
-            'unit_amount': 1.0,
-        })]
+        self.timesheet.timesheet_ids = [
+            (
+                0,
+                0,
+                {
+                    "employee_id": self.employee.id,
+                    "date": datetime.date(2018, 12, 12),
+                    "project_id": self.project_id.id,
+                    "task_id": self.task_1.id,
+                    "name": "testing",
+                    "unit_amount": 1.0,
+                },
+            )
+        ]
         self.assertEqual(
             self.timesheet.total_difference,
             2.0,
             "Error while computing total total difference.\
-            \nMethod: _compute_attendance_time"
+            \nMethod: _compute_attendance_time",
         )
 
         # # Attendance - 3
@@ -112,9 +120,9 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
         self.timesheet.action_timesheet_confirm()
         self.assertEqual(
             self.timesheet.state,
-            'confirm',
+            "confirm",
             "Error while confirming timesheet.\
-            \nMethod: action_timesheet_confirm"
+            \nMethod: action_timesheet_confirm",
         )
 
     def test_03_sighin_sighout(self):
@@ -122,18 +130,16 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
         time_sheet = self._create_timesheet_sheet(self.employee)
         time_sheet.attendance_action_change()
         self.assertNotEqual(
-            time_sheet.attendances_ids.filtered(
-                lambda att: not att.check_out).ids,
+            time_sheet.attendances_ids.filtered(lambda att: not att.check_out).ids,
             [],
             "Error while sighin using button on timesheet.\
-            \nMethod: attendance_action_change"
+            \nMethod: attendance_action_change",
         )
 
         time_sheet.attendance_action_change()
         self.assertEqual(
-            time_sheet.attendances_ids.filtered(
-                lambda att: not att.check_out).ids,
+            time_sheet.attendances_ids.filtered(lambda att: not att.check_out).ids,
             [],
             "Error while signout using button on timesheet.\
-            \nMethod: attendance_action_change"
+            \nMethod: attendance_action_change",
         )
