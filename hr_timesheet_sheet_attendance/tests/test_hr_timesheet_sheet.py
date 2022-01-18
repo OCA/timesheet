@@ -2,9 +2,7 @@ import datetime
 
 from odoo.exceptions import UserError
 
-from odoo.addons.hr_timesheet_sheet_attendance.tests.hr_timesheet_sheet_test_cases import (
-    HrTimesheetTestCases,
-)
+from .hr_timesheet_sheet_test_cases import HrTimesheetTestCases
 
 
 class TestHrTimesheetSheet(HrTimesheetTestCases):
