@@ -61,15 +61,13 @@ class HrTimesheetSheet(models.Model):
         compute="_compute_attendance_count", string="Attendance Count"
     )
 
-    @api.multi
     def attendance_action_change(self):
         """Call attendance_action_change to
         perform Check In/Check Out action
         Returns last attendance record"""
 
-        return self.employee_id.attendance_action_change()
+        return self.employee_id._attendance_action_change()
 
-    @api.multi
     def action_timesheet_confirm(self):
         self.check_employee_attendance_state()
         return super(HrTimesheetSheet, self).action_timesheet_confirm()
