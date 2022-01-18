@@ -9,4 +9,4 @@
     - First one(with time icon) will take you list of your timesheets (by default filter timesheets related to current timesheet-sheet)
     - Second one(labeled as Attendances) will take you to list of your attendances (by default filter ateendances related to current timesheet-sheet)
 * It prevents to change in any attendance ralted to timesheet-sheet that already has submitted
-* It also prevents to submit such a timesheet-sheet not having equal number of checkin and checkout 
+* It also prevents to submit such a timesheet-sheet not having equal number of checkin and checkout
