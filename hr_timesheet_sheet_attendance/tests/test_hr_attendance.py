@@ -1,10 +1,8 @@
 import datetime
 
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
 
-from odoo.addons.hr_timesheet_sheet_attendance.tests.hr_timesheet_sheet_test_cases import (
-    HrTimesheetTestCases,
-)
+from .hr_timesheet_sheet_test_cases import HrTimesheetTestCases
 
 
 class TestHrAttendance(HrTimesheetTestCases):
@@ -50,7 +48,7 @@ class TestHrAttendance(HrTimesheetTestCases):
             self.attendance_1.unlink()
 
         # create attendance in confirmed timesheet
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             checkInDate = datetime.datetime(2018, 12, 12, 13, 35, 0)
             self._create_attendance(
                 employee=self.employee,
@@ -58,7 +56,7 @@ class TestHrAttendance(HrTimesheetTestCases):
             )
 
         # modify attendance in confirmed timesheet
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             self.attendance_1.write(
                 {
                     "check_in": datetime.datetime(2018, 12, 12, 14, 0, 0),
@@ -67,7 +65,7 @@ class TestHrAttendance(HrTimesheetTestCases):
 
     def test_03_check_timesheet(self):
         # check when create attendance out_side the current timesheet date
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             self.attendance_1.write(
                 {
                     "check_out": datetime.datetime(2018, 12, 16, 17, 0, 0),
