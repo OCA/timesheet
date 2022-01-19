@@ -101,7 +101,7 @@ class TestHrTimesheetSheetPolicyDepartmentManager(common.TransactionCase):
 
     def test_review_policy_capture(self):
         self.company.timesheet_sheet_review_policy = "department_manager"
-        sheet = self.HrTimesheetSheet.sudo(self.employee_user).create(
+        sheet = self.HrTimesheetSheet.with_user(self.employee_user).create(
             {
                 "company_id": self.company.id,
                 "department_id": self.department.id,
@@ -115,14 +115,14 @@ class TestHrTimesheetSheetPolicyDepartmentManager(common.TransactionCase):
     def test_department_manager_review_policy(self):
         self.company.timesheet_sheet_review_policy = "department_manager"
 
-        self.HrTimesheetSheet.sudo(self.employee_user).fields_view_get(
+        self.HrTimesheetSheet.with_user(self.employee_user).fields_view_get(
             view_type="form",
         )
-        self.HrTimesheetSheet.sudo(self.employee_user).fields_view_get(
+        self.HrTimesheetSheet.with_user(self.employee_user).fields_view_get(
             view_type="tree",
         )
 
-        sheet = self.HrTimesheetSheet.sudo(self.employee_user).create(
+        sheet = self.HrTimesheetSheet.with_user(self.employee_user).create(
             {
                 "company_id": self.company.id,
                 "department_id": self.department.id,
@@ -133,15 +133,15 @@ class TestHrTimesheetSheetPolicyDepartmentManager(common.TransactionCase):
         sheet._compute_complete_name()
 
         sheet.action_timesheet_confirm()
-        self.assertFalse(sheet.sudo(self.employee_user).can_review)
+        self.assertFalse(sheet.with_user(self.employee_user).can_review)
         self.assertEqual(
-            self.HrTimesheetSheet.sudo(self.employee_user).search_count(
+            self.HrTimesheetSheet.with_user(self.employee_user).search_count(
                 [("can_review", "=", True)]
             ),
             0,
         )
         with self.assertRaises(UserError):
-            sheet.sudo(self.employee_user).action_timesheet_done()
-        sheet.sudo(self.department_manager_user).action_timesheet_done()
-        sheet.sudo(self.department_manager_user).action_timesheet_draft()
+            sheet.with_user(self.employee_user).action_timesheet_done()
+        sheet.with_user(self.department_manager_user).action_timesheet_done()
+        sheet.with_user(self.department_manager_user).action_timesheet_draft()
         sheet.unlink()
