@@ -41,12 +41,10 @@ class HrTimesheetSheet(models.Model):
             ).replace("\t", "")
         return res
 
-    @api.multi
     @api.depends("department_id.manager_id.user_id")
     def _compute_department_manager_as_reviewer(self):
         self._compute_possible_reviewer_ids()
 
-    @api.multi
     def _get_complete_name_components(self):
         self.ensure_one()
         result = super()._get_complete_name_components()
@@ -54,7 +52,6 @@ class HrTimesheetSheet(models.Model):
             result += [self.department_id.name_get()[0][1]]
         return result
 
-    @api.multi
     def _get_possible_reviewers(self):
         self.ensure_one()
         res = super()._get_possible_reviewers()
@@ -62,7 +59,6 @@ class HrTimesheetSheet(models.Model):
             res |= self.department_id.manager_id.user_id
         return res
 
-    @api.multi
     def _check_can_review(self):
         super()._check_can_review()
         if self.filtered(
