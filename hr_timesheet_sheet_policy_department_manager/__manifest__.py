@@ -4,8 +4,8 @@
 
 {
     "name": "HR Timesheet Sheet: Department Manager Policy",
-    "version": "12.0.1.1.0",
-    "author": "CorporateHub, " "Odoo Community Association (OCA)",
+    "version": "14.0.1.0.0",
+    "author": "CorporateHub, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/timesheet",
     "license": "AGPL-3",
     "category": "Human Resources",
