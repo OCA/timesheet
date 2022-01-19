@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo14-addon-hr_timesheet_activity_begin_end',
         'odoo14-addon-hr_timesheet_analysis',
         'odoo14-addon-hr_timesheet_sheet',
+        'odoo14-addon-hr_timesheet_sheet_attendance',
         'odoo14-addon-hr_timesheet_sheet_autodraft',
         'odoo14-addon-hr_timesheet_sheet_policy_project_manager',
         'odoo14-addon-hr_timesheet_task_domain',
