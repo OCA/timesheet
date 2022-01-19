@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
     Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -8,9 +8,12 @@
     <record id="hr_timesheet_sheet_form" model="ir.ui.view">
         <field name="name">hr_timesheet.sheet.form</field>
         <field name="model">hr_timesheet.sheet</field>
-        <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
+        <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form" />
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='details']/field[@name='department_id']" position="attributes">
+            <xpath
+                expr="//group[@name='details']/field[@name='department_id']"
+                position="attributes"
+            >
                 <attribute name="invisible">False</attribute>
                 <attribute name="attrs">
                     {
