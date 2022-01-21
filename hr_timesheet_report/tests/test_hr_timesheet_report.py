@@ -102,7 +102,7 @@ class TestHrTimesheetReport(common.TransactionCase):
         report = self.Report.create(wizard._collect_report_values())
         self.IrActionReport._get_report_from_name(
             "hr_timesheet_report.report"
-        ).render_qweb_html(report.ids)
+        )._render_qweb_html(report.ids)
 
     def test_pdf_export(self):
         project = self.Project.create(
@@ -135,7 +135,7 @@ class TestHrTimesheetReport(common.TransactionCase):
         report = self.Report.create(wizard._collect_report_values())
         self.IrActionReport._get_report_from_name(
             "hr_timesheet_report.report"
-        ).render_qweb_pdf(report.ids)
+        )._render_qweb_pdf(report.ids)
 
     def test_xlsx_export(self):
         project = self.Project.create(
@@ -168,7 +168,7 @@ class TestHrTimesheetReport(common.TransactionCase):
         report = self.Report.create(wizard._collect_report_values())
         self.IrActionReport._get_report_from_name(
             "hr_timesheet_report.report"
-        ).render_xlsx(report.ids, None)
+        )._render_xlsx(report.ids, None)
 
     def test_no_grouping(self):
         project = self.Project.create(

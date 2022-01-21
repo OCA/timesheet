@@ -221,31 +221,28 @@
         </t>
     </template>
 
-    <report
-        id="action_report_qweb_pdf"
-        model="hr.timesheet.report"
-        report_type="qweb-pdf"
-        name="hr_timesheet_report.report"
-        string="Timesheet Report"
-        file="Timesheet Report"
-    />
+    <record id="action_report_qweb_pdf" model="ir.actions.report">
+        <field name="name">Timesheet Report</field>
+        <field name="model">hr.timesheet.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_timesheet_report.report</field>
+        <field name="report_file">Timesheet Report</field>
+    </record>
 
-    <report
-        id="action_report_qweb_html"
-        model="hr.timesheet.report"
-        report_type="qweb-html"
-        name="hr_timesheet_report.report"
-        string="Timesheet Report"
-        file="Timesheet Report"
-    />
+    <record id="action_report_qweb_html" model="ir.actions.report">
+        <field name="name">Timesheet Report</field>
+        <field name="model">hr.timesheet.report</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">hr_timesheet_report.report</field>
+        <field name="report_file">Timesheet Report</field>
+    </record>
 
-    <report
-        id="action_report_xlsx"
-        model="hr.timesheet.report"
-        report_type="xlsx"
-        name="hr_timesheet_report.report"
-        string="Timesheet Report"
-        file="Timesheet Report"
-    />
+    <record id="action_report_xlsx" model="ir.actions.report">
+        <field name="name">Timesheet Report</field>
+        <field name="model">hr.timesheet.report</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">hr_timesheet_report.report</field>
+        <field name="report_file">Timesheet Report</field>
+    </record>
 
 </odoo>
