@@ -91,7 +91,6 @@ class HrTimesheetReport(models.TransientModel):
             "xlsx",
         ]
 
-    @api.multi
     @api.depends(
         "line_ids",
         "date_from",
@@ -149,7 +148,6 @@ class HrTimesheetReport(models.TransientModel):
                 )
             report.group_ids = group_ids
 
-    @api.multi
     def _get_group_values(self, grouped_lines):
         self.ensure_one()
 
@@ -167,13 +165,11 @@ class HrTimesheetReport(models.TransientModel):
             "scope": ustr(grouped_lines["__domain"]),
         }
 
-    @api.multi
     @api.depends("group_ids.total_unit_amount")
     def _compute_total_unit_amount(self):
         for report in self:
             report.total_unit_amount = sum(report.group_ids.mapped("total_unit_amount"))
 
-    @api.multi
     def _get_domain(self):
         self.ensure_one()
 
@@ -198,7 +194,6 @@ class HrTimesheetReport(models.TransientModel):
             query.append(("department_id", "in", self.department_ids.ids))
         return query
 
-    @api.multi
     def get_action(self, report_type="qweb-html"):
         self.ensure_one()
 
@@ -268,7 +263,6 @@ class HrTimesheetReportAbstractField(models.AbstractModel):
     ]
 
     @api.depends("field_name", "aggregation")
-    @api.multi
     def _compute_groupby(self):
         for field in self:
             if field.aggregation:
@@ -293,13 +287,11 @@ class HrTimesheetReportEntryField(models.TransientModel):
         compute="_compute_cell_classes",
     )
 
-    @api.multi
     @api.depends("field_type")
     def _compute_cell_classes(self):
         for field in self:
             field.cell_classes = " ".join(field._get_cell_classes(field.field_type))
 
-    @api.multi
     def _get_cell_classes(self, field_type):
         self.ensure_one()
 
@@ -338,7 +330,6 @@ class HrTimesheetReportGroup(models.TransientModel):
         store=True,
     )
 
-    @api.multi
     @api.depends(
         "scope",
         "report_id.groupby_field_ids",
@@ -374,13 +365,11 @@ class HrTimesheetReportGroup(models.TransientModel):
                 entry_ids.append((0, False, entry_values))
             group.entry_ids = entry_ids
 
-    @api.multi
     @api.depends("entry_ids.total_unit_amount")
     def _compute_total_unit_amount(self):
         for group in self:
             group.total_unit_amount = sum(group.entry_ids.mapped("total_unit_amount"))
 
-    @api.multi
     def _get_entry_values(self, grouped_lines):
         self.ensure_one()
         return {
@@ -417,7 +406,6 @@ class HrTimesheetReportEntry(models.TransientModel):
         store=True,
     )
 
-    @api.multi
     @api.depends("scope")
     def _compute_any_line_id(self):
         AccountAnalyticLine = self.env["account.analytic.line"]
@@ -428,7 +416,6 @@ class HrTimesheetReportEntry(models.TransientModel):
                 limit=1,
             )
 
-    @api.multi
     @api.depends("scope")
     def _compute_total_unit_amount(self):
         AccountAnalyticLine = self.env["account.analytic.line"]
@@ -445,7 +432,6 @@ class HrTimesheetReportEntry(models.TransientModel):
                 )
             entry.total_unit_amount = total_unit_amount
 
-    @api.multi
     def render_value(self, field_name):
         self.ensure_one()
 
@@ -461,6 +447,7 @@ class HrTimesheetReportEntry(models.TransientModel):
 class Report(models.AbstractModel):
     _name = "report.hr_timesheet_report.report"
     _inherit = "report.report_xlsx.abstract"
+    _description = "Timesheet Report"
 
     @api.model
     def _get_report_values(self, docids, data=None):

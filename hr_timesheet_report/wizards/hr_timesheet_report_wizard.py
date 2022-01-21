@@ -130,13 +130,11 @@ class HrTimesheetReportWizard(models.TransientModel):
                     _("At least one field must be listed in Details Fields")
                 )
 
-    @api.multi
     @api.depends("line_ids")
     def _compute_has_line_ids(self):
         for wizard in self:
             wizard.has_line_ids = len(wizard.line_ids) > 0
 
-    @api.multi
     def action_export_html(self):
         self.ensure_one()
 
@@ -150,19 +148,16 @@ class HrTimesheetReportWizard(models.TransientModel):
 
         return action
 
-    @api.multi
     def action_export_pdf(self):
         self.ensure_one()
 
         return self._generate_report("qweb-pdf")
 
-    @api.multi
     def action_export_xlsx(self):
         self.ensure_one()
 
         return self._generate_report("xlsx")
 
-    @api.multi
     def _generate_report(self, report_type):
         self.ensure_one()
 
@@ -170,7 +165,6 @@ class HrTimesheetReportWizard(models.TransientModel):
 
         return report.get_action(report_type)
 
-    @api.multi
     def _collect_report_values(self):
         self.ensure_one()
 
@@ -238,21 +232,18 @@ class HrTimesheetReportWizardField(models.AbstractModel):
     def _field_selectable(self, field, definition):
         return True
 
-    @api.multi
     @api.depends("field_name")
     def _compute_field_title(self):
         fields = self.env["account.analytic.line"].fields_get()
         for field in self:
             field.field_title = fields[field.field_name]["string"]
 
-    @api.multi
     @api.depends("field_name")
     def _compute_field_type(self):
         fields = self.env["account.analytic.line"].fields_get()
         for field in self:
             field.field_type = fields[field.field_name]["type"]
 
-    @api.multi
     def _collect_report_values(self):
         self.ensure_one()
 
