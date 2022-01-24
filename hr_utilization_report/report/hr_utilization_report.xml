@@ -9,18 +9,18 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="report">
                 <t t-call="web.external_layout">
-                    <t t-set="uom_hour" t-value="env.ref('uom.product_uom_hour')"/>
+                    <t t-set="uom_hour" t-value="env.ref('uom.product_uom_hour')" />
                     <div class="page">
-                        <div class="oe_structure"/>
-                        <t t-call="hr_utilization_report.report_header"/>
+                        <div class="oe_structure" />
+                        <t t-call="hr_utilization_report.report_header" />
                         <table class="table table-sm">
                             <tbody>
                                 <t t-foreach="report.group_ids" t-as="group">
-                                    <t t-call="hr_utilization_report.report_group"/>
+                                    <t t-call="hr_utilization_report.report_group" />
                                 </t>
                             </tbody>
                         </table>
-                        <div class="oe_structure"/>
+                        <div class="oe_structure" />
                     </div>
                 </t>
             </t>
@@ -34,21 +34,33 @@
                     <span>Utilization Report</span>
                     <span class="float-right text-right">
                         <t t-call="hr_utilization_report.report_utilization">
-                            <t t-set="utilization_value" t-value="report.total_utilization_a"/>
-                            <t t-set="amount_value" t-value="report.total_unit_amount_a"/>
+                            <t
+                                t-set="utilization_value"
+                                t-value="report.total_utilization_a"
+                            />
+                            <t
+                                t-set="amount_value"
+                                t-value="report.total_unit_amount_a"
+                            />
                         </t>
                         <t t-if="report.split_by_field_name">
                             <span>/</span>
                             <t t-call="hr_utilization_report.report_utilization">
-                                <t t-set="utilization_value" t-value="report.total_utilization_b"/>
-                                <t t-set="amount_value" t-value="report.total_unit_amount_b"/>
+                                <t
+                                    t-set="utilization_value"
+                                    t-value="report.total_utilization_b"
+                                />
+                                <t
+                                    t-set="amount_value"
+                                    t-value="report.total_unit_amount_b"
+                                />
                             </t>
                         </t>
                         <span> of </span>
                         <t t-call="hr_utilization_report.report_capacity">
-                            <t t-set="capacity_value" t-value="report.total_capacity"/>
+                            <t t-set="capacity_value" t-value="report.total_capacity" />
                         </t>
-                        <span t-esc="uom_hour.name"/>
+                        <span t-esc="uom_hour.name" />
                     </span>
                 </h2>
             </div>
@@ -57,7 +69,9 @@
             <div class="col-lg-12">
                 <h5>
                     <span>Date Range:</span>
-                    <span t-field="report.date_from"/> - <span t-field="report.date_to"/>
+                    <span t-field="report.date_from" /> - <span
+                        t-field="report.date_to"
+                    />
                 </h5>
             </div>
         </div>
@@ -67,7 +81,7 @@
                     <h5>Employees:</h5>
                     <ul>
                         <li t-foreach="report.employee_ids" t-as="employee">
-                            <span t-field="employee.name"/>
+                            <span t-field="employee.name" />
                         </li>
                     </ul>
                 </div>
@@ -76,8 +90,11 @@
                 <div t-if="report.employee_category_ids" class="col">
                     <h5>Employee Tags:</h5>
                     <ul>
-                        <li t-foreach="report.employee_category_ids" t-as="employee_category">
-                            <span t-field="employee_category.name"/>
+                        <li
+                            t-foreach="report.employee_category_ids"
+                            t-as="employee_category"
+                        >
+                            <span t-field="employee_category.name" />
                         </li>
                     </ul>
                 </div>
@@ -87,7 +104,7 @@
                     <h5>Departments:</h5>
                     <ul>
                         <li t-foreach="report.department_ids" t-as="department">
-                            <span t-field="department.name"/>
+                            <span t-field="department.name" />
                         </li>
                     </ul>
                 </div>
@@ -96,38 +113,46 @@
     </template>
 
     <template id="report_group">
-        <t t-call="hr_utilization_report.report_group_header"/>
+        <t t-call="hr_utilization_report.report_group_header" />
         <t t-foreach="group.block_ids" t-as="block">
             <t t-if="len(block.entry_ids) == 0">
-                <t t-call="hr_utilization_report.report_block_empty"/>
+                <t t-call="hr_utilization_report.report_block_empty" />
             </t>
             <t t-else="">
-                <t t-call="hr_utilization_report.report_block"/>
+                <t t-call="hr_utilization_report.report_block" />
             </t>
         </t>
-        <t t-call="hr_utilization_report.report_group_footer"/>
+        <t t-call="hr_utilization_report.report_group_footer" />
     </template>
 
     <template id="report_group_header">
         <tr t-if="group.name" class="o_line_section">
-            <th t-att-colspan="len(report.entry_field_ids) + (3 if report.has_multientry_blocks else 2)">
-                <span t-field="group.name"/>
+            <th
+                t-att-colspan="len(report.entry_field_ids) + (3 if report.has_multientry_blocks else 2)"
+            >
+                <span t-field="group.name" />
             </th>
         </tr>
         <tr>
             <th t-foreach="report.entry_field_ids" t-as="field">
-                <span t-field="field.field_title"/>
+                <span t-field="field.field_title" />
             </th>
-            <th class="text-right" t-att-colspan="2 if report.has_multientry_blocks else 1">
+            <th
+                class="text-right"
+                t-att-colspan="2 if report.has_multientry_blocks else 1"
+            >
                 <span>
-                    <t t-if="report.split_by_field_name" t-esc="'%s (Yes / No), ' % (report.split_by_field_title)"/>
+                    <t
+                        t-if="report.split_by_field_name"
+                        t-esc="'%s (Yes / No), ' % (report.split_by_field_title)"
+                    />
                     <t t-else="">Utilization, </t>
                     <t t-if="report.utilization_format == 'percentage'">%</t>
-                    <t t-else="" t-esc="uom_hour.name"/>
+                    <t t-else="" t-esc="uom_hour.name" />
                 </span>
             </th>
             <th class="text-right">
-                <span>Capacity, <t t-esc="uom_hour.name"/></span>
+                <span>Capacity, <t t-esc="uom_hour.name" /></span>
             </th>
         </tr>
     </template>
@@ -136,49 +161,77 @@
         <tr t-foreach="block.entry_ids" t-as="entry">
             <t t-foreach="report.entry_field_ids" t-as="field">
                 <t t-if="field.field_name == 'employee_id' and entry_first">
-                    <td t-att-rowspan="len(block.entry_ids)" style="vertical-align: middle;">
-                        <span t-esc="block.employee_id.name"/>
+                    <td
+                        t-att-rowspan="len(block.entry_ids)"
+                        style="vertical-align: middle;"
+                    >
+                        <span t-esc="block.employee_id.name" />
                     </td>
                 </t>
                 <t t-elif="field.field_name != 'employee_id'">
                     <td>
                         <!-- see https://github.com/odoo/odoo/issues/29658 -->
-                        <span t-att-class="field.cell_classes" t-raw="entry.render_value(field.field_name)"/>
+                        <span
+                            t-att-class="field.cell_classes"
+                            t-raw="entry.render_value(field.field_name)"
+                        />
                     </td>
                 </t>
             </t>
             <td class="text-right">
                 <t t-call="hr_utilization_report.report_utilization">
-                    <t t-set="utilization_value" t-value="entry.total_utilization_a"/>
-                    <t t-set="amount_value" t-value="entry.total_unit_amount_a"/>
+                    <t t-set="utilization_value" t-value="entry.total_utilization_a" />
+                    <t t-set="amount_value" t-value="entry.total_unit_amount_a" />
                 </t>
                 <t t-if="report.split_by_field_name">
                     <span>/</span>
                     <t t-call="hr_utilization_report.report_utilization">
-                        <t t-set="utilization_value" t-value="entry.total_utilization_b"/>
-                        <t t-set="amount_value" t-value="entry.total_unit_amount_b"/>
+                        <t
+                            t-set="utilization_value"
+                            t-value="entry.total_utilization_b"
+                        />
+                        <t t-set="amount_value" t-value="entry.total_unit_amount_b" />
                     </t>
                 </t>
             </td>
             <t>
-                <td t-if="report.has_multientry_blocks and entry_first" t-att-rowspan="len(block.entry_ids)" class="text-right" style="vertical-align: middle;">
+                <td
+                    t-if="report.has_multientry_blocks and entry_first"
+                    t-att-rowspan="len(block.entry_ids)"
+                    class="text-right"
+                    style="vertical-align: middle;"
+                >
                     <t t-call="hr_utilization_report.report_utilization">
-                        <t t-set="utilization_value" t-value="block.total_utilization_a"/>
-                        <t t-set="amount_value" t-value="block.total_unit_amount_a"/>
+                        <t
+                            t-set="utilization_value"
+                            t-value="block.total_utilization_a"
+                        />
+                        <t t-set="amount_value" t-value="block.total_unit_amount_a" />
                     </t>
                     <t t-if="report.split_by_field_name">
                         <span>/</span>
                         <t t-call="hr_utilization_report.report_utilization">
-                            <t t-set="utilization_value" t-value="block.total_utilization_b"/>
-                            <t t-set="amount_value" t-value="block.total_unit_amount_b"/>
+                            <t
+                                t-set="utilization_value"
+                                t-value="block.total_utilization_b"
+                            />
+                            <t
+                                t-set="amount_value"
+                                t-value="block.total_unit_amount_b"
+                            />
                         </t>
                     </t>
                 </td>
             </t>
             <t>
-                <td t-if="entry_first" t-att-rowspan="len(block.entry_ids)" class="text-right" style="vertical-align: middle;">
+                <td
+                    t-if="entry_first"
+                    t-att-rowspan="len(block.entry_ids)"
+                    class="text-right"
+                    style="vertical-align: middle;"
+                >
                     <t t-call="hr_utilization_report.report_capacity">
-                        <t t-set="capacity_value" t-value="block.capacity"/>
+                        <t t-set="capacity_value" t-value="block.capacity" />
                     </t>
                 </td>
             </t>
@@ -189,43 +242,43 @@
         <tr>
             <t t-foreach="report.entry_field_ids" t-as="field">
                 <t t-if="field.field_name == 'employee_id'">
-                    <td><span t-esc="block.employee_id.name"/></td>
+                    <td><span t-esc="block.employee_id.name" /></td>
                 </t>
                 <t t-else="">
-                    <td/>
+                    <td />
                 </t>
             </t>
             <td class="text-right">
                 <t t-call="hr_utilization_report.report_utilization">
-                    <t t-set="utilization_value" t-value="0"/>
-                    <t t-set="amount_value" t-value="0"/>
+                    <t t-set="utilization_value" t-value="0" />
+                    <t t-set="amount_value" t-value="0" />
                 </t>
                 <t t-if="report.split_by_field_name">
                     <span>/</span>
                     <t t-call="hr_utilization_report.report_utilization">
-                        <t t-set="utilization_value" t-value="0"/>
-                        <t t-set="amount_value" t-value="0"/>
+                        <t t-set="utilization_value" t-value="0" />
+                        <t t-set="amount_value" t-value="0" />
                     </t>
                 </t>
             </td>
             <t>
                 <td t-if="report.has_multientry_blocks" class="text-right">
                     <t t-call="hr_utilization_report.report_utilization">
-                        <t t-set="utilization_value" t-value="0"/>
-                        <t t-set="amount_value" t-value="0"/>
+                        <t t-set="utilization_value" t-value="0" />
+                        <t t-set="amount_value" t-value="0" />
                     </t>
                     <t t-if="report.split_by_field_name">
                         <span>/</span>
                         <t t-call="hr_utilization_report.report_utilization">
-                            <t t-set="utilization_value" t-value="0"/>
-                            <t t-set="amount_value" t-value="0"/>
+                            <t t-set="utilization_value" t-value="0" />
+                            <t t-set="amount_value" t-value="0" />
                         </t>
                     </t>
                 </td>
             </t>
             <td class="text-right">
                 <t t-call="hr_utilization_report.report_capacity">
-                    <t t-set="capacity_value" t-value="block.capacity"/>
+                    <t t-set="capacity_value" t-value="block.capacity" />
                 </t>
             </td>
         </tr>
@@ -236,17 +289,29 @@
             <td class="text-right" t-att-colspan="len(report.entry_field_ids)">
                 <strong>Subtotal</strong>
             </td>
-            <td class="text-right" t-att-colspan="2 if report.has_multientry_blocks else 1">
+            <td
+                class="text-right"
+                t-att-colspan="2 if report.has_multientry_blocks else 1"
+            >
                 <strong>
                     <t t-call="hr_utilization_report.report_utilization">
-                        <t t-set="utilization_value" t-value="group.total_utilization_a"/>
-                        <t t-set="amount_value" t-value="group.total_unit_amount_a"/>
+                        <t
+                            t-set="utilization_value"
+                            t-value="group.total_utilization_a"
+                        />
+                        <t t-set="amount_value" t-value="group.total_unit_amount_a" />
                     </t>
                     <t t-if="report.split_by_field_name">
                         <span>/</span>
                         <t t-call="hr_utilization_report.report_utilization">
-                            <t t-set="utilization_value" t-value="group.total_utilization_b"/>
-                            <t t-set="amount_value" t-value="group.total_unit_amount_b"/>
+                            <t
+                                t-set="utilization_value"
+                                t-value="group.total_utilization_b"
+                            />
+                            <t
+                                t-set="amount_value"
+                                t-value="group.total_unit_amount_b"
+                            />
                         </t>
                     </t>
                 </strong>
@@ -254,7 +319,7 @@
             <td class="text-right">
                 <strong>
                     <t t-call="hr_utilization_report.report_capacity">
-                        <t t-set="capacity_value" t-value="group.total_capacity"/>
+                        <t t-set="capacity_value" t-value="group.total_capacity" />
                     </t>
                 </strong>
             </td>
