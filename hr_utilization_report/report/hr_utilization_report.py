@@ -147,14 +147,12 @@ class HrUtilizationReport(models.TransientModel):
             "xlsx",
         ]
 
-    @api.multi
     @api.constrains("date_from", "date_to")
     def _check_dates(self):
         for analysis in self:
             if analysis.date_from > analysis.date_to:
                 raise ValidationError(_("Date-To can not be earlier than Date-From"))
 
-    @api.multi
     @api.depends("split_by_field_name")
     def _compute_split_by_field_title(self):
         for analysis in self:
@@ -169,7 +167,6 @@ class HrUtilizationReport(models.TransientModel):
                 split_by_field_title = None
             analysis.split_by_field_title = split_by_field_title
 
-    @api.multi
     @api.depends(
         "only_active_employees",
         "employee_ids",
@@ -220,7 +217,6 @@ class HrUtilizationReport(models.TransientModel):
 
             report.group_ids = group_ids
 
-    @api.multi
     def _get_group_values(self, grouped_lines):
         self.ensure_one()
 
@@ -240,7 +236,6 @@ class HrUtilizationReport(models.TransientModel):
             "scope": ustr(grouped_lines["__domain"]),
         }
 
-    @api.multi
     @api.depends("group_ids.has_multientry_blocks")
     def _compute_has_multientry_blocks(self):
         for report in self:
@@ -248,13 +243,11 @@ class HrUtilizationReport(models.TransientModel):
                 report.group_ids.mapped("has_multientry_blocks")
             )
 
-    @api.multi
     @api.depends("group_ids.total_capacity")
     def _compute_total_capacity(self):
         for report in self:
             report.total_capacity = sum(report.group_ids.mapped("total_capacity"))
 
-    @api.multi
     @api.depends("group_ids.total_unit_amount_a", "group_ids.total_unit_amount_b")
     def _compute_total_unit_amount(self):
         for report in self:
@@ -265,7 +258,6 @@ class HrUtilizationReport(models.TransientModel):
                 report.group_ids.mapped("total_unit_amount_b")
             )
 
-    @api.multi
     @api.depends("total_unit_amount_a", "total_unit_amount_b", "total_capacity")
     def _compute_total_utilization(self):
         for report in self:
@@ -278,7 +270,6 @@ class HrUtilizationReport(models.TransientModel):
             report.total_utilization_a = total_utilization_a
             report.total_utilization_b = total_utilization_b
 
-    @api.multi
     def _get_employees_domain(self):
         self.ensure_one()
 
@@ -296,7 +287,6 @@ class HrUtilizationReport(models.TransientModel):
 
         return query
 
-    @api.multi
     def get_action(self, report_type="qweb-html"):
         self.ensure_one()
 
@@ -366,7 +356,6 @@ class HrUtilizationReportAbstractField(models.AbstractModel):
     ]
 
     @api.depends("field_name", "aggregation")
-    @api.multi
     def _compute_groupby(self):
         for field in self:
             if field.aggregation:
@@ -391,13 +380,11 @@ class HrUtilizationReportEntryField(models.TransientModel):
         compute="_compute_cell_classes",
     )
 
-    @api.multi
     @api.depends("field_type")
     def _compute_cell_classes(self):
         for field in self:
             field.cell_classes = " ".join(field._get_cell_classes(field.field_type))
 
-    @api.multi
     def _get_cell_classes(self, field_type):
         self.ensure_one()
 
@@ -462,7 +449,6 @@ class HrUtilizationReportGroup(models.TransientModel):
         store=True,
     )
 
-    @api.multi
     @api.depends("scope")
     def _compute_block_ids(self):
         HrEmployee = self.env["hr.employee"]
@@ -484,19 +470,16 @@ class HrUtilizationReportGroup(models.TransientModel):
                 )
             group.block_ids = block_ids
 
-    @api.multi
     @api.depends("block_ids.is_multientry")
     def _compute_has_multientry_blocks(self):
         for group in self:
             group.has_multientry_blocks = any(group.block_ids.mapped("is_multientry"))
 
-    @api.multi
     @api.depends("block_ids.capacity")
     def _compute_total_capacity(self):
         for group in self:
             group.total_capacity = sum(group.block_ids.mapped("capacity"))
 
-    @api.multi
     @api.depends("block_ids.total_unit_amount_a", "block_ids.total_unit_amount_b")
     def _compute_total_unit_amount(self):
         for group in self:
@@ -507,7 +490,6 @@ class HrUtilizationReportGroup(models.TransientModel):
                 group.block_ids.mapped("total_unit_amount_b")
             )
 
-    @api.multi
     @api.depends("total_unit_amount_a", "total_unit_amount_b", "total_capacity")
     def _compute_total_utilization(self):
         for group in self:
@@ -579,7 +561,6 @@ class HrUtilizationReportBlock(models.TransientModel):
         store=True,
     )
 
-    @api.multi
     @api.depends("group_id", "employee_id")
     def _compute_entry_ids(self):
         AccountAnalyticLine = self.env["account.analytic.line"]
@@ -609,13 +590,11 @@ class HrUtilizationReportBlock(models.TransientModel):
                 entry_ids.append((0, False, entry_values))
             block.entry_ids = entry_ids
 
-    @api.multi
     @api.depends("entry_ids")
     def _compute_is_multientry(self):
         for block in self:
             block.is_multientry = len(block.entry_ids) > 1
 
-    @api.multi
     @api.depends("employee_id")
     def _compute_capacity(self):
         HrEmployee = self.env["hr.employee"]
@@ -638,7 +617,7 @@ class HrUtilizationReportBlock(models.TransientModel):
                 block.group_id.report_id.date_to, time.max
             ).replace(tzinfo=tz)
 
-            employee_capacity = block.employee_id.get_work_days_data(
+            employee_capacity = block.employee_id._get_work_days_data(
                 from_datetime,
                 to_datetime,
                 compute_leaves=not project_timesheet_holidays,
@@ -653,7 +632,6 @@ class HrUtilizationReportBlock(models.TransientModel):
 
             block.capacity = max(employee_capacity, 0)
 
-    @api.multi
     @api.depends("entry_ids.total_unit_amount_a", "entry_ids.total_unit_amount_b")
     def _compute_total_unit_amount(self):
         for block in self:
@@ -664,7 +642,6 @@ class HrUtilizationReportBlock(models.TransientModel):
                 block.entry_ids.mapped("total_unit_amount_b")
             )
 
-    @api.multi
     @api.depends("total_unit_amount_a", "total_unit_amount_b", "capacity")
     def _compute_total_utilization(self):
         for block in self:
@@ -677,7 +654,6 @@ class HrUtilizationReportBlock(models.TransientModel):
             block.total_utilization_a = total_utilization_a
             block.total_utilization_b = total_utilization_b
 
-    @api.multi
     def _get_entries_domain(self):
         self.ensure_one()
 
@@ -688,7 +664,6 @@ class HrUtilizationReportBlock(models.TransientModel):
             ("date", "<=", fields.Date.to_string(self.group_id.report_id.date_to)),
         ]
 
-    @api.multi
     def _get_entry_values(self, grouped_lines):
         self.ensure_one()
 
@@ -742,7 +717,6 @@ class HrUtilizationReportEntry(models.TransientModel):
         store=True,
     )
 
-    @api.multi
     @api.depends("scope")
     def _compute_any_line_id(self):
         AccountAnalyticLine = self.env["account.analytic.line"]
@@ -753,7 +727,6 @@ class HrUtilizationReportEntry(models.TransientModel):
                 limit=1,
             )
 
-    @api.multi
     @api.depends("scope")
     def _compute_total_unit_amount(self):
         AccountAnalyticLine = self.env["account.analytic.line"]
@@ -784,7 +757,6 @@ class HrUtilizationReportEntry(models.TransientModel):
                 )
             entry.total_unit_amount_b = total_unit_amount_b
 
-    @api.multi
     @api.depends("total_unit_amount_a", "total_unit_amount_b", "block_id.capacity")
     def _compute_total_utilization(self):
         for entry in self:
@@ -801,7 +773,6 @@ class HrUtilizationReportEntry(models.TransientModel):
             entry.total_utilization_a = total_utilization_a
             entry.total_utilization_b = total_utilization_b
 
-    @api.multi
     def render_value(self, field_name):
         self.ensure_one()
 
