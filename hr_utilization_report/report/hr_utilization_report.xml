@@ -5,27 +5,6 @@
         License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
     -->
 
-    <template id="report">
-        <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="report">
-                <t t-call="web.external_layout">
-                    <t t-set="uom_hour" t-value="env.ref('uom.product_uom_hour')" />
-                    <div class="page">
-                        <div class="oe_structure" />
-                        <t t-call="hr_utilization_report.report_header" />
-                        <table class="table table-sm">
-                            <tbody>
-                                <t t-foreach="report.group_ids" t-as="group">
-                                    <t t-call="hr_utilization_report.report_group" />
-                                </t>
-                            </tbody>
-                        </table>
-                        <div class="oe_structure" />
-                    </div>
-                </t>
-            </t>
-        </t>
-    </template>
 
     <template id="report_header">
         <div class="row">
@@ -56,7 +35,7 @@
                                 />
                             </t>
                         </t>
-                        <span> of </span>
+                        <span>of</span>
                         <t t-call="hr_utilization_report.report_capacity">
                             <t t-set="capacity_value" t-value="report.total_capacity" />
                         </t>
@@ -69,9 +48,9 @@
             <div class="col-lg-12">
                 <h5>
                     <span>Date Range:</span>
-                    <span t-field="report.date_from" /> - <span
-                        t-field="report.date_to"
-                    />
+                    <span t-field="report.date_from" />
+                    -
+                    <span t-field="report.date_to" />
                 </h5>
             </div>
         </div>
@@ -112,6 +91,28 @@
         </div>
     </template>
 
+    <template id="report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="report">
+                <t t-call="web.external_layout">
+                    <t t-set="uom_hour" t-value="env.ref('uom.product_uom_hour')" />
+                    <div class="page">
+                        <div class="oe_structure" />
+                        <t t-call="hr_utilization_report.report_header" />
+                        <table class="table table-sm">
+                            <tbody>
+                                <t t-foreach="report.group_ids" t-as="group">
+                                    <t t-call="hr_utilization_report.report_group" />
+                                </t>
+                            </tbody>
+                        </table>
+                        <div class="oe_structure" />
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
     <template id="report_group">
         <t t-call="hr_utilization_report.report_group_header" />
         <t t-foreach="group.block_ids" t-as="block">
@@ -146,13 +147,15 @@
                         t-if="report.split_by_field_name"
                         t-esc="'%s (Yes / No), ' % (report.split_by_field_title)"
                     />
-                    <t t-else="">Utilization, </t>
+                    <t t-else="">Utilization,</t>
                     <t t-if="report.utilization_format == 'percentage'">%</t>
                     <t t-else="" t-esc="uom_hour.name" />
                 </span>
             </th>
             <th class="text-right">
-                <span>Capacity, <t t-esc="uom_hour.name" /></span>
+                <span>Capacity,
+                    <t t-esc="uom_hour.name" />
+                </span>
             </th>
         </tr>
     </template>
@@ -242,7 +245,9 @@
         <tr>
             <t t-foreach="report.entry_field_ids" t-as="field">
                 <t t-if="field.field_name == 'employee_id'">
-                    <td><span t-esc="block.employee_id.name" /></td>
+                    <td>
+                        <span t-esc="block.employee_id.name" />
+                    </td>
                 </t>
                 <t t-else="">
                     <td />
@@ -370,31 +375,34 @@
         />
     </template>
 
-    <report
-        id="action_report_qweb_pdf"
-        model="hr.utilization.report"
-        report_type="qweb-pdf"
-        name="hr_utilization_report.report"
-        string="Utilization Report"
-        file="Utilization Report"
-    />
+    <record id="action_report_qweb_pdf" model="ir.actions.report">
+        <field name="name">Utilization Report</field>
+         <field name="model">hr.utilization.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_utilization_report.report</field>
+        <field name="report_file">hr_utilization_report.report</field>
+        <field name="binding_model_id" ref="hr.model_hr_employee" />
+        <field name="binding_type">report</field>
+    </record>
 
-    <report
-        id="action_report_qweb_html"
-        model="hr.utilization.report"
-        report_type="qweb-html"
-        name="hr_utilization_report.report"
-        string="Utilization Report"
-        file="Utilization Report"
-    />
+    <record id="action_report_qweb_html" model="ir.actions.report">
+         <field name="name">Utilization Report HTML</field>
+         <field name="model">hr.utilization.report</field>
+         <field name="report_type">qweb-html</field>
+         <field name="report_name">hr_utilization_report.report</field>
+         <field name="report_file">hr_utilization_report.report</field>
+        <field name="binding_model_id" ref="hr.model_hr_employee" />
+        <field name="binding_type">report</field>
+     </record>
 
-    <report
-        id="action_report_xlsx"
-        model="hr.utilization.report"
-        report_type="xlsx"
-        name="hr_utilization_report.report"
-        string="Utilization Report"
-        file="Utilization Report"
-    />
+    <record id="action_report_xlsx" model="ir.actions.report">
+         <field name="name">Utilization Report XLSX</field>
+         <field name="model">hr.utilization.report</field>
+         <field name="report_type">xlsx</field>
+         <field name="report_name">hr_utilization_report.report</field>
+         <field name="report_file">hr_utilization_report.report</field>
+        <field name="binding_model_id" ref="hr.model_hr_employee" />
+        <field name="binding_type">report</field>
+     </record>
 
 </odoo>
