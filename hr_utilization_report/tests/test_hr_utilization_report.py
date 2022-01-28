@@ -138,7 +138,7 @@ class TestHrUtilizationReport(common.TransactionCase):
         report = self.Report.create(wizard._collect_report_values())
         self.IrActionReport._get_report_from_name(
             "hr_utilization_report.report"
-        ).render_qweb_html(report.ids)
+        )._render_qweb_html(report.ids)
 
     def test_3(self):
         project = self.SudoProject.create(
@@ -186,7 +186,7 @@ class TestHrUtilizationReport(common.TransactionCase):
         report = self.Report.create(wizard._collect_report_values())
         self.IrActionReport._get_report_from_name(
             "hr_utilization_report.report"
-        ).render_qweb_pdf(report.ids)
+        )._render_qweb_pdf(report.ids)
 
     def test_4(self):
         project = self.SudoProject.create(
@@ -235,7 +235,7 @@ class TestHrUtilizationReport(common.TransactionCase):
         report = self.Report.create(wizard._collect_report_values())
         self.IrActionReport._get_report_from_name(
             "hr_utilization_report.report"
-        ).render_xlsx(report.ids, None)
+        )._render_xlsx(report.ids, None)
 
     def test_5(self):
         project = self.SudoProject.create(
@@ -284,7 +284,7 @@ class TestHrUtilizationReport(common.TransactionCase):
         report = self.Report.create(wizard._collect_report_values())
         self.IrActionReport._get_report_from_name(
             "hr_utilization_report.report"
-        ).render_xlsx(report.ids, None)
+        )._render_xlsx(report.ids, None)
 
     def test_6(self):
         project = self.SudoProject.create(
@@ -339,7 +339,7 @@ class TestHrUtilizationReport(common.TransactionCase):
         report = self.Report.create(wizard._collect_report_values())
         self.IrActionReport._get_report_from_name(
             "hr_utilization_report.report"
-        ).render_xlsx(report.ids, None)
+        )._render_xlsx(report.ids, None)
 
     def test_7(self):
         project = self.SudoProject.create(
@@ -394,7 +394,7 @@ class TestHrUtilizationReport(common.TransactionCase):
         report = self.Report.create(wizard._collect_report_values())
         self.IrActionReport._get_report_from_name(
             "hr_utilization_report.report"
-        ).render_xlsx(report.ids, None)
+        )._render_xlsx(report.ids, None)
 
     def test_8(self):
         project = self.SudoProject.create(
@@ -571,7 +571,7 @@ class TestHrUtilizationReport(common.TransactionCase):
         report = self.Report.create(wizard._collect_report_values())
         self.IrActionReport._get_report_from_name(
             "hr_utilization_report.report"
-        ).render_xlsx(report.ids, None)
+        )._render_xlsx(report.ids, None)
 
     def test_11(self):
         project = self.SudoProject.create(
@@ -620,7 +620,7 @@ class TestHrUtilizationReport(common.TransactionCase):
         report = self.Report.create(wizard._collect_report_values())
         self.IrActionReport._get_report_from_name(
             "hr_utilization_report.report"
-        ).render_xlsx(report.ids, None)
+        )._render_xlsx(report.ids, None)
 
     def test_12(self):
         project = self.SudoProject.create(
@@ -663,7 +663,7 @@ class TestHrUtilizationReport(common.TransactionCase):
         report = self.Report.create(wizard._collect_report_values())
         self.IrActionReport._get_report_from_name(
             "hr_utilization_report.report"
-        ).render_xlsx(report.ids, None)
+        )._render_xlsx(report.ids, None)
 
     def test_entry_with_no_task(self):
         """Test empty data (task is empty)"""
@@ -734,4 +734,4 @@ class TestHrUtilizationReport(common.TransactionCase):
         report = self.Report.create(wizard._collect_report_values())
         self.IrActionReport._get_report_from_name(
             "hr_utilization_report.report"
-        ).render_xlsx(report.ids, None)
+        )._render_xlsx(report.ids, None)

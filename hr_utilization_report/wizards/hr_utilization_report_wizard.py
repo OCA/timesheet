@@ -123,7 +123,6 @@ class HrUtilizationReportWizard(models.TransientModel):
             ):
                 raise ValidationError(_('"Employee" must be listed in Details Fields'))
 
-    @api.multi
     def action_export_html(self):
         self.ensure_one()
 
@@ -136,19 +135,16 @@ class HrUtilizationReportWizard(models.TransientModel):
 
         return action
 
-    @api.multi
     def action_export_pdf(self):
         self.ensure_one()
 
         return self._generate_report("qweb-pdf")
 
-    @api.multi
     def action_export_xlsx(self):
         self.ensure_one()
 
         return self._generate_report("xlsx")
 
-    @api.multi
     def _generate_report(self, report_type):
         self.ensure_one()
 
@@ -156,7 +152,6 @@ class HrUtilizationReportWizard(models.TransientModel):
 
         return report.get_action(report_type)
 
-    @api.multi
     def _collect_report_values(self):
         self.ensure_one()
 
@@ -226,21 +221,18 @@ class HrUtilizationReportWizardField(models.AbstractModel):
     def _field_selectable(self, field, definition):
         return True
 
-    @api.multi
     @api.depends("field_name")
     def _compute_field_title(self):
         fields = self.env[self._target_model].fields_get()
         for field in self:
             field.field_title = fields[field.field_name]["string"]
 
-    @api.multi
     @api.depends("field_name")
     def _compute_field_type(self):
         fields = self.env[self._target_model].fields_get()
         for field in self:
             field.field_type = fields[field.field_name]["type"]
 
-    @api.multi
     def _collect_report_values(self):
         self.ensure_one()
 
