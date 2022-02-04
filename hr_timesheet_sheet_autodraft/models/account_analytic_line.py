@@ -14,7 +14,7 @@ class AccountAnalyticLine(models.Model):
         return self._autodraft_sheet()
 
     def _autodraft_sheet(self):
-        """ Hook for extensions """
+        """Hook for extensions"""
         self.ensure_one()
         HrTimesheetSheet = self.env["hr_timesheet.sheet"]
         if not self.env.context.get("manual_autodraft_timesheet_sheet", False):
@@ -34,7 +34,7 @@ class AccountAnalyticLine(models.Model):
         return sheet
 
     def _get_autodraft_sheet_values(self):
-        """ Hook for extensions """
+        """Hook for extensions"""
         self.ensure_one()
         HrTimesheetSheet = self.env["hr_timesheet.sheet"]
         return {
