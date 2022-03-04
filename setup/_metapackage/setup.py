@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo12-addon-hr_timesheet_employee_cost_currency',
         'odoo12-addon-hr_timesheet_employee_required',
         'odoo12-addon-hr_timesheet_nonpayable',
+        'odoo12-addon-hr_timesheet_portal',
         'odoo12-addon-hr_timesheet_report',
         'odoo12-addon-hr_timesheet_role',
         'odoo12-addon-hr_timesheet_sheet',
