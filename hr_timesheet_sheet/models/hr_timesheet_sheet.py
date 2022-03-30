@@ -155,16 +155,34 @@ class Sheet(models.Model):
     add_line_task_id = fields.Many2one(
         comodel_name="project.task",
         string="Select Task",
+        domain="[('id', 'in', allowed_add_line_task_ids)]",
         help="If selected, the associated task is added "
         "to the timesheet sheet when clicked the button.",
     )
+    allowed_add_line_task_ids = fields.Many2many(
+        comodel_name="project.task",
+        compute="_compute_allowed_add_line_task_ids",
+    )
     total_time = fields.Float(compute="_compute_total_time", store=True)
     can_review = fields.Boolean(
-        string="Can Review", compute="_compute_can_review", search="_search_can_review"
+        compute="_compute_can_review", search="_search_can_review"
     )
     complete_name = fields.Char(
-        string="Complete Name", compute="_compute_complete_name"
+        compute="_compute_complete_name"
     )
+
+    @api.depends("add_line_project_id", "company_id", "timesheet_ids")
+    def _compute_allowed_add_line_task_ids(self):
+        """Get tasks that can be added."""
+        self.allowed_add_line_task_ids = False
+        if self.add_line_project_id:
+            self.allowed_add_line_task_ids = self.env["project.task"].search(
+                [
+                    ("project_id", "=", self.add_line_project_id.id),
+                    ("company_id", "=", self.company_id.id),
+                    ("id", "not in", self.timesheet_ids.mapped("task_id").ids),
+                ]
+            )
 
     @api.depends("date_start", "date_end")
     def _compute_name(self):
@@ -184,7 +202,10 @@ class Sheet(models.Model):
             if sheet.date_end <= sheet.date_start + relativedelta(weekday=SU):
                 sheet.name = _("Week %s") % (period_end,)
             else:
-                sheet.name = _("Weeks %s - %s") % (period_start, period_end)
+                sheet.name = _("Weeks %(start)s - %(end)s") % {
+                    "start": period_start,
+                    "end": period_end,
+                }
 
     @api.depends("timesheet_ids.unit_amount")
     def _compute_total_time(self):
@@ -261,8 +282,8 @@ class Sheet(models.Model):
                     _(
                         "You cannot have 2 or more sheets that overlap!\n"
                         'Please use the menu "Timesheet Sheet" '
-                        "to avoid this problem.\nConflicting sheets:\n - %s"
-                        % ("\n - ".join(overlapping_sheets.mapped("complete_name")),)
+                        "to avoid this problem.\nConflicting sheets:\n - %s",
+                        "\n - ".join(overlapping_sheets.mapped("complete_name")),
                     )
                 )
 
@@ -440,22 +461,6 @@ class Sheet(models.Model):
     @api.onchange("timesheet_ids")
     def _onchange_timesheets(self):
         self._compute_line_ids()
-
-    @api.onchange("add_line_project_id")
-    def onchange_add_project_id(self):
-        """Load the project to the timesheet sheet"""
-        if self.add_line_project_id:
-            return {
-                "domain": {
-                    "add_line_task_id": [
-                        ("project_id", "=", self.add_line_project_id.id),
-                        ("company_id", "=", self.company_id.id),
-                        ("id", "not in", self.timesheet_ids.mapped("task_id").ids),
-                    ]
-                }
-            }
-        else:
-            return {"domain": {"add_line_task_id": [("id", "=", False)]}}
 
     @api.model
     def _check_employee_user_link(self, vals):

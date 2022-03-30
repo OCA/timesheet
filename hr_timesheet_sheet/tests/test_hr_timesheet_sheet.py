@@ -9,12 +9,12 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import AccessError, UserError, ValidationError
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 from ..models.hr_timesheet_sheet import empty_name
 
 
-class TestHrTimesheetSheet(SavepointCase):
+class TestHrTimesheetSheet(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

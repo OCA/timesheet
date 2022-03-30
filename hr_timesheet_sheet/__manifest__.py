@@ -6,7 +6,7 @@
 
 {
     "name": "HR Timesheet Sheet",
-    "version": "14.0.1.0.4",
+    "version": "15.0.1.0.0",
     "category": "Human Resources",
     "sequence": 80,
     "summary": "Timesheet Sheets, Activities",
@@ -15,7 +15,7 @@
     "website": "https://github.com/OCA/timesheet",
     "installable": True,
     "auto_install": False,
-    "depends": ["hr_timesheet", "web_widget_x2many_2d_matrix"],
+    "depends": ["hr_timesheet", "sale_timesheet", "web_widget_x2many_2d_matrix"],
     "data": [
         "data/hr_timesheet_sheet_data.xml",
         "security/ir.model.access.csv",
@@ -25,6 +25,9 @@
         "views/hr_employee_views.xml",
         "views/account_analytic_line_views.xml",
         "views/res_config_settings_views.xml",
-        "templates/assets.xml",
+    ],
+    "web.assets_backend": [
+        "hr_timesheet_sheet/static/src/js/backend.js",
+        "hr_timesheet_sheet/static/src/scss/backend.scss",
     ],
 }

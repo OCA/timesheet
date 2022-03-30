@@ -154,6 +154,10 @@
                                         domain="[('company_id', '=', company_id), ('allow_timesheets', '=', True)]"
                                     />
                                     <field
+                                        name="allowed_add_line_task_ids"
+                                        invisible="1"
+                                    />
+                                    <field
                                         name="add_line_task_id"
                                         attrs="{'invisible': [('add_line_project_id', '=', False)]}"
                                         context="{'default_project_id': add_line_project_id}"
