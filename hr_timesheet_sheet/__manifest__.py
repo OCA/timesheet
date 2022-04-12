@@ -15,7 +15,7 @@
     "website": "https://github.com/OCA/timesheet",
     "installable": True,
     "auto_install": False,
-    "depends": ["hr_timesheet", "web_widget_x2many_2d_matrix"],
+    "depends": ["hr_timesheet", "sale_timesheet", "web_widget_x2many_2d_matrix"],
     "data": [
         "data/hr_timesheet_sheet_data.xml",
         "security/ir.model.access.csv",
