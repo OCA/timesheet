@@ -7,3 +7,4 @@
 
 * Saran Lim. <saranl@ecosoft.co.th>
 * Foram Shah <foram.shah@initos.com>
+* Houssine Bakkali <houssine.bakkali@eezee-it.com>
