@@ -9,12 +9,12 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import AccessError, UserError, ValidationError
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 from ..models.hr_timesheet_sheet import empty_name
 
 
-class TestHrTimesheetSheet(SavepointCase):
+class TestHrTimesheetSheet(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -250,13 +250,6 @@ class TestHrTimesheetSheet(SavepointCase):
         sheet.with_context(sheet_write=True)._compute_line_ids()
         self.assertEqual(len(sheet.timesheet_ids), 1)
         self.assertEqual(len(sheet.line_ids), 7)
-
-        # this part of code doesn't make sense because sheet is in draft:
-
-        # sheet.date_end = sheet.date_end + relativedelta(days=1)
-        # sheet._onchange_timesheets()
-        # self.assertEqual(len(sheet.timesheet_ids), 0)
-        # self.assertEqual(len(sheet.line_ids), 0)
 
     def test_1(self):
         sheet_form = Form(self.sheet_model.with_user(self.user))
