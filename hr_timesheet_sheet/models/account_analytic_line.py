@@ -131,8 +131,8 @@ class AccountAnalyticLine(models.Model):
                 )
 
     def merge_timesheets(self):
-        unit_amount = sum([t.unit_amount for t in self])
-        amount = sum([t.amount for t in self])
+        unit_amount = sum(t.unit_amount for t in self)
+        amount = sum(t.amount for t in self)
         self[0].write({"unit_amount": unit_amount, "amount": amount})
         self[1:].unlink()
         return self[0]
