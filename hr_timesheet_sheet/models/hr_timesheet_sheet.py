@@ -160,11 +160,9 @@ class Sheet(models.Model):
     )
     total_time = fields.Float(compute="_compute_total_time", store=True)
     can_review = fields.Boolean(
-        string="Can Review", compute="_compute_can_review", search="_search_can_review"
+        compute="_compute_can_review", search="_search_can_review"
     )
-    complete_name = fields.Char(
-        string="Complete Name", compute="_compute_complete_name"
-    )
+    complete_name = fields.Char(compute="_compute_complete_name")
 
     @api.depends("date_start", "date_end")
     def _compute_name(self):
@@ -182,9 +180,11 @@ class Sheet(models.Model):
             period_end = sheet.date_end.strftime("%V, %Y")
 
             if sheet.date_end <= sheet.date_start + relativedelta(weekday=SU):
-                sheet.name = _("Week %s") % (period_end,)
+                sheet.name = _("Week %(end)s", end=period_end)
             else:
-                sheet.name = _("Weeks %s - %s") % (period_start, period_end)
+                sheet.name = _(
+                    "Weeks %(start)s - %(end)s", start=period_start, end=period_end
+                )
 
     @api.depends("timesheet_ids.unit_amount")
     def _compute_total_time(self):
@@ -261,8 +261,10 @@ class Sheet(models.Model):
                     _(
                         "You cannot have 2 or more sheets that overlap!\n"
                         'Please use the menu "Timesheet Sheet" '
-                        "to avoid this problem.\nConflicting sheets:\n - %s"
-                        % ("\n - ".join(overlapping_sheets.mapped("complete_name")),)
+                        "to avoid this problem.\nConflicting sheets:\n - %(names)s",
+                        names=(
+                            "\n - ".join(overlapping_sheets.mapped("complete_name")),
+                        ),
                     )
                 )
 
