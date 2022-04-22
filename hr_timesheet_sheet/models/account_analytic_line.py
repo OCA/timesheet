@@ -47,14 +47,12 @@ class AccountAnalyticLine(models.Model):
                     _(
                         "You cannot create a timesheet of a different company "
                         "than the one of the timesheet sheet:"
-                        "\n - %s of %s"
-                        "\n - %s of %s"
-                        % (
-                            aal.sheet_id.complete_name,
-                            aal.sheet_id.company_id.name,
-                            aal.name,
-                            aal.company_id.name,
-                        )
+                        "\n - %(sheet_name)s of %(sheet_company)s"
+                        "\n - %(name)s of %(company)s",
+                        sheet_name=aal.sheet_id.complete_name,
+                        sheet_company=aal.sheet_id.company_id.name,
+                        name=aal.name,
+                        company=aal.company_id.name,
                     )
                 )
 
@@ -125,9 +123,9 @@ class AccountAnalyticLine(models.Model):
                 raise UserError(
                     _(
                         "You cannot modify an entry in a confirmed timesheet sheet"
-                        ": %s"
+                        ": %(names)s",
+                        names=line.sheet_id.complete_name,
                     )
-                    % (line.sheet_id.complete_name,)
                 )
 
     def merge_timesheets(self):
