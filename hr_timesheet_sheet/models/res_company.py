@@ -29,7 +29,6 @@ class ResCompany(models.Model):
     )
 
     timesheet_sheet_review_policy = fields.Selection(
-        string="Timesheet Sheet Review Policy",
         selection=[
             ("hr", "By HR Officers"),
             ("hr_manager", "By HR Managers"),

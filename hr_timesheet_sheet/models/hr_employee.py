@@ -40,8 +40,12 @@ class HrEmployee(models.Model):
                 ):
                     raise ValidationError(
                         _(
-                            "You cannot change the company, as this %s (%s) "
-                            "is assigned to %s (%s)."
+                            "You cannot change the company, "
+                            "as this %(rec_name)s (%(rec_display_name)s) "
+                            "is assigned to %(current_name)s (%(current_display_name)s).",
+                            rec_name=rec._name,
+                            rec_display_name=rec.display_name,
+                            current_name=field._name,
+                            current_display_name=field.display_name,
                         )
-                        % (rec._name, rec.display_name, field._name, field.display_name)
                     )
