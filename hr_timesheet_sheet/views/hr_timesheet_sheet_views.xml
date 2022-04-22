@@ -11,7 +11,6 @@
         <field name="model">hr_timesheet.sheet</field>
         <field name="arch" type="xml">
             <tree
-                string="Timesheet Sheets"
                 decoration-info="state == 'draft'"
                 decoration-muted="state == 'done'"
                 decoration-bf="message_needaction == True"
@@ -174,7 +173,7 @@
                                 nolabel="1"
                                 context="{'user_id': user_id}"
                             >
-                                <tree editable="bottom" string="Timesheet Activities">
+                                <tree editable="bottom">
                                     <field name="date" />
                                     <field name="project_id" required="1" />
                                     <field
