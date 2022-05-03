@@ -47,8 +47,12 @@ class TestHrEmployeeProduct(common.TransactionCase):
         return user
 
     def test_01_hr_employee_product(self):
-        product_list1 = self.Product.sudo(self.user1).search([]).mapped("name")
-        product_list2 = self.Product.sudo(self.user2).search([]).mapped("name")
+        product_list1 = (
+            self.Product.sudo().with_user(self.user1).search([]).mapped("name")
+        )
+        product_list2 = (
+            self.Product.sudo().with_user(self.user2).search([]).mapped("name")
+        )
 
         self.assertLess(
             len(product_list1),
