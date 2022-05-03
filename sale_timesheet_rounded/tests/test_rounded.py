@@ -1,10 +1,12 @@
 # Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+import odoo
 from odoo import fields
 
 from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheet
 
 
+@odoo.tests.tagged("post_install", "-at_install")
 class TestRounded(TestCommonSaleTimesheet):
     @classmethod
     def setUpClass(cls, chart_template_ref=None):
