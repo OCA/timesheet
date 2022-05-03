@@ -3,7 +3,7 @@
 
 {
     "name": "Manage products representing employees",
-    "version": "12.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Human Resources",
     "author": "Eficent, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/timesheet",
