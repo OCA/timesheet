@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-crm_timesheet',
+        'odoo14-addon-hr_employee_product',
         'odoo14-addon-hr_timesheet_activity_begin_end',
         'odoo14-addon-hr_timesheet_analysis',
         'odoo14-addon-hr_timesheet_report',
