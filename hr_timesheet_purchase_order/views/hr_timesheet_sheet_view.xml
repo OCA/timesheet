@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="hr_timesheet_sheet_form" model="ir.ui.view">
+        <field name="name">hr.timesheet.sheet.form.view</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_timesheet_confirm']" position="after">
+                <field name="allow_generate_purchase_order" invisible="1" />
+                <field name="purchase_order_id" invisible="1" />
+                <button
+                    name="action_create_purchase_order"
+                    string="Create Purchase Order"
+                    type="object"
+                    class="oe_highlight"
+                    attrs="{
+                        'invisible': [
+                            '|',
+                            '|',
+                            ('allow_generate_purchase_order', '=', False),
+                            ('purchase_order_id', '!=', False),
+                            ('state', '!=', 'done'),
+                        ],
+                    }"
+                />
+                <button
+                    name="action_open_purchase_order"
+                    string="Open Purchase Order"
+                    type="object"
+                    class="oe_highlight"
+                    attrs="{'invisible': ['|', ('allow_generate_purchase_order', '=', False), ('purchase_order_id', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

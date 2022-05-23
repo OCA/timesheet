@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="hr_employee_view_form_inherit_timesheet" model="ir.ui.view">
+        <field name="name">hr.employee.form.view</field>
+        <field name="model">hr.employee</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet.hr_employee_view_form_inherit_timesheet"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='timesheet_cost']/.." position="after">
+                <field name="allow_generate_purchase_order" />
+                <field
+                    name="billing_partner_id"
+                    attrs="{'required': [('allow_generate_purchase_order', '=', True)], 'invisible': [('allow_generate_purchase_order', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
