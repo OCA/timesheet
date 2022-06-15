@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="project_task_form_view">
+        <field name="name">project.task.form (in sale_timesheet_analytic_tags)</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="after">
+                <field name="analytic_tag_ids" widget="many2many_tags" />
+            </field>
+        </field>
+    </record>
+
+
+
+</odoo>
