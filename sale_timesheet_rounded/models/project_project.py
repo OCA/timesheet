@@ -8,7 +8,7 @@ class ProjectProject(models.Model):
     _inherit = "project.project"
 
     timesheet_rounding_unit = fields.Float(
-        string="Timesheet rounding unit",
+        string="Rounding Unit",
         default=0.0,
         help="""1.0 = hour
             0.25 = 15 min
@@ -17,7 +17,7 @@ class ProjectProject(models.Model):
             """,
     )
     timesheet_rounding_method = fields.Selection(
-        string="Timesheet rounding method",
+        string="Rounding method",
         selection=[
             ("NO", "No rounding"),
             ("UP", "Up"),
