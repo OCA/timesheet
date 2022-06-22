@@ -20,4 +20,4 @@ class SaleOrderLine(models.Model):
     @api.depends("analytic_line_ids.unit_amount_rounded")
     def _compute_qty_delivered(self):
         """Adds the dependency on unit_amount_rounded."""
-        super()._compute_qty_delivered()
+        return super()._compute_qty_delivered()
