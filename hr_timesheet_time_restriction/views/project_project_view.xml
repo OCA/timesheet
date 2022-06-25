@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="edit_project" model="ir.ui.view">
+        <field name="name">project.project.view.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options_active']" position="inside">
+                <div>
+                    <label
+                        for="timesheet_restriction_days"
+                        class="oe_inline"
+                        string="Timesheet Restriction (days):"
+                    />
+                    <field
+                        name="timesheet_restriction_days"
+                        class="oe_inline oe_input_align"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

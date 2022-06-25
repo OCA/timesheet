@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="group_timesheet_time_manager" model="res.groups">
+        <field name="name">No Timesheet Date Restriction</field>
+        <field name="category_id" ref="base.module_category_usability" />
+        <field name="implied_ids" eval="[(6, 0, [ref('base.group_user')])]" />
+        <field
+            name="comment"
+        >The user will be able to change the date on the timesheet.</field>
+    </record>
+
+</odoo>
