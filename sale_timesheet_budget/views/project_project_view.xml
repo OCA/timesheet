@@ -1,0 +1,46 @@
+<odoo>
+    <record id="edit_project" model="ir.ui.view">
+        <field name="name">project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project" />
+        <field name="arch" type="xml">
+            <page name="settings" position="after">
+                <page name="budgets" string="Budgets">
+                    <field name="budget_ids">
+                        <tree editable="bottom">
+                            <field name="allowed_sale_order_ids" invisible="1" />
+                            <field name="sale_order_id" required="1" />
+                            <field name="quantity" />
+                            <field name="price_unit" />
+                            <field name="amount" sum="Amount" />
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+    <record id="timesheet_plan" model="ir.ui.view">
+        <field name="name">project.project.timesheet_plan</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="sale_timesheet.timesheet_plan" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//div[hasclass('o_profitability_section')][2]//table//tr[last()]"
+                position="before"
+            >
+                <tr
+                    t-if="display_cost &amp; (dashboard['profit']['budget_amount'] != 0)"
+                    name="tr_budget_amount"
+                >
+                    <td class="o_timesheet_plan_dashboard_cell">
+                        <t
+                            t-esc="dashboard['profit']['budget_amount']"
+                            t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: currency}"
+                        />
+                    </td>
+                    <td>Budget</td>
+                </tr>
+            </xpath>
+        </field>
+    </record>
+</odoo>
