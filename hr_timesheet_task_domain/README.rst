@@ -17,13 +17,13 @@ Task Log: limit Task by Project
     :target: https://github.com/OCA/timesheet/tree/15.0/hr_timesheet_task_domain
     :alt: OCA/timesheet
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/timesheet-14-0/timesheet-14-0-hr_timesheet_task_domain
+    :target: https://translation.odoo-community.org/projects/timesheet-15-0/timesheet-15-0-hr_timesheet_task_domain
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/117/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module adjusts the domain applied to task field in order to limit task
 selection to currently-selected project. If `project_stage_closed` module is
