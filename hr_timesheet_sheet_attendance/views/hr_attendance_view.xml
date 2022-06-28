@@ -20,7 +20,7 @@
         <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form" />
         <field name="arch" type="xml">
             <field name="check_out" position="after">
-                <field name="worked_hours" />
+                <field name="worked_hours" string="Work Hours" widget="float_time" />
                 <field name="sheet_id" />
             </field>
         </field>
@@ -32,8 +32,7 @@
         <field name="model">hr.attendance</field>
         <field name="inherit_id" ref="hr_attendance.view_attendance_tree" />
         <field name="arch" type="xml">
-            <field name="check_out" position="after">
-                <field name="worked_hours" />
+            <field name="worked_hours" position="after">
                 <field name="sheet_id" />
             </field>
         </field>

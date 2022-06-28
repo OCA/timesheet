@@ -97,6 +97,11 @@
                             <tree>
                                 <field name="check_in" />
                                 <field name="check_out" />
+                                <field
+                                    name="worked_hours"
+                                    string="Work Hours"
+                                    widget="float_time"
+                                />
                                 <field invisible="1" name="employee_id" />
                             </tree>
                         </field>
