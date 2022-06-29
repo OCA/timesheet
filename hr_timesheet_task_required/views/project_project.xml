@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="project_project_view_form_simplified" model="ir.ui.view">
+        <field name="name">project.project.view.form.simplified</field>
+        <field name="model">project.project</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet.project_project_view_form_simplified_inherit_timesheet"
+        />
+        <field name="arch" type="xml">
+            <field name="allow_timesheets" position="after">
+                <field
+                    name="is_timesheet_task_required"
+                    attrs="{'invisible': [('allow_timesheets', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="project_invoice_form" model="ir.ui.view">
+        <field name="name">project.project.view.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="hr_timesheet.project_invoice_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='timesheet_settings']" position="after">
+                <div
+                    class="col-lg-6 o_setting_box"
+                    id="timesheet_task_settings"
+                    attrs="{'invisible': [('allow_timesheets', '=', False)]}"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="is_timesheet_task_required" class="oe_inline" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="is_timesheet_task_required" />
+                        <div class="text-muted">
+                            Set tasks on timesheet as a mandatory field
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
