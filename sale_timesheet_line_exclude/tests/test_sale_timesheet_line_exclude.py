@@ -32,9 +32,15 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
         self.SaleOrderLine = self.env["sale.order.line"]
         self.SudoSaleOrderLine = self.SaleOrderLine.sudo()
         self.ProjectCreateSaleOrder = self.env["project.create.sale.order"]
+        self.analytic_account_sale = self.env["account.analytic.account"].create(
+            {
+                "name": "Project for selling timesheet - AA",
+                "code": "AA-20300",
+                "company_id": self.env.company.id,
+            }
+        )
 
-    def test_1(self):
-        account = self.SudoAccountAccount.create(
+        self.account = self.SudoAccountAccount.create(
             {
                 "code": "TEST-1",
                 "name": "Sales #1",
@@ -42,10 +48,15 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "user_type_id": self.user_type_revenue.id,
             }
         )
-        project = self.SudoProject.create(
-            {"name": "Project #1", "allow_timesheets": True}
+        self.project = self.SudoProject.create(
+            {
+                "name": "Project #1",
+                "allow_timesheets": True,
+                "analytic_account_id": self.analytic_account_sale.id,
+                "allow_billable": True,
+            }
         )
-        product = self.SudoProductProduct.create(
+        self.product = self.SudoProductProduct.create(
             {
                 "name": "Service #1",
                 "standard_price": 30,
@@ -57,15 +68,15 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "default_code": "CODE-1",
                 "service_type": "timesheet",
                 "service_tracking": "task_global_project",
-                "project_id": project.id,
+                "project_id": self.project.id,
                 "taxes_id": False,
-                "property_account_income_id": account.id,
+                "property_account_income_id": self.account.id,
             }
         )
-        employee = self.SudoEmployee.create(
+        self.employee = self.SudoEmployee.create(
             {"name": "Employee #1", "timesheet_cost": 42}
         )
-        account_payable = self.SudoAccountAccount.create(
+        self.account_payable = self.SudoAccountAccount.create(
             {
                 "code": "AP4",
                 "name": "Payable #1",
@@ -73,7 +84,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "reconcile": True,
             }
         )
-        account_receivable = self.SudoAccountAccount.create(
+        self.account_receivable = self.SudoAccountAccount.create(
             {
                 "code": "AR1",
                 "name": "Receivable #1",
@@ -81,95 +92,242 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "reconcile": True,
             }
         )
-        partner = self.SudoPartner.create(
+        self.partner = self.SudoPartner.create(
             {
                 "name": "Partner #1",
                 "email": "partner1@localhost",
-                "property_account_payable_id": account_payable.id,
-                "property_account_receivable_id": account_receivable.id,
+                "property_account_payable_id": self.account_payable.id,
+                "property_account_receivable_id": self.account_receivable.id,
             }
         )
-        sale_order = self.SudoSaleOrder.create(
+        self.sale_order = self.SudoSaleOrder.create(
             {
-                "partner_id": partner.id,
-                "partner_invoice_id": partner.id,
-                "partner_shipping_id": partner.id,
+                "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
             }
         )
-        sale_order_line = self.SudoSaleOrderLine.create(
+        self.sale_order_line = self.SudoSaleOrderLine.create(
             {
-                "order_id": sale_order.id,
-                "name": product.name,
-                "product_id": product.id,
-                "product_uom_qty": 0,
+                "order_id": self.sale_order.id,
+                "name": self.product.name,
+                "product_id": self.product.id,
+                "product_uom_qty": 2,
                 "product_uom": self.uom_hour.id,
-                "price_unit": product.list_price,
+                "price_unit": self.product.list_price,
             }
         )
-        sale_order.action_confirm()
-        task = self.SudoProjectTask.search([("sale_line_id", "=", sale_order_line.id)])
-        timesheet1 = self.SudoAccountAnalyticLine.create(
+        self.sale_order.action_confirm()
+        self.task = self.SudoProjectTask.search(
+            [("sale_line_id", "=", self.sale_order_line.id)]
+        )
+
+    def test_create_without_exclude_from_sale_order(self):
+        timesheet = self.SudoAccountAnalyticLine.create(
             {
-                "project_id": task.project_id.id,
-                "task_id": task.id,
+                "project_id": self.task.project_id.id,
+                "task_id": self.task.id,
                 "name": "Entry #1-1",
                 "unit_amount": 1,
-                "employee_id": employee.id,
+                "employee_id": self.employee.id,
+                "account_id": self.project.analytic_account_id.id,
+            }
+        )
+        self.assertEqual(timesheet.timesheet_invoice_type, "billable_time")
+        self.assertEqual(self.sale_order_line.qty_delivered, 1)
+        self.assertEqual(self.sale_order_line.qty_to_invoice, 1)
+        self.assertEqual(self.sale_order_line.qty_invoiced, 0)
+
+    def test_create_with_exclude_from_sale_order(self):
+        timesheet = self.SudoAccountAnalyticLine.create(
+            {
+                "project_id": self.task.project_id.id,
+                "task_id": self.task.id,
+                "name": "Entry #1-1",
+                "unit_amount": 1,
+                "employee_id": self.employee.id,
+                "exclude_from_sale_order": True,
+                "account_id": self.project.analytic_account_id.id,
+            }
+        )
+        self.assertEqual(timesheet.timesheet_invoice_type, "non_billable")
+        self.assertEqual(self.sale_order_line.qty_delivered, 0)
+        self.assertEqual(self.sale_order_line.qty_to_invoice, 0)
+        self.assertEqual(self.sale_order_line.qty_invoiced, 0)
+
+    def test_write_exclude_from_sale_order(self):
+        timesheet = self.SudoAccountAnalyticLine.create(
+            {
+                "project_id": self.task.project_id.id,
+                "task_id": self.task.id,
+                "name": "Entry #1-1",
+                "unit_amount": 1,
+                "employee_id": self.employee.id,
+                "exclude_from_sale_order": False,
+                "account_id": self.project.analytic_account_id.id,
+            }
+        )
+        timesheet.write({"exclude_from_sale_order": True})
+
+        self.assertEqual(timesheet.timesheet_invoice_type, "non_billable")
+        self.assertEqual(self.sale_order_line.qty_delivered, 0)
+        self.assertEqual(self.sale_order_line.qty_to_invoice, 0)
+        self.assertEqual(self.sale_order_line.qty_invoiced, 0)
+
+    def test_write_remove_exclude_from_sale_order(self):
+        timesheet = self.SudoAccountAnalyticLine.create(
+            {
+                "project_id": self.task.project_id.id,
+                "task_id": self.task.id,
+                "name": "Entry #1-1",
+                "unit_amount": 1,
+                "employee_id": self.employee.id,
+                "exclude_from_sale_order": True,
+                "account_id": self.project.analytic_account_id.id,
+            }
+        )
+        timesheet.write({"exclude_from_sale_order": False})
+
+        self.assertTrue(timesheet.so_line)
+        self.assertEqual(timesheet.timesheet_invoice_type, "billable_time")
+        self.assertEqual(self.sale_order_line.qty_delivered, 1)
+        self.assertEqual(self.sale_order_line.qty_to_invoice, 1)
+        self.assertEqual(self.sale_order_line.qty_invoiced, 0)
+
+    def test_create_invoice(self):
+        timesheet1 = self.SudoAccountAnalyticLine.create(
+            {
+                "project_id": self.task.project_id.id,
+                "task_id": self.task.id,
+                "name": "Entry #1-1",
+                "unit_amount": 1,
+                "employee_id": self.employee.id,
+                "account_id": self.project.analytic_account_id.id,
+            }
+        )
+
+        timesheet2 = self.SudoAccountAnalyticLine.create(
+            {
+                "project_id": self.task.project_id.id,
+                "task_id": self.task.id,
+                "name": "Entry #1-1",
+                "unit_amount": 1,
+                "employee_id": self.employee.id,
+                "exclude_from_sale_order": True,
+                "account_id": self.project.analytic_account_id.id,
+            }
+        )
+
+        self.assertEqual(timesheet1.timesheet_invoice_type, "billable_time")
+        self.assertEqual(timesheet2.timesheet_invoice_type, "non_billable")
+        self.assertEqual(self.sale_order_line.qty_delivered, 1)
+        self.assertEqual(self.sale_order_line.qty_to_invoice, 1)
+        self.assertEqual(self.sale_order_line.qty_invoiced, 0)
+        self.sale_order._create_invoices()
+        self.assertTrue(timesheet1.timesheet_invoice_id)
+        self.assertEqual(self.sale_order_line.qty_delivered, 1)
+        self.assertEqual(self.sale_order_line.qty_to_invoice, 0)
+        self.assertEqual(self.sale_order_line.qty_invoiced, 1)
+
+    def test_write_invoiced(self):
+        timesheet1 = self.SudoAccountAnalyticLine.create(
+            {
+                "project_id": self.task.project_id.id,
+                "task_id": self.task.id,
+                "name": "Entry #1-1",
+                "unit_amount": 1,
+                "employee_id": self.employee.id,
+                "account_id": self.project.analytic_account_id.id,
+            }
+        )
+
+        timesheet2 = self.SudoAccountAnalyticLine.create(
+            {
+                "project_id": self.task.project_id.id,
+                "task_id": self.task.id,
+                "name": "Entry #1-1",
+                "unit_amount": 1,
+                "employee_id": self.employee.id,
+                "exclude_from_sale_order": True,
+                "account_id": self.project.analytic_account_id.id,
+            }
+        )
+
+        self.assertEqual(timesheet1.timesheet_invoice_type, "billable_time")
+        self.assertEqual(timesheet2.timesheet_invoice_type, "non_billable")
+        self.assertEqual(self.sale_order_line.qty_delivered, 1)
+        self.assertEqual(self.sale_order_line.qty_to_invoice, 1)
+        self.assertEqual(self.sale_order_line.qty_invoiced, 0)
+        self.sale_order._create_invoices()
+        self.assertTrue(timesheet1.timesheet_invoice_id)
+        self.assertEqual(self.sale_order_line.qty_delivered, 1)
+        self.assertEqual(self.sale_order_line.qty_to_invoice, 0)
+        self.assertEqual(self.sale_order_line.qty_invoiced, 1)
+
+        with self.assertRaises(ValidationError):
+            timesheet1.write({"exclude_from_sale_order": True})
+
+    def test_1(self):
+        timesheet1 = self.SudoAccountAnalyticLine.create(
+            {
+                "project_id": self.task.project_id.id,
+                "task_id": self.task.id,
+                "name": "Entry #1-1",
+                "unit_amount": 1,
+                "employee_id": self.employee.id,
+                "account_id": self.project.analytic_account_id.id,
             }
         )
         timesheet2 = self.SudoAccountAnalyticLine.create(
             {
-                "project_id": task.project_id.id,
-                "task_id": task.id,
+                "project_id": self.task.project_id.id,
+                "task_id": self.task.id,
                 "name": "Entry #1-2",
                 "unit_amount": 1,
-                "employee_id": employee.id,
+                "employee_id": self.employee.id,
                 "exclude_from_sale_order": False,
+                "account_id": self.project.analytic_account_id.id,
             }
         )
 
         self.assertEqual(timesheet1.timesheet_invoice_type, "billable_time")
         self.assertEqual(timesheet2.timesheet_invoice_type, "billable_time")
-        self.assertEqual(sale_order_line.qty_delivered, 2)
-        self.assertEqual(sale_order_line.qty_to_invoice, 2)
-        self.assertEqual(sale_order_line.qty_invoiced, 0)
+        self.assertEqual(self.sale_order_line.qty_delivered, 2)
+        self.assertEqual(self.sale_order_line.qty_to_invoice, 2)
+        self.assertEqual(self.sale_order_line.qty_invoiced, 0)
 
         timesheet3 = self.SudoAccountAnalyticLine.create(
             {
-                "project_id": task.project_id.id,
-                "task_id": task.id,
+                "project_id": self.task.project_id.id,
+                "task_id": self.task.id,
                 "name": "Entry #1-3",
                 "unit_amount": 1,
-                "employee_id": employee.id,
+                "employee_id": self.employee.id,
+                "account_id": self.project.analytic_account_id.id,
             }
         )
         self.assertEqual(timesheet3.timesheet_invoice_type, "billable_time")
-        self.assertEqual(sale_order_line.qty_delivered, 3)
-        self.assertEqual(sale_order_line.qty_to_invoice, 3)
-        self.assertEqual(sale_order_line.qty_invoiced, 0)
+        self.assertTrue(timesheet3.so_line)
+        self.assertEqual(self.sale_order_line.qty_delivered, 3)
+        self.assertEqual(self.sale_order_line.qty_to_invoice, 3)
+        self.assertEqual(self.sale_order_line.qty_invoiced, 0)
 
-        timesheet1._onchange_task_id_employee_id()
         self.assertEqual(timesheet1.timesheet_invoice_type, "billable_time")
         self.assertTrue(timesheet1.so_line)
 
         timesheet2.write({"exclude_from_sale_order": True})
-        timesheet2._onchange_task_id_employee_id()
         self.assertEqual(timesheet2.timesheet_invoice_type, "non_billable")
         self.assertFalse(timesheet2.so_line)
 
-        timesheet3._onchange_exclude_from_sale_order()
-        self.assertEqual(timesheet3.timesheet_invoice_type, "billable_time")
-        self.assertTrue(timesheet3.so_line)
-
-        self.assertEqual(sale_order_line.qty_delivered, 2)
-        self.assertEqual(sale_order_line.qty_to_invoice, 2)
-        self.assertEqual(sale_order_line.qty_invoiced, 0)
+        self.assertEqual(self.sale_order_line.qty_delivered, 2)
+        self.assertEqual(self.sale_order_line.qty_to_invoice, 2)
+        self.assertEqual(self.sale_order_line.qty_invoiced, 0)
 
         self.assertFalse(timesheet1.timesheet_invoice_id)
-        sale_order._create_invoices()
+        self.sale_order._create_invoices()
         self.assertTrue(timesheet1.timesheet_invoice_id)
-        self.assertEqual(sale_order_line.qty_delivered, 2)
-        self.assertEqual(sale_order_line.qty_to_invoice, 0)
-        self.assertEqual(sale_order_line.qty_invoiced, 2)
+        self.assertEqual(self.sale_order_line.qty_delivered, 2)
+        self.assertEqual(self.sale_order_line.qty_to_invoice, 0)
+        self.assertEqual(self.sale_order_line.qty_invoiced, 2)
         with self.assertRaises(ValidationError):
             timesheet1.write({"exclude_from_sale_order": True})
