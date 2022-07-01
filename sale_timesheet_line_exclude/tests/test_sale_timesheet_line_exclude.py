@@ -32,6 +32,13 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
         self.SaleOrderLine = self.env["sale.order.line"]
         self.SudoSaleOrderLine = self.SaleOrderLine.sudo()
         self.ProjectCreateSaleOrder = self.env["project.create.sale.order"]
+        self.analytic_account_sale = self.env["account.analytic.account"].create(
+            {
+                "name": "Project for selling timesheet - AA",
+                "code": "AA-20300",
+                "company_id": self.env.company.id,
+            }
+        )
 
     def test_1(self):
         account = self.SudoAccountAccount.create(
@@ -43,7 +50,12 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
             }
         )
         project = self.SudoProject.create(
-            {"name": "Project #1", "allow_timesheets": True}
+            {
+                "name": "Project #1",
+                "allow_timesheets": True,
+                "analytic_account_id": self.analytic_account_sale.id,
+                "allow_billable": True,
+            }
         )
         product = self.SudoProductProduct.create(
             {
@@ -101,7 +113,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "order_id": sale_order.id,
                 "name": product.name,
                 "product_id": product.id,
-                "product_uom_qty": 0,
+                "product_uom_qty": 2,
                 "product_uom": self.uom_hour.id,
                 "price_unit": product.list_price,
             }
@@ -115,6 +127,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "name": "Entry #1-1",
                 "unit_amount": 1,
                 "employee_id": employee.id,
+                "account_id": project.analytic_account_id.id,
             }
         )
         timesheet2 = self.SudoAccountAnalyticLine.create(
@@ -125,6 +138,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "unit_amount": 1,
                 "employee_id": employee.id,
                 "exclude_from_sale_order": False,
+                "account_id": project.analytic_account_id.id,
             }
         )
 
@@ -141,6 +155,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "name": "Entry #1-3",
                 "unit_amount": 1,
                 "employee_id": employee.id,
+                "account_id": project.analytic_account_id.id,
             }
         )
         self.assertEqual(timesheet3.timesheet_invoice_type, "billable_time")

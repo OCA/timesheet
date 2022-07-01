@@ -45,9 +45,7 @@ class AccountAnalyticLine(models.Model):
         self.ensure_one()
         if self.exclude_from_sale_order:
             return self.env["sale.order.line"]
-        return self._timesheet_determine_sale_line(
-            **self._timesheet_determine_sale_line_arguments()
-        )
+        return self._timesheet_determine_sale_line()
 
     @api.model
     def _timesheet_get_sale_line_dependencies(self):
@@ -66,16 +64,6 @@ class AccountAnalyticLine(models.Model):
             ]
         )
 
-    def _timesheet_determine_sale_line_arguments(self, values=None):
-        if values:
-            return {
-                "task": self.env["project.task"].sudo().browse(values.get("task_id")),
-                "employee": self.env["hr.employee"]
-                .sudo()
-                .browse(values.get("employee_id")),
-            }
-        return {"task": self.task_id, "employee": self.employee_id}
-
     @api.depends("exclude_from_sale_order")
     def _compute_timesheet_invoice_type(self):
         result = super()._compute_timesheet_invoice_type()
@@ -87,16 +75,15 @@ class AccountAnalyticLine(models.Model):
     @api.model
     def _timesheet_preprocess(self, values):
         values = super()._timesheet_preprocess(values)
-        if self._timesheet_should_evaluate_so_line(values, all):
-            if not values.get("exclude_from_sale_order"):
-                values["so_line"] = self._timesheet_determine_sale_line(
-                    **self._timesheet_determine_sale_line_arguments(values)
-                ).id
+        for rec in self:
+            if rec._timesheet_should_evaluate_so_line(values, all):
+                if not values.get("exclude_from_sale_order"):
+                    values["so_line"] = rec._timesheet_determine_sale_line()
         return values
 
     def _timesheet_postprocess_values(self, values):
         result = super()._timesheet_postprocess_values(values)
         if self._timesheet_should_evaluate_so_line(values, any):
             for line in self:
-                result[line.id].update({"so_line": line._timesheet_get_sale_line().id})
+                result[line.id].update({"so_line": line._timesheet_get_sale_line()})
         return result
