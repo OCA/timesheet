@@ -13,20 +13,6 @@ class AccountAnalyticLine(models.Model):
         help="Checking this would exclude this timesheet entry from Sale Order",
     )
 
-    @api.onchange("task_id", "employee_id")
-    def _onchange_task_id_employee_id(self):
-        """Override implementation in sale_timesheet to call _timesheet_get_sale_line()
-        instead of resolving so_line in-place"""
-        if self.project_id:  # timesheet only
-            self.so_line = self._timesheet_get_sale_line()
-            return
-        return super()._onchange_task_id_employee_id()  # pragma: no cover
-
-    @api.onchange("exclude_from_sale_order")
-    def _onchange_exclude_from_sale_order(self):
-        if self.project_id:  # timesheet only
-            self.so_line = self._timesheet_get_sale_line()
-
     @api.constrains("exclude_from_sale_order")
     def _constrains_exclude_from_sale_order(self):
         for line in self:
@@ -41,62 +27,25 @@ class AccountAnalyticLine(models.Model):
                     )
                 )
 
-    def _timesheet_get_sale_line(self):
-        self.ensure_one()
-        if self.exclude_from_sale_order:
-            return self.env["sale.order.line"]
-        return self._timesheet_determine_sale_line(
-            **self._timesheet_determine_sale_line_arguments()
-        )
-
-    @api.model
-    def _timesheet_get_sale_line_dependencies(self):
-        return [
-            "task_id",
-            "employee_id",
-            "exclude_from_sale_order",
-        ]
-
-    @api.model
-    def _timesheet_should_evaluate_so_line(self, values, check):
-        return check(
-            [
-                field_name in values
-                for field_name in self._timesheet_get_sale_line_dependencies()
-            ]
-        )
-
-    def _timesheet_determine_sale_line_arguments(self, values=None):
-        if values:
-            return {
-                "task": self.env["project.task"].sudo().browse(values.get("task_id")),
-                "employee": self.env["hr.employee"]
-                .sudo()
-                .browse(values.get("employee_id")),
-            }
-        return {"task": self.task_id, "employee": self.employee_id}
-
     @api.depends("exclude_from_sale_order")
     def _compute_timesheet_invoice_type(self):
         result = super()._compute_timesheet_invoice_type()
         for line in self:
-            if line.project_id and line.task_id and line.exclude_from_sale_order:
+            if line.exclude_from_sale_order:
                 line.timesheet_invoice_type = "non_billable"
         return result
 
-    @api.model
-    def _timesheet_preprocess(self, values):
-        values = super()._timesheet_preprocess(values)
-        if self._timesheet_should_evaluate_so_line(values, all):
-            if not values.get("exclude_from_sale_order"):
-                values["so_line"] = self._timesheet_determine_sale_line(
-                    **self._timesheet_determine_sale_line_arguments(values)
-                ).id
-        return values
+    @api.depends("exclude_from_sale_order")
+    def _compute_so_line_on_exclude(self):
+        self._compute_so_line()
 
-    def _timesheet_postprocess_values(self, values):
-        result = super()._timesheet_postprocess_values(values)
-        if self._timesheet_should_evaluate_so_line(values, any):
-            for line in self:
-                result[line.id].update({"so_line": line._timesheet_get_sale_line().id})
-        return result
+    def _timesheet_determine_sale_line(self):
+        self.ensure_one()
+        if self.exclude_from_sale_order:
+            return False
+        return super()._timesheet_determine_sale_line()
+
+    def _timesheet_postprocess(self, values):
+        if "exclude_from_sale_order" in values:
+            self._compute_so_line()
+        return super()._timesheet_postprocess(values)
