@@ -23,16 +23,21 @@ class ProjectProject(models.Model):
             item.budget_amount = sum(item.mapped("budget_ids.amount"))
 
     def _plan_prepare_values(self):
+        """Inject the budget amounts in the project overview."""
         res = super()._plan_prepare_values()
-        res["dashboard"]["profit"]["budget_amount"] = sum(self.mapped("budget_amount"))
-        res["dashboard"]["profit"]["total"] += sum(self.mapped("budget_amount"))
+        budget_amount = sum(self.mapped("budget_amount"))
+        res["dashboard"]["profit"]["budget_amount"] = budget_amount
+        res["dashboard"]["profit"]["total"] += budget_amount
         return res
 
 
 class ProjectProjectBudget(models.Model):
     _name = "project.project.budget"
     _description = "Project Project Budget"
+    _order = "date, id"
 
+    date = fields.Date()
+    name = fields.Char(string="Concept")
     project_id = fields.Many2one(
         comodel_name="project.project", string="Project", required=True
     )
