@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-27 11:03+0000\n"
-"PO-Revision-Date: 2022-06-27 11:03+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,7 +20,7 @@ msgstr ""
 
 #. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__amount
-#: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.edit_project
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.project_project_view_form
 msgid "Amount"
 msgstr ""
 
@@ -50,8 +48,13 @@ msgstr ""
 
 #. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project__budget_ids
-#: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.edit_project
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.project_project_view_form
 msgid "Budgets"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__name
+msgid "Concept"
 msgstr ""
 
 #. module: sale_timesheet_budget
@@ -62,6 +65,11 @@ msgstr ""
 #. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__create_date
 msgid "Created on"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__date
+msgid "Date"
 msgstr ""
 
 #. module: sale_timesheet_budget
