@@ -25,7 +25,8 @@ Sale timesheet budget
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This addon adds the "Budget" tab to the projects to be able to set some prices (benefits/expenses) linked to sales orders.
+This module adds the "Budget" tab to the projects/sales orders to be able to set
+some additional lines (incomes/expenses) linked to a planned budget.
 
 **Table of contents**
 
@@ -35,11 +36,14 @@ This addon adds the "Budget" tab to the projects to be able to set some prices (
 Usage
 =====
 
-#. Go to *Projects* and create and create a new one and set Customer and analytic account.
-#. Go to *Sales -> Orders -> Quotations* and create a new one according to Customer and Analytic account previously created.
-#. Go to *Projects* and edit project previously created.
-#. Add some records (positive or negative) in "Budget" tab.
-#. Go to *Project Overview* smart-button and a new line related to *Profitability* block have been created.
+#. Go to *Projects* and create a new one, setting Customer and analytic account.
+#. Go to *Sales -> Orders -> Quotations* and create a new one setting the same
+   customer and project previously created.
+#. Alternatively, you can create a sales order with lines that creates a project.
+#. Go to the project, and edit it.
+#. Add some records (positive or negative) in the "Budget" tab.
+#. Go to *Project Overview* smart-button and a new line called "Budget" in the
+   *Profitability* section will appear with the total amount of the lines.
 
 Known issues / Roadmap
 ======================

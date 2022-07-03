@@ -1,5 +1,8 @@
-#. Go to *Projects* and create and create a new one and set Customer and analytic account.
-#. Go to *Sales -> Orders -> Quotations* and create a new one according to Customer and Analytic account previously created.
-#. Go to *Projects* and edit project previously created.
-#. Add some records (positive or negative) in "Budget" tab.
-#. Go to *Project Overview* smart-button and a new line related to *Profitability* block have been created.
+#. Go to *Projects* and create a new one, setting Customer and analytic account.
+#. Go to *Sales -> Orders -> Quotations* and create a new one setting the same
+   customer and project previously created.
+#. Alternatively, you can create a sales order with lines that creates a project.
+#. Go to the project, and edit it.
+#. Add some records (positive or negative) in the "Budget" tab.
+#. Go to *Project Overview* smart-button and a new line called "Budget" in the
+   *Profitability* section will appear with the total amount of the lines.
