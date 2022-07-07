@@ -45,20 +45,19 @@ class HrTimesheetSheet(models.Model):
 
     total_attendance = fields.Float(
         compute="_compute_attendance_time",
-        string="Total Attendance",
     )
     total_difference = fields.Float(
         compute="_compute_attendance_time",
-        string="Difference",
     )
     attendances_ids = fields.One2many(
-        comodel_name="hr.attendance", inverse_name="sheet_id", string="Attendances"
+        comodel_name="hr.attendance",
+        inverse_name="sheet_id",
     )
     attendance_state = fields.Selection(
-        related="employee_id.attendance_state", string="Current Status"
+        related="employee_id.attendance_state",
     )
     attendance_count = fields.Integer(
-        compute="_compute_attendance_count", string="Attendance Count"
+        compute="_compute_attendance_count",
     )
 
     def attendance_action_change(self):

@@ -1,5 +1,7 @@
 import datetime
 
+from freezegun import freeze_time
+
 from odoo.exceptions import UserError
 
 from .hr_timesheet_sheet_test_cases import HrTimesheetTestCases
@@ -8,11 +10,11 @@ from .hr_timesheet_sheet_test_cases import HrTimesheetTestCases
 class TestHrAttendance(HrTimesheetTestCases):
     def setUp(self):
         super(TestHrAttendance, self).setUp()
-        checkInDate = datetime.datetime(2018, 12, 12, 10, 0, 0)
-        self.attendance_1 = self._create_attendance(
-            employee=self.employee,
-            checkIn=checkInDate,
-        )
+        with freeze_time(datetime.datetime(2018, 12, 12, 10, 0, 0)):
+            self.attendance_1 = self._create_attendance(
+                employee=self.employee,
+                checkIn=datetime.datetime(2018, 12, 12, 10, 0, 0),
+            )
 
     def test_00_compute_sheet_id(self):
         # check sheet_id in attendances
@@ -27,14 +29,16 @@ class TestHrAttendance(HrTimesheetTestCases):
     def test_01_test_timezone_conversion(self):
         # check for _get_attendance_employee_tz
         self.user_id.tz = "Etc/GMT+12"
-        date = datetime.datetime(2018, 12, 12, 10, 0, 0)
-        attDate = self.attendance_1._get_attendance_employee_tz(date=date)
-        self.assertEqual(
-            attDate,
-            datetime.date(2018, 12, 11),
-            "Error while converting date/datetime in user's timezone.\
-            \nMethod: _get_attendance_employee_tz",
-        )
+        with freeze_time(datetime.datetime(2018, 12, 12, 10, 0, 0)):
+            attDate = self.attendance_1._get_attendance_employee_tz(
+                date=datetime.datetime(2018, 12, 12, 10, 0, 0)
+            )
+            self.assertEqual(
+                attDate,
+                datetime.date(2018, 12, 11),
+                "Error while converting date/datetime in user's timezone.\
+                \nMethod: _get_attendance_employee_tz",
+            )
 
     def test_02_check_timesheet_confirm(self):
         # check check_in & check_out equal or not
@@ -49,11 +53,11 @@ class TestHrAttendance(HrTimesheetTestCases):
 
         # create attendance in confirmed timesheet
         with self.assertRaises(UserError):
-            checkInDate = datetime.datetime(2018, 12, 12, 13, 35, 0)
-            self._create_attendance(
-                employee=self.employee,
-                checkIn=checkInDate,
-            )
+            with freeze_time(datetime.datetime(2018, 12, 12, 13, 35, 0)):
+                self._create_attendance(
+                    employee=self.employee,
+                    checkIn=datetime.datetime(2018, 12, 12, 13, 35, 0),
+                )
 
         # modify attendance in confirmed timesheet
         with self.assertRaises(UserError):

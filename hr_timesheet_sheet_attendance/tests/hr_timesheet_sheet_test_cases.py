@@ -45,7 +45,6 @@ class HrTimesheetTestCases(TransactionCase):
             "department_id": self.env.ref("hr.dep_rd").id,
             "job_id": self.env.ref("hr.job_developer").id,
             "category_ids": [(6, 0, [self.env.ref("hr.employee_category_4").id])],
-            "work_location": "Building 1, Second Floor",
             "work_email": "test@test.com",
             "work_phone": "+3281813700",
         }
