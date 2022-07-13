@@ -31,6 +31,13 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
         self.SaleOrderLine = self.env["sale.order.line"]
         self.SudoSaleOrderLine = self.SaleOrderLine.sudo()
         self.ProjectCreateSaleOrder = self.env["project.create.sale.order"]
+        self.analytic_account_sale = self.env["account.analytic.account"].create(
+            {
+                "name": "Project for selling timesheet - AA",
+                "code": "AA-20300",
+                "company_id": self.env.company.id,
+            }
+        )
 
     def test_exclude_from_sale_order(self):
         account = self.SudoAccountAccount.create(
@@ -42,7 +49,12 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
             }
         )
         project = self.SudoProject.create(
-            {"name": "Project #1", "allow_timesheets": True, "allow_billable": True}
+            {
+                "name": "Project #1",
+                "allow_timesheets": True,
+                "allow_billable": True,
+                "analytic_account_id": self.analytic_account_sale.id,
+            }
         )
         product = self.SudoProductProduct.create(
             {
@@ -100,7 +112,7 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
                 "order_id": sale_order.id,
                 "name": product.name,
                 "product_id": product.id,
-                "product_uom_qty": 0,
+                "product_uom_qty": 2,
                 "product_uom": self.uom_hour.id,
                 "price_unit": product.list_price,
             }
@@ -114,20 +126,19 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
                 "name": "Entry #1",
                 "unit_amount": 1,
                 "employee_id": employee.id,
+                "account_id": project.analytic_account_id.id,
             }
         )
         task.exclude_from_sale_order = True
         task.allow_billable = False
         self.assertFalse(timesheet.so_line)
-
-        task.exclude_from_sale_order = False
-        task.allow_billable = True
+        task.write({"exclude_from_sale_order": False, "allow_billable": True})
         self.assertTrue(timesheet.so_line)
 
         payment = (
             self.env["sale.advance.payment.inv"]
             .with_context(
-                {
+                **{
                     "active_model": "sale.order",
                     "active_ids": [sale_order.id],
                     "active_id": sale_order.id,

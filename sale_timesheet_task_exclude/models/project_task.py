@@ -19,14 +19,15 @@ class ProjectTask(models.Model):
         "sale_line_id",
         "project_id",
         "allow_billable",
-        "non_allow_billable",
+        "commercial_partner_id",
         "exclude_from_sale_order",
     )
     def _compute_sale_order_id(self):
-        super(ProjectTask, self)._compute_sale_order_id()
+        res = super(ProjectTask, self)._compute_sale_order_id()
         excluded = self.filtered("exclude_from_sale_order")
         for task in excluded:
             task.sale_order_id = False
+        return res
 
     def write(self, vals):
         res = super().write(vals)
@@ -36,5 +37,5 @@ class ProjectTask(models.Model):
             for timesheet in self.timesheet_ids.filtered(
                 lambda line: not line.timesheet_invoice_id
             ):
-                timesheet._onchange_task_id_employee_id()
+                timesheet._compute_so_line()
         return res
