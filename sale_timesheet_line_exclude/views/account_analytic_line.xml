@@ -13,6 +13,19 @@
             <xpath expr="//field[@name='task_id']" position="after">
                 <field name="exclude_from_sale_order" optional="show" />
             </xpath>
+            <xpath expr="//field[@name='non_allow_billable']" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="timesheet_view_tree_sale" model="ir.ui.view">
+        <field name="name">account.analytic.line.view.tree.with.allow.billable</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="sale_timesheet.timesheet_view_tree_sale" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='non_allow_billable']" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </xpath>
         </field>
     </record>
     <record id="account_analytic_line_search" model="ir.ui.view">

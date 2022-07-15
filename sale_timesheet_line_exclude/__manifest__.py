@@ -14,4 +14,6 @@
     "summary": "Exclude Timesheet Line from Sale Order",
     "depends": ["sale_timesheet"],
     "data": ["views/account_analytic_line.xml", "views/project_task.xml"],
+    "external_dependencies": {"python": ["openupgradelib"]},
+    "pre_init_hook": "pre_init_hook",
 }

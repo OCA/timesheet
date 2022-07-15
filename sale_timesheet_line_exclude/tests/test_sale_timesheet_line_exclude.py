@@ -7,34 +7,25 @@ from odoo.tests import common
 
 class TestSaleTimesheetLineExclude(common.TransactionCase):
     def setUp(self):
-        super().setUp()
+        super(TestSaleTimesheetLineExclude, self).setUp()
 
         self.uom_hour = self.env.ref("uom.product_uom_hour")
         self.user_type_payable = self.env.ref("account.data_account_type_payable")
         self.user_type_receivable = self.env.ref("account.data_account_type_receivable")
         self.user_type_revenue = self.env.ref("account.data_account_type_revenue")
         self.Partner = self.env["res.partner"]
-        self.SudoPartner = self.Partner.sudo()
         self.Employee = self.env["hr.employee"]
-        self.SudoEmployee = self.Employee.sudo()
         self.AccountAccount = self.env["account.account"]
-        self.SudoAccountAccount = self.AccountAccount.sudo()
         self.Project = self.env["project.project"]
-        self.SudoProject = self.Project.sudo()
         self.ProjectTask = self.env["project.task"]
-        self.SudoProjectTask = self.ProjectTask.sudo()
         self.AccountAnalyticLine = self.env["account.analytic.line"]
-        self.SudoAccountAnalyticLine = self.AccountAnalyticLine.sudo()
         self.ProductProduct = self.env["product.product"]
-        self.SudoProductProduct = self.ProductProduct.sudo()
         self.SaleOrder = self.env["sale.order"]
-        self.SudoSaleOrder = self.SaleOrder.sudo()
         self.SaleOrderLine = self.env["sale.order.line"]
-        self.SudoSaleOrderLine = self.SaleOrderLine.sudo()
         self.ProjectCreateSaleOrder = self.env["project.create.sale.order"]
 
     def test_1(self):
-        account = self.SudoAccountAccount.create(
+        account = self.AccountAccount.create(
             {
                 "code": "TEST-1",
                 "name": "Sales #1",
@@ -42,10 +33,10 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "user_type_id": self.user_type_revenue.id,
             }
         )
-        project = self.SudoProject.create(
-            {"name": "Project #1", "allow_timesheets": True}
+        project = self.Project.create(
+            {"name": "Project #1", "allow_timesheets": True, "allow_billable": True}
         )
-        product = self.SudoProductProduct.create(
+        product = self.ProductProduct.create(
             {
                 "name": "Service #1",
                 "standard_price": 30,
@@ -62,10 +53,8 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "property_account_income_id": account.id,
             }
         )
-        employee = self.SudoEmployee.create(
-            {"name": "Employee #1", "timesheet_cost": 42}
-        )
-        account_payable = self.SudoAccountAccount.create(
+        employee = self.Employee.create({"name": "Employee #1", "timesheet_cost": 42})
+        account_payable = self.AccountAccount.create(
             {
                 "code": "AP4",
                 "name": "Payable #1",
@@ -73,7 +62,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "reconcile": True,
             }
         )
-        account_receivable = self.SudoAccountAccount.create(
+        account_receivable = self.AccountAccount.create(
             {
                 "code": "AR1",
                 "name": "Receivable #1",
@@ -81,7 +70,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "reconcile": True,
             }
         )
-        partner = self.SudoPartner.create(
+        partner = self.Partner.create(
             {
                 "name": "Partner #1",
                 "email": "partner1@localhost",
@@ -89,14 +78,14 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "property_account_receivable_id": account_receivable.id,
             }
         )
-        sale_order = self.SudoSaleOrder.create(
+        sale_order = self.SaleOrder.create(
             {
                 "partner_id": partner.id,
                 "partner_invoice_id": partner.id,
                 "partner_shipping_id": partner.id,
             }
         )
-        sale_order_line = self.SudoSaleOrderLine.create(
+        sale_order_line = self.SaleOrderLine.create(
             {
                 "order_id": sale_order.id,
                 "name": product.name,
@@ -107,8 +96,8 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
             }
         )
         sale_order.action_confirm()
-        task = self.SudoProjectTask.search([("sale_line_id", "=", sale_order_line.id)])
-        timesheet1 = self.SudoAccountAnalyticLine.create(
+        task = self.ProjectTask.search([("sale_line_id", "=", sale_order_line.id)])
+        timesheet1 = self.AccountAnalyticLine.create(
             {
                 "project_id": task.project_id.id,
                 "task_id": task.id,
@@ -117,7 +106,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "employee_id": employee.id,
             }
         )
-        timesheet2 = self.SudoAccountAnalyticLine.create(
+        timesheet2 = self.AccountAnalyticLine.create(
             {
                 "project_id": task.project_id.id,
                 "task_id": task.id,
@@ -134,7 +123,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
         self.assertEqual(sale_order_line.qty_to_invoice, 2)
         self.assertEqual(sale_order_line.qty_invoiced, 0)
 
-        timesheet3 = self.SudoAccountAnalyticLine.create(
+        timesheet3 = self.AccountAnalyticLine.create(
             {
                 "project_id": task.project_id.id,
                 "task_id": task.id,
