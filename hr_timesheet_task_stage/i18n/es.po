@@ -39,7 +39,22 @@ msgstr ""
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Closed"
+msgid "Closing Stage"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: hr_timesheet_task_stage
@@ -49,7 +64,7 @@ msgstr ""
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Tasks in this stage are considered closed."
+msgid "Tasks in this stage are considered as closed."
 msgstr ""
 
 #. module: hr_timesheet_task_stage

@@ -39,8 +39,23 @@ msgstr "משימה סגורה"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Closed"
-msgstr "סגור"
+msgid "Closing Stage"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
@@ -49,8 +64,8 @@ msgstr "משימה פתוחה"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Tasks in this stage are considered closed."
-msgstr "המשימות בשלב זה נחשבים לסגורים."
+msgid "Tasks in this stage are considered as closed."
+msgstr ""
 
 #. module: hr_timesheet_task_stage
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
@@ -63,3 +78,9 @@ msgstr ""
 #, python-format
 msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
 msgstr ""
+
+#~ msgid "Closed"
+#~ msgstr "סגור"
+
+#~ msgid "Tasks in this stage are considered closed."
+#~ msgstr "המשימות בשלב זה נחשבים לסגורים."

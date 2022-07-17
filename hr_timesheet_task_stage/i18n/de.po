@@ -38,8 +38,23 @@ msgstr "Aufgabe beenden"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Closed"
-msgstr "Geschlossen"
+msgid "Closing Stage"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
@@ -48,8 +63,8 @@ msgstr "Aufgabe öffnen"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Tasks in this stage are considered closed."
-msgstr "Aufgaben in dieser Stufe werden als geschlossen interpretiert."
+msgid "Tasks in this stage are considered as closed."
+msgstr ""
 
 #. module: hr_timesheet_task_stage
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
@@ -66,6 +81,12 @@ msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
 msgstr ""
 "Es gibt keine Stufe, die nicht als \"Geschlossen\" interpretiert wird. Bitte "
 "bei einer Stufe das Merkmal entfernen."
+
+#~ msgid "Closed"
+#~ msgstr "Geschlossen"
+
+#~ msgid "Tasks in this stage are considered closed."
+#~ msgstr "Aufgaben in dieser Stufe werden als geschlossen interpretiert."
 
 #~ msgid ""
 #~ "Open/Close timesheet line automatically open/close its tasks. Do you want "
