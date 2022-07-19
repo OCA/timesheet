@@ -27,7 +27,14 @@ class TestBeginEnd(common.TransactionCase):
             {"name": "test", "time_start": 10.0, "time_stop": 12.0}
         )
         line.onchange_hours_start_stop()
-        self.assertEquals(line.unit_amount, 2)
+        self.assertEqual(line.unit_amount, 2)
+
+    def test_onchange_no_update(self):
+        line = self.timesheet_line_model.new(
+            {"name": "test", "time_start": 13.0, "time_stop": 12.0}
+        )
+        line.onchange_hours_start_stop()
+        self.assertEqual(line.unit_amount, 0)
 
     def test_check_begin_before_end(self):
         line = self.base_line.copy()

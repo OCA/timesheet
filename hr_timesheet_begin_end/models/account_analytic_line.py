@@ -22,12 +22,18 @@ class AccountAnalyticLine(models.Model):
             start = timedelta(hours=line.time_start)
             stop = timedelta(hours=line.time_stop)
             if stop < start:
+                value_to_html(line.time_start, None)
+                value_to_html(line.time_stop, None)
+
                 raise exceptions.ValidationError(
-                    _("The beginning hour (%s) must " "precede the ending hour (%s).")
-                    % (
-                        value_to_html(line.time_start, None),
-                        value_to_html(line.time_stop, None),
+                    _(
+                        "The beginning hour (%(html_start)s) must "
+                        "precede the ending hour (%(html_stop)s)."
                     )
+                    % {
+                        "html_start": value_to_html(line.time_start, None),
+                        "html_stop": value_to_html(line.time_stop, None),
+                    }
                 )
             hours = (stop - start).seconds / 3600
             rounding = self.env.ref("uom.product_uom_hour").rounding
@@ -36,13 +42,13 @@ class AccountAnalyticLine(models.Model):
             ):
                 raise exceptions.ValidationError(
                     _(
-                        "The duration (%s) must be equal to the difference "
-                        "between the hours (%s)."
+                        "The duration (%(html_unit_amount)s) must be equal to the difference "
+                        "between the hours (%(html_hours)s)."
                     )
-                    % (
-                        value_to_html(line.unit_amount, None),
-                        value_to_html(hours, None),
-                    )
+                    % {
+                        "html_unit_amount": value_to_html(line.unit_amount, None),
+                        "html_hours": value_to_html(hours, None),
+                    }
                 )
             # check if lines overlap
             others = self.search(
