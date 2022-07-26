@@ -4,7 +4,7 @@
 from odoo import fields, models
 
 
-class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+class AccountMove(models.Model):
+    _inherit = 'account.move'
 
     timesheet_limit_date = fields.Date(string='Timesheet Limit Date')
