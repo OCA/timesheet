@@ -4,27 +4,27 @@
 from odoo import api, models
 
 
-class AccountInvoiceLine(models.Model):
-    _inherit = 'account.invoice.line'
+class AccountMoveLine(models.Model):
+    _inherit = 'account.move.line'
 
-    @api.model
+    @api.model_create_multi
     def create(self, values):
         # unlink lines from invoice if they under limit_date
         res = super().create(values)
         to_clean = self.env['account.analytic.line']
-        for invoice_line in res:
-            if (invoice_line.invoice_id.type == 'out_invoice'
-                    and invoice_line.invoice_id.state == 'draft'
-                    and invoice_line.invoice_id.timesheet_limit_date):
-                sale_line_delivery = invoice_line.sale_line_ids.filtered(
-                    lambda sol: sol.product_id.invoice_policy == 'delivery'
+        for move_line in res:
+            if (move_line.move_id.move_type == 'out_invoice'
+                    and move_line.move_id.state == 'draft'
+                    and move_line.move_id.timesheet_limit_date):
+                sale_line_delivery = move_line.sale_line_ids.filtered(
+                    lambda sol: sol.product_id.service_policy == 'delivered_timesheet'
                     and sol.product_id.service_type == 'timesheet')
                 if sale_line_delivery:
                     to_clean += self.env['account.analytic.line'].search([
                         ('timesheet_invoice_id', '=',
-                            invoice_line.invoice_id.id),
+                            move_line.move_id.id),
                         ('date', '>',
-                            invoice_line.invoice_id.timesheet_limit_date),
+                            move_line.move_id.timesheet_limit_date),
                     ])
         to_clean.write({'timesheet_invoice_id': False})
         return res
