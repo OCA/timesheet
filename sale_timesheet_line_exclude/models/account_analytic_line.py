@@ -15,17 +15,17 @@ class AccountAnalyticLine(models.Model):
 
     @api.onchange("task_id", "employee_id")
     def _onchange_task_id_employee_id(self):
-        """Override implementation in sale_timesheet to call _timesheet_get_sale_line()
+        """Override implementation in sale_timesheet to call _timesheet_determine_sale_line()
         instead of resolving so_line in-place"""
         if self.project_id:  # timesheet only
-            self.so_line = self._timesheet_get_sale_line()
+            self.so_line = self._timesheet_determine_sale_line()
             return
         return super()._onchange_task_id_employee_id()  # pragma: no cover
 
     @api.onchange("exclude_from_sale_order")
     def _onchange_exclude_from_sale_order(self):
         if self.project_id:  # timesheet only
-            self.so_line = self._timesheet_get_sale_line()
+            self.so_line = self._timesheet_determine_sale_line()
 
     @api.constrains("exclude_from_sale_order")
     def _constrains_exclude_from_sale_order(self):
@@ -41,11 +41,11 @@ class AccountAnalyticLine(models.Model):
                     )
                 )
 
-    def _timesheet_get_sale_line(self):
+    def _timesheet_determine_sale_line(self):
         self.ensure_one()
         if self.exclude_from_sale_order:
-            return self.env["sale.order.line"]
-        return self._timesheet_determine_sale_line()
+            return False
+        return super()._timesheet_determine_sale_line()
 
     @api.model
     def _timesheet_get_sale_line_dependencies(self):
@@ -64,12 +64,15 @@ class AccountAnalyticLine(models.Model):
             ]
         )
 
-    @api.depends("exclude_from_sale_order")
+    @api.depends(
+        "so_line.product_id", "project_id", "amount", "exclude_from_sale_order"
+    )
     def _compute_timesheet_invoice_type(self):
         result = super()._compute_timesheet_invoice_type()
         for line in self:
             if line.project_id and line.task_id and line.exclude_from_sale_order:
                 line.timesheet_invoice_type = "non_billable"
+
         return result
 
     @api.model
@@ -85,5 +88,7 @@ class AccountAnalyticLine(models.Model):
         result = super()._timesheet_postprocess_values(values)
         if self._timesheet_should_evaluate_so_line(values, any):
             for line in self:
-                result[line.id].update({"so_line": line._timesheet_get_sale_line()})
+                result[line.id].update(
+                    {"so_line": line._timesheet_determine_sale_line()}
+                )
         return result
