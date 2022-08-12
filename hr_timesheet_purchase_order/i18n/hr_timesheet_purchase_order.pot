@@ -1,0 +1,168 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_purchase_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_timesheet_purchase_order
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_purchase_order.res_config_settings_view_form
+msgid ""
+"<span class=\"fa fa-lg fa-building\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_purchase_order.purchase_order_form
+msgid "<span class=\"o_stat_text\">Timesheet Sheets</span>"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model,name:hr_timesheet_purchase_order.model_hr_employee_base
+msgid "Basic Employee"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_employee__billing_partner_id
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_employee_base__billing_partner_id
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_employee_public__billing_partner_id
+msgid "Billing Partner"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_sheet.py:0
+#, python-format
+msgid ""
+"Cannot set to draft a Timesheet Sheet from which a PO has been created. "
+"Please delete the related PO first."
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_purchase_order.res_config_settings_view_form
+msgid "Choose product to create purchase order from timesheet."
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model,name:hr_timesheet_purchase_order.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model,name:hr_timesheet_purchase_order.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.actions.server,name:hr_timesheet_purchase_order.ir_actions_server_action_create_purchase_order
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_purchase_order.hr_timesheet_sheet_form
+msgid "Create Purchase Order"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_employee_base__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_sheet__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_company__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_sheet.py:0
+#, python-format
+msgid "Employee {} is not enabled for PO creation from Timesheet Sheets."
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_employee__allow_generate_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_employee_base__allow_generate_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_employee_public__allow_generate_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_sheet__allow_generate_purchase_order
+msgid "Generate POs from Timesheet"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_employee_base__id
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_sheet__id
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_purchase_order__id
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_company__id
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_employee_base____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_sheet____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_company____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_sheet.py:0
+#, python-format
+msgid "Not specified billing partner for the employee: {}."
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_sheet.py:0
+#, python-format
+msgid ""
+"One of the Timesheet Sheets selected for employee {} is already related to a"
+" PO."
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_purchase_order.hr_timesheet_sheet_form
+msgid "Open Purchase Order"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model,name:hr_timesheet_purchase_order.model_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_sheet__purchase_order_id
+msgid "Purchase Order"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_company__timesheet_product_id
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_config_settings__timesheet_product_id
+msgid "Purchase Timesheet Product"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model,name:hr_timesheet_purchase_order.model_hr_timesheet_sheet
+msgid "Timesheet Sheet"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_purchase_order__timesheet_sheet_count
+msgid "Timesheet Sheet Count"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_purchase_order__timesheet_sheet_ids
+msgid "Timesheet Sheets"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_sheet.py:0
+#, python-format
+msgid "Timesheet Sheets must be approved to create a PO from them."
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_sheet.py:0
+#, python-format
+msgid ""
+"{} POs created from timesheet sheet selected for the following employees: {}"
+msgstr ""
