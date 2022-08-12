@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record
+        id="ir_actions_server_action_create_purchase_order"
+        model="ir.actions.server"
+    >
+        <field name="name">Create Purchase Order</field>
+        <field name="model_id" ref="model_hr_timesheet_sheet" />
+        <field name="binding_model_id" ref="model_hr_timesheet_sheet" />
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+action = records.action_create_purchase_order()
+        </field>
+    </record>
+
+</odoo>

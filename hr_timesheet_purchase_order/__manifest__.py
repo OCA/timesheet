@@ -1,0 +1,25 @@
+{
+    "name": "HR Timesheet Purchase Order",
+    "version": "14.0.1.0.0",
+    "summary": "HR Timesheet Purchase Order",
+    "author": "Ooops, Cetmix, Odoo Community Association (OCA)",
+    "license": "AGPL-3",
+    "category": "Human Resources",
+    "website": "https://github.com/OCA/timesheet",
+    "depends": [
+        "hr_timesheet_sheet",
+        "purchase",
+    ],
+    "external_dependencies": {},
+    "demo": [],
+    "data": [
+        "data/ir_actions_server.xml",
+        "views/hr_employee_view.xml",
+        "views/hr_timesheet_sheet_view.xml",
+        "views/purchase_order_view.xml",
+        "views/res_config_settings_view.xml",
+    ],
+    "qweb": [],
+    "installable": True,
+    "application": False,
+}
