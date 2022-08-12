@@ -25,6 +25,7 @@ addon | version | maintainers | summary
 [hr_employee_product](hr_employee_product/) | 14.0.1.0.0 |  | Product is an employee
 [hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 14.0.1.0.0 |  | Timesheet Activities - Begin/End Hours
 [hr_timesheet_analysis](hr_timesheet_analysis/) | 14.0.1.0.0 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | Analyze tracked time in Graph views
+[hr_timesheet_purchase_order](hr_timesheet_purchase_order/) | 14.0.1.0.0 |  | HR Timesheet Purchase Order
 [hr_timesheet_report](hr_timesheet_report/) | 14.0.1.0.0 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | Generate Timesheet Report from Task Logs
 [hr_timesheet_report_milestone](hr_timesheet_report_milestone/) | 14.0.1.0.0 |  | Extend Timesheet by adding Milestone
 [hr_timesheet_sheet](hr_timesheet_sheet/) | 14.0.1.1.0 |  | Timesheet Sheets, Activities
