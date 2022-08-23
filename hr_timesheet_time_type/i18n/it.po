@@ -6,86 +6,91 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-08-23 15:07+0000\n"
+"Last-Translator: Alessandro Fiorino <alessandro.fiorino@digitaldomus.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model,name:hr_timesheet_time_type.model_account_analytic_line
+#, fuzzy
 msgid "Analytic Line"
-msgstr ""
+msgstr "Linea Analitica"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_project_time_type__code
 msgid "Code"
-msgstr ""
+msgstr "Codice"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_project_time_type__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_project_time_type__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model,name:hr_timesheet_time_type.model_project_time_type
+#, fuzzy
 msgid "Define Time Types"
-msgstr ""
+msgstr "Definizione Tipi Orario"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_project_time_type__description
 msgid "Description"
-msgstr ""
+msgstr "Descrizione"
 
 #. module: hr_timesheet_time_type
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_type.view_project_time_type_form
 msgid "Description..."
-msgstr ""
+msgstr "Descrizione..."
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_account_analytic_line__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_project_time_type__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome Visualizzato"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_account_analytic_line__id
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_project_time_type__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_account_analytic_line____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_project_time_type____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima Modifica alle"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_project_time_type__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima Modifica di"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_project_time_type__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima Modifica alle"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_project_time_type__name
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: hr_timesheet_time_type
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_type.view_project_time_type_form
+#, fuzzy
 msgid "Task Activity"
-msgstr ""
+msgstr "Attività"
 
 #. module: hr_timesheet_time_type
 #: model:ir.actions.act_window,name:hr_timesheet_time_type.open_project_time_type_tree
@@ -95,10 +100,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_type.view_project_time_type_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_type.view_project_time_type_tree
 msgid "Time Type"
-msgstr ""
+msgstr "Tipo Orario"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_account_analytic_line__time_type_name
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_hr_timesheet_switch__time_type_name
 msgid "Time Type Name"
-msgstr ""
+msgstr "Nome Tipo Orario"
