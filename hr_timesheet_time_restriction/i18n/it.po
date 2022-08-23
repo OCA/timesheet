@@ -6,93 +6,95 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-08-23 11:07+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: hr_timesheet_time_restriction
 #: model:ir.model,name:hr_timesheet_time_restriction.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Riga analitica"
 
 #. module: hr_timesheet_time_restriction
 #: model:ir.model,name:hr_timesheet_time_restriction.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: hr_timesheet_time_restriction
 #: model:ir.model.fields,field_description:hr_timesheet_time_restriction.field_account_analytic_line__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_time_restriction.field_project_project__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_time_restriction.field_res_config_settings__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: hr_timesheet_time_restriction
 #: model:ir.model.fields,field_description:hr_timesheet_time_restriction.field_account_analytic_line__id
 #: model:ir.model.fields,field_description:hr_timesheet_time_restriction.field_project_project__id
 #: model:ir.model.fields,field_description:hr_timesheet_time_restriction.field_res_config_settings__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hr_timesheet_time_restriction
 #: model:ir.model.fields,field_description:hr_timesheet_time_restriction.field_account_analytic_line____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_time_restriction.field_project_project____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_time_restriction.field_res_config_settings____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: hr_timesheet_time_restriction
 #: model:res.groups,name:hr_timesheet_time_restriction.group_timesheet_time_manager
 msgid "No Timesheet Date Restriction"
-msgstr ""
+msgstr "Nessuna restrizione data foglio ore"
 
 #. module: hr_timesheet_time_restriction
 #: model:ir.model.fields,help:hr_timesheet_time_restriction.field_project_project__timesheet_restriction_days
 msgid "Not active if equal to 0."
-msgstr ""
+msgstr "Non è attivo se uguale a 0."
 
 #. module: hr_timesheet_time_restriction
 #: model:ir.model,name:hr_timesheet_time_restriction.model_project_project
 msgid "Project"
-msgstr ""
+msgstr "Progetto"
 
 #. module: hr_timesheet_time_restriction
 #: code:addons/hr_timesheet_time_restriction/models/project_project.py:0
 #: code:addons/hr_timesheet_time_restriction/models/res_config_settings.py:0
 #, python-format
 msgid "The day of the timesheet restriction must not be negative."
-msgstr ""
+msgstr "Il giorno della restrizione fogli ore non deve essere negativo."
 
 #. module: hr_timesheet_time_restriction
 #: model:res.groups,comment:hr_timesheet_time_restriction.group_timesheet_time_manager
 msgid "The user will be able to change the date on the timesheet."
-msgstr ""
+msgstr "L'utente potrà cambiare la data sul foglio ore."
 
 #. module: hr_timesheet_time_restriction
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_restriction.res_config_settings_view_form
 msgid "Timesheet Restriction (days)"
-msgstr ""
+msgstr "Restrizione foglio ore (giorni)"
 
 #. module: hr_timesheet_time_restriction
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_restriction.edit_project
 msgid "Timesheet Restriction (days):"
-msgstr ""
+msgstr "Restrizione foglio ore (giorni):"
 
 #. module: hr_timesheet_time_restriction
 #: model:ir.model.fields,field_description:hr_timesheet_time_restriction.field_project_project__timesheet_restriction_days
 #: model:ir.model.fields,field_description:hr_timesheet_time_restriction.field_res_config_settings__timesheet_restriction_days
 msgid "Timesheet Restriction Days"
-msgstr ""
+msgstr "Giorni restrizione foglio ore"
 
 #. module: hr_timesheet_time_restriction
 #: code:addons/hr_timesheet_time_restriction/models/res_config_settings.py:0
 #, python-format
 msgid "Warning!"
-msgstr ""
+msgstr "Attenzione!"
 
 #. module: hr_timesheet_time_restriction
 #: code:addons/hr_timesheet_time_restriction/models/account_analytic_line.py:0
@@ -100,4 +102,4 @@ msgstr ""
 msgid ""
 "You cannot change or create a timesheet with a specified \"date\" in the "
 "past."
-msgstr ""
+msgstr "Non puoi modificare o creare un foglio ore con una data nel passato."
