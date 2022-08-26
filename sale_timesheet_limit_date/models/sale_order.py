@@ -8,7 +8,6 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     timesheet_limit_date = fields.Date(
-        String="Timesheet Limit Date",
         help="Invoice will be created with timesheet prior and including"
         " the date set",
     )

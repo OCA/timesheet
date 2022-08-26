@@ -5,6 +5,6 @@ from odoo import fields, models
 
 
 class AccountMove(models.Model):
-    _inherit = 'account.move'
+    _inherit = "account.move"
 
-    timesheet_limit_date = fields.Date(string='Timesheet Limit Date')
+    timesheet_limit_date = fields.Date()
