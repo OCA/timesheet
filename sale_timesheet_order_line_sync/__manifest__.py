@@ -4,7 +4,7 @@
 
 {
     "name": "Sale Timesheet Order Line Sync",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/timesheet",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -12,5 +12,5 @@
     "installable": True,
     "application": False,
     "summary": "Propagate task order line in not invoiced timesheet lines",
-    "depends": ["sale_timesheet"],
+    "depends": ["sale_timesheet", "sale_project"],
 }
