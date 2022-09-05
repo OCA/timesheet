@@ -6,16 +6,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-09-05 17:07+0000\n"
+"Last-Translator: Yves Le Doeuff <yld@alliasys.fr>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: hr_timesheet_analysis
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_analysis.hr_timesheet_line_graph
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_analysis.timesheet_view_graph_user
 msgid "Timesheet"
-msgstr ""
+msgstr "Feuille de temps"
