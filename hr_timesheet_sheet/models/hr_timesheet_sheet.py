@@ -221,7 +221,8 @@ class Sheet(models.Model):
             complete_name_components = sheet._get_complete_name_components()
             if complete_name_components:
                 complete_name = "{} ({})".format(
-                    complete_name, ", ".join(complete_name_components),
+                    complete_name,
+                    ", ".join(complete_name_components),
                 )
             sheet.complete_name = complete_name
 
@@ -234,12 +235,12 @@ class Sheet(models.Model):
                 )
 
     def _get_complete_name_components(self):
-        """ Hook for extensions """
+        """Hook for extensions"""
         self.ensure_one()
         return [self.employee_id.name_get()[0][1]]
 
     def _get_overlapping_sheet_domain(self):
-        """ Hook for extensions """
+        """Hook for extensions"""
         self.ensure_one()
         return [
             ("id", "!=", self.id),
@@ -378,7 +379,7 @@ class Sheet(models.Model):
 
     @api.model
     def _matrix_key_attributes(self):
-        """ Hook for extensions """
+        """Hook for extensions"""
         return ["date", "project_id", "task_id"]
 
     @api.model
@@ -387,7 +388,7 @@ class Sheet(models.Model):
 
     @api.model
     def _get_matrix_key_values_for_line(self, aal):
-        """ Hook for extensions """
+        """Hook for extensions"""
         return {"date": aal.date, "project_id": aal.project_id, "task_id": aal.task_id}
 
     @api.model
@@ -509,12 +510,12 @@ class Sheet(models.Model):
         return super().unlink()
 
     def _get_informables(self):
-        """ Hook for extensions """
+        """Hook for extensions"""
         self.ensure_one()
         return self.employee_id.parent_id.user_id.partner_id
 
     def _get_subscribers(self):
-        """ Hook for extensions """
+        """Hook for extensions"""
         self.ensure_one()
         subscribers = self._get_possible_reviewers().mapped("partner_id")
         subscribers |= self._get_informables()
@@ -583,7 +584,7 @@ class Sheet(models.Model):
             locale=(self.env.context.get("lang") or self.env.user.lang or "en_US"),
         )
         name = re.sub(r"(\s*[^\w\d\s])\s+", r"\1\n", name)
-        name = re.sub(r"([\w\d])\s([\w\d])", u"\\1\u00A0\\2", name)
+        name = re.sub(r"([\w\d])\s([\w\d])", "\\1\u00A0\\2", name)
         return name
 
     def _get_dates(self):
@@ -607,7 +608,7 @@ class Sheet(models.Model):
         return project_id.name_get()[0][1]
 
     def _get_new_line_unique_id(self):
-        """ Hook for extensions """
+        """Hook for extensions"""
         self.ensure_one()
         return {
             "project_id": self.add_line_project_id,
@@ -671,7 +672,7 @@ class Sheet(models.Model):
         return timesheets
 
     def _is_add_line(self, row):
-        """ Hook for extensions """
+        """Hook for extensions"""
         self.ensure_one()
         return (
             self.add_line_project_id == row.project_id
@@ -680,7 +681,7 @@ class Sheet(models.Model):
 
     @api.model
     def _is_line_of_row(self, aal, row):
-        """ Hook for extensions """
+        """Hook for extensions"""
         return (
             aal.project_id.id == row.project_id.id and aal.task_id.id == row.task_id.id
         )
@@ -727,7 +728,7 @@ class Sheet(models.Model):
 
     @api.model
     def _prepare_new_line(self, line):
-        """ Hook for extensions """
+        """Hook for extensions"""
         return {
             "sheet_id": line.sheet_id.id,
             "date": line.date,
@@ -739,7 +740,7 @@ class Sheet(models.Model):
         }
 
     def _is_compatible_new_line(self, line_a, line_b):
-        """ Hook for extensions """
+        """Hook for extensions"""
         self.ensure_one()
         return (
             line_a.project_id.id == line_b.project_id.id
@@ -816,7 +817,7 @@ class AbstractSheetLine(models.AbstractModel):
     employee_id = fields.Many2one(comodel_name="hr.employee", string="Employee")
 
     def get_unique_id(self):
-        """ Hook for extensions """
+        """Hook for extensions"""
         self.ensure_one()
         return {"project_id": self.project_id, "task_id": self.task_id}
 
@@ -832,7 +833,7 @@ class SheetLine(models.TransientModel):
 
     @api.onchange("unit_amount")
     def onchange_unit_amount(self):
-        """ This method is called when filling a cell of the matrix. """
+        """This method is called when filling a cell of the matrix."""
         self.ensure_one()
         sheet = self._get_sheet()
         if not sheet:
@@ -862,7 +863,7 @@ class SheetNewAnalyticLine(models.TransientModel):
 
     @api.model
     def _is_similar_analytic_line(self, aal):
-        """ Hook for extensions """
+        """Hook for extensions"""
         return (
             aal.date == self.date
             and aal.project_id.id == self.project_id.id

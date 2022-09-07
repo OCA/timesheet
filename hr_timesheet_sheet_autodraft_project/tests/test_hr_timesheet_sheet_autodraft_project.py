@@ -34,4 +34,4 @@ class TestHrTimesheetSheetAutodraftProject(common.TransactionCase):
             {"project_id": project.id, "employee_id": employee.id, "name": "Time Entry"}
         )
 
-        self.assertEquals(aal.sheet_id.project_id, project)
+        self.assertEqual(aal.sheet_id.project_id, project)

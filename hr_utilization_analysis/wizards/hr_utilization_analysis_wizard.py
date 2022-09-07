@@ -11,14 +11,17 @@ class HrUtilizationAnalysisWizard(models.TransientModel):
     date_from = fields.Date(string="Start Date", required=True)
     date_to = fields.Date(string="End Date", required=True)
     only_active_employees = fields.Boolean(
-        string="Only Active Employees", default=True,
+        string="Only Active Employees",
+        default=True,
     )
     employee_ids = fields.Many2many(string="Employees", comodel_name="hr.employee")
     employee_category_ids = fields.Many2many(
-        string="Employee Tags", comodel_name="hr.employee.category",
+        string="Employee Tags",
+        comodel_name="hr.employee.category",
     )
     department_ids = fields.Many2many(
-        string="Departments", comodel_name="hr.department",
+        string="Departments",
+        comodel_name="hr.department",
     )
 
     def action_view(self):
