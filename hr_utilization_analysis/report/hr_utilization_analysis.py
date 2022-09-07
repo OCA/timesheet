@@ -17,14 +17,17 @@ class HrUtilizationAnalysis(models.TransientModel):
     date_from = fields.Date(string="Start Date", required=True)
     date_to = fields.Date(string="End Date", required=True)
     only_active_employees = fields.Boolean(
-        string="Only Active Employees", default=True,
+        string="Only Active Employees",
+        default=True,
     )
     employee_ids = fields.Many2many(string="Employees", comodel_name="hr.employee")
     employee_category_ids = fields.Many2many(
-        string="Employee Tags", comodel_name="hr.employee.category",
+        string="Employee Tags",
+        comodel_name="hr.employee.category",
     )
     department_ids = fields.Many2many(
-        string="Departments", comodel_name="hr.department",
+        string="Departments",
+        comodel_name="hr.department",
     )
     entry_ids = fields.One2many(
         string="Entries",
@@ -94,7 +97,9 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
     )
     name = fields.Char(related="employee_id.name", store=True)
     employee_id = fields.Many2one(
-        string="Employee", comodel_name="hr.employee", required=True,
+        string="Employee",
+        comodel_name="hr.employee",
+        required=True,
     )
     department_id = fields.Many2one(
         string="Department",
@@ -118,7 +123,9 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
     capacity = fields.Float(string="Capacity", compute="_compute_capacity", store=True)
     amount = fields.Float(string="Quantity", compute="_compute_amount", store=True)
     difference = fields.Float(
-        string="Difference", compute="_compute_difference", store=True,
+        string="Difference",
+        compute="_compute_difference",
+        store=True,
     )
 
     _sql_constraints = [
