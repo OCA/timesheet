@@ -1071,21 +1071,26 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "Nu puteti modifica o inregistrare intr-o fisa de pontaj confirmata."
+msgstr ""
+"Nu puteti modifica o inregistrare intr-o fisa de pontaj confirmata:\n"
+" - %s / %s\n"
+" - %s / %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "Nu puteti sterge o fisa de pontaj care este deja confirmata."
+msgstr ""
+"Nu puteti sterge o fisa de pontaj care este deja confirmata: "
+"%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1095,7 +1100,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
@@ -1104,13 +1109,14 @@ msgid ""
 msgstr ""
 "Nu puteti avea 2 fise de pontaj care sa se suprapuna!\n"
 "Va rugam sa folositi meniul 'Fisa mea de pontaj Actuala' pentru a evita "
-"aceasta problema."
+"aceasta problema:\n"
+" - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "Nu puteti modifica o inregistrare intr-o fisa de pontaj confirmata."
+msgstr "Nu puteti modifica o inregistrare intr-o fisa de pontaj confirmata: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
