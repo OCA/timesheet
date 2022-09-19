@@ -446,7 +446,7 @@ msgid ""
 "user: %s"
 msgstr ""
 "Para criar uma planilha para este funcionário, você precisa conectar ele(a) "
-"a um usuário: %s"
+"a um usuárior: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
