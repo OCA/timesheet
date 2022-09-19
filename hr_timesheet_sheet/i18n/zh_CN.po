@@ -428,11 +428,11 @@ msgstr "在草稿"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
-msgstr "要为员工创建工时表，你必须关联他/她到一个用户。"
+msgstr "要为员工创建工时表，你必须关联他/她到一个用户。: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1071,21 +1071,26 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "你不能修改已确认的工时表的条目"
+msgstr ""
+"你不能修改已确认的工时表的条目"
+" - %s / %s\n"
+" - %s / %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "你无法删除一张已确认的工时表。"
+msgstr ""
+"你无法删除一张已确认的工时表。:"
+"%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1095,7 +1100,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
@@ -1103,13 +1108,14 @@ msgid ""
 " - %s"
 msgstr ""
 "您不能有2张重复的工时单！\n"
-"请使用菜单’我当前的工时单‘来避免这个问题。"
+"请使用菜单’我当前的工时单‘来避免这个问题。:"
+" - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "你不能修改已确认的工时表的条目"
+msgstr "你不能修改已确认的工时表的条目: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
