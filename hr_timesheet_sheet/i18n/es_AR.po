@@ -1065,13 +1065,16 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "No puede modificar una entrada en un parte de horas confirmado."
+msgstr ""
+"No puede modificar una entrada en un parte de horas confirmado:\n"
+" - %s / %s\n"
+" - %s / %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1099,9 +1102,9 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "No puede modificar una entrada en un parte de horas confirmado."
+msgstr "No puede modificar una entrada en un parte de horas confirmado: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my

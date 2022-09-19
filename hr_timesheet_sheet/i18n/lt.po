@@ -435,13 +435,13 @@ msgstr "Juodraštis"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
 msgstr ""
 "Norint sukurti darbo laiko žiniaraštį šiam darbuotojui, Jūs privalote "
-"priskirti šį darbuotoją atitinkamui sistemos vartotojui."
+"priskirti šį darbuotoją atitinkamui sistemos vartotojui: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1080,7 +1080,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
@@ -1088,16 +1088,19 @@ msgid ""
 " - %s of %s"
 msgstr ""
 "Jūs negalite modifkuoti įrašo, kuris yra patvirtintame darbo laiko "
-"žiniaraštyje."
+"žiniaraštyje:\n"
+" - %s of %s\n"
+" - %s of %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
 msgstr ""
-"Jūs negalite ištrinti darbo laiko žiniaraščio, kuris yra jau patvirtintas."
+"Jūs negalite ištrinti darbo laiko žiniaraščio, kuris yra jau patvirtintas: "
+"%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1107,7 +1110,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
@@ -1116,15 +1119,16 @@ msgid ""
 msgstr ""
 "Jūs negalite turėti 2 darbo laiko žiniaraščių, kurie iš dalies sutampa!\n"
 "Prašome naudoti meniu \"Mano dabartinis darbo laiko žiniaraštis\", norint "
-"išvengti šios problemos."
+"išvengti šios problemos:\n"
+" - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr ""
 "Jūs negalite modifkuoti įrašo, kuris yra patvirtintame darbo laiko "
-"žiniaraštyje."
+"žiniaraštyje: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
