@@ -435,7 +435,7 @@ msgid ""
 "user: %s"
 msgstr ""
 "V záujme vytvorenia časového rozvrhu pre tohto zamestnanca, je nutné ho / ju "
-"prepojiť  s užívateľom."
+"prepojiť  s užívateľom: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1080,21 +1080,26 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "Nemôžete upraviť vstup v potvrdenom časovom rozvrhu."
+msgstr ""
+"Nemôžete upraviť vstup v potvrdenom časovom rozvrhu.:\n"
+" - %s of %s\n"
+" - %s of %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "Nemžete zmazať časový rozvrh ktorý už bol potvrdený."
+msgstr ""
+"Nemžete zmazať časový rozvrh ktorý už bol potvrdený: "
+"%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1104,7 +1109,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
@@ -1113,13 +1118,14 @@ msgid ""
 msgstr ""
 "Nemôźete mať 2 časové rozvrhy ktoré sa prekrývajú!\n"
 "Prosím použite menu \"Môj aktuálny časový rozvrh\" aby ste sa vyhli tomuto "
-"problému."
+"problému:\n"
+" - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "Nemôžete upraviť vstup v potvrdenom časovom rozvrhu."
+msgstr "Nemôžete upraviť vstup v potvrdenom časovom rozvrhu: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my

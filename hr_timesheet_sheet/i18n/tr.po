@@ -438,13 +438,13 @@ msgstr "Taslak"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
 msgstr ""
 "Bu çalışan için bir zaman çizelgesi oluşturmak için/onu bir kullanıcıya "
-"bağlamanız gerekir."
+"bağlamanız gerekir: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1091,21 +1091,25 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "Onaylamış zaman çizelgesi bir girişi değiştiremezsiniz."
+msgstr "Onaylamış zaman çizelgesi bir girişi değiştiremezsiniz:\n"
+" - %s / %s\n"
+" - %s / %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "Onaylandıktan sonra bir zaman çizelgesini silemezsiniz."
+msgstr ""
+"Onaylandıktan sonra bir zaman çizelgesini silemezsiniz: "
+"%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1115,7 +1119,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
@@ -1123,13 +1127,14 @@ msgid ""
 " - %s"
 msgstr ""
 "Sen üst üste 2 zaman çizelgesi oluşturamazsın!\n"
-"Bu sorunu önlemek için menü'de 'Mevcut zaman çizelgesi' kullanın."
+"Bu sorunu önlemek için menü'de 'Mevcut zaman çizelgesi' kullanın:\n"
+" - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "Onaylamış zaman çizelgesi bir girişi değiştiremezsiniz."
+msgstr "Onaylamış zaman çizelgesi bir girişi değiştiremezsiniz: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
