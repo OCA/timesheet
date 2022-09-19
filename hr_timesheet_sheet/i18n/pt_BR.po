@@ -434,13 +434,13 @@ msgstr "Rascunho"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
 msgstr ""
 "Para criar uma planilha para este funcionário, você precisa conectar ele(a) "
-"a um usuário."
+"a um usuárior: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1073,7 +1073,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
@@ -1081,15 +1081,19 @@ msgid ""
 " - %s of %s"
 msgstr ""
 "Você não pode criar uma planilha de horas de uma empresa diferente daquela "
-"da planilha de horas."
+"da planilha de horas:\n"
+" - %s of %s\n"
+" - %s of %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "Você não pode excluir uma planilha de horas que já foi confirmada."
+msgstr ""
+"Você não pode excluir uma planilha de horas que já foi confirmada: "
+"%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1099,7 +1103,7 @@ msgstr "Você não pode duplicar uma planilha de horas."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
@@ -1107,14 +1111,15 @@ msgid ""
 " - %s"
 msgstr ""
 "Você não pode ter duas planilhas de horas que se sobrepõem!\n"
-"Você deve usar o menu 'Planilha de Horas' para evitar este problema."
+"Você deve usar o menu 'Planilha de Horas' para evitar este problema:\n"
+" - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr ""
-"Você não pode modificar um lançamento em uma planilha de horas confirmada."
+"Você não pode modificar um lançamento em uma planilha de horas confirmada: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my

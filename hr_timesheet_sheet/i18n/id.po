@@ -435,13 +435,13 @@ msgstr "Aliran masuk"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
 msgstr ""
 "Dalam rangka menciptakan absen untuk karyawan ini, Anda harus menghubungkan "
-"dia / dia untuk pengguna."
+"dia / dia untuk pengguna: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1080,21 +1080,24 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
 msgstr "Anda tidak dapat memodifikasi entri dalam absen dikonfirmasi."
+" - %s / %s\n"
+" - %s / %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "Anda tidak dapat menghapus absen yang sudah dikonfirmasi."
+msgstr "Anda tidak dapat menghapus absen yang sudah dikonfirmasi: "
+"%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1104,7 +1107,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
@@ -1112,13 +1115,14 @@ msgid ""
 " - %s"
 msgstr ""
 "Anda tidak dapat memiliki 2 timesheets yang tumpang tindih! Silakan gunakan "
-"menu 'My Timesheet sekarang' untuk menghindari masalah ini."
+"menu 'My Timesheet sekarang' untuk menghindari masalah ini:"
+" - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "Anda tidak dapat memodifikasi entri dalam absen dikonfirmasi."
+msgstr "Anda tidak dapat memodifikasi entri dalam absen dikonfirmasi: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my

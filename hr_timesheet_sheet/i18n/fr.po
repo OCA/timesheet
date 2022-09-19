@@ -1095,12 +1095,12 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
 msgstr ""
-"Vous ne pouvez pas supprimer des feuilles de temps qui sont déjà confirmées."
+"Vous ne pouvez pas supprimer des feuilles de temps qui sont déjà confirmées:"
+"%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1110,7 +1110,6 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
@@ -1118,14 +1117,14 @@ msgid ""
 " - %s"
 msgstr ""
 "Vous ne pouvez pas avoir 2 feuilles de temps qui se chevauchent!\n"
-"SVP utilisez le menu 'Ma feuille de temps actuelle' pour éviter ce problème."
+"SVP utilisez le menu 'Ma feuille de temps actuelle' pour éviter ce problème:\n"
+" - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr ""
-"Vous ne pouvez pas modifier une entrée dans une feuille de temps confirmée."
+"Vous ne pouvez pas modifier une entrée dans une feuille de temps confirmée: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
