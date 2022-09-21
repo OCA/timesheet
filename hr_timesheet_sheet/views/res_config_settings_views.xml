@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2019-2020 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+    -->
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.hr.timesheet</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="55" />
+        <field name="inherit_id" ref="hr_timesheet.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//div[hasclass('settings')]/div[@groups='hr_timesheet.group_timesheet_manager']/div[position()=1]"
+                position="after"
+            >
+                <h2>Timesheet Options</h2>
+                <div class="row mt16 o_settings_container" name="hr_timesheet_sheet">
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="sheet_range" />
+                            <span
+                                class="fa fa-lg fa-building"
+                                title="Values set here are company-specific."
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                                role="img"
+                            />
+                            <div class="text-muted">
+                                Choose which timesheet sheet ranges should be used by default
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field
+                                        name="sheet_range"
+                                        class="o_light_label"
+                                        widget="selection"
+                                        required="1"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="col-xs-12 col-md-6 o_setting_box"
+                        attrs="{'invisible':[('sheet_range','!=',2)], 'required':[('sheet_range','=',2)]}"
+                    >
+                        <div class="o_setting_right_pane">
+                            <label for="timesheet_week_start" />
+                            <span
+                                class="fa fa-lg fa-building"
+                                title="Values set here are company-specific."
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                                role="img"
+                            />
+                            <div class="text-muted">
+                                Choose the week start day.
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field
+                                        name="timesheet_week_start"
+                                        class="o_light_label"
+                                        widget="selection"
+                                        required="1"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="timesheet_sheet_review_policy" />
+                            <span
+                                class="fa fa-lg fa-building"
+                                title="Values set here are company-specific."
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                                role="img"
+                            />
+                            <div class="text-muted">
+                                Choose timesheet sheets review policy.
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field
+                                        name="timesheet_sheet_review_policy"
+                                        class="o_light_label"
+                                        widget="radio"
+                                        required="1"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
