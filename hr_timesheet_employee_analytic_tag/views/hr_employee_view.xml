@@ -1,0 +1,19 @@
+<odoo>
+    <record id="hr_employee_view_form_inherit_timesheet" model="ir.ui.view">
+        <field name="name">hr.employee.form.timesheet</field>
+        <field name="model">hr.employee</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet.hr_employee_view_form_inherit_timesheet"
+        />
+        <field name="arch" type="xml">
+            <group name="timesheet" position="inside">
+                <field
+                    name="timesheet_analytic_tag_ids"
+                    widget="many2many_tags"
+                    groups="analytic.group_analytic_tags"
+                />
+            </group>
+        </field>
+    </record>
+</odoo>
