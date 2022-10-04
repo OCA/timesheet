@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo-addon-hr_timesheet_sheet>=15.0dev,<15.1dev',
         'odoo-addon-hr_timesheet_task_domain>=15.0dev,<15.1dev',
         'odoo-addon-hr_timesheet_task_required>=15.0dev,<15.1dev',
+        'odoo-addon-hr_timesheet_task_stage>=15.0dev,<15.1dev',
         'odoo-addon-hr_timesheet_time_type>=15.0dev,<15.1dev',
         'odoo-addon-sale_timesheet_line_exclude>=15.0dev,<15.1dev',
     ],
