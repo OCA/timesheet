@@ -17,13 +17,13 @@ Task Log: Open/Close Task
     :target: https://github.com/OCA/timesheet/tree/15.0/hr_timesheet_task_stage
     :alt: OCA/timesheet
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/timesheet-14-0/timesheet-14-0-hr_timesheet_task_stage
+    :target: https://translation.odoo-community.org/projects/timesheet-15-0/timesheet-15-0-hr_timesheet_task_stage
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/117/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module allows to open and close tasks from account analytic lines.
 The selected closed stage is the first one that is found with the mark
