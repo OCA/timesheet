@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo14-addon-hr_employee_product',
         'odoo14-addon-hr_timesheet_activity_begin_end',
         'odoo14-addon-hr_timesheet_analysis',
+        'odoo14-addon-hr_timesheet_employee_analytic_tag',
         'odoo14-addon-hr_timesheet_purchase_order',
         'odoo14-addon-hr_timesheet_report',
         'odoo14-addon-hr_timesheet_report_milestone',
