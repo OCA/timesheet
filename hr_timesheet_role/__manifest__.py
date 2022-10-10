@@ -1,10 +1,10 @@
 # Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
-# Copyright 2020 CorporateHub (https://corporatehub.eu)
+# Copyright 2020-2022 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Task Logs by Role",
-    "version": "12.0.2.0.0",
+    "version": "13.0.1.0.0",
     "category": "Human Resources",
     "website": "https://github.com/OCA/timesheet",
     "author": "CorporateHub, " "Odoo Community Association (OCA)",

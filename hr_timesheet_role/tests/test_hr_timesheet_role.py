@@ -17,7 +17,6 @@ class TestHrTimesheetRole(common.TransactionCase):
         self.HrEmployee = self.env["hr.employee"]
         self.Assignment = self.env["project.assignment"]
         self.AccountAnalyticLine = self.env["account.analytic.line"]
-        self.company_id = self.env["res.company"]._company_default_get()
         self.now = fields.Datetime.now()
 
     def test_defaults(self):
@@ -26,7 +25,7 @@ class TestHrTimesheetRole(common.TransactionCase):
                 "name": "User",
                 "login": "user",
                 "email": "user@example.com",
-                "company_id": self.company_id.id,
+                "company_id": self.env.company.id,
             }
         )
         project = self.Project.create(
@@ -67,7 +66,7 @@ class TestHrTimesheetRole(common.TransactionCase):
                 "name": "User",
                 "login": "user",
                 "email": "user@example.com",
-                "company_id": self.company_id.id,
+                "company_id": self.env.company.id,
             }
         )
         project = self.Project.create(
@@ -104,7 +103,7 @@ class TestHrTimesheetRole(common.TransactionCase):
                 "name": "User",
                 "login": "user",
                 "email": "user@example.com",
-                "company_id": self.company_id.id,
+                "company_id": self.env.company.id,
             }
         )
         project = self.Project.create(
@@ -135,7 +134,7 @@ class TestHrTimesheetRole(common.TransactionCase):
                 "name": "User",
                 "login": "user",
                 "email": "user@example.com",
-                "company_id": self.company_id.id,
+                "company_id": self.env.company.id,
             }
         )
         project = self.Project.create(
@@ -165,13 +164,13 @@ class TestHrTimesheetRole(common.TransactionCase):
                 "name": "User",
                 "login": "user",
                 "email": "user@example.com",
-                "company_id": self.company_id.id,
+                "company_id": self.env.company.id,
             }
         )
         project = self.Project.create(
             {
                 "name": "Project",
-                "company_id": self.company_id.id,
+                "company_id": self.env.company.id,
             }
         )
         role = self.Role.create(
@@ -201,7 +200,7 @@ class TestHrTimesheetRole(common.TransactionCase):
                 "name": "User",
                 "login": "user",
                 "email": "user@example.com",
-                "company_id": self.company_id.id,
+                "company_id": self.env.company.id,
             }
         )
         project_1 = self.Project.create(
@@ -268,7 +267,7 @@ class TestHrTimesheetRole(common.TransactionCase):
                 "name": "User",
                 "login": "user",
                 "email": "user@example.com",
-                "company_id": self.company_id.id,
+                "company_id": self.env.company.id,
             }
         )
         role = self.Role.create(

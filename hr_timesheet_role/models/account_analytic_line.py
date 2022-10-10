@@ -25,7 +25,6 @@ class AccountAnalyticLine(models.Model):
         related="project_id.limit_role_to_assignments",
     )
 
-    @api.multi
     @api.constrains("project_id", "employee_id", "role_id")
     def _check_role_id(self):
         for line in self:
@@ -48,14 +47,12 @@ class AccountAnalyticLine(models.Model):
             },
         }
 
-    @api.multi
     def _validate_role(self):
         for line in self:
             if line.project_id and line.employee_id:
                 if not line._is_role_valid():
                     line.role_id = False
 
-    @api.multi
     def _is_role_valid(self):
         self.ensure_one()
 

@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+    Copyright 2022 CorporateHub (https://corporatehub.eu)
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
 <odoo>
-    <!--
-        Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
-        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-    -->
 
     <template
-        id="portal_my_task"
-        inherit_id="hr_timesheet.portal_my_task"
-        name="Portal: My Task with Timesheets"
+        id="portal_timesheet_table"
+        inherit_id="hr_timesheet.portal_timesheet_table"
+        name="Portal Timesheet Table"
     >
         <xpath
-            expr="(//div[@t-if='task.timesheet_ids']//th)[count(//div[@t-if='task.timesheet_ids']//td/t[@t-esc='timesheet.sudo().user_id.name']/../preceding-sibling::*)+1]"
+            expr="(//th)[count(//div[@t-if='task.timesheet_ids']//td/t[@t-esc='timesheet.employee_id.name']/../preceding-sibling::*)+1]"
             position="after"
         >
             <th>Role</th>
         </xpath>
-        <xpath
-            expr="//div[@t-if='task.timesheet_ids']//td/t[@t-esc='timesheet.sudo().user_id.name']/.."
-            position="after"
-        >
+        <xpath expr="//td/t[@t-esc='timesheet.employee_id.name']/.." position="after">
             <td><t t-esc="timesheet.role_id.name" /></td>
         </xpath>
     </template>
