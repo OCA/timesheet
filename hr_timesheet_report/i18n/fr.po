@@ -76,7 +76,6 @@ msgstr "Au moins un champ Détails doit être défini !"
 
 #. module: hr_timesheet_report
 #: code:addons/hr_timesheet_report/wizards/hr_timesheet_report_wizard.py:129
-#, fuzzy, python-format
 msgid "At least one field must be listed in Details Fields"
 msgstr "Au moins un champ à afficher doit être choisi"
 
