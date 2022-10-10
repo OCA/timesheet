@@ -13,7 +13,7 @@
         'ACSONE SA/NV, '
         'CorporateHub, '
         'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/hr-timesheet',
+    'website': 'https://github.com/OCA/timesheet',
     'depends': [
         'hr_timesheet',
     ],

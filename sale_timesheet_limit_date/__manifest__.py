@@ -11,7 +11,7 @@
     'depends': [
         'sale_timesheet',
     ],
-    'website': 'https://github.com/OCA/sale-workflow',
+    'website': 'https://github.com/OCA/timesheet',
     'data': [
         'views/sale_order_view.xml',
         'views/invoice_order_view.xml'

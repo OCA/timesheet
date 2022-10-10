@@ -17,7 +17,7 @@
     ],
     'author': 'Tecnativa, '
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/hr-timesheet',
+    'website': 'https://github.com/OCA/timesheet',
     'license': 'AGPL-3',
     'installable': True,
 }

@@ -414,7 +414,7 @@ msgid ""
 "user: %s"
 msgstr ""
 "For at oprette et tidsskema for denne medarbejder, skal du linke ham/hende "
-"til en bruger. %s"
+"til en bruger: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
@@ -1026,13 +1026,12 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
-#, fuzzy, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "Du kan ikke ændre en indtastning i et tidsskema der er bekræftet."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
@@ -1066,7 +1065,7 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "Du kan ikke ændre en indtastning i et tidsskema der er bekræftet."
+msgstr "Du kan ikke ændre en indtastning i et tidsskema der er bekræftet: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my

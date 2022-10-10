@@ -433,7 +433,7 @@ msgid ""
 "user: %s"
 msgstr ""
 "Bu çalışan için bir zaman çizelgesi oluşturmak için/onu bir kullanıcıya "
-"bağlamanız gerekir."
+"bağlamanız gerekir: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
@@ -1051,7 +1051,7 @@ msgstr "Hafta"
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
 msgid "Week %s"
-msgstr "Hafta"
+msgstr "Hafta %s"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1079,13 +1079,12 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
-#, fuzzy, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "Onaylamış zaman çizelgesi bir girişi değiştiremezsiniz."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
@@ -1093,7 +1092,7 @@ msgstr "Onaylamış zaman çizelgesi bir girişi değiştiremezsiniz."
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "Onaylandıktan sonra bir zaman çizelgesini silemezsiniz."
+msgstr "Onaylandıktan sonra bir zaman çizelgesini silemezsiniz: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:510
@@ -1110,14 +1109,12 @@ msgid ""
 "Conflicting sheets:\n"
 " - %s"
 msgstr ""
-"Sen üst üste 2 zaman çizelgesi oluşturamazsın!\n"
-"Bu sorunu önlemek için menü'de 'Mevcut zaman çizelgesi' kullanın."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "Onaylamış zaman çizelgesi bir girişi değiştiremezsiniz."
+msgstr "Onaylamış zaman çizelgesi bir girişi değiştiremezsiniz: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my

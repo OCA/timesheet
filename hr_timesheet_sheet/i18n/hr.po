@@ -430,7 +430,7 @@ msgid ""
 "user: %s"
 msgstr ""
 "Kako bi se kreirali evidenciju rada za ovog djelatnika, morate njega/nju "
-"vezati na korisnika."
+"vezati na korisnika: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
@@ -1046,7 +1046,7 @@ msgstr "Tjedan"
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
 msgid "Week %s"
-msgstr "Tjedan"
+msgstr "Tjedan %s"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1074,21 +1074,21 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
-#, fuzzy, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "Ne možete modificirati polje u potvrđenoj kontrolnoj kartici."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
-#, fuzzy, python-format
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "Ne možete obrisati evidenciju rada koja je već potvrđena."
+msgstr ""
+"Ne možete obrisati evidenciju rada koja je već potvrđena: "
+"%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:510
@@ -1105,15 +1105,12 @@ msgid ""
 "Conflicting sheets:\n"
 " - %s"
 msgstr ""
-"Ne možete imati 2 evidencije rada koje se preklapaju! \n"
-"Molimo koristite izbornik 'Moja trenutna evidencija rada' kako bi izbjegli "
-"ovaj problem."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "Ne možete modificirati polje u potvrđenoj kontrolnoj kartici."
+msgstr "Ne možete modificirati polje u potvrđenoj kontrolnoj kartici: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my

@@ -425,7 +425,7 @@ msgid ""
 "user: %s"
 msgstr ""
 "이 임직원에 대한 작업표를 작성하기 위해서는 사용자와 임직원을 연결해야 합니"
-"다."
+"다. %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
@@ -1035,7 +1035,7 @@ msgstr "주"
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
 msgid "Week %s"
-msgstr "주"
+msgstr "주 %s"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1063,21 +1063,19 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
-#, fuzzy, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "확정된 작업표의 항목은 수정할 수 없습니다!"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
-#, fuzzy, python-format
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "이미 확정된 작업표는 삭제할 수 없습니다."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:510
@@ -1094,14 +1092,12 @@ msgid ""
 "Conflicting sheets:\n"
 " - %s"
 msgstr ""
-"2개의 작업표를 동시에 띄울 수 없습니다!\n"
-"이 문제를 방지하려면 '개인 현재 작업표' 메뉴를 사용하십시오."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "확정된 작업표의 항목은 수정할 수 없습니다!"
+msgstr "확정된 작업표의 항목은 수정할 수 없습니다! %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
