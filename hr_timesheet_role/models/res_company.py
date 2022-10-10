@@ -5,9 +5,9 @@ from odoo import fields, models
 
 
 class ResCompany(models.Model):
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
     is_timesheet_role_required = fields.Boolean(
-        string='Timesheet Role Required',
+        string="Timesheet Role Required",
         default=True,
     )

@@ -5,9 +5,9 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     is_timesheet_role_required = fields.Boolean(
-        related='company_id.is_timesheet_role_required',
+        related="company_id.is_timesheet_role_required",
         readonly=False,
     )
