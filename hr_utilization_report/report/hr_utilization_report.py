@@ -1,4 +1,5 @@
 # Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2020-2022 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import html
@@ -597,7 +598,6 @@ class HrUtilizationReportBlock(models.TransientModel):
 
     @api.depends("employee_id")
     def _compute_capacity(self):
-        HrEmployee = self.env["hr.employee"]
         Module = self.env["ir.module.module"]
 
         project_timesheet_holidays = Module.sudo().search(
@@ -617,18 +617,17 @@ class HrUtilizationReportBlock(models.TransientModel):
                 block.group_id.report_id.date_to, time.max
             ).replace(tzinfo=tz)
 
-            employee_capacity = block.employee_id._get_work_days_data(
+            employee_capacity = block.employee_id._get_work_days_data_batch(
                 from_datetime,
                 to_datetime,
                 compute_leaves=not project_timesheet_holidays,
-            )["hours"]
+            )[block.employee_id.id]["hours"]
 
             if project_timesheet_holidays:
-                employee_capacity -= HrEmployee.get_leave_days_data(
+                employee_capacity -= block.employee_id._get_leave_days_data_batch(
                     from_datetime,
                     to_datetime,
-                    calendar=block.employee_id.resource_calendar_id,
-                )["hours"]
+                )[block.employee_id.id]["hours"]
 
             block.capacity = max(employee_capacity, 0)
 
