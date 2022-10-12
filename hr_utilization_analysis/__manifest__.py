@@ -4,7 +4,7 @@
 
 {
     "name": "Task Logs Utilization Analysis",
-    "version": "14.0.2.0.0",
+    "version": "14.0.2.0.1",
     "category": "Human Resources",
     "maintainers": ["alexey-pelykh"],
     "website": "https://github.com/OCA/timesheet",
