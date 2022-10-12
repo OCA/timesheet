@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-27 16:01+0000\n"
-"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
+"PO-Revision-Date: 2022-10-12 03:43+0000\n"
+"Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_account_analytic_line
@@ -24,7 +24,7 @@ msgstr "Linha Analítica"
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_hr_timesheet_switch
 msgid "Helper to quickly switch between timesheet lines"
-msgstr "Auxiliar para alternar rapidamente entre linhas da Planilha de Horas"
+msgstr "Auxiliar para alternar rapidamente entre linhas de apontamento de horas"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_crm_lead
@@ -60,4 +60,4 @@ msgstr "Parar Trabalho"
 #: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__timesheet_ids
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
 msgid "Timesheet"
-msgstr "Planilha de Horas"
+msgstr "Apontamento de horas"
