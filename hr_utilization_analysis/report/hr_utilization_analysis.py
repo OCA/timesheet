@@ -1,5 +1,5 @@
 # Copyright 2018-2020 Brainbean Apps (https://brainbeanapps.com)
-# Copyright 2020 CorporateHub (https://corporatehub.eu)
+# Copyright 2020-2022 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime, time, timedelta
@@ -163,18 +163,17 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
             from_datetime = datetime.combine(entry.date, time.min).replace(tzinfo=tz)
             to_datetime = datetime.combine(entry.date, time.max).replace(tzinfo=tz)
 
-            capacity = entry.employee_id._get_work_days_data(
+            capacity = entry.employee_id._get_work_days_data_batch(
                 from_datetime,
                 to_datetime,
                 compute_leaves=not project_timesheet_holidays,
-            )["hours"]
+            )[entry.employee_id.id]["hours"]
 
             if project_timesheet_holidays:
-                capacity -= entry.employee_id._get_leave_days_data(
+                capacity -= entry.employee_id._get_leave_days_data_batch(
                     from_datetime,
                     to_datetime,
-                    calendar=entry.employee_id.resource_calendar_id,
-                )["hours"]
+                )[entry.employee_id.id]["hours"]
 
             entry.capacity = max(capacity, 0)
 
