@@ -14,16 +14,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2020-06-06 06:19+0000\n"
-"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/"
-"teams/41243/pt_BR/)\n"
+"PO-Revision-Date: 2022-10-12 03:44+0000\n"
+"Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/"
+"41243/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
@@ -49,7 +49,7 @@ msgstr "<span class=\"text-muted text-nowrap\">Tempo Total</span>"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line_abstract
 msgid "Abstract Timesheet Sheet Line"
-msgstr "Linha da Planilha de Horas Abstrata"
+msgstr "Linha do Apontamento de Horas Abstrata"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_warning
@@ -275,7 +275,7 @@ msgstr "Exibir Nome"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Draft Timesheet Sheets"
-msgstr "Rascunho da Planilha de Horas"
+msgstr "Planilhas de Horas Rascunhos"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
@@ -365,7 +365,7 @@ msgstr "Horas"
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
 msgid "How Timesheet Sheets review is performed."
-msgstr "Como é realizada a revisão das Planilhas de Horas."
+msgstr "Como a revisão de Planilhas de Horas é realizada."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__id
@@ -495,12 +495,12 @@ msgstr "Minhas Planilhas de Horas"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit_my
 msgid "My Timesheets to Submit"
-msgstr "Minhas Planilhas de Horas a enviar"
+msgstr "Meus Apontamentos de horas a Submeter"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 msgid "My timesheets to submit."
-msgstr "Minhas Planilha de Horas para aprovar."
+msgstr "Meus apontamentos de horas para submeter."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
@@ -658,12 +658,12 @@ msgstr "Sábado"
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:930
 #, python-format
 msgid "Save the Timesheet Sheet first."
-msgstr "Salve a Planilha de Horas primeiro."
+msgstr "Salvar a Planilha de Horas primeiro."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Search Timesheet"
-msgstr "Pesquisar Planilha de Horas"
+msgstr "Pesquisar Apontamento de horas"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_token
@@ -704,7 +704,7 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Starting day for Timesheet Sheets."
-msgstr "Dia de início para Planilha de Horas Trabalhadas."
+msgstr "Dia de início para Planilha de Horas."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__state
@@ -774,7 +774,7 @@ msgstr "A Empresa na Planilha de Horas e no Departamento devem ser a mesma."
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Employee must be the same."
-msgstr "A Empresa na Folha de Horas e no Empregado devem ser a mesma."
+msgstr "A Empresa na Planilha de Horas e no Empregado devem ser a mesma."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:331
@@ -813,7 +813,7 @@ msgstr "Atividades da Planilha de Horas"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Timesheet Options"
-msgstr "Opções da Planilha de Horas"
+msgstr "Opções do Apontamento de horas"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -857,17 +857,17 @@ msgstr "Política de Revisão de Planilha de Horas"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
 msgid "Timesheet Sheets"
-msgstr "Planilha de Horas"
+msgstr "Planilhas de Horas"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_sheet_count
 msgid "Timesheet Sheets Count"
-msgstr "Contagem da Planilha de Horas"
+msgstr "Contagem de Planilhas de Horas"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department__timesheet_sheet_to_approve_count
 msgid "Timesheet Sheets to Approve"
-msgstr "Planilha de Horas para Aprovar"
+msgstr "Planilhas de Horas para Aprovar"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
@@ -896,7 +896,7 @@ msgstr "Planilha de horas."
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_department_view_kanban
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_employee_extd_form
 msgid "Timesheets"
-msgstr "Planilhas de Horas"
+msgstr "Apontamentos de horas"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
@@ -905,29 +905,29 @@ msgid ""
 "Timesheets can also be invoiced to customers, depending on the\n"
 "            configuration of each project's related contract."
 msgstr ""
-"Planilha de Horas também podem ser faturadas a clientes, dependendo da\n"
+"Apontamentos de horas também podem ser faturadas a clientes, dependendo da\n"
 "            configuração de cada contrato relacionado ao projeto."
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
 msgid "Timesheets to Review"
-msgstr "Planilha de Horas para Revisar"
+msgstr "Apontamentos de horas para Revisar"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit
 msgid "Timesheets to Submit"
-msgstr "Planilhas de Horas para Enviar"
+msgstr "Apontamentos de horas para Submeter"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 msgid "Timesheets to review."
-msgstr "Planilha de Horas para revisar."
+msgstr "Apontamentos de horas para revisar."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 msgid "Timesheets to submit."
-msgstr "Planilhas de Horas para enviar."
+msgstr "Apontamentos de horas para enviar."
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_hr_to_review
