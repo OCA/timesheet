@@ -258,16 +258,9 @@ msgid "Details"
 msgstr "დეტალები"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_account__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "სახელი"
 
@@ -332,11 +325,6 @@ msgid "Followers"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
@@ -357,6 +345,11 @@ msgid "Group By"
 msgstr "დაჯგუფება"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Hours"
 msgstr "საათი"
@@ -369,16 +362,9 @@ msgid "How Timesheet Sheets review is performed."
 msgstr "დროის აღრიცხვა"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_account__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__id
 msgid "ID"
 msgstr "იდენტიფიკატორი"
 
@@ -445,16 +431,9 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_account____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr "ბოლოს განახლებულია"
 
@@ -544,6 +523,11 @@ msgstr ""
 #, fuzzy
 msgid "New timesheet sheet."
 msgstr "დროის აღრიცხვა"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_date_deadline
@@ -705,13 +689,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__sheet_id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_id
 msgid "Sheet"
 msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
 msgid "Sheet State"
 msgstr ""
 
@@ -873,7 +855,6 @@ msgstr "დროის აღრიცხვა"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
 #, fuzzy
 msgid "Timesheet Sheets"
 msgstr "დროის აღრიცხვა"
@@ -1029,9 +1010,9 @@ msgstr "კვირა"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
-msgid "Week %s"
-msgstr "კვირა %s"
+#, python-format
+msgid "Week %(end)s"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1046,7 +1027,7 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
-msgid "Weeks %s - %s"
+msgid "Weeks %(start)s - %(end)s"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -1054,7 +1035,9 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:0
 #: code:addons/hr_timesheet_sheet/models/hr_employee.py:0
 #, python-format
-msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
+msgid ""
+"You cannot change the company, as this %(rec_name)s (%(rec_display_name)s) "
+"is assigned to %(current_name)s (%(current_display_name)s)."
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -1063,8 +1046,8 @@ msgstr ""
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
-" - %s of %s\n"
-" - %s of %s"
+" - %(sheet_name)s of %(sheet_company)s\n"
+" - %(name)s of %(company)s"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -1088,13 +1071,13 @@ msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
 "Conflicting sheets:\n"
-" - %s"
+" - %(names)s"
 msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
 #, python-format
-msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %(names)s"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -1119,6 +1102,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "Week %s"
+#~ msgstr "კვირა %s"
 
 #, fuzzy
 #~ msgid "HR Department"
