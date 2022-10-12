@@ -268,16 +268,9 @@ msgid "Details"
 msgstr "Detalės"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_account__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Vaizduojamas pavadinimas"
 
@@ -342,11 +335,6 @@ msgid "Followers"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
@@ -367,6 +355,11 @@ msgid "Group By"
 msgstr "Grupuoti pagal"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Hours"
 msgstr "Valandos"
@@ -379,16 +372,9 @@ msgid "How Timesheet Sheets review is performed."
 msgstr "Darbo laiko žiniaraščiai, kuriuos reikia patvirtinti"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_account__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__id
 msgid "ID"
 msgstr "ID"
 
@@ -435,7 +421,7 @@ msgstr "Juodraštis"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy
+#, fuzzy, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
@@ -459,16 +445,9 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_account____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr "Paskutinį kartą keista"
 
@@ -558,6 +537,11 @@ msgstr ""
 #, fuzzy
 msgid "New timesheet sheet."
 msgstr "naujas darbo laiko žiniaraštis."
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_date_deadline
@@ -720,13 +704,11 @@ msgstr "Atstatyti į juodraštį"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__sheet_id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_id
 msgid "Sheet"
 msgstr "Lapas"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
 msgid "Sheet State"
 msgstr ""
 
@@ -891,7 +873,6 @@ msgstr "Darbo laiko žiniaraščio eilutės"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
 #, fuzzy
 msgid "Timesheet Sheets"
 msgstr "Darbo laiko žiniaraščio eilutės"
@@ -1050,9 +1031,9 @@ msgstr "Savaitė"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
-msgid "Week %s"
-msgstr "Savaitė %s"
+#, python-format
+msgid "Week %(end)s"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1067,7 +1048,7 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
-msgid "Weeks %s - %s"
+msgid "Weeks %(start)s - %(end)s"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -1075,32 +1056,29 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:0
 #: code:addons/hr_timesheet_sheet/models/hr_employee.py:0
 #, python-format
-msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
+msgid ""
+"You cannot change the company, as this %(rec_name)s (%(rec_display_name)s) "
+"is assigned to %(current_name)s (%(current_display_name)s)."
 msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy
+#, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
-" - %s of %s\n"
-" - %s of %s"
+" - %(sheet_name)s of %(sheet_company)s\n"
+" - %(name)s of %(company)s"
 msgstr ""
-"Jūs negalite modifkuoti įrašo, kuris yra patvirtintame darbo laiko "
-"žiniaraštyje:\n"
-" - %s of %s\n"
-" - %s of %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy
+#, fuzzy, python-format
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
 msgstr ""
-"Jūs negalite ištrinti darbo laiko žiniaraščio, kuris yra jau patvirtintas: "
-"%s"
+"Jūs negalite ištrinti darbo laiko žiniaraščio, kuris yra jau patvirtintas: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1110,25 +1088,19 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy
+#, python-format
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
 "Conflicting sheets:\n"
-" - %s"
+" - %(names)s"
 msgstr ""
-"Jūs negalite turėti 2 darbo laiko žiniaraščių, kurie iš dalies sutampa!\n"
-"Prašome naudoti meniu \"Mano dabartinis darbo laiko žiniaraštis\", norint "
-"išvengti šios problemos:\n"
-" - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy
-msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
+#, python-format
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %(names)s"
 msgstr ""
-"Jūs negalite modifkuoti įrašo, kuris yra patvirtintame darbo laiko "
-"žiniaraštyje: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
@@ -1152,6 +1124,40 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "iki"
+
+#, fuzzy, python-format
+#~ msgid "Week %s"
+#~ msgstr "Savaitė %s"
+
+#, fuzzy
+#~ msgid ""
+#~ "You cannot create a timesheet of a different company than the one of the "
+#~ "timesheet sheet:\n"
+#~ " - %s of %s\n"
+#~ " - %s of %s"
+#~ msgstr ""
+#~ "Jūs negalite modifkuoti įrašo, kuris yra patvirtintame darbo laiko "
+#~ "žiniaraštyje:\n"
+#~ " - %s of %s\n"
+#~ " - %s of %s"
+
+#, fuzzy
+#~ msgid ""
+#~ "You cannot have 2 or more sheets that overlap!\n"
+#~ "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
+#~ "Conflicting sheets:\n"
+#~ " - %s"
+#~ msgstr ""
+#~ "Jūs negalite turėti 2 darbo laiko žiniaraščių, kurie iš dalies sutampa!\n"
+#~ "Prašome naudoti meniu \"Mano dabartinis darbo laiko žiniaraštis\", norint "
+#~ "išvengti šios problemos:\n"
+#~ " - %s"
+
+#, fuzzy
+#~ msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
+#~ msgstr ""
+#~ "Jūs negalite modifkuoti įrašo, kuris yra patvirtintame darbo laiko "
+#~ "žiniaraštyje: %s"
 
 #, fuzzy
 #~ msgid "HR Department"
