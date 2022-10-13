@@ -1,4 +1,4 @@
-# Copyright 2016-17 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016-17 ForgeFlow S.L.
 # Copyright 2016-17 Serpent Consulting Services Pvt. Ltd.
 # Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
@@ -49,7 +49,6 @@ class HrTimesheetSheet(models.Model):
         ondelete="cascade",
     )
 
-    @api.multi
     @api.depends("date_start", "date_end", "hr_period_id.name")
     def _compute_name(self):
         super()._compute_name()
@@ -88,7 +87,6 @@ class HrTimesheetSheet(models.Model):
             search_domain += [("schedule_pay", "=", contract.schedule_pay)]
         return HrPeriod.search(search_domain, limit=1)
 
-    @api.multi
     @api.constrains("company_id", "hr_period_id")
     def _check_hr_period(self):
         for sheet in self:
@@ -98,7 +96,6 @@ class HrTimesheetSheet(models.Model):
             ):
                 raise ValidationError(_("No suitable Payroll period found!"))
 
-    @api.multi
     @api.constrains("hr_period_id", "date_start", "date_end")
     def _check_hr_period_dates(self):
         for timesheet in self.filtered("hr_period_id"):

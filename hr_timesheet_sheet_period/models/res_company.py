@@ -3,7 +3,7 @@
 
 from odoo import fields, models
 
-SHEET_RANGE_PAYROLL_PERIOD = 100
+SHEET_RANGE_PAYROLL_PERIOD = "100"
 
 
 class ResCompany(models.Model):

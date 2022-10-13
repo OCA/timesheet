@@ -1,4 +1,4 @@
-# Copyright 2016-17 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016-17 ForgeFlow S.L.
 # Copyright 2016-17 Serpent Consulting Services Pvt. Ltd.
 # Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
@@ -74,7 +74,7 @@ class TestHrTimesheetSheetPeriod(common.TransactionCase):
         fiscal_year.create_periods()
         fiscal_year.button_confirm()
         hr_timesheet = self._create_hr_timesheet_sheet()
-        salary_structure = self.env.ref("hr_payroll.structure_001")
+        salary_structure = self.env.ref("payroll.structure_001")
 
         contract_vals = {
             "employee_id": self.employee.id,
