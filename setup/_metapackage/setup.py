@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo13-addon-crm_timesheet',
         'odoo13-addon-hr_timesheet_activity_begin_end',
         'odoo13-addon-hr_timesheet_analysis',
+        'odoo13-addon-hr_timesheet_role',
         'odoo13-addon-hr_timesheet_sheet',
         'odoo13-addon-hr_timesheet_sheet_autodraft',
         'odoo13-addon-hr_timesheet_sheet_autodraft_project',
