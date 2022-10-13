@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+    -->
+
+    <template id="report_timesheet" inherit_id="hr_timesheet.report_timesheet">
+        <xpath
+            expr="(//th)[count(//td/span[@t-field='l.user_id.partner_id.name']/../preceding-sibling::*)+1]"
+            position="after"
+        >
+            <th><span>Role</span></th>
+        </xpath>
+        <xpath
+            expr="//td/span[@t-field='l.user_id.partner_id.name']/.."
+            position="after"
+        >
+            <td>
+                <span t-field="l.role_id.name" />
+            </td>
+        </xpath>
+        <xpath expr="//tbody/tr[last()]/td[2]" position="after">
+            <td />
+        </xpath>
+    </template>
+
+</odoo>

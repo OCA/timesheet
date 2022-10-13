@@ -1,0 +1,99 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_timesheet_role
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-01-27 15:21+0000\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: hr_timesheet_role
+#: code:addons/hr_timesheet_role/models/account_analytic_line.py:33
+#, python-format
+msgid "%s can not act as %s on %s project"
+msgstr "%s ne peut pas agir en tant que \"%s\" sur le projet %s"
+
+#. module: hr_timesheet_role
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
+msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Les valeurs définies ici sont "
+"spécifiques à l'entreprise.\" role=\"img\" aria-label=\"Les valeurs définies "
+"ici sont spécifiques à l'entreprise.\" groups=\"base.group_multi_company\"/>"
+
+#. module: hr_timesheet_role
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_role.report_timesheet
+msgid "<span>Role</span>"
+msgstr "<span>Rôle</span>"
+
+#. module: hr_timesheet_role
+#: model:ir.model,name:hr_timesheet_role.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Ligne analytique"
+
+#. module: hr_timesheet_role
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
+msgid "Check to require role to be selected when using Timesheets."
+msgstr ""
+"Cochez pour exiger qu'un rôle soit sélectionné lors de l'utilisation des "
+"feuilles de temps."
+
+#. module: hr_timesheet_role
+#: model:ir.model,name:hr_timesheet_role.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: hr_timesheet_role
+#: model:ir.model,name:hr_timesheet_role.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de config"
+
+#. module: hr_timesheet_role
+#: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__limit_role_to_assignments
+#: model:ir.model.fields,field_description:hr_timesheet_role.field_hr_timesheet_switch__limit_role_to_assignments
+msgid "Limit role to assignments"
+msgstr "Limiter le rôle aux affectations"
+
+#. module: hr_timesheet_role
+#: model:ir.model,name:hr_timesheet_role.model_project_project
+msgid "Project"
+msgstr "Projet"
+
+#. module: hr_timesheet_role
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_role.edit_project
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_role.project_project_view_form_simplified
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
+msgid "Require role in Timesheets"
+msgstr "Exiger un rôle dans les feuilles de temps"
+
+#. module: hr_timesheet_role
+#: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__role_id
+#: model:ir.model.fields,field_description:hr_timesheet_role.field_hr_timesheet_switch__role_id
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_role.account_analytic_line_search
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_role.portal_my_task
+msgid "Role"
+msgstr "Rôle"
+
+#. module: hr_timesheet_role
+#: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__is_role_required
+#: model:ir.model.fields,field_description:hr_timesheet_role.field_hr_timesheet_switch__is_role_required
+#: model:ir.model.fields,field_description:hr_timesheet_role.field_project_project__is_timesheet_role_required
+#: model:ir.model.fields,field_description:hr_timesheet_role.field_res_company__is_timesheet_role_required
+#: model:ir.model.fields,field_description:hr_timesheet_role.field_res_config_settings__is_timesheet_role_required
+msgid "Timesheet Role Required"
+msgstr "Rôle de feuille de temps requis"
+
+#. module: hr_timesheet_role
+#: code:addons/hr_timesheet_role/models/account_analytic_line.py:37
+#, python-format
+msgid "unassigned"
+msgstr "non assigné"
