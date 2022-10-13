@@ -11,5 +11,5 @@ def migrate(env, version):
         """
         UPDATE res_company
         SET sheet_range = 100
-        """
+        """,
     )
