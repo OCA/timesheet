@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2022-10-12 03:44+0000\n"
+"PO-Revision-Date: 2022-10-13 19:35+0000\n"
 "Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/"
 "41243/pt_BR/)\n"
@@ -49,7 +49,7 @@ msgstr "<span class=\"text-muted text-nowrap\">Tempo Total</span>"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line_abstract
 msgid "Abstract Timesheet Sheet Line"
-msgstr "Linha do Apontamento de Horas Abstrata"
+msgstr "Linha da Planilha de Hora Abstrata"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_warning
@@ -123,12 +123,12 @@ msgstr "Pelo Gerente Direto"
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By HR Managers"
-msgstr ""
+msgstr "Pelos Gerentes de RH"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By HR Officers"
-msgstr ""
+msgstr "Pelos Oficiais de RH"
 
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
@@ -138,7 +138,7 @@ msgstr "Pelo Gerente do Projeto"
 #. module: hr_timesheet_sheet
 #: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By Timesheets Managers"
-msgstr ""
+msgstr "Pelos Gerentes de Apontamento de horas"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
@@ -495,12 +495,12 @@ msgstr "Minhas Planilhas de Horas"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit_my
 msgid "My Timesheets to Submit"
-msgstr "Meus Apontamentos de horas a Submeter"
+msgstr "Meus Apontamentos de horas a Enviar"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 msgid "My timesheets to submit."
-msgstr "Meus apontamentos de horas para submeter."
+msgstr "Meus apontamentos de horas para enviar."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
@@ -917,7 +917,7 @@ msgstr "Apontamentos de horas para Revisar"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit
 msgid "Timesheets to Submit"
-msgstr "Apontamentos de horas para Submeter"
+msgstr "Apontamentos de horas para Enviar"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
