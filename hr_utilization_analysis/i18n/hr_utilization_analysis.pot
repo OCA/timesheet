@@ -59,6 +59,11 @@ msgid "Date"
 msgstr ""
 
 #. module: hr_utilization_analysis
+#: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_wizard__date_range_id
+msgid "Date range"
+msgstr ""
+
+#. module: hr_utilization_analysis
 #: code:addons/hr_utilization_analysis/report/hr_utilization_analysis.py:52
 #, python-format
 msgid "Date-To can not be earlier than Date-From"
@@ -222,7 +227,7 @@ msgid "Utilization"
 msgstr ""
 
 #. module: hr_utilization_analysis
-#: code:addons/hr_utilization_analysis/wizards/hr_utilization_analysis_wizard.py:55
+#: code:addons/hr_utilization_analysis/wizards/hr_utilization_analysis_wizard.py:65
 #, python-format
 msgid "Utilization Analysis"
 msgstr ""
