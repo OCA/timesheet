@@ -3,7 +3,7 @@
 {
     "name": "Timesheet portal (editable)",
     "summary": "Fill in timesheets via the portal",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "development_status": "Alpha",
     "category": "Website",
     "website": "https://github.com/OCA/timesheet",
