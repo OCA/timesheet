@@ -6,7 +6,7 @@
 {
     'name': "CRM Timesheet",
     'category': 'Customer Relationship Management',
-    'version': '12.0.2.1.0',
+    'version': '12.0.2.1.1',
     'depends': [
         'crm',
         'project_timesheet_time_control'
