@@ -4,7 +4,7 @@
 
 {
     'name': 'HR Timesheet Sheet: Project Manager Policy',
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.1.1',
     'author':
         'CorporateHub, '
         'Odoo Community Association (OCA)',
