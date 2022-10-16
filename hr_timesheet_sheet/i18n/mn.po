@@ -426,7 +426,7 @@ msgid ""
 "user: %s"
 msgstr ""
 "Энэ ажилтан дээр цагийн хуудас үүсгэхийн тулд ажилтанг хэрэглэгчтэй холбох "
-"ёстой."
+"ёстой: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
@@ -1070,13 +1070,12 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
-#, fuzzy, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "Та баталгаажсан цагийн хуудсыг орж өөрчлөх боломжгүй."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
@@ -1084,7 +1083,9 @@ msgstr "Та баталгаажсан цагийн хуудсыг орж өөр�
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "Та аль хэдийн батлагдсан цагийн хуудас устгаж чадахгүй."
+msgstr ""
+"Та аль хэдийн батлагдсан цагийн хуудас устгаж чадахгүй: "
+"%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:510
@@ -1101,14 +1102,12 @@ msgid ""
 "Conflicting sheets:\n"
 " - %s"
 msgstr ""
-"Давхацсан 2 цагийн хуудастай байж болохгүй!\n"
-"'Өөрийн одоогийн цагийн хуудас' менюг ашигласнаар энэ асуудлаас зайлсхийнэ."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "Та баталгаажсан цагийн хуудсыг орж өөрчлөх боломжгүй."
+msgstr "Та баталгаажсан цагийн хуудсыг орж өөрчлөх боломжгүй: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my

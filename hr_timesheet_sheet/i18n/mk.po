@@ -424,7 +424,7 @@ msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
 msgstr ""
-"За да креирате распоред за овој вработен мора до го/ја поврзете со корисник."
+"За да креирате распоред за овој вработен мора до го/ја поврзете со корисник: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
@@ -1033,7 +1033,7 @@ msgstr "Седмица"
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
 msgid "Week %s"
-msgstr "Седмица"
+msgstr "Седмица %s"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1061,21 +1061,21 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
-#, fuzzy, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "Не можете да измените внес во потврдена временска таблица."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
-#, fuzzy, python-format
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "Не може да избришете временска таблица која е веќе потврдена."
+msgstr ""
+"Не може да избришете временска таблица која е веќе потврдена: "
+"%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:510
@@ -1097,7 +1097,7 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "Не можете да измените внес во потврдена временска таблица."
+msgstr "Не можете да измените внес во потврдена временска таблица: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my

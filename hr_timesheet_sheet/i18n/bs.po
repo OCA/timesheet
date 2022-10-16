@@ -662,9 +662,8 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:930
-#, fuzzy, python-format
 msgid "Save the Timesheet Sheet first."
-msgstr "Vremenski listovi"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -1025,9 +1024,9 @@ msgstr "Sedmica"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
-#, fuzzy, python-format
+#, python-format
 msgid "Week %s"
-msgstr "Sedmica"
+msgstr "Sedmica %s"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start

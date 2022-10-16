@@ -425,7 +425,7 @@ msgid ""
 "user: %s"
 msgstr ""
 "V záujme vytvorenia časového rozvrhu pre tohto zamestnanca, je nutné ho / ju "
-"prepojiť  s užívateľom."
+"prepojiť s užívateľom: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607

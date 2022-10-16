@@ -419,13 +419,13 @@ msgstr "En esborrany"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:498
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
 msgstr ""
 "Per crear una part d'hores per aquest treballador, ha d'enllaçar-lo amb un "
-"usuari."
+"usuari: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
@@ -1039,7 +1039,7 @@ msgstr "Setmana"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
-#, fuzzy, python-format
+#, python-format
 msgid "Week %s"
 msgstr "Setmana %s"
 
@@ -1069,21 +1069,21 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
-#, fuzzy, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "No pot modificar una entrada en la fulla d'hores confirmades."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
-#, fuzzy, python-format
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "No pot eliminar una fulla d'hores que ja està confirmada."
+msgstr ""
+"No pot eliminar una fulla d'hores que ja està confirmada: "
+"%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:510
@@ -1093,22 +1093,18 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:300
-#, fuzzy, python-format
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
 "Conflicting sheets:\n"
 " - %s"
 msgstr ""
-"No pot tenir 2 fulles d'hores que es solapen!\n"
-"Si us plau, utilitzi el menú 'La meva fulla d'hores' per evitar aquest "
-"problema."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "No pot modificar una entrada en la fulla d'hores confirmades."
+msgstr "No pot modificar una entrada en la fulla d'hores confirmades: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my

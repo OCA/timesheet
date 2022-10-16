@@ -424,7 +424,7 @@ msgstr "在草稿"
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
-msgstr "要為員工創建工時表，您必須關聯他/她到一個使用者。"
+msgstr "要為員工創建工時表，您必須關聯他/她到一個使用者。%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
@@ -1034,7 +1034,7 @@ msgstr "周"
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
 msgid "Week %s"
-msgstr "周"
+msgstr "周 %s"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1062,13 +1062,12 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
-#, fuzzy, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "您不能修改已確認的工時表的條目"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
@@ -1076,7 +1075,7 @@ msgstr "您不能修改已確認的工時表的條目"
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "您無法刪除一張已確認的工時表。"
+msgstr "您無法刪除一張已確認的工時表。%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:510
@@ -1093,14 +1092,12 @@ msgid ""
 "Conflicting sheets:\n"
 " - %s"
 msgstr ""
-"您不能有2個時間重疊的時間表！\n"
-"請使用選單“我當前的時間表”來避免這個問題。"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "您不能修改已確認的工時表的條目"
+msgstr "您不能修改已確認的工時表的條目 %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my

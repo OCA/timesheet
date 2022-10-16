@@ -8,6 +8,7 @@
     "author": "Odoo S.A., Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "summary": "Bridge module between Sales Timesheet and Purchase",
+    "website": "https://github.com/OCA/timesheet",
     "depends": ["sale_timesheet", "purchase"],
     "installable": True,
     "auto_install": True,

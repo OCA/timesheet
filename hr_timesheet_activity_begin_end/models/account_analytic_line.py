@@ -15,9 +15,9 @@ class AccountAnalyticLine(models.Model):
     time_start = fields.Float(string='Begin Hour')
     time_stop = fields.Float(string='End Hour')
 
-    @api.one
     @api.constrains('time_start', 'time_stop', 'unit_amount')
     def _check_time_start_stop(self):
+        self.ensure_one()
         value_to_html = self.env['ir.qweb.field.float_time'].value_to_html
         start = timedelta(hours=self.time_start)
         stop = timedelta(hours=self.time_stop)

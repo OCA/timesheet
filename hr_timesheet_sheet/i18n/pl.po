@@ -429,7 +429,7 @@ msgid ""
 "user: %s"
 msgstr ""
 "Aby stworzyć kartę czasu pracy, dla tego pracownika, musisz do niego "
-"przypisać użytkownika."
+"przypisać użytkownika: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
@@ -1039,7 +1039,7 @@ msgstr "Tydzień"
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:206
 #, fuzzy, python-format
 msgid "Week %s"
-msgstr "Tydzień"
+msgstr "Tydzień %s"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1067,13 +1067,12 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
-#, fuzzy, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
 " - %s of %s\n"
 " - %s of %s"
-msgstr "Nie możesz modyfikować zapisów w potwierdzonej karcie pracy."
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
@@ -1081,7 +1080,7 @@ msgstr "Nie możesz modyfikować zapisów w potwierdzonej karcie pracy."
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr "Nie możesz usuwać karty pracy, która jest już potwierdzona"
+msgstr "Nie możesz usuwać karty pracy, która jest już potwierdzona: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:510
@@ -1098,14 +1097,12 @@ msgid ""
 "Conflicting sheets:\n"
 " - %s"
 msgstr ""
-"Nie możesz mieć dwóch kart pracy zachodzących na siebie!\n"
-"Zastosuj menu 'Moje karty pracy', aby zapobiec temu."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:136
 #, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "Nie możesz modyfikować zapisów w potwierdzonej karcie pracy."
+msgstr "Nie możesz modyfikować zapisów w potwierdzonej karcie pracy: %s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my

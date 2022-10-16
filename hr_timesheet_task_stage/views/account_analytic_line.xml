@@ -37,7 +37,6 @@
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
         <field name="arch" type="xml">
-            <field name="name" position="replace"/>
             <xpath expr="//sheet/group" position="before">
                 <div class="oe_button_box" name="button_box">
                     <button
@@ -62,7 +61,7 @@
                 <div class="oe_title">
                     <label class="oe_edit_only" for="name"/>
                     <h1>
-                        <field name="name"/>
+                        <field name="name" position="move"/>
                     </h1>
                 </div>
             </xpath>
