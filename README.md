@@ -48,7 +48,7 @@ addon | version | maintainers | summary
 [hr_timesheet_task_required](hr_timesheet_task_required/) | 12.0.1.0.5 |  | Set task on timesheet as a mandatory field
 [hr_timesheet_task_stage](hr_timesheet_task_stage/) | 12.0.1.1.1 |  | Open/Close task from corresponding Task Log entry
 [hr_timesheet_time_type](hr_timesheet_time_type/) | 12.0.1.0.1 |  | Ability to add time type in timesheet lines.
-[hr_utilization_analysis](hr_utilization_analysis/) | 12.0.1.0.0 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | View Utilization Analysis from Task Logs.
+[hr_utilization_analysis](hr_utilization_analysis/) | 12.0.1.1.0 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | View Utilization Analysis from Task Logs.
 [hr_utilization_report](hr_utilization_report/) | 12.0.1.0.3 |  | Generate Utilization Report from Task Logs
 [project_task_stage_allow_timesheet](project_task_stage_allow_timesheet/) | 12.0.1.0.1 |  | Allows to tell that a task stage is opened for timesheets.
 [project_timesheet_holidays_integrity](project_timesheet_holidays_integrity/) | 12.0.1.0.1 |  | Ensures and restores integrity of Leaves and Timesheets data
