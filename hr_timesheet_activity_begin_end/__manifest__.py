@@ -3,7 +3,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {'name': 'Timesheet Activities - Begin/End Hours',
- 'version': '12.0.1.1.1',
+ 'version': '12.0.1.1.2',
  'author':  'Camptocamp, '
             'Tecnativa, '
             'Odoo Community Association (OCA)',
