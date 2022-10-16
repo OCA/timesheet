@@ -7,7 +7,7 @@
     'name': 'Hr Timesheet Task Required',
     'summary': """
         Set task on timesheet as a mandatory field""",
-    'version': '12.0.1.0.4',
+    'version': '12.0.1.0.5',
     'license': 'AGPL-3',
     'author':
         'ACSONE SA/NV, '
