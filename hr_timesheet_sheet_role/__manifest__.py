@@ -4,7 +4,7 @@
 
 {
     'name': 'HR Timesheet Sheet by Role',
-    'version': '12.0.2.2.0',
+    'version': '12.0.2.2.1',
     'category': 'Human Resources',
     'website': 'https://github.com/OCA/timesheet',
     'author':
