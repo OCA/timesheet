@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016-17 Eficent Business and IT Consulting Services S.L.
+     Copyright 2016-17 Serpent Consulting Services Pvt. Ltd.
+     Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <record id="hr_timesheet_sheet_form" model="ir.ui.view">
+        <field name="name">hr.timesheet.sheet.form</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form" />
+        <field name="arch" type="xml">
+            <field name="department_id" position="before">
+                <field name="is_hr_period_required" invisible="1" />
+                <field
+                    name="hr_period_id"
+                    attrs="{'invisible': [('hr_period_id', '=', False), ('state', '!=', 'draft')], 'required': [('is_hr_period_required', '=', True)]}"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_hr_timesheet_sheet_filter" model="ir.ui.view">
+        <field name="name">hr_timesheet.sheet.filter</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"
+        />
+        <field name="arch" type="xml">
+            <field name="date_start" position="after">
+                <field name="hr_period_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
