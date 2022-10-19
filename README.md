@@ -60,7 +60,7 @@ addon | version | maintainers | summary
 [sale_timesheet_order_line_sync](sale_timesheet_order_line_sync/) | 12.0.1.0.1 |  | Propagate task order line in not invoiced timesheet lines
 [sale_timesheet_purchase](sale_timesheet_purchase/) | 12.0.1.0.1 |  | Bridge module between Sales Timesheet and Purchase
 [sale_timesheet_rounded](sale_timesheet_rounded/) | 12.0.1.0.1 |  | Round timesheet entries amount based on project settings.
-[sale_timesheet_task_exclude](sale_timesheet_task_exclude/) | 12.0.1.0.0 |  | Exclude Task and related Timesheets from Sale Order
+[sale_timesheet_task_exclude](sale_timesheet_task_exclude/) | 12.0.1.0.1 |  | Exclude Task and related Timesheets from Sale Order
 
 [//]: # (end addons)
 
