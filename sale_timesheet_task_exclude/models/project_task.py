@@ -34,7 +34,7 @@ class ProjectTask(models.Model):
         if "exclude_from_sale_order" in vals:
             # If tasks changed their exclude_from_sale_order, update all AALs
             # that have not been invoiced yet
-            for timesheet in self.timesheet_ids.filtered(
+            for timesheet in self.mapped("timesheet_ids").filtered(
                 lambda line: not line.timesheet_invoice_id
             ):
                 timesheet._compute_so_line()
