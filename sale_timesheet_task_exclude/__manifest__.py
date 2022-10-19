@@ -4,7 +4,7 @@
 
 {
     "name": "Sales Timesheet: exclude Task from Sale Order",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "category": "Sales",
     "website": "https://github.com/OCA/timesheet",
     "author": "CorporateHub, Odoo Community Association (OCA)",
