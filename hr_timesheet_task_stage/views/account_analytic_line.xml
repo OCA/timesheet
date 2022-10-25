@@ -13,7 +13,7 @@
                 <field name="is_task_closed" invisible="1" />
                 <button
                     name="action_close_task"
-                    string="Close task"
+                    title="Close task"
                     tabindex="-1"
                     type="object"
                     icon="fa-folder-o"
@@ -21,7 +21,7 @@
                 />
                 <button
                     name="action_open_task"
-                    string="Open task"
+                    title="Open task"
                     tabindex="-1"
                     type="object"
                     icon="fa-folder-open-o"
