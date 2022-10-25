@@ -14,6 +14,6 @@ class AccountAnalyticLine(models.Model):
     )
     def _compute_so_line(self):
         methods_in_stack = [r.name for r in traceback.extract_stack()]
-        if "onchange" in methods_in_stack:
+        if "onchange" in methods_in_stack or "write" in methods_in_stack:
             return
         return super()._compute_so_line()
