@@ -42,21 +42,6 @@ msgid "Closing Stage"
 msgstr "Étape terminée"
 
 #. module: hr_timesheet_task_stage
-#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__display_name
-msgid "Display Name"
-msgstr "Nom Affiché"
-
-#. module: hr_timesheet_task_stage
-#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__id
-msgid "ID"
-msgstr ""
-
-#. module: hr_timesheet_task_stage
-#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
-
-#. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
 msgid "Open task"
 msgstr "Ouvrir la tâche"
@@ -79,3 +64,9 @@ msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
 msgstr ""
 "Aucune étape n'a le champ \"Terminé\" non coché. Merci d'en désélectionner "
 "au moins une."
+
+#~ msgid "Display Name"
+#~ msgstr "Nom Affiché"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
