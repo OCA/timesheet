@@ -25,7 +25,7 @@ addon | version | maintainers | summary
 [hr_timesheet_sheet](hr_timesheet_sheet/) | 15.0.1.0.0 |  | Timesheet Sheets, Activities
 [hr_timesheet_task_domain](hr_timesheet_task_domain/) | 15.0.1.0.0 |  | Limit task selection to tasks on currently-selected project
 [hr_timesheet_task_required](hr_timesheet_task_required/) | 15.0.1.0.0 |  | Set task on timesheet as a mandatory field
-[hr_timesheet_task_stage](hr_timesheet_task_stage/) | 15.0.1.0.0 |  | Open/Close task from corresponding Task Log entry
+[hr_timesheet_task_stage](hr_timesheet_task_stage/) | 15.0.1.0.1 |  | Open/Close task from corresponding Task Log entry
 [hr_timesheet_time_type](hr_timesheet_time_type/) | 15.0.1.0.0 |  | Ability to add time type in timesheet lines.
 [sale_timesheet_line_exclude](sale_timesheet_line_exclude/) | 15.0.1.0.0 |  | Exclude Timesheet Line from Sale Order
 [sale_timesheet_task_exclude](sale_timesheet_task_exclude/) | 15.0.1.0.1 |  | Exclude Task and related Timesheets from Sale Order
