@@ -19,7 +19,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         self.HrTimesheetSheet = self.env["hr_timesheet.sheet"]
         self.AccountAnalyticLine = self.env["account.analytic.line"]
         self.MailActivity = self.env["mail.activity"]
-        self.company_id = self.Company._company_default_get()
+        self.company_id = self.env.ref("base.main_company")
         self.now = fields.Datetime.now()
         self.group_hr_user = self.env.ref("hr.group_hr_user")
         self.group_hr_timesheet_user = self.env.ref(
@@ -93,7 +93,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
             }
         )
 
-        sheet = self.HrTimesheetSheet.sudo(user_1).create(
+        sheet = self.HrTimesheetSheet.with_user(user_1).create(
             {
                 "employee_id": employee.id,
             }
@@ -109,7 +109,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         self.assertEqual(activities.res_id, sheet.id)
         self.assertEqual(activities.activity_type_id, self.activity_sheet_submission)
 
-        sheet.sudo(user_1).action_timesheet_confirm()
+        sheet.with_user(user_1).action_timesheet_confirm()
 
         activities = self.MailActivity.search(
             [
@@ -121,7 +121,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         self.assertEqual(activities.res_id, sheet.id)
         self.assertEqual(activities.activity_type_id, self.activity_sheet_review)
 
-        sheet.sudo(user_2).action_timesheet_done()
+        sheet.with_user(user_2).action_timesheet_done()
 
         activities = self.MailActivity.search(
             [
@@ -130,7 +130,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         )
         self.assertEqual(len(activities), 0)
 
-        sheet.sudo(user_2).action_timesheet_draft()
+        sheet.with_user(user_2).action_timesheet_draft()
 
         activities = self.MailActivity.search(
             [
@@ -142,7 +142,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         self.assertEqual(activities.res_id, sheet.id)
         self.assertEqual(activities.activity_type_id, self.activity_sheet_resubmission)
 
-        sheet.sudo(user_1).action_timesheet_confirm()
+        sheet.with_user(user_1).action_timesheet_confirm()
 
         activities = self.MailActivity.search(
             [
@@ -154,7 +154,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         self.assertEqual(activities.res_id, sheet.id)
         self.assertEqual(activities.activity_type_id, self.activity_sheet_review)
 
-        sheet.sudo(user_1).action_timesheet_refuse()
+        sheet.with_user(user_1).action_timesheet_refuse()
 
         activities = self.MailActivity.search(
             [
@@ -222,7 +222,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         )
 
         sheet = (
-            self.HrTimesheetSheet.sudo(user_1)
+            self.HrTimesheetSheet.with_user(user_1)
             .with_context(
                 {
                     "hr_timesheet_sheet_activity_today": date(2020, 2, 7),
@@ -245,7 +245,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         )
         self.assertEqual(activity.date_deadline, date(2020, 2, 7))
 
-        sheet.sudo(user_1).action_timesheet_confirm()
+        sheet.with_user(user_1).action_timesheet_confirm()
 
         activity = self.MailActivity.search(
             [
@@ -312,7 +312,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         )
 
         sheet = (
-            self.HrTimesheetSheet.sudo(user_1)
+            self.HrTimesheetSheet.with_user(user_1)
             .with_context(
                 {
                     "hr_timesheet_sheet_activity_today": date(2020, 2, 7),
@@ -335,7 +335,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         )
         self.assertEqual(activity.date_deadline, date(2020, 2, 7))
 
-        sheet.sudo(user_1).action_timesheet_confirm()
+        sheet.with_user(user_1).action_timesheet_confirm()
 
         activity = self.MailActivity.search(
             [
@@ -402,7 +402,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         )
 
         sheet = (
-            self.HrTimesheetSheet.sudo(user_1)
+            self.HrTimesheetSheet.with_user(user_1)
             .with_context(
                 {
                     "hr_timesheet_sheet_activity_today": date(2020, 2, 7),
@@ -425,7 +425,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         )
         self.assertEqual(activity.date_deadline, date(2020, 2, 7))
 
-        sheet.sudo(user_1).action_timesheet_confirm()
+        sheet.with_user(user_1).action_timesheet_confirm()
 
         activity = self.MailActivity.search(
             [
@@ -492,7 +492,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         )
 
         sheet = (
-            self.HrTimesheetSheet.sudo(user_1)
+            self.HrTimesheetSheet.with_user(user_1)
             .with_context(
                 {
                     "hr_timesheet_sheet_activity_today": date(2020, 2, 1),
@@ -515,7 +515,7 @@ class TestHrTimesheetSheetActivity(common.TransactionCase):
         )
         self.assertEqual(activity.date_deadline, date(2020, 2, 1))
 
-        sheet.sudo(user_1).action_timesheet_confirm()
+        sheet.with_user(user_1).action_timesheet_confirm()
 
         activity = self.MailActivity.search(
             [

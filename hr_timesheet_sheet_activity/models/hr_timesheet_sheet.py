@@ -7,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 from dateutil.rrule import MONTHLY, WEEKLY
 from pytz import UTC, timezone
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class HrTimesheetSheet(models.Model):
@@ -19,7 +19,6 @@ class HrTimesheetSheet(models.Model):
         res = res - self._get_possible_reviewers().mapped("partner_id")
         return res
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
 
@@ -90,7 +89,6 @@ class HrTimesheetSheet(models.Model):
 
         return res
 
-    @api.multi
     def action_timesheet_draft(self):
         for sheet in self:
             sheet.activity_schedule(
@@ -101,7 +99,6 @@ class HrTimesheetSheet(models.Model):
 
         super().action_timesheet_draft()
 
-    @api.multi
     def action_timesheet_confirm(self):
         super().action_timesheet_confirm()
 
@@ -128,7 +125,6 @@ class HrTimesheetSheet(models.Model):
                     user_id=reviewer.id,
                 )
 
-    @api.multi
     def action_timesheet_done(self):
         super().action_timesheet_done()
 
@@ -145,7 +141,6 @@ class HrTimesheetSheet(models.Model):
                 activity = activity.sudo()
             activity.action_feedback()
 
-    @api.multi
     def action_timesheet_refuse(self):
         for sheet in self:
             sheet.activity_schedule(
@@ -169,7 +164,6 @@ class HrTimesheetSheet(models.Model):
                 activity = activity.sudo()
             activity.action_feedback()
 
-    @api.multi
     def _activity_sheet_submission_deadline(self):
         """Hook for extensions"""
         self.ensure_one()
@@ -200,13 +194,11 @@ class HrTimesheetSheet(models.Model):
             return worktimes[-1][0]  # Last workday of period
         return datetime_end.date()
 
-    @api.multi
     def _activity_sheet_resubmission_deadline(self):
         """Hook for extensions"""
         self.ensure_one()
         return None
 
-    @api.multi
     def _activity_sheet_review_deadline(self, reviewer):
         """Hook for extensions"""
         self.ensure_one()
@@ -253,7 +245,15 @@ class HrTimesheetSheet(models.Model):
     def _activity_sheet_review_max_period(self):
         """Hook for extensions"""
         self.ensure_one()
-        r = self.company_id.sheet_range or WEEKLY
+        sheet_range = self.company_id.sheet_range
+        if not sheet_range:
+            r = WEEKLY
+        elif sheet_range == "DAILY":
+            r = 1
+        elif sheet_range == "WEEKLY":
+            r = 2
+        elif sheet_range == "MONTHLY":
+            r = 3
         if r == WEEKLY:
             return relativedelta(weeks=1)
         elif r == MONTHLY:
