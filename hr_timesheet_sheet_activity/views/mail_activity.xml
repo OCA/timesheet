@@ -1,11 +1,14 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <!--
     Copyright 2020 Brainbean Apps (https://brainbeanapps.com)
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 <odoo>
 
-    <record id="action_view_hr_timesheet_sheet_mail_activity_types" model="ir.actions.act_window">
+    <record
+        id="action_view_hr_timesheet_sheet_mail_activity_types"
+        model="ir.actions.act_window"
+    >
         <field name="name">Activity Types</field>
         <field name="res_model">mail.activity.type</field>
         <field name="view_type">form</field>
