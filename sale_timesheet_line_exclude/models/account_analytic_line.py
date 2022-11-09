@@ -27,13 +27,13 @@ class AccountAnalyticLine(models.Model):
                     )
                 )
 
+    # pylint: disable=missing-return
     @api.depends("exclude_from_sale_order")
     def _compute_timesheet_invoice_type(self):
-        result = super()._compute_timesheet_invoice_type()
+        super()._compute_timesheet_invoice_type()
         for line in self:
             if line.exclude_from_sale_order:
                 line.timesheet_invoice_type = "non_billable"
-        return result
 
     @api.depends("exclude_from_sale_order")
     def _compute_so_line_on_exclude(self):
