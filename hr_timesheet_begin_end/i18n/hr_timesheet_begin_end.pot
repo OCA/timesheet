@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,29 +20,12 @@ msgstr ""
 
 #. module: hr_timesheet_begin_end
 #: model:ir.model.fields,field_description:hr_timesheet_begin_end.field_account_analytic_line__time_start
-#: model:ir.model.fields,field_description:hr_timesheet_begin_end.field_hr_timesheet_switch__time_start
 msgid "Begin Hour"
 msgstr ""
 
 #. module: hr_timesheet_begin_end
-#: model:ir.model.fields,field_description:hr_timesheet_begin_end.field_account_analytic_line__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: hr_timesheet_begin_end
 #: model:ir.model.fields,field_description:hr_timesheet_begin_end.field_account_analytic_line__time_stop
-#: model:ir.model.fields,field_description:hr_timesheet_begin_end.field_hr_timesheet_switch__time_stop
 msgid "End Hour"
-msgstr ""
-
-#. module: hr_timesheet_begin_end
-#: model:ir.model.fields,field_description:hr_timesheet_begin_end.field_account_analytic_line__id
-msgid "ID"
-msgstr ""
-
-#. module: hr_timesheet_begin_end
-#: model:ir.model.fields,field_description:hr_timesheet_begin_end.field_account_analytic_line____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: hr_timesheet_begin_end
@@ -54,12 +37,15 @@ msgstr ""
 #. module: hr_timesheet_begin_end
 #: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
 #, python-format
-msgid "The beginning hour (%(html_start)s) must precede the ending hour (%(html_stop)s)."
+msgid ""
+"The beginning hour (%(html_start)s) must precede the ending hour "
+"(%(html_stop)s)."
 msgstr ""
 
 #. module: hr_timesheet_begin_end
 #: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
 #, python-format
 msgid ""
-"The duration (%(html_unit_amount)s) must be equal to the difference between the hours (%(html_hours)s)."
+"The duration (%(html_unit_amount)s) must be equal to the difference between "
+"the hours (%(html_hours)s)."
 msgstr ""
