@@ -144,3 +144,35 @@ class TimesheetHolidayTest(TestHrHolidaysBase):
         self.assertEqual(
             len(leave.analytic_line_ids), 0, 'Allocation should not have '
                                              'analytic lines')
+
+    def test_timesheet_half_day(self):
+        # Test partial day leaves creates timesheet entries
+        self.env.ref('base.main_company') \
+            .timesheet_hours_per_day = 7.0
+        project = self.project.create({
+            "name": "Test Project 1",
+            "allow_timesheets": False,
+        })
+        account = project.analytic_account_id
+        project.write({'allow_timesheets': True})
+        account.write({'is_leave_account': True})
+        # Link sick leave to analytic account
+        sl = self.sl
+        sl.write({
+            'project_id': project.id
+        })
+        # Confirm leave and check hours added to account
+        hours_before = sum(account.line_ids.mapped('amount'))
+        # Holidays.sudo(self.user_employee_id)
+        hol_empl_grp = self.leave.sudo(self.user_hruser_id)
+        leave = hol_empl_grp.create({
+            'name': 'One day and a half sick leave',
+            'employee_id': self.employee_emp_id,
+            'holiday_status_id': self.sl.id,
+            'date_from': (datetime.today() - relativedelta(hours=10.5)),
+            'date_to': datetime.today(),
+            'number_of_days_temp': 1.5,
+        })
+        leave.sudo(self.user_hruser_id).action_approve()
+        hours_after = sum(account.line_ids.mapped('unit_amount'))
+        self.assertEqual(hours_after - hours_before, 10.5)
