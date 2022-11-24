@@ -80,9 +80,11 @@ class HrHolidays(models.Model):
             # Add analytic lines for these leave hours
             leave.analytic_line_ids.sudo(user.id).unlink()  # to be sure
             dt_from = fields.Datetime.from_string(leave.date_from)
+            dt_current = dt_from
+            at_least_one_complete_day = False
             for day in range(abs(int(leave.number_of_days))):
                 dt_current = dt_from + timedelta(days=day)
-
+                at_least_one_complete_day = True
                 # skip the non work days
                 day_of_the_week = dt_current.isoweekday()
                 if day_of_the_week in (6, 7):
@@ -93,7 +95,16 @@ class HrHolidays(models.Model):
                     hours=hours_per_day,
                     account=account,
                 )
-
+            # 0000192 create timesheet for half days at the end
+            if leave.number_of_days % 1 > 0.1:
+                if at_least_one_complete_day:
+                    dt_current += timedelta(days=1)
+                leave.add_timesheet_line(
+                    description=leave.name or leave.holiday_status_id.name,
+                    date=dt_current,
+                    hours=hours_per_day * (leave.number_of_days % 1),
+                    account=account,
+                )
         return res
 
     @api.multi
