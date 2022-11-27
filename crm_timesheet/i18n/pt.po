@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* crm_timesheet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-05-26 00:19+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
+"Language-Team: none\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: crm_timesheet
+#: model:ir.model,name:crm_timesheet.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Linha Analítica"
+
+#. module: crm_timesheet
+#: model:ir.model,name:crm_timesheet.model_hr_timesheet_switch
+msgid "Helper to quickly switch between timesheet lines"
+msgstr "Ajudante para alternar rapidamente entre linhas de folhas de horas"
+
+#. module: crm_timesheet
+#: model:ir.model,name:crm_timesheet.model_crm_lead
+#: model:ir.model.fields,field_description:crm_timesheet.field_account_analytic_line__lead_id
+#: model:ir.model.fields,field_description:crm_timesheet.field_hr_timesheet_switch__lead_id
+msgid "Lead/Opportunity"
+msgstr "Lead/Oportunidade"
+
+#. module: crm_timesheet
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__project_id
+msgid "Project"
+msgstr "Projeto"
+
+#. module: crm_timesheet
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
+msgid "Start work"
+msgstr "Iniciar Trabalho"
+
+#. module: crm_timesheet
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
+msgid "Stop work"
+msgstr "Parar Trabalho"
+
+#. module: crm_timesheet
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__timesheet_ids
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
+msgid "Timesheet"
+msgstr "Registo de horas"
