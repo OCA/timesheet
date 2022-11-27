@@ -42,21 +42,6 @@ msgid "Closing Stage"
 msgstr "Stängningsetapp"
 
 #. module: hr_timesheet_task_stage
-#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__display_name
-msgid "Display Name"
-msgstr "Visningsnamn"
-
-#. module: hr_timesheet_task_stage
-#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: hr_timesheet_task_stage
-#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line____last_update
-msgid "Last Modified on"
-msgstr "Senast ändrad"
-
-#. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
 msgid "Open task"
 msgstr "Öppna aktivitet"
@@ -79,3 +64,12 @@ msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
 msgstr ""
 "Det finns ingen etapp med \"Stängd\" som inte är ikryssad. Var vänlig "
 "avmarkera en."
+
+#~ msgid "Display Name"
+#~ msgstr "Visningsnamn"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Senast ändrad"
