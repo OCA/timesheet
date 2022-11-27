@@ -50,11 +50,13 @@ msgstr ""
 
 #. module: hr_timesheet_task_stage
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
+#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" checked. Please mark any."
 msgstr ""
 
 #. module: hr_timesheet_task_stage
+#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
