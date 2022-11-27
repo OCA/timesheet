@@ -260,16 +260,9 @@ msgid "Details"
 msgstr "Details"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_account__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Weergave naam"
 
@@ -341,11 +334,6 @@ msgid "Followers"
 msgstr "Volgers"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Volgers (kanalen)"
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Volgers (relaties)"
@@ -366,6 +354,11 @@ msgid "Group By"
 msgstr "Groepeer op"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Hours"
 msgstr "Uren"
@@ -377,16 +370,9 @@ msgid "How Timesheet Sheets review is performed."
 msgstr "Hoe een urenstaat formulier goedkeuring is uitgevoerd."
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_account__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__id
 msgid "ID"
 msgstr "ID"
 
@@ -461,16 +447,9 @@ msgid "Is Follower"
 msgstr "Is volger"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_account____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr "Laatst gewijzigd op"
 
@@ -554,6 +533,11 @@ msgstr "Nieuwe regel"
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 msgid "New timesheet sheet."
 msgstr "Nieuwe urenstaat formulier."
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_date_deadline
@@ -714,13 +698,11 @@ msgstr "Zet op concept"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__sheet_id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_id
 msgid "Sheet"
 msgstr "Formulier"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_line__sheet_state
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_switch__sheet_state
 msgid "Sheet State"
 msgstr "Urenstaat status"
 
@@ -878,7 +860,6 @@ msgstr "Urenstaat formulier beoordelingsbeleid"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
 msgid "Timesheet Sheets"
 msgstr "Urenstaten"
 
@@ -1029,8 +1010,8 @@ msgstr "Week"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
-msgid "Week %s"
-msgstr "Week %s"
+msgid "Week %(end)s"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
@@ -1045,18 +1026,18 @@ msgstr "Week startdag"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
-msgid "Weeks %s - %s"
-msgstr "Week %s - %s"
+msgid "Weeks %(start)s - %(end)s"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:0
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:0
 #: code:addons/hr_timesheet_sheet/models/hr_employee.py:0
 #, python-format
-msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
+msgid ""
+"You cannot change the company, as this %(rec_name)s (%(rec_display_name)s) "
+"is assigned to %(current_name)s (%(current_display_name)s)."
 msgstr ""
-"U kunt het bedrijf niet wijzigen, dit aangezien %s (%s) is toegewezen aan %s "
-"(%s)."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
@@ -1064,13 +1045,9 @@ msgstr ""
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
-" - %s of %s\n"
-" - %s of %s"
+" - %(sheet_name)s of %(sheet_company)s\n"
+" - %(name)s of %(company)s"
 msgstr ""
-"U kunt niet urenstaat maken in een ander bedrijfs als die van het urenstaat "
-"formulier:\n"
-" - %s van %s\n"
-" - %s van %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1095,19 +1072,14 @@ msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
 "Conflicting sheets:\n"
-" - %s"
+" - %(names)s"
 msgstr ""
-"Het is niet toegestaan om 2 urenstaten te hebben die overlappen!\n"
-"U dient het menu \"Urenstaat formulier\" te gebruiken om dit probleem te "
-"voorkomen.\n"
-"Overlappende urenstaten:\n"
-"- %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
 #, python-format
-msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
-msgstr "U kunt geen wijziging doen in een goedgekeurde urenstaatregel: %s"
+msgid "You cannot modify an entry in a confirmed timesheet sheet: %(names)s"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
@@ -1139,6 +1111,53 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "tot"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Volgers (kanalen)"
+
+#, python-format
+#~ msgid "Week %s"
+#~ msgstr "Week %s"
+
+#, python-format
+#~ msgid "Weeks %s - %s"
+#~ msgstr "Week %s - %s"
+
+#, python-format
+#~ msgid ""
+#~ "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
+#~ msgstr ""
+#~ "U kunt het bedrijf niet wijzigen, dit aangezien %s (%s) is toegewezen aan "
+#~ "%s (%s)."
+
+#, python-format
+#~ msgid ""
+#~ "You cannot create a timesheet of a different company than the one of the "
+#~ "timesheet sheet:\n"
+#~ " - %s of %s\n"
+#~ " - %s of %s"
+#~ msgstr ""
+#~ "U kunt niet urenstaat maken in een ander bedrijfs als die van het "
+#~ "urenstaat formulier:\n"
+#~ " - %s van %s\n"
+#~ " - %s van %s"
+
+#, python-format
+#~ msgid ""
+#~ "You cannot have 2 or more sheets that overlap!\n"
+#~ "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
+#~ "Conflicting sheets:\n"
+#~ " - %s"
+#~ msgstr ""
+#~ "Het is niet toegestaan om 2 urenstaten te hebben die overlappen!\n"
+#~ "U dient het menu \"Urenstaat formulier\" te gebruiken om dit probleem te "
+#~ "voorkomen.\n"
+#~ "Overlappende urenstaten:\n"
+#~ "- %s"
+
+#, python-format
+#~ msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
+#~ msgstr "U kunt geen wijziging doen in een goedgekeurde urenstaatregel: %s"
 
 #~ msgid "HR Department"
 #~ msgstr "HR afdeling"
