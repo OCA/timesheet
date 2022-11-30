@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo14-addon-hr_timesheet_report',
         'odoo14-addon-hr_timesheet_report_milestone',
         'odoo14-addon-hr_timesheet_sheet',
+        'odoo14-addon-hr_timesheet_sheet_activity',
         'odoo14-addon-hr_timesheet_sheet_attendance',
         'odoo14-addon-hr_timesheet_sheet_autodraft',
         'odoo14-addon-hr_timesheet_sheet_period',
