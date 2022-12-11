@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hr_timesheet_line_tree" model="ir.ui.view">
+        <field name="name">Hours Billed</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+        <field name="arch" type="xml">
+            <field name="unit_amount" position="after">
+                <field
+                    name="unit_amount_billed"
+                    optional="show"
+                    groups="hr_timesheet.group_timesheet_manager"
+                    widget="timesheet_uom"
+                />
+                <field
+                    name="approved"
+                    optional="show"
+                    groups="hr_timesheet.group_timesheet_manager"
+                />
+                <field
+                    name="approved_user_id"
+                    optional="hide"
+                    groups="hr_timesheet.group_timesheet_manager"
+                />
+                <field
+                    name="approved_date"
+                    optional="hide"
+                    groups="hr_timesheet.group_timesheet_manager"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.actions.server" id="action_approve_records">
+       <field name="name">Approve</field>
+       <field
+            name="model_id"
+            ref="hr_timesheet_hours_billed.model_account_analytic_line"
+        />
+       <field
+            name="binding_model_id"
+            ref="hr_timesheet_hours_billed.model_account_analytic_line"
+        />
+       <field name="binding_view_types">list</field>
+       <field name="state">code</field>
+       <field name="code">
+           action = records.action_approve_records()
+       </field>
+    </record>
+
+    <record model="ir.actions.server" id="action_decline_records">
+       <field name="name">Decline</field>
+       <field
+            name="model_id"
+            ref="hr_timesheet_hours_billed.model_account_analytic_line"
+        />
+       <field
+            name="binding_model_id"
+            ref="hr_timesheet_hours_billed.model_account_analytic_line"
+        />
+       <field name="binding_view_types">list</field>
+       <field name="state">code</field>
+       <field name="code">
+           action = records.action_decline_records()
+       </field>
+    </record>
+</odoo>
