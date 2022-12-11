@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="name_customer_table" inherit_id="hr_timesheet.timesheet_table">
+        <xpath
+            expr="//table[hasclass('table', 'table-sm')]/thead/tr/th[5]"
+            position="attributes"
+        >
+            <attribute name="t-if">not show_desc</attribute>
+        </xpath>
+
+        <xpath
+            expr="//table[hasclass('table', 'table-sm')]/thead/tr/th[5]"
+            position="after"
+        >
+            <th class="text-start align-middle" t-if="show_custom_desc">
+                <span>Description</span>
+            </th>
+        </xpath>
+
+        <xpath
+            expr="//table[hasclass('table', 'table-sm')]/tbody/tr[1]/td[5]"
+            position="attributes"
+        >
+            <attribute name="t-if">not show_desc</attribute>
+        </xpath>
+
+        <xpath
+            expr="//table[hasclass('table', 'table-sm')]/tbody/tr[1]/td[5]"
+            position="after"
+        >
+            <td t-if="show_custom_desc" class="align-middle">
+                <span t-field="line.name_customer" t-options="{'widget': 'text'}" />
+            </td>
+        </xpath>
+    </template>
+
+    <!--Create customer timesheet report-->
+    <template id="report_timesheet_custom">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t
+                    t-set="company"
+                    t-value="docs.project_id.company_id if len(docs.project_id) == 1 else docs.env.company"
+                />
+                <t t-set="show_task" t-value="bool(docs.task_id)" />
+                <t t-set="show_project" t-value="len(docs.project_id) > 1" />
+                <t t-set="show_desc" t-value="True" />
+                <t t-set="show_custom_desc" t-value="True" />
+                <div class="page">
+                    <div class="oe_structure" />
+                    <div class="row mt8">
+                        <div class="col-lg-12">
+                            <h2>
+                                <span>Timesheets
+                                    <t t-if="len(docs.project_id) == 1">
+                                        for the <t
+                                            t-out="docs.project_id.name"
+                                        /> Project
+                                    </t>
+                                </span>
+                            </h2>
+                        </div>
+                    </div>
+                    <t t-set='lines' t-value='docs' />
+                    <t t-call="hr_timesheet_name_customer.name_customer_table" />
+                    <div class="oe_structure" />
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="timesheet_report_name_custom" model="ir.actions.report">
+        <field name="name">Timesheet Customer</field>
+        <field name="model">account.analytic.line</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >hr_timesheet_name_customer.report_timesheet_custom</field>
+        <field name="report_file">report_timesheet_custom</field>
+        <field name="binding_model_id" ref="model_account_analytic_line" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
