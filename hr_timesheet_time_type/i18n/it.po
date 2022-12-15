@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-11-30 16:44+0000\n"
+"PO-Revision-Date: 2022-12-15 18:44+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -18,9 +18,8 @@ msgstr ""
 
 #. module: hr_timesheet_time_type
 #: model:ir.model,name:hr_timesheet_time_type.model_account_analytic_line
-#, fuzzy
 msgid "Analytic Line"
-msgstr "Linea Analitica"
+msgstr "Riga analitica"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_project_time_type__code
@@ -39,9 +38,8 @@ msgstr "Creato il"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model,name:hr_timesheet_time_type.model_project_time_type
-#, fuzzy
 msgid "Define Time Types"
-msgstr "Definizione Tipi Orario"
+msgstr "Definisci Tipi Orario"
 
 #. module: hr_timesheet_time_type
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_project_time_type__description
@@ -88,9 +86,8 @@ msgstr "Nome"
 
 #. module: hr_timesheet_time_type
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_type.view_project_time_type_form
-#, fuzzy
 msgid "Task Activity"
-msgstr "Attività"
+msgstr "Attività Lavoro"
 
 #. module: hr_timesheet_time_type
 #: model:ir.actions.act_window,name:hr_timesheet_time_type.open_project_time_type_tree
