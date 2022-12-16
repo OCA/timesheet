@@ -424,7 +424,8 @@ msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
 msgstr ""
-"За да креирате распоред за овој вработен мора до го/ја поврзете со корисник: %s"
+"За да креирате распоред за овој вработен мора до го/ја поврзете со корисник: "
+"%s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:607
@@ -872,6 +873,7 @@ msgstr "Ставки на временска таблица"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_sheet_ids
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
 #, fuzzy
 msgid "Timesheet Sheets"
@@ -1054,13 +1056,14 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:39
-#: code:addons/hr_timesheet_sheet/models/hr_employee.py:34
+#: code:addons/hr_timesheet_sheet/models/hr_employee.py:41
 #, python-format
 msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:59
+#, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
@@ -1070,12 +1073,11 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:539
+#, python-format
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr ""
-"Не може да избришете временска таблица која е веќе потврдена: "
-"%s"
+msgstr "Не може да избришете временска таблица која е веќе потврдена: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:510

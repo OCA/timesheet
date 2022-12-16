@@ -843,6 +843,7 @@ msgstr "Pravila revizije časovnic"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_sheet_ids
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
 msgid "Timesheet Sheets"
 msgstr "Časovnice"
@@ -1012,7 +1013,7 @@ msgstr "Tedni %s - %s"
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:17
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:39
-#: code:addons/hr_timesheet_sheet/models/hr_employee.py:34
+#: code:addons/hr_timesheet_sheet/models/hr_employee.py:41
 #, python-format
 msgid "You cannot change the company, as this %s (%s) is assigned to %s (%s)."
 msgstr ""
