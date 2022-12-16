@@ -9,12 +9,19 @@ from odoo.exceptions import ValidationError
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
+    timesheet_sheet_ids = fields.One2many(
+        comodel_name="hr_timesheet.sheet",
+        inverse_name="employee_id",
+        string="Timesheet Sheets",
+    )
     timesheet_sheet_count = fields.Integer(
         compute='_compute_timesheet_sheet_count',
         string='Timesheet Sheets Count',
+        store=True,
     )
 
     @api.multi
+    @api.depends("timesheet_sheet_ids")
     def _compute_timesheet_sheet_count(self):
         Sheet = self.env['hr_timesheet.sheet']
         for employee in self:
