@@ -33,7 +33,7 @@ addon | version | maintainers | summary
 [hr_timesheet_portal](hr_timesheet_portal/) | 12.0.1.0.1 |  | Fill in timesheets via the portal
 [hr_timesheet_report](hr_timesheet_report/) | 12.0.1.0.1 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | Generate Timesheet Report from Task Logs
 [hr_timesheet_role](hr_timesheet_role/) | 12.0.2.0.1 |  | Track time on project according to the role assigned
-[hr_timesheet_sheet](hr_timesheet_sheet/) | 12.0.3.7.5 |  | Timesheet Sheets, Activities
+[hr_timesheet_sheet](hr_timesheet_sheet/) | 12.0.3.7.6 |  | Timesheet Sheets, Activities
 [hr_timesheet_sheet_activity](hr_timesheet_sheet_activity/) | 12.0.1.0.0 |  | Automatic activities related to submission and review of timesheet sheets
 [hr_timesheet_sheet_attendance](hr_timesheet_sheet_attendance/) | 12.0.1.0.2 |  | HR Timesheet Sheet Attendance
 [hr_timesheet_sheet_autodraft](hr_timesheet_sheet_autodraft/) | 12.0.1.0.0 |  | Automatically draft a Timesheet Sheet for every time entry that does not have a relevant Timesheet Sheet existing.
