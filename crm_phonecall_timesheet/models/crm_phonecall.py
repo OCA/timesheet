@@ -56,7 +56,6 @@ class CrmPhonecall(models.Model):
         res = super().create(vals)
         return res
 
-    @api.multi
     def write(self, vals):
         AccountAnalitycLineObj = self.env["account.analytic.line"]
         for record in self:
@@ -87,7 +86,6 @@ class CrmPhonecall(models.Model):
                 vals["timesheet_ids"] = [(0, 0, self._timesheet_prepare(vals))]
         return super().write(vals)
 
-    @api.multi
     def button_end_call(self):
         end_date = datetime.now()
         for call in self:
