@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-11-30 16:44+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2022-12-28 21:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -29,18 +29,18 @@ msgstr "Giorno"
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_period.field_hr_timesheet_sheet__is_hr_period_required
 msgid "Is Hr Period Required"
-msgstr ""
+msgstr "L'intervallo Hr è richiesto"
 
 #. module: hr_timesheet_sheet_period
 #: selection:res.company,sheet_range:0
 msgid "Month"
-msgstr ""
+msgstr "Mese"
 
 #. module: hr_timesheet_sheet_period
 #: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:95
 #, python-format
 msgid "No suitable Payroll period found!"
-msgstr ""
+msgstr "Non è stato trovato nessun periodo dello stipendio idoneo!"
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_period.field_hr_timesheet_sheet__hr_period_id
@@ -49,9 +49,8 @@ msgstr "Periodo di paga"
 
 #. module: hr_timesheet_sheet_period
 #: selection:res.company,sheet_range:0
-#, fuzzy
 msgid "Payroll Period"
-msgstr "Periodo di paga"
+msgstr "Periodo stipendio"
 
 #. module: hr_timesheet_sheet_period
 #: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:103
@@ -60,6 +59,8 @@ msgid ""
 "The Date From of Timesheet must match with that of date start '%s' of the "
 "Payroll period '%s'."
 msgstr ""
+"La data inizio del foglio ore deve corrispondere con la data di inizio '%s' "
+"del periodo '%s' dello stipendio."
 
 #. module: hr_timesheet_sheet_period
 #: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:109
@@ -68,12 +69,13 @@ msgid ""
 "The Date To of Timesheet must match with that of date stop '%s' of the "
 "Payroll period '%s'."
 msgstr ""
+"La data fine del foglio ore deve corrispondere con la data di fine '%s' del "
+"periodo '%s' dello stipendio."
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,help:hr_timesheet_sheet_period.field_res_company__sheet_range
-#, fuzzy
 msgid "The range of your Timesheet Sheet."
-msgstr "Foglio ore"
+msgstr "Periodo del foglio ore."
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model,name:hr_timesheet_sheet_period.model_hr_timesheet_sheet
