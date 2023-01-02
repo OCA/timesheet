@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-23 11:07+0000\n"
+"PO-Revision-Date: 2023-01-02 12:45+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: hr_timesheet_purchase_order
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_purchase_order.res_config_settings_view_form
@@ -143,7 +143,7 @@ msgstr "Apri ordine di acquisto"
 #: model:ir.model,name:hr_timesheet_purchase_order.model_purchase_order
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_sheet__purchase_order_id
 msgid "Purchase Order"
-msgstr "Ordine di Acquisto"
+msgstr "Ordine di acquisto"
 
 #. module: hr_timesheet_purchase_order
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_company__timesheet_product_id
