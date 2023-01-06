@@ -11,7 +11,24 @@
                 position="inside"
             >
                 <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="use_timesheet_restriction" />
+                    </div>
                     <div class="o_setting_right_pane">
+                        <label
+                            for="use_timesheet_restriction"
+                            string="Auto-enable Timesheet restriction"
+                        />
+                        <div class="content-group">
+                            <div class="mt16">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="o_setting_right_pane"
+                        attrs="{'invisible': [('use_timesheet_restriction', '=', False)]}"
+                    >
                         <label
                             for="timesheet_restriction_days"
                             string="Timesheet Restriction (days)"

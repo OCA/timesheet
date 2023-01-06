@@ -9,6 +9,17 @@
             <xpath expr="//div[@name='options_active']" position="inside">
                 <div>
                     <label
+                        for="use_timesheet_restriction"
+                        string="Use timesheet restriction"
+                        class="oe_inline"
+                    />
+                    <field
+                        name="use_timesheet_restriction"
+                        class="oe_inline oe_input_align"
+                    />
+                </div>
+                <div attrs="{'invisible': [('use_timesheet_restriction', '=', False)]}">
+                    <label
                         for="timesheet_restriction_days"
                         class="oe_inline"
                         string="Timesheet Restriction (days):"
@@ -21,5 +32,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

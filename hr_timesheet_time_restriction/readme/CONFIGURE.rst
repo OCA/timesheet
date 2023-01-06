@@ -1,3 +1,8 @@
-Specific Project Timesheet Restriction: Project > Configuration > Projects > Open Project > set "Timesheet Restriction (days)"
-Global Timesheet Restriction: Timesheets > Configuration > Settings > set "Timesheet Restriction (days)"
-Ignore User Timesheet Restriction: Settings > Users & Companies > Users > Open User > Technical > set "No Timesheet Date Restriction"
+Specific project timesheet restriction:
+ - Project > Configuration > Projects > open project > enable "Use timesheet restriction" and set "Timesheet Restriction (days)"
+
+Global timesheet restriction:
+ - Timesheets > Configuration > Settings > enable "Use timesheet restriction" and set "Timesheet Restriction (days)" (note: it will only apply to newly created projects)
+
+Ignore user timesheet restriction:
+ - Settings > Users & Companies > Users > open user > Technical: set "No Timesheet Date Restriction"

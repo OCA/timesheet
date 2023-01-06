@@ -13,7 +13,9 @@ class TestHrTimesheetTimeRestriction(common.TransactionCase):
     def setUp(self):
         super().setUp()
 
-        self.project = self.env["project.project"].create({"name": "Test project"})
+        self.project = self.env["project.project"].create(
+            {"name": "Test project", "use_timesheet_restriction": True}
+        )
         self.analytic_account = self.project.analytic_account_id
         self.task = self.env["project.task"].create(
             {
@@ -21,13 +23,16 @@ class TestHrTimesheetTimeRestriction(common.TransactionCase):
                 "project_id": self.project.id,
             }
         )
+        self.config = self.env["res.config.settings"].create({})
+        self.config.use_timesheet_restriction = True
+        self.config.execute()
 
     def test_project_restriction_days(self):
         self.project.timesheet_restriction_days = 1
         # check that we can create new timesheet
         line = self.env["account.analytic.line"].create(
             {
-                "date": datetime.date.today() - datetime.timedelta(days=1),
+                "date": datetime.date.today(),
                 "task_id": self.task.id,
                 "project_id": self.project.id,
                 "account_id": self.analytic_account.id,
@@ -53,20 +58,21 @@ class TestHrTimesheetTimeRestriction(common.TransactionCase):
         self.assertFalse(line, "Timesheet should not be created")
 
     def test_project_restriction_days_by_config(self):
-        config = self.env["res.config.settings"].create({})
-        config.timesheet_restriction_days = 1
-        config.execute()
-        # check that we can create new timesheet
-        line = self.env["account.analytic.line"].create(
-            {
-                "date": datetime.date.today() - datetime.timedelta(days=1),
-                "task_id": self.task.id,
-                "project_id": self.project.id,
-                "account_id": self.analytic_account.id,
-                "name": "Test line",
-            }
-        )
-        self.assertTrue(line, "Timesheet should be created")
+        line = False
+        try:
+            # check that we can create new timesheet
+            line = self.env["account.analytic.line"].create(
+                {
+                    "date": datetime.date.today() - datetime.timedelta(days=1),
+                    "task_id": self.task.id,
+                    "project_id": self.project.id,
+                    "account_id": self.analytic_account.id,
+                    "name": "Test line",
+                }
+            )
+        except ValidationError:
+            pass
+        self.assertFalse(line, "Timesheet should not be created")
         # check that we cannot create new timesheet with date before
         # that current date - 1
         line = False
@@ -85,20 +91,9 @@ class TestHrTimesheetTimeRestriction(common.TransactionCase):
         self.assertFalse(line, "Timesheet should not be created")
 
     def test_project_restriction_days_ignore_config(self):
-        config = self.env["res.config.settings"].create({})
-        config.timesheet_restriction_days = 1
-        config.execute()
+        self.config.timesheet_restriction_days = 1
+        self.config.execute()
         self.project.timesheet_restriction_days = 2
-        line = self.env["account.analytic.line"].create(
-            {
-                "date": datetime.date.today() - datetime.timedelta(days=2),
-                "task_id": self.task.id,
-                "project_id": self.project.id,
-                "account_id": self.analytic_account.id,
-                "name": "Test line",
-            }
-        )
-        self.assertTrue(line, "Timesheet should be created")
         # check that we cannot create new timesheet with date before
         # that current date - 2
         line = False
@@ -141,8 +136,7 @@ class TestHrTimesheetTimeRestriction(common.TransactionCase):
         self.assertEqual(self.project.timesheet_restriction_days, 0)
 
     def test_set_negative_config_restriction_days(self):
-        config = self.env["res.config.settings"].create({})
-        config.timesheet_restriction_days = -1
-        config._onchange_timesheet_restriction_days()
-        config.execute()
-        self.assertEqual(config.timesheet_restriction_days, 0)
+        self.config.timesheet_restriction_days = -1
+        self.config._onchange_timesheet_restriction_days()
+        self.config.execute()
+        self.assertEqual(self.config.timesheet_restriction_days, 0)
