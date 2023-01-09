@@ -9,9 +9,6 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
         super().setUp()
 
         self.uom_hour = self.env.ref("uom.product_uom_hour")
-        self.user_type_payable = self.env.ref("account.data_account_type_payable")
-        self.user_type_receivable = self.env.ref("account.data_account_type_receivable")
-        self.user_type_revenue = self.env.ref("account.data_account_type_revenue")
         self.Partner = self.env["res.partner"]
         self.SudoPartner = self.Partner.sudo()
         self.Employee = self.env["hr.employee"]
@@ -31,21 +28,28 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
         self.SaleOrderLine = self.env["sale.order.line"]
         self.SudoSaleOrderLine = self.SaleOrderLine.sudo()
         self.ProjectCreateSaleOrder = self.env["project.create.sale.order"]
+        self.analytic_plan = self.env["account.analytic.plan"].create(
+            {
+                "name": "Plan Test",
+                "company_id": self.env.company.id,
+            }
+        )
         self.analytic_account_sale = self.env["account.analytic.account"].create(
             {
                 "name": "Project for selling timesheet - AA",
                 "code": "AA-20300",
                 "company_id": self.env.company.id,
+                "plan_id": self.analytic_plan.id,
             }
         )
 
     def test_exclude_from_sale_order(self):
         account = self.SudoAccountAccount.create(
             {
-                "code": "TEST-1",
+                "code": "TEST1",
                 "name": "Sales #1",
                 "reconcile": True,
-                "user_type_id": self.user_type_revenue.id,
+                "account_type": "expense_direct_cost",
             }
         )
         project = self.SudoProject.create(
@@ -73,23 +77,21 @@ class TestSaleTimesheetExcludeTask(common.TransactionCase):
                 "property_account_income_id": account.id,
             }
         )
-        employee = self.SudoEmployee.create(
-            {"name": "Employee #1", "timesheet_cost": 42}
-        )
+        employee = self.SudoEmployee.create({"name": "Employee #1", "hourly_cost": 42})
         account_payable = self.SudoAccountAccount.create(
             {
                 "code": "AP1",
                 "name": "Payable #1",
-                "user_type_id": self.user_type_payable.id,
                 "reconcile": True,
+                "account_type": "liability_payable",
             }
         )
         account_receivable = self.SudoAccountAccount.create(
             {
                 "code": "AR1",
                 "name": "Receivable #1",
-                "user_type_id": self.user_type_receivable.id,
                 "reconcile": True,
+                "account_type": "asset_receivable",
             }
         )
         partner = self.SudoPartner.create(

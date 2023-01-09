@@ -4,7 +4,7 @@
 
 {
     "name": "Sales Timesheet: exclude Task from Sale Order",
-    "version": "15.0.1.0.1",
+    "version": "16.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/timesheet",
     "author": "CorporateHub, Odoo Community Association (OCA)",
@@ -12,6 +12,6 @@
     "installable": True,
     "application": False,
     "summary": "Exclude Task and related Timesheets from Sale Order",
-    "depends": ["sale_timesheet"],
+    "depends": ["sale_timesheet", "sale_project"],
     "data": ["views/project_task.xml"],
 }
