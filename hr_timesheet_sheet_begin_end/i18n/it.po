@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-31 04:45+0000\n"
-"PO-Revision-Date: 2018-10-28 23:03+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"PO-Revision-Date: 2023-01-10 02:53+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2.1\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: hr_timesheet_sheet_begin_end
 #: model:ir.model,name:hr_timesheet_sheet_begin_end.model_account_analytic_line
@@ -33,7 +33,7 @@ msgstr "Ora inizio"
 #. module: hr_timesheet_sheet_begin_end
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_begin_end.field_account_analytic_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: hr_timesheet_sheet_begin_end
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_begin_end.field_account_analytic_line__time_stop
@@ -44,10 +44,9 @@ msgstr "Ora fine"
 #. module: hr_timesheet_sheet_begin_end
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_begin_end.field_account_analytic_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hr_timesheet_sheet_begin_end
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_begin_end.field_account_analytic_line____last_update
 msgid "Last Modified on"
-msgstr ""
-
+msgstr "Ultima modifica il"
