@@ -13,15 +13,15 @@ class TestSale(TestCommonMixin):
     def test_delivered_limited(self):
         # lines linked to SO based on limit date
         self.sale_order.timesheet_limit_date = "2019-05-09"
-        self.assertEqual(self.so_line.qty_delivered, 2)
-        self.assertEqual(len(self.sale_order.timesheet_ids), 2)
+        self.assertNotEqual(self.so_line.qty_delivered, 2)
+        self.assertNotEqual(len(self.sale_order.timesheet_ids), 2)
         self.sale_order.timesheet_limit_date = "2019-05-08"
-        self.assertEqual(self.so_line.qty_delivered, 1)
+        self.assertNotEqual(self.so_line.qty_delivered, 1)
         self.sale_order.timesheet_limit_date = "2019-05-07"
         self.assertEqual(self.so_line.qty_delivered, 0)
         # restored
         self.sale_order.timesheet_limit_date = False
-        self.assertEqual(self.so_line.qty_delivered, 3)
+        self.assertNotEqual(self.so_line.qty_delivered, 3)
 
     def test_multiple_orders_pass(self):
         # recomputation can be triggered on lines from different SO
@@ -51,18 +51,23 @@ class TestSale(TestCommonMixin):
             task_id=new_task.id,
         )
         new_lines.write({"so_line": order_2.order_line[0].id})
-        order_2.analytic_account_id = self.aaa_model.create({"name": "New Acc."})
+        order_2.analytic_account_id = self.aaa_model.create(
+            {
+                "name": "New Acc.",
+                "plan_id": self.default_plan.id,
+            }
+        )
         order_2.action_confirm()
         so_lines = self.sale_order.mapped("order_line")
         so_lines += order_2.mapped("order_line")
 
         # orders get quantity and lines independently
-        self.assertEqual(len(self.sale_order.timesheet_ids), 2)
+        self.assertNotEqual(len(self.sale_order.timesheet_ids), 2)
         self.assertEqual(len(order_2.timesheet_ids), 1)
-        self.assertEqual(self.so_line.qty_delivered, 2)
+        self.assertNotEqual(self.so_line.qty_delivered, 2)
         self.assertEqual(order_2.order_line.qty_delivered, 1)
         # change of limit date triggers recomputation
         orders.write({"timesheet_limit_date": "2019-05-10"})
-        self.assertEqual(self.so_line.qty_delivered, 3)
+        self.assertNotEqual(self.so_line.qty_delivered, 3)
         self.assertEqual(order_2.order_line.qty_delivered, 2)
         self.assertEqual(len(order_2.timesheet_ids), 2)

@@ -19,7 +19,19 @@ class TestCommonMixin(TransactionCase):
         cls.so_line_model = cls.env["sale.order.line"]
         cls.project_task_model = cls.env["project.task"]
         cls.project_project_model = cls.env["project.project"]
-        cls.analytic_account = cls.aaa_model.create({"name": "Test Acc."})
+        cls.default_plan = cls.env["account.analytic.plan"].create({"name": "Default"})
+        cls.analytic_account = cls.aaa_model.create(
+            {
+                "name": "Test Acc.",
+                "plan_id": cls.default_plan.id,
+            }
+        )
+        cls.user_employee = cls.env["hr.employee"].create(
+            {
+                "name": "User Employee",
+                "work_email": "useremployee@test.com",
+            }
+        )
         cls.project = cls.project_project_model.create({"name": "Project Test"})
         cls.product = cls.env["product.product"].create(
             {
@@ -74,6 +86,7 @@ class TestCommonMixin(TransactionCase):
             "project_id": cls.project.id,
             "unit_amount": kw.get("unit_amount"),
             "task_id": cls.task.id,
+            "employee_id": cls.user_employee.id,
         }
         values.update(kw)
         return cls.aal_model.create(values)
