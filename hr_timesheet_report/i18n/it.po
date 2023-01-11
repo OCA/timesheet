@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-24 17:05+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-01-12 03:49+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: hr_timesheet_report
 #: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:0
@@ -42,7 +42,7 @@ msgstr "<span>Periodo:</span>"
 #. module: hr_timesheet_report
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
 msgid "<span>Timesheets Report</span>"
-msgstr "<span>Report Fogli Ore</span>"
+msgstr "<span>Resoconto fogli ore</span>"
 
 #. module: hr_timesheet_report
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
@@ -233,7 +233,7 @@ msgstr "Tipo campo"
 #: model:ir.actions.act_window,name:hr_timesheet_report.action_timesheet_report_wizard
 #: model:ir.actions.server,name:hr_timesheet_report.action_timesheet_report_wizard_from_selection
 msgid "Generate Timesheet Report"
-msgstr "Genera report fogli ore"
+msgstr "Genera resoconto fogli ore"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__group_id
