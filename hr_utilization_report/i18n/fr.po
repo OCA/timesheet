@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_utilization_report
+# 	* hr_utilization_report
 #
 msgid ""
 msgstr ""
@@ -15,32 +15,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:314
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "\"%s\" report type is not supported"
 msgstr ""
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:328
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "\"%s\" report with \"%s\" type not found"
 msgstr ""
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/wizards/hr_utilization_report_wizard.py:125
+#: code:addons/hr_utilization_report/wizards/hr_utilization_report_wizard.py:0
 #, python-format
 msgid "\"Employee\" must be listed in Details Fields"
 msgstr ""
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:224
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "%s not set"
-msgstr ""
-
-#. module: hr_utilization_report
-#: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_header
-msgid "<span> of </span>"
 msgstr ""
 
 #. module: hr_utilization_report
@@ -51,6 +46,11 @@ msgstr ""
 #. module: hr_utilization_report
 #: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_header
 msgid "<span>Utilization Report</span>"
+msgstr ""
+
+#. module: hr_utilization_report
+#: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_header
+msgid "<span>of</span>"
 msgstr ""
 
 #. module: hr_utilization_report
@@ -71,14 +71,13 @@ msgid "Aggregation"
 msgstr ""
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1011
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1066
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "Amount, %s"
 msgstr ""
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/wizards/hr_utilization_report_wizard.py:120
+#: code:addons/hr_utilization_report/wizards/hr_utilization_report_wizard.py:0
 #, python-format
 msgid "At least one field must be listed in Details Fields"
 msgstr ""
@@ -109,8 +108,7 @@ msgid "Capacity,"
 msgstr ""
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1035
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1072
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "Capacity, %s"
 msgstr ""
@@ -147,7 +145,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:153
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "Date-To can not be earlier than Date-From"
 msgstr ""
@@ -245,9 +243,9 @@ msgid "Field"
 msgstr ""
 
 #. module: hr_utilization_report
-#: sql_constraint:hr.utilization.report.field:0
-#: sql_constraint:hr.utilization.report.field.entry:0
-#: sql_constraint:hr.utilization.report.field.groupby:0
+#: model:ir.model.constraint,message:hr_utilization_report.constraint_hr_utilization_report_field_entry_field_name_uniq
+#: model:ir.model.constraint,message:hr_utilization_report.constraint_hr_utilization_report_field_field_name_uniq
+#: model:ir.model.constraint,message:hr_utilization_report.constraint_hr_utilization_report_field_groupby_field_name_uniq
 msgid "Field can be reported only once!"
 msgstr ""
 
@@ -436,8 +434,7 @@ msgid "Name"
 msgstr ""
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1003
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1027
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "No"
 msgstr ""
@@ -457,7 +454,7 @@ msgid "Report"
 msgstr ""
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:894
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "Report %s"
 msgstr ""
@@ -512,8 +509,7 @@ msgid "Title"
 msgstr ""
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1656
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1663
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "Total"
 msgstr ""
@@ -564,15 +560,23 @@ msgid "Type"
 msgstr ""
 
 #. module: hr_utilization_report
-#: model:ir.actions.report,name:hr_utilization_report.action_report_qweb_html
 #: model:ir.actions.report,name:hr_utilization_report.action_report_qweb_pdf
-#: model:ir.actions.report,name:hr_utilization_report.action_report_xlsx
 msgid "Utilization Report"
+msgstr ""
+
+#. module: hr_utilization_report
+#: model:ir.actions.report,name:hr_utilization_report.action_report_qweb_html
+msgid "Utilization Report HTML"
 msgstr ""
 
 #. module: hr_utilization_report
 #: model:ir.ui.menu,name:hr_utilization_report.menu_timesheet_report_wizard
 msgid "Utilization Report Wizard"
+msgstr ""
+
+#. module: hr_utilization_report
+#: model:ir.actions.report,name:hr_utilization_report.action_report_xlsx
+msgid "Utilization Report XLSX"
 msgstr ""
 
 #. module: hr_utilization_report
@@ -587,7 +591,7 @@ msgid "Utilization,"
 msgstr ""
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1058
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "Utilization, %"
 msgstr ""
@@ -605,8 +609,7 @@ msgid "Wizard"
 msgstr ""
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:995
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:1019
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "Yes"
 msgstr ""
@@ -617,7 +620,7 @@ msgid "report.hr_utilization_report.report"
 msgstr ""
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:232
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "{l} » {r}"
 msgstr ""
