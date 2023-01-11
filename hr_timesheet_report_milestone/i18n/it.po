@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-23 11:07+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-01-12 03:49+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: hr_timesheet_report_milestone
 #: model:ir.model,name:hr_timesheet_report_milestone.model_account_analytic_line
@@ -32,17 +32,17 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:hr_timesheet_report_milestone.field_hr_timesheet_report__analytic_line_domain
 #: model:ir.model.fields,field_description:hr_timesheet_report_milestone.field_hr_timesheet_report_wizard__analytic_line_domain
 msgid "Filter Timesheet"
-msgstr "Filtra fogli ore"
+msgstr "Filtra scheda ore"
 
 #. module: hr_timesheet_report_milestone
 #: model:ir.model,name:hr_timesheet_report_milestone.model_hr_timesheet_report
 msgid "HR Timesheet Report"
-msgstr "Report fogli ore HR"
+msgstr "Resoconto scheda ore HR"
 
 #. module: hr_timesheet_report_milestone
 #: model:ir.model,name:hr_timesheet_report_milestone.model_hr_timesheet_report_wizard
 msgid "HR Timesheet Report Wizard"
-msgstr "Wizard report fogli ore HR"
+msgstr "Procedura guidata resoconto fogli ore HR"
 
 #. module: hr_timesheet_report_milestone
 #: model:ir.model.fields,field_description:hr_timesheet_report_milestone.field_account_analytic_line__id
@@ -67,4 +67,4 @@ msgstr "Milestone"
 #. module: hr_timesheet_report_milestone
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_report_milestone.hr_timesheet_report_wizard_form
 msgid "Select timesheet"
-msgstr "Seleziona foglio ore"
+msgstr "Seleziona scheda ore"
