@@ -466,7 +466,6 @@ msgstr "Titre"
 
 #. module: hr_timesheet_report
 #: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:0
-#: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:0
 #, python-format
 msgid "Total"
 msgstr ""
