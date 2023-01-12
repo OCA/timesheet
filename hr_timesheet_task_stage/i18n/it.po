@@ -6,74 +6,76 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-01-12 09:44+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_form
 msgid "<span class=\"text-danger\">Closed</span>"
-msgstr ""
+msgstr "<span class=\"text-danger\">Chiusa</span>"
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_form
 msgid "<span class=\"text-success\">Open</span>"
-msgstr ""
+msgstr "<span class=\"text-success\">Aperta</span>"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model,name:hr_timesheet_task_stage.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Riga analitica"
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
 msgid "Close task"
-msgstr ""
+msgstr "Lavoro chiuso"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
 msgid "Closing Stage"
-msgstr ""
+msgstr "Chiusura fase"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
 msgid "Open task"
-msgstr ""
+msgstr "Lavoro aperto"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
 msgid "Tasks in this stage are considered as closed."
-msgstr ""
+msgstr "I lavori in questa fase sono considerati chiusi."
 
 #. module: hr_timesheet_task_stage
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" checked. Please mark any."
-msgstr ""
+msgstr "Nessuna fase è marcata come \"Chiusa\". Impostarne una."
 
 #. module: hr_timesheet_task_stage
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
-msgstr ""
+msgstr "Tutte le fasi sono marcate come \"Chiusa\". Deselezionarne una."
