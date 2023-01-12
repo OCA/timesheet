@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-12 03:49+0000\n"
+"PO-Revision-Date: 2023-01-12 09:44+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -35,7 +35,7 @@ msgstr "Riga analitica"
 #. module: hr_timesheet_sheet_autodraft
 #: model:ir.actions.server,name:hr_timesheet_sheet_autodraft.action_autodraft_timesheet_sheets
 msgid "Auto-draft Timesheet Sheet(s)"
-msgstr "Compilazione automatica foglio(i) scheda ore"
+msgstr "Compilazione automatica scheda(e) foglio ore"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_autodraft.res_config_settings_view_form
@@ -48,17 +48,17 @@ msgid ""
 "Auto-draft Timesheet Sheets whenever a Timesheet entry is created or "
 "modified to ensure it's covered by a relevant Timesheet Sheet"
 msgstr ""
-"Compilazione automatica dei fogli scheda ore ogni volta che una voce della "
-"scheda ore viene creata o modificata per garantire che sia coperta da un "
-"foglio della scheda ore pertinente"
+"Compilazione automatica delle schede foglio ore ogni volta che una voce del "
+"foglio ore viene creata o modificata per garantire che sia coperta da una "
+"scheda del foglio ore pertinente"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_autodraft.res_config_settings_view_form
 msgid ""
 "Check to enable Timesheet Sheet(s) auto-drafting on Timesheet altering."
 msgstr ""
-"Selezionare per abilitare la redazione automatica dei fogli(o) della scheda "
-"ore durante la modifica della scheda ore."
+"Selezionare per abilitare la redazione automatica della scheda(e) del foglio "
+"ore durante la modifica del foglio ore."
 
 #. module: hr_timesheet_sheet_autodraft
 #: model:ir.model,name:hr_timesheet_sheet_autodraft.model_res_company
