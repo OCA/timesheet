@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-31 04:45+0000\n"
-"PO-Revision-Date: 2023-01-12 03:49+0000\n"
+"PO-Revision-Date: 2023-01-12 09:44+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -27,7 +27,7 @@ msgstr "Riga analitica"
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_hr_timesheet_switch
 msgid "Helper to quickly switch between timesheet lines"
-msgstr "Assistente per passare rapidamente tra le righe scheda ore"
+msgstr "Assistente per passare rapidamente tra le righe foglio ore"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_crm_lead
@@ -63,4 +63,4 @@ msgstr "Termine lavoro"
 #: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__timesheet_ids
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
 msgid "Timesheet"
-msgstr "Scheda ore"
+msgstr "Foglio ore"
