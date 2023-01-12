@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2023-01-12 03:49+0000\n"
+"PO-Revision-Date: 2023-01-12 09:44+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/odoo/teams/41243/it/)\n"
 "Language: it\n"
@@ -51,7 +51,7 @@ msgstr "<span class=\"text-muted text-nowrap\">Tempo totale</span>"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line_abstract
 msgid "Abstract Timesheet Sheet Line"
-msgstr "Estratto riga foglio scheda ore"
+msgstr "Estratto riga scheda foglio ore"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_warning
@@ -92,7 +92,7 @@ msgstr "Aggiungi nuova riga"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_all_timesheets
 msgid "All Timesheet Sheets"
-msgstr "Tutti i fogli della scheda ore"
+msgstr "Tutte le schede del foglio ore"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
