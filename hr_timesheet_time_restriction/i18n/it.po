@@ -22,6 +22,11 @@ msgid "Analytic Line"
 msgstr "Riga analitica"
 
 #. module: hr_timesheet_time_restriction
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_restriction.res_config_settings_view_form
+msgid "Auto-enable Timesheet restriction"
+msgstr ""
+
+#. module: hr_timesheet_time_restriction
 #: model:ir.model,name:hr_timesheet_time_restriction.model_res_config_settings
 msgid "Config Settings"
 msgstr "Impostazioni configurazione"
@@ -91,6 +96,17 @@ msgid "Timesheet Restriction Days"
 msgstr "Giorni restrizione foglio ore"
 
 #. module: hr_timesheet_time_restriction
+#: model:ir.model.fields,field_description:hr_timesheet_time_restriction.field_project_project__use_timesheet_restriction
+#: model:ir.model.fields,field_description:hr_timesheet_time_restriction.field_res_config_settings__use_timesheet_restriction
+msgid "Use Timesheet Restriction"
+msgstr ""
+
+#. module: hr_timesheet_time_restriction
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_restriction.edit_project
+msgid "Use timesheet restriction"
+msgstr ""
+
+#. module: hr_timesheet_time_restriction
 #: code:addons/hr_timesheet_time_restriction/models/res_config_settings.py:0
 #, python-format
 msgid "Warning!"
@@ -99,7 +115,18 @@ msgstr "Attenzione!"
 #. module: hr_timesheet_time_restriction
 #: code:addons/hr_timesheet_time_restriction/models/account_analytic_line.py:0
 #, python-format
-msgid ""
-"You cannot change or create a timesheet with a specified \"date\" in the "
-"past."
-msgstr "Non puoi modificare o creare un foglio ore con una data nel passato."
+msgid "You cannot set a timesheet for a date different from current date"
+msgstr ""
+
+#. module: hr_timesheet_time_restriction
+#: code:addons/hr_timesheet_time_restriction/models/account_analytic_line.py:0
+#, python-format
+msgid "You cannot set a timesheet more than {days} days from current date."
+msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "You cannot change or create a timesheet with a specified \"date\" in the "
+#~ "past."
+#~ msgstr ""
+#~ "Non puoi modificare o creare un foglio ore con una data nel passato."
