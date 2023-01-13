@@ -15,12 +15,28 @@ class ProjectProject(models.Model):
         """
         Check that the `timesheet_restriction_days` is positive
         """
+        use_timesheet_restriction = (
+            True
+            if self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("hr_timesheet_time_restriction.use_timesheet_restriction", False)
+            else False
+        )
         for record in self:
-            if record.timesheet_restriction_days < 0:
-                raise ValidationError(
-                    _("The day of the timesheet restriction must not be negative.")
-                )
+            if use_timesheet_restriction:
+                if record.timesheet_restriction_days < 0:
+                    raise ValidationError(
+                        _("The day of the timesheet restriction must not be negative.")
+                    )
 
     timesheet_restriction_days = fields.Integer(
         default=0, help="Not active if equal to 0."
+    )
+
+    use_timesheet_restriction = fields.Boolean(
+        default=lambda self: True
+        if self.env["ir.config_parameter"]
+        .sudo()
+        .get_param("hr_timesheet_time_restriction.use_timesheet_restriction", False)
+        else False
     )

@@ -29,3 +29,7 @@ class ResConfigSettings(models.TransientModel):
         config_parameter="hr_timesheet_time_restriction.timesheet_restriction_days",
         default=0,
     )
+
+    use_timesheet_restriction = fields.Boolean(
+        config_parameter="hr_timesheet_time_restriction.use_timesheet_restriction"
+    )
