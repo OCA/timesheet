@@ -17,7 +17,6 @@ class HrUtilizationAnalysis(models.TransientModel):
     date_from = fields.Date(string="Start Date", required=True)
     date_to = fields.Date(string="End Date", required=True)
     only_active_employees = fields.Boolean(
-        string="Only Active Employees",
         default=True,
     )
     employee_ids = fields.Many2many(string="Employees", comodel_name="hr.employee")
@@ -113,17 +112,16 @@ class HrUtilizationAnalysisEntry(models.TransientModel):
         related="employee_id.parent_id",
         store=True,
     )
-    date = fields.Date(string="Date", required=True)
+    date = fields.Date(required=True)
     line_ids = fields.Many2many(
         string="Timesheet Lines",
         comodel_name="account.analytic.line",
         compute="_compute_line_ids",
         store=True,
     )
-    capacity = fields.Float(string="Capacity", compute="_compute_capacity", store=True)
+    capacity = fields.Float(compute="_compute_capacity", store=True)
     amount = fields.Float(string="Quantity", compute="_compute_amount", store=True)
     difference = fields.Float(
-        string="Difference",
         compute="_compute_difference",
         store=True,
     )

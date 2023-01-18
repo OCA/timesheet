@@ -12,7 +12,6 @@ class HrUtilizationAnalysisWizard(models.TransientModel):
     date_from = fields.Date(string="Start Date", required=True)
     date_to = fields.Date(string="End Date", required=True)
     only_active_employees = fields.Boolean(
-        string="Only Active Employees",
         default=True,
     )
     employee_ids = fields.Many2many(string="Employees", comodel_name="hr.employee")
