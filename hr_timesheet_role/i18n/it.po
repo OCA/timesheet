@@ -6,19 +6,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-01-19 13:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: hr_timesheet_role
 #: code:addons/hr_timesheet_role/models/account_analytic_line.py:0
 #, python-format
 msgid "%s can not act as %s on %s project"
-msgstr ""
+msgstr "%s non può agire come %s nel progetto %s"
 
 #. module: hr_timesheet_role
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
@@ -27,49 +29,54 @@ msgid ""
 "specific.\" role=\"img\" aria-label=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
+"specifici per azienda.\" role=\"img\" aria-label=\"I valori impostati qui "
+"sono specifici per azienda.\" groups=\"base.group_multi_company\"/>"
 
 #. module: hr_timesheet_role
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.report_timesheet
 msgid "<span>Role</span>"
-msgstr ""
+msgstr "<span>Ruolo</span>"
 
 #. module: hr_timesheet_role
 #: model:ir.model,name:hr_timesheet_role.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Riga analitica"
 
 #. module: hr_timesheet_role
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
 msgid "Check to require role to be selected when using Timesheets."
 msgstr ""
+"Selezionare per richiedere che il ruolo sia impostato quando si usano i "
+"fogli ore."
 
 #. module: hr_timesheet_role
 #: model:ir.model,name:hr_timesheet_role.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: hr_timesheet_role
 #: model:ir.model,name:hr_timesheet_role.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: hr_timesheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__limit_role_to_assignments
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_hr_timesheet_switch__limit_role_to_assignments
 msgid "Limit role to assignments"
-msgstr ""
+msgstr "Limita ruolo agli incarichi"
 
 #. module: hr_timesheet_role
 #: model:ir.model,name:hr_timesheet_role.model_project_project
 msgid "Project"
-msgstr ""
+msgstr "Progetto"
 
 #. module: hr_timesheet_role
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.edit_project
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.project_project_view_form_simplified
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
 msgid "Require role in Timesheets"
-msgstr ""
+msgstr "Richiede il ruolo nei fogli ore"
 
 #. module: hr_timesheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__role_id
@@ -77,7 +84,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.account_analytic_line_search
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.portal_timesheet_table
 msgid "Role"
-msgstr ""
+msgstr "Ruolo"
 
 #. module: hr_timesheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__is_role_required
@@ -86,10 +93,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_res_company__is_timesheet_role_required
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_res_config_settings__is_timesheet_role_required
 msgid "Timesheet Role Required"
-msgstr ""
+msgstr "Ruolo fogli ore richiesto"
 
 #. module: hr_timesheet_role
 #: code:addons/hr_timesheet_role/models/account_analytic_line.py:0
 #, python-format
 msgid "unassigned"
-msgstr ""
+msgstr "non assegnato"
