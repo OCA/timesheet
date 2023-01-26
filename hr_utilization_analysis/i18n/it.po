@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-19 13:45+0000\n"
+"PO-Revision-Date: 2023-01-26 12:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -138,17 +138,17 @@ msgstr "Raggruppa per"
 #. module: hr_utilization_analysis
 #: model:ir.model,name:hr_utilization_analysis.model_hr_utilization_analysis
 msgid "HR Utilization Analysis"
-msgstr "Analisi impiago HR"
+msgstr "Analisi utilizzo RU"
 
 #. module: hr_utilization_analysis
 #: model:ir.model,name:hr_utilization_analysis.model_hr_utilization_analysis_wizard
 msgid "HR Utilization Analysis Wizard"
-msgstr "Procedura guidata analisi impiego HR"
+msgstr "Procedura guidata analisi utilizzo RU"
 
 #. module: hr_utilization_analysis
 #: model:ir.model,name:hr_utilization_analysis.model_hr_utilization_analysis_entry
 msgid "HR Utilization Analysis entry"
-msgstr "Voce analisi impiego HR"
+msgstr "Voce analisi utilizzo RU"
 
 #. module: hr_utilization_analysis
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis__id
@@ -227,19 +227,19 @@ msgstr "Differenza totale"
 #: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_pivot
 #: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_entry_search
 msgid "Utilization"
-msgstr "Impiego"
+msgstr "Utilizzo"
 
 #. module: hr_utilization_analysis
 #: code:addons/hr_utilization_analysis/wizards/hr_utilization_analysis_wizard.py:0
 #, python-format
 msgid "Utilization Analysis"
-msgstr "Analisi impiego"
+msgstr "Analisi utilizzo"
 
 #. module: hr_utilization_analysis
 #: model:ir.actions.act_window,name:hr_utilization_analysis.action_utilization_analysis_wizard
 #: model:ir.ui.menu,name:hr_utilization_analysis.menu_timesheet_analysis_wizard
 msgid "Utilization Analysis Wizard"
-msgstr "Procedura guidata analisi impiego"
+msgstr "Procedura guidata analisi utilizzo"
 
 #. module: hr_utilization_analysis
 #: model_terms:ir.ui.view,arch_db:hr_utilization_analysis.hr_utilization_analysis_wizard_form
@@ -250,4 +250,4 @@ msgstr "Vista"
 #: model:ir.actions.server,name:hr_utilization_analysis.action_utilization_analysis_wizard_from_departments
 #: model:ir.actions.server,name:hr_utilization_analysis.action_utilization_analysis_wizard_from_employees
 msgid "View Utilization Analysis"
-msgstr "Vista analisi impiego"
+msgstr "Vista analisi utilizzo"
