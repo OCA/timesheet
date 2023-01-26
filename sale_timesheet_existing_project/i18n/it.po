@@ -6,82 +6,88 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-01-26 15:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_timesheet_existing_project
 #: selection:product.template,service_tracking:0
 msgid "Create a new project but no task"
-msgstr ""
+msgstr "Crea un nuovo progetto ma non un lavoro"
 
 #. module: sale_timesheet_existing_project
 #: selection:product.template,service_tracking:0
 msgid "Create a task in a new project"
-msgstr ""
+msgstr "Crea un lavoro in un progetto"
 
 #. module: sale_timesheet_existing_project
 #: selection:product.template,service_tracking:0
 msgid "Create a task in an existing project"
-msgstr ""
+msgstr "Crea un lavoro in un progetto esistente"
 
 #. module: sale_timesheet_existing_project
 #: selection:product.template,service_tracking:0
 msgid "Create a task in sale order's project"
-msgstr ""
+msgstr "Crea un lavoro in un progetto di un ordine di vendita"
 
 #. module: sale_timesheet_existing_project
 #: model:ir.model.fields,field_description:sale_timesheet_existing_project.field_sale_order__visible_project
 msgid "Display project"
-msgstr ""
+msgstr "Visualizza progetto"
 
 #. module: sale_timesheet_existing_project
 #: selection:product.template,service_tracking:0
 msgid "Don't create task"
-msgstr ""
+msgstr "Non creare il lavoro"
 
 #. module: sale_timesheet_existing_project
 #: model:ir.model.fields,help:sale_timesheet_existing_project.field_product_product__service_tracking
 #: model:ir.model.fields,help:sale_timesheet_existing_project.field_product_template__service_tracking
 msgid "On Sales order confirmation, this product can generate a project and/or task. From those, you can track the service you are selling."
 msgstr ""
+"Alla conferma dell'ordine di vendita, questo prodotto può generare un "
+"progetto e/o un lavoro. Per questi si può tracciare il servizio che si sta "
+"vendendo."
 
 #. module: sale_timesheet_existing_project
 #: model:ir.model,name:sale_timesheet_existing_project.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: sale_timesheet_existing_project
 #: model:ir.model,name:sale_timesheet_existing_project.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modello prodotto"
 
 #. module: sale_timesheet_existing_project
 #: model:ir.model.fields,field_description:sale_timesheet_existing_project.field_sale_order__project_id
 msgid "Project"
-msgstr ""
+msgstr "Progetto"
 
 #. module: sale_timesheet_existing_project
 #: model:ir.model,name:sale_timesheet_existing_project.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_timesheet_existing_project
 #: model:ir.model,name:sale_timesheet_existing_project.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Riga ordini di vendita"
 
 #. module: sale_timesheet_existing_project
 #: model:ir.model.fields,help:sale_timesheet_existing_project.field_sale_order__project_id
 msgid "Select a non billable project on which tasks can be created."
 msgstr ""
+"Selezionare un progetto non fatturabile nel quale si possono creare lavori."
 
 #. module: sale_timesheet_existing_project
 #: model:ir.model.fields,field_description:sale_timesheet_existing_project.field_product_product__service_tracking
 #: model:ir.model.fields,field_description:sale_timesheet_existing_project.field_product_template__service_tracking
 msgid "Service Tracking"
-msgstr ""
+msgstr "Tracciamento servizio"
