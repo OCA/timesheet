@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-12 03:49+0000\n"
+"PO-Revision-Date: 2023-01-26 12:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -265,52 +265,52 @@ msgstr "Gruppi"
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report
 msgid "HR Timesheet Report"
-msgstr "Report fogli ore HR"
+msgstr "Report fogli ore RU"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_wizard
 msgid "HR Timesheet Report Wizard"
-msgstr "Wizard report fogli ore HR"
+msgstr "Procedura guidata foglio ore RU"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_wizard_field
 msgid "HR Timesheet Report Wizard field"
-msgstr "Campo wizard report fogli ore HR"
+msgstr "Campo procedura guidata resoconto foglio ore RU"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_wizard_field_details
 msgid "HR Timesheet Report Wizard field (details)"
-msgstr "Campo wizard report fogli ore HR (dettagli)"
+msgstr "Campo procedura guidata resoconto foglio ore RU (dettagli)"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_wizard_field_grouping
 msgid "HR Timesheet Report Wizard field (grouping)"
-msgstr "Campo wizard report fogli ore HR (raggruppamento)"
+msgstr "Campo procedura guidata resoconto foglio ore RU (raggruppamento)"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_entry
 msgid "HR Timesheet Report entry"
-msgstr "Voce Report fogli ore HR"
+msgstr "Voce resoconto foglio ore RU"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_field
 msgid "HR Timesheet Report field"
-msgstr "Campo report fogli ore HR"
+msgstr "Campo resoconto foglio ore RU"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_field_entry
 msgid "HR Timesheet Report field (entry)"
-msgstr "Campo report fogli ore HR (voce)"
+msgstr "Campo resoconto foglio ore RU (voce)"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_field_groupby
 msgid "HR Timesheet Report field (groupby)"
-msgstr "Campo report fogli ore HR (raggruppa per)"
+msgstr "Campo resoconto foglio ore RU (raggruppa per)"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_group
 msgid "HR Timesheet Report group"
-msgstr "Gruppo report fogli ore HR"
+msgstr "Gruppo resoconto foglio ore RU"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__has_line_ids
