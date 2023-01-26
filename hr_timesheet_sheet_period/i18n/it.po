@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-10 03:20+0000\n"
+"PO-Revision-Date: 2023-01-26 12:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -29,7 +29,7 @@ msgstr "Giorno"
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_period.field_hr_timesheet_sheet__is_hr_period_required
 msgid "Is Hr Period Required"
-msgstr "È richiesto il periodo HR"
+msgstr "È richiesto il periodo RU"
 
 #. module: hr_timesheet_sheet_period
 #: selection:res.company,sheet_range:0
