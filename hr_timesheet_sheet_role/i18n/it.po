@@ -6,53 +6,57 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-01-26 12:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: hr_timesheet_sheet_role
 #: model:ir.model,name:hr_timesheet_sheet_role.model_hr_timesheet_sheet_line_abstract
 msgid "Abstract Timesheet Sheet Line"
-msgstr ""
+msgstr "Sintesi riga scheda fogli ore"
 
 #. module: hr_timesheet_sheet_role
 #: model:ir.model.fields,help:hr_timesheet_sheet_role.field_hr_timesheet_sheet__add_line_role_id
 msgid "If selected, the associated role is added to the timesheet sheet when clicked the button."
 msgstr ""
+"Se selezionato, il ruolo selezionato viene aggiunto alla scheda foglio ore "
+"quando si fa clic sul pulsante."
 
 #. module: hr_timesheet_sheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_role.field_hr_timesheet_sheet__add_line_limit_role_to_assignments
 msgid "Limit role to assignments"
-msgstr ""
+msgstr "Limita ruolo alle assegnazioni"
 
 #. module: hr_timesheet_sheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_role.field_hr_timesheet_sheet_line__role_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_role.field_hr_timesheet_sheet_line_abstract__role_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_role.field_hr_timesheet_sheet_new_analytic_line__role_id
 msgid "Role"
-msgstr ""
+msgstr "Ruolo"
 
 #. module: hr_timesheet_sheet_role
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_role.field_hr_timesheet_sheet__add_line_role_id
 msgid "Select Role"
-msgstr ""
+msgstr "Seleziona ruolo"
 
 #. module: hr_timesheet_sheet_role
 #: code:addons/hr_timesheet_sheet_role/models/hr_timesheet_sheet.py:33
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Role must be the same."
-msgstr ""
+msgstr "L'azienda nella scheda foglio ore e nel ruolo deve essere la stessa."
 
 #. module: hr_timesheet_sheet_role
 #: model:ir.model,name:hr_timesheet_sheet_role.model_hr_timesheet_sheet
 msgid "Timesheet Sheet"
-msgstr ""
+msgstr "Scheda foglio ore"
 
 #. module: hr_timesheet_sheet_role
 #: model:ir.model,name:hr_timesheet_sheet_role.model_hr_timesheet_sheet_new_analytic_line
 msgid "Timesheet Sheet New Analytic Line"
-msgstr ""
+msgstr "Nuova riga analitica scheda foglio ore"
