@@ -1,0 +1,87 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_timesheet_existing_project
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: sale_timesheet_existing_project
+#: selection:product.template,service_tracking:0
+msgid "Create a new project but no task"
+msgstr ""
+
+#. module: sale_timesheet_existing_project
+#: selection:product.template,service_tracking:0
+msgid "Create a task in a new project"
+msgstr ""
+
+#. module: sale_timesheet_existing_project
+#: selection:product.template,service_tracking:0
+msgid "Create a task in an existing project"
+msgstr ""
+
+#. module: sale_timesheet_existing_project
+#: selection:product.template,service_tracking:0
+msgid "Create a task in sale order's project"
+msgstr ""
+
+#. module: sale_timesheet_existing_project
+#: model:ir.model.fields,field_description:sale_timesheet_existing_project.field_sale_order__visible_project
+msgid "Display project"
+msgstr ""
+
+#. module: sale_timesheet_existing_project
+#: selection:product.template,service_tracking:0
+msgid "Don't create task"
+msgstr ""
+
+#. module: sale_timesheet_existing_project
+#: model:ir.model.fields,help:sale_timesheet_existing_project.field_product_product__service_tracking
+#: model:ir.model.fields,help:sale_timesheet_existing_project.field_product_template__service_tracking
+msgid "On Sales order confirmation, this product can generate a project and/or task. From those, you can track the service you are selling."
+msgstr ""
+
+#. module: sale_timesheet_existing_project
+#: model:ir.model,name:sale_timesheet_existing_project.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: sale_timesheet_existing_project
+#: model:ir.model,name:sale_timesheet_existing_project.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: sale_timesheet_existing_project
+#: model:ir.model.fields,field_description:sale_timesheet_existing_project.field_sale_order__project_id
+msgid "Project"
+msgstr ""
+
+#. module: sale_timesheet_existing_project
+#: model:ir.model,name:sale_timesheet_existing_project.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_timesheet_existing_project
+#: model:ir.model,name:sale_timesheet_existing_project.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_timesheet_existing_project
+#: model:ir.model.fields,help:sale_timesheet_existing_project.field_sale_order__project_id
+msgid "Select a non billable project on which tasks can be created."
+msgstr ""
+
+#. module: sale_timesheet_existing_project
+#: model:ir.model.fields,field_description:sale_timesheet_existing_project.field_product_product__service_tracking
+#: model:ir.model.fields,field_description:sale_timesheet_existing_project.field_product_template__service_tracking
+msgid "Service Tracking"
+msgstr ""
