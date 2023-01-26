@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-12 22:44+0000\n"
+"PO-Revision-Date: 2023-01-26 12:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -311,57 +311,57 @@ msgstr "Gruppi"
 #. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_wizard_field_grouping
 msgid "HR Uimesheet Report Wizard field (grouping)"
-msgstr "Campo procedura guidata resoconto foglio ore HR (raggruppamento)"
+msgstr "Campo procedura guidata resoconto foglio ore RU (raggruppamento)"
 
 #. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_hr_utilization_report
 msgid "HR Utilization Report"
-msgstr "Resoconto utilizzo HR"
+msgstr "Resoconto utilizzo RU"
 
 #. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_wizard_field
 msgid "HR Utilization Report Wizard field"
-msgstr "Campo procedura guidata resoconto utilizzo HR"
+msgstr "Campo procedura guidata resoconto utilizzo RU"
 
 #. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_wizard_field_details
 msgid "HR Utilization Report Wizard field (details)"
-msgstr "Campo procedura guidata resoconto utilizzo HR (dettagli)"
+msgstr "Campo procedura guidata resoconto utilizzo RU (dettagli)"
 
 #. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_block
 msgid "HR Utilization Report block"
-msgstr "Blocco resoconto utilizzo HR"
+msgstr "Blocco resoconto utilizzo RU"
 
 #. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_entry
 msgid "HR Utilization Report entry"
-msgstr "Voce resoconto utilizzo HR"
+msgstr "Voce resoconto utilizzo RU"
 
 #. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_field
 msgid "HR Utilization Report field"
-msgstr "Campo resoconto utilizzo HR"
+msgstr "Campo resoconto utilizzo RU"
 
 #. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_field_entry
 msgid "HR Utilization Report field (entry)"
-msgstr "Campo resoconto utilizzo HR (voce)"
+msgstr "Campo resoconto utilizzo RU (voce)"
 
 #. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_field_groupby
 msgid "HR Utilization Report field (groupby)"
-msgstr "Campo resoconto utilizzo HR (raggruppa per)"
+msgstr "Campo resoconto utilizzo RU (raggruppa per)"
 
 #. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_group
 msgid "HR Utilization Report group"
-msgstr "Gruppo resoconto utilizzo HR"
+msgstr "Gruppo resoconto utilizzo RU"
 
 #. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_hr_utilization_report_wizard
 msgid "HR utilization Report Wizard"
-msgstr "Procedura guidata resoconto utilizzo HR"
+msgstr "Procedura guidata resoconto utilizzo RU"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__has_multientry_blocks
