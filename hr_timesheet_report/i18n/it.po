@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-26 12:45+0000\n"
+"PO-Revision-Date: 2023-01-26 15:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -205,116 +205,116 @@ msgstr "Campo"
 #: sql_constraint:hr.timesheet.report.field.entry:0
 #: sql_constraint:hr.timesheet.report.field.groupby:0
 msgid "Field can be reported only once!"
-msgstr "Il campo può essere usato solo una volta"
+msgstr "Il campo può essere usato solo una volta!"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__field_name
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__field_name
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__field_name
 msgid "Field name"
-msgstr ""
+msgstr "Nome campo"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__field_title
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__field_title
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__field_title
 msgid "Field title"
-msgstr ""
+msgstr "Titolo campo"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__field_type
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__field_type
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__field_type
 msgid "Field type"
-msgstr ""
+msgstr "Tipo campo"
 
 #. module: hr_timesheet_report
 #: model:ir.actions.act_window,name:hr_timesheet_report.action_timesheet_report_wizard
 #: model:ir.actions.server,name:hr_timesheet_report.action_timesheet_report_wizard_from_selection
 msgid "Generate Timesheet Report"
-msgstr ""
+msgstr "Genera resoconto foglio ore"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__group_id
 msgid "Group"
-msgstr ""
+msgstr "Gruppo"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__groupby_field_ids
 msgid "Group-By Fields"
-msgstr ""
+msgstr "Campi raggruppa per"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__groupby
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_entry__groupby
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__groupby
 msgid "Group-by expression"
-msgstr ""
+msgstr "Espressione raggruppa per"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__grouping_field_ids
 msgid "Grouping Fields"
-msgstr ""
+msgstr "Campi raggruppamento"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__group_ids
 msgid "Groups"
-msgstr ""
+msgstr "Gruppi"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report
 msgid "HR Timesheet Report"
-msgstr ""
+msgstr "Resoconto foglio ore RU"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_wizard
 msgid "HR Timesheet Report Wizard"
-msgstr ""
+msgstr "Procedura guidata resoconto foglio ore RU"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_wizard_field
 msgid "HR Timesheet Report Wizard field"
-msgstr ""
+msgstr "Campo procedura guidata foglio ore RU"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_wizard_field_details
 msgid "HR Timesheet Report Wizard field (details)"
-msgstr ""
+msgstr "Campo procedura guidata foglio ore RU (dettagli)"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_wizard_field_grouping
 msgid "HR Timesheet Report Wizard field (grouping)"
-msgstr ""
+msgstr "Campo procedura guidata foglio ore RU (raggruppato)"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_entry
 msgid "HR Timesheet Report entry"
-msgstr ""
+msgstr "Voce resoconto foglio ore RU"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_field
 msgid "HR Timesheet Report field"
-msgstr ""
+msgstr "Campo resoconto foglio ore RU"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_field_entry
 msgid "HR Timesheet Report field (entry)"
-msgstr ""
+msgstr "Campo resoconto foglio ore RU (voce)"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_field_groupby
 msgid "HR Timesheet Report field (groupby)"
-msgstr ""
+msgstr "Campo resoconto foglio ore RU (raggruppato)"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_hr_timesheet_report_group
 msgid "HR Timesheet Report group"
-msgstr ""
+msgstr "Gruppo resoconto foglio ore RU"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__has_line_ids
 msgid "Has lines (technical)"
-msgstr ""
+msgstr "Ha righe (tecnico)"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__id
@@ -329,7 +329,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__id
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_report_hr_timesheet_report_report__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report____last_update
@@ -344,7 +344,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_report_hr_timesheet_report_report____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__write_uid
@@ -356,7 +356,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__write_uid
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__write_date
@@ -368,23 +368,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__write_date
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__name
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__project_ids
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__project_ids
 msgid "Projects"
-msgstr ""
+msgstr "Progetti"
 
 #. module: hr_timesheet_report
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
 msgid "Projects:"
-msgstr ""
+msgstr "Progetti:"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field__report_id
@@ -392,19 +392,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__report_id
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__report_id
 msgid "Report"
-msgstr ""
+msgstr "Resoconto"
 
 #. module: hr_timesheet_report
 #: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:490
 #, python-format
 msgid "Report %s"
-msgstr ""
+msgstr "Resoconto %s"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__scope
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__scope
 msgid "Scope"
-msgstr ""
+msgstr "Ambito"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__sequence
@@ -416,110 +416,110 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__sequence
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sequenza"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__date_from
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__date_from
 msgid "Start Date"
-msgstr ""
+msgstr "Data partenza"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__task_ids
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__task_ids
 msgid "Tasks"
-msgstr ""
+msgstr "Lavori"
 
 #. module: hr_timesheet_report
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
 msgid "Tasks:"
-msgstr ""
+msgstr "Lavori:"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__time_format
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__time_format
 msgid "Time format"
-msgstr ""
+msgstr "Formato orario"
 
 #. module: hr_timesheet_report
 #: model:ir.actions.report,name:hr_timesheet_report.action_report_qweb_html
 #: model:ir.actions.report,name:hr_timesheet_report.action_report_qweb_pdf
 #: model:ir.actions.report,name:hr_timesheet_report.action_report_xlsx
 msgid "Timesheet Report"
-msgstr ""
+msgstr "Resoconto foglio ore"
 
 #. module: hr_timesheet_report
 #: model:ir.ui.menu,name:hr_timesheet_report.menu_timesheet_report_wizard
 msgid "Timesheet Report Wizard"
-msgstr ""
+msgstr "Procedura guidata foglio ore"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field__field_title
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__field_title
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__field_title
 msgid "Title"
-msgstr ""
+msgstr "Titolo"
 
 #. module: hr_timesheet_report
 #: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:586
 #: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:593
 #, python-format
 msgid "Total"
-msgstr ""
+msgstr "Totale"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__total_unit_amount
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__total_unit_amount
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__total_unit_amount
 msgid "Total Quantity"
-msgstr ""
+msgstr "Quantità totale"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field__field_type
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__field_type
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__field_type
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: hr_timesheet_report
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_report.hr_timesheet_report_wizard_form
 msgid "View"
-msgstr ""
+msgstr "Visualizza"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field__wizard_id
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_details__wizard_id
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard_field_grouping__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Procedura guidata"
 
 #. module: hr_timesheet_report
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
 msgid "on"
-msgstr ""
+msgstr "su"
 
 #. module: hr_timesheet_report
 #: model:ir.model,name:hr_timesheet_report.model_report_hr_timesheet_report_report
 msgid "report.hr_timesheet_report.report"
-msgstr ""
+msgstr "report.hr_timesheet_report.report"
 
 #. module: hr_timesheet_report
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
 msgid "selected entries"
-msgstr ""
+msgstr "voci selezionate"
 
 #. module: hr_timesheet_report
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
 msgid "since"
-msgstr ""
+msgstr "dal"
 
 #. module: hr_timesheet_report
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
 msgid "until"
-msgstr ""
+msgstr "fino a"
 
 #. module: hr_timesheet_report
 #: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:161
 #, python-format
 msgid "{l} » {r}"
-msgstr ""
+msgstr "{l} » {r}"
