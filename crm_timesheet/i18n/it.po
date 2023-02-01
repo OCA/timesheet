@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-31 04:45+0000\n"
-"PO-Revision-Date: 2023-02-01 16:48+0000\n"
+"PO-Revision-Date: 2023-02-01 19:46+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -48,7 +48,7 @@ msgstr "Progetto"
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
 msgid "Start work"
-msgstr "Inizia"
+msgstr "Avvia lavoro"
 
 #. module: crm_timesheet
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
