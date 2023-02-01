@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-31 04:45+0000\n"
-"PO-Revision-Date: 2023-01-10 02:53+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-02-01 19:45+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "Riga analitica"
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_hr_timesheet_switch
 msgid "Helper to quickly switch between timesheet lines"
-msgstr "Assistente per spostarsi rapidamente tra righe del foglio ore"
+msgstr "Assistente per spostarsi velocemente tra righe del foglio ore"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_crm_lead
@@ -48,7 +48,7 @@ msgstr "Progetto"
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
 msgid "Start work"
-msgstr "Inizio lavoro"
+msgstr "Avvia lavoro"
 
 #. module: crm_timesheet
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
