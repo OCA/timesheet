@@ -29,7 +29,7 @@ addon | version | maintainers | summary
 [hr_timesheet_purchase_order](hr_timesheet_purchase_order/) | 14.0.1.0.0 |  | HR Timesheet Purchase Order
 [hr_timesheet_report](hr_timesheet_report/) | 14.0.1.0.0 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | Generate Timesheet Report from Task Logs
 [hr_timesheet_report_milestone](hr_timesheet_report_milestone/) | 14.0.1.0.0 |  | Extend Timesheet by adding Milestone
-[hr_timesheet_sheet](hr_timesheet_sheet/) | 14.0.1.1.0 |  | Timesheet Sheets, Activities
+[hr_timesheet_sheet](hr_timesheet_sheet/) | 14.0.1.2.0 |  | Timesheet Sheets, Activities
 [hr_timesheet_sheet_activity](hr_timesheet_sheet_activity/) | 14.0.1.0.0 |  | Automatic activities related to submission and review of timesheet sheets
 [hr_timesheet_sheet_attendance](hr_timesheet_sheet_attendance/) | 14.0.1.0.0 |  | HR Timesheet Sheet Attendance
 [hr_timesheet_sheet_autodraft](hr_timesheet_sheet_autodraft/) | 14.0.1.0.0 |  | Automatically draft a Timesheet Sheet for every time entry that does not have a relevant Timesheet Sheet existing.
