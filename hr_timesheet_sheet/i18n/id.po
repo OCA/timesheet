@@ -873,6 +873,7 @@ msgstr "Baris absen"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_sheet_ids
 #, fuzzy
 msgid "Timesheet Sheets"
 msgstr "Baris absen"
