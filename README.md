@@ -33,7 +33,7 @@ addon | version | maintainers | summary
 [hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 13.0.1.0.1 |  | Timesheet Activities - Begin/End Hours
 [hr_timesheet_analysis](hr_timesheet_analysis/) | 13.0.1.0.1 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | Analyze tracked time in Pivot, Graph views
 [hr_timesheet_role](hr_timesheet_role/) | 13.0.1.0.0 |  | Track time on project according to the role assigned
-[hr_timesheet_sheet](hr_timesheet_sheet/) | 13.0.1.1.1 |  | Timesheet Sheets, Activities
+[hr_timesheet_sheet](hr_timesheet_sheet/) | 13.0.1.2.0 |  | Timesheet Sheets, Activities
 [hr_timesheet_sheet_autodraft](hr_timesheet_sheet_autodraft/) | 13.0.1.0.0 |  | Automatically draft a Timesheet Sheet for every time entry that does not have a relevant Timesheet Sheet existing.
 [hr_timesheet_sheet_autodraft_project](hr_timesheet_sheet_autodraft_project/) | 13.0.1.0.0 |  | Support per-project Timesheet Sheets auto-drafting.
 [hr_timesheet_sheet_policy_project_manager](hr_timesheet_sheet_policy_project_manager/) | 13.0.1.0.0 |  | Allows setting Project Manager as Reviewer
