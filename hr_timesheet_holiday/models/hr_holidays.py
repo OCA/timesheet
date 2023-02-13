@@ -80,9 +80,11 @@ class HrHolidays(models.Model):
             # Add analytic lines for these leave hours
             leave.analytic_line_ids.sudo(user.id).unlink()  # to be sure
             dt_from = fields.Datetime.from_string(leave.date_from)
+            dt_to = fields.Datetime.from_string(leave.date_to)
             dt_current = dt_from
             at_least_one_complete_day = False
-            for day in range(abs(int(leave.number_of_days))):
+            days_range = (dt_from - dt_to).days
+            for day in range(abs(int(days_range))):
                 dt_current = dt_from + timedelta(days=day)
                 at_least_one_complete_day = True
                 # skip the non work days
