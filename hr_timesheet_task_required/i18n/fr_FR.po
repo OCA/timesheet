@@ -40,34 +40,9 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: hr_timesheet_task_required
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_account_analytic_line__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_project_project__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_company__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_config_settings__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: hr_timesheet_task_required
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_account_analytic_line__id
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_project_project__id
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_company__id
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_config_settings__id
-msgid "ID"
-msgstr ""
-
-#. module: hr_timesheet_task_required
 #: model:ir.model.fields,field_description:hr_timesheet_task_required.field_account_analytic_line__is_task_required
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_hr_timesheet_switch__is_task_required
 msgid "Is Task Required"
 msgstr "Exiger une t??che"
-
-#. module: hr_timesheet_task_required
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_account_analytic_line____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_project_project____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_company____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_config_settings____last_update
-msgid "Last Modified on"
-msgstr ""
 
 #. module: hr_timesheet_task_required
 #: model:ir.model,name:hr_timesheet_task_required.model_project_project
@@ -85,10 +60,16 @@ msgstr "Exiger des t??ches sur les feuilles de temps"
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.res_config_settings_view_form
 msgid "Require task selection on each timesheet entry by default"
 msgstr ""
-"Exiger par d??faut la s??lection des t??ches sur chaque entr??e de feuille de "
-"temps"
+"Exiger par d??faut la s??lection des t??ches sur chaque entr??e de feuille "
+"de temps"
 
 #. module: hr_timesheet_task_required
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.project_invoice_form
+msgid "Set tasks on timesheet as a mandatory field"
+msgstr ""
+
+#. module: hr_timesheet_task_required
+#. odoo-python
 #: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:0
 #, python-format
 msgid "You must specify a task for timesheet lines."

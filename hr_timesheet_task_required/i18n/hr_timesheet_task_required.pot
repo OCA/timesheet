@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -64,6 +64,7 @@ msgid "Set tasks on timesheet as a mandatory field"
 msgstr ""
 
 #. module: hr_timesheet_task_required
+#. odoo-python
 #: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:0
 #, python-format
 msgid "You must specify a task for timesheet lines."

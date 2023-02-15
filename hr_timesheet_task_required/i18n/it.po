@@ -20,8 +20,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.res_config_settings_view_form
 msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" role=\"img\" aria-label=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-specific."
+"\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
 "specifici per l'azienda.\" role=\"img\" aria-label=\"I valori impostati qui "
@@ -72,6 +72,7 @@ msgid "Set tasks on timesheet as a mandatory field"
 msgstr "Imposta il lavoro sul fogli ore come campo obbligatorio"
 
 #. module: hr_timesheet_task_required
+#. odoo-python
 #: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:0
 #, python-format
 msgid "You must specify a task for timesheet lines."
