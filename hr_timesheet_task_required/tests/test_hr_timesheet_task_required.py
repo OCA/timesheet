@@ -3,10 +3,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class TestHrTimesheetTaskRequired(SavepointCase):
+class TestHrTimesheetTaskRequired(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -14,6 +14,7 @@ class TestHrTimesheetTaskRequired(SavepointCase):
         cls.AnalyticLine = cls.env["account.analytic.line"]
         cls.Project = cls.env["project.project"]
         cls.ProjectTask = cls.env["project.task"]
+        cls.Employee = cls.env["hr.employee"]
 
         cls.project_1 = cls.Project.create(
             {"name": "Project 1", "is_timesheet_task_required": True}
@@ -25,11 +26,17 @@ class TestHrTimesheetTaskRequired(SavepointCase):
         cls.task_1_p2 = cls.ProjectTask.create(
             {"name": "Task 2-1", "project_id": cls.project_2.id}
         )
+        cls.employee = cls.Employee.create({"name": "Employee 1"})
 
     def test_timesheet_line_task_required(self):
         with self.assertRaises(ValidationError):
             self.AnalyticLine.create(
-                {"name": "test", "project_id": self.project_1.id, "unit_amount": 10}
+                {
+                    "name": "test",
+                    "project_id": self.project_1.id,
+                    "unit_amount": 10,
+                    "employee_id": self.employee.id,
+                }
             )
 
         self.AnalyticLine.create(
@@ -38,12 +45,18 @@ class TestHrTimesheetTaskRequired(SavepointCase):
                 "project_id": self.project_1.id,
                 "task_id": self.task_1_p1.id,
                 "unit_amount": 10,
+                "employee_id": self.employee.id,
             }
         )
 
     def test_timesheet_line_task_not_required(self):
         self.AnalyticLine.create(
-            {"name": "test", "project_id": self.project_2.id, "unit_amount": 10}
+            {
+                "name": "test",
+                "project_id": self.project_2.id,
+                "unit_amount": 10,
+                "employee_id": self.employee.id,
+            }
         )
 
         self.AnalyticLine.create(
@@ -52,5 +65,6 @@ class TestHrTimesheetTaskRequired(SavepointCase):
                 "project_id": self.project_2.id,
                 "task_id": self.task_1_p2.id,
                 "unit_amount": 10,
+                "employee_id": self.employee.id,
             }
         )
