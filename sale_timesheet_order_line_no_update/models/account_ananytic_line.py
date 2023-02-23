@@ -1,3 +1,5 @@
+import traceback
+
 from odoo import api, models
 
 
@@ -11,5 +13,7 @@ class AccountAnalyticLine(models.Model):
         "project_id.allow_billable",
     )
     def _compute_so_line(self):
-        # Skip this method to keep same so_line after it was changed
-        pass
+        methods_in_stack = [r.name for r in traceback.extract_stack()]
+        if "onchange" in methods_in_stack:
+            return
+        return super()._compute_so_line()
