@@ -27,9 +27,7 @@ class TestHrTimesheetSheetPolicyProjectManager(common.TransactionCase):
         self.group_project_user = self.env.ref("project.group_project_user")
         self.company = self.ResCompany.create({"name": "Company"})
         self.env.user.company_ids += self.company
-        self.employee_user = self.ResUsers.with_context(
-            {"no_reset_password": True}
-        ).create(
+        self.employee_user = self.ResUsers.with_context(no_reset_password=True).create(
             {
                 "name": "Employee User",
                 "login": "employee_user",
@@ -51,7 +49,7 @@ class TestHrTimesheetSheetPolicyProjectManager(common.TransactionCase):
             }
         )
         self.project_manager_user_1 = self.ResUsers.with_context(
-            {"no_reset_password": True}
+            no_reset_password=True
         ).create(
             {
                 "name": "Project Manager User 1",
@@ -73,7 +71,7 @@ class TestHrTimesheetSheetPolicyProjectManager(common.TransactionCase):
             }
         )
         self.project_manager_user_2 = self.ResUsers.with_context(
-            {"no_reset_password": True}
+            no_reset_password=True
         ).create(
             {
                 "name": "Project Manager User 2",

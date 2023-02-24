@@ -84,16 +84,18 @@ class HrTimesheetSheet(models.Model):
         return self.onchange_add_project_id()
 
     def _check_can_review(self):
-        super()._check_can_review()
+        res = super()._check_can_review()
         if self.filtered(
             lambda sheet: not sheet.can_review
             and sheet.review_policy == "project_manager"
         ):
             raise UserError(_("Only a Project Manager can review the sheet."))
+        return res
 
     def reset_add_line(self):
-        super().reset_add_line()
+        res = super().reset_add_line()
         self.write({"add_line_project_id": self.project_id.id})
+        return res
 
     @api.model
     def create(self, vals):
