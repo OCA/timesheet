@@ -10,7 +10,9 @@ class AccountAnalyticLine(models.Model):
             if task.pricing_type == "fixed_rate":
                 if task.new_sale_line_id:
                     return task.new_sale_line_id
-        return super(AccountAnalyticLine, self)._timesheet_determine_sale_line(task, employee, project)
+        return super(AccountAnalyticLine, self)._timesheet_determine_sale_line(
+            task, employee, project
+        )
 
     @api.onchange("employee_id")
     def _onchange_task_id_employee_id(self):
