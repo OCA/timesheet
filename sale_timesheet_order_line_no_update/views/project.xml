@@ -1,0 +1,14 @@
+<odoo>
+
+    <record id="view_sale_project_inherit_form_inherit" model="ir.ui.view">
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="sale_project.view_sale_project_inherit_form" />
+        <field name="priority" eval="99" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_line_id']" position="after">
+                <field name="new_sale_line_id" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

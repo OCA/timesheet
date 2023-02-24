@@ -7,4 +7,5 @@
     "depends": [
         "sale_timesheet",
     ],
+    "data": ["views/project.xml"],
 }
