@@ -2,11 +2,25 @@
 
     <record id="view_sale_project_inherit_form_inherit" model="ir.ui.view">
         <field name="model">project.task</field>
-        <field name="inherit_id" ref="sale_project.view_sale_project_inherit_form" />
+        <field name="inherit_id" ref="project.view_task_form2" />
         <field name="priority" eval="99" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='sale_line_id']" position="after">
                 <field name="new_sale_line_id" />
+            </xpath>
+            <field name="displayed_image_id" position="after">
+                <field name="hide_original_sol" groups="base.group_no_one" />
+            </field>
+            <xpath expr="//field[@name='sale_line_id']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|',
+                                   ('partner_id', '=', False),
+                                   '|',
+                                   ('allow_billable', '=', False),
+                                   '&amp;',
+                                   ('hide_original_sol', '=', True),
+                                   ('new_sale_line_id', '!=', False)]}
+                </attribute>
             </xpath>
         </field>
     </record>

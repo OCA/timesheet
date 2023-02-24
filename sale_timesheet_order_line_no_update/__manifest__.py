@@ -7,5 +7,5 @@
     "depends": [
         "sale_timesheet",
     ],
-    "data": ["views/project.xml"],
+    "data": ["views/project.xml", "views/res_config_settings_views.xml"],
 }
