@@ -3,6 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import timedelta
+import math
+from odoo.tools import float_round
 
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning as UserError
@@ -83,8 +85,12 @@ class HrHolidays(models.Model):
             dt_to = fields.Datetime.from_string(leave.date_to)
             dt_current = dt_from
             at_least_one_complete_day = False
-            days_range = (dt_from - dt_to).days
-            for day in range(abs(int(days_range))):
+            days_range = dt_to - dt_from
+            days = days_range.days
+            rounded_up = float_round((float(days_range.seconds) / 100), 1) * 100
+            hours = (rounded_up // (60 * 60 * 24))
+            loop_range = days + hours
+            for day in range(abs(int(loop_range))):
                 dt_current = dt_from + timedelta(days=day)
                 at_least_one_complete_day = True
                 # skip the non work days
