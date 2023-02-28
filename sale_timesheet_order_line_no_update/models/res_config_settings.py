@@ -10,3 +10,10 @@ class ResConfigSettings(models.TransientModel):
         default_model="project.task",
         default=False,
     )
+
+    default_select_all_project_sale_items = fields.Boolean(
+        "Select items from different SO in project",
+        config_parameter="sale_timesheet_order_line_no_update.default_select_all_project_sale_items",
+        default_model="project.project",
+        default=False,
+    )

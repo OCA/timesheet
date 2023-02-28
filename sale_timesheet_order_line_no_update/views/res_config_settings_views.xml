@@ -26,6 +26,23 @@
                         </div>
                     </div>
                 </div>
+
+                <div
+                    class="row mt16 o_settings_container"
+                    name="select_all_project_sale_items"
+                >
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        name="select_all_project_sale_items_cfg"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="default_select_all_project_sale_items" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="default_select_all_project_sale_items" />
+                        </div>
+                    </div>
+                </div>
             </xpath>
         </field>
     </record>
