@@ -8,5 +8,5 @@ class ResConfigSettings(models.TransientModel):
         "Hide Sale Order Item in Task",
         config_parameter="sale_timesheet_order_line_no_update.default_hide_original_sol",
         default_model="project.task",
-        default=True,
+        default=False,
     )

@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class ProjectTask(models.Model):
@@ -15,9 +15,11 @@ class ProjectTask(models.Model):
     )
     hide_original_sol = fields.Boolean()
 
-    def default_get(self, fields):
-        vals = super(ProjectTask, self).default_get(fields)
-        # vals['hide_original_sol'] = self.env['ir.default'].get(
-        #     'project.task', 'hide_original_sol'
-        # )
-        return vals
+
+class ProjectProject(models.Model):
+    _inherit = "project.project"
+
+    @api.onchange("sale_line_id")
+    def _onchange_sale_line_id(self):
+        task_ids = self.env["project.task"].search([("project_id", "in", self.ids)])
+        task_ids.write({"new_sale_line_id": self.sale_line_id})
