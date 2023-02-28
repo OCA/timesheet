@@ -39,7 +39,3 @@ class AccountAnalyticLine(models.Model):
                     self.so_line = self.task_id.new_sale_line_id
                 else:
                     super(AccountAnalyticLine, self)._onchange_task_id_employee_id()
-
-    def write(self, values):
-        res = super(AccountAnalyticLine, self).write(values)
-        return res

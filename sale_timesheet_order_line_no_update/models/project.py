@@ -15,10 +15,6 @@ class ProjectTask(models.Model):
     )
     hide_original_sol = fields.Boolean()
 
-    def write(self, values):
-        res = super(ProjectTask, self).write(values)
-        return res
-
 
 class ProjectProject(models.Model):
     _inherit = "project.project"
