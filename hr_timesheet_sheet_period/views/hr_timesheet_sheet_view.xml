@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2016-17 Eficent Business and IT Consulting Services S.L.
+<!-- Copyright 2016-23 ForgeFlow S.L.
      Copyright 2016-17 Serpent Consulting Services Pvt. Ltd.
      Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
      License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
@@ -13,7 +13,7 @@
                 <field name="is_hr_period_required" invisible="1" />
                 <field
                     name="hr_period_id"
-                    attrs="{'invisible': [('hr_period_id', '=', False), ('state', '!=', 'draft')], 'required': [('is_hr_period_required', '=', True)]}"
+                    attrs="{'invisible': [('hr_period_id', '=', False), ('state', 'not in', ('draft', 'new'))], 'required': [('is_hr_period_required', '=', True)]}"
                 />
             </field>
         </field>
