@@ -21,6 +21,9 @@ class HrHolidays(models.Model):
         string='Analytic Lines',
     )
 
+    def check_no_duplicate_leaves_hook(self, user, date, hours):
+        return
+
     @api.multi
     def add_timesheet_line(self, description, date, hours, account):
         """Add a timesheet line for this leave"""
@@ -31,6 +34,7 @@ class HrHolidays(models.Model):
             raise UserError(_('No active projects for this Analytic Account'))
         # User exists because already checked during the action_approve
         user = self.employee_id.user_id
+        self.check_no_duplicate_leaves_hook(user, date, hours)
         self.sudo().with_context(force_write=True).write(
             {'analytic_line_ids': [(0, False, {
                 'name': description,
