@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-03-13 15:22+0000\n"
+"Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_autodraft.res_config_settings_view_form
@@ -21,21 +23,24 @@ msgid ""
 "specific.\" role=\"img\" aria-label=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Os valores definidor aqui são "
+"especificos por empresa.\" role=\"img\" aria-label=\"Os valores definidor "
+"aqui são especificos por empresa.\" groups=\"base.group_multi_company\"/>"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model:ir.model,name:hr_timesheet_sheet_autodraft.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Linha Analítica"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model:ir.actions.server,name:hr_timesheet_sheet_autodraft.action_autodraft_timesheet_sheets
 msgid "Auto-draft Timesheet Sheet(s)"
-msgstr ""
+msgstr "Compilação automática de Planilha(s) de horas"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_autodraft.res_config_settings_view_form
 msgid "Auto-draft Timesheet Sheets"
-msgstr ""
+msgstr "Compilação automática de Planilha de horas"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model:ir.model.fields,help:hr_timesheet_sheet_autodraft.field_res_config_settings__timesheet_sheets_autodraft
@@ -43,46 +48,51 @@ msgid ""
 "Auto-draft Timesheet Sheets whenever a Timesheet entry is created or "
 "modified to ensure it's covered by a relevant Timesheet Sheet"
 msgstr ""
+"Compilação automática de Planilha de horas sempre que uma entrada de "
+"apontamento de hora for criada ou modificada para garantir que seja coberta "
+"por uma Planilha de horas relevante"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_autodraft.res_config_settings_view_form
 msgid ""
 "Check to enable Timesheet Sheet(s) auto-drafting on Timesheet altering."
 msgstr ""
+"Selecionar para habilitar compilação automática de Planilha(s) de horas na "
+"alteração do Apontamento de horas."
 
 #. module: hr_timesheet_sheet_autodraft
 #: model:ir.model,name:hr_timesheet_sheet_autodraft.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Empresas"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model:ir.model,name:hr_timesheet_sheet_autodraft.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Ajuste de configurações"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_account_analytic_line__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_res_company__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_res_config_settings__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome exibido"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_account_analytic_line__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_res_company__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_res_config_settings__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_account_analytic_line____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_res_company____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_res_config_settings____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificação Em"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_res_company__timesheet_sheets_autodraft
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_res_config_settings__timesheet_sheets_autodraft
 msgid "Timesheet Sheets Auto-draft"
-msgstr ""
+msgstr "Compilação automática de Planilha de horas"
