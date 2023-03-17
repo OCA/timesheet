@@ -7,9 +7,12 @@
     <record id="view_sale_service_inherit_form2" model="ir.ui.view">
         <field name="name">project.task.form</field>
         <field name="model">project.task</field>
-        <field name="inherit_id" ref="sale_timesheet.view_sale_service_inherit_form2" />
+        <field
+            name="inherit_id"
+            ref="sale_timesheet.project_task_view_form_inherit_sale_timesheet"
+        />
         <field name="arch" type="xml">
-            <field name="sale_line_id" position="before">
+            <field name="so_line" position="before">
                 <field name="exclude_from_sale_order" />
             </field>
         </field>
