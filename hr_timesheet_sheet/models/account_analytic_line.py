@@ -56,7 +56,7 @@ class AccountAnalyticLine(models.Model):
                     )
                 )
 
-    @api.model
+    @api.model_create_multi
     def create(self, values):
         if not self.env.context.get("sheet_create") and "sheet_id" in values:
             del values["sheet_id"]
