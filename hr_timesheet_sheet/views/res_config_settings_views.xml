@@ -43,7 +43,7 @@
                     </div>
                     <div
                         class="col-xs-12 col-md-6 o_setting_box"
-                        attrs="{'invisible':[('sheet_range','!=',2)], 'required':[('sheet_range','=',2)]}"
+                        attrs="{'invisible':[('sheet_range','!=','WEEKLY')], 'required':[('sheet_range','=','WEEKLY')]}"
                     >
                         <div class="o_setting_right_pane">
                             <label for="timesheet_week_start" />

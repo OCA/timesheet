@@ -149,14 +149,21 @@ class Sheet(models.Model):
     add_line_project_id = fields.Many2one(
         comodel_name="project.project",
         string="Select Project",
+        domain="[('company_id', '=', company_id), ('allow_timesheets', '=', True)]",
         help="If selected, the associated project is added "
         "to the timesheet sheet when clicked the button.",
     )
     add_line_task_id = fields.Many2one(
         comodel_name="project.task",
         string="Select Task",
+        domain="[('id', 'in', available_task_ids)]",
         help="If selected, the associated task is added "
         "to the timesheet sheet when clicked the button.",
+    )
+    available_task_ids = fields.Many2many(
+        comodel_name="project.task",
+        string="Available Tasks",
+        compute="_compute_available_task_ids",
     )
     total_time = fields.Float(compute="_compute_total_time", store=True)
     can_review = fields.Boolean(
@@ -443,25 +450,26 @@ class Sheet(models.Model):
     def _onchange_timesheets(self):
         self._compute_line_ids()
 
-    @api.onchange("add_line_project_id")
-    def onchange_add_project_id(self):
-        """Load the project to the timesheet sheet"""
-        if self.add_line_project_id:
-            return {
-                "domain": {
-                    "add_line_task_id": [
-                        ("project_id", "=", self.add_line_project_id.id),
-                        ("company_id", "=", self.company_id.id),
-                        ("id", "not in", self.timesheet_ids.mapped("task_id").ids),
+    @api.depends(
+        "add_line_project_id", "company_id", "timesheet_ids", "timesheet_ids.task_id"
+    )
+    def _compute_available_task_ids(self):
+        project_task_obj = self.env["project.task"]
+        for rec in self:
+            if rec.add_line_project_id:
+                rec.available_task_ids = project_task_obj.search(
+                    [
+                        ("project_id", "=", rec.add_line_project_id.id),
+                        ("company_id", "=", rec.company_id.id),
+                        ("id", "not in", rec.timesheet_ids.mapped("task_id").ids),
                     ]
-                }
-            }
-        else:
-            return {"domain": {"add_line_task_id": [("id", "=", False)]}}
+                ).ids
+            else:
+                rec.available_task_ids = []
 
     @api.model
     def _check_employee_user_link(self, vals):
-        if "employee_id" in vals:
+        if vals.get("employee_id"):
             employee = self.env["hr.employee"].sudo().browse(vals["employee_id"])
             if not employee.user_id:
                 raise UserError(
@@ -479,10 +487,11 @@ class Sheet(models.Model):
             raise UserError(_("You cannot duplicate a sheet."))
         return super().copy(default=default)
 
-    @api.model
-    def create(self, vals):
-        self._check_employee_user_link(vals)
-        res = super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            self._check_employee_user_link(vals)
+        res = super().create(vals_list)
         res.write({"state": "draft"})
         return res
 

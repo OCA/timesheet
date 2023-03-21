@@ -101,11 +101,7 @@
                                 /> to <field name="date_end" class="oe_inline" /></div>
                         </group>
                         <group name="details">
-                            <field
-                                name="company_id"
-                                groups="base.group_multi_company"
-                                force_save="1"
-                            />
+                            <field name="company_id" force_save="1" />
                             <field name="department_id" invisible="1" />
                         </group>
                     </group>
@@ -148,10 +144,8 @@
                                     class="oe_edit_only"
                                     attrs="{'invisible': [('state', 'not in', ['new', 'draft'])]}"
                                 >
-                                    <field
-                                        name="add_line_project_id"
-                                        domain="[('company_id', '=', company_id), ('allow_timesheets', '=', True)]"
-                                    />
+                                    <field name="add_line_project_id" />
+                                    <field name="available_task_ids" invisible="1" />
                                     <field
                                         name="add_line_task_id"
                                         attrs="{'invisible': [('add_line_project_id', '=', False)]}"
@@ -160,6 +154,7 @@
                                     <button
                                         name="button_add_line"
                                         type="object"
+                                        colspan="2"
                                         string="Add new line"
                                         class="oe_highlight"
                                         attrs="{'invisible': [('add_line_project_id', '=', False)]}"
