@@ -6,7 +6,7 @@
 
 {
     "name": "HR Timesheet Sheet",
-    "version": "15.0.1.1.0",
+    "version": "16.0.1.0.0",
     "category": "Human Resources",
     "sequence": 80,
     "summary": "Timesheet Sheets, Activities",
@@ -26,10 +26,4 @@
         "views/account_analytic_line_views.xml",
         "views/res_config_settings_views.xml",
     ],
-    "assets": {
-        "web.assets_backend": [
-            "hr_timesheet_sheet/static/src/js/backend.js",
-            "hr_timesheet_sheet/static/src/scss/backend.scss",
-        ]
-    },
 }
