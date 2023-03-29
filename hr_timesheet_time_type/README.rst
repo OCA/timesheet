@@ -14,7 +14,7 @@ Time Type in Timesheet
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ftimesheet-lightgray.png?logo=github
-    :target: https://github.com/OCA/timesheet/tree/15.0/hr_timesheet_time_type
+    :target: https://github.com/OCA/timesheet/tree/16.0/hr_timesheet_time_type
     :alt: OCA/timesheet
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/timesheet-15-0/timesheet-15-0-hr_timesheet_time_type
@@ -62,6 +62,7 @@ Contributors
 * Shivam Soni <s.soni.serpentcs@gmail.com>
 * Ammar Officewala <aofficewala@opensourceintegrators.com>
 * Murtaza Mithaiwala <mmithaiwala@opensourceintegrators.com>
+* Dhara Solanki <dhara.solanki@initos.com>
 
 Other credits
 ~~~~~~~~~~~~~
@@ -81,6 +82,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/15.0/hr_timesheet_time_type>`_ project on GitHub.
+This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/16.0/hr_timesheet_time_type>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
