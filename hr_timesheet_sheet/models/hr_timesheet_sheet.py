@@ -198,21 +198,20 @@ class Sheet(models.Model):
 
     @api.model
     def _search_can_review(self, operator, value):
-        def check_in(users):
-            return self.env.user in users
-
-        def check_not_in(users):
-            return self.env.user not in users
-
         if (operator == "=" and value) or (operator in ["<>", "!="] and not value):
-            check = check_in
+            check = "="
         else:
-            check = check_not_in
+            check = "!="
 
-        sheets = self.search([]).filtered(
-            lambda sheet: check(sheet._get_possible_reviewers())
-        )
-        return [("id", "in", sheets.ids)]
+        if self.env.user == SUPERUSER_ID:
+            return []
+        if self.env.user in self.env.ref("hr.group_hr_user").users:
+            return [("review_policy", check, "hr")]
+        if self.env.user in self.env.ref("hr.group_hr_manager").users:
+            return [("review_policy", check, "hr_manager")]
+        if self.env.user in self.env.ref("hr_timesheet.group_hr_timesheet_approver").users:
+            return [("review_policy", check, "timesheet_manager")]
+        return [("id", check, 0)]
 
     @api.depends("name", "employee_id")
     def _compute_complete_name(self):
