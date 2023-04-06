@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2023-04-06 17:15+0000\n"
+"PO-Revision-Date: 2023-04-06 17:18+0000\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/odoo/teams/41243/es/)\n"
 "Language: es\n"
@@ -93,7 +93,6 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
-#, fuzzy
 msgid "Add new line"
 msgstr "Añadir una línea"
 
@@ -105,9 +104,8 @@ msgstr "Todas las hojas de servicio"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
-#, fuzzy
 msgid "Analytic Account"
-msgstr "Cuentas analíticas"
+msgstr "Cuenta analítica"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_line
@@ -206,9 +204,8 @@ msgstr "Nombre del empleado"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_res_config_settings
-#, fuzzy
 msgid "Config Settings"
-msgstr "Parámetros de configuración de proyectos"
+msgstr "Parámetros de configuración"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__create_uid
@@ -243,9 +240,8 @@ msgstr "Fecha desde"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__value_x
-#, fuzzy
 msgid "Date Name"
-msgstr "Fecha desde"
+msgstr "Nombre de fecha"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__date_end
@@ -360,7 +356,7 @@ msgstr "Seguidores (Contactos)"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icono de Font Awesome (por ejemplo, fa-tasks)"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__4
@@ -400,7 +396,7 @@ msgstr "ID"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icono"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_exception_icon
@@ -543,9 +539,8 @@ msgstr "Mis partes de horas a enviar."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
-#, fuzzy
 msgid "Name"
-msgstr "Fecha desde"
+msgstr "Nombre"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__hr_timesheet_sheet__state__new
@@ -579,9 +574,8 @@ msgstr "Tipo de la próxima actividad"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_line_search
-#, fuzzy
 msgid "Not Submitted"
-msgstr "Enviada"
+msgstr "No enviada"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction_counter
@@ -590,7 +584,6 @@ msgstr "Número de Acciones"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error_counter
-#, fuzzy
 msgid "Number of errors"
 msgstr "Número de errores"
 
@@ -606,9 +599,8 @@ msgstr "Número de mensajes con errores de entrega"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread_counter
-#, fuzzy
 msgid "Number of unread messages"
-msgstr "Mensajes por leer"
+msgstr "Número de mensajes por leer"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -679,9 +671,8 @@ msgstr "Revisor"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
-#, fuzzy
 msgid "SMS Delivery error"
-msgstr "Error de entrega de mensaje"
+msgstr "Error de entrega de mensaje SMS"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__5
@@ -998,9 +989,8 @@ msgstr "Mensajes por leer"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread_counter
-#, fuzzy
 msgid "Unread Messages Counter"
-msgstr "Mensajes por leer"
+msgstr "Contador de mensajes por leer"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__user_id
@@ -1010,9 +1000,8 @@ msgstr "Usuario"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__hr_timesheet_sheet__state__confirm
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_confirmed
-#, fuzzy
 msgid "Waiting Review"
-msgstr "Esperando aprobación"
+msgstr "Esperando revisión"
 
 #. module: hr_timesheet_sheet
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
