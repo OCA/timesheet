@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-26 15:45+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-04-07 14:24+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -78,7 +78,7 @@ msgstr "Ordine di vendita"
 #. module: sale_timesheet_existing_project
 #: model:ir.model,name:sale_timesheet_existing_project.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Riga ordini di vendita"
+msgstr "Riga ordine di vendita"
 
 #. module: sale_timesheet_existing_project
 #: model:ir.model.fields,help:sale_timesheet_existing_project.field_sale_order__project_id
