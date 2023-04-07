@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-12 22:44+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-04-07 16:31+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -116,7 +116,7 @@ msgstr "Quantità arrotondata"
 #. module: sale_timesheet_rounded
 #: model:ir.model,name:sale_timesheet_rounded.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Riga ordine vendita"
+msgstr "Riga ordine di vendita"
 
 #. module: sale_timesheet_rounded
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_rounded.project_project_form_inherit
