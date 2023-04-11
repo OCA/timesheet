@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2023-03-31 21:30+0000\n"
+"PO-Revision-Date: 2023-04-11 12:25+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/odoo/teams/41243/sl/)\n"
 "Language: sl\n"
@@ -365,14 +365,13 @@ msgstr "Združi po"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Hours"
-msgstr "Ure"
+msgstr "ur"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
-#, fuzzy
 msgid "How Timesheet Sheets review is performed."
-msgstr "Obdobje časovnice"
+msgstr "Kako se izvaja revizija časovnic."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_account__id
