@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-12 14:34+0000\n"
+"PO-Revision-Date: 2023-04-14 14:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -61,7 +61,7 @@ msgstr "Impostazioni configurazione"
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__limit_role_to_assignments
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_hr_timesheet_switch__limit_role_to_assignments
 msgid "Limit role to assignments"
-msgstr "Limita il compito agli incarichi"
+msgstr "Limita il ruolo agli incarichi"
 
 #. module: hr_timesheet_role
 #: model:ir.model,name:hr_timesheet_role.model_project_project
