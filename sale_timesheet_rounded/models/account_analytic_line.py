@@ -21,7 +21,15 @@ class AccountAnalyticLine(models.Model):
     @api.depends("project_id", "unit_amount")
     def _compute_unit_rounded(self):
         for record in self:
-            record.unit_amount_rounded = record._calc_unit_amount_rounded()
+            # Avoid a strange bug that recompute project_id and unit_amount
+            # even if they have not been modified
+            origin_project_id = record._origin.project_id
+            origin_unit_amount = record._origin.unit_amount
+            if (
+                record.project_id != origin_project_id
+                or record.unit_amount != origin_unit_amount
+            ):
+                record.unit_amount_rounded = record._calc_unit_amount_rounded()
 
     def _calc_unit_amount_rounded(self):
         self.ensure_one()

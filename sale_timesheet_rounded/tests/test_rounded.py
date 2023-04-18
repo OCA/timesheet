@@ -266,3 +266,26 @@ class TestRounded(TestCommonSaleTimesheet):
         self.assertEqual(
             aal._calc_rounded_amount(rounding_unit, rounding_method, factor, amount), 2
         )
+
+    def test_create_invoice_with_rounded_amount(self):
+        """We create a TS on a project without rounding. The TS is rounded manually and
+        then invoiced.
+        - invoicing the SO should not recompute and update the
+        unit_amount_rounded
+        - the invoiced qty should be the same as the aal.unit_amount_rounded
+        """
+        # no rounding enabled
+        self.project_global.write({"timesheet_rounding_method": "NO"})
+        line = self.create_analytic_line(unit_amount=1, unit_amount_rounded=1)
+        self.assertEqual(line.unit_amount, 1.0)
+        self.assertEqual(line.unit_amount_rounded, line.unit_amount)
+        line.write({"unit_amount_rounded": 2})
+        self.assertEqual(line.unit_amount_rounded, 2.0)
+        inv = self.sale_order._create_invoices()
+        prd_ts_id = self.product_delivery_timesheet2
+
+        inv_line = inv.line_ids.filtered(lambda l: l.product_id == prd_ts_id)
+        # the unit_amount_rounded is not changed
+        self.assertEqual(line.unit_amount_rounded, 2.0)
+        # the invoiced qty is the same as the aal
+        self.assertEqual(line.unit_amount_rounded, inv_line.quantity)
