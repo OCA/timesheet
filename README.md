@@ -45,6 +45,7 @@ addon | version | maintainers | summary
 [hr_utilization_report](hr_utilization_report/) | 14.0.1.0.1 |  | Generate Utilization Report from Task Logs
 [sale_timesheet_budget](sale_timesheet_budget/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale timesheet budget
 [sale_timesheet_line_exclude](sale_timesheet_line_exclude/) | 14.0.1.0.1 |  | Exclude Timesheet Line from Sale Order
+[sale_timesheet_order_line_no_update](sale_timesheet_order_line_no_update/) | 14.0.1.0.0 |  | Sale Timesheet Order Line no Update
 [sale_timesheet_order_line_sync](sale_timesheet_order_line_sync/) | 14.0.1.0.0 |  | Propagate task order line in not invoiced timesheet lines
 [sale_timesheet_rounded](sale_timesheet_rounded/) | 14.0.1.0.1 |  | Round timesheet entries amount based on project settings.
 
