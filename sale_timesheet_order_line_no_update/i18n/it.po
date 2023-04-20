@@ -6,28 +6,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-04-20 10:43+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_timesheet_order_line_no_update
 #: model:ir.model,name:sale_timesheet_order_line_no_update.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Riga analitica"
 
 #. module: sale_timesheet_order_line_no_update
 #: model:ir.model,name:sale_timesheet_order_line_no_update.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni di configurazione"
 
 #. module: sale_timesheet_order_line_no_update
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_project_task__new_sale_line_id
 msgid "Default Sale Order Item"
-msgstr ""
+msgstr "Voce predefinita ordine di vendita"
 
 #. module: sale_timesheet_order_line_no_update
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_account_analytic_line__display_name
@@ -35,17 +37,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_project_task__display_name
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_res_config_settings__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_timesheet_order_line_no_update
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_project_task__hide_original_sol
 msgid "Hide Original Sol"
-msgstr ""
+msgstr "Nascondi Riga ordine di vendita originale"
 
 #. module: sale_timesheet_order_line_no_update
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_res_config_settings__default_hide_original_sol
 msgid "Hide Sale Order Item in Task"
-msgstr ""
+msgstr "Nascondi voce ordine di vendita nel lavoro"
 
 #. module: sale_timesheet_order_line_no_update
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_account_analytic_line__id
@@ -53,7 +55,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_project_task__id
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_res_config_settings__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_timesheet_order_line_no_update
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_account_analytic_line____last_update
@@ -61,35 +63,35 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_project_task____last_update
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_res_config_settings____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_timesheet_order_line_no_update
 #: model:ir.model,name:sale_timesheet_order_line_no_update.model_project_project
 msgid "Project"
-msgstr ""
+msgstr "Progetto"
 
 #. module: sale_timesheet_order_line_no_update
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_order_line_no_update.res_config_settings_view_form
 msgid "Project Sale Task"
-msgstr ""
+msgstr "Vendita lavoro progetto"
 
 #. module: sale_timesheet_order_line_no_update
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_project_project__sale_line_id_domain
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_project_task__new_sale_line_id_domain
 msgid "Sale Line Id Domain"
-msgstr ""
+msgstr "Dominio ID riga ordine di vendita"
 
 #. module: sale_timesheet_order_line_no_update
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_project_project__select_all_project_sale_items
 msgid "Select All Project Sale Items"
-msgstr ""
+msgstr "Seleziona tutte le voci ordine di vendita progetto"
 
 #. module: sale_timesheet_order_line_no_update
 #: model:ir.model.fields,field_description:sale_timesheet_order_line_no_update.field_res_config_settings__default_select_all_project_sale_items
 msgid "Select items from different SO in project"
-msgstr ""
+msgstr "Seleziona voci da diversi SO nel progetto"
 
 #. module: sale_timesheet_order_line_no_update
 #: model:ir.model,name:sale_timesheet_order_line_no_update.model_project_task
 msgid "Task"
-msgstr ""
+msgstr "Lavoro"
