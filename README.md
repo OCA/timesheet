@@ -23,7 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [crm_timesheet](crm_timesheet/) | 14.0.1.0.0 |  | CRM Timesheet
 [hr_employee_product](hr_employee_product/) | 14.0.1.0.0 |  | Product is an employee
-[hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 14.0.1.0.1 |  | Timesheet Activities - Begin/End Hours
+[hr_timesheet_activity_begin_end](hr_timesheet_activity_begin_end/) | 14.0.1.0.2 |  | Timesheet Activities - Begin/End Hours
 [hr_timesheet_analysis](hr_timesheet_analysis/) | 14.0.1.0.0 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | Analyze tracked time in Graph views
 [hr_timesheet_employee_analytic_tag](hr_timesheet_employee_analytic_tag/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Hr Timesheet Employee Analytic Tag
 [hr_timesheet_purchase_order](hr_timesheet_purchase_order/) | 14.0.1.0.0 |  | HR Timesheet Purchase Order
