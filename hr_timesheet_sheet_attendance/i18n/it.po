@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-12 09:44+0000\n"
+"PO-Revision-Date: 2023-05-10 13:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -36,12 +36,12 @@ msgstr "Presenti"
 #. module: hr_timesheet_sheet_attendance
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_attendance.hr_timesheet_sheet_form
 msgid "Check In"
-msgstr "Check in"
+msgstr "Check-in"
 
 #. module: hr_timesheet_sheet_attendance
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_attendance.hr_timesheet_sheet_form
 msgid "Check Out"
-msgstr "Check out"
+msgstr "Check-out"
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet__attendance_state
