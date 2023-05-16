@@ -27,15 +27,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2022-06-22 15:05+0000\n"
-"Last-Translator: Florian <florian.dacosta@akretion.com>\n"
+"PO-Revision-Date: 2023-05-17 04:14+0000\n"
+"Last-Translator: Alexis de Lattre <alexis@via.ecp.fr>\n"
 "Language-Team: French (https://www.transifex.com/odoo/teams/41243/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
@@ -1100,7 +1100,8 @@ msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
 msgstr ""
-"Vous ne pouvez pas supprimer des feuilles de temps qui sont déjà confirmées."
+"Vous ne pouvez pas supprimer une feuille de temps qui est déjà soumise ou "
+"confirmée : %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1117,15 +1118,18 @@ msgid ""
 "Conflicting sheets:\n"
 " - %s"
 msgstr ""
-"Vous ne pouvez pas avoir 2 feuilles de temps qui se chevauchent!\n"
-"SVP utilisez le menu 'Ma feuille de temps actuelle' pour éviter ce problème."
+"Vous ne pouvez pas avoir 2 feuilles de temps qui se chevauchent !\n"
+"Utilisez le menu 'Ma feuille de temps actuelle' pour éviter ce problème.\n"
+"Feuilles de temps en conflit:\n"
+" - %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
 #, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr ""
-"Vous ne pouvez pas modifier une entrée dans une feuille de temps confirmée."
+"Vous ne pouvez pas modifier une entrée dans une feuille de temps confirmée : "
+"%s"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
