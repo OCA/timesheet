@@ -20,12 +20,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.res_config_settings_view_form
 msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" role=\"img\" aria-label=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-specific."
+"\" groups=\"base.group_multi_company\"/>"
 msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Los valores aqu?? establecidos "
-"son propios de cada empresa.\" role=\"img\" aria-label=\"Los valores aqu?? "
-"establecidos son propios de cada empresa.\" groups=\"base."
+"<span class=\"fa fa-lg fa-building-o\" title=\"Los valores aqu?? "
+"establecidos son propios de cada empresa.\" role=\"img\" aria-label=\"Los "
+"valores aqu?? establecidos son propios de cada empresa.\" groups=\"base."
 "group_multi_company\"/>"
 
 #. module: hr_timesheet_task_required
@@ -44,34 +44,9 @@ msgid "Config Settings"
 msgstr "Par??metros de configuraci??n"
 
 #. module: hr_timesheet_task_required
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_account_analytic_line__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_project_project__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_company__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_config_settings__display_name
-msgid "Display Name"
-msgstr "Nombre a mostrar"
-
-#. module: hr_timesheet_task_required
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_account_analytic_line__id
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_project_project__id
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_company__id
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_config_settings__id
-msgid "ID"
-msgstr "Id."
-
-#. module: hr_timesheet_task_required
 #: model:ir.model.fields,field_description:hr_timesheet_task_required.field_account_analytic_line__is_task_required
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_hr_timesheet_switch__is_task_required
 msgid "Is Task Required"
 msgstr "La tarea es requerida"
-
-#. module: hr_timesheet_task_required
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_account_analytic_line____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_project_project____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_company____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_task_required.field_res_config_settings____last_update
-msgid "Last Modified on"
-msgstr "??lt. modif. en"
 
 #. module: hr_timesheet_task_required
 #: model:ir.model,name:hr_timesheet_task_required.model_project_project
@@ -92,7 +67,22 @@ msgstr ""
 "Requiere por defecto selecci??n de tarea en cada entrada de partes de horas"
 
 #. module: hr_timesheet_task_required
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.project_invoice_form
+msgid "Set tasks on timesheet as a mandatory field"
+msgstr ""
+
+#. module: hr_timesheet_task_required
+#. odoo-python
 #: code:addons/hr_timesheet_task_required/models/account_analytic_line.py:0
 #, python-format
 msgid "You must specify a task for timesheet lines."
 msgstr "Se debe especificar una tarea para los partes de horas."
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre a mostrar"
+
+#~ msgid "ID"
+#~ msgstr "Id."
+
+#~ msgid "Last Modified on"
+#~ msgstr "??lt. modif. en"
