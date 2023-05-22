@@ -35,12 +35,14 @@ msgid "End Hour"
 msgstr "Hora de finalización"
 
 #. module: hr_timesheet_begin_end
+#. odoo-python
 #: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
 #, python-format
 msgid "Lines can't overlap:\n"
 msgstr "Las líneas no pueden solaparse:\n"
 
 #. module: hr_timesheet_begin_end
+#. odoo-python
 #: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
 #, python-format
 msgid ""
@@ -51,6 +53,7 @@ msgstr ""
 "(%(html_stop)s)."
 
 #. module: hr_timesheet_begin_end
+#. odoo-python
 #: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
 #, python-format
 msgid ""

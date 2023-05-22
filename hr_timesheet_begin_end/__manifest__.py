@@ -10,7 +10,7 @@
     "category": "Human Resources",
     "depends": ["hr_timesheet"],
     "website": "https://github.com/OCA/timesheet",
-    "data": ["views/hr_analytic_timesheet.xml"],
+    "data": ["views/hr_analytic_timesheet.xml", "views/project_task.xml"],
     "installable": True,
     "auto_install": False,
 }
