@@ -32,12 +32,14 @@ msgid "End Hour"
 msgstr "Endzeit"
 
 #. module: hr_timesheet_begin_end
+#. odoo-python
 #: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
 #, python-format
 msgid "Lines can't overlap:\n"
 msgstr "Die Zeilen dürfen sich nicht überschneiden:\n"
 
 #. module: hr_timesheet_begin_end
+#. odoo-python
 #: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
 #, python-format
 msgid ""
@@ -47,6 +49,7 @@ msgstr ""
 "Die Startzeit (%(html_start)s) muss vor der Endzeit (%(html_stop)s) liegen."
 
 #. module: hr_timesheet_begin_end
+#. odoo-python
 #: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
 #, python-format
 msgid ""
