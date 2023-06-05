@@ -14,13 +14,6 @@ class TestHrTimesheetTaskDomain(common.TransactionCase):
         self.task = self.env["project.task"].create(
             {"name": "Test task", "project_id": self.project.id}
         )
-        self.line = self.env["account.analytic.line"].create(
-            {
-                "task_id": self.task.id,
-                "account_id": self.analytic_account.id,
-                "name": "Test line",
-            }
-        )
 
     def test_onchange_project_id(self):
         record = self.env["account.analytic.line"].new()

@@ -19,7 +19,6 @@ class AccountAnalyticLine(models.Model):
         if self.project_id:  # Show only opened tasks
             task_domain = [
                 ("project_id", "=", self.project_id.id),
-                ("stage_id.is_closed", "=", False),
             ]
             res_domain = res.setdefault("domain", {})
             res_domain.update({"task_id": task_domain})
