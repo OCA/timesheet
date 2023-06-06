@@ -8,7 +8,7 @@
 
 {
     "name": "Task Log: Open/Close Task",
-    "version": "15.0.1.0.1",
+    "version": "16.0.1.0.1",
     "category": "Operations/Timesheets",
     "website": "https://github.com/OCA/timesheet",
     "author": "Tecnativa, CorporateHub, Odoo Community Association (OCA)",
@@ -16,6 +16,6 @@
     "installable": True,
     "application": False,
     "summary": "Open/Close task from corresponding Task Log entry",
-    "depends": ["hr_timesheet"],
+    "depends": ["hr_timesheet", "timesheet_grid"],
     "data": ["views/account_analytic_line.xml"],
 }
