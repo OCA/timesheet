@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-16 09:24+0000\n"
+"PO-Revision-Date: 2023-06-16 09:24+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -35,7 +37,14 @@ msgstr ""
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Closing Stage"
+msgid "Folded in Kanban"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
+msgid ""
+"If enabled, this stage will be displayed as folded in the Kanban view of "
+"your tasks. Tasks in a folded stage are considered as closed."
 msgstr ""
 
 #. module: hr_timesheet_task_stage
@@ -44,19 +53,14 @@ msgid "Open task"
 msgstr ""
 
 #. module: hr_timesheet_task_stage
-#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Tasks in this stage are considered as closed."
-msgstr ""
-
-#. module: hr_timesheet_task_stage
-#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
+#. odoo-python
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" checked. Please mark any."
 msgstr ""
 
 #. module: hr_timesheet_task_stage
-#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
+#. odoo-python
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
