@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-11 08:59+0000\n"
-"PO-Revision-Date: 2023-03-03 09:08+0000\n"
+"PO-Revision-Date: 2023-06-16 11:28+0200\n"
 "Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_form
@@ -39,8 +39,16 @@ msgstr "Cerrar tarea"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Closing Stage"
-msgstr "Etapa de Clausura"
+msgid "Folded in Kanban"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
+msgid ""
+"If enabled, this stage will be displayed as folded in the Kanban view of "
+"your tasks. Tasks in a folded stage are considered as closed (not applicable "
+"to personal stages)."
+msgstr ""
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
@@ -48,11 +56,7 @@ msgid "Open task"
 msgstr "Abrir tarea"
 
 #. module: hr_timesheet_task_stage
-#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Tasks in this stage are considered as closed."
-msgstr "Las tareas en esta etapa se consideran cerradas."
-
-#. module: hr_timesheet_task_stage
+#. odoo-python
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" checked. Please mark any."
@@ -60,12 +64,19 @@ msgstr ""
 "No hay ninguna etapa con \"Cerrado\" marcado. Por favor marque cualquiera."
 
 #. module: hr_timesheet_task_stage
+#. odoo-python
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
 msgstr ""
 "No hay ninguna etapa con \"Cerrado\" sin marcar. Por favor, desmarque "
 "cualquiera."
+
+#~ msgid "Closing Stage"
+#~ msgstr "Etapa de Clausura"
+
+#~ msgid "Tasks in this stage are considered as closed."
+#~ msgstr "Las tareas en esta etapa se consideran cerradas."
 
 #~ msgid "Analytic Lines"
 #~ msgstr "Líneas analíticas"

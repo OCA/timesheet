@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-17 22:59+0000\n"
+"PO-Revision-Date: 2023-07-10 08:10+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_form
@@ -38,8 +38,19 @@ msgstr "Chiudi lavoro"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Closing Stage"
-msgstr "Chiusura fase"
+msgid "Folded in Kanban"
+msgstr "Minimizzato nel Kanban"
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
+msgid ""
+"If enabled, this stage will be displayed as folded in the Kanban view of "
+"your tasks. Tasks in a folded stage are considered as closed (not applicable "
+"to personal stages)."
+msgstr ""
+"Se attivo, questa fase verrà visualizzata minimizzata nella vista Kanban dei "
+"tuoi lavori. I lavori nelle fasi minimizzate sono considerati chiusi (non "
+"applicabile alle fasi personali)."
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
@@ -47,20 +58,21 @@ msgid "Open task"
 msgstr "Apri lavoro"
 
 #. module: hr_timesheet_task_stage
-#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Tasks in this stage are considered as closed."
-msgstr "I lavori in questa fase vengono considerati chiusi."
-
-#. module: hr_timesheet_task_stage
-#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
+#. odoo-python
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" checked. Please mark any."
 msgstr "Non c'è nessuna fase marcata come \"Chiusa\". Impostarne una."
 
 #. module: hr_timesheet_task_stage
-#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
+#. odoo-python
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
 msgstr "Tutte la fasi sono marcate come \"Chiuse\". Deselezionarne una."
+
+#~ msgid "Closing Stage"
+#~ msgstr "Chiusura fase"
+
+#~ msgid "Tasks in this stage are considered as closed."
+#~ msgstr "I lavori in questa fase vengono considerati chiusi."
