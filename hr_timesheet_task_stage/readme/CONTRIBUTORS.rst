@@ -7,6 +7,7 @@
     * Luis M. ontalba
     * Ernesto Tejeda
     * Manuel Calero
+    * Stefan Ungureanu
 
 * `CorporateHub <https://corporatehub.eu/>`__
 
