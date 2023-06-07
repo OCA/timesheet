@@ -266,3 +266,60 @@ class TestRounded(TestCommonSaleTimesheet):
         self.assertEqual(
             aal._calc_rounded_amount(rounding_unit, rounding_method, factor, amount), 2
         )
+
+    def test_post_invoice_with_rounded_amount_unchanged(self):
+        """Posting an invoice MUST NOT recompute rounded amount unit.
+        - invoicing the SO should not recompute and update the
+        unit_amount_rounded
+        - the invoiced qty should be the same as the aal.unit_amount_rounded
+        """
+        unit_amount_rounded = 111
+        analytic_line = self.create_analytic_line(unit_amount=10)
+        analytic_line.unit_amount_rounded = unit_amount_rounded
+        account_move = self.sale_order._create_invoices()
+        prd_ts_id = self.product_delivery_timesheet2
+        account_move._post()
+        # the unit_amount_rounded is not changed
+        self.assertEqual(analytic_line.unit_amount_rounded, unit_amount_rounded)
+        # the invoiced qty remains the same
+        inv_line = account_move.line_ids.filtered(lambda l: l.product_id == prd_ts_id)
+        self.assertEqual(inv_line.quantity, unit_amount_rounded)
+
+    def test_draft_invoice_with_rounded_amount_unchanged(self):
+        """Drafting an invoice MUST NOT recompute rounded amount unit.
+        - invoicing the SO should not recompute and update the
+        unit_amount_rounded
+        - the invoiced qty should be the same as the aal.unit_amount_rounded
+        """
+        unit_amount_rounded = 0.12
+        analytic_line = self.create_analytic_line(unit_amount=10)
+        analytic_line.unit_amount_rounded = unit_amount_rounded
+        account_move = self.sale_order._create_invoices()
+        prd_ts_id = self.product_delivery_timesheet2
+        account_move.button_draft()
+        # the unit_amount_rounded is not changed
+        self.assertEqual(analytic_line.unit_amount_rounded, unit_amount_rounded)
+        # the invoiced qty remains the same
+        inv_line = account_move.line_ids.filtered(lambda l: l.product_id == prd_ts_id)
+        self.assertEqual(inv_line.quantity, unit_amount_rounded)
+
+    def test_cancel_invoice_with_rounded_amount_unchanged(self):
+        """Cancelling an invoice MUST NOT recompute rounded amount unit.
+        - invoicing the SO should not recompute and update the
+        unit_amount_rounded
+        - the invoiced qty should be the same as the aal.unit_amount_rounded
+        """
+        unit_amount_rounded_total = 15
+        analytic_line_1 = self.create_analytic_line(unit_amount=10)
+        analytic_line_2 = self.create_analytic_line(unit_amount=10)
+        analytic_line_1.unit_amount_rounded = unit_amount_rounded_total
+        analytic_line_2.unit_amount_rounded = 0
+        account_move = self.sale_order._create_invoices()
+        prd_ts_id = self.product_delivery_timesheet2
+        account_move.button_cancel()
+        # the unit_amount_rounded is not changed
+        self.assertEqual(analytic_line_1.unit_amount_rounded, unit_amount_rounded_total)
+        self.assertEqual(analytic_line_2.unit_amount_rounded, 0)
+        # the invoiced qty remains the same
+        inv_line = account_move.line_ids.filtered(lambda l: l.product_id == prd_ts_id)
+        self.assertEqual(inv_line.quantity, unit_amount_rounded_total)
