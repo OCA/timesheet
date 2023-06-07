@@ -18,6 +18,13 @@ class AccountAnalyticLine(models.Model):
         copy=False,
     )
 
+    @api.depends("timesheet_invoice_id.state")
+    def _compute_project_id(self):
+        field_rounded = self._fields["unit_amount_rounded"]
+        if self._context.get("timesheet_no_recompute", False):
+            self.env.remove_to_compute(field_rounded, self)
+        return super()._compute_project_id()
+
     @api.depends("project_id", "unit_amount")
     def _compute_unit_rounded(self):
         for record in self:
