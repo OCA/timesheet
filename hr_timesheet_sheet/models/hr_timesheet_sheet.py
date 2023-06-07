@@ -607,7 +607,7 @@ class Sheet(models.Model):
                 project_id.name_get()[0][1], task_id.name_get()[0][1]
             )
 
-        return project_id.name_get()[0][1]
+        return project_id.name_get()[0][1] if project_id else ""
 
     def _get_new_line_unique_id(self):
         """Hook for extensions"""
