@@ -24,5 +24,5 @@ def pre_init_hook(cr):
     cr.execute(  # pylint: disable=E8103
         sql.SQL(
             "UPDATE {table} SET {column} = unit_amount WHERE {column} IS NULL"
-        ).format(table=table, column=column),
+        ).format(table=table, column=column)
     )
