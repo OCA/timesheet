@@ -479,10 +479,11 @@ class Sheet(models.Model):
             raise UserError(_("You cannot duplicate a sheet."))
         return super().copy(default=default)
 
-    @api.model
-    def create(self, vals):
-        self._check_employee_user_link(vals)
-        res = super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            self._check_employee_user_link(vals)
+        res = super().create(vals_list)
         res.write({"state": "draft"})
         return res
 
