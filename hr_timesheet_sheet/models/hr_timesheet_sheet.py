@@ -158,6 +158,7 @@ class Sheet(models.Model):
         help="If selected, the associated task is added "
         "to the timesheet sheet when clicked the button.",
     )
+    add_line_task_id_domain = fields.Binary(compute="_compute_add_line_task_id_domain")
     total_time = fields.Float(compute="_compute_total_time", store=True)
     can_review = fields.Boolean(
         compute="_compute_can_review", search="_search_can_review"
@@ -443,21 +444,23 @@ class Sheet(models.Model):
     def _onchange_timesheets(self):
         self._compute_line_ids()
 
-    @api.onchange("add_line_project_id")
-    def onchange_add_project_id(self):
+    def _get_add_line_task_id_domain(self):
         """Load the project to the timesheet sheet"""
+        self.ensure_one()
         if self.add_line_project_id:
-            return {
-                "domain": {
-                    "add_line_task_id": [
-                        ("project_id", "=", self.add_line_project_id.id),
-                        ("company_id", "=", self.company_id.id),
-                        ("id", "not in", self.timesheet_ids.mapped("task_id").ids),
-                    ]
-                }
-            }
+            domain = [
+                ("project_id", "=", self.add_line_project_id.id),
+                ("company_id", "=", self.company_id.id),
+                ("id", "not in", self.timesheet_ids.mapped("task_id").ids),
+            ]
         else:
-            return {"domain": {"add_line_task_id": [("id", "=", False)]}}
+            domain = [("id", "=", False)]
+        return domain
+
+    @api.depends("add_line_project_id", "company_id", "timesheet_ids.task_id")
+    def _compute_add_line_task_id_domain(self):
+        for sheet in self:
+            sheet.add_line_task_id_domain = sheet._get_add_line_task_id_domain()
 
     @api.model
     def _check_employee_user_link(self, vals):
