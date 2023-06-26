@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2023-06-06 07:21+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -37,7 +38,14 @@ msgstr "Aufgabe beenden"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Closing Stage"
+msgid "Folded in Kanban"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
+msgid ""
+"If enabled, this stage will be displayed as folded in the Kanban view of "
+"your tasks. Tasks in a folded stage are considered as closed."
 msgstr ""
 
 #. module: hr_timesheet_task_stage
@@ -45,15 +53,8 @@ msgstr ""
 msgid "Open task"
 msgstr "Aufgabe öffnen"
 
-#~ msgid "Closed"
-#~ msgstr "Geschlossen"
-
 #. module: hr_timesheet_task_stage
-#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Tasks in this stage are considered as closed."
-msgstr ""
-
-#. module: hr_timesheet_task_stage
+#. odoo-python
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" checked. Please mark any."
@@ -62,12 +63,16 @@ msgstr ""
 "einer Stufe das Merkmal setzen."
 
 #. module: hr_timesheet_task_stage
+#. odoo-python
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
 msgstr ""
 "Es gibt keine Stufe, die nicht als \"Geschlossen\" interpretiert wird. Bitte "
 "bei einer Stufe das Merkmal entfernen."
+
+#~ msgid "Closed"
+#~ msgstr "Geschlossen"
 
 #~ msgid "Tasks in this stage are considered closed."
 #~ msgstr "Aufgaben in dieser Stufe werden als geschlossen interpretiert."
