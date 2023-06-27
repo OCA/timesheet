@@ -7,6 +7,7 @@
     * Luis M. ontalba
     * Ernesto Tejeda
     * Manuel Calero
+    * Yadier Quesada
 
 * `CorporateHub <https://corporatehub.eu/>`__
 
