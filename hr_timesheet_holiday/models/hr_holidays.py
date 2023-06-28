@@ -1,22 +1,22 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Sunflower IT <http://sunflowerweb.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import timedelta
 
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
 
 
 class HrHolidays(models.Model):
     """Update analytic lines on status change of Leave Request"""
-    _inherit = 'hr.holidays'
+
+    _inherit = "hr.holidays"
 
     # Timesheet entry linked to this leave request
     analytic_line_ids = fields.One2many(
-        comodel_name='account.analytic.line',
-        inverse_name='leave_id',
-        string='Analytic Lines',
+        comodel_name="account.analytic.line",
+        inverse_name="leave_id",
+        string="Analytic Lines",
     )
 
     def check_no_duplicate_leaves_hook(self, user, date, hours):
@@ -26,27 +26,35 @@ class HrHolidays(models.Model):
     def add_timesheet_line(self, description, date, hours, account):
         """Add a timesheet line for this leave"""
         self.ensure_one()
-        projects = account.project_ids.filtered(
-            lambda p: p.active is True)
+        projects = account.project_ids.filtered(lambda p: p.active is True)
         if not projects:
-            raise UserError(_('No active projects for this Analytic Account'))
+            raise UserError(_("No active projects for this Analytic Account"))
         # User exists because already checked during the action_approve
         user = self.employee_id.user_id
         public = self.check_no_duplicate_leaves_hook(user, date, hours)
         if public:
             return
         self.sudo().with_context(force_write=True).write(
-            {'analytic_line_ids': [(0, False, {
-                'name': description,
-                'date': date,
-                'unit_amount': hours,
-                'company_id': self.employee_id.company_id.id,
-                'account_id': account.id,
-                'project_id': projects[0].id,
-                # Due to the sudo(), we have to force the user here.
-                # Otherwise, Odoo will put the Admin user as user_id.
-                'user_id': user.id,
-            })]})
+            {
+                "analytic_line_ids": [
+                    (
+                        0,
+                        False,
+                        {
+                            "name": description,
+                            "date": date,
+                            "unit_amount": hours,
+                            "company_id": self.employee_id.company_id.id,
+                            "account_id": account.id,
+                            "project_id": projects[0].id,
+                            # Due to the sudo(), we have to force the user here.
+                            # Otherwise, Odoo will put the Admin user as user_id.
+                            "user_id": user.id,
+                        },
+                    )
+                ]
+            }
+        )
 
     @api.model
     def _get_hours_per_day(self, company, employee):
@@ -54,8 +62,8 @@ class HrHolidays(models.Model):
         hours_per_day = company.timesheet_hours_per_day
         if not hours_per_day:
             raise UserError(
-                _("No hours per day defined for Company '%s'") %
-                (company.name,))
+                _("No hours per day defined for Company '%s'") % (company.name,)
+            )
         return hours_per_day
 
     @api.multi
@@ -66,7 +74,7 @@ class HrHolidays(models.Model):
         # Postprocess Leave Types that have an analytic account configured
         for leave in self:
             account = leave.holiday_status_id.analytic_account_id
-            if not account or leave.type != 'remove':
+            if not account or leave.type != "remove":
                 # we only work on leaves (type=remove, type=add is allocation)
                 # which have an account set
                 continue
@@ -80,8 +88,8 @@ class HrHolidays(models.Model):
             user = leave.employee_id.user_id
             if not user:
                 raise UserError(
-                    _("No user defined for Employee '%s'") %
-                    (leave.employee_id.name,))
+                    _("No user defined for Employee '%s'") % (leave.employee_id.name,)
+                )
 
             # Add analytic lines for these leave hours
             leave.analytic_line_ids.sudo(user.id).unlink()  # to be sure
@@ -118,6 +126,5 @@ class HrHolidays(models.Model):
     def action_refuse(self):
         """On refusal of leave, delete timesheet lines"""
         res = super(HrHolidays, self).action_refuse()
-        self.mapped('analytic_line_ids').with_context(
-            force_write=True).unlink()
+        self.mapped("analytic_line_ids").with_context(force_write=True).unlink()
         return res
