@@ -134,3 +134,6 @@ class AccountAnalyticLine(models.Model):
         self[0].write({"unit_amount": unit_amount, "amount": amount})
         self[1:].unlink()
         return self[0]
+
+    def _check_can_update_timesheet(self):
+        return super()._check_can_update_timesheet() or not self.filtered("sheet_id")
