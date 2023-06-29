@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-hr_timesheet_begin_end>=16.0dev,<16.1dev',
+        'odoo-addon-hr_timesheet_sheet>=16.0dev,<16.1dev',
         'odoo-addon-hr_timesheet_task_required>=16.0dev,<16.1dev',
         'odoo-addon-hr_timesheet_task_stage>=16.0dev,<16.1dev',
     ],
