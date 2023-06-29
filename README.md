@@ -22,6 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [hr_timesheet_begin_end](hr_timesheet_begin_end/) | 16.0.1.0.0 |  | Timesheet - Begin/End Hours
+[hr_timesheet_sheet](hr_timesheet_sheet/) | 16.0.1.0.0 |  | Timesheet Sheets, Activities
 [hr_timesheet_task_required](hr_timesheet_task_required/) | 16.0.1.0.0 |  | Set task on timesheet as a mandatory field
 [hr_timesheet_task_stage](hr_timesheet_task_stage/) | 16.0.1.0.1 |  | Open/Close task from corresponding Task Log entry
 
