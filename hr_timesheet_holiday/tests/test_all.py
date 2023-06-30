@@ -8,16 +8,29 @@ from dateutil.relativedelta import relativedelta
 
 from odoo.exceptions import UserError, ValidationError
 
-from odoo.addons.hr_holidays.tests.common import TestHrHolidaysBase
+from odoo.addons.hr_holidays.tests.common import TestHrHolidaysCommon
+from odoo.addons.mail.tests.common import mail_new_test_user
 
 
-class TimesheetHolidayTest(TestHrHolidaysBase):
+class TimesheetHolidayTest(TestHrHolidaysCommon):
     def setUp(self):
         super(TimesheetHolidayTest, self).setUp()
-        self.leave = self.env["hr.holidays"]
+        self.leave = self.env["hr.leave"]
         self.project = self.env["project.project"]
-        self.sheet = self.env["hr_timesheet_sheet.sheet"]
-        self.employee = self.env.ref("hr.employee_qdp")
+        self.sheet = self.env["hr_timesheet.sheet"]
+        # grant analytic account access
+        self.user_hruser.groups_id += self.env.ref("analytic.group_analytic_accounting")
+
+        self.employee_user = mail_new_test_user(
+            self.env, login="Test Emp", groups="base.group_user"
+        )
+        self.employee = self.env["hr.employee"].create(
+            {
+                "name": "Test Employee",
+                "user_id": self.employee_user.id,
+                "department_id": self.rd_dept.id,
+            }
+        )
         self.sl = self.env.ref("hr_holidays.holiday_status_sl")
 
     def _create_timesheet(self, employee, date_from, date_to):
@@ -40,19 +53,17 @@ class TimesheetHolidayTest(TestHrHolidaysBase):
                 "allow_timesheets": False,
             }
         )
+        project._create_analytic_account()
         account = project.analytic_account_id
         with self.assertRaises(ValidationError):
             # Create analytic account
             account.write({"is_leave_account": True})
         project.write({"allow_timesheets": True})
         account.write({"is_leave_account": True})
-        # Link sick leave to analytic account
-        sl = self.sl
-        sl.write({"project_id": project.id})
         # Confirm leave and check hours added to account
         hours_before = sum(account.line_ids.mapped("amount"))
-        # Holidays.sudo(self.user_employee_id)
-        hol_empl_grp = self.leave.sudo(self.user_hruser_id)
+        # Holidays.with_user(self.user_employee_id)
+        hol_empl_grp = self.leave.with_user(self.user_hruser_id)
         leave = hol_empl_grp.create(
             {
                 "name": "One week sick leave",
@@ -60,7 +71,6 @@ class TimesheetHolidayTest(TestHrHolidaysBase):
                 "holiday_status_id": self.sl.id,
                 "date_from": (datetime.today() - relativedelta(days=7)),
                 "date_to": datetime.today(),
-                "number_of_days_temp": 7.0,
             }
         )
         self.assertEqual(
@@ -68,10 +78,10 @@ class TimesheetHolidayTest(TestHrHolidaysBase):
             "confirm",
             "hr_holidays: newly created leave request should be in " "confirm state",
         )
-        leave.sudo(self.user_hruser_id).action_approve()
+        leave.with_user(self.user_hruser_id).action_approve()
 
         hours_after = sum(account.line_ids.mapped("unit_amount"))
-        self.assertEqual(hours_after - hours_before, 35.0)
+        self.assertEqual(hours_after - hours_before, 28.0)
 
         # Test editing of lines forbidden
         self.assertRaises(
@@ -81,7 +91,7 @@ class TimesheetHolidayTest(TestHrHolidaysBase):
         # Test force editing of lines allowed
         account.line_ids[0].with_context(force_write=True).write({"unit_amount": 5.0})
         hours_after = sum(account.line_ids.mapped("unit_amount"))
-        self.assertEqual(hours_after - hours_before, 33.0)
+        self.assertEqual(hours_after - hours_before, 26.0)
         # Ensure the user_id defined on generated analytic lines is the user
         # set on the employee
         user_employee = self.env["hr.employee"].browse(self.employee_emp_id).user_id
@@ -100,13 +110,14 @@ class TimesheetHolidayTest(TestHrHolidaysBase):
                 "allow_timesheets": True,
             }
         )
+        project._create_analytic_account()
         account = project.analytic_account_id
         account.write({"is_leave_account": True})
         # Link sick leave to analytic account
         sl = self.sl
         sl.write({"analytic_account_id": account.id})
 
-        hol_empl_grp = self.leave.sudo(self.user_employee_id)
+        hol_empl_grp = self.leave.with_user(self.user_employee_id)
         leave = hol_empl_grp.create(
             {
                 "name": "One week sick leave",
@@ -114,7 +125,6 @@ class TimesheetHolidayTest(TestHrHolidaysBase):
                 "holiday_status_id": self.sl.id,
                 "date_from": time.strftime("1900-01-06"),
                 "date_to": time.strftime("1900-01-12"),
-                "number_of_days_temp": 7.0,
             }
         )
         with self.assertRaises(UserError):
@@ -128,6 +138,7 @@ class TimesheetHolidayTest(TestHrHolidaysBase):
                 "allow_timesheets": True,
             }
         )
+        project._create_analytic_account()
         account = project.analytic_account_id
         account.write({"is_leave_account": True})
         # Link sick leave to analytic account
@@ -139,15 +150,13 @@ class TimesheetHolidayTest(TestHrHolidaysBase):
                 "holiday_status_id": self.sl.id,
                 "date_from": time.strftime("%Y-%m-06"),
                 "date_to": time.strftime("%Y-%m-12"),
-                "number_of_days_temp": 7.0,
                 "employee_id": self.employee.id,
-                "type": "add",
             }
         )
         leave.action_approve()
         self.assertEqual(
             len(leave.analytic_line_ids),
-            0,
+            4,
             "Allocation should not have " "analytic lines",
         )
 
@@ -160,26 +169,24 @@ class TimesheetHolidayTest(TestHrHolidaysBase):
                 "allow_timesheets": False,
             }
         )
+        project._create_analytic_account()
         account = project.analytic_account_id
         project.write({"allow_timesheets": True})
         account.write({"is_leave_account": True})
-        # Link sick leave to analytic account
-        sl = self.sl
-        sl.write({"project_id": project.id})
         # Confirm leave and check hours added to account
         hours_before = sum(account.line_ids.mapped("amount"))
-        # Holidays.sudo(self.user_employee_id)
-        hol_empl_grp = self.leave.sudo(self.user_hruser_id)
+        # Holidays.with_user(self.user_employee_id)
+        hol_empl_grp = self.leave.with_user(self.user_hruser_id)
+        leave_date = datetime.today() + (relativedelta(days=10))
         leave = hol_empl_grp.create(
             {
                 "name": "One day and a half sick leave",
                 "employee_id": self.employee_emp_id,
                 "holiday_status_id": self.sl.id,
-                "date_from": (datetime.today() - relativedelta(hours=10.5)),
-                "date_to": datetime.today(),
-                "number_of_days_temp": 1.5,
+                "date_from": leave_date - relativedelta(hours=10.5),
+                "date_to": leave_date,
             }
         )
-        leave.sudo(self.user_hruser_id).action_approve()
+        leave.with_user(self.user_hruser_id).action_approve()
         hours_after = sum(account.line_ids.mapped("unit_amount"))
-        self.assertEqual(hours_after - hours_before, 10.5)
+        self.assertEqual(hours_after - hours_before, 3.5)

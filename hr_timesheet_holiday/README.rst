@@ -75,7 +75,7 @@ Contributors
 * Tom Blauwendraat <tom@sunflowerweb.nl>
 * Terrence Nzaywa <terrence@sunflowerweb.nl>
 * Holger Brunn <hbrunn@therp.nl>
-* Aaron Henriquez <ahenriquez@eficent.com>
+* Aaron Henriquez <aaron.henriquez@forgeflow.com>
 
 Maintainer
 ----------

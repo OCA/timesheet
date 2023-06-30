@@ -7,10 +7,10 @@ from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
 
 
-class HrHolidays(models.Model):
+class HrLeave(models.Model):
     """Update analytic lines on status change of Leave Request"""
 
-    _inherit = "hr.holidays"
+    _inherit = "hr.leave"
 
     # Timesheet entry linked to this leave request
     analytic_line_ids = fields.One2many(
@@ -19,10 +19,6 @@ class HrHolidays(models.Model):
         string="Analytic Lines",
     )
 
-    def check_no_duplicate_leaves_hook(self, user, date, hours):
-        return
-
-    @api.multi
     def add_timesheet_line(self, description, date, hours, account):
         """Add a timesheet line for this leave"""
         self.ensure_one()
@@ -31,9 +27,6 @@ class HrHolidays(models.Model):
             raise UserError(_("No active projects for this Analytic Account"))
         # User exists because already checked during the action_approve
         user = self.employee_id.user_id
-        public = self.check_no_duplicate_leaves_hook(user, date, hours)
-        if public:
-            return
         self.sudo().with_context(force_write=True).write(
             {
                 "analytic_line_ids": [
@@ -66,15 +59,14 @@ class HrHolidays(models.Model):
             )
         return hours_per_day
 
-    @api.multi
     def action_approve(self):
         """On grant of leave, add timesheet lines"""
-        res = super(HrHolidays, self).action_approve()
+        res = super(HrLeave, self).action_approve()
 
         # Postprocess Leave Types that have an analytic account configured
         for leave in self:
             account = leave.holiday_status_id.analytic_account_id
-            if not account or leave.type != "remove":
+            if not account:
                 # we only work on leaves (type=remove, type=add is allocation)
                 # which have an account set
                 continue
@@ -92,7 +84,7 @@ class HrHolidays(models.Model):
                 )
 
             # Add analytic lines for these leave hours
-            leave.analytic_line_ids.sudo(user.id).unlink()  # to be sure
+            leave.analytic_line_ids.with_user(user.id).unlink()  # to be sure
             dt_from = fields.Datetime.from_string(leave.date_from)
             dt_current = dt_from
             at_least_one_complete_day = False
@@ -122,9 +114,8 @@ class HrHolidays(models.Model):
                 )
         return res
 
-    @api.multi
     def action_refuse(self):
         """On refusal of leave, delete timesheet lines"""
-        res = super(HrHolidays, self).action_refuse()
+        res = super(HrLeave, self).action_refuse()
         self.mapped("analytic_line_ids").with_context(force_write=True).unlink()
         return res

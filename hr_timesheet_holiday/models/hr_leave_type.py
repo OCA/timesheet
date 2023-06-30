@@ -4,17 +4,13 @@
 from odoo import fields, models
 
 
-class HrHolidaysStatus(models.Model):
+class HrLeaveType(models.Model):
     """Add project to holiday status"""
 
-    _inherit = "hr.holidays.status"
+    _inherit = "hr.leave.type"
 
     analytic_account_id = fields.Many2one(
         comodel_name="account.analytic.account",
         string="Analytic Account",
-        related="project_id.analytic_account_id",
-    )
-    project_id = fields.Many2one(
-        comodel_name="project.project",
-        string="Project",
+        related="timesheet_project_id.analytic_account_id",
     )

@@ -16,7 +16,7 @@ class AnalyticAccount(models.Model):
         default=False,
     )
     holiday_status_ids = fields.One2many(
-        comodel_name="hr.holidays.status",
+        comodel_name="hr.leave.type",
         inverse_name="analytic_account_id",
     )
 
@@ -26,7 +26,6 @@ class AnalyticAccount(models.Model):
             return True
         return super(AnalyticAccount, self)._trigger_project_creation(vals)
 
-    @api.multi
     def project_create(self, vals):
         res = super(AnalyticAccount, self).project_create(vals)
         if isinstance(res, (int, float)):
@@ -37,7 +36,6 @@ class AnalyticAccount(models.Model):
         return res
 
     @api.constrains("is_leave_account", "project_ids")
-    @api.multi
     def _check_account_allow_timesheet(self):
         for aa in self:
             if any(project.allow_timesheets is False for project in aa.project_ids):

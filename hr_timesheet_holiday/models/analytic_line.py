@@ -10,7 +10,7 @@ class AnalyticLine(models.Model):
 
     _inherit = "account.analytic.line"
 
-    leave_id = fields.Many2one(comodel_name="hr.holidays", string="Leave id")
+    leave_id = fields.Many2one(comodel_name="hr.leave", string="Leave id")
 
     @api.depends(
         "date",
@@ -25,12 +25,12 @@ class AnalyticLine(models.Model):
         """Links the timesheet line to the corresponding sheet"""
         for ts_line in self:
             if not ts_line.account_id.is_leave_account:
-                super(AnalyticLine, ts_line)._compute_sheet()
+                return super(AnalyticLine, ts_line)._compute_sheet()
             else:
-                sheets = self.env["hr_timesheet_sheet.sheet"].search(
+                sheets = self.env["hr_timesheet.sheet"].search(
                     [
-                        ("date_to", ">=", ts_line.date),
-                        ("date_from", "<=", ts_line.date),
+                        ("date_start", ">=", ts_line.date),
+                        ("date_end", "<=", ts_line.date),
                         ("employee_id.user_id.id", "=", ts_line.user_id.id),
                         ("state", "in", ["draft", "new"]),
                     ]
@@ -39,7 +39,6 @@ class AnalyticLine(models.Model):
                     ts_line.sheet_id_computed = sheets[0]
                     ts_line.sheet_id = sheets[0]
 
-    @api.multi
     def write(self, vals):
         if not self.env.context.get("force_write", False):
             for rec in self:
@@ -51,4 +50,4 @@ class AnalyticLine(models.Model):
                             "Please edit the leave request instead."
                         )
                     )
-        super(AnalyticLine, self).write(vals)
+        return super(AnalyticLine, self).write(vals)

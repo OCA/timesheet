@@ -9,6 +9,4 @@ class ResCompany(models.Model):
 
     _inherit = "res.company"
 
-    timesheet_hours_per_day = fields.Float(
-        string="Timesheet Hours Per Day", digits=(2, 2), default=8.0
-    )
+    timesheet_hours_per_day = fields.Float(digits=(2, 2), default=8.0)
