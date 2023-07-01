@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hr_timesheet_line_tree" model="ir.ui.view">
+        <field name="name">Name Customer</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field
+                    name="name_customer"
+                    optional="show"
+                    groups="hr_timesheet.group_timesheet_manager"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
