@@ -63,6 +63,9 @@ and configure **Timesheet Sheet Review Policy** accordingly.
 For adding more review policies, look at the *hr_timesheet_sheet_policy_xxx*
 extra modules.
 
+To disable sending system emails to reviewers when the status of the sheet changes:
+#. Go to Settings => Timesheets and check the **Don't send email to Reviewer** flag
+
 Usage
 =====
 
