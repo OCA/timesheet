@@ -5,8 +5,9 @@
 from datetime import timedelta
 
 from odoo import models, fields, api, _
-from odoo.exceptions import Warning as UserError
-
+from datetime import datetime
+from odoo.exceptions import UserError
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 class HrHolidays(models.Model):
     """Update analytic lines on status change of Leave Request"""
@@ -79,9 +80,15 @@ class HrHolidays(models.Model):
 
             # Add analytic lines for these leave hours
             leave.analytic_line_ids.sudo(user.id).unlink()  # to be sure
-            dt_from = fields.Datetime.from_string(leave.date_from)
-            for day in range(abs(int(leave.number_of_days))):
-                dt_current = dt_from + timedelta(days=day)
+
+            date_from = datetime.strptime(self.date_from,
+                                        DEFAULT_SERVER_DATETIME_FORMAT).date()
+            date_to = datetime.strptime(self.date_to,
+                                        DEFAULT_SERVER_DATETIME_FORMAT).date()
+
+            delta = (date_to - date_from).days
+            for day in range(delta+1):
+                dt_current =  + timedelta(days=day)
 
                 # skip the non work days
                 day_of_the_week = dt_current.isoweekday()
