@@ -13,7 +13,9 @@
     "external_dependencies": {},
     "demo": [],
     "data": [
+        "security/ir.model.access.csv",
         "data/ir_actions_server.xml",
+        "data/hr_timesheet_cron.xml",
         "views/hr_employee_view.xml",
         "views/hr_timesheet_sheet_view.xml",
         "views/purchase_order_view.xml",
