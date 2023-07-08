@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_name_customer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-07-08 08:43+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: hr_timesheet_name_customer
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_name_customer.name_customer_table
+msgid "<span>Description</span>"
+msgstr "<span>Descrizione</span>"
+
+#. module: hr_timesheet_name_customer
+#: model:ir.model,name:hr_timesheet_name_customer.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Riga analitica"
+
+#. module: hr_timesheet_name_customer
+#: model:ir.model.fields,field_description:hr_timesheet_name_customer.field_account_analytic_line__name_customer
+msgid "Customer Description"
+msgstr "Descrizione cliente"
+
+#. module: hr_timesheet_name_customer
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_name_customer.report_timesheet_custom
+msgid "Project"
+msgstr "Progetto"
+
+#. module: hr_timesheet_name_customer
+#: model:ir.actions.report,name:hr_timesheet_name_customer.timesheet_report_name_custom
+msgid "Timesheet Customer"
+msgstr "Foglio ore cliente"
+
+#. module: hr_timesheet_name_customer
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_name_customer.report_timesheet_custom
+msgid "Timesheets"
+msgstr "Foglio ore"
+
+#. module: hr_timesheet_name_customer
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_name_customer.report_timesheet_custom
+msgid "for the"
+msgstr "per il"
