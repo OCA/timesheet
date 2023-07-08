@@ -39,7 +39,15 @@ msgstr "משימה סגורה"
 
 #. module: hr_timesheet_task_stage
 #: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Closing Stage"
+msgid "Folded in Kanban"
+msgstr ""
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
+msgid ""
+"If enabled, this stage will be displayed as folded in the Kanban view of "
+"your tasks. Tasks in a folded stage are considered as closed (not applicable "
+"to personal stages)."
 msgstr ""
 
 #. module: hr_timesheet_task_stage
@@ -48,17 +56,14 @@ msgid "Open task"
 msgstr "משימה פתוחה"
 
 #. module: hr_timesheet_task_stage
-#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid "Tasks in this stage are considered as closed."
-msgstr ""
-
-#. module: hr_timesheet_task_stage
+#. odoo-python
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" checked. Please mark any."
 msgstr ""
 
 #. module: hr_timesheet_task_stage
+#. odoo-python
 #: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
 #, python-format
 msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
