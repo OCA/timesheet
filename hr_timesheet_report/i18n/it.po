@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-10 12:09+0000\n"
+"PO-Revision-Date: 2023-07-10 11:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -395,13 +395,13 @@ msgstr "Progetti:"
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_field_groupby__report_id
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_group__report_id
 msgid "Report"
-msgstr "Report"
+msgstr "Resoconto"
 
 #. module: hr_timesheet_report
 #: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:0
 #, python-format
 msgid "Report %s"
-msgstr "Report %s"
+msgstr "Resoconto %s"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_entry__scope
