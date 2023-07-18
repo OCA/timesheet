@@ -181,9 +181,9 @@ class HrTimesheetReport(models.TransientModel):
 
         query = [('project_id', '!=', False)]
         if self.date_from:
-            query.append(('date', '>=', fields.Date.to_string(self.date_from)))
+            query.append(('date', '>=', self.date_from))
         if self.date_to:
-            query.append(('date', '<=', fields.Date.to_string(self.date_to)))
+            query.append(('date', '<=', self.date_to))
         if self.project_ids:
             query.append(('project_id', 'in', self.project_ids.ids))
         if self.task_ids:
@@ -440,7 +440,7 @@ class HrTimesheetReportEntry(models.TransientModel):
     @api.depends('scope')
     def _compute_total_unit_amount(self):
         AccountAnalyticLine = self.env['account.analytic.line']
-        uom_hour = self.env.ref('uom.product_uom_hour')
+        uom_hour = self.env.ref('product.product_uom_hour')
 
         for entry in self:
             total_unit_amount = 0.0
@@ -472,7 +472,7 @@ class Report(models.AbstractModel):
     _inherit = 'report.report_xlsx.abstract'
 
     @api.model
-    def _get_report_values(self, docids, data=None):
+    def get_report_values(self, docids, data=None):
         docs = self.env['hr.timesheet.report'].browse(docids)
 
         return {
@@ -483,7 +483,7 @@ class Report(models.AbstractModel):
 
     @api.model
     def generate_xlsx_report(self, workbook, data, docs):
-        uom_hour = self.env.ref('uom.product_uom_hour')
+        uom_hour = self.env.ref('product.product_uom_hour')
 
         for report_index, report in enumerate(docs):
             sheet = workbook.add_worksheet(
@@ -689,23 +689,24 @@ class Report(models.AbstractModel):
         raw_value = entry.any_line_id[field.field_name]
         value = entry.render_value(field.field_name)
         if field.field_type == 'datetime':
-            sheet.write_datetime(
+            sheet.write(
                 row,
                 col,
                 raw_value,
                 formats['cell_datetime']
             )
         elif field.field_type == 'date':
-            sheet.write_datetime(
+            sheet.write(
                 row,
                 col,
                 raw_value,
                 formats['cell_date']
             )
+        # Added a check since html.unescape doesn't seem  handle boolean values
         else:
             sheet.write(
                 row,
                 col,
-                html.unescape(value),
+                html.unescape(str(value) if isinstance(value, bool) else value),
                 formats['cell_generic']
             )

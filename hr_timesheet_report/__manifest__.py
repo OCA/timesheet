@@ -4,7 +4,7 @@
 
 {
     'name': 'Task Logs Timesheet Report',
-    'version': '12.0.1.0.1',
+    'version': '11.0.1.0.1',
     'category': 'Human Resources',
     'maintainers': ['alexey-pelykh'],
     'website': 'https://github.com/OCA/timesheet',
@@ -18,6 +18,7 @@
     'depends': [
         'hr_timesheet',
         'report_xlsx',
+        'account'
     ],
     'data': [
         'views/account_analytic_line.xml',
