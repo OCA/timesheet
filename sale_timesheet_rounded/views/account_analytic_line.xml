@@ -3,7 +3,7 @@
     <record id="view_account_analytic_line_form_inherit" model="ir.ui.view">
         <field name="name">account.analytic.line.form.inherit</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="analytic.view_account_analytic_line_form" />
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='unit_amount']" position="after">
                 <field
