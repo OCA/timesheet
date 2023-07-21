@@ -6,7 +6,7 @@
     'license': 'AGPL-3',
     "author": "BizzAppDev, "
     "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/hr-timesheet/",
+    "website": "https://github.com/OCA/timesheet",
     'depends': [
         'hr_attendance',
         'hr_timesheet_sheet'
