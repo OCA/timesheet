@@ -21,12 +21,12 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[crm_timesheet](crm_timesheet/) | 11.0.1.0.0 |  | CRM Timesheet
-[hr_timesheet_sheet](hr_timesheet_sheet/) | 11.0.2.0.1 |  | Timesheet Sheets, Activities
-[hr_timesheet_sheet_attendance](hr_timesheet_sheet_attendance/) | 11.0.0.0.1 |  | HR Timesheet Sheet Attendance
-[hr_timesheet_task_required](hr_timesheet_task_required/) | 11.0.1.0.1 |  | Set task on timesheet as a mandatory field
+[crm_timesheet](crm_timesheet/) | 11.0.1.0.1 |  | CRM Timesheet
+[hr_timesheet_sheet](hr_timesheet_sheet/) | 11.0.2.0.2 |  | Timesheet Sheets, Activities
+[hr_timesheet_sheet_attendance](hr_timesheet_sheet_attendance/) | 11.0.0.0.2 |  | HR Timesheet Sheet Attendance
+[hr_timesheet_task_required](hr_timesheet_task_required/) | 11.0.1.0.2 |  | Set task on timesheet as a mandatory field
 [hr_timesheet_task_stage](hr_timesheet_task_stage/) | 11.0.1.0.1 |  | Open/Close task from corresponding Task Log entry
-[project_task_stage_allow_timesheet](project_task_stage_allow_timesheet/) | 11.0.1.0.0 |  | Allows to tell that a task stage is opened for timesheets.
+[project_task_stage_allow_timesheet](project_task_stage_allow_timesheet/) | 11.0.1.0.1 |  | Allows to tell that a task stage is opened for timesheets.
 [sale_timesheet_draft_invoice](sale_timesheet_draft_invoice/) | 11.0.1.0.0 |  | Link timesheet lines to invoice in draft state
 
 [//]: # (end addons)
