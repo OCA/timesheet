@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2023-06-22 14:08+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-07-28 12:09+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/odoo/teams/41243/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,7 @@ msgstr "<span class=\"text-muted text-nowrap\">Tempo totale</span>"
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line_abstract
 msgid "Abstract Timesheet Sheet Line"
-msgstr "Estratto riga scheda foglio ore"
+msgstr "Riga prospetto foglio ore astratto"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_warning
@@ -92,7 +92,7 @@ msgstr "Aggiungi nuova riga"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_all_timesheets
 msgid "All Timesheet Sheets"
-msgstr "Tutte le schede del foglio ore"
+msgstr "Tutti i prospetti foglio ore"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
@@ -336,7 +336,7 @@ msgid ""
 msgstr ""
 "I dipendenti devono registrare i fogli ore nel prospetto ogni giorno e "
 "confermarli alla fine\n"
-"            del periodo diel resoconto. Una volta che il prospetto fogli ore "
+"            del periodo del resoconto. Una volta che il prospetto fogli ore "
 "è confermato,\n"
 "            deve essere validato da un revisore."
 
