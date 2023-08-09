@@ -11,6 +11,7 @@ class HrTimesheetSheet(models.Model):
     project_id = fields.Many2one(
         string="Project",
         comodel_name="project.project",
+        domain="[('company_id', '=', company_id)]",
         readonly=True,
         states={"new": [("readonly", False)]},
     )
@@ -26,13 +27,13 @@ class HrTimesheetSheet(models.Model):
     def _get_complete_name_components(self):
         self.ensure_one()
         result = super()._get_complete_name_components()
-        if self.review_policy == "project_manager":
+        if self.review_policy == "project_manager" and self.project_id:
             result += [self.project_id.name_get()[0][1]]
         return result
 
     def _get_overlapping_sheet_domain(self):
         domain = super()._get_overlapping_sheet_domain()
-        if self.review_policy == "project_manager":
+        if self.review_policy == "project_manager" and self.project_id:
             domain += [("project_id", "=", self.project_id.id)]
         return domain
 
@@ -81,38 +82,25 @@ class HrTimesheetSheet(models.Model):
     def _onchange_project_id(self):
         self.add_line_project_id = self.project_id
         self._compute_timesheet_ids()
-        return self.onchange_add_project_id()
 
     def _check_can_review(self):
-        super()._check_can_review()
+        res = super()._check_can_review()
         if self.filtered(
             lambda sheet: not sheet.can_review
             and sheet.review_policy == "project_manager"
         ):
             raise UserError(_("Only a Project Manager can review the sheet."))
+        return res
 
     def reset_add_line(self):
-        super().reset_add_line()
+        res = super().reset_add_line()
         self.write({"add_line_project_id": self.project_id.id})
+        return res
 
-    @api.model
-    def create(self, vals):
-        review_policy = vals.get(
-            "review_policy", self.default_get(["review_policy"])["review_policy"]
-        )
-        if review_policy == "project_manager" and not vals.get("project_id"):
-            raise UserError(
-                _('Review policy "By Project Manager" requires Project to be set')
-            )
-        return super().create(vals)
-
-    def write(self, vals):
-        if (
-            self.filtered(lambda x: x.review_policy == "project_manager")
-            and "project_id" in vals
-            and not vals.get("project_id")
-        ):
-            raise UserError(
-                _('Review policy "By Project Manager" requires Project to be set')
-            )
-        return super().write(vals)
+    @api.constrains("review_policy", "project_id")
+    def _check_review_policy(self):
+        for rec in self:
+            if rec.review_policy == "project_manager" and not rec.project_id:
+                raise UserError(
+                    _('Review policy "By Project Manager" requires Project to be set')
+                )
