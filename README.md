@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [hr_timesheet_begin_end](hr_timesheet_begin_end/) | 16.0.1.0.0 |  | Timesheet - Begin/End Hours
 [hr_timesheet_name_customer](hr_timesheet_name_customer/) | 16.0.1.0.0 | [![solo4games](https://github.com/solo4games.png?size=30px)](https://github.com/solo4games) [![CetmixGitDrone](https://github.com/CetmixGitDrone.png?size=30px)](https://github.com/CetmixGitDrone) | Add ‘Description Customer’ field for timesheets
 [hr_timesheet_sheet](hr_timesheet_sheet/) | 16.0.1.0.0 |  | Timesheet Sheets, Activities
+[hr_timesheet_sheet_policy_project_manager](hr_timesheet_sheet_policy_project_manager/) | 16.0.1.0.0 |  | Allows setting Project Manager as Reviewer
 [hr_timesheet_task_domain](hr_timesheet_task_domain/) | 16.0.1.0.0 |  | Limit task selection to tasks on currently-selected project
 [hr_timesheet_task_required](hr_timesheet_task_required/) | 16.0.1.0.0 |  | Set task on timesheet as a mandatory field
 [hr_timesheet_task_stage](hr_timesheet_task_stage/) | 16.0.1.0.1 |  | Open/Close task from corresponding Task Log entry
