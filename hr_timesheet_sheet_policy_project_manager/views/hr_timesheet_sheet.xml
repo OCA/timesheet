@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="hr_timesheet_sheet_form" model="ir.ui.view">
+        <field name="name">hr_timesheet.sheet.form</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='details']/field[@name='company_id']"
+                position="before"
+            >
+                <field
+                    name="project_id"
+                    attrs="{'invisible': [('review_policy', '!=', 'project_manager')], 'required': [('review_policy', '=', 'project_manager')]}"
+                />
+            </xpath>
+            <field name="add_line_project_id" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('review_policy', '=', 'project_manager')]}</attribute>
+            </field>
+            <xpath
+                expr="//field[@name='timesheet_ids']/tree//field[@name='project_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'column_invisible': [('parent.review_policy', '=', 'project_manager')]}</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='timesheet_ids']/form//field[@name='project_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('parent.review_policy', '=', 'project_manager')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_hr_timesheet_sheet_filter" model="ir.ui.view">
+        <field name="name">hr_timesheet.sheet.filter</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"
+        />
+        <field name="arch" type="xml">
+            <search>
+                <field name="project_id" />
+                <group>
+                    <filter
+                        name="groupby_project"
+                        string="Project"
+                        domain="[]"
+                        context="{'group_by':'project_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>
