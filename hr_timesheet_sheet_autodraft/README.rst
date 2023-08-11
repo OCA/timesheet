@@ -23,7 +23,7 @@ HR Timesheet Sheet Auto-draft
     :target: https://runbot.odoo-community.org/runbot/117/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds option to auto-draft Timesheet Sheets whenever a Timesheet
 entry is created or modified to ensure it's covered by a relevant Timesheet
@@ -67,6 +67,7 @@ Contributors
 
   * Alexey Pelykh <alexey.pelykh@corphub.eu>
   * Dhara Solanki <dhara.solanki@initos.com>
+  * Michele Di Croce <dicroce.m@stesi.eu>
 
 Maintainers
 ~~~~~~~~~~~
