@@ -5,10 +5,20 @@ from odoo.tests import Form, common, new_test_user
 from odoo.tests.common import users
 
 
-class TestHrTimesheetEmployeeAnalyticTag(common.SavepointCase):
+class TestHrTimesheetEmployeeAnalyticTag(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                mail_create_nolog=True,
+                mail_create_nosubscribe=True,
+                mail_notrack=True,
+                no_reset_password=True,
+                tracking_disable=True,
+            )
+        )
         cls.tag_1 = cls.env["account.analytic.tag"].create({"name": "Test tag 1"})
         cls.tag_2 = cls.env["account.analytic.tag"].create({"name": "Test tag 2"})
         cls.project = cls.env["project.project"].create(
