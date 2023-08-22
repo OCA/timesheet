@@ -119,6 +119,11 @@ msgid "Attachment Count"
 msgstr "Aantal bijlages"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__available_task_ids
+msgid "Available Tasks"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr_manager
 msgid "By HR Managers"
 msgstr "Door HR Managers"
@@ -139,18 +144,21 @@ msgid "Can Review"
 msgstr "Kan goedkeuren"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Een niet ingediende urenstaat kan niet goedgekeurd worden."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Kan een niet ingediende urenstaat niet weigeren."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -388,7 +396,6 @@ msgstr "Icoon om een uitzonderingsactiviteit aan te geven."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Wanneer aangevinkt, hebben nieuwe berichten uw aandacht nodig."
 
@@ -422,6 +429,7 @@ msgid "In Draft"
 msgstr "In concept"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
@@ -432,6 +440,7 @@ msgstr ""
 "linken aan een gebruiker: %s"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
@@ -535,11 +544,6 @@ msgid "New timesheet sheet."
 msgstr "Nieuwe urenstaat formulier."
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_calendar_event_id
-msgid "Next Activity Calendar Event"
-msgstr ""
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr "Volgende activitiet deadline"
@@ -571,8 +575,8 @@ msgstr "Aantal fouten"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Aantal berichten welke een actie nodig hebben"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error_counter
@@ -580,11 +584,7 @@ msgid "Number of messages with delivery error"
 msgstr "Aantal berichten met een leverfout"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Aantal ongelezen berichten"
-
-#. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -662,6 +662,7 @@ msgid "Saturday"
 msgstr "Zaterdag"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Save the Timesheet Sheet first."
@@ -768,6 +769,7 @@ msgid "Temporary Timesheets"
 msgstr "Tijdelijke urenstaten"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
@@ -775,6 +777,7 @@ msgid ""
 msgstr "Het bedrijf in de urenstaat en afdeling moeten gelijk zijn."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
@@ -782,12 +785,14 @@ msgid ""
 msgstr "Het bedrijf in de urenstaat en werknemer moeten gelijk zijn."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Project must be the same."
 msgstr "Het bedrijf in de urenstaat en project moeten gelijk zijn."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Task must be the same."
@@ -800,6 +805,7 @@ msgid "The range of your Timesheet Sheet."
 msgstr "Urenstaat formulier periode per."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "The start date cannot be later than the end date."
@@ -956,14 +962,8 @@ msgid "Type of the exception activity on record."
 msgstr "Uitzonderingsactiviteitssoort op record."
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Unread Messages"
-msgstr "Ongelezen berichten"
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr "Ongelezen berichten"
 
 #. module: hr_timesheet_sheet
@@ -983,6 +983,7 @@ msgid "Waiting review"
 msgstr "Wacht op goedkeuring"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Warning"
@@ -1009,6 +1010,7 @@ msgid "Week"
 msgstr "Week"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Week %(end)s"
@@ -1025,12 +1027,14 @@ msgid "Week start day"
 msgstr "Week startdag"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Weeks %(start)s - %(end)s"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:0
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:0
 #: code:addons/hr_timesheet_sheet/models/hr_employee.py:0
@@ -1041,6 +1045,7 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
 #, python-format
 msgid ""
@@ -1051,6 +1056,7 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
@@ -1061,12 +1067,14 @@ msgstr ""
 "is: %s"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "Het is niet mogelijk een urenstaat te dupliceren."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
@@ -1077,6 +1085,7 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
 #, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %(names)s"
@@ -1112,6 +1121,15 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "tot"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Aantal berichten welke een actie nodig hebben"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Aantal ongelezen berichten"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Ongelezen berichten"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Volgers (kanalen)"

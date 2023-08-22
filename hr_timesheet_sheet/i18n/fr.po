@@ -133,6 +133,11 @@ msgid "Attachment Count"
 msgstr "Pièces jointes"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__available_task_ids
+msgid "Available Tasks"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr_manager
 msgid "By HR Managers"
 msgstr "Par les gestionnaires R.H."
@@ -153,18 +158,21 @@ msgid "Can Review"
 msgstr "Peut vérifier"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr "Ne peut pas approuver une feuille non soumise."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr "Ne peut pas rejeter une feuille non soumise."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
@@ -402,7 +410,6 @@ msgstr "Icône indiquant une activité d’exception."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si coché, de nouveaux messages requièrent votre attention."
 
@@ -436,6 +443,7 @@ msgid "In Draft"
 msgstr "A l'état \"Brouillon\""
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
@@ -446,6 +454,7 @@ msgstr ""
 "à un utilisateur : %s"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
@@ -549,11 +558,6 @@ msgid "New timesheet sheet."
 msgstr "Nouvelle feuille de temps."
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_calendar_event_id
-msgid "Next Activity Calendar Event"
-msgstr ""
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr "Date limite de la prochaine activité"
@@ -585,8 +589,8 @@ msgstr "Nombre d’erreurs"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Nombre de messages requérant une action"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error_counter
@@ -594,11 +598,7 @@ msgid "Number of messages with delivery error"
 msgstr "Nombre de message avec une erreur d’envoi"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Messages non lus"
-
-#. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
@@ -676,6 +676,7 @@ msgid "Saturday"
 msgstr "Samedi"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Save the Timesheet Sheet first."
@@ -782,6 +783,7 @@ msgid "Temporary Timesheets"
 msgstr "Feuilles de temps temporaires"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
@@ -790,6 +792,7 @@ msgstr ""
 "La société dans la feuille de temps et dans le département doit être la même."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
@@ -798,6 +801,7 @@ msgstr ""
 "La société dans la feuille de temps doit être la même que celle de l'employé."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Project must be the same."
@@ -805,6 +809,7 @@ msgstr ""
 "La société dans la feuille de temps et dans le projet doit être la même."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "The Company in the Timesheet Sheet and in the Task must be the same."
@@ -818,6 +823,7 @@ msgid "The range of your Timesheet Sheet."
 msgstr "La plage de votre feuille de temps."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "The start date cannot be later than the end date."
@@ -974,15 +980,9 @@ msgid "Type of the exception activity on record."
 msgstr "Type d’activité d'exception enregistrée."
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Unread Messages"
 msgstr "Messages non lus"
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Nombre de messages non lus"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__user_id
@@ -1001,6 +1001,7 @@ msgid "Waiting review"
 msgstr "En attente d’approbation"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Warning"
@@ -1027,6 +1028,7 @@ msgid "Week"
 msgstr "Semaine"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Week %(end)s"
@@ -1043,12 +1045,14 @@ msgid "Week start day"
 msgstr "Jour de début de la semaine"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Weeks %(start)s - %(end)s"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:0
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:0
 #: code:addons/hr_timesheet_sheet/models/hr_employee.py:0
@@ -1059,6 +1063,7 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
 #, python-format
 msgid ""
@@ -1069,6 +1074,7 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
@@ -1079,12 +1085,14 @@ msgstr ""
 "%s"
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "You cannot duplicate a sheet."
 msgstr "Vous ne pouvez dupliquer une feuille."
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
@@ -1095,6 +1103,7 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#. odoo-python
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
 #, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %(names)s"
@@ -1128,6 +1137,15 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "au"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Nombre de messages requérant une action"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Messages non lus"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Nombre de messages non lus"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Abonnés (Canaux)"
