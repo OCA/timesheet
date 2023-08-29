@@ -10,7 +10,17 @@
         </field>
     </record>
     <record id="view_hr_timesheet_project_time_type_form" model="ir.ui.view">
-        <field name="name">view.hr.timesheet.project.time.typeform</field>
+        <field name="name">view.hr.timesheet.project.time.type.form</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="time_type_id" />
+            </field>
+        </field>
+    </record>
+    <record id="view_hr_timesheet_project_time_type_form_user" model="ir.ui.view">
+        <field name="name">view.hr.timesheet.project.time.typeform.user</field>
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="hr_timesheet.timesheet_view_form_user" />
         <field name="arch" type="xml">
