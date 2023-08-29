@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo-addon-hr_timesheet_task_domain>=16.0dev,<16.1dev',
         'odoo-addon-hr_timesheet_task_required>=16.0dev,<16.1dev',
         'odoo-addon-hr_timesheet_task_stage>=16.0dev,<16.1dev',
+        'odoo-addon-hr_timesheet_time_type>=16.0dev,<16.1dev',
         'odoo-addon-sale_timesheet_line_exclude>=16.0dev,<16.1dev',
     ],
     classifiers=[
