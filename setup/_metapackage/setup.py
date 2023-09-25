@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo-addon-hr_timesheet_begin_end>=15.0dev,<15.1dev',
         'odoo-addon-hr_timesheet_sheet>=15.0dev,<15.1dev',
         'odoo-addon-hr_timesheet_sheet_begin_end>=15.0dev,<15.1dev',
+        'odoo-addon-hr_timesheet_sheet_policy_project_manager>=15.0dev,<15.1dev',
         'odoo-addon-hr_timesheet_task_domain>=15.0dev,<15.1dev',
         'odoo-addon-hr_timesheet_task_required>=15.0dev,<15.1dev',
         'odoo-addon-hr_timesheet_task_stage>=15.0dev,<15.1dev',
