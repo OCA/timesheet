@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_sheet_role
+# 	* hr_timesheet_sheet_role
 #
 msgid ""
 msgstr ""
@@ -23,7 +23,9 @@ msgstr "Línea resumen Parte de horas"
 
 #. module: hr_timesheet_sheet_role
 #: model:ir.model.fields,help:hr_timesheet_sheet_role.field_hr_timesheet_sheet__add_line_role_id
-msgid "If selected, the associated role is added to the timesheet sheet when clicked the button."
+msgid ""
+"If selected, the associated role is added to the timesheet sheet when "
+"clicked the button."
 msgstr ""
 "Si se selecciona, la función asociada se añadirá a la hoja del Parte de "
 "horas al hacer clic en el botón."
