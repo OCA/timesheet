@@ -50,7 +50,6 @@ msgstr "Progetto"
 
 #. module: hr_timesheet_sheet_policy_project_manager
 #: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:0
-#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Review policy \"By Project Manager\" requires Project to be set"
 msgstr ""
@@ -60,8 +59,7 @@ msgstr ""
 #. module: hr_timesheet_sheet_policy_project_manager
 #: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:0
 #, python-format
-msgid ""
-"The Company in the Timesheet Sheet and in the Project must be the same."
+msgid "The Company in the Timesheet Sheet and in the Project must be the same."
 msgstr ""
 "L'azienda nella scheda del foglio ore e nel progetto deve essere la stessa."
 
