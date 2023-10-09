@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_timesheet_hook
+# 	* sale_timesheet_hook
 #
 msgid ""
 msgstr ""
@@ -35,7 +35,10 @@ msgstr "Crea OV da progetto"
 #. module: sale_timesheet_hook
 #: code:addons/sale_timesheet_hook/wizard/project_create_sale_order.py:61
 #, python-format
-msgid "The Sales Order cannot be created because you did not enter some employees that entered timesheets on this project. Please list all the relevant employees before creating the Sales Order.\n"
+msgid ""
+"The Sales Order cannot be created because you did not enter some employees "
+"that entered timesheets on this project. Please list all the relevant "
+"employees before creating the Sales Order.\n"
 "Missing employee(s): %s"
 msgstr ""
 "L'ordine di vendita non può essere creato perché non sono stati inseriti "
@@ -52,7 +55,9 @@ msgstr "Il progetto è già collegato ad un elemento ordine di vendita."
 #. module: sale_timesheet_hook
 #: code:addons/sale_timesheet_hook/wizard/project_create_sale_order.py:76
 #, python-format
-msgid "The sales order cannot be created because some timesheets of this project are already linked to another sales order."
+msgid ""
+"The sales order cannot be created because some timesheets of this project "
+"are already linked to another sales order."
 msgstr ""
 "L'ordine di vendita non può essere creato perché alcuni fogli ore del "
 "progetto sono già collegati ad altro ordine di vendita."
@@ -60,7 +65,9 @@ msgstr ""
 #. module: sale_timesheet_hook
 #: code:addons/sale_timesheet_hook/models/account_analytic_line.py:17
 #, python-format
-msgid "This timesheet line cannot be billed: there is no Sale Order Item defined on the task, nor on the project. Please define one to save your timesheet line."
+msgid ""
+"This timesheet line cannot be billed: there is no Sale Order Item defined on "
+"the task, nor on the project. Please define one to save your timesheet line."
 msgstr ""
 "Questa riga del foglio ore non può essere fatturata: non è stato definito "
 "l'elemento ordine di vendita nell'attività, nè nel progetto. Definirne uno "

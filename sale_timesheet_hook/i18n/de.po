@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_timesheet_hook
+# 	* sale_timesheet_hook
 #
 msgid ""
 msgstr ""
@@ -35,7 +35,10 @@ msgstr "Verkaufsauftrag erstellen"
 #. module: sale_timesheet_hook
 #: code:addons/sale_timesheet_hook/wizard/project_create_sale_order.py:61
 #, python-format
-msgid "The Sales Order cannot be created because you did not enter some employees that entered timesheets on this project. Please list all the relevant employees before creating the Sales Order.\n"
+msgid ""
+"The Sales Order cannot be created because you did not enter some employees "
+"that entered timesheets on this project. Please list all the relevant "
+"employees before creating the Sales Order.\n"
 "Missing employee(s): %s"
 msgstr ""
 "Der Verkaufsauftrag kann nicht erstellt werden, weil keine Mitarbeiter "
@@ -53,7 +56,9 @@ msgstr "Das Projekt ist bereits mit einer Verkaufsauftragszeile verbunden."
 #. module: sale_timesheet_hook
 #: code:addons/sale_timesheet_hook/wizard/project_create_sale_order.py:76
 #, python-format
-msgid "The sales order cannot be created because some timesheets of this project are already linked to another sales order."
+msgid ""
+"The sales order cannot be created because some timesheets of this project "
+"are already linked to another sales order."
 msgstr ""
 "Der Verkaufsauftrag kann nicht erstellt werden, weil einige Zeiterfassungen "
 "des Projekts schon zu einem anderen Verkaufsauftrag gehören."
@@ -61,7 +66,9 @@ msgstr ""
 #. module: sale_timesheet_hook
 #: code:addons/sale_timesheet_hook/models/account_analytic_line.py:17
 #, python-format
-msgid "This timesheet line cannot be billed: there is no Sale Order Item defined on the task, nor on the project. Please define one to save your timesheet line."
+msgid ""
+"This timesheet line cannot be billed: there is no Sale Order Item defined on "
+"the task, nor on the project. Please define one to save your timesheet line."
 msgstr ""
 "Die Zeiterfassung kann nicht in Rechnung gestellt werden: Es gibt keine "
 "verbundene Verkaufsauftragszeile für die Aufgabe oder das Projekt. Es sollte "
