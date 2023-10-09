@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_report
+# 	* hr_timesheet_report
 #
 msgid ""
 msgstr ""
@@ -76,6 +76,7 @@ msgstr "Au moins un champ Détails doit être défini !"
 
 #. module: hr_timesheet_report
 #: code:addons/hr_timesheet_report/wizards/hr_timesheet_report_wizard.py:129
+#, python-format
 msgid "At least one field must be listed in Details Fields"
 msgstr "Au moins un champ à afficher doit être choisi"
 
