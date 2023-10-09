@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_sheet_autodraft
+# 	* hr_timesheet_sheet_autodraft
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,10 @@ msgstr ""
 
 #. module: hr_timesheet_sheet_autodraft
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_autodraft.res_config_settings_view_form
-msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-specific."
+"\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Los valores establecidos aquí "
 "son específicos de la compañía.\" role=\"img\" aria-label=\"Los valores "
@@ -42,7 +45,9 @@ msgstr "Borrador hojas Parte(s) de horas"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model:ir.model.fields,help:hr_timesheet_sheet_autodraft.field_res_config_settings__timesheet_sheets_autodraft
-msgid "Auto-draft Timesheet Sheets whenever a Timesheet entry is created or modified to ensure it's covered by a relevant Timesheet Sheet"
+msgid ""
+"Auto-draft Timesheet Sheets whenever a Timesheet entry is created or "
+"modified to ensure it's covered by a relevant Timesheet Sheet"
 msgstr ""
 "Partes de horas en borrador cada vez que se crea o modifica una entrada para "
 "garantizar que esté reflejedo por un Parte de horas"
