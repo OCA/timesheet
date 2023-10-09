@@ -74,7 +74,6 @@ msgstr "Aggregazione"
 
 #. module: hr_utilization_report
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "Amount, %s"
 msgstr "Valore, %s"
@@ -111,7 +110,6 @@ msgid "Capacity,"
 msgstr "Capacità,"
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "Capacity, %s"
@@ -439,7 +437,6 @@ msgstr "Nome"
 
 #. module: hr_utilization_report
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "No"
 msgstr "No"
@@ -514,7 +511,6 @@ msgid "Title"
 msgstr "Titolo"
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "Total"
@@ -615,7 +611,6 @@ msgid "Wizard"
 msgstr "Procedura guidata"
 
 #. module: hr_utilization_report
-#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "Yes"
