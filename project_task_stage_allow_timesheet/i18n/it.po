@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* project_task_stage_allow_timesheet
+# 	* project_task_stage_allow_timesheet
 #
 msgid ""
 msgstr ""
@@ -40,7 +40,9 @@ msgstr "Fase lavoro"
 #. module: project_task_stage_allow_timesheet
 #: code:addons/project_task_stage_allow_timesheet/models/account_analytic_line.py:23
 #, python-format
-msgid "You can't link a timesheet line to a task if its stage doesn't allow it. (Task: %s, Stage: %s)"
+msgid ""
+"You can't link a timesheet line to a task if its stage doesn't allow it. "
+"(Task: %s, Stage: %s)"
 msgstr ""
 "Non si può collegare un foglio ore ad un lavoro se il suo stato non lo "
 "consente. (Lavoro: %s, Stato: %s)"
