@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* crm_phonecall_timesheet
+# 	* crm_phonecall_timesheet
 #
 msgid ""
 msgstr ""
