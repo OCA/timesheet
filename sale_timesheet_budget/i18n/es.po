@@ -24,7 +24,7 @@ msgstr ""
 
 #. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__amount
-#: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.edit_project
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.project_project_view_form
 msgid "Amount"
 msgstr "Importe"
 
@@ -55,9 +55,14 @@ msgstr "Importe de presupuesto"
 
 #. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project__budget_ids
-#: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.edit_project
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.project_project_view_form
 msgid "Budgets"
 msgstr "Presupuestos"
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__name
+msgid "Concept"
+msgstr ""
 
 #. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__create_uid
@@ -68,6 +73,11 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__create_date
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__date
+msgid "Date"
+msgstr ""
 
 #. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project__display_name
