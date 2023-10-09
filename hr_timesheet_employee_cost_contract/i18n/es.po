@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_employee_cost_contract
+# 	* hr_timesheet_employee_cost_contract
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,10 @@ msgstr ""
 
 #. module: hr_timesheet_employee_cost_contract
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_employee_cost_contract.res_config_settings_view_form
-msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-specific."
+"\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Los valores establecidos aquí "
 "son específicos de la compañía.\" role=\"img\" aria-label=\"Los valores "
@@ -140,7 +143,9 @@ msgstr "Usar coste manual en Parte horas"
 #. module: hr_timesheet_employee_cost_contract
 #: code:addons/hr_timesheet_employee_cost_contract/models/hr_employee.py:104
 #, python-format
-msgid "You should not set Timesheet Cost for employees that have it computed based on contracts."
+msgid ""
+"You should not set Timesheet Cost for employees that have it computed based "
+"on contracts."
 msgstr ""
 "No debería establecer el coste por empleado en el Parte de horas si lo ha "
 "calculado en función de los contratos."
