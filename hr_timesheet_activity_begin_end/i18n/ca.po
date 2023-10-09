@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_activity_begin_end
+# 	* hr_timesheet_activity_begin_end
 #
 msgid ""
 msgstr ""
@@ -35,7 +35,6 @@ msgstr ""
 #: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:50
 #, python-format
 msgid "Lines can't overlap:\n"
-""
 msgstr ""
 
 #. module: hr_timesheet_activity_begin_end
@@ -47,5 +46,6 @@ msgstr ""
 #. module: hr_timesheet_activity_begin_end
 #: code:addons/hr_timesheet_activity_begin_end/models/account_analytic_line.py:36
 #, python-format
-msgid "The duration (%s) must be equal to the difference between the hours (%s)."
+msgid ""
+"The duration (%s) must be equal to the difference between the hours (%s)."
 msgstr ""
