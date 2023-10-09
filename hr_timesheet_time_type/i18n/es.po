@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_time_type
+# 	* hr_timesheet_time_type
 #
 msgid ""
 msgstr ""
