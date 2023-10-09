@@ -116,7 +116,8 @@ msgstr "Attenzione!"
 #: code:addons/hr_timesheet_time_restriction/models/account_analytic_line.py:0
 #, python-format
 msgid "You cannot set a timesheet for a date different from current date"
-msgstr "Non puoi impostare un foglio ore per una data diversa da quella odierna"
+msgstr ""
+"Non puoi impostare un foglio ore per una data diversa da quella odierna"
 
 #. module: hr_timesheet_time_restriction
 #: code:addons/hr_timesheet_time_restriction/models/account_analytic_line.py:0
