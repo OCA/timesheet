@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_task_stage
+# 	* hr_timesheet_task_stage
 #
 msgid ""
 msgstr ""
@@ -38,7 +38,9 @@ msgstr "Ouvrir la tâche"
 
 #. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_form
-msgid "Open/Close timesheet line automatically open/close its tasks. Do you want to proceed?"
+msgid ""
+"Open/Close timesheet line automatically open/close its tasks. Do you want to "
+"proceed?"
 msgstr ""
 "Ouvrir/Fermer la ligne de feuille de temps ouvre/ferme automatiquement ses "
 "tâches. Voulez-vous poursuivre ?"
