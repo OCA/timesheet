@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_timesheet_existing_project
+# 	* sale_timesheet_existing_project
 #
 msgid ""
 msgstr ""
@@ -49,7 +49,9 @@ msgstr "Non creare il lavoro"
 #. module: sale_timesheet_existing_project
 #: model:ir.model.fields,help:sale_timesheet_existing_project.field_product_product__service_tracking
 #: model:ir.model.fields,help:sale_timesheet_existing_project.field_product_template__service_tracking
-msgid "On Sales order confirmation, this product can generate a project and/or task. From those, you can track the service you are selling."
+msgid ""
+"On Sales order confirmation, this product can generate a project and/or "
+"task. From those, you can track the service you are selling."
 msgstr ""
 "Alla conferma dell'ordine di vendita, questo prodotto può generare un "
 "progetto e/o un lavoro. Per questi si può tracciare il servizio che si sta "
