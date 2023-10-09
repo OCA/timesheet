@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 
 #. module: hr_timesheet_role
-#: code:addons/hr_timesheet_role/models/account_analytic_line.py:33
+#: code:addons/hr_timesheet_role/models/account_analytic_line.py:0
 #, python-format
 msgid "%s can not act as %s on %s project"
 msgstr "Der Benutzer %s darf nicht als Rolle '%s' in dem Projekt '%s' agieren."
@@ -83,7 +83,7 @@ msgstr "Rolle bei Zeiterfassung obligatorisch"
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__role_id
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_hr_timesheet_switch__role_id
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.account_analytic_line_search
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_role.portal_my_task
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_role.portal_timesheet_table
 msgid "Role"
 msgstr "Rolle"
 
@@ -97,7 +97,7 @@ msgid "Timesheet Role Required"
 msgstr "Rolle bei Zeiterfassung obligatorisch"
 
 #. module: hr_timesheet_role
-#: code:addons/hr_timesheet_role/models/account_analytic_line.py:37
+#: code:addons/hr_timesheet_role/models/account_analytic_line.py:0
 #, python-format
 msgid "unassigned"
 msgstr "nicht zugewiesen"

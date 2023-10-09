@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_role
+# 	* hr_timesheet_role
 #
 msgid ""
 msgstr ""
@@ -17,14 +17,17 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: hr_timesheet_role
-#: code:addons/hr_timesheet_role/models/account_analytic_line.py:33
+#: code:addons/hr_timesheet_role/models/account_analytic_line.py:0
 #, python-format
 msgid "%s can not act as %s on %s project"
 msgstr ""
 
 #. module: hr_timesheet_role
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.res_config_settings_view_form
-msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-specific."
+"\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 
 #. module: hr_timesheet_role
@@ -74,7 +77,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_account_analytic_line__role_id
 #: model:ir.model.fields,field_description:hr_timesheet_role.field_hr_timesheet_switch__role_id
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_role.account_analytic_line_search
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_role.portal_my_task
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_role.portal_timesheet_table
 msgid "Role"
 msgstr ""
 
@@ -88,7 +91,7 @@ msgid "Timesheet Role Required"
 msgstr ""
 
 #. module: hr_timesheet_role
-#: code:addons/hr_timesheet_role/models/account_analytic_line.py:37
+#: code:addons/hr_timesheet_role/models/account_analytic_line.py:0
 #, python-format
 msgid "unassigned"
 msgstr ""
