@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_analysis
+# 	* hr_timesheet_analysis
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,6 @@ msgstr ""
 
 #. module: hr_timesheet_analysis
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_analysis.hr_timesheet_line_graph
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_analysis.hr_timesheet_line_pivot
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_analysis.timesheet_view_graph_user
 msgid "Timesheet"
 msgstr "Zeiterfassung"
