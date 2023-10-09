@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_sheet_period
+# 	* hr_timesheet_sheet_period
 #
 msgid ""
 msgstr ""
@@ -22,22 +22,12 @@ msgid "Companies"
 msgstr "Unternehmen"
 
 #. module: hr_timesheet_sheet_period
-#: selection:res.company,sheet_range:0
-msgid "Day"
-msgstr "Tag"
-
-#. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_period.field_hr_timesheet_sheet__is_hr_period_required
 msgid "Is Hr Period Required"
 msgstr ""
 
 #. module: hr_timesheet_sheet_period
-#: selection:res.company,sheet_range:0
-msgid "Month"
-msgstr "Monat"
-
-#. module: hr_timesheet_sheet_period
-#: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:95
+#: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "No suitable Payroll period found!"
 msgstr ""
@@ -48,20 +38,24 @@ msgid "Pay Period"
 msgstr ""
 
 #. module: hr_timesheet_sheet_period
-#: selection:res.company,sheet_range:0
+#: model:ir.model.fields.selection,name:hr_timesheet_sheet_period.selection__res_company__sheet_range__100
 msgid "Payroll Period"
 msgstr "Abrechnungszeitraum"
 
 #. module: hr_timesheet_sheet_period
-#: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:103
+#: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:0
 #, python-format
-msgid "The Date From of Timesheet must match with that of date start '%s' of the Payroll period '%s'."
+msgid ""
+"The Date From of Timesheet must match with that of date start "
+"'%(date_start)s' of the Payroll period '%(name)s'."
 msgstr ""
 
 #. module: hr_timesheet_sheet_period
-#: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:109
+#: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:0
 #, python-format
-msgid "The Date To of Timesheet must match with that of date stop '%s' of the Payroll period '%s'."
+msgid ""
+"The Date To of Timesheet must match with that of date stop '%(date_end)s' of "
+"the Payroll period '%(name)s'."
 msgstr ""
 
 #. module: hr_timesheet_sheet_period
@@ -79,7 +73,11 @@ msgstr "Stundenzettel"
 msgid "Timesheet Sheet Range"
 msgstr "Stundenzettel-Zeitraum"
 
-#. module: hr_timesheet_sheet_period
-#: selection:res.company,sheet_range:0
-msgid "Week"
-msgstr "Woche"
+#~ msgid "Day"
+#~ msgstr "Tag"
+
+#~ msgid "Month"
+#~ msgstr "Monat"
+
+#~ msgid "Week"
+#~ msgstr "Woche"
