@@ -30,29 +30,8 @@ msgid "Companies"
 msgstr ""
 
 #. module: hr_timesheet_sheet_policy_project_manager
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_project_manager.field_account_analytic_line__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_project_manager.field_hr_timesheet_sheet__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_project_manager.field_res_company__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: hr_timesheet_sheet_policy_project_manager
 #: model:ir.model.fields,help:hr_timesheet_sheet_policy_project_manager.field_res_company__timesheet_sheet_review_policy
 msgid "How Timesheet Sheets review is performed."
-msgstr ""
-
-#. module: hr_timesheet_sheet_policy_project_manager
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_project_manager.field_account_analytic_line__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_project_manager.field_hr_timesheet_sheet__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_project_manager.field_res_company__id
-msgid "ID"
-msgstr ""
-
-#. module: hr_timesheet_sheet_policy_project_manager
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_project_manager.field_account_analytic_line____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_project_manager.field_hr_timesheet_sheet____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_project_manager.field_res_company____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: hr_timesheet_sheet_policy_project_manager
@@ -69,7 +48,6 @@ msgstr ""
 
 #. module: hr_timesheet_sheet_policy_project_manager
 #: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:0
-#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Review policy \"By Project Manager\" requires Project to be set"
 msgstr ""
@@ -77,8 +55,7 @@ msgstr ""
 #. module: hr_timesheet_sheet_policy_project_manager
 #: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:0
 #, python-format
-msgid ""
-"The Company in the Timesheet Sheet and in the Project must be the same."
+msgid "The Company in the Timesheet Sheet and in the Project must be the same."
 msgstr ""
 
 #. module: hr_timesheet_sheet_policy_project_manager
