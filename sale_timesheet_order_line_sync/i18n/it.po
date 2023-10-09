@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_timesheet_order_line_sync
+# 	* sale_timesheet_order_line_sync
 #
 msgid ""
 msgstr ""
