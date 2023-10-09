@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_timesheet_line_exclude
+# 	* sale_timesheet_line_exclude
 #
 msgid ""
 msgstr ""
@@ -25,7 +25,8 @@ msgstr "Riga analitica"
 #: model:ir.model.fields,help:sale_timesheet_line_exclude.field_account_analytic_line__exclude_from_sale_order
 #: model:ir.model.fields,help:sale_timesheet_line_exclude.field_hr_timesheet_switch__exclude_from_sale_order
 msgid "Checking this would exclude this timesheet entry from Sale Order"
-msgstr "Se selezionato escluderà i valori del foglio ore dall'ordine di vendita"
+msgstr ""
+"Se selezionato escluderà i valori del foglio ore dall'ordine di vendita"
 
 #. module: sale_timesheet_line_exclude
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_line_exclude.account_analytic_line_search
@@ -41,7 +42,9 @@ msgstr "Non fatturabile"
 #. module: sale_timesheet_line_exclude
 #: code:addons/sale_timesheet_line_exclude/models/account_analytic_line.py:38
 #, python-format
-msgid "You can not modify timesheets in a way that would affect invoices since these timesheets were already invoiced."
+msgid ""
+"You can not modify timesheets in a way that would affect invoices since "
+"these timesheets were already invoiced."
 msgstr ""
 "Non è possibile modificare i fogli ore in modo tale da influire sulle "
 "fatture poiché questi fogli ore sono già stati fatturati."
