@@ -17,37 +17,9 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: hr_timesheet_sheet_policy_department_manager
-#: selection:res.company,timesheet_sheet_review_policy:0
+#: model:ir.model.fields.selection,name:hr_timesheet_sheet_policy_department_manager.selection__res_company__timesheet_sheet_review_policy__department_manager
 msgid "By Department Manager"
 msgstr "Por el responsable del departamento"
-
-#. module: hr_timesheet_sheet_policy_department_manager
-#: selection:res.company,timesheet_sheet_review_policy:0
-msgid "By Direct Manager"
-msgstr "Por responsable directo"
-
-#. module: hr_timesheet_sheet_policy_department_manager
-#: selection:res.company,timesheet_sheet_review_policy:0
-#, fuzzy
-msgid "By HR Managers"
-msgstr "Por Reponsable de RRHH"
-
-#. module: hr_timesheet_sheet_policy_department_manager
-#: selection:res.company,timesheet_sheet_review_policy:0
-#, fuzzy
-msgid "By HR Officers"
-msgstr "Por Reponsable de RRHH"
-
-#. module: hr_timesheet_sheet_policy_department_manager
-#: selection:res.company,timesheet_sheet_review_policy:0
-msgid "By Project Manager"
-msgstr "Por responsable de proyecto"
-
-#. module: hr_timesheet_sheet_policy_department_manager
-#: selection:res.company,timesheet_sheet_review_policy:0
-#, fuzzy
-msgid "By Timesheets Managers"
-msgstr "Por responsable directo"
 
 #. module: hr_timesheet_sheet_policy_department_manager
 #: model:ir.model,name:hr_timesheet_sheet_policy_department_manager.model_res_company
@@ -55,12 +27,30 @@ msgid "Companies"
 msgstr "Compañías"
 
 #. module: hr_timesheet_sheet_policy_department_manager
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_hr_timesheet_sheet__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_res_company__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_timesheet_sheet_policy_department_manager
 #: model:ir.model.fields,help:hr_timesheet_sheet_policy_department_manager.field_res_company__timesheet_sheet_review_policy
 msgid "How Timesheet Sheets review is performed."
 msgstr "Cómo ser realiza la revisión de Partes de horas."
 
 #. module: hr_timesheet_sheet_policy_department_manager
-#: code:addons/hr_timesheet_sheet_policy_department_manager/models/hr_timesheet_sheet.py:68
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_hr_timesheet_sheet__id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_res_company__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_timesheet_sheet_policy_department_manager
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_hr_timesheet_sheet____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_res_company____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: hr_timesheet_sheet_policy_department_manager
+#: code:addons/hr_timesheet_sheet_policy_department_manager/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Only a Department's Manager can review the sheet."
 msgstr "Solo el responsable de departamente puede revisar este parte."
@@ -74,3 +64,21 @@ msgstr "Parte de horas"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_res_company__timesheet_sheet_review_policy
 msgid "Timesheet Sheet Review Policy"
 msgstr "Política de Revisión del Parte de horas"
+
+#~ msgid "By Direct Manager"
+#~ msgstr "Por responsable directo"
+
+#, fuzzy
+#~ msgid "By HR Managers"
+#~ msgstr "Por Reponsable de RRHH"
+
+#, fuzzy
+#~ msgid "By HR Officers"
+#~ msgstr "Por Reponsable de RRHH"
+
+#~ msgid "By Project Manager"
+#~ msgstr "Por responsable de proyecto"
+
+#, fuzzy
+#~ msgid "By Timesheets Managers"
+#~ msgstr "Por responsable directo"
