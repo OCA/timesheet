@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_project_timesheet_by_seniority
+# 	* sale_project_timesheet_by_seniority
 #
 msgid ""
 msgstr ""
@@ -49,7 +49,8 @@ msgstr "Employé"
 #. module: sale_project_timesheet_by_seniority
 #: code:addons/sale_project_timesheet_by_seniority/models/account_analytic_line.py:32
 #, python-format
-msgid "Employee with no seniority level can not timesheet\n"
+msgid ""
+"Employee with no seniority level can not timesheet\n"
 "                         on project, contact your HR department.\n"
 "                      "
 msgstr ""
