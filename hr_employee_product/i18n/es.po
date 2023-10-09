@@ -19,10 +19,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: hr_employee_product
+#: model:ir.model.fields,field_description:hr_employee_product.field_product_template__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_employee_product
+#: model:ir.model.fields,field_description:hr_employee_product.field_product_template__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_employee_product
 #: model:ir.model.fields,field_description:hr_employee_product.field_product_product__is_employee
 #: model:ir.model.fields,field_description:hr_employee_product.field_product_template__is_employee
 msgid "Is an Employee"
 msgstr "Es un empleado"
+
+#. module: hr_employee_product
+#: model:ir.model.fields,field_description:hr_employee_product.field_product_template____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: hr_employee_product
 #: model:ir.model,name:hr_employee_product.model_product_template
