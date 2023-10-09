@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_utilization_analysis
+# 	* hr_utilization_analysis
 #
 msgid ""
 msgstr ""
@@ -19,7 +19,8 @@ msgstr ""
 #. module: hr_utilization_analysis
 #: sql_constraint:hr.utilization.analysis.entry:0
 msgid "An analysis entry for employee/date pair has to be unique!"
-msgstr "Una voce di analisi per una coppia dipendente/data deve essere univoca!"
+msgstr ""
+"Una voce di analisi per una coppia dipendente/data deve essere univoca!"
 
 #. module: hr_utilization_analysis
 #: model:ir.model.fields,field_description:hr_utilization_analysis.field_hr_utilization_analysis_entry__analysis_id
