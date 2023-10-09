@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_sheet_attendance
+# 	* hr_timesheet_sheet_attendance
 #
 msgid ""
 msgstr ""
@@ -61,7 +61,9 @@ msgstr "Planilha"
 #. module: hr_timesheet_sheet_attendance
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_timesheet_sheet.py:79
 #, python-format
-msgid "The timesheet cannot be validated as it does not contain an equal number of sign ins and sign outs."
+msgid ""
+"The timesheet cannot be validated as it does not contain an equal number of "
+"sign ins and sign outs."
 msgstr ""
 "A planilha de horas não pode ser validado como não contém um numero igual de "
 "entradas e saídas."
@@ -89,7 +91,8 @@ msgstr "Presença total"
 #. module: hr_timesheet_sheet_attendance
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:100
 #, python-format
-msgid "You can not enter an attendance date outside the current timesheet dates."
+msgid ""
+"You can not enter an attendance date outside the current timesheet dates."
 msgstr ""
 "Você não pode inserir uma data de presença fora das atuais datas de "
 "apontamento de horas."
@@ -97,7 +100,9 @@ msgstr ""
 #. module: hr_timesheet_sheet_attendance
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:83
 #, python-format
-msgid "You can not enter an attendance in a submitted timesheet. Ask your manager to reset it before adding attendance."
+msgid ""
+"You can not enter an attendance in a submitted timesheet. Ask your manager "
+"to reset it before adding attendance."
 msgstr ""
 "Você não pode inserir uma presença em um apontamento de horas enviado. "
 "Solicite ao seu gerente para reinicia-lo antes de adicionar presenças."

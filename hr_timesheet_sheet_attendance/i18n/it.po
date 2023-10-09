@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_timesheet_sheet_attendance
+# 	* hr_timesheet_sheet_attendance
 #
 msgid ""
 msgstr ""
@@ -61,7 +61,9 @@ msgstr "Prospetto"
 #. module: hr_timesheet_sheet_attendance
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_timesheet_sheet.py:79
 #, python-format
-msgid "The timesheet cannot be validated as it does not contain an equal number of sign ins and sign outs."
+msgid ""
+"The timesheet cannot be validated as it does not contain an equal number of "
+"sign ins and sign outs."
 msgstr ""
 "Il foglio ore non può essere validato perché non contiene un numero uguale "
 "di entrate e uscite."
@@ -89,7 +91,8 @@ msgstr "Presenza totale"
 #. module: hr_timesheet_sheet_attendance
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:100
 #, python-format
-msgid "You can not enter an attendance date outside the current timesheet dates."
+msgid ""
+"You can not enter an attendance date outside the current timesheet dates."
 msgstr ""
 "Non si può inserire una presenza con una data diversa dalle date del foglio "
 "ore."
@@ -97,7 +100,9 @@ msgstr ""
 #. module: hr_timesheet_sheet_attendance
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:83
 #, python-format
-msgid "You can not enter an attendance in a submitted timesheet. Ask your manager to reset it before adding attendance."
+msgid ""
+"You can not enter an attendance in a submitted timesheet. Ask your manager "
+"to reset it before adding attendance."
 msgstr ""
 "Non si può inserire una presenza in un fogli ore inviato. Chiedere al "
 "responsabile di resettarlo prima di aggiungere la presenza."
