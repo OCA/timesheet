@@ -21,17 +21,11 @@ msgstr ""
 msgid "Analytic Line"
 msgstr "Ligne analytique"
 
-#. module: hr_timesheet_task_domain
-#: model:ir.model.fields,field_description:hr_timesheet_task_domain.field_account_analytic_line__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
 
-#. module: hr_timesheet_task_domain
-#: model:ir.model.fields,field_description:hr_timesheet_task_domain.field_account_analytic_line__id
-msgid "ID"
-msgstr "Id."
+#~ msgid "ID"
+#~ msgstr "Id."
 
-#. module: hr_timesheet_task_domain
-#: model:ir.model.fields,field_description:hr_timesheet_task_domain.field_account_analytic_line____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
