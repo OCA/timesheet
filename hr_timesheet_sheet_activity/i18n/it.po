@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-17 16:39+0000\n"
+"PO-Revision-Date: 2023-10-10 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: hr_timesheet_sheet_activity
 #: model:ir.actions.act_window,name:hr_timesheet_sheet_activity.action_view_hr_timesheet_sheet_mail_activity_types
@@ -40,7 +40,7 @@ msgstr "Ultima modifica il"
 #. module: hr_timesheet_sheet_activity
 #: model:ir.model,name:hr_timesheet_sheet_activity.model_hr_timesheet_sheet
 msgid "Timesheet Sheet"
-msgstr "Scheda foglio ore"
+msgstr "Prospetto foglio ore"
 
 #. module: hr_timesheet_sheet_activity
 #: model:mail.activity.type,name:hr_timesheet_sheet_activity.activity_sheet_resubmission
@@ -50,7 +50,7 @@ msgstr "Re-invio scheda foglio ore"
 #. module: hr_timesheet_sheet_activity
 #: model:mail.activity.type,name:hr_timesheet_sheet_activity.activity_sheet_review
 msgid "Timesheet Sheet Review"
-msgstr "Revisione scheda foglio ore"
+msgstr "Revisione prospetto foglio ore"
 
 #. module: hr_timesheet_sheet_activity
 #: model:mail.activity.type,name:hr_timesheet_sheet_activity.activity_sheet_submission
