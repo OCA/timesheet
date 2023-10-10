@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2023-09-04 18:39+0000\n"
+"PO-Revision-Date: 2023-10-10 16:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/odoo/teams/41243/it/)\n"
 "Language: it\n"
@@ -875,7 +875,7 @@ msgstr "Intervallo prospetto foglio ore"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
 msgid "Timesheet Sheet Review Policy"
-msgstr "Politica di revisione prospetto foglio ore"
+msgstr "Politica revisione prospetto foglio ore"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
@@ -1071,8 +1071,8 @@ msgid ""
 " - %(sheet_name)s of %(sheet_company)s\n"
 " - %(name)s of %(company)s"
 msgstr ""
-"Non si può creare un foglio ore di un'azienda diversa da quella del foglio "
-"ore:\n"
+"Non si può creare un foglio ore di un'azienda diversa da quella del "
+"prospetto foglio ore:\n"
 " - %(sheet_name)s di %(sheet_company)s\n"
 " - %(name)s di %(company)s"
 
@@ -1104,7 +1104,7 @@ msgid ""
 " - %(names)s"
 msgstr ""
 "Non ci possono essere due o più fogli ore che si sovrappongono!\n"
-"Utilizzare il menu \"Foglio del foglio ore\" per evitare il problema.\n"
+"Utilizzare il menu \"Prospetto foglio ore\" per evitare il problema.\n"
 "Fogli in conflitto:\n"
 " - %(names)s"
 
@@ -1114,7 +1114,7 @@ msgstr ""
 #, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %(names)s"
 msgstr ""
-"Non si può modificare una registrazione di un foglio di foglio ore "
+"Non si può modificare una registrazione di un prospetto foglio ore "
 "confermato: %(names)s"
 
 #. module: hr_timesheet_sheet
@@ -1125,9 +1125,9 @@ msgid ""
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
-"Bisogna compilare il fogli ore ogni giorno e confermarlo alla fine\n"
-"            del periodo del resoconto. Una volta che il foglio del foglio "
-"ore è confermato,\n"
+"Bisogna compilare i fogli ore ogni giorno e confermarlo alla fine\n"
+"            del periodo del resoconto. Una volta che il prospetto foglio ore "
+"è confermato,\n"
 "            deve essere validato da un revisore."
 
 #. module: hr_timesheet_sheet
