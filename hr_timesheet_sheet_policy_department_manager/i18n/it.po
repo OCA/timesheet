@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-26 15:45+0000\n"
+"PO-Revision-Date: 2023-10-10 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: hr_timesheet_sheet_policy_department_manager
 #: selection:res.company,timesheet_sheet_review_policy:0
@@ -39,7 +39,7 @@ msgstr "Dal funzionario RU"
 #. module: hr_timesheet_sheet_policy_department_manager
 #: selection:res.company,timesheet_sheet_review_policy:0
 msgid "By Project Manager"
-msgstr "Dal project manager"
+msgstr "Da responsabile progetto"
 
 #. module: hr_timesheet_sheet_policy_department_manager
 #: selection:res.company,timesheet_sheet_review_policy:0
@@ -54,20 +54,20 @@ msgstr "Aziende"
 #. module: hr_timesheet_sheet_policy_department_manager
 #: model:ir.model.fields,help:hr_timesheet_sheet_policy_department_manager.field_res_company__timesheet_sheet_review_policy
 msgid "How Timesheet Sheets review is performed."
-msgstr "Come viene eseguita la revisione delle schede foglio ore."
+msgstr "Come viene eseguita la revisione dei prospetti fogli ore."
 
 #. module: hr_timesheet_sheet_policy_department_manager
 #: code:addons/hr_timesheet_sheet_policy_department_manager/models/hr_timesheet_sheet.py:68
 #, python-format
 msgid "Only a Department's Manager can review the sheet."
-msgstr "Solo un responsabile del reparto può revisionare la scheda."
+msgstr "Solo un responsabile del reparto può revisionare il prospetto."
 
 #. module: hr_timesheet_sheet_policy_department_manager
 #: model:ir.model,name:hr_timesheet_sheet_policy_department_manager.model_hr_timesheet_sheet
 msgid "Timesheet Sheet"
-msgstr "Scheda foglio ore"
+msgstr "Prospetto foglio ore"
 
 #. module: hr_timesheet_sheet_policy_department_manager
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_res_company__timesheet_sheet_review_policy
 msgid "Timesheet Sheet Review Policy"
-msgstr "Politica revisione scheda fogli oore"
+msgstr "Politica revisione prospetto foglio ore"
