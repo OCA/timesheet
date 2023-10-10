@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-24 12:10+0000\n"
+"PO-Revision-Date: 2023-10-10 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -99,7 +99,7 @@ msgstr "Attività fogli oore"
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.model,name:hr_timesheet_sheet_attendance.model_hr_timesheet_sheet
 msgid "Timesheet Sheet"
-msgstr "Scheda foglio ore"
+msgstr "Prospetto foglio ore"
 
 #. module: hr_timesheet_sheet_attendance
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet__total_attendance
