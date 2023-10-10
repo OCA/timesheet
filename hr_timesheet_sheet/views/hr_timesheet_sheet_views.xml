@@ -244,7 +244,7 @@
                             <div class="row no-gutters">
                                 <div class="col-2">
                                     <img
-                                        t-att-src="kanban_image('hr.employee', 'image_small', record.employee_id.raw_value)"
+                                        t-att-src="kanban_image('hr.employee', 'avatar_128', record.employee_id.raw_value)"
                                         t-att-title="record.employee_id.value"
                                         t-att-alt="record.employee_id.value"
                                         width="40"
