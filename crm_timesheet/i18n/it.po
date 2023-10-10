@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-31 04:45+0000\n"
-"PO-Revision-Date: 2023-06-12 16:10+0000\n"
+"PO-Revision-Date: 2023-10-10 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -23,13 +23,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
 msgid "<i class=\"fa fa-lg fa-play-circle\" title=\"Start\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-lg fa-play-circle\" title=\"Avvia\"/>"
 
 #. module: crm_timesheet
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
 msgid "<i class=\"fa fa-lg fa-stop-circle\" title=\"Stop\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-lg fa-stop-circle\" title=\"Ferma\"/>"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_account_analytic_line
@@ -41,7 +41,7 @@ msgstr "Riga analitica"
 #: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__display_name
 #: model:ir.model.fields,field_description:crm_timesheet.field_hr_timesheet_switch__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_hr_timesheet_switch
@@ -53,19 +53,19 @@ msgstr "Assistente per spostarsi velocemente tra righe del foglio ore"
 #: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__id
 #: model:ir.model.fields,field_description:crm_timesheet.field_hr_timesheet_switch__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: crm_timesheet
 #: model:ir.model.fields,help:crm_timesheet.field_crm_lead__show_time_control
 msgid "Indicate which time control button to show, if any."
-msgstr ""
+msgstr "Indica se e quale pulsante di controllo tempo visualizzare."
 
 #. module: crm_timesheet
 #: model:ir.model.fields,field_description:crm_timesheet.field_account_analytic_line____last_update
 #: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead____last_update
 #: model:ir.model.fields,field_description:crm_timesheet.field_hr_timesheet_switch____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_crm_lead
@@ -82,7 +82,7 @@ msgstr "Progetto"
 #. module: crm_timesheet
 #: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__show_time_control
 msgid "Show Time Control"
-msgstr ""
+msgstr "Visualizza controllo orario"
 
 #. module: crm_timesheet
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
