@@ -556,6 +556,11 @@ msgid "New timesheet sheet."
 msgstr "Nueva hoja de servicios."
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Próximo Evento del Calendario de Actividades"
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr "Fecha límite de la próxima Actividad"
@@ -1149,9 +1154,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "a"
-
-#~ msgid "Next Activity Calendar Event"
-#~ msgstr "Próximo Evento del Calendario de Actividades"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Número de mensajes que necesitan una acción"
