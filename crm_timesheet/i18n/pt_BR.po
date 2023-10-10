@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* crm_timesheet
+# 	* crm_timesheet
 #
 msgid ""
 msgstr ""
@@ -24,7 +24,8 @@ msgstr "Linha Analítica"
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_hr_timesheet_switch
 msgid "Helper to quickly switch between timesheet lines"
-msgstr "Auxiliar para alternar rapidamente entre linhas de apontamento de horas"
+msgstr ""
+"Auxiliar para alternar rapidamente entre linhas de apontamento de horas"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_crm_lead
