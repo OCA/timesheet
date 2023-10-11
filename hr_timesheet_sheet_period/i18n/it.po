@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-26 12:45+0000\n"
+"PO-Revision-Date: 2023-10-11 08:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model,name:hr_timesheet_sheet_period.model_res_company
@@ -75,7 +75,7 @@ msgstr ""
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,help:hr_timesheet_sheet_period.field_res_company__sheet_range
 msgid "The range of your Timesheet Sheet."
-msgstr "Intervallo del prospetto del foglio ore."
+msgstr "Periodo del prospetto foglio ore."
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model,name:hr_timesheet_sheet_period.model_hr_timesheet_sheet
