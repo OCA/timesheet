@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-10 16:36+0000\n"
+"PO-Revision-Date: 2023-10-11 08:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -48,16 +48,16 @@ msgid ""
 "Auto-draft Timesheet Sheets whenever a Timesheet entry is created or "
 "modified to ensure it's covered by a relevant Timesheet Sheet"
 msgstr ""
-"Compilazione automatica delle schede foglio ore ogni volta che una voce del "
-"foglio ore viene creata o modificata per garantire che sia coperta da una "
-"scheda del foglio ore pertinente"
+"Compilazione automatica prospetti foglio ore ogni volta che una voce del "
+"foglio ore viene creata o modificata per garantire che sia coperta da un "
+"prospetto foglio ore pertinente"
 
 #. module: hr_timesheet_sheet_autodraft
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_autodraft.res_config_settings_view_form
 msgid "Check to enable Timesheet Sheet(s) auto-drafting on Timesheet altering."
 msgstr ""
-"Selezionare per abilitare la redazione automatica della scheda(e) del foglio "
-"ore durante la modifica del foglio ore."
+"Spunta per abilitare la compilazione automatica del pospeto(i) foglio ore "
+"nella modifica del foglio ore."
 
 #. module: hr_timesheet_sheet_autodraft
 #: model:ir.model,name:hr_timesheet_sheet_autodraft.model_res_company
@@ -94,4 +94,4 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_res_company__timesheet_sheets_autodraft
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_res_config_settings__timesheet_sheets_autodraft
 msgid "Timesheet Sheets Auto-draft"
-msgstr "Compilazione automatica fogli scheda attività"
+msgstr "Compilazione automatica prospetti foglio ore"
