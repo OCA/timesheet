@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-10 16:36+0000\n"
+"PO-Revision-Date: 2023-10-11 08:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -27,7 +27,7 @@ msgid ""
 "If selected, the associated role is added to the timesheet sheet when "
 "clicked the button."
 msgstr ""
-"Se selezionato, il ruolo selezionato viene aggiunto alla scheda foglio ore "
+"Se selezionato, il ruolo selezionato viene aggiunto al prospetto foglio ore "
 "quando si fa clic sul pulsante."
 
 #. module: hr_timesheet_sheet_role
@@ -61,4 +61,4 @@ msgstr "Prospetto foglio ore"
 #. module: hr_timesheet_sheet_role
 #: model:ir.model,name:hr_timesheet_sheet_role.model_hr_timesheet_sheet_new_analytic_line
 msgid "Timesheet Sheet New Analytic Line"
-msgstr "Nuova riga analitica scheda foglio ore"
+msgstr "Nuova riga analitica prospetto foglio ore"
