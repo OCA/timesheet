@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-05-18 20:19+0000\n"
-"Last-Translator: Josep M <jmyepes@mac.com>\n"
+"PO-Revision-Date: 2023-10-15 20:37+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model,name:hr_timesheet_sheet_period.model_res_company
@@ -49,6 +49,8 @@ msgid ""
 "The Date From of Timesheet must match with that of date start "
 "'%(date_start)s' of the Payroll period '%(name)s'."
 msgstr ""
+"La fecha de inicio de la hoja de horas debe coincidir con la fecha de inicio "
+"'%(date_start)s' del período de nómina '%(name)s'."
 
 #. module: hr_timesheet_sheet_period
 #: code:addons/hr_timesheet_sheet_period/models/hr_timesheet_sheet.py:0
@@ -57,11 +59,13 @@ msgid ""
 "The Date To of Timesheet must match with that of date stop '%(date_end)s' of "
 "the Payroll period '%(name)s'."
 msgstr ""
+"La fecha de finalización de la hoja de horas debe coincidir con la fecha de "
+"finalización '%(date_end)s' del periodo de nómina '%(name)s'."
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,help:hr_timesheet_sheet_period.field_res_company__sheet_range
 msgid "The range of your Timesheet Sheet."
-msgstr "Rango de tu Parte de horas"
+msgstr "Rango de tu hoja de Parte de horas."
 
 #. module: hr_timesheet_sheet_period
 #: model:ir.model,name:hr_timesheet_sheet_period.model_hr_timesheet_sheet
