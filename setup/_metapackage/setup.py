@@ -30,6 +30,7 @@ setuptools.setup(
         'odoo14-addon-hr_timesheet_time_type',
         'odoo14-addon-hr_utilization_analysis',
         'odoo14-addon-hr_utilization_report',
+        'odoo14-addon-project_task_stage_allow_timesheet',
         'odoo14-addon-sale_timesheet_budget',
         'odoo14-addon-sale_timesheet_line_exclude',
         'odoo14-addon-sale_timesheet_order_line_no_update',
