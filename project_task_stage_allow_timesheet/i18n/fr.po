@@ -28,6 +28,24 @@ msgid "Analytic Line"
 msgstr "Ligne analytique"
 
 #. module: project_task_stage_allow_timesheet
+#: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_account_analytic_line__display_name
+#: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_project_task_type__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: project_task_stage_allow_timesheet
+#: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_account_analytic_line__id
+#: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_project_task_type__id
+msgid "ID"
+msgstr ""
+
+#. module: project_task_stage_allow_timesheet
+#: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_account_analytic_line____last_update
+#: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_project_task_type____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: project_task_stage_allow_timesheet
 #: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_account_analytic_line__task_id
 #: model:ir.model.fields,field_description:project_task_stage_allow_timesheet.field_hr_timesheet_switch__task_id
 msgid "Task"
@@ -39,7 +57,7 @@ msgid "Task Stage"
 msgstr "Étape de tâche"
 
 #. module: project_task_stage_allow_timesheet
-#: code:addons/project_task_stage_allow_timesheet/models/account_analytic_line.py:23
+#: code:addons/project_task_stage_allow_timesheet/models/account_analytic_line.py:0
 #, python-format
 msgid ""
 "You can't link a timesheet line to a task if its stage doesn't allow it. "
