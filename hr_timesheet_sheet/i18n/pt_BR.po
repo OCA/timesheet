@@ -388,7 +388,6 @@ msgstr "Se selecionado, novas mensagens exigirão sua atenção."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selecionado, algumas mensagens terão um erro de entrega."
 
@@ -646,12 +645,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Reviewer"
 msgstr ""
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
-#, fuzzy
-msgid "SMS Delivery error"
-msgstr "Erro de Entrega de Mensagem"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__5
@@ -1106,6 +1099,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "até"
+
+#, fuzzy
+#~ msgid "SMS Delivery error"
+#~ msgstr "Erro de Entrega de Mensagem"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Seguidores (Canais)"
