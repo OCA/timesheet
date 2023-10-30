@@ -34,7 +34,14 @@ class SaleOrderLine(models.Model):
             return result
 
         # group analytic lines by product uom and so line
-        domain = expression.AND([[("so_line", "in", self.ids), ("approved", "!=", False)], additional_domain])
+        domain = expression.AND(
+            [
+                [
+                    ("so_line", "in", self.ids),
+                ],
+                additional_domain,
+            ]
+        )
         data = self.env["account.analytic.line"].read_group(
             domain,
             ["so_line", "unit_amount_billed", "approved", "product_uom_id"],

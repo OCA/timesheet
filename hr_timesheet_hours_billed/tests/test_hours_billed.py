@@ -7,7 +7,6 @@ from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheet
 
 @tagged("-at_install", "post_install")
 class TestCommonHourBilled(TestCommonSaleTimesheet):
-    
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
