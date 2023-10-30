@@ -23,8 +23,7 @@ class SaleOrderLine(models.Model):
         return super(SaleOrderLine, self)._compute_qty_delivered()
 
     def _get_delivered_quantity_by_analytic(self, additional_domain):
-        """Compute and write the delivered quantity of current SO lines,
-        based on their related analytic lines.
+        """Retrieve delivered quantity by line
         :param additional_domain: domain to restrict AAL to include in computation
         (required since timesheet is an AAL with a project ...)
         """
@@ -35,7 +34,7 @@ class SaleOrderLine(models.Model):
             return result
 
         # group analytic lines by product uom and so line
-        domain = expression.AND([[("so_line", "in", self.ids)], additional_domain])
+        domain = expression.AND([[("so_line", "in", self.ids), ("approved", "!=", False)], additional_domain])
         data = self.env["account.analytic.line"].read_group(
             domain,
             ["so_line", "unit_amount_billed", "approved", "product_uom_id"],

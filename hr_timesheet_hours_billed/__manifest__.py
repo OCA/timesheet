@@ -6,7 +6,7 @@
     "category": "Timesheet",
     "website": "https://github.com/OCA/timesheet",
     "maintainers": ["solo4games", "CetmixGitDrone"],
-    "author": "Odoo Community Association (OCA), Cetmix",
+    "author": "Cetmix, Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "application": False,
     "installable": True,

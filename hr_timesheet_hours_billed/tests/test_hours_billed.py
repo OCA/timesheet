@@ -7,7 +7,12 @@ from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheet
 
 @tagged("-at_install", "post_install")
 class TestCommonHourBilled(TestCommonSaleTimesheet):
-    # @classmethod
+    
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+
     def setUp(self):
 
         super().setUp()

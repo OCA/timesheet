@@ -21,7 +21,9 @@ class AccountAnalyticLine(models.Model):
     def _inverse_approved(self):
         user = self.env.user
         now = fields.Datetime.now()
-        for record in self.filtered(lambda rec: rec.approved):
+        for record in self:
+            if not record.approved:
+                continue
             record.write({"approved_date": now, "approved_user_id": user})
 
     # override create method to initialize unit_amount_billed
