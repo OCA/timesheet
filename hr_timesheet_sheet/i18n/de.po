@@ -408,7 +408,6 @@ msgstr "Wenn es gesetzt ist, erfordern neue Nachrichten Ihre Aufmerksamkeit."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 "Wenn es gesetzt ist, gibt es einige Nachrichten mit einem Übertragungsfehler."
@@ -668,12 +667,6 @@ msgstr "Genemigungsverfahren"
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Reviewer"
 msgstr "Prüfer"
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
-#, fuzzy
-msgid "SMS Delivery error"
-msgstr "Nachrichten-Übertragungsfehler"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__5
@@ -1136,6 +1129,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "bis"
+
+#, fuzzy
+#~ msgid "SMS Delivery error"
+#~ msgstr "Nachrichten-Übertragungsfehler"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Dies ist die Anzahl von Nachrichten, die eine Aktion benötigen."
