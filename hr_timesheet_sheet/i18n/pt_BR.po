@@ -16,8 +16,8 @@ msgstr ""
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
 "PO-Revision-Date: 2023-10-27 21:25+0000\n"
 "Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/"
-"41243/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/"
+"teams/41243/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -404,7 +404,6 @@ msgstr "Se selecionado, novas mensagens exigirão sua atenção."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selecionado, algumas mensagens terão um erro de entrega."
 
@@ -658,11 +657,6 @@ msgstr "Política de Revisão"
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Reviewer"
 msgstr "Revisor"
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Erro de Entrega de SMS"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__5
@@ -1078,8 +1072,8 @@ msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
 msgstr ""
-"Você não pode excluir uma planilha de horas que já foi enviada ou confirmada:"
-" %s"
+"Você não pode excluir uma planilha de horas que já foi enviada ou "
+"confirmada: %s"
 
 #. module: hr_timesheet_sheet
 #. odoo-python
@@ -1143,6 +1137,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "até"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Erro de Entrega de SMS"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Número de mensagens que exigem uma ação"
