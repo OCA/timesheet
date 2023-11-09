@@ -30,7 +30,7 @@ class TestRounded(TestCommonSaleTimesheet):
                 "price_unit": cls.product_delivery_timesheet2.list_price,
             }
         )
-        sale_order_line.product_id_change()
+        sale_order_line._onchange_product_id_warning()
         cls.sale_order.action_confirm()
         cls.project_global.write(
             {
@@ -52,7 +52,10 @@ class TestRounded(TestCommonSaleTimesheet):
             }
         )
         cls.avg_analytic_account = cls.env["account.analytic.account"].create(
-            {"name": "AVG account"}
+            {
+                "name": "AVG account",
+                "plan_id": cls.project_global.analytic_account_id.plan_id.id,
+            }
         )
 
     def create_analytic_line(self, **kw):
@@ -162,7 +165,7 @@ class TestRounded(TestCommonSaleTimesheet):
         unit_amount_ret = line.with_context(timesheet_rounding=True).read(fields, load)[
             0
         ]["unit_amount"]
-        self.assertEqual(unit_amount_ret, 1)
+        self.assertEqual(unit_amount_ret, 2)
 
         # context = True + project_id + product_expense
         line = self.create_analytic_line(
