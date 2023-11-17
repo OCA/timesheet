@@ -127,7 +127,7 @@ class AccountAnalyticLine(models.Model):
                         "You cannot modify an entry in a confirmed timesheet sheet"
                         ": %s"
                     )
-                    % (line.sheet_id.complete_name,)
+                    % line.sheet_id.complete_name
                 )
 
     def merge_timesheets(self):
