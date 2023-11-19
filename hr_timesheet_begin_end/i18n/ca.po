@@ -1,0 +1,61 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_begin_end
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-11-19 18:33+0000\n"
+"Last-Translator: pere-aquarian <pere@aquarian.tech>\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: hr_timesheet_begin_end
+#: model:ir.model,name:hr_timesheet_begin_end.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Línia analítica"
+
+#. module: hr_timesheet_begin_end
+#: model:ir.model.fields,field_description:hr_timesheet_begin_end.field_account_analytic_line__time_start
+msgid "Begin Hour"
+msgstr "Hora d'inici"
+
+#. module: hr_timesheet_begin_end
+#: model:ir.model.fields,field_description:hr_timesheet_begin_end.field_account_analytic_line__time_stop
+msgid "End Hour"
+msgstr "Hora fi"
+
+#. module: hr_timesheet_begin_end
+#. odoo-python
+#: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
+#, python-format
+msgid "Lines can't overlap:\n"
+msgstr "Les línies no es poden solapar\n"
+
+#. module: hr_timesheet_begin_end
+#. odoo-python
+#: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
+#, python-format
+msgid ""
+"The beginning hour (%(html_start)s) must precede the ending hour "
+"(%(html_stop)s)."
+msgstr ""
+"L'hora d'inici(%(html_start)s) ha de ser anterior a l'hora de fi "
+"(%(html_stop)s)."
+
+#. module: hr_timesheet_begin_end
+#. odoo-python
+#: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
+#, python-format
+msgid ""
+"The duration (%(html_unit_amount)s) must be equal to the difference between "
+"the hours (%(html_hours)s)."
+msgstr ""
+"La durada (%(html_unit_amount)s) ha de ser igual a la diferencia entre les "
+"hores (%(html_hours)s)."
