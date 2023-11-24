@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-03 14:09+0000\n"
+"PO-Revision-Date: 2023-11-24 17:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -47,7 +47,7 @@ msgstr "<span>Resoconto foglio ore</span>"
 #. module: hr_timesheet_report
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_report.report
 msgid "<strong>Subtotal</strong>"
-msgstr "<strong>Sub totale</strong>"
+msgstr "<strong>Sobtotale</strong>"
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__line_ids
