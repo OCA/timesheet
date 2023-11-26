@@ -31,6 +31,7 @@ addon | version | maintainers | summary
 [hr_timesheet_task_required](hr_timesheet_task_required/) | 16.0.1.0.0 |  | Set task on timesheet as a mandatory field
 [hr_timesheet_task_stage](hr_timesheet_task_stage/) | 16.0.1.0.1 |  | Open/Close task from corresponding Task Log entry
 [hr_timesheet_time_type](hr_timesheet_time_type/) | 16.0.1.0.0 |  | Ability to add time type in timesheet lines.
+[project_task_stage_allow_timesheet](project_task_stage_allow_timesheet/) | 16.0.1.0.0 |  | Allows to tell that a task stage is opened for timesheets.
 [sale_timesheet_line_exclude](sale_timesheet_line_exclude/) | 16.0.1.0.0 |  | Exclude Timesheet Line from Sale Order
 [sale_timesheet_task_exclude](sale_timesheet_task_exclude/) | 16.0.1.0.0 |  | Exclude Task and related Timesheets from Sale Order
 
