@@ -44,7 +44,7 @@
        <field name="binding_view_types">list</field>
        <field name="state">code</field>
        <field name="code">
-           action = records.action_approve_records()
+           action = records.action_toggle_approve_records(True)
        </field>
     </record>
 
@@ -61,7 +61,7 @@
        <field name="binding_view_types">list</field>
        <field name="state">code</field>
        <field name="code">
-           action = records.action_decline_records()
+           action = records.action_toggle_approve_records(False)
        </field>
     </record>
 </odoo>

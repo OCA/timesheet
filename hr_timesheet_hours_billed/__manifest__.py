@@ -5,7 +5,7 @@
     "version": "16.0.1.0.0",
     "category": "Timesheet",
     "website": "https://github.com/OCA/timesheet",
-    "maintainers": ["solo4games", "CetmixGitDrone"],
+    "maintainers": ["solo4games", "geomer198", "CetmixGitDrone"],
     "author": "Cetmix, Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "application": False,
