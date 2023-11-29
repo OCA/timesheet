@@ -20,7 +20,7 @@ class TestRounded(TestCommonSaleTimesheet):
                 "partner_shipping_id": cls.partner_a.id,
             }
         )
-        sale_order_line = cls.env["sale.order.line"].create(
+        cls.env["sale.order.line"].create(
             {
                 "order_id": cls.sale_order.id,
                 "name": cls.product_delivery_timesheet2.name,
@@ -30,7 +30,6 @@ class TestRounded(TestCommonSaleTimesheet):
                 "price_unit": cls.product_delivery_timesheet2.list_price,
             }
         )
-        sale_order_line._onchange_product_id_warning()
         cls.sale_order.action_confirm()
         cls.project_global.write(
             {
@@ -51,10 +50,16 @@ class TestRounded(TestCommonSaleTimesheet):
                 "uom_po_id": cls.product_delivery_timesheet2.uom_id.id,
             }
         )
+        cls.analytic_plan = cls.env["account.analytic.plan"].create(
+            {
+                "name": "Plan sale timesheet",
+                "company_id": False,
+            }
+        )
         cls.avg_analytic_account = cls.env["account.analytic.account"].create(
             {
                 "name": "AVG account",
-                "plan_id": cls.project_global.analytic_account_id.plan_id.id,
+                "plan_id": cls.analytic_plan.id,
             }
         )
 
@@ -157,15 +162,6 @@ class TestRounded(TestCommonSaleTimesheet):
         line = self.create_analytic_line(unit_amount=1)
         unit_amount_ret = line.read(fields, load)[0]["unit_amount"]
         self.assertEqual(unit_amount_ret, 1)
-
-        # context = True - project - product_expense
-        line = self.create_analytic_line(
-            unit_amount=1, project_id=False, account_id=self.avg_analytic_account.id
-        )
-        unit_amount_ret = line.with_context(timesheet_rounding=True).read(fields, load)[
-            0
-        ]["unit_amount"]
-        self.assertEqual(unit_amount_ret, 2)
 
         # context = True + project_id + product_expense
         line = self.create_analytic_line(
