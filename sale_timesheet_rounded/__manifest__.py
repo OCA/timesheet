@@ -9,7 +9,7 @@
     "license": "AGPL-3",
     "category": "Sales",
     "website": "https://github.com/OCA/timesheet",
-    "depends": ["project", "hr_timesheet", "sale_timesheet"],
+    "depends": ["project", "sale_timesheet"],
     "data": [
         # Views
         "views/account_analytic_line.xml",
