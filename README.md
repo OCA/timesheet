@@ -29,7 +29,7 @@ addon | version | maintainers | summary
 [hr_timesheet_purchase_order](hr_timesheet_purchase_order/) | 14.0.1.0.0 |  | HR Timesheet Purchase Order
 [hr_timesheet_report](hr_timesheet_report/) | 14.0.1.0.0 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | Generate Timesheet Report from Task Logs
 [hr_timesheet_report_milestone](hr_timesheet_report_milestone/) | 14.0.1.0.0 |  | Extend Timesheet by adding Milestone
-[hr_timesheet_sheet](hr_timesheet_sheet/) | 14.0.1.3.0 |  | Timesheet Sheets, Activities
+[hr_timesheet_sheet](hr_timesheet_sheet/) | 14.0.1.3.1 |  | Timesheet Sheets, Activities
 [hr_timesheet_sheet_activity](hr_timesheet_sheet_activity/) | 14.0.1.0.0 |  | Automatic activities related to submission and review of timesheet sheets
 [hr_timesheet_sheet_attendance](hr_timesheet_sheet_attendance/) | 14.0.1.0.0 |  | HR Timesheet Sheet Attendance
 [hr_timesheet_sheet_autodraft](hr_timesheet_sheet_autodraft/) | 14.0.1.0.0 |  | Automatically draft a Timesheet Sheet for every time entry that does not have a relevant Timesheet Sheet existing.
@@ -40,7 +40,7 @@ addon | version | maintainers | summary
 [hr_timesheet_task_required](hr_timesheet_task_required/) | 14.0.1.0.0 |  | Set task on timesheet as a mandatory field
 [hr_timesheet_task_stage](hr_timesheet_task_stage/) | 14.0.1.1.0 |  | Open/Close task from corresponding Task Log entry
 [hr_timesheet_time_restriction](hr_timesheet_time_restriction/) | 14.0.1.0.1 |  | Restrictions on the creation of time sheets for past dates
-[hr_timesheet_time_type](hr_timesheet_time_type/) | 14.0.1.0.0 |  | Ability to add time type in timesheet lines.
+[hr_timesheet_time_type](hr_timesheet_time_type/) | 14.0.1.0.1 |  | Ability to add time type in timesheet lines.
 [hr_utilization_analysis](hr_utilization_analysis/) | 14.0.2.0.1 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | View Utilization Analysis from Task Logs.
 [hr_utilization_report](hr_utilization_report/) | 14.0.1.0.1 |  | Generate Utilization Report from Task Logs
 [project_task_stage_allow_timesheet](project_task_stage_allow_timesheet/) | 14.0.1.0.0 |  | Allows to tell that a task stage is opened for timesheets.
