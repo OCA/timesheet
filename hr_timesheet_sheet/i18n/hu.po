@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2023-12-02 19:21+0000\n"
+"PO-Revision-Date: 2023-12-02 19:27+0000\n"
 "Last-Translator: Tamás Dombos <tdombos@gmail.com>\n"
 "Language-Team: Hungarian (https://www.transifex.com/odoo/teams/41243/hu/)\n"
 "Language: hu\n"
@@ -142,21 +142,21 @@ msgstr "Átnézhet"
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
-"Egy nem benyújtott időszaki munkaidő-nyilvántartást nem lehet jóváhagyni."
+"Egy nem beküldött időszaki munkaidő-nyilvántartást nem lehet jóváhagyni."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr ""
-"Egy nem benyújtott időszaki munkaidő-nyilvántartást nem lehet elutasítani."
+"Egy nem beküldött időszaki munkaidő-nyilvántartást nem lehet elutasítani."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr ""
-"Egy nem benyújtott időszaki munkaidő-nyilvántartást nem lehet piszkozattá "
+"Egy nem beküldött időszaki munkaidő-nyilvántartást nem lehet piszkozattá "
 "alakítani."
 
 #. module: hr_timesheet_sheet
@@ -502,12 +502,12 @@ msgstr "Időszaki munkaidő-nyilvántartásaim"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit_my
 msgid "My Timesheets to Submit"
-msgstr "Benyújtandó időszaki munkaidő-nyilvántartásaim"
+msgstr "Beküldendő időszaki munkaidő-nyilvántartásaim"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 msgid "My timesheets to submit."
-msgstr "Benyújtandó időszaki munkaidő-nyilvántartásaim."
+msgstr "Beküldendő időszaki munkaidő-nyilvántartásaim."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
@@ -552,7 +552,7 @@ msgstr "Következő tevékenység típusa"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_line_search
 msgid "Not Submitted"
-msgstr "Nincs benyújtva"
+msgstr "Nincs beküldve"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction_counter
@@ -723,17 +723,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 msgid "Submit to Reviewer"
-msgstr "Benyújtás átnézőnek"
+msgstr "Beküldés átnézőnek"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Submitted"
-msgstr "Benyújtva"
+msgstr "Beküldve"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Submitted Timesheet Sheets"
-msgstr "Benyújtott időszaki munkaidő-nyilvántartások"
+msgstr "Beküldött időszaki munkaidő-nyilvántartások"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -870,14 +870,14 @@ msgstr "Időszaki munkaidő-nyilvántartások száma"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_department__timesheet_sheet_to_approve_count
 msgid "Timesheet Sheets to Approve"
-msgstr "Elfogadásra váró időszaki munkaidő-nyilvántartások"
+msgstr "Elfogadandó időszaki munkaidő-nyilvántartások"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_to_review
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Timesheet Sheets to Review"
-msgstr "Átnézésre váró időszaki munkaidő-nyilvántartások"
+msgstr "Átnézendő időszaki munkaidő-nyilvántartások"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
@@ -916,29 +916,29 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
 msgid "Timesheets to Review"
-msgstr "Átnézésre váró munkaidő-nyilvántartások"
+msgstr "Átnézendő munkaidő-nyilvántartások"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit
 msgid "Timesheets to Submit"
-msgstr "Benyújtásra váró munkaidő-nyilvántartások"
+msgstr "Beküldendő munkaidő-nyilvántartások"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 msgid "Timesheets to review."
-msgstr "Átnézésre váró munkaidő-nyilvántartások"
+msgstr "Átnézendő munkaidő-nyilvántartások"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 msgid "Timesheets to submit."
-msgstr "Benyújtásra váró munkaidő-nyilvántartások"
+msgstr "Beküldendő munkaidő-nyilvántartások"
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_hr_to_review
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "To Review"
-msgstr "Átnézésre váró"
+msgstr "Átnézendő"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__total_time
