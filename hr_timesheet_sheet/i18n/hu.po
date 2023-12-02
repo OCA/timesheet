@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2023-12-02 19:27+0000\n"
+"PO-Revision-Date: 2023-12-02 22:35+0000\n"
 "Last-Translator: Tamás Dombos <tdombos@gmail.com>\n"
 "Language-Team: Hungarian (https://www.transifex.com/odoo/teams/41243/hu/)\n"
 "Language: hu\n"
@@ -120,17 +120,17 @@ msgstr "Mellékletek száma"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr_manager
 msgid "By HR Managers"
-msgstr "HR menedzserek által"
+msgstr "HR menedzserek"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr
 msgid "By HR Officers"
-msgstr "HR munkatársak által"
+msgstr "HR munkatársak"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__timesheet_manager
 msgid "By Timesheets Managers"
-msgstr "Munkaidő-nyilvántatás menedzserek által"
+msgstr "Munkaidő-nyilvántatás menedzserek"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
@@ -167,8 +167,7 @@ msgstr "Hét kezdőnapjának kiválasztása."
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose timesheet sheets review policy."
-msgstr ""
-"Időszaki munkaidő-nyilvántartás átnézésére vonatkozó politika választása."
+msgstr "Válassza ki, hogy ki nézze át az Időszaki munkaidő-nyilvántartásokat."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
@@ -205,7 +204,7 @@ msgstr "Beállítások"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__create_uid
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__create_uid
 msgid "Created by"
-msgstr "Készítette"
+msgstr "Létrehozta"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__create_date
@@ -229,7 +228,7 @@ msgstr "Dátum"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__date_start
 msgid "Date From"
-msgstr "Dátumtól"
+msgstr "Kezdődátum"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__value_x
@@ -239,7 +238,7 @@ msgstr "Dátum neve"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__date_end
 msgid "Date To"
-msgstr "Dátumig"
+msgstr "Záródátum"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__sheet_range__daily
@@ -399,8 +398,8 @@ msgid ""
 "If selected, the associated project is added to the timesheet sheet when "
 "clicked the button."
 msgstr ""
-"Ha ki van választva, a gomb megnyomásával a kapcsolódó projekt hozzáadódik "
-"az időszaki munkaidő-nyilvántartáshoz."
+"A gomb megnyomásával a projekt hozzáadódik az időszaki "
+"munkaidő-nyilvántartáshoz."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_task_id
@@ -408,8 +407,8 @@ msgid ""
 "If selected, the associated task is added to the timesheet sheet when "
 "clicked the button."
 msgstr ""
-"Ha ki van választva, a gomb megnyomásával a kapcsolódó feladat hozzáadódik "
-"az időszaki munkaidő-nyilvántartáshoz."
+"A gomb megnyomásával a feladat hozzáadódik az időszaki "
+"munkaidő-nyilvántartáshoz."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -590,7 +589,7 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__hr_timesheet_sheet__state__draft
 msgid "Open"
-msgstr "Megnyitás"
+msgstr "Nyitva"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
@@ -674,12 +673,12 @@ msgstr "Biztonsági token"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_project_id
 msgid "Select Project"
-msgstr "Projekt választása"
+msgstr "Projekt"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_task_id
 msgid "Select Task"
-msgstr "Feladat választása"
+msgstr "Feladat"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -723,7 +722,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 msgid "Submit to Reviewer"
-msgstr "Beküldés átnézőnek"
+msgstr "Beküldés"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -821,7 +820,7 @@ msgstr "Munkaidő-nyilvántartás beállítások"
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "Timesheet Period"
-msgstr "Munkaidő-nyilvántartás időszak"
+msgstr "Időszak"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet
@@ -854,7 +853,7 @@ msgstr "Időszaki munkaidő-nyilvántartás időtartománya"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
 msgid "Timesheet Sheet Review Policy"
-msgstr "Időszaki munkaidő-nyilvántartás átnézési politika"
+msgstr "Időszaki munkaidő-nyilvántartások átnézése"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
@@ -1028,7 +1027,7 @@ msgstr "Hét kezdőnapja"
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Weeks %(start)s - %(end)s"
-msgstr "%(start)s - %(end)s. hét"
+msgstr "Hét %(start)s - %(end)s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:0
@@ -1104,7 +1103,7 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
-msgstr "ig"
+msgstr "→"
 
 #, fuzzy, python-format
 #~ msgid "Week %s"
