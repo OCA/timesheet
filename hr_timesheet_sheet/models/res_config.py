@@ -25,3 +25,8 @@ class ResConfig(models.TransientModel):
     timesheet_sheet_review_policy = fields.Selection(
         related="company_id.timesheet_sheet_review_policy", readonly=False
     )
+
+    hr_timesheet_reviewer_no_email = fields.Boolean(
+        related="company_id.hr_timesheet_reviewer_no_email",
+        readonly=False,
+    )

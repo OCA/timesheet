@@ -94,6 +94,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="hr_timesheet_reviewer_no_email" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="hr_timesheet_reviewer_no_email" />
+                            <div class="text-muted">
+                                Check to enable to prevent sending System notification emails to Reviewers.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </field>

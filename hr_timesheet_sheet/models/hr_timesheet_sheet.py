@@ -807,6 +807,47 @@ class Sheet(models.Model):
                 return self.env.ref("hr_timesheet_sheet.mt_timesheet_approved")
         return super()._track_subtype(init_values)
 
+    # ------------------------------------------------
+    # to prevent sending emails to the reviewer
+    # ------------------------------------------------
+
+    def _notify_record_by_email(
+        self,
+        message,
+        recipients_data,
+        msg_vals=False,
+        model_description=False,
+        mail_auto_delete=True,
+        check_existing=False,
+        force_send=True,
+        send_after_commit=True,
+        **kwargs
+    ):
+        # preventing automatic send emails to partners who have the right
+        # to make a review, when the timesheet state is changes.
+        timesheet_sheet = self.browse(message.res_id)
+        if timesheet_sheet.company_id.hr_timesheet_reviewer_no_email:
+            possible_reviewers = timesheet_sheet._get_possible_reviewers().mapped(
+                "partner_id"
+            )
+            sanitized_recipient_partners = []
+            for recipient in recipients_data["partners"]:
+                if recipient["id"] not in possible_reviewers.ids:
+                    sanitized_recipient_partners.append(recipient)
+            recipients_data["partners"] = sanitized_recipient_partners
+
+        return super(Sheet, self)._notify_record_by_email(
+            message,
+            recipients_data,
+            msg_vals=False,
+            model_description=False,
+            mail_auto_delete=True,
+            check_existing=False,
+            force_send=True,
+            send_after_commit=True,
+            **kwargs
+        )
+
 
 class AbstractSheetLine(models.AbstractModel):
     _name = "hr_timesheet.sheet.line.abstract"

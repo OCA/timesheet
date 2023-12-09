@@ -38,3 +38,7 @@ class ResCompany(models.Model):
         default="hr",
         help="How Timesheet Sheets review is performed.",
     )
+
+    hr_timesheet_reviewer_no_email = fields.Boolean(
+        string="Don't send email to Reviewer", default=False
+    )
