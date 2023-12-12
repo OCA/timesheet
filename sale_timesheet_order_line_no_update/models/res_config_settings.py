@@ -1,4 +1,4 @@
-# © 2023 ooops404
+# Copyright 2023 ooops404 - Ilyas
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 from odoo import fields, models
 

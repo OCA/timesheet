@@ -1,4 +1,4 @@
-# © 2023 ooops404
+# Copyright 2023 ooops404 - Ilyas
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, fields, models
 
@@ -13,14 +13,14 @@ class ProjectTask(models.Model):
     )
     hide_original_sol = fields.Boolean()
 
-    new_sale_line_id_domain = fields.Char(related="project_id.sale_line_id_domain")
+    new_sale_line_id_domain = fields.Binary(related="project_id.sale_line_id_domain")
 
 
 class ProjectProject(models.Model):
     _inherit = "project.project"
 
     select_all_project_sale_items = fields.Boolean()
-    sale_line_id_domain = fields.Char(
+    sale_line_id_domain = fields.Binary(
         compute="_compute_sale_line_id_domain",
         readonly=True,
         store=False,
