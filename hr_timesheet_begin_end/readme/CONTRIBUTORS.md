@@ -5,3 +5,4 @@
 - [Onestein](https://www.onestein.eu):
   - Andrea Stirpe
 - Sunanda Chhatbar \<<sunanda.chhatbar@initos.com>\>
+- Nils Coenen \<<nils.coenen@nico-solutions.de>\>

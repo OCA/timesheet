@@ -68,6 +68,7 @@ Contributors
    -  Andrea Stirpe
 
 -  Sunanda Chhatbar <sunanda.chhatbar@initos.com>
+-  Nils Coenen <nils.coenen@nico-solutions.de>
 
 Maintainers
 -----------

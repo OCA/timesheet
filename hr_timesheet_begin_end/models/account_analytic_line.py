@@ -42,8 +42,8 @@ class AccountAnalyticLine(models.Model):
             ):
                 raise exceptions.ValidationError(
                     _(
-                        "The duration (%(html_unit_amount)s) must be equal to the difference "
-                        "between the hours (%(html_hours)s)."
+                        "The duration (%(html_unit_amount)s) must be equal to "
+                        "the difference between the hours (%(html_hours)s)."
                     )
                     % {
                         "html_unit_amount": value_to_html(line.unit_amount, None),
@@ -64,12 +64,13 @@ class AccountAnalyticLine(models.Model):
                 message = _("Lines can't overlap:\n")
                 message += "\n".join(
                     [
-                        "%s - %s"
-                        % (
+                        "{} - {}".format(
                             value_to_html(other.time_start, None),
                             value_to_html(other.time_stop, None),
                         )
-                        for other in (line + others).sorted(lambda l: l.time_start)
+                        for other in (line + others).sorted(
+                            key=lambda item: item.time_start
+                        )
                     ]
                 )
                 raise exceptions.ValidationError(message)
@@ -84,7 +85,7 @@ class AccountAnalyticLine(models.Model):
 
     def merge_timesheets(self):  # pragma: no cover
         """This method is needed in case hr_timesheet_sheet is installed"""
-        lines = self.filtered(lambda l: not l.time_start and not l.time_stop)
+        lines = self.filtered(lambda line: not line.time_start and not line.time_stop)
         if lines:
             return super(AccountAnalyticLine, lines).merge_timesheets()
         return self[0]
