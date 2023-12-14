@@ -1,0 +1,7 @@
+- Guewen Baconnier \<<guewen.baconnier@camptocamp.com>\>
+- [Tecnativa](https://www.tecnativa.com):
+  - Luis M. Ontalba
+  - Ernesto Tejeda
+- [Onestein](https://www.onestein.eu):
+  - Andrea Stirpe
+- Sunanda Chhatbar \<<sunanda.chhatbar@initos.com>\>
