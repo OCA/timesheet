@@ -6,19 +6,20 @@ from odoo.tests import common
 
 
 class TestBeginEnd(common.TransactionCase):
-    def setUp(self):
-        super(TestBeginEnd, self).setUp()
-        self.timesheet_line_model = self.env["account.analytic.line"]
-        self.analytic = self.env.ref("analytic.analytic_administratif")
-        self.user = self.env.ref("base.user_root")
-        self.base_line = {
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.timesheet_line_model = cls.env["account.analytic.line"]
+        cls.analytic = cls.env.ref("analytic.analytic_administratif")
+        cls.user = cls.env.ref("base.user_root")
+        cls.base_line = {
             "name": "test",
             "date": fields.Date.today(),
             "time_start": 10.0,
             "time_stop": 12.0,
-            "user_id": self.user.id,
+            "user_id": cls.user.id,
             "unit_amount": 2.0,
-            "account_id": self.analytic.id,
+            "account_id": cls.analytic.id,
             "amount": -60.0,
         }
 
