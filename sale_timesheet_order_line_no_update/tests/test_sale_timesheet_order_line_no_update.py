@@ -143,7 +143,7 @@ class SaleTimesheetOrderLineNoUpdate(common.SavepointCase):
         self.assertEqual(timesheet1.so_line, sale_order_line2)
         project.select_all_project_sale_items = False
         project._compute_sale_line_id_domain()
-        self.assertIn("order_partner_id", project.sale_line_id_domain)
+        self.assertIn("order_partner_id", str(project.sale_line_id_domain))
         project.select_all_project_sale_items = True
         project._compute_sale_line_id_domain()
-        self.assertIn("order_id", project.sale_line_id_domain)
+        self.assertIn("order_id", str(project.sale_line_id_domain))

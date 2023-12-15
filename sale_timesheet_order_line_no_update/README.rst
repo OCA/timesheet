@@ -84,6 +84,14 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
+.. |maintainer-ilyasprogrammer| image:: https://github.com/ilyasprogrammer.png?size=40px
+    :target: https://github.com/ilyasprogrammer
+    :alt: ilyasprogrammer
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-ilyasprogrammer| 
+
 This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/14.0/sale_timesheet_order_line_no_update>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
