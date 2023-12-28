@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-09 12:53+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-12-28 12:35+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: hr_utilization_report
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
@@ -58,7 +58,7 @@ msgstr "<span>di</span>"
 #. module: hr_utilization_report
 #: model_terms:ir.ui.view,arch_db:hr_utilization_report.report_group_footer
 msgid "<strong>Subtotal</strong>"
-msgstr "<strong>Sobtotale</strong>"
+msgstr "<strong>Subtotale</strong>"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__any_line_id
