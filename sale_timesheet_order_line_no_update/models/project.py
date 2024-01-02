@@ -43,6 +43,18 @@ class ProjectProject(models.Model):
                 ("company_id", "=", rec.company_id.id),
             ]
 
-    @api.onchange("sale_line_id")
-    def _onchange_sale_line_id(self):
-        self.task_ids.write({"new_sale_line_id": self.sale_line_id})
+    def update_tasks_default_sol(self):
+        for rec in self:
+            rec.task_ids.new_sale_line_id = rec.sale_line_id
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super().create(vals_list)
+        res.filtered(lambda x: x.sale_line_id).update_tasks_default_sol()
+        return res
+
+    def write(self, values):
+        res = super().write(values)
+        if values.get("sale_line_id"):
+            self.update_tasks_default_sol()
+        return res

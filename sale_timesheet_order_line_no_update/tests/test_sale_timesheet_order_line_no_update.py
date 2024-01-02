@@ -147,3 +147,7 @@ class SaleTimesheetOrderLineNoUpdate(common.SavepointCase):
         project.select_all_project_sale_items = True
         project._compute_sale_line_id_domain()
         self.assertIn("order_id", str(project.sale_line_id_domain))
+        project.sale_line_id = sale_order_line2
+        self.assertEqual(
+            project.task_ids[0].new_sale_line_id.id, project.sale_line_id.id
+        )
