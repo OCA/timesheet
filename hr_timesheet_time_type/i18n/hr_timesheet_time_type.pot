@@ -92,7 +92,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_time_type.field_hr_timesheet_switch__time_type_id
 #: model:ir.ui.menu,name:hr_timesheet_time_type.menu_project_task_time_type
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_type.view_project_time_type_form
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_type.view_project_time_type_tree
 msgid "Time Type"
 msgstr ""
 
