@@ -5,7 +5,7 @@
     "version": "14.0.1.1.0",
     "license": "AGPL-3",
     "author": "Ilyas, Ooops404, Odoo Community Association (OCA)",
-    "maintainers": ["ilyasprogrammer"],
+    "maintainers": ["ilyasProgrammer"],
     "website": "https://github.com/OCA/timesheet",
     "depends": ["sale_timesheet"],
     "data": ["views/project.xml", "views/res_config_settings_views.xml"],
