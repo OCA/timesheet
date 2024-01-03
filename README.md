@@ -46,7 +46,7 @@ addon | version | maintainers | summary
 [project_task_stage_allow_timesheet](project_task_stage_allow_timesheet/) | 14.0.1.0.0 |  | Allows to tell that a task stage is opened for timesheets.
 [sale_timesheet_budget](sale_timesheet_budget/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale timesheet budget
 [sale_timesheet_line_exclude](sale_timesheet_line_exclude/) | 14.0.1.0.1 |  | Exclude Timesheet Line from Sale Order
-[sale_timesheet_order_line_no_update](sale_timesheet_order_line_no_update/) | 14.0.1.1.0 | [![ilyasprogrammer](https://github.com/ilyasprogrammer.png?size=30px)](https://github.com/ilyasprogrammer) | Sale Timesheet Order Line no Update
+[sale_timesheet_order_line_no_update](sale_timesheet_order_line_no_update/) | 14.0.1.1.1 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) | Sale Timesheet Order Line no Update
 [sale_timesheet_order_line_sync](sale_timesheet_order_line_sync/) | 14.0.1.0.0 |  | Propagate task order line in not invoiced timesheet lines
 [sale_timesheet_rounded](sale_timesheet_rounded/) | 14.0.1.0.1 |  | Round timesheet entries amount based on project settings.
 
