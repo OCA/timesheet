@@ -157,6 +157,12 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
+msgid ""
+"Check to enable to prevent sending System notification emails to Reviewers."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose the week start day."
 msgstr ""
 
@@ -272,6 +278,12 @@ msgstr "Detalles"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__hr_timesheet_reviewer_no_email
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__hr_timesheet_reviewer_no_email
+msgid "Don't send email to Reviewer"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -402,7 +414,6 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -427,7 +438,7 @@ msgstr "En borrador"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy
+#, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
@@ -664,11 +675,6 @@ msgid "Reviewer"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__5
 msgid "Saturday"
 msgstr ""
@@ -882,7 +888,6 @@ msgstr "Líneas de Hoja de registros"
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_sheet_ids
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
 #, fuzzy
 msgid "Timesheet Sheets"
 msgstr "Líneas de Hoja de registros"
@@ -1079,7 +1084,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
@@ -1089,7 +1094,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
@@ -1113,7 +1118,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr ""
 

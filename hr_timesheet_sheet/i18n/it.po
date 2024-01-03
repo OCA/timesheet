@@ -162,6 +162,12 @@ msgstr "Impossibile reimpostare a bozza un prospetto non approvato."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
+msgid ""
+"Check to enable to prevent sending System notification emails to Reviewers."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose the week start day."
 msgstr "Scegliere il giorno iniziale della settimana."
 
@@ -275,6 +281,12 @@ msgstr "Dettagli"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__hr_timesheet_reviewer_no_email
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__hr_timesheet_reviewer_no_email
+msgid "Don't send email to Reviewer"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -413,7 +425,6 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -673,11 +684,6 @@ msgid "Reviewer"
 msgstr "Revisore"
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__5
 msgid "Saturday"
 msgstr "Sabato"
@@ -887,7 +893,6 @@ msgstr "Politica revisione prospetto foglio ore"
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_sheet_ids
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
 msgid "Timesheet Sheets"
 msgstr "Prospetti foglio ore"
 
@@ -1147,6 +1152,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "fino al"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
 
 #~ msgid "HR Department"
 #~ msgstr "Ufficio RU"

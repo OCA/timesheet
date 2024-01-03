@@ -159,6 +159,12 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
+msgid ""
+"Check to enable to prevent sending System notification emails to Reviewers."
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose the week start day."
 msgstr ""
 
@@ -276,6 +282,12 @@ msgstr "Дэлгэрэнгүй"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Дэлгэцийн Нэр"
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__hr_timesheet_reviewer_no_email
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__hr_timesheet_reviewer_no_email
+msgid "Don't send email to Reviewer"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -406,7 +418,6 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -431,7 +442,7 @@ msgstr "Ноорог"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy
+#, fuzzy, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
@@ -670,11 +681,6 @@ msgid "Reviewer"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__5
 msgid "Saturday"
 msgstr ""
@@ -888,7 +894,6 @@ msgstr "Цагийн хуудасны мөрүүд"
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_employee__timesheet_sheet_ids
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
 #, fuzzy
 msgid "Timesheet Sheets"
 msgstr "Цагийн хуудасны мөрүүд"
@@ -1083,7 +1088,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy
+#, fuzzy, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the "
 "timesheet sheet:\n"
@@ -1096,13 +1101,11 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy
+#, fuzzy, python-format
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed: "
 "%s"
-msgstr ""
-"Та аль хэдийн батлагдсан цагийн хуудас устгаж чадахгүй: "
-"%s"
+msgstr "Та аль хэдийн батлагдсан цагийн хуудас устгаж чадахгүй: %s"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
@@ -1112,7 +1115,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy
+#, fuzzy, python-format
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
@@ -1125,7 +1128,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, fuzzy
+#, fuzzy, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %s"
 msgstr "Та баталгаажсан цагийн хуудсыг орж өөрчлөх боломжгүй: %s"
 
