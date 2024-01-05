@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2023-10-11 08:38+0000\n"
+"PO-Revision-Date: 2024-01-05 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/odoo/teams/41243/it/)\n"
 "Language: it\n"
@@ -165,6 +165,8 @@ msgstr "Impossibile reimpostare a bozza un prospetto non approvato."
 msgid ""
 "Check to enable to prevent sending System notification emails to Reviewers."
 msgstr ""
+"Selezionare per evitare di inviare e-mail di notifiche di sistema ai "
+"revisori."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
@@ -286,7 +288,7 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__hr_timesheet_reviewer_no_email
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__hr_timesheet_reviewer_no_email
 msgid "Don't send email to Reviewer"
-msgstr ""
+msgstr "Non inviare e-mail ai revisori"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
