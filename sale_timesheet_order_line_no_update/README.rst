@@ -34,16 +34,19 @@ In project > invoicing, updating field "Default Sales Order Item" updates new fi
 
 It also allows to select in both project and tasks a Sale order item from a different SO than the one set in project configuration.
 
+**Table of contents**
+
+.. contents::
+   :local:
+
+Use Cases / Context
+===================
+
 Use case:
 
 A new "timesheet hours" line is added to SO related to project (or to a new SO for same customer), but hours on the previous SO line have not all been billed yet.
 
 This module allows to add new timesheet lines related to the new SO item, while keeping the previously inputted hours related to the previous SO item.
-
-**Table of contents**
-
-.. contents::
-   :local:
 
 Bug Tracker
 ===========
