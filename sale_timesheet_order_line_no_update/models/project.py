@@ -12,8 +12,14 @@ class ProjectTask(models.Model):
         copy=False,
     )
     hide_original_sol = fields.Boolean()
-
     new_sale_line_id_domain = fields.Binary(related="project_id.sale_line_id_domain")
+
+    def default_get(self, fields):
+        vals = super(ProjectTask, self).default_get(fields)
+        if vals.get("project_id"):
+            project = self.env["project.project"].browse(vals["project_id"])
+            vals["new_sale_line_id"] = project.sale_line_id.id
+        return vals
 
 
 class ProjectProject(models.Model):
