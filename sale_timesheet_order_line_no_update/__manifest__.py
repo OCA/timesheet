@@ -2,7 +2,7 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 {
     "name": "Sale Timesheet Order Line no Update",
-    "version": "14.0.1.1.1",
+    "version": "14.0.1.1.2",
     "license": "AGPL-3",
     "author": "Ilyas, Ooops404, Odoo Community Association (OCA)",
     "maintainers": ["ilyasProgrammer"],
