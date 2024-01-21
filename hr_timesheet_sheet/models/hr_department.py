@@ -13,10 +13,10 @@ class HrDepartment(models.Model):
     )
 
     def _compute_timesheet_to_approve(self):
-        timesheet_data = self.env["hr_timesheet.sheet"].read_group(
+        timesheet_data = self.env["hr_timesheet.sheet"]._read_group(
             [("department_id", "in", self.ids), ("state", "=", "confirm")],
             ["department_id"],
-            ["department_id"],
+            ["__count"],
         )
         result = {
             data["department_id"][0]: data["department_id_count"]

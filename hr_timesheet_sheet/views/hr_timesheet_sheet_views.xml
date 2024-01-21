@@ -53,26 +53,26 @@
                         string="Submit to Reviewer"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                        invisible="[('state', '!=', 'draft')]"
                     />
                     <button
                         name="action_timesheet_done"
                         string="Approve"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible': ['|', ('can_review', '!=', True), ('state', '!=', 'confirm')]}"
+                        invisible="['|', ('can_review', '!=', True), ('state', '!=', 'confirm')]"
                     />
                     <button
                         name="action_timesheet_draft"
                         string="Set to Draft"
                         type="object"
-                        attrs="{'invisible': ['|', ('can_review', '!=', True), ('state', '!=', 'done')]}"
+                        invisible="['|', ('can_review', '!=', True), ('state', '!=', 'done')]"
                     />
                     <button
                         name="action_timesheet_refuse"
                         string="Refuse"
                         type="object"
-                        attrs="{'invisible': ['|', ('can_review', '!=', True), ('state', '!=', 'confirm')]}"
+                        invisible="['|', ('can_review', '!=', True), ('state', '!=', 'confirm')]"
                     />
                     <field
                         name="state"
@@ -112,7 +112,7 @@
                                 <field
                                     name="line_ids"
                                     nolabel="1"
-                                    attrs="{'readonly': [('state', 'not in', ['new', 'draft'])]}"
+                                    readonly="[('state', 'not in', ['new', 'draft'])]"
                                     widget="x2many_2d_matrix"
                                     field_x_axis="value_x"
                                     field_y_axis="value_y"
@@ -142,13 +142,13 @@
                                 </field>
                                 <group
                                     class="oe_edit_only"
-                                    attrs="{'invisible': [('state', 'not in', ['new', 'draft'])]}"
+                                    invisible="[('state', 'not in', ['new', 'draft'])]"
                                 >
                                     <field name="add_line_project_id" />
                                     <field name="available_task_ids" invisible="1" />
                                     <field
                                         name="add_line_task_id"
-                                        attrs="{'invisible': [('add_line_project_id', '=', False)]}"
+                                        invisible="[('add_line_project_id', '=', False)]"
                                         context="{'default_project_id': add_line_project_id}"
                                     />
                                     <button
@@ -157,7 +157,7 @@
                                         colspan="2"
                                         string="Add new line"
                                         class="oe_highlight"
-                                        attrs="{'invisible': [('add_line_project_id', '=', False)]}"
+                                        invisible="[('add_line_project_id', '=', False)]"
                                     />
                                 </group>
                             </group>
@@ -254,10 +254,10 @@
                                 </div>
                                 <div class="col-10">
                                     <strong class="o_kanban_record_title">
-                                        <t t-esc="record.employee_id.value" />
+                                        <t t-out="record.employee_id.value" />
                                     </strong>
                                     <div class="text-muted o_kanban_record_subtitle">
-                                        <t t-esc="record.complete_name.value" />
+                                        <t t-out="record.complete_name.value" />
                                     </div>
                                     <div
                                         class="o_dropdown_kanban dropdown"
@@ -323,8 +323,8 @@
                                     <span class="text-muted text-nowrap">Period</span>
                                 </div>
                                 <div class="col-7"><t
-                                        t-esc="record.date_start.value"
-                                    /> - <t t-esc="record.date_end.value" /></div>
+                                        t-out="record.date_start.value"
+                                    /> - <t t-out="record.date_end.value" /></div>
                                 <div class="w-100" />
                                 <div class="col-3">
                                     <span
@@ -333,8 +333,8 @@
                                 </div>
                                 <div class="col-7">
                                     <t
-                                        t-esc="record.total_time.value"
-                                        t-options="{'widget': 'float_time'}"
+                                        t-out="record.total_time.value"
+                                        options="{'widget': 'float_time'}"
                                     />
                                 </div>
                             </div>

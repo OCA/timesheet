@@ -40,7 +40,7 @@
                         </a>
                     </div>
                     <div class="col-xs-3">
-                        <t t-esc="record.timesheet_sheet_to_approve_count.raw_value" />
+                        <t t-out="record.timesheet_sheet_to_approve_count.raw_value" />
                     </div>
                 </div>
             </xpath>
@@ -52,7 +52,7 @@
                             type="action"
                         >
                             <t
-                                t-esc="record.timesheet_sheet_to_approve_count.raw_value or 0"
+                                t-out="record.timesheet_sheet_to_approve_count.raw_value or 0"
                             /> Timesheets
                         </a>
                     </div>

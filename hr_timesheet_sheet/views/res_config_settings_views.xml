@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!--
         Copyright 2019-2020 Brainbean Apps (https://brainbeanapps.com)
@@ -10,10 +9,7 @@
         <field name="priority" eval="55" />
         <field name="inherit_id" ref="hr_timesheet.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//div[hasclass('settings')]/div[@groups='hr_timesheet.group_timesheet_manager']/div[position()=1]"
-                position="after"
-            >
+            <app position="inside">
                 <h2>Timesheet Options</h2>
                 <div class="row mt16 o_settings_container" name="hr_timesheet_sheet">
                     <div class="col-xs-12 col-md-6 o_setting_box">
@@ -43,7 +39,8 @@
                     </div>
                     <div
                         class="col-xs-12 col-md-6 o_setting_box"
-                        attrs="{'invisible':[('sheet_range','!=','WEEKLY')], 'required':[('sheet_range','=','WEEKLY')]}"
+                        invisible="[('sheet_range','!=','WEEKLY')]"
+                        required="[('sheet_range','=','WEEKLY')]"
                     >
                         <div class="o_setting_right_pane">
                             <label for="timesheet_week_start" />
@@ -95,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-            </xpath>
+            </app>
         </field>
     </record>
 </odoo>

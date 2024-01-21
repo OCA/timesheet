@@ -14,7 +14,7 @@
             <field name="date" position="after">
                 <field
                     name="sheet_id"
-                    attrs="{'invisible': [('sheet_id', '=', False)]}"
+                    invisible="[('sheet_id', '=', False)]"
                 />
             </field>
         </field>
