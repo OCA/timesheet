@@ -198,21 +198,11 @@ class Sheet(models.Model):
 
     @api.model
     def _search_can_review(self, operator, value):
-        def check_in(users):
-            return self.env.user in users
-
-        def check_not_in(users):
-            return self.env.user not in users
-
+        review_policies = self._get_user_possible_review_policies()
         if (operator == "=" and value) or (operator in ["<>", "!="] and not value):
-            check = check_in
+            return review_policies if review_policies else [("id", "=", False)]
         else:
-            check = check_not_in
-
-        sheets = self.search([]).filtered(
-            lambda sheet: check(sheet._get_possible_reviewers())
-        )
-        return [("id", "in", sheets.ids)]
+            return ["!"] + review_policies if review_policies else review_policies
 
     @api.depends("name", "employee_id")
     def _compute_complete_name(self):
@@ -326,15 +316,37 @@ class Sheet(models.Model):
                     )
                 )
 
+    @api.model
+    def _review_policy_reviewer_group_pairings(self):
+        return [
+            {"group": "hr.group_hr_user", "review_policy": "hr"},
+            {"group": "hr.group_hr_manager", "review_policy": "hr_manager"},
+            {
+                "group": "hr_timesheet.group_hr_timesheet_approver",
+                "review_policy": "timesheet_manager",
+            },
+        ]
+
+    @api.model
+    def _get_user_possible_review_policies(self):
+        """Domains for which the logged-in user is allowed to review sheets."""
+        review_policy_domains = []
+        for pairing in self._review_policy_reviewer_group_pairings():
+            if self.user_has_groups(pairing["group"]):
+                review_policy_domains = (
+                    [("review_policy", "=", pairing["review_policy"])]
+                    if not review_policy_domains
+                    else ["|", ("review_policy", "=", pairing["review_policy"])]
+                    + review_policy_domains
+                )
+        return review_policy_domains
+
     def _get_possible_reviewers(self):
         self.ensure_one()
         res = self.env["res.users"].browse(SUPERUSER_ID)
-        if self.review_policy == "hr":
-            res |= self.env.ref("hr.group_hr_user").users
-        elif self.review_policy == "hr_manager":
-            res |= self.env.ref("hr.group_hr_manager").users
-        elif self.review_policy == "timesheet_manager":
-            res |= self.env.ref("hr_timesheet.group_hr_timesheet_approver").users
+        for pairing in self._review_policy_reviewer_group_pairings():
+            if self.review_policy == pairing["review_policy"]:
+                res |= self.env.ref(pairing["group"]).users
         return res
 
     def _get_timesheet_sheet_company(self):

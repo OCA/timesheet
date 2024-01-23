@@ -62,6 +62,21 @@ class HrTimesheetSheet(models.Model):
                     )
                 )
 
+    @api.model
+    def _get_user_possible_review_policies(self):
+        review_policy_domains = super()._get_user_possible_review_policies()
+        project_manager_domain = [
+            "&",
+            ("review_policy", "=", "project_manager"),
+            ("project_id.user_id", "=", self.env.uid),
+        ]
+        review_policy_domains = (
+            project_manager_domain
+            if not review_policy_domains
+            else ["|"] + project_manager_domain + review_policy_domains
+        )
+        return review_policy_domains
+
     def _get_possible_reviewers(self):
         self.ensure_one()
         res = super()._get_possible_reviewers()
