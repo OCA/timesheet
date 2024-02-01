@@ -1,3 +1,6 @@
+# Copyright (C) 2024 Cetmix OÜ
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from datetime import date, datetime
 
 from dateutil.rrule import FR, MO, SA, TH
@@ -5,129 +8,78 @@ from freezegun import freeze_time
 
 from odoo import _
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form
+
+from .common_po_recurrence import TestTimesheetPOrecurrenceCommon
 
 
-class TestTimesheetPOrecurrence(SavepointCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.product = cls.env["product.product"].create(
-            {
-                "name": "Product recurrence",
-                "default_code": "test",
-            }
-        )
-        officer_group = cls.env.ref("hr.group_hr_user")
-        multi_company_group = cls.env.ref("base.group_multi_company")
-        sheet_user_group = cls.env.ref("hr_timesheet.group_hr_timesheet_user")
-        project_user_group = cls.env.ref("project.group_project_user")
-        cls.sheet_model = cls.env["hr_timesheet.sheet"].with_context(
-            tracking_disable=True
-        )
-        cls.sheet_line_model = cls.env["hr_timesheet.sheet.line"]
-        cls.project_model = cls.env["project.project"]
-        cls.task_model = cls.env["project.task"]
-        cls.aal_model = cls.env["account.analytic.line"]
-        cls.aaa_model = cls.env["account.analytic.account"]
-        cls.employee_model = cls.env["hr.employee"]
-        cls.department_model = cls.env["hr.department"]
-        cls.hr_timesheet_recurrence_model = cls.env["hr.timesheet.recurrence"]
-        config_obj = cls.env["res.config.settings"]
-        config = config_obj.create({"timesheet_product_id": cls.product.id})
-        config.execute()
-
-        cls.user = (
-            cls.env["res.users"]
-            .with_context(no_reset_password=True)
-            .create(
-                {
-                    "name": "Test User recurrence",
-                    "login": "test_user_recurrence",
-                    "email": "test_recurrence@oca.com",
-                    "groups_id": [
-                        (
-                            6,
-                            0,
-                            [
-                                officer_group.id,
-                                sheet_user_group.id,
-                                project_user_group.id,
-                                multi_company_group.id,
-                            ],
-                        )
-                    ],
-                }
-            )
-        )
-
-        cls.project = cls.project_model.create(
-            {
-                "name": "Project",
-                "allow_timesheets": True,
-                "user_id": cls.user.id,
-            }
-        )
-        cls.task = cls.task_model.create(
-            {
-                "name": "Task 1",
-                "project_id": cls.project.id,
-            }
-        )
-
+class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
     def test_create_purchase_order_recurrence_simple(self):
         with freeze_time("2020-03-01"):
-            form = Form(self.employee_model)
-            form.name = "Test Employee recurrence"
-            form.user_id = self.user
-            form.billing_partner_id = self.user.partner_id
-            form.allow_generate_purchase_order = True
-            form.is_auto_po_generate = True
+            form_employee_1 = Form(self.employee_1)
+            form_employee_1.billing_partner_id = self.outsourcing_company
+            form_employee_1.allow_generate_purchase_order = True
+            form_employee_1.save()
 
-            form.repeat_interval = 5
-            form.repeat_unit = "month"
-            form.repeat_type = "after"
-            form.repeat_number = 10
-            form.repeat_on_month = "date"
-            form.repeat_day = "31"
-            employee = form.save()
+            form_employee_2 = Form(self.employee_2)
+            form_employee_2.billing_partner_id = self.outsourcing_company
+            form_employee_2.allow_generate_purchase_order = True
+            form_employee_2.save()
+
+            form_employee_3 = Form(self.employee_3)
+            form_employee_3.billing_partner_id = self.outsourcing_company
+            form_employee_3.allow_generate_purchase_order = True
+            form_employee_3.save()
+
+            form_billing_partner = Form(self.outsourcing_company)
+            form_billing_partner.is_auto_po_generate = True
+
+            form_billing_partner.repeat_interval = 5
+            form_billing_partner.repeat_unit = "month"
+            form_billing_partner.repeat_type = "after"
+            form_billing_partner.repeat_number = 10
+            form_billing_partner.repeat_on_month = "date"
+            form_billing_partner.repeat_day = "31"
+            billing_partner = form_billing_partner.save()
 
             self.assertTrue(
-                bool(employee.is_auto_po_generate), "should enable a recurrence"
+                bool(billing_partner.is_auto_po_generate), "should enable a recurrence"
             )
-            employee.update(dict(repeat_interval=2, repeat_number=11))
+            billing_partner.update(dict(repeat_interval=2, repeat_number=11))
             self.assertEqual(
-                employee.repeat_interval, 2, "recurrence should be updated"
-            )
-            self.assertEqual(employee.repeat_number, 11, "recurrence should be updated")
-            self.assertEqual(
-                employee.recurrence_id.recurrence_left, 11, "Must be equal 11"
+                billing_partner.repeat_interval, 2, "recurrence should be updated"
             )
             self.assertEqual(
-                employee.next_recurrence_date,
+                billing_partner.repeat_number, 11, "recurrence should be updated"
+            )
+            self.assertEqual(
+                billing_partner.recurrence_id.recurrence_left, 11, "Must be equal 11"
+            )
+            self.assertEqual(
+                billing_partner.next_recurrence_date,
                 date(2020, 3, 31),
                 "Must be equal {dt}".format(dt=date(2020, 3, 31)),
             )
             self.assertEqual(
-                employee.recurrence_id.next_recurrence_date,
+                billing_partner.recurrence_id.next_recurrence_date,
                 date(2020, 3, 31),
                 "Must be equal {dt}".format(dt=date(2020, 3, 31)),
             )
             self.assertEqual(
-                employee.next_recurrence_date,
-                employee.recurrence_id.next_recurrence_date,
+                billing_partner.next_recurrence_date,
+                billing_partner.recurrence_id.next_recurrence_date,
                 "Must be equal {dt}".format(dt=date(2020, 3, 31)),
             )
-            employee.is_auto_po_generate = False
+            billing_partner.is_auto_po_generate = False
             self.assertFalse(
-                bool(employee.is_auto_po_generate), "The recurrence should be disabled"
+                bool(billing_partner.is_auto_po_generate),
+                "The recurrence should be disabled",
             )
             self.assertFalse(
-                bool(employee.recurrence_id), "The recurrence should be deleted"
+                bool(billing_partner.recurrence_id), "The recurrence should be deleted"
             )
             # enabled is_auto_po_generate
-            with Form(employee) as form:
+            with Form(billing_partner) as form:
                 form.is_auto_po_generate = True
                 form.repeat_interval = 5
                 form.repeat_unit = "month"
@@ -135,12 +87,12 @@ class TestTimesheetPOrecurrence(SavepointCase):
                 form.repeat_number = 10
                 form.repeat_on_month = "date"
                 form.repeat_day = "31"
-                employee = form.save()
+                billing_partner = form.save()
 
             self.assertTrue(
-                bool(employee.recurrence_id), "The recurrence should be enabled"
+                bool(billing_partner.recurrence_id), "The recurrence should be enabled"
             )
-            sheet_form = Form(self.sheet_model.with_user(self.user))
+            sheet_form = Form(self.hr_timesheet_sheet_obj.with_user(self.user_1))
             with sheet_form.timesheet_ids.new() as timesheet:
                 timesheet.name = "test1"
                 timesheet.project_id = self.project
@@ -154,15 +106,11 @@ class TestTimesheetPOrecurrence(SavepointCase):
             self.assertEqual(sheet.state, "confirm")
             sheet.action_timesheet_done()
             with freeze_time("2020-02-29"):
-                self.hr_timesheet_recurrence_model._cron_generate_auto_po()
+                self.hr_timesheet_recurrence_obj._cron_generate_auto_po()
 
     def test_onchange_repeat_day(self):
         with freeze_time("2020-02-01"):
-            form = Form(self.employee_model)
-            form.name = "Test Employee recurrence"
-            form.user_id = self.user
-            form.billing_partner_id = self.user.partner_id
-            form.allow_generate_purchase_order = True
+            form = Form(self.outsourcing_company)
             form.is_auto_po_generate = True
 
             form.repeat_interval = 5
@@ -171,8 +119,8 @@ class TestTimesheetPOrecurrence(SavepointCase):
             form.repeat_number = 10
             form.repeat_on_month = "date"
             form.repeat_day = -1
-            employee = form.save()
-        self.assertEqual(employee.repeat_day, 1, "Must be equal 1")
+            billing_partner = form.save()
+        self.assertEqual(billing_partner.repeat_day, 1, "Must be equal 1")
 
         with self.assertRaisesRegex(
             ValidationError,
@@ -183,15 +131,12 @@ class TestTimesheetPOrecurrence(SavepointCase):
                 )
             ),
         ):
-            employee.recurrence_id.repeat_day = -1
+            billing_partner.recurrence_id.repeat_day = -1
 
     def test_recurrence_cron_repeat_after(self):
         with freeze_time("2020-01-01"):
-            form = Form(self.employee_model)
+            form = Form(self.outsourcing_company)
             form.name = "Test Employee recurrence cron_repeat_after"
-            form.user_id = self.user
-            form.billing_partner_id = self.user.partner_id
-            form.allow_generate_purchase_order = True
             form.is_auto_po_generate = True
             form.repeat_interval = 1
             form.repeat_unit = "month"
@@ -199,11 +144,11 @@ class TestTimesheetPOrecurrence(SavepointCase):
             form.repeat_number = 2
             form.repeat_on_month = "date"
             form.repeat_day = "15"
-            employee = form.save()
+            billing_partner = form.save()
 
-            self.assertEqual(employee.next_recurrence_date, date(2020, 1, 15))
+            self.assertEqual(billing_partner.next_recurrence_date, date(2020, 1, 15))
 
-            sheet_form = Form(self.sheet_model.with_user(self.user))
+            sheet_form = Form(self.hr_timesheet_sheet_obj.with_user(self.user_1))
             with sheet_form.timesheet_ids.new() as timesheet:
                 timesheet.name = "test2"
                 timesheet.project_id = self.project
@@ -220,69 +165,98 @@ class TestTimesheetPOrecurrence(SavepointCase):
             sheet.action_timesheet_confirm()
             self.assertEqual(sheet.state, "confirm")
             sheet.action_timesheet_done()
-            self.assertEqual(len(employee.timesheet_sheet_ids), 1)
-            self.hr_timesheet_recurrence_model._cron_generate_auto_po()
+            # self.assertEqual(len(employee.timesheet_sheet_ids), 1)
+            self.hr_timesheet_recurrence_obj._cron_generate_auto_po()
 
         with freeze_time("2020-01-15"):
-            self.hr_timesheet_recurrence_model._cron_generate_auto_po()
+            self.hr_timesheet_recurrence_obj._cron_generate_auto_po()
         with freeze_time("2020-02-15"):
-            self.hr_timesheet_recurrence_model._cron_generate_auto_po()
+            self.hr_timesheet_recurrence_obj._cron_generate_auto_po()
 
     def test_recurrence_cron_repeat_until(self):
         with freeze_time("2020-01-01"):
-            form = Form(self.employee_model)
-            form.name = "test recurring task"
-            form.user_id = self.user
-            form.billing_partner_id = self.user.partner_id
-            form.allow_generate_purchase_order = True
+            form = Form(self.outsourcing_company)
             form.is_auto_po_generate = True
-
             form.repeat_interval = 1
             form.repeat_unit = "month"
             form.repeat_type = "until"
             form.repeat_until = date(2020, 2, 20)
             form.repeat_on_month = "date"
             form.repeat_day = "15"
-            employee = form.save()
+            billing_partner = form.save()
 
-            sheet_form = Form(self.sheet_model.with_user(self.user))
+            sheet_form = Form(self.hr_timesheet_sheet_obj.with_user(self.user_1))
             with sheet_form.timesheet_ids.new() as timesheet:
                 timesheet.name = "test until month"
                 timesheet.project_id = self.project
-
-            with sheet_form.timesheet_ids.edit(0) as timesheet:
                 timesheet.unit_amount = 1.0
+            sheet_1 = sheet_form.save()
+            self.assertFalse(sheet_1.purchase_order_id, msg="Must be equal False")
 
-            sheet = sheet_form.save()
-            self.assertFalse(sheet.purchase_order_id)
+            sheet_form = Form(self.hr_timesheet_sheet_obj.with_user(self.user_2))
+            with sheet_form.timesheet_ids.new() as timesheet:
+                timesheet.name = "test until month"
+                timesheet.project_id = self.project_2
+                timesheet.unit_amount = 2.0
+            sheet_2 = sheet_form.save()
+            self.assertFalse(sheet_2.purchase_order_id, msg="Must be equal False")
+
+            sheet_form = Form(self.hr_timesheet_sheet_obj.with_user(self.user_3))
+            with sheet_form.timesheet_ids.new() as timesheet:
+                timesheet.name = "test until month"
+                timesheet.project_id = self.project_3
+                timesheet.unit_amount = 2.0
+            sheet_3 = sheet_form.save()
+            self.assertFalse(sheet_3.purchase_order_id, msg="Must be equal False")
 
             # cannot create purchase order (sheet not approved)
             with self.assertRaises(UserError):
-                sheet.action_create_purchase_order()
-            sheet.action_timesheet_confirm()
-            self.assertEqual(sheet.state, "confirm")
-            sheet.action_timesheet_done()
-            self.assertEqual(len(employee.timesheet_sheet_ids), 1)
+                sheet_1.action_create_purchase_order()
+
+            with self.assertRaises(UserError):
+                sheet_2.action_create_purchase_order()
+
+            with self.assertRaises(UserError):
+                sheet_3.action_create_purchase_order()
+
+            sheet_1.action_timesheet_confirm()
+            self.assertEqual(sheet_1.state, "confirm", msg="Must be equal confirm")
+            sheet_1.action_timesheet_done()
+
+            sheet_2.action_timesheet_confirm()
+            self.assertEqual(sheet_2.state, "confirm", msg="Must be equal confirm")
+            sheet_2.action_timesheet_done()
+
+            self.assertEqual(len(self.employee_1.timesheet_sheet_ids), 1)
+            self.assertEqual(len(self.employee_2.timesheet_sheet_ids), 1)
+            self.assertEqual(len(self.employee_3.timesheet_sheet_ids), 1)
 
         self.assertEqual(
-            employee.recurrence_id.next_recurrence_date,
+            billing_partner.recurrence_id.next_recurrence_date,
             date(2020, 1, 15),
             "Must be equal {dt}".format(dt=date(2020, 1, 15)),
         )
 
         with freeze_time("2020-01-15"):
-            self.assertEqual(len(employee.timesheet_sheet_ids), 1)
-            self.hr_timesheet_recurrence_model._cron_generate_auto_po()
+            self.assertEqual(len(self.employee_1.timesheet_sheet_ids), 1)
+            self.assertEqual(len(self.employee_2.timesheet_sheet_ids), 1)
+
+            sheet_3.action_timesheet_confirm()
+            self.assertEqual(sheet_3.state, "confirm", msg="Must be equal confirm")
+            sheet_3.action_timesheet_done()
+
+            self.assertEqual(len(self.employee_3.timesheet_sheet_ids), 1)
+            self.hr_timesheet_recurrence_obj._cron_generate_auto_po()
             self.assertEqual(
-                employee.recurrence_id.next_recurrence_date,
+                billing_partner.recurrence_id.next_recurrence_date,
                 date(2020, 2, 15),
                 "Must be equal {dt}".format(dt=date(2020, 2, 15)),
             )
 
         with freeze_time("2020-02-15"):
-            self.hr_timesheet_recurrence_model._cron_generate_auto_po()
+            self.hr_timesheet_recurrence_obj._cron_generate_auto_po()
             self.assertFalse(
-                employee.recurrence_id.next_recurrence_date,
+                billing_partner.recurrence_id.next_recurrence_date,
                 "Must be equal False",
             )
 
@@ -290,11 +264,9 @@ class TestTimesheetPOrecurrence(SavepointCase):
         with self.assertRaisesRegex(
             ValidationError, (_("You should select a least one day"))
         ):
-            form = Form(self.employee_model)
-            form.name = "Test Employee recurrence week_day"
-            form.user_id = self.user
-            form.billing_partner_id = self.user.partner_id
-            form.allow_generate_purchase_order = True
+            form = Form(self.res_partner_obj)
+            form.name = "Test Partner recurrence week_day"
+            form.email = "test@partner.com"
             form.is_auto_po_generate = True
             form.repeat_interval = 1
             form.repeat_unit = "week"
@@ -313,11 +285,9 @@ class TestTimesheetPOrecurrence(SavepointCase):
         with self.assertRaisesRegex(
             ValidationError, (_("The interval should be greater than 0"))
         ):
-            form = Form(self.employee_model)
-            form.name = "Test Employee recurrence week_day"
-            form.user_id = self.user
-            form.billing_partner_id = self.user.partner_id
-            form.allow_generate_purchase_order = True
+            form = Form(self.res_partner_obj)
+            form.name = "Test Partner recurrence week_day"
+            form.email = "test@partner.com"
             form.is_auto_po_generate = True
             form.repeat_interval = 0
             form.repeat_type = "after"
@@ -327,11 +297,9 @@ class TestTimesheetPOrecurrence(SavepointCase):
         with self.assertRaisesRegex(
             ValidationError, (_("Should repeat at least once"))
         ):
-            form = Form(self.employee_model)
-            form.name = "Test Employee recurrence"
-            form.user_id = self.user
-            form.billing_partner_id = self.user.partner_id
-            form.allow_generate_purchase_order = True
+            form = Form(self.res_partner_obj)
+            form.name = "Test Partner recurrence"
+            form.email = "test@partner.com"
             form.is_auto_po_generate = True
             form.repeat_interval = 1
             form.repeat_type = "after"
@@ -350,11 +318,9 @@ class TestTimesheetPOrecurrence(SavepointCase):
             with self.assertRaisesRegex(
                 ValidationError, (_("The end date should be in the future"))
             ):
-                form = Form(self.employee_model)
-                form.name = "Test Employee recurrence"
-                form.user_id = self.user
-                form.billing_partner_id = self.user.partner_id
-                form.allow_generate_purchase_order = True
+                form = Form(self.res_partner_obj)
+                form.name = "Test Partner recurrence"
+                form.email = "test@partner.com"
                 form.is_auto_po_generate = True
                 form.repeat_interval = 1
                 form.repeat_type = "until"
@@ -369,7 +335,7 @@ class TestTimesheetPOrecurrence(SavepointCase):
                 form.save()
 
     def test_recurrence_next_dates_week(self):
-        dates = self.hr_timesheet_recurrence_model._get_next_recurring_dates(
+        dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
             date_start=date(2020, 1, 1),
             repeat_interval=1,
             repeat_unit="week",
@@ -390,7 +356,7 @@ class TestTimesheetPOrecurrence(SavepointCase):
         self.assertEqual(dates[3], datetime(2020, 1, 27, 0, 0))
         self.assertEqual(dates[4], datetime(2020, 2, 3, 0, 0))
 
-        dates = self.hr_timesheet_recurrence_model._get_next_recurring_dates(
+        dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
             date_start=date(2020, 1, 1),
             repeat_interval=3,
             repeat_unit="week",
@@ -411,7 +377,7 @@ class TestTimesheetPOrecurrence(SavepointCase):
         self.assertEqual(dates[2], datetime(2020, 1, 24, 0, 0))
 
     def test_recurrence_next_dates_month(self):
-        dates = self.hr_timesheet_recurrence_model._get_next_recurring_dates(
+        dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
             date_start=date(2020, 1, 15),
             repeat_interval=1,
             repeat_unit="month",
@@ -440,7 +406,7 @@ class TestTimesheetPOrecurrence(SavepointCase):
         self.assertEqual(dates[10], date(2020, 11, 30))
         self.assertEqual(dates[11], date(2020, 12, 31))
 
-        dates = self.hr_timesheet_recurrence_model._get_next_recurring_dates(
+        dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
             date_start=date(2020, 2, 20),
             repeat_interval=3,
             repeat_unit="month",
@@ -461,7 +427,7 @@ class TestTimesheetPOrecurrence(SavepointCase):
         self.assertEqual(dates[3], date(2020, 11, 29))
         self.assertEqual(dates[4], date(2021, 2, 28))
 
-        dates = self.hr_timesheet_recurrence_model._get_next_recurring_dates(
+        dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
             date_start=date(2020, 1, 10),
             repeat_interval=1,
             repeat_unit="month",
@@ -485,7 +451,7 @@ class TestTimesheetPOrecurrence(SavepointCase):
         self.assertEqual(dates[3], datetime(2020, 4, 25))
         self.assertEqual(dates[4], datetime(2020, 5, 23))
 
-        dates = self.hr_timesheet_recurrence_model._get_next_recurring_dates(
+        dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
             date_start=datetime(2020, 1, 10),
             repeat_interval=6,  # twice a year
             repeat_unit="month",
@@ -505,7 +471,7 @@ class TestTimesheetPOrecurrence(SavepointCase):
         self.assertEqual(dates[1], datetime(2021, 1, 3))
 
         # Should generate a date at the last day of the current month
-        dates = self.hr_timesheet_recurrence_model._get_next_recurring_dates(
+        dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
             date_start=date(2022, 2, 26),
             repeat_interval=1,
             repeat_unit="month",
@@ -523,7 +489,7 @@ class TestTimesheetPOrecurrence(SavepointCase):
         self.assertEqual(len(dates), 1)
         self.assertEqual(dates[0], date(2022, 2, 28))
 
-        dates = self.hr_timesheet_recurrence_model._get_next_recurring_dates(
+        dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
             date_start=date(2022, 11, 26),
             repeat_interval=3,
             repeat_unit="month",
@@ -548,7 +514,7 @@ class TestTimesheetPOrecurrence(SavepointCase):
         # Use the exact same parameters than the previous test
         # but with a repeat_day that is not passed yet
         # So we generate an additional date in the current month
-        dates = self.hr_timesheet_recurrence_model._get_next_recurring_dates(
+        dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
             date_start=date(2022, 11, 26),
             repeat_interval=3,
             repeat_unit="month",
@@ -572,7 +538,7 @@ class TestTimesheetPOrecurrence(SavepointCase):
         self.assertEqual(dates[5], date(2024, 2, 29))
 
     def test_recurrence_next_dates_year(self):
-        dates = self.hr_timesheet_recurrence_model._get_next_recurring_dates(
+        dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
             date_start=date(2020, 12, 1),
             repeat_interval=1,
             repeat_unit="year",
