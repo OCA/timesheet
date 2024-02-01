@@ -1,4 +1,5 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Copyright (C) 2024 Cetmix OÜ
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from calendar import monthrange
 
@@ -58,7 +59,7 @@ class HRTimeSheetRecurrence(models.Model):
     _name = "hr.timesheet.recurrence"
     _description = "HR TimeSheet Recurrence"
 
-    task_ids = fields.One2many("hr.employee", "recurrence_id")
+    partner_ids = fields.One2many("res.partner", "recurrence_id")
     next_recurrence_date = fields.Date()
     recurrence_left = fields.Integer(string="Number of tasks left to create")
 
@@ -319,20 +320,21 @@ class HRTimeSheetRecurrence(models.Model):
                 recurrence.next_recurrence_date = next_date[0] if next_date else False
 
     def _create_purchase_order(self):
-        for item in self.mapped("task_ids"):
-            timesheet = item.timesheet_sheet_ids.filtered(
-                lambda t: not t.purchase_order_id and t.state == "done"
-            )
-            if not timesheet:
-                continue
-            timesheet = timesheet[0]
-            timesheet.action_create_purchase_order()
-            if item.is_send_po:
-                email_act = timesheet.purchase_order_id.action_rfq_send()
-                email_ctx = email_act.get("context", {})
-                timesheet.purchase_order_id.with_context(
-                    **email_ctx
-                ).message_post_with_template(email_ctx.get("default_template_id"))
+        for partner in self.partner_ids:
+            for item in partner.employee_ids:
+                timesheet = item.timesheet_sheet_ids.filtered(
+                    lambda t: not t.purchase_order_id and t.state == "done"
+                )
+                if not timesheet:
+                    continue
+                timesheet = timesheet[0]
+                timesheet.action_create_purchase_order()
+                if partner.is_send_po:
+                    email_act = timesheet.purchase_order_id.action_rfq_send()
+                    email_ctx = email_act.get("context", {})
+                    timesheet.purchase_order_id.with_context(
+                        **email_ctx
+                    ).message_post_with_template(email_ctx.get("default_template_id"))
 
     @api.model
     def _cron_generate_auto_po(self):
