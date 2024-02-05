@@ -183,6 +183,12 @@ class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
             form.repeat_until = date(2020, 2, 20)
             form.repeat_on_month = "date"
             form.repeat_day = "15"
+
+            form.property_supplier_payment_term_id = self.account_payment_term_30days
+            form.property_payment_method_id = self.account_payment_method_manual_out
+            form.receipt_reminder_email = True
+            form.reminder_date_before_receipt = 3
+
             billing_partner = form.save()
 
             sheet_form = Form(self.hr_timesheet_sheet_obj.with_user(self.user_1))
@@ -247,6 +253,61 @@ class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
 
             self.assertEqual(len(self.employee_3.timesheet_sheet_ids), 1)
             self.hr_timesheet_recurrence_obj._cron_generate_auto_po()
+            self.assertTrue(
+                sheet_1.purchase_order_id, msg="Must be create new purchase order"
+            )
+
+            self.assertTrue(
+                sheet_1.purchase_order_id.receipt_reminder_email,
+                msg="Reminder email must be True",
+            )
+            self.assertEqual(
+                sheet_1.purchase_order_id.payment_term_id,
+                self.outsourcing_company.property_supplier_payment_term_id,
+                msg=f"Must be equal {self.account_payment_term_30days.name}",
+            )
+            self.assertEqual(
+                sheet_1.purchase_order_id.reminder_date_before_receipt,
+                self.outsourcing_company.reminder_date_before_receipt,
+                msg="Must be equal 3",
+            )
+
+            self.assertTrue(
+                sheet_2.purchase_order_id, msg="Must be create new purchase order"
+            )
+            self.assertTrue(
+                sheet_2.purchase_order_id.receipt_reminder_email,
+                msg="Reminder email must be True",
+            )
+            self.assertEqual(
+                sheet_2.purchase_order_id.payment_term_id,
+                self.outsourcing_company.property_supplier_payment_term_id,
+                msg=f"Must be equal {self.account_payment_term_30days.name}",
+            )
+            self.assertEqual(
+                sheet_2.purchase_order_id.reminder_date_before_receipt,
+                self.outsourcing_company.reminder_date_before_receipt,
+                msg="Must be equal 3",
+            )
+
+            self.assertTrue(
+                sheet_3.purchase_order_id, msg="Must be create new purchase order"
+            )
+            self.assertTrue(
+                sheet_3.purchase_order_id.receipt_reminder_email,
+                msg="Reminder email must be True",
+            )
+            self.assertEqual(
+                sheet_3.purchase_order_id.payment_term_id,
+                self.outsourcing_company.property_supplier_payment_term_id,
+                msg=f"Must be equal {self.account_payment_term_30days.name}",
+            )
+            self.assertEqual(
+                sheet_3.purchase_order_id.reminder_date_before_receipt,
+                self.outsourcing_company.reminder_date_before_receipt,
+                msg="Must be equal 3",
+            )
+
             self.assertEqual(
                 billing_partner.recurrence_id.next_recurrence_date,
                 date(2020, 2, 15),
