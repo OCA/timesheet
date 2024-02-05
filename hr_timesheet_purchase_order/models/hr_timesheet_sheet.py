@@ -69,6 +69,7 @@ class HrTimesheetSheet(models.Model):
                     ],
                 }
             )
+            order.onchange_partner_id()
             order_count += 1
             for timesheet in timesheets:
                 timesheet.purchase_order_id = order.id

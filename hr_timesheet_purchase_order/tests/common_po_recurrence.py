@@ -37,6 +37,13 @@ class TestTimesheetPOrecurrenceCommon(SavepointCase):
         sheet_user_group = cls.env.ref("hr_timesheet.group_hr_timesheet_user")
         project_user_group = cls.env.ref("project.group_project_user")
 
+        cls.account_payment_term_30days = cls.env.ref(
+            "account.account_payment_term_30days"
+        )
+        cls.account_payment_method_manual_out = cls.env.ref(
+            "account.account_payment_method_manual_out"
+        )
+
         cls.user_1 = cls.res_users_obj.create(
             {
                 "name": "Test User 1",
