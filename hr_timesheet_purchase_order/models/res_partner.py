@@ -11,7 +11,9 @@ from .hr_timesheet_recurrence import DAYS
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    is_auto_po_generate = fields.Boolean(string="Automatic PO generation")
+    is_auto_po_generate = fields.Boolean(
+        string="Automatic PO generation from timesheet sheets"
+    )
     recurrence_id = fields.Many2one("hr.timesheet.recurrence", copy=False)
     employee_ids = fields.One2many(
         comodel_name="hr.employee",

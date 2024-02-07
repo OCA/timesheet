@@ -23,6 +23,7 @@
                             ('state', '!=', 'done'),
                         ],
                     }"
+                    groups="hr_timesheet.group_timesheet_manager"
                 />
                 <button
                     name="action_open_purchase_order"

@@ -321,20 +321,19 @@ class HRTimeSheetRecurrence(models.Model):
 
     def _create_purchase_order(self):
         for partner in self.partner_ids:
-            for item in partner.employee_ids:
-                timesheet = item.timesheet_sheet_ids.filtered(
-                    lambda t: not t.purchase_order_id and t.state == "done"
-                )
-                if not timesheet:
-                    continue
-                timesheet = timesheet[0]
-                timesheet.action_create_purchase_order()
-                if partner.is_send_po:
-                    email_act = timesheet.purchase_order_id.action_rfq_send()
-                    email_ctx = email_act.get("context", {})
-                    timesheet.purchase_order_id.with_context(
-                        **email_ctx
-                    ).message_post_with_template(email_ctx.get("default_template_id"))
+
+            timesheets = partner.mapped("employee_ids.timesheet_sheet_ids").filtered(
+                lambda t: not t.purchase_order_id and t.state == "done"
+            )
+            if not timesheets:
+                continue
+            timesheets.action_create_purchase_order()
+            if partner.is_send_po:
+                email_act = timesheets[0].purchase_order_id.action_rfq_send()
+                email_ctx = email_act.get("context", {})
+                timesheets[0].purchase_order_id.with_context(
+                    **email_ctx
+                ).message_post_with_template(email_ctx.get("default_template_id"))
 
     @api.model
     def _cron_generate_auto_po(self):
