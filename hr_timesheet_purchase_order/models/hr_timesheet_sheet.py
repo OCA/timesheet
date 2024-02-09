@@ -104,13 +104,16 @@ class HrTimesheetSheet(models.Model):
         result = []
         timesheets_data = []
         for employee, timesheets in data:
+            date_timesheet = f"{timesheets[0].date_start} to {timesheets[0].date_end}"
             result.append(
                 (
                     0,
                     0,
                     {
                         "product_id": employee.company_id.timesheet_product_id.id,
-                        "name": f"{employee.name}",
+                        "name": f"""{employee.company_id.timesheet_product_id.name}
+                        - {employee.name} from {date_timesheet}
+                                """,
                         "product_qty": sum(
                             [timesheet.total_time for timesheet in timesheets]
                         ),
