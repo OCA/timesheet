@@ -337,6 +337,7 @@ class HRTimeSheetRecurrence(models.Model):
 
     @api.model
     def _cron_generate_auto_po(self):
+        """Generate purchase order for all partner with timesheets"""
         today = fields.Date.today()
         recurring_today = self.search([("next_recurrence_date", "<=", today)])
         recurring_today._create_purchase_order()
