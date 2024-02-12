@@ -111,9 +111,12 @@ class HrTimesheetSheet(models.Model):
                     0,
                     {
                         "product_id": employee.company_id.timesheet_product_id.id,
-                        "name": f"""{employee.company_id.timesheet_product_id.name}
-                        - {employee.name} from {date_timesheet}
-                                """,
+                        "name": "%s - %s from %s"
+                        % (
+                            employee.company_id.timesheet_product_id.name,
+                            employee.name,
+                            date_timesheet,
+                        ),
                         "product_qty": sum(
                             [timesheet.total_time for timesheet in timesheets]
                         ),
