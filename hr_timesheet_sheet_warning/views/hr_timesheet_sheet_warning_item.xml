@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 ForgeFlow S.L. (https://www.forgeflow.com)
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+ -->
+<odoo>
+
+    <record id="hr_timesheet_sheet_warning_item_tree" model="ir.ui.view">
+        <field name="name">hr_timesheet.sheet.warning.item.tree</field>
+        <field name="model">hr_timesheet.sheet.warning.item</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>

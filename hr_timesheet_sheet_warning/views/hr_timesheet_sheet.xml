@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 ForgeFlow S.L. (https://www.forgeflow.com)
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+ -->
+<odoo>
+
+    <record id="hr_timesheet_sheet_form" model="ir.ui.view">
+        <field name="name">hr_timesheet.sheet.form - hr_timesheet_sheet_warning</field>
+        <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form" />
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Warnings">
+                    <button
+                        name="action_generate_warnings"
+                        string="Generate Warnings"
+                        type="object"
+                        attrs="{'invisible': [('state', 'not in', ('new', 'draft'))]}"
+                    />
+                    <field
+                        name="hr_timesheet_sheet_warning_item_ids"
+                        widget="one2many"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_hr_timesheet_sheet_filter" model="ir.ui.view">
+        <field
+            name="name"
+        >hr_timesheet.sheet.filter - hr_timesheet_sheet_warning</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"
+        />
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='message_needaction']" position="after">
+                <filter
+                    name="with_warnings"
+                    string="With Warnings"
+                    domain="[('hr_timesheet_sheet_warning_item_ids', '!=', False)]"
+                />
+                <filter
+                    name="without_warnings"
+                    string="Without Warnings"
+                    domain="[('hr_timesheet_sheet_warning_item_ids', '=', False)]"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
