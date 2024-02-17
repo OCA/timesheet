@@ -22,6 +22,10 @@ class TestTimesheetPORecurrenceNotProduct(TestTimesheetPOrecurrenceCommon):
         config.execute()
 
     def test_recurrence_cron_repeat_until(self):
+        """
+        Test the cron job for the recurrence of the purchase
+        order when the product is not defined
+        """
         with freeze_time("2020-01-01"):
             form = Form(self.outsourcing_company)
             form.is_auto_po_generate = True

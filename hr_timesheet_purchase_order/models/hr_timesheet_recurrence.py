@@ -148,22 +148,26 @@ class HRTimeSheetRecurrence(models.Model):
 
     @api.constrains("repeat_unit", "mon", "tue", "wed", "thu", "fri", "sat", "sun")
     def _check_recurrence_days(self):
+        """Check at least one day is selected for the recurrence"""
         for timesheet in self.filtered(lambda p: p.repeat_unit == "week"):
             if not any([getattr(timesheet, attr_name) for attr_name in DAYS]):
                 raise ValidationError(_("You should select a least one day"))
 
     @api.constrains("repeat_interval")
     def _check_repeat_interval(self):
+        """Check the interval is greater than 0"""
         if self.filtered(lambda t: t.repeat_interval <= 0):
             raise ValidationError(_("The interval should be greater than 0"))
 
     @api.constrains("repeat_number", "repeat_type")
     def _check_repeat_number(self):
+        """Check the number of repetitions is greater than 0"""
         if self.filtered(lambda t: t.repeat_type == "after" and t.repeat_number <= 0):
             raise ValidationError(_("Should repeat at least once"))
 
     @api.constrains("repeat_type", "repeat_until")
     def _check_repeat_until_date(self):
+        """Check the end date is in the future"""
         today = fields.Date.today()
         if self.filtered(lambda t: t.repeat_type == "until" and t.repeat_until < today):
             raise ValidationError(_("The end date should be in the future"))
@@ -172,6 +176,7 @@ class HRTimeSheetRecurrence(models.Model):
         "repeat_unit", "repeat_on_month", "repeat_day", "repeat_type", "repeat_until"
     )
     def _check_repeat_until_month(self):
+        """Check the end date is after the day of the month or the last day of the month"""
         if self.filtered(
             lambda r: r.repeat_type == "until"
             and r.repeat_unit == "month"
@@ -190,54 +195,70 @@ class HRTimeSheetRecurrence(models.Model):
 
     @api.constrains("repeat_day", "repeat_month")
     def _check_repeat_day_or_month(self):
-        if 0 > self.repeat_day or self.repeat_day > 31:
+        """Check the repeat day or month is valid"""
+        month_day = MONTHS.get(self.repeat_month)
+        if 0 > self.repeat_day or self.repeat_day > month_day:
             raise ValidationError(
                 _(
-                    "The number of days in a month cannot be negative "
-                    "or more than 31 days"
+                    (
+                        "The number of days in a month cannot be negative "
+                        "or more than %s days"
+                    )
+                    % self.repeat_day
+                    if self.repeat_day < 0
+                    else month_day
                 )
             )
 
     def _get_weekdays(self, n=1):
+        """Returns the weekdays selected for the recurrence
+        Args:
+            n (int, optional): Day of the week. Defaults to 1.
+        Returns:
+            list: The weekdays selected for the recurrence
+        """
         self.ensure_one()
         if self.repeat_unit == "week":
             return [fn(n) for day, fn in DAYS.items() if self[day]]
         return [DAYS.get(self.repeat_weekday)(n)]
 
     @api.model
-    def _get_next_recurring_dates(
-        self,
-        date_start,
-        repeat_interval,
-        repeat_unit,
-        repeat_type,
-        repeat_until,
-        repeat_on_month,
-        repeat_on_year,
-        weekdays,
-        repeat_day,
-        repeat_week,
-        repeat_month,
-        **kwargs
-    ):
-        """Based on the selected parameters returns the following date"""
+    def _get_next_recurring_dates(self, date_start, **recurrence_data):
+        """Based on the selected parameters returns the following date
 
-        count = kwargs.get("count", 1)
-        rrule_kwargs = {"interval": repeat_interval or 1, "dtstart": date_start}
-        repeat_day = int(repeat_day)
+        Args:
+            date_start (datetime): The starting date for calculating the recurring dates
+            recurrence_data (dict): The recurrence pattern for calculating the dates
+
+        Returns:
+            datetime: The following date based on the selected parameters
+        """
+
+        count = recurrence_data.get("count", 1)
+
+        rrule_kwargs = {
+            "interval": recurrence_data.get("repeat_interval", 1),
+            "dtstart": date_start,
+        }
+        repeat_day = int(recurrence_data.get("repeat_day", 0))
+        repeat_type = recurrence_data.get("repeat_type", False)
+        repeat_until = recurrence_data.get("repeat_until", False)
         if repeat_type == "until":
             rrule_kwargs["until"] = (
                 repeat_until if repeat_until else fields.Date.today()
             )
         else:
             rrule_kwargs["count"] = count
-
+        repeat_unit = recurrence_data.get("repeat_unit", False)
+        repeat_on_month = recurrence_data.get("repeat_on_month", False)
+        repeat_on_year = recurrence_data.get("repeat_on_year", False)
+        repeat_month = recurrence_data.get("repeat_month", False)
         if (
             repeat_unit == "week"
             or (repeat_unit == "month" and repeat_on_month == "day")
             or (repeat_unit == "year" and repeat_on_year == "day")
         ):
-            rrule_kwargs["byweekday"] = weekdays
+            rrule_kwargs["byweekday"] = recurrence_data.get("weekdays", [])
         if repeat_unit == "day":
             rrule_kwargs["freq"] = DAILY
         elif repeat_unit == "month":
@@ -246,10 +267,10 @@ class HRTimeSheetRecurrence(models.Model):
                 return self._get_dates_for_next_recurrence(
                     date_start,
                     repeat_day,
-                    repeat_interval,
-                    repeat_until,
-                    repeat_type,
                     count,
+                    repeat_interval=recurrence_data.get("repeat_interval", False),
+                    repeat_until=repeat_until,
+                    repeat_type=repeat_type,
                 )
         elif repeat_unit == "year":
             rrule_kwargs["freq"] = YEARLY
@@ -264,13 +285,27 @@ class HRTimeSheetRecurrence(models.Model):
         return list(rules) if rules else []
 
     def _get_dates_for_next_recurrence(
-        self, date_start, repeat_day, repeat_interval, repeat_until, repeat_type, count
+        self, date_start, repeat_day, count, **recurrence
     ):
+        """Based on the selected parameters returns the following date
+
+        Args:
+            date_start (datetime): The starting date for calculating the recurring dates
+            repeat_day (int): Repeat day count
+            count (int): Count repeat dates
+            recurrence (dict): The recurrence pattern for calculating the dates
+
+        Returns:
+            list: Dates list
+        """
         dates = []
         start = date_start - relativedelta(days=1)
         start = start.replace(
             day=min(repeat_day, monthrange(start.year, start.month)[1])
         )
+        repeat_interval = recurrence.get("repeat_interval", 0)
+        repeat_until = recurrence.get("repeat_until", False)
+        repeat_type = recurrence.get("repeat_type", False)
         if start < date_start:
             # Ensure the next recurrence is in the future
             start += relativedelta(months=repeat_interval)
@@ -291,6 +326,7 @@ class HRTimeSheetRecurrence(models.Model):
         return dates
 
     def _set_next_recurrence_date(self):
+        """Set the next recurrence date"""
         today = fields.Date.today()
         tomorrow = today + relativedelta(days=1)
         for recurrence in self.filtered(
@@ -305,21 +341,22 @@ class HRTimeSheetRecurrence(models.Model):
             else:
                 next_date = self._get_next_recurring_dates(
                     tomorrow,
-                    recurrence.repeat_interval,
-                    recurrence.repeat_unit,
-                    recurrence.repeat_type,
-                    recurrence.repeat_until,
-                    recurrence.repeat_on_month,
-                    recurrence.repeat_on_year,
-                    recurrence._get_weekdays(),
-                    recurrence.repeat_day,
-                    recurrence.repeat_week,
-                    recurrence.repeat_month,
+                    repeat_interval=recurrence.repeat_interval,
+                    repeat_unit=recurrence.repeat_unit,
+                    repeat_type=recurrence.repeat_type,
+                    repeat_until=recurrence.repeat_until,
+                    repeat_on_month=recurrence.repeat_on_month,
+                    repeat_on_year=recurrence.repeat_on_year,
+                    weekdays=recurrence._get_weekdays(),
+                    repeat_day=recurrence.repeat_day,
+                    repeat_week=recurrence.repeat_week,
+                    repeat_month=recurrence.repeat_month,
                     count=1,
                 )
                 recurrence.next_recurrence_date = next_date[0] if next_date else False
 
     def _create_purchase_order(self):
+        """Create purchase order for all timesheets of the partner"""
         for partner in self.partner_ids:
 
             timesheets = partner.mapped("employee_ids.timesheet_sheet_ids").filtered(
