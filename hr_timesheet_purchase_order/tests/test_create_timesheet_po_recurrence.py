@@ -15,6 +15,7 @@ from .common_po_recurrence import TestTimesheetPOrecurrenceCommon
 
 class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
     def test_create_purchase_order_recurrence_simple(self):
+        """Test the creation of the purchase order with the recurrence of the timesheet"""
         with freeze_time("2020-03-01"):
             form_employee_1 = Form(self.employee_1)
             form_employee_1.billing_partner_id = self.outsourcing_company
@@ -109,10 +110,10 @@ class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
                 self.hr_timesheet_recurrence_obj._cron_generate_auto_po()
 
     def test_onchange_repeat_day(self):
+        """Check when the repeat day is set incorrectly"""
         with freeze_time("2020-02-01"):
             form = Form(self.outsourcing_company)
             form.is_auto_po_generate = True
-
             form.repeat_interval = 5
             form.repeat_unit = "month"
             form.repeat_type = "after"
@@ -125,15 +126,17 @@ class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
         with self.assertRaisesRegex(
             ValidationError,
             (
-                _(
+                (
                     "The number of days in a month cannot be negative "
-                    "or more than 31 days"
+                    "or more than %s days"
                 )
+                % -1
             ),
         ):
             billing_partner.recurrence_id.repeat_day = -1
 
     def test_recurrence_cron_repeat_after(self):
+        """Test the cron method of the recurrence is correctly working"""
         with freeze_time("2020-01-01"):
             form = Form(self.outsourcing_company)
             form.name = "Test Employee recurrence cron_repeat_after"
@@ -174,6 +177,7 @@ class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
             self.hr_timesheet_recurrence_obj._cron_generate_auto_po()
 
     def test_recurrence_cron_repeat_until(self):
+        """Check when the until date is set correctly and create purchase order"""
         with freeze_time("2020-01-01"):
             form = Form(self.outsourcing_company)
             form.is_auto_po_generate = True
@@ -322,6 +326,7 @@ class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
             )
 
     def test_recurrence_week_day(self):
+        """Check when the repeat interval is set incorrectly"""
         with self.assertRaisesRegex(
             ValidationError, (_("You should select a least one day"))
         ):
@@ -343,6 +348,7 @@ class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
             form.save()
 
     def test_recurrence_repeat_interval(self):
+        """Check when the repeat interval is set incorrectly"""
         with self.assertRaisesRegex(
             ValidationError, (_("The interval should be greater than 0"))
         ):
@@ -355,6 +361,7 @@ class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
             form.save()
 
     def test_repeat_number(self):
+        """Check when the repeat number is set incorrectly"""
         with self.assertRaisesRegex(
             ValidationError, (_("Should repeat at least once"))
         ):
@@ -375,6 +382,7 @@ class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
             form.save()
 
     def test_repeat_until_date(self):
+        """Check when the until date is set incorrectly"""
         with freeze_time("2023-08-03"):
             with self.assertRaisesRegex(
                 ValidationError, (_("The end date should be in the future"))
@@ -396,6 +404,7 @@ class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
                 form.save()
 
     def test_recurrence_next_dates_week(self):
+        """Test generate next dates for week"""
         dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
             date_start=date(2020, 1, 1),
             repeat_interval=1,
@@ -417,12 +426,14 @@ class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
         self.assertEqual(dates[3], datetime(2020, 1, 27, 0, 0))
         self.assertEqual(dates[4], datetime(2020, 2, 3, 0, 0))
 
+        start = date(2020, 1, 1)
+        until = date(2020, 2, 1)
         dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
-            date_start=date(2020, 1, 1),
+            date_start=start,
             repeat_interval=3,
             repeat_unit="week",
             repeat_type="until",
-            repeat_until=date(2020, 2, 1),
+            repeat_until=until,
             repeat_on_month=False,
             repeat_on_year=False,
             weekdays=[MO, FR],
@@ -438,6 +449,7 @@ class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
         self.assertEqual(dates[2], datetime(2020, 1, 24, 0, 0))
 
     def test_recurrence_next_dates_month(self):
+        """Test generate next dates for month"""
         dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
             date_start=date(2020, 1, 15),
             repeat_interval=1,
@@ -599,6 +611,7 @@ class TestTimesheetPOrecurrence(TestTimesheetPOrecurrenceCommon):
         self.assertEqual(dates[5], date(2024, 2, 29))
 
     def test_recurrence_next_dates_year(self):
+        """Test generate recurring dates for yearly recurrence."""
         dates = self.hr_timesheet_recurrence_obj._get_next_recurring_dates(
             date_start=date(2020, 12, 1),
             repeat_interval=1,
