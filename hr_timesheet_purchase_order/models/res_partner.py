@@ -5,7 +5,16 @@ from datetime import timedelta
 
 from odoo import api, fields, models
 
-from .hr_timesheet_recurrence import DAYS
+from .consts import (
+    DAYS,
+    MONTH_SELECTION,
+    ON_MONTH_SELECTION,
+    ON_YEAR_SELECTION,
+    TYPE_SELECTION,
+    UNIT_SELECTION,
+    WEEKDAY_SELECTION,
+    WEEKS_SELECTION,
+)
 
 
 class ResPartner(models.Model):
@@ -19,30 +28,19 @@ class ResPartner(models.Model):
         comodel_name="hr.employee",
         inverse_name="billing_partner_id",
     )
-
     is_send_po = fields.Boolean(string="Send RFQ by email after creation")
-
     next_recurrence_date = fields.Date(related="recurrence_id.next_recurrence_date")
     repeat_interval = fields.Integer(
         string="Repeat Every", default=1, compute="_compute_repeat", readonly=False
     )
     repeat_unit = fields.Selection(
-        [
-            ("day", "Days"),
-            ("week", "Weeks"),
-            ("month", "Months"),
-            ("year", "Years"),
-        ],
+        selection=UNIT_SELECTION,
         default="week",
         compute="_compute_repeat",
         readonly=False,
     )
     repeat_type = fields.Selection(
-        [
-            ("forever", "Forever"),
-            ("until", "End Date"),
-            ("after", "Number of Repetitions"),
-        ],
+        selection=TYPE_SELECTION,
         default="forever",
         string="Until",
         compute="_compute_repeat",
@@ -56,20 +54,14 @@ class ResPartner(models.Model):
     )
 
     repeat_on_month = fields.Selection(
-        [
-            ("date", "Date of the Month"),
-            ("day", "Day of the Month"),
-        ],
+        selection=ON_MONTH_SELECTION,
         default="date",
         compute="_compute_repeat",
         readonly=False,
     )
 
     repeat_on_year = fields.Selection(
-        [
-            ("date", "Date of the Year"),
-            ("day", "Day of the Year"),
-        ],
+        selection=ON_YEAR_SELECTION,
         default="date",
         compute="_compute_repeat",
         readonly=False,
@@ -96,45 +88,19 @@ class ResPartner(models.Model):
             self.repeat_day = 28
 
     repeat_week = fields.Selection(
-        [
-            ("first", "First"),
-            ("second", "Second"),
-            ("third", "Third"),
-            ("last", "Last"),
-        ],
+        selection=WEEKS_SELECTION,
         default="first",
         compute="_compute_repeat",
         readonly=False,
     )
     repeat_weekday = fields.Selection(
-        [
-            ("mon", "Monday"),
-            ("tue", "Tuesday"),
-            ("wed", "Wednesday"),
-            ("thu", "Thursday"),
-            ("fri", "Friday"),
-            ("sat", "Saturday"),
-            ("sun", "Sunday"),
-        ],
+        selection=WEEKDAY_SELECTION,
         string="Day Of The Week",
         compute="_compute_repeat",
         readonly=False,
     )
     repeat_month = fields.Selection(
-        [
-            ("january", "January"),
-            ("february", "February"),
-            ("march", "March"),
-            ("april", "April"),
-            ("may", "May"),
-            ("june", "June"),
-            ("july", "July"),
-            ("august", "August"),
-            ("september", "September"),
-            ("october", "October"),
-            ("november", "November"),
-            ("december", "December"),
-        ],
+        selection=MONTH_SELECTION,
         compute="_compute_repeat",
         readonly=False,
     )
