@@ -4,55 +4,22 @@
 from calendar import monthrange
 
 from dateutil.relativedelta import relativedelta
-from dateutil.rrule import (
-    DAILY,
-    FR,
-    MO,
-    MONTHLY,
-    SA,
-    SU,
-    TH,
-    TU,
-    WE,
-    WEEKLY,
-    YEARLY,
-    rrule,
-)
+from dateutil.rrule import DAILY, MONTHLY, WEEKLY, YEARLY, rrule
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
-MONTHS = {
-    "january": 31,
-    "february": 28,
-    "march": 31,
-    "april": 30,
-    "may": 31,
-    "june": 30,
-    "july": 31,
-    "august": 31,
-    "september": 30,
-    "october": 31,
-    "november": 30,
-    "december": 31,
-}
-
-DAYS = {
-    "mon": MO,
-    "tue": TU,
-    "wed": WE,
-    "thu": TH,
-    "fri": FR,
-    "sat": SA,
-    "sun": SU,
-}
-
-WEEKS = {
-    "first": 1,
-    "second": 2,
-    "third": 3,
-    "last": 4,
-}
+from .consts import (
+    DAYS,
+    DAYS_IN_MONTHS,
+    MONTH_SELECTION,
+    ON_MONTH_SELECTION,
+    ON_YEAR_SELECTION,
+    TYPE_SELECTION,
+    UNIT_SELECTION,
+    WEEKDAY_SELECTION,
+    WEEKS_SELECTION,
+)
 
 
 class HRTimeSheetRecurrence(models.Model):
@@ -65,38 +32,21 @@ class HRTimeSheetRecurrence(models.Model):
 
     repeat_interval = fields.Integer(string="Repeat Every", default=1)
     repeat_unit = fields.Selection(
-        [
-            ("day", "Days"),
-            ("week", "Weeks"),
-            ("month", "Months"),
-            ("year", "Years"),
-        ],
+        selection=UNIT_SELECTION,
         default="week",
     )
     repeat_type = fields.Selection(
-        [
-            ("forever", "Forever"),
-            ("until", "End Date"),
-            ("after", "Number of Repetitions"),
-        ],
+        selection=TYPE_SELECTION,
         default="forever",
         string="Until",
     )
     repeat_until = fields.Date(string="End Date")
     repeat_number = fields.Integer(string="Repetitions")
 
-    repeat_on_month = fields.Selection(
-        [
-            ("date", "Date of the Month"),
-            ("day", "Day of the Month"),
-        ]
-    )
+    repeat_on_month = fields.Selection(selection=ON_MONTH_SELECTION)
 
     repeat_on_year = fields.Selection(
-        [
-            ("date", "Date of the Year"),
-            ("day", "Day of the Year"),
-        ]
+        selection=ON_YEAR_SELECTION,
     )
 
     mon = fields.Boolean(string="Mon")
@@ -108,43 +58,13 @@ class HRTimeSheetRecurrence(models.Model):
     sun = fields.Boolean(string="Sun")
 
     repeat_day = fields.Integer()
-    repeat_week = fields.Selection(
-        [
-            ("first", "First"),
-            ("second", "Second"),
-            ("third", "Third"),
-            ("last", "Last"),
-        ]
-    )
+    repeat_week = fields.Selection(selection=WEEKS_SELECTION)
     repeat_weekday = fields.Selection(
-        [
-            ("mon", "Monday"),
-            ("tue", "Tuesday"),
-            ("wed", "Wednesday"),
-            ("thu", "Thursday"),
-            ("fri", "Friday"),
-            ("sat", "Saturday"),
-            ("sun", "Sunday"),
-        ],
+        selection=WEEKDAY_SELECTION,
         string="Day Of The Week",
         readonly=False,
     )
-    repeat_month = fields.Selection(
-        [
-            ("january", "January"),
-            ("february", "February"),
-            ("march", "March"),
-            ("april", "April"),
-            ("may", "May"),
-            ("june", "June"),
-            ("july", "July"),
-            ("august", "August"),
-            ("september", "September"),
-            ("october", "October"),
-            ("november", "November"),
-            ("december", "December"),
-        ]
-    )
+    repeat_month = fields.Selection(selection=MONTH_SELECTION)
 
     @api.constrains("repeat_unit", "mon", "tue", "wed", "thu", "fri", "sat", "sun")
     def _check_recurrence_days(self):
@@ -196,7 +116,7 @@ class HRTimeSheetRecurrence(models.Model):
     @api.constrains("repeat_day", "repeat_month")
     def _check_repeat_day_or_month(self):
         """Check the repeat day or month is valid"""
-        month_day = MONTHS.get(self.repeat_month)
+        month_day = DAYS_IN_MONTHS.get(self.repeat_month)
         if 0 > self.repeat_day or self.repeat_day > month_day:
             raise ValidationError(
                 _(
@@ -274,10 +194,12 @@ class HRTimeSheetRecurrence(models.Model):
                 )
         elif repeat_unit == "year":
             rrule_kwargs["freq"] = YEARLY
-            month = list(MONTHS.keys()).index(repeat_month) + 1
+            month = list(DAYS_IN_MONTHS.keys()).index(repeat_month) + 1
             rrule_kwargs["bymonth"] = month
             if repeat_on_year == "date":
-                rrule_kwargs["bymonthday"] = min(repeat_day, MONTHS.get(repeat_month))
+                rrule_kwargs["bymonthday"] = min(
+                    repeat_day, DAYS_IN_MONTHS.get(repeat_month)
+                )
                 rrule_kwargs["bymonth"] = month
         else:
             rrule_kwargs["freq"] = WEEKLY
