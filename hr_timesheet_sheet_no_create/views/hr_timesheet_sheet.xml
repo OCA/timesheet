@@ -31,6 +31,12 @@
             >
                 <attribute name="options">{'no_create': True}</attribute>
             </xpath>
+            <xpath expr="//field[@name='add_line_project_id']" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='add_line_task_id']" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
         </field>
     </record>
 
