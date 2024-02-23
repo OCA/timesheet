@@ -34,7 +34,6 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
         self.analytic_plan = self.AccountAccountPlan.create(
             {
                 "name": "Plan Test",
-                "company_id": False,
             }
         )
 
@@ -42,7 +41,6 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
             {
                 "name": "Project for selling timesheet - AA",
                 "code": "AA-20300",
-                "company_id": self.env.company.id,
                 "plan_id": self.analytic_plan.id,
             }
         )
