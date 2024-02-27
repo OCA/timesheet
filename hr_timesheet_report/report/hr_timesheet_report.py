@@ -212,11 +212,14 @@ class HrTimesheetReport(models.TransientModel):
         )
         if not action:
             raise UserError(
-                _('"%s" report with "%s" type not found' % (report_name, report_type))
+                _(
+                    '"%(report_name)s" report with "%(report_type)s" type not found'
+                    % ({"report_name": report_name, "report_type": report_type})
+                )
             )
 
         context = dict(self.env.context)
-        return action.with_context(context).report_action(self)
+        return action.with_context(**context).report_action(self)
 
 
 class HrTimesheetReportAbstractField(models.AbstractModel):
@@ -231,7 +234,6 @@ class HrTimesheetReportAbstractField(models.AbstractModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
     field_name = fields.Char(
@@ -246,9 +248,7 @@ class HrTimesheetReportAbstractField(models.AbstractModel):
         string="Field type",
         required=True,
     )
-    aggregation = fields.Char(
-        string="Aggregation",
-    )
+    aggregation = fields.Char()
     groupby = fields.Char(
         string="Group-by expression",
         compute="_compute_groupby",
@@ -310,12 +310,9 @@ class HrTimesheetReportGroup(models.TransientModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
-    scope = fields.Char(
-        string="Scope",
-    )
+    scope = fields.Char()
     name = fields.Char()
     entry_ids = fields.One2many(
         string="Entries",
@@ -371,9 +368,14 @@ class HrTimesheetReportGroup(models.TransientModel):
             group.total_unit_amount = sum(group.entry_ids.mapped("total_unit_amount"))
 
     def _get_entry_values(self, grouped_lines):
+        """Use the domain if it exists or the id (in case there is only one record)."""
         self.ensure_one()
         return {
-            "scope": ustr(grouped_lines["__domain"]),
+            "scope": (
+                ustr(grouped_lines["__domain"])
+                if "__domain" in grouped_lines
+                else [("id", "=", grouped_lines["id"])]
+            )
         }
 
 
@@ -389,12 +391,9 @@ class HrTimesheetReportEntry(models.TransientModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
-    scope = fields.Char(
-        string="Scope",
-    )
+    scope = fields.Char()
     any_line_id = fields.Many2one(
         string="Account Analytics Lines",
         comodel_name="account.analytic.line",

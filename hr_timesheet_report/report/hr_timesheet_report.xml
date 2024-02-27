@@ -19,20 +19,20 @@
                                     <span class="float-right text-right">
                                         <span
                                             t-if="report.time_format == 'hh_mm'"
-                                            t-esc="report.total_unit_amount"
+                                            t-out="report.total_unit_amount"
                                             t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
                                         />
                                         <span
                                             t-elif="report.time_format == 'hh_mm_ss'"
-                                            t-esc="report.total_unit_amount"
+                                            t-out="report.total_unit_amount"
                                             t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour'}"
                                         />
                                         <span
                                             t-elif="report.time_format == 'decimal'"
-                                            t-esc="report.total_unit_amount"
+                                            t-out="report.total_unit_amount"
                                             t-options="{'widget': 'float', 'precision': 2}"
                                         />
-                                        <span t-esc="uom_hour.name" />
+                                        <span t-field="uom_hour.name" />
                                     </span>
                                 </h2>
                             </div>
@@ -41,7 +41,7 @@
                             <div t-if="report.line_ids" class="col">
                                 <h5>
                                     <span>on <span
-                                            t-esc="len(report.line_ids)"
+                                            t-out="len(report.line_ids)"
                                         /> selected entries</span>
                                 </h5>
                             </div>
@@ -152,7 +152,7 @@
                                             <span t-field="field.field_title" />
                                         </th>
                                         <th class="text-right">
-                                            <span t-esc="uom_hour.name" />
+                                            <span t-field="uom_hour.name" />
                                         </th>
                                     </tr>
                                     <tr t-foreach="group.entry_ids" t-as="entry">
@@ -163,7 +163,7 @@
                                             <!-- see https://github.com/odoo/odoo/issues/29658 -->
                                             <span
                                                 t-att-class="field.cell_classes"
-                                                t-raw="entry.render_value(field.field_name)"
+                                                t-out="entry.render_value(field.field_name)"
                                             />
                                         </td>
                                         <td class="text-right">
@@ -187,7 +187,8 @@
                                     <tr class="o_subtotal">
                                         <t
                                             t-if="len(report.entry_field_ids) > 1"
-                                            t-for="len(report.entry_field_ids) - 1"
+                                            t-foreach="len(report.entry_field_ids) - 1"
+                                            t-as="_entry_field"
                                         >
                                             <td />
                                         </t>
@@ -196,17 +197,17 @@
                                         <td class="text-right">
                                             <strong
                                                 t-if="report.time_format == 'hh_mm'"
-                                                t-esc="group.total_unit_amount"
+                                                t-out="group.total_unit_amount"
                                                 t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
                                             />
                                             <strong
                                                 t-elif="report.time_format == 'hh_mm_ss'"
-                                                t-esc="group.total_unit_amount"
+                                                t-out="group.total_unit_amount"
                                                 t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour'}"
                                             />
                                             <strong
                                                 t-elif="report.time_format == 'decimal'"
-                                                t-esc="group.total_unit_amount"
+                                                t-out="group.total_unit_amount"
                                                 t-options="{'widget': 'float', 'precision': 2}"
                                             />
                                         </td>

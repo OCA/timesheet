@@ -62,18 +62,19 @@ class HrTimesheetReportWizard(models.TransientModel):
         default=lambda self: self._selection_time_format()[0][0],
     )
 
-    @api.model
-    def create(self, vals):
-        if "grouping_field_ids" not in vals:
-            # In order to avoid empty set being replaced with default value:
-            vals.update(
-                {
-                    "grouping_field_ids": [(5, False, False)],
-                }
-            )
-        if "entry_field_ids" not in vals:
-            raise UserError(_("At least one Details field must be specified!"))
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if "grouping_field_ids" not in vals:
+                # In order to avoid empty set being replaced with default value:
+                vals.update(
+                    {
+                        "grouping_field_ids": [(5, False, False)],
+                    }
+                )
+            if "entry_field_ids" not in vals:
+                raise UserError(_("At least one Details field must be specified!"))
+        return super().create(vals_list)
 
     @api.model
     def _default_grouping_field_ids(self):
@@ -150,24 +151,19 @@ class HrTimesheetReportWizard(models.TransientModel):
 
     def action_export_pdf(self):
         self.ensure_one()
-
         return self._generate_report("qweb-pdf")
 
     def action_export_xlsx(self):
         self.ensure_one()
-
         return self._generate_report("xlsx")
 
     def _generate_report(self, report_type):
         self.ensure_one()
-
         report = self.env["hr.timesheet.report"].create(self._collect_report_values())
-
         return report.get_action(report_type)
 
     def _collect_report_values(self):
         self.ensure_one()
-
         return {
             "line_ids": [(6, False, self.line_ids.ids)],
             "date_from": self.date_from,
@@ -205,7 +201,6 @@ class HrTimesheetReportWizardField(models.AbstractModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
         default=10,
     )
@@ -246,7 +241,6 @@ class HrTimesheetReportWizardField(models.AbstractModel):
 
     def _collect_report_values(self):
         self.ensure_one()
-
         return {
             "sequence": self.sequence,
             "field_name": self.field_name,

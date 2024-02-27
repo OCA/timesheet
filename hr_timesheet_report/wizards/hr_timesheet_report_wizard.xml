@@ -16,28 +16,16 @@
                     name="filter"
                     attrs="{'invisible': [('has_line_ids', '=', True)]}"
                 >
-                    <group name="date_range" colspan="2">
-                        <group>
-                            <field name="date_from" />
-                        </group>
-                        <group>
-                            <field name="date_to" />
-                        </group>
-                    </group>
-                    <group>
+                    <group name="left_filter">
+                        <field name="date_from" />
                         <field name="project_ids" widget="many2many_tags" />
-                    </group>
-                    <group>
-                        <field name="task_ids" widget="many2many_tags" />
-                    </group>
-                    <group>
                         <field name="employee_ids" widget="many2many_tags" />
-                    </group>
-                    <group>
-                        <field name="employee_category_ids" widget="many2many_tags" />
-                    </group>
-                    <group>
                         <field name="department_ids" widget="many2many_tags" />
+                    </group>
+                    <group name="right_filter">
+                        <field name="date_to" />
+                        <field name="task_ids" widget="many2many_tags" />
+                        <field name="employee_category_ids" widget="many2many_tags" />
                     </group>
                 </group>
                 <group name="content">
@@ -81,7 +69,7 @@
                         string="Export to XLSX"
                         type="object"
                     />
-                    <button string="Cancel" class="oe_link" special="cancel" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
         </field>
