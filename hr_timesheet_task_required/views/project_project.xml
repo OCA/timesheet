@@ -15,7 +15,7 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
             <field name="allow_timesheets" position="after">
                 <field
                     name="is_timesheet_task_required"
-                    attrs="{'invisible': [('allow_timesheets', '=', False)]}"
+                    invisible="allow_timesheets == False"
                 />
             </field>
         </field>
@@ -25,22 +25,14 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
         <field name="model">project.project</field>
         <field name="inherit_id" ref="hr_timesheet.project_invoice_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@id='timesheet_settings']" position="after">
-                <div
-                    class="col-lg-6 o_setting_box"
+            <xpath expr="//setting[@id='timesheet_settings']" position="after">
+                <setting
                     id="timesheet_task_settings"
-                    attrs="{'invisible': [('allow_timesheets', '=', False)]}"
+                    help="Set tasks on timesheet as a mandatory field"
+                    invisible="allow_timesheets == False"
                 >
-                    <div class="o_setting_left_pane">
-                        <field name="is_timesheet_task_required" class="oe_inline" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label for="is_timesheet_task_required" />
-                        <div class="text-muted">
-                            Set tasks on timesheet as a mandatory field
-                        </div>
-                    </div>
-                </div>
+                    <field name="is_timesheet_task_required" />
+                </setting>
             </xpath>
         </field>
     </record>
