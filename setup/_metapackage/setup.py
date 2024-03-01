@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo-addon-hr_employee_product>=15.0dev,<15.1dev',
         'odoo-addon-hr_timesheet_begin_end>=15.0dev,<15.1dev',
         'odoo-addon-hr_timesheet_sheet>=15.0dev,<15.1dev',
+        'odoo-addon-hr_timesheet_sheet_autodraft>=15.0dev,<15.1dev',
         'odoo-addon-hr_timesheet_sheet_begin_end>=15.0dev,<15.1dev',
         'odoo-addon-hr_timesheet_sheet_period>=15.0dev,<15.1dev',
         'odoo-addon-hr_timesheet_sheet_policy_project_manager>=15.0dev,<15.1dev',
