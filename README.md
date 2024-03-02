@@ -27,6 +27,7 @@ addon | version | maintainers | summary
 [hr_timesheet_sheet](hr_timesheet_sheet/) | 15.0.1.2.0 |  | Timesheet Sheets, Activities
 [hr_timesheet_sheet_autodraft](hr_timesheet_sheet_autodraft/) | 15.0.1.0.0 |  | Automatically draft a Timesheet Sheet for every time entry that does not have a relevant Timesheet Sheet existing.
 [hr_timesheet_sheet_begin_end](hr_timesheet_sheet_begin_end/) | 15.0.1.0.0 |  | Timesheet Sheet - Begin/End Hours
+[hr_timesheet_sheet_no_create](hr_timesheet_sheet_no_create/) | 15.0.1.0.0 |  | Avoid creation of projects and tasks in timesheet sheet lines
 [hr_timesheet_sheet_period](hr_timesheet_sheet_period/) | 15.0.1.0.0 |  | HR Timesheet Sheet based on Payroll Period
 [hr_timesheet_sheet_policy_project_manager](hr_timesheet_sheet_policy_project_manager/) | 15.0.1.0.0 |  | Allows setting Project Manager as Reviewer
 [hr_timesheet_task_domain](hr_timesheet_task_domain/) | 15.0.1.0.0 |  | Limit task selection to tasks on currently-selected project
