@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr_timesheet.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='project_time']" position="inside">
+                <setting
+                    id="is_timesheet_task_required_setting"
+                    help="Require task selection on each timesheet enty by default"
+                >
+                    <field name="is_timesheet_task_required" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
