@@ -17,18 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: hr_timesheet_task_required
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.res_config_settings_view_form
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" role=\"img\" aria-label=\"Values set here are company-specific."
-"\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Los valores aqu?? "
-"establecidos son propios de cada empresa.\" role=\"img\" aria-label=\"Los "
-"valores aqu?? establecidos son propios de cada empresa.\" groups=\"base."
-"group_multi_company\"/>"
-
-#. module: hr_timesheet_task_required
 #: model:ir.model,name:hr_timesheet_task_required.model_account_analytic_line
 msgid "Analytic Line"
 msgstr "L??nea de cuenta anal??tica"
@@ -62,9 +50,8 @@ msgstr "Requiere tarea en partes de horas"
 
 #. module: hr_timesheet_task_required
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.res_config_settings_view_form
-msgid "Require task selection on each timesheet entry by default"
+msgid "Require task selection on each timesheet enty by default"
 msgstr ""
-"Requiere por defecto selecci??n de tarea en cada entrada de partes de horas"
 
 #. module: hr_timesheet_task_required
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.project_invoice_form
@@ -77,6 +64,21 @@ msgstr "Establecer tareas en la hoja de horas como campo obligatorio"
 #, python-format
 msgid "You must specify a task for timesheet lines."
 msgstr "Se debe especificar una tarea para los partes de horas."
+
+#~ msgid ""
+#~ "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are "
+#~ "company-specific.\" role=\"img\" aria-label=\"Values set here are company-"
+#~ "specific.\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"fa fa-lg fa-building-o\" title=\"Los valores aqu?? "
+#~ "establecidos son propios de cada empresa.\" role=\"img\" aria-label=\"Los "
+#~ "valores aqu?? establecidos son propios de cada empresa.\" groups=\"base."
+#~ "group_multi_company\"/>"
+
+#~ msgid "Require task selection on each timesheet entry by default"
+#~ msgstr ""
+#~ "Requiere por defecto selecci??n de tarea en cada entrada de partes de "
+#~ "horas"
 
 #~ msgid "Display Name"
 #~ msgstr "Nombre a mostrar"
