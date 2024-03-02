@@ -33,6 +33,7 @@ addon | version | maintainers | summary
 [hr_timesheet_sheet_activity](hr_timesheet_sheet_activity/) | 14.0.1.0.0 |  | Automatic activities related to submission and review of timesheet sheets
 [hr_timesheet_sheet_attendance](hr_timesheet_sheet_attendance/) | 14.0.1.0.0 |  | HR Timesheet Sheet Attendance
 [hr_timesheet_sheet_autodraft](hr_timesheet_sheet_autodraft/) | 14.0.1.0.0 |  | Automatically draft a Timesheet Sheet for every time entry that does not have a relevant Timesheet Sheet existing.
+[hr_timesheet_sheet_no_create](hr_timesheet_sheet_no_create/) | 14.0.1.0.0 |  | Avoid creation of projects and tasks in timesheet sheet lines
 [hr_timesheet_sheet_period](hr_timesheet_sheet_period/) | 14.0.1.0.0 |  | HR Timesheet Sheet based on Payroll Period
 [hr_timesheet_sheet_policy_department_manager](hr_timesheet_sheet_policy_department_manager/) | 14.0.1.0.0 |  | Allows setting Department Manager as Reviewer
 [hr_timesheet_sheet_policy_project_manager](hr_timesheet_sheet_policy_project_manager/) | 14.0.1.0.0 |  | Allows setting Project Manager as Reviewer
