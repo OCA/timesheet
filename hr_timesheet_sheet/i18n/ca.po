@@ -402,6 +402,7 @@ msgstr "Si està marcat, missatges nous requereixen la vostra atenció."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si està marcat, alguns missatges tenen un error d'entrega."
 
@@ -511,6 +512,11 @@ msgstr "Data límit de la meva activitat"
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_my_timesheets
 msgid "My Timesheet Sheets"
 msgstr "El meu full de serveis"
+
+#. module: hr_timesheet_sheet
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_hr_my_timesheets
+msgid "My Timesheets"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
@@ -657,6 +663,11 @@ msgid "Reviewer"
 msgstr "Revisor/a"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__5
 msgid "Saturday"
 msgstr "Dissabte"
@@ -774,7 +785,8 @@ msgstr "Fulls d'hores temporals"
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Department must be the same."
-msgstr "La companyia al Full de serveis i al departament han de ser la mateixa."
+msgstr ""
+"La companyia al Full de serveis i al departament han de ser la mateixa."
 
 #. module: hr_timesheet_sheet
 #. odoo-python
@@ -782,7 +794,8 @@ msgstr "La companyia al Full de serveis i al departament han de ser la mateixa."
 #, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Employee must be the same."
-msgstr "La companyia al Full de serveis i a l'empleat/da han de ser la mateixa."
+msgstr ""
+"La companyia al Full de serveis i a l'empleat/da han de ser la mateixa."
 
 #. module: hr_timesheet_sheet
 #. odoo-python
