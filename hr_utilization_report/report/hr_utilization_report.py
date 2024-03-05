@@ -787,6 +787,7 @@ class HrUtilizationReportEntry(models.TransientModel):
 class Report(models.AbstractModel):
     _name = "report.hr_utilization_report.report"
     _inherit = "report.report_xlsx.abstract"
+    _description = "Hr Utilization Report"
 
     @api.model
     def _get_report_values(self, docids, data=None):
