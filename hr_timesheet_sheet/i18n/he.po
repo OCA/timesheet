@@ -391,6 +391,7 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
+#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -492,6 +493,11 @@ msgstr ""
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_my_timesheets
 msgid "My Timesheet Sheets"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_hr_my_timesheets
+msgid "My Timesheets"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -637,6 +643,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__reviewer_id
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Reviewer"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
+msgid "SMS Delivery error"
 msgstr ""
 
 #. module: hr_timesheet_sheet
