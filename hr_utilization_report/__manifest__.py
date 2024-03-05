@@ -4,7 +4,7 @@
 
 {
     "name": "Task Logs Utilization Report",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "category": "Human Resources",
     "website": "https://github.com/OCA/timesheet",
     "author": "CorporateHub, " "Odoo Community Association (OCA)",
