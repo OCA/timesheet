@@ -102,7 +102,7 @@
     <menuitem
         action="act_hr_timesheet_line_to_submit_my"
         id="menu_act_hr_timesheet_line_to_submit_my"
-        parent="hr_timesheet.menu_hr_time_tracking"
+        parent="hr_timesheet_sheet.menu_hr_my_timesheets"
         sequence="5"
     />
 </odoo>
