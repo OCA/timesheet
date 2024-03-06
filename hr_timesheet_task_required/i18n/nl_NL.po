@@ -50,8 +50,8 @@ msgstr "Maak taak verplicht op urenstaten"
 
 #. module: hr_timesheet_task_required
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.res_config_settings_view_form
-msgid "Require task selection on each timesheet enty by default"
-msgstr ""
+msgid "Require task selection on each timesheet entry by default"
+msgstr "Maak standaard taak verplicht op elke urenstaat regel"
 
 #. module: hr_timesheet_task_required
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.project_invoice_form
@@ -73,6 +73,3 @@ msgstr "U moet een taak specificeren voor de urenstaat regels."
 #~ "<span class=\"fa fa-lg fa-building-o\" title=\"De hier ingestelde waarden "
 #~ "zijn bedrijfs specifiek.\" role=\"img\" aria-label=\"De hier ingestelde "
 #~ "waarden zijn bedrijfs specifiek.\" groups=\"base.group_multi_company\"/>"
-
-#~ msgid "Require task selection on each timesheet entry by default"
-#~ msgstr "Maak standaard taak verplicht op elke urenstaat regel"

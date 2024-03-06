@@ -50,8 +50,10 @@ msgstr "Aufgaben bei Zeiterfassung obligatorisch"
 
 #. module: hr_timesheet_task_required
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.res_config_settings_view_form
-msgid "Require task selection on each timesheet enty by default"
+msgid "Require task selection on each timesheet entry by default"
 msgstr ""
+"Wenn der Haken gesetzt ist, muss bei der Zeiterfassung eine Aufgabe "
+"eingetragen werden."
 
 #. module: hr_timesheet_task_required
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_required.project_invoice_form
@@ -73,8 +75,3 @@ msgstr "F??r Zeiterfassungen muss eine Aufgabe eingetragen werden."
 #~ "<span class=\"fa fa-lg fa-building-o\" title=\"Die hier gesetzten Werte "
 #~ "sind firmenspezifisch.\" role=\"img\" aria-label=\"Die hier gesetzten "
 #~ "Werte sind firmenspezifisch.\" groups=\"base.group_multi_company\"/>"
-
-#~ msgid "Require task selection on each timesheet entry by default"
-#~ msgstr ""
-#~ "Wenn der Haken gesetzt ist, muss bei der Zeiterfassung eine Aufgabe "
-#~ "eingetragen werden."
