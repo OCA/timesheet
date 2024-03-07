@@ -90,7 +90,8 @@ class AccountAnalyticLine(models.Model):
         if ctx_ts_rounded:
             # To set the unit_amount_rounded value instead of unit_amount
             for rec in res:
-                rec["unit_amount"] = rec["unit_amount_rounded"]
+                if rec.get("unit_amount_rounded"):
+                    rec["unit_amount"] = rec["unit_amount_rounded"]
         return res
 
     def read(self, fields=None, load="_classic_read"):
@@ -111,5 +112,6 @@ class AccountAnalyticLine(models.Model):
         if ctx_ts_rounded and read_unit_amount:
             # To set the unit_amount_rounded value instead of unit_amount
             for rec in res:
-                rec["unit_amount"] = rec["unit_amount_rounded"]
+                if rec.get("unit_amount_rounded"):
+                    rec["unit_amount"] = rec["unit_amount_rounded"]
         return res

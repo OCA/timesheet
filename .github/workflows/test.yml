@@ -36,19 +36,10 @@ jobs:
       matrix:
         include:
           - container: ghcr.io/oca/oca-ci/py3.8-odoo15.0:latest
-            include: "sale_timesheet_rounded"
-            makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.8-ocb15.0:latest
-            include: "sale_timesheet_rounded"
             name: test with OCB
-          - container: ghcr.io/oca/oca-ci/py3.8-odoo15.0:latest
-            exclude: "sale_timesheet_rounded"
             makepot: "true"
-            name: test with Odoo
-          - container: ghcr.io/oca/oca-ci/py3.8-ocb15.0:latest
-            exclude: "sale_timesheet_rounded"
-            name: test with OCB
     services:
       postgres:
         image: postgres:9.6
@@ -58,9 +49,6 @@ jobs:
           POSTGRES_DB: odoo
         ports:
           - 5432:5432
-    env:
-      INCLUDE: "${{ matrix.include }}"
-      EXCLUDE: "${{ matrix.exclude }}"
     steps:
       - uses: actions/checkout@v3
         with:

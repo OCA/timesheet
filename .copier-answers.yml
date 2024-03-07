@@ -14,8 +14,7 @@ odoo_test_flavor: Both
 odoo_version: 15.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
-rebel_module_groups:
-- sale_timesheet_rounded
+rebel_module_groups: []
 repo_description: 'TODO: add repo description.'
 repo_name: timesheet
 repo_slug: timesheet
