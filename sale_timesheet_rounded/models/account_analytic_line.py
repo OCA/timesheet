@@ -7,7 +7,6 @@ from odoo.tools.float_utils import float_round
 
 
 class AccountAnalyticLine(models.Model):
-
     _inherit = "account.analytic.line"
 
     unit_amount_rounded = fields.Float(
