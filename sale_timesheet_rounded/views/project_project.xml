@@ -11,11 +11,11 @@
                         <field name="timesheet_rounding_method" />
                         <field
                             name="timesheet_rounding_unit"
-                            attrs="{'invisible': [('timesheet_rounding_method', '=', 'NO')]}"
+                            invisible="timesheet_rounding_method == 'NO'"
                         />
                         <field
                             name="timesheet_rounding_factor"
-                            attrs="{'invisible': [('timesheet_rounding_method', '=', 'NO')]}"
+                            invisible="timesheet_rounding_method == 'NO'"
                         />
                     </group>
                 </group>

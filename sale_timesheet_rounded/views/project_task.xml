@@ -10,6 +10,7 @@
                     name="unit_amount_rounded"
                     string="Duration (rounded)"
                     widget="float_time"
+                    readonly="readonly_timesheet"
                 />
             </xpath>
         </field>

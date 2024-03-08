@@ -62,8 +62,15 @@ class AccountAnalyticLine(models.Model):
     ####################################################
 
     @api.model
-    def read_group(
-        self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True
+    def _read_group(
+        self,
+        domain,
+        groupby=(),
+        aggregates=(),
+        having=(),
+        offset=0,
+        limit=None,
+        order=None,
     ):
         """Replace the value of unit_amount by unit_amount_rounded.
 
@@ -73,23 +80,47 @@ class AccountAnalyticLine(models.Model):
         which in turns compute the delivered qty on SO line.
         """
         ctx_ts_rounded = self.env.context.get("timesheet_rounding")
-        fields_local = list(fields) if fields else []
-        if ctx_ts_rounded and "unit_amount_rounded" not in fields_local:
-            # To add the unit_amount_rounded value on read_group
-            fields_local.append("unit_amount_rounded")
-        res = super().read_group(
-            domain,
-            fields_local,
-            groupby,
+        new_aggregates = list(aggregates) if aggregates else []
+        if ctx_ts_rounded:
+            if (
+                "unit_amount:sum" in aggregates
+                and "unit_amount_rounded:sum" not in aggregates
+            ):
+                # To add the unit_amount_rounded value on read_group
+                new_aggregates.append("unit_amount_rounded:sum")
+        res = super()._read_group(
+            domain=domain,
+            groupby=groupby,
+            aggregates=new_aggregates,
+            having=having,
             offset=offset,
             limit=limit,
-            orderby=orderby,
-            lazy=lazy,
+            order=order,
         )
+
         if ctx_ts_rounded:
-            # To set the unit_amount_rounded value instead of unit_amount
-            for rec in res:
-                rec["unit_amount"] = rec["unit_amount_rounded"]
+            update_aggregates = (
+                "unit_amount:sum" in new_aggregates
+                and "unit_amount_rounded:sum" in new_aggregates
+            )
+            if update_aggregates:
+                rec_ua_field_index = len(groupby) + new_aggregates.index(
+                    "unit_amount:sum"
+                )
+                rec_uar_field_index = len(groupby) + new_aggregates.index(
+                    "unit_amount_rounded:sum"
+                )
+                for rec_index, rec in enumerate(res):
+                    rec_list = list(rec)
+                    if rec[rec_uar_field_index]:
+                        rec_list[rec_ua_field_index] = rec[rec_uar_field_index]
+                    # .../addons/sale/models/sale_order_line.py#L737
+                    # Dealing with sale.order.line case which hardcode
+                    # aggregates parameters, so we have to remove the excessive
+                    if len(rec_list) > len(groupby) + len(aggregates):
+                        del rec_list[rec_uar_field_index]
+                    res[rec_index] = tuple(rec_list)
+
         return res
 
     def read(self, fields=None, load="_classic_read"):
@@ -110,5 +141,6 @@ class AccountAnalyticLine(models.Model):
         if ctx_ts_rounded and read_unit_amount:
             # To set the unit_amount_rounded value instead of unit_amount
             for rec in res:
-                rec["unit_amount"] = rec["unit_amount_rounded"]
+                if rec.get("unit_amount_rounded"):
+                    rec["unit_amount"] = rec["unit_amount_rounded"]
         return res
