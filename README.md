@@ -36,6 +36,7 @@ addon | version | maintainers | summary
 [project_task_analytic_propagation](project_task_analytic_propagation/) | 16.0.1.0.0 | [![edlopen](https://github.com/edlopen.png?size=30px)](https://github.com/edlopen) [![rafaelbn](https://github.com/rafaelbn.png?size=30px)](https://github.com/rafaelbn) | Updates timesheet's analytic account when their task changes the analytic.
 [project_task_stage_allow_timesheet](project_task_stage_allow_timesheet/) | 16.0.1.0.0 |  | Allows to tell that a task stage is opened for timesheets.
 [sale_timesheet_line_exclude](sale_timesheet_line_exclude/) | 16.0.1.0.0 |  | Exclude Timesheet Line from Sale Order
+[sale_timesheet_rounded](sale_timesheet_rounded/) | 16.0.1.0.0 |  | Round timesheet entries amount based on project settings.
 [sale_timesheet_task_exclude](sale_timesheet_task_exclude/) | 16.0.1.0.0 |  | Exclude Task and related Timesheets from Sale Order
 
 [//]: # (end addons)
