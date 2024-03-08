@@ -8,6 +8,7 @@
             <xpath expr="//field[@name='unit_amount']" position="after">
                 <field
                     name="unit_amount_rounded"
+                    readonly="readonly_timesheet"
                     string="Quantity Rounded"
                     widget="float_time"
                 />
@@ -19,7 +20,7 @@
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="hr_timesheet.view_kanban_account_analytic_line" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='unit_amount']" position="after">
+            <xpath expr="//span[@name='duration']" position="inside">
                 <br />
                 <strong>Rounded: </strong>
                 <field name="unit_amount_rounded" widget="float_time" />

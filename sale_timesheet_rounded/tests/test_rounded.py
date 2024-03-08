@@ -53,7 +53,6 @@ class TestRounded(TestCommonSaleTimesheet):
         cls.analytic_plan = cls.env["account.analytic.plan"].create(
             {
                 "name": "Plan sale timesheet",
-                "company_id": False,
             }
         )
         cls.avg_analytic_account = cls.env["account.analytic.account"].create(
@@ -117,37 +116,45 @@ class TestRounded(TestCommonSaleTimesheet):
         line = self.env["account.analytic.line"]
         self.create_analytic_line(unit_amount=1)
         domain = [("project_id", "=", self.project_global.id)]
-        fields_list = ["so_line", "unit_amount", "product_uom_id"]
         groupby = ["product_uom_id", "so_line"]
+        aggregates = ["unit_amount:sum"]
 
-        data_ctx_f = line.read_group(
+        data_ctx_f = line._read_group(
             domain,
-            fields_list,
             groupby,
+            aggregates,
         )
-        self.assertEqual(data_ctx_f[0]["unit_amount"], 1.0)
+        self.assertEqual(
+            data_ctx_f[0][len(groupby) + aggregates.index("unit_amount:sum")], 1.0
+        )
 
-        data_ctx_t = line.with_context(timesheet_rounding=True).read_group(
+        data_ctx_t = line.with_context(timesheet_rounding=True)._read_group(
             domain,
-            fields_list,
             groupby,
+            aggregates,
         )
-        self.assertEqual(data_ctx_t[0]["unit_amount"], 2.0)
+        self.assertEqual(
+            data_ctx_t[0][len(groupby) + aggregates.index("unit_amount:sum")], 2.0
+        )
 
         self.create_analytic_line(unit_amount=1.1)
-        data_ctx_f = line.with_context(timesheet_rounding=False).read_group(
+        data_ctx_f = line.with_context(timesheet_rounding=False)._read_group(
             domain,
-            fields_list,
             groupby,
+            aggregates,
         )
-        self.assertEqual(data_ctx_f[0]["unit_amount"], 2.1)
+        self.assertEqual(
+            data_ctx_f[0][len(groupby) + aggregates.index("unit_amount:sum")], 2.1
+        )
 
-        data_ctx_f = line.with_context(timesheet_rounding=True).read_group(
+        data_ctx_f = line.with_context(timesheet_rounding=True)._read_group(
             domain,
-            fields_list,
             groupby,
+            aggregates,
         )
-        self.assertEqual(data_ctx_f[0]["unit_amount"], 4.25)
+        self.assertEqual(
+            data_ctx_f[0][len(groupby) + aggregates.index("unit_amount:sum")], 4.25
+        )
 
     def test_analytic_line_read_override(self):
         # Cases for not rounding:
@@ -281,7 +288,9 @@ class TestRounded(TestCommonSaleTimesheet):
         # the unit_amount_rounded is not changed
         self.assertEqual(analytic_line.unit_amount_rounded, unit_amount_rounded)
         # the invoiced qty remains the same
-        inv_line = account_move.line_ids.filtered(lambda l: l.product_id == prd_ts_id)
+        inv_line = account_move.line_ids.filtered(
+            lambda line: line.product_id == prd_ts_id
+        )
         self.assertEqual(inv_line.quantity, unit_amount_rounded)
 
     def test_draft_invoice_with_rounded_amount_unchanged(self):
@@ -294,12 +303,15 @@ class TestRounded(TestCommonSaleTimesheet):
         analytic_line = self.create_analytic_line(unit_amount=10)
         analytic_line.unit_amount_rounded = unit_amount_rounded
         account_move = self.sale_order._create_invoices()
+        account_move.action_post()
         prd_ts_id = self.product_delivery_timesheet2
         account_move.button_draft()
         # the unit_amount_rounded is not changed
         self.assertEqual(analytic_line.unit_amount_rounded, unit_amount_rounded)
         # the invoiced qty remains the same
-        inv_line = account_move.line_ids.filtered(lambda l: l.product_id == prd_ts_id)
+        inv_line = account_move.line_ids.filtered(
+            lambda line: line.product_id == prd_ts_id
+        )
         self.assertEqual(inv_line.quantity, unit_amount_rounded)
 
     def test_cancel_invoice_with_rounded_amount_unchanged(self):
@@ -320,5 +332,7 @@ class TestRounded(TestCommonSaleTimesheet):
         self.assertEqual(analytic_line_1.unit_amount_rounded, unit_amount_rounded_total)
         self.assertEqual(analytic_line_2.unit_amount_rounded, 0)
         # the invoiced qty remains the same
-        inv_line = account_move.line_ids.filtered(lambda l: l.product_id == prd_ts_id)
+        inv_line = account_move.line_ids.filtered(
+            lambda line: line.product_id == prd_ts_id
+        )
         self.assertEqual(inv_line.quantity, unit_amount_rounded_total)
