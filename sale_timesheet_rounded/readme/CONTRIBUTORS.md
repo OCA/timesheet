@@ -3,3 +3,4 @@
 - Akim Juillerat \<<akim.juillerat@camptocamp.com>\>
 - Foram Shah \<<foram.shah@initos.com>\>
 - Phuc Kieu \<<phuckh@trobz.com>\>
+- Son Ho \<<sonhd@trobz.com>\>
