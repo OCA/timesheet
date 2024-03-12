@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-02-01 16:48+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-03-12 10:36+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_timesheet_rounded
 #: model:ir.model.fields,help:sale_timesheet_rounded.field_project_project__timesheet_rounding_unit
@@ -73,7 +73,7 @@ msgstr ""
 #. module: sale_timesheet_rounded
 #: model:ir.model,name:sale_timesheet_rounded.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Registrazione contabile"
 
 #. module: sale_timesheet_rounded
 #: model:ir.model.fields.selection,name:sale_timesheet_rounded.selection__project_project__timesheet_rounding_method__no
@@ -109,7 +109,7 @@ msgstr "Metodo arrotondamento"
 #. module: sale_timesheet_rounded
 #: model:ir.model,name:sale_timesheet_rounded.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
-msgstr ""
+msgstr "Fattura di vendita con pagamento anticipato"
 
 #. module: sale_timesheet_rounded
 #: model:ir.model,name:sale_timesheet_rounded.model_sale_order_line
