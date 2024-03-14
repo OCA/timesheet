@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="hr_period_create_timesheet_form_view" model="ir.ui.view">
+        <field name="name">hr.period.create.timesheet.form</field>
+        <field name="model">hr.period.create.timesheet</field>
+        <field name="arch" type="xml">
+            <form string="Create Timesheets">
+                <header>
+                    <button
+                        string="Generate"
+                        name="compute"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                </header>
+                <group>
+                    <label
+                        colspan="4"
+                        nolabel="1"
+                        for="compute"
+                        string="This wizard will generate Timesheets for the selected employee(s) based on the HR Periods selected."
+                    />
+                </group>
+                <group name="employees" colspan="4">
+                    <field name="employee_ids">
+                        <tree delete="1" editable="0">
+                            <field name="name" readonly="1" />
+                            <field name="department_id" readonly="1" />
+                            <field name="job_id" readonly="1" />
+                            <field name="parent_id" readonly="1" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <div />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_period_create_timesheet" model="ir.actions.act_window">
+        <field name="name">Generate Timesheets</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.period.create.timesheet</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="hr_period_create_timesheet_form_view" />
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="hr_payroll_period.model_hr_period" />
+    </record>
+
+
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+hr_period_create_timesheet.access_hr_period_create_timesheet,access_hr_period_create_timesheet,hr_period_create_timesheet.model_hr_period_create_timesheet,base.group_user,1,1,1,1
