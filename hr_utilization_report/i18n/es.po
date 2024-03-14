@@ -368,6 +368,11 @@ msgid "Has Multi-Entry Blocks"
 msgstr "Tiene bloques de entradas múltiples"
 
 #. module: hr_utilization_report
+#: model:ir.model,name:hr_utilization_report.model_report_hr_utilization_report_report
+msgid "Hr Utilization Report"
+msgstr ""
+
+#. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__id
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_block__id
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__id
@@ -617,15 +622,13 @@ msgid "Yes"
 msgstr "Sí"
 
 #. module: hr_utilization_report
-#: model:ir.model,name:hr_utilization_report.model_report_hr_utilization_report_report
-msgid "report.hr_utilization_report.report"
-msgstr "report.hr_utilization_report.report"
-
-#. module: hr_utilization_report
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "{l} » {r}"
 msgstr "{l} » {r}"
+
+#~ msgid "report.hr_utilization_report.report"
+#~ msgstr "report.hr_utilization_report.report"
 
 #~ msgid "<span> of </span>"
 #~ msgstr "<span> de </span>"
