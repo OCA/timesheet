@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_sheet_employee_calendar_planning
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-14 08:30+0000\n"
+"PO-Revision-Date: 2024-03-14 08:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_timesheet_sheet_employee_calendar_planning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_employee_calendar_planning.field_hr_timesheet_sheet__hours_no_working_day
+msgid "Hours No Working Day"
+msgstr ""
+
+#. module: hr_timesheet_sheet_employee_calendar_planning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_employee_calendar_planning.field_hr_timesheet_sheet__invalid_hours_per_day
+msgid "Invalid Hours Per Day"
+msgstr ""
+
+#. module: hr_timesheet_sheet_employee_calendar_planning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_employee_calendar_planning.field_hr_timesheet_sheet__invalid_hours_per_week
+msgid "Invalid Hours Per Week"
+msgstr ""
+
+#. module: hr_timesheet_sheet_employee_calendar_planning
+#: model:ir.model.fields,help:hr_timesheet_sheet_employee_calendar_planning.field_hr_timesheet_sheet__hours_no_working_day
+msgid ""
+"The employee has imputed hours on a day where they're not supposed to work."
+msgstr ""
+
+#. module: hr_timesheet_sheet_employee_calendar_planning
+#: model:ir.model.fields,help:hr_timesheet_sheet_employee_calendar_planning.field_hr_timesheet_sheet__invalid_hours_per_week
+msgid ""
+"The employee's imputed hours for a whole week differ from its theoretical "
+"hours for that week."
+msgstr ""
+
+#. module: hr_timesheet_sheet_employee_calendar_planning
+#: model:ir.model.fields,help:hr_timesheet_sheet_employee_calendar_planning.field_hr_timesheet_sheet__invalid_hours_per_day
+msgid ""
+"The employee's imputed hours for one or more days differ from its "
+"theoretical hours for those days."
+msgstr ""
+
+#. module: hr_timesheet_sheet_employee_calendar_planning
+#: model:ir.model,name:hr_timesheet_sheet_employee_calendar_planning.model_hr_timesheet_sheet
+msgid "Timesheet Sheet"
+msgstr ""
