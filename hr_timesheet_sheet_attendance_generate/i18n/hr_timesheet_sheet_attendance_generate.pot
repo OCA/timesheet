@@ -1,0 +1,107 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_sheet_attendance_generate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-17 10:33+0000\n"
+"PO-Revision-Date: 2024-04-17 10:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance_generate.field_hr_timesheet_sheet_generated_attendances_selection__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance_generate.field_hr_timesheet_sheet_generated_attendances_selection__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance_generate.field_hr_timesheet_sheet_generated_attendances_selection__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_attendance_generate.hr_timesheet_sheet_form_attendance_generate
+msgid "Generate Attendances"
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_attendance_generate.hr_timesheet_sheet_form_attendance_generate
+msgid ""
+"Generate attendances for dates which have imputed hours                     "
+"in the timesheet sheet but no attendances. The attendances are"
+"                     generated using the employee's working hours calendar."
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance_generate.field_hr_timesheet_sheet_generated_attendances_selection__attendance_ids
+msgid "Generated Attendances"
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_attendance_generate/models/hr_timesheet_sheet.py:0
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_attendance_generate.view_generated_attendances_selection_form
+#, python-format
+msgid "Generated Attendances Selection"
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance_generate.field_hr_timesheet_sheet_generated_attendances_selection__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance_generate.field_hr_timesheet_sheet_generated_attendances_selection____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance_generate.field_hr_timesheet_sheet_generated_attendances_selection__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance_generate.field_hr_timesheet_sheet_generated_attendances_selection__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance_generate.field_hr_timesheet_sheet_generated_attendances_selection__original_attendance_ids
+msgid "Originally Generated Attendances"
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_attendance_generate.view_generated_attendances_selection_form
+msgid "Save"
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_attendance_generate.view_generated_attendances_selection_form
+msgid ""
+"These are the attendances generated based on your\n"
+"                    predefined working hours, to improve coherence with the\n"
+"                    imputed hours in the timesheet. If you do not agree with\n"
+"                    one or more of them, simply remove them, and they will\n"
+"                    be deleted permanently."
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model:ir.model,name:hr_timesheet_sheet_attendance_generate.model_hr_timesheet_sheet
+msgid "Timesheet Sheet"
+msgstr ""
+
+#. module: hr_timesheet_sheet_attendance_generate
+#: model:ir.model,name:hr_timesheet_sheet_attendance_generate.model_hr_timesheet_sheet_generated_attendances_selection
+msgid "Timesheet Sheet Generated Attendances Selection"
+msgstr ""
