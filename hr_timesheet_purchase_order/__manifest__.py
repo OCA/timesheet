@@ -13,7 +13,7 @@
         "hr_timesheet_sheet",
         "purchase",
     ],
-    "maintainers": ["dessanhemrayev", "CetmixGitDrone", "aleuffre", "renda-dev"],
+    "maintainers": ["dessanhemrayev", "aleuffre", "renda-dev"],
     "external_dependencies": {},
     "demo": [],
     "data": [
