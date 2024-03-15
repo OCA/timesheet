@@ -14,6 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: hr_timesheet_purchase_order
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_purchase_order.view_partner_form
+msgid ""
+"<span attrs=\"{'invisible': ['|', ('repeat_show_week', '=', False), "
+"('repeat_show_month', '=', False)]}\">of</span>"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_purchase_order.res_config_settings_view_form
 msgid ""
 "<span class=\"fa fa-lg fa-building\" title=\"Values set here are company-"
@@ -24,6 +31,24 @@ msgstr ""
 #. module: hr_timesheet_purchase_order
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_purchase_order.purchase_order_form
 msgid "<span class=\"o_stat_text\">Timesheet Sheets</span>"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_month__april
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_month__april
+msgid "April"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_month__august
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_month__august
+msgid "August"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__is_auto_po_generate
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__is_auto_po_generate
+msgid "Automatic PO generation from timesheet sheets"
 msgstr ""
 
 #. module: hr_timesheet_purchase_order
@@ -62,24 +87,129 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: hr_timesheet_purchase_order
+#: model:ir.model,name:hr_timesheet_purchase_order.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
 #: model:ir.actions.server,name:hr_timesheet_purchase_order.ir_actions_server_action_create_purchase_order
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_purchase_order.hr_timesheet_sheet_form
 msgid "Create Purchase Order"
 msgstr ""
 
 #. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_on_month__date
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_on_month__date
+msgid "Date of the Month"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_on_year__date
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_on_year__date
+msgid "Date of the Year"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__repeat_weekday
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_weekday
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_weekday
+msgid "Day Of The Week"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_on_month__day
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_on_month__day
+msgid "Day of the Month"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_on_year__day
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_on_year__day
+msgid "Day of the Year"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_unit__day
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_unit__day
+msgid "Days"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_month__december
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_month__december
+msgid "December"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_employee_base__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_sheet__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_company__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__employee_ids
+msgid "Employee"
 msgstr ""
 
 #. module: hr_timesheet_purchase_order
 #: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Employee {} is not enabled for PO creation from Timesheet Sheets."
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__repeat_until
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_until
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_until
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_type__until
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_type__until
+msgid "End Date"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_month__february
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_month__february
+msgid "February"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_week__first
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_week__first
+msgid "First"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_type__forever
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_type__forever
+msgid "Forever"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__fri
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__fri
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__fri
+msgid "Fri"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_weekday__fri
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_weekday__fri
+msgid "Friday"
 msgstr ""
 
 #. module: hr_timesheet_purchase_order
@@ -91,27 +221,138 @@ msgid "Generate POs from Timesheet"
 msgstr ""
 
 #. module: hr_timesheet_purchase_order
+#: model:ir.model,name:hr_timesheet_purchase_order.model_hr_timesheet_recurrence
+msgid "HR TimeSheet Recurrence"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.actions.server,name:hr_timesheet_purchase_order.ir_cron_auto_generate_po_ir_actions_server
+#: model:ir.cron,cron_name:hr_timesheet_purchase_order.ir_cron_auto_generate_po
+#: model:ir.cron,name:hr_timesheet_purchase_order.ir_cron_auto_generate_po
+msgid "HR Timesheet : Auto generate Purchase Order"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_employee_base__id
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__id
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_sheet__id
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_purchase_order__id
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_company__id
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_config_settings__id
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__id
 msgid "ID"
 msgstr ""
 
 #. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_month__january
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_month__january
+msgid "January"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_month__july
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_month__july
+msgid "July"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_month__june
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_month__june
+msgid "June"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_week__last
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_week__last
+msgid "Last"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_employee_base____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_sheet____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_purchase_order____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_company____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_month__march
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_month__march
+msgid "March"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_month__may
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_month__may
+msgid "May"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__mon
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__mon
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__mon
+msgid "Mon"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_weekday__mon
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_weekday__mon
+msgid "Monday"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_unit__month
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_unit__month
+msgid "Months"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__next_recurrence_date
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__next_recurrence_date
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__next_recurrence_date
+msgid "Next Recurrence Date"
 msgstr ""
 
 #. module: hr_timesheet_purchase_order
 #: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Not specified billing partner for the employee: {}."
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_month__november
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_month__november
+msgid "November"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_type__after
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_type__after
+msgid "Number of Repetitions"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__recurrence_left
+msgid "Number of tasks left to create"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_month__october
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_month__october
+msgid "October"
 msgstr ""
 
 #. module: hr_timesheet_purchase_order
@@ -128,6 +369,11 @@ msgid "Open Purchase Order"
 msgstr ""
 
 #. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__partner_ids
+msgid "Partner"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
 #: model:ir.model,name:hr_timesheet_purchase_order.model_purchase_order
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_sheet__purchase_order_id
 msgid "Purchase Order"
@@ -137,6 +383,189 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_company__timesheet_product_id
 #: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_config_settings__timesheet_product_id
 msgid "Purchase Timesheet Product"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__recurrence_id
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__recurrence_id
+msgid "Recurrence"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__repeat_day
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_day
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_day
+msgid "Repeat Day"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__repeat_interval
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_interval
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_interval
+msgid "Repeat Every"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__repeat_month
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_month
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_month
+msgid "Repeat Month"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_purchase_order.view_partner_form
+msgid "Repeat On"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__repeat_on_month
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_on_month
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_on_month
+msgid "Repeat On Month"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__repeat_on_year
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_on_year
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_on_year
+msgid "Repeat On Year"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_show_day
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_show_day
+msgid "Repeat Show Day"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_show_dow
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_show_dow
+msgid "Repeat Show Dow"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_show_month
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_show_month
+msgid "Repeat Show Month"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_show_week
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_show_week
+msgid "Repeat Show Week"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__repeat_unit
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_unit
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_unit
+msgid "Repeat Unit"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__repeat_week
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_week
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_week
+msgid "Repeat Week"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__repeat_number
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_number
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_number
+msgid "Repetitions"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__sat
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__sat
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__sat
+msgid "Sat"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_weekday__sat
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_weekday__sat
+msgid "Saturday"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_week__second
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_week__second
+msgid "Second"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__is_send_po
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__is_send_po
+msgid "Send RFQ by email after creation"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_month__september
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_month__september
+msgid "September"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_recurrence.py:0
+#: code:addons/hr_timesheet_purchase_order/tests/test_create_timesheet_po_recurrence.py:0
+#, python-format
+msgid "Should repeat at least once"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__sun
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__sun
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__sun
+msgid "Sun"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_weekday__sun
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_weekday__sun
+msgid "Sunday"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_recurrence.py:0
+#, python-format
+msgid ""
+"The end date should be after the day of the month or the last day of the "
+"month"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_recurrence.py:0
+#: code:addons/hr_timesheet_purchase_order/tests/test_create_timesheet_po_recurrence.py:0
+#, python-format
+msgid "The end date should be in the future"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_recurrence.py:0
+#: code:addons/hr_timesheet_purchase_order/tests/test_create_timesheet_po_recurrence.py:0
+#, python-format
+msgid "The interval should be greater than 0"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_week__third
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_week__third
+msgid "Third"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__thu
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__thu
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__thu
+msgid "Thu"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_weekday__thu
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_weekday__thu
+msgid "Thursday"
 msgstr ""
 
 #. module: hr_timesheet_purchase_order
@@ -158,6 +587,66 @@ msgstr ""
 #: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Timesheet Sheets must be approved to create a PO from them."
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__tue
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__tue
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__tue
+msgid "Tue"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_weekday__tue
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_weekday__tue
+msgid "Tuesday"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__repeat_type
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__repeat_type
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__repeat_type
+msgid "Until"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_hr_timesheet_recurrence__wed
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_partner__wed
+#: model:ir.model.fields,field_description:hr_timesheet_purchase_order.field_res_users__wed
+msgid "Wed"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_weekday__wed
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_weekday__wed
+msgid "Wednesday"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_unit__week
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_unit__week
+msgid "Weeks"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__hr_timesheet_recurrence__repeat_unit__year
+#: model:ir.model.fields.selection,name:hr_timesheet_purchase_order.selection__res_partner__repeat_unit__year
+msgid "Years"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_sheet.py:0
+#, python-format
+msgid ""
+"You need to set a timesheet billing productin settings in order to create a "
+"PO"
+msgstr ""
+
+#. module: hr_timesheet_purchase_order
+#: code:addons/hr_timesheet_purchase_order/models/hr_timesheet_recurrence.py:0
+#: code:addons/hr_timesheet_purchase_order/tests/test_create_timesheet_po_recurrence.py:0
+#, python-format
+msgid "You should select a least one day"
 msgstr ""
 
 #. module: hr_timesheet_purchase_order
