@@ -3,7 +3,7 @@
 
 {
     "name": "HR Timesheet Purchase Order",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "summary": "HR Timesheet Purchase Order",
     "author": "Ooops, Cetmix, Odoo Community Association (OCA)",
     "license": "AGPL-3",
