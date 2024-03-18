@@ -44,4 +44,30 @@
         </field>
     </record>
 
+    <record id="project_task_view_form_inherit_sale_timesheet_edit" model="ir.ui.view">
+        <field
+            name="name"
+        >project.task.form.view.form.inherit.sale.timesheet.edit</field>
+        <field name="model">project.task</field>
+        <field
+            name="inherit_id"
+            ref="sale_timesheet.project_task_view_form_inherit_sale_timesheet"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='timesheet_ids']/tree/field[@name='so_line']"
+                position="attributes"
+            >
+                <attribute name="readonly">0</attribute>
+                <attribute
+                    name="domain"
+                >[('is_service', '=', True), ('order_partner_id', 'child_of', parent.commercial_partner_id), ('is_expense', '=', False), ('state', 'in', ['sale', 'done'])]</attribute>
+                <attribute
+                    name="options"
+                >{'no_create': True, 'no_open': True}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
 </odoo>
