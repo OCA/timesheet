@@ -1,4 +1,7 @@
-from odoo import _, fields, models
+# Copyright (C) 2024 Cetmix OÜ
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -17,8 +20,15 @@ class HrTimesheetSheet(models.Model):
         purchase_order_obj = self.env["purchase.order"].sudo()
         order_count = 0
         group_by_employee = {}
+        group_by_billing_partner = {}
         for record in self:
             group_by_employee.setdefault(record.employee_id, []).append(record)
+
+        for employee, timesheets in group_by_employee.items():
+            group_by_billing_partner.setdefault(employee.billing_partner_id, []).append(
+                (employee, timesheets)
+            )
+
         for employee, timesheets in group_by_employee.items():
             if any([timesheet.purchase_order_id for timesheet in timesheets]):
                 raise UserError(
@@ -27,6 +37,13 @@ class HrTimesheetSheet(models.Model):
                         "is already related to a PO.",
                     ).format(
                         employee.name,
+                    )
+                )
+            if not self.company_id.timesheet_product_id:
+                raise UserError(
+                    _(
+                        "You need to set a timesheet billing product"
+                        "in settings in order to create a PO"
                     )
                 )
             if not employee.allow_generate_purchase_order:
@@ -48,24 +65,12 @@ class HrTimesheetSheet(models.Model):
                     _("Timesheet Sheets must be approved to create a PO from them."),
                 )
 
+        for billing_partner, emp_data in group_by_billing_partner.items():
+            order_line_values, timesheets = self._prepared_order_line_values(emp_data)
             order = purchase_order_obj.create(
-                {
-                    "partner_id": employee.billing_partner_id.id,
-                    "order_line": [
-                        (
-                            0,
-                            0,
-                            {
-                                "product_id": employee.company_id.timesheet_product_id.id,
-                                "product_qty": sum(
-                                    [timesheet.total_time for timesheet in timesheets]
-                                ),
-                                "price_unit": employee.timesheet_cost,
-                            },
-                        )
-                    ],
-                }
+                {"partner_id": billing_partner.id, "order_line": order_line_values}
             )
+            order.onchange_partner_id()
             order_count += 1
             for timesheet in timesheets:
                 timesheet.purchase_order_id = order.id
@@ -86,6 +91,41 @@ class HrTimesheetSheet(models.Model):
                 },
             },
         }
+
+    @api.model
+    def _prepared_order_line_values(self, data):
+        """Prepare order lines for purchase order
+        Args:
+            data (list): Array of tuples with employee and timesheets
+
+        Returns:
+            list,list: Array of order lines and array of timesheets
+        """
+        result = []
+        timesheets_data = []
+        for employee, timesheets in data:
+            date_timesheet = f"{timesheets[0].date_start} to {timesheets[0].date_end}"
+            result.append(
+                (
+                    0,
+                    0,
+                    {
+                        "product_id": employee.company_id.timesheet_product_id.id,
+                        "name": "%s - %s from %s"
+                        % (
+                            employee.company_id.timesheet_product_id.name,
+                            employee.name,
+                            date_timesheet,
+                        ),
+                        "product_qty": sum(
+                            [timesheet.total_time for timesheet in timesheets]
+                        ),
+                        "price_unit": employee.timesheet_cost,
+                    },
+                )
+            )
+            timesheets_data.extend(timesheets)
+        return result, timesheets_data
 
     def action_open_purchase_order(self):
         """

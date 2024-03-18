@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='purchase']" position="inside">
+                <field name="is_auto_po_generate" />
+                <field
+                    name="next_recurrence_date"
+                    readonly="1"
+                    attrs="{ 'invisible': [('is_auto_po_generate', '=', False)]}"
+                />
+                <field name="repeat_show_dow" invisible="1" />
+                <field name="repeat_show_day" invisible="1" />
+                <field name="repeat_show_week" invisible="1" />
+                <field name="repeat_show_month" invisible="1" />
+                <label
+                    for="repeat_interval"
+                    attrs="{'invisible': [('is_auto_po_generate', '=', False)]}"
+                />
+                <div
+                    class="o_row"
+                    attrs="{'invisible': [('is_auto_po_generate', '=', False)]}"
+                >
+                    <field
+                        name="repeat_interval"
+                        attrs="{'required': [('is_auto_po_generate', '=', True)]}"
+                    />
+                    <field
+                        name="repeat_unit"
+                        attrs="{'required': [('is_auto_po_generate', '=', True)]}"
+                    />
+                </div>
+                <label
+                    for="repeat_on_month"
+                    string="Repeat On"
+                    attrs="{'invisible': [('repeat_unit', 'not in', ('month', 'year'))]}"
+                />
+                <div
+                    class="o_row"
+                    attrs="{'invisible': [('is_auto_po_generate', '=', False)]}"
+                >
+                    <field
+                        name="repeat_on_month"
+                        attrs="{'invisible': [('repeat_unit', '!=', 'month')], 'required': [('repeat_unit', '=', 'month')]}"
+                    />
+                    <field
+                        name="repeat_on_year"
+                        attrs="{'invisible': [('repeat_unit', '!=', 'year')], 'required': [('repeat_unit', '=', 'year')]}"
+                    />
+                    <field
+                        name="repeat_day"
+                        options="{'type':'number','step': 1, 'min': 1, 'max': 31}"
+                        attrs="{'invisible': [('repeat_show_day', '=', False)], 'required': [('repeat_show_day', '=', True)]}"
+                    />
+                    <field
+                        name="repeat_week"
+                        attrs="{'invisible': [('repeat_show_week', '=', False)], 'required': [('repeat_show_week', '=', True)]}"
+                    />
+                    <field
+                        name="repeat_weekday"
+                        attrs="{'invisible': [('repeat_show_week', '=', False)], 'required': [('repeat_show_week', '=', True)]}"
+                    />
+                    <span
+                        attrs="{'invisible': ['|', ('repeat_show_week', '=', False), ('repeat_show_month', '=', False)]}"
+                    >of</span>
+                    <field
+                        name="repeat_month"
+                        attrs="{'invisible': [('repeat_show_month', '=', False)], 'required': [('repeat_show_month', '=', True)]}"
+                    />
+                </div>
+                <field
+                    name="mon"
+                    attrs="{'invisible': [('repeat_show_dow', '=', False)]}"
+                />
+                <field
+                    name="tue"
+                    attrs="{'invisible': [('repeat_show_dow', '=', False)]}"
+                />
+                <field
+                    name="wed"
+                    attrs="{'invisible': [('repeat_show_dow', '=', False)]}"
+                />
+                <field
+                    name="thu"
+                    attrs="{'invisible': [('repeat_show_dow', '=', False)]}"
+                />
+                <field
+                    name="fri"
+                    attrs="{'invisible': [('repeat_show_dow', '=', False)]}"
+                />
+                <field
+                    name="sat"
+                    attrs="{'invisible': [('repeat_show_dow', '=', False)]}"
+                />
+                <field
+                    name="sun"
+                    attrs="{'invisible': [('repeat_show_dow', '=', False)]}"
+                />
+                <label
+                    for="repeat_type"
+                    attrs="{'invisible': [('is_auto_po_generate', '=', False)]}"
+                />
+                <div
+                    class="o_row"
+                    attrs="{'invisible': [('is_auto_po_generate', '=', False)]}"
+                >
+                    <field
+                        name="repeat_type"
+                        attrs="{'required': [('is_auto_po_generate', '=', True)]}"
+                    />
+                    <field
+                        name="repeat_until"
+                        attrs="{'invisible': [('repeat_type', '!=', 'until')], 'required': [('repeat_type', '=', 'until')]}"
+                    />
+                    <field
+                        name="repeat_number"
+                        attrs="{'invisible': [('repeat_type', '!=', 'after')], 'required': [('repeat_type', '=', 'after')]}"
+                    />
+                </div>
+                <field
+                    name="is_send_po"
+                    attrs="{'invisible': [('is_auto_po_generate', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
