@@ -1,0 +1,89 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_task_stage
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-02-26 10:36+0000\n"
+"Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
+"Language-Team: none\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: hr_timesheet_task_stage
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_form
+msgid "<span class=\"text-danger\">Closed</span>"
+msgstr "<span class=\"text-danger\">Stängd</span>"
+
+#. module: hr_timesheet_task_stage
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_form
+msgid "<span class=\"text-success\">Open</span>"
+msgstr "<span class=\"text-success\">Öppen</span>"
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model,name:hr_timesheet_task_stage.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Objektrad"
+
+#. module: hr_timesheet_task_stage
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
+msgid "Close task"
+msgstr "Stäng aktivitet"
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,field_description:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
+msgid "Folded in Kanban"
+msgstr "Hopvikt i Kanban"
+
+#. module: hr_timesheet_task_stage
+#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
+msgid ""
+"If enabled, this stage will be displayed as folded in the Kanban view of "
+"your tasks. Tasks in a folded stage are considered as closed (not applicable "
+"to personal stages)."
+msgstr ""
+"Om det är aktiverat kommer detta steg att visas som vikt i Kanban-vyn för "
+"dina uppgifter. Uppgifter i ett hopvikt stadium anses vara stängda (ej "
+"tillämpligt på personliga scener)."
+
+#. module: hr_timesheet_task_stage
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
+msgid "Open task"
+msgstr "Öppna aktivitet"
+
+#. module: hr_timesheet_task_stage
+#. odoo-python
+#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
+#, python-format
+msgid "There isn't any stage with \"Closed\" checked. Please mark any."
+msgstr "Det finns ingen etapp med \"Stängd\" ikryssad. Var vänlig markera en."
+
+#. module: hr_timesheet_task_stage
+#. odoo-python
+#: code:addons/hr_timesheet_task_stage/models/account_analytic_line.py:0
+#, python-format
+msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
+msgstr ""
+"Det finns ingen etapp med \"Stängd\" som inte är ikryssad. Var vänlig "
+"avmarkera en."
+
+#~ msgid "Closing Stage"
+#~ msgstr "Stängningsetapp"
+
+#~ msgid "Tasks in this stage are considered as closed."
+#~ msgstr "Aktiviteter i denna etapp anses vara stängda."
+
+#~ msgid "Display Name"
+#~ msgstr "Visningsnamn"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Senast ändrad"
