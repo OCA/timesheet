@@ -7,7 +7,7 @@
             ref="hr_timesheet.hr_employee_view_form_inherit_timesheet"
         />
         <field name="arch" type="xml">
-            <group name="timesheet" position="inside">
+            <group name="application_group" position="inside">
                 <field
                     name="timesheet_analytic_tag_ids"
                     widget="many2many_tags"

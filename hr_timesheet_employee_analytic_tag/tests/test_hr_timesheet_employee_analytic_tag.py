@@ -5,7 +5,7 @@ from odoo.tests import Form, common, new_test_user
 from odoo.tests.common import users
 
 
-class TestHrTimesheetEmployeeAnalyticTag(common.SavepointCase):
+class TestHrTimesheetEmployeeAnalyticTag(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
