@@ -839,12 +839,12 @@ class Sheet(models.Model):
         return super(Sheet, self)._notify_record_by_email(
             message,
             recipients_data,
-            msg_vals=False,
-            model_description=False,
-            mail_auto_delete=True,
-            check_existing=False,
-            force_send=True,
-            send_after_commit=True,
+            msg_vals=msg_vals,
+            model_description=model_description,
+            mail_auto_delete=mail_auto_delete,
+            check_existing=check_existing,
+            force_send=force_send,
+            send_after_commit=send_after_commit,
             **kwargs
         )
 
