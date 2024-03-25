@@ -54,7 +54,7 @@ class AccountAnalyticLine(models.Model):
             others = self.search(
                 [
                     ("id", "!=", line.id),
-                    ("user_id", "=", line.user_id.id),
+                    ("employee_id", "=", line.employee_id.id),
                     ("date", "=", line.date),
                     ("time_start", "<", line.time_stop),
                     ("time_stop", ">", line.time_start),
