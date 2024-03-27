@@ -382,7 +382,9 @@ class Sheet(models.Model):
             vals_list = []
             for key in sorted(matrix, key=lambda key: sheet._get_matrix_sortby(key)):
                 vals_list.append(sheet._get_default_sheet_line(matrix, key))
-                if sheet.state in ["new", "draft"]:
+                if sheet.state in ["new", "draft"] and self.env.context.get(
+                    "hr_timesheet_sheet_clean_timesheets", True
+                ):
                     sheet.clean_timesheets(matrix[key])
             sheet.line_ids = [(6, 0, SheetLine.create(vals_list).ids)]
 
@@ -519,6 +521,15 @@ class Sheet(models.Model):
                     % (sheet.complete_name,)
                 )
         return super().unlink()
+
+    def onchange(self, values, field_name, field_onchange):
+        """
+        Pass a flag for _compute_line_ids not to clean timesheet lines to be (kind of)
+        idempotent during onchange
+        """
+        return super(
+            Sheet, self.with_context(hr_timesheet_sheet_clean_timesheets=False)
+        ).onchange(values, field_name, field_onchange)
 
     def _get_informables(self):
         """Hook for extensions"""
