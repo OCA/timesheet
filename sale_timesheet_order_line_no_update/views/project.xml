@@ -15,6 +15,11 @@
             <field name="sale_line_id" position="attributes">
                 <attribute name="domain">sale_line_id_domain</attribute>
             </field>
+            <xpath expr="//field[@name='task_count']/.." position="attributes">
+                <attribute
+                    name="context"
+                >{'default_new_sale_line_id': sale_line_id}</attribute>
+            </xpath>
         </field>
     </record>
 
