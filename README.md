@@ -24,7 +24,7 @@ addon | version | maintainers | summary
 [crm_timesheet](crm_timesheet/) | 15.0.1.0.0 |  | CRM Timesheet
 [hr_employee_product](hr_employee_product/) | 15.0.1.0.0 |  | Product is an employee
 [hr_timesheet_begin_end](hr_timesheet_begin_end/) | 15.0.1.0.0 |  | Timesheet - Begin/End Hours
-[hr_timesheet_sheet](hr_timesheet_sheet/) | 15.0.1.2.0 |  | Timesheet Sheets, Activities
+[hr_timesheet_sheet](hr_timesheet_sheet/) | 15.0.1.3.0 |  | Timesheet Sheets, Activities
 [hr_timesheet_sheet_autodraft](hr_timesheet_sheet_autodraft/) | 15.0.1.0.0 |  | Automatically draft a Timesheet Sheet for every time entry that does not have a relevant Timesheet Sheet existing.
 [hr_timesheet_sheet_begin_end](hr_timesheet_sheet_begin_end/) | 15.0.1.0.0 |  | Timesheet Sheet - Begin/End Hours
 [hr_timesheet_sheet_no_create](hr_timesheet_sheet_no_create/) | 15.0.1.0.0 |  | Avoid creation of projects and tasks in timesheet sheet lines
