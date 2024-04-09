@@ -29,9 +29,9 @@
             <xpath expr="//div[hasclass('o_kanban_primary_right')]" position="inside">
                 <div
                     t-if="record.timesheet_sheet_to_approve_count.raw_value > 0"
-                    class="row"
+                    class="row ml16"
                 >
-                    <div class="col-xs-9">
+                    <div class="col-9">
                         <a
                             name="%(hr_timesheet_sheet.hr_timesheet_action_from_department)d"
                             type="action"
@@ -39,14 +39,14 @@
                             Timesheets
                         </a>
                     </div>
-                    <div class="col-xs-3">
+                    <div class="col-3 text-right">
                         <t t-esc="record.timesheet_sheet_to_approve_count.raw_value" />
                     </div>
                 </div>
             </xpath>
             <xpath expr="//div[hasclass('o_kanban_manage_reports')]" position="inside">
                 <div class="row">
-                    <div class="col-xs-12 text-left">
+                    <div class="col-12 text-left">
                         <a
                             name="%(hr_timesheet_sheet.hr_timesheet_action_from_department)d"
                             type="action"
