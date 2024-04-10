@@ -6,11 +6,12 @@ from .hr_timesheet_sheet_test_cases import HrTimesheetTestCases
 
 
 class TestHrAttendance(HrTimesheetTestCases):
-    def setUp(self):
-        super(TestHrAttendance, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         checkInDate = datetime.datetime(2018, 12, 12, 10, 0, 0)
-        self.attendance_1 = self._create_attendance(
-            employee=self.employee,
+        cls.attendance_1 = cls._create_attendance(
+            employee=cls.employee,
             checkIn=checkInDate,
         )
 
