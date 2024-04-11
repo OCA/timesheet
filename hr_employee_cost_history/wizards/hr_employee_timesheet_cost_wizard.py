@@ -45,7 +45,7 @@ class HrEmployeeTimesheetCost(models.TransientModel):
         costs = self.employee_id.timesheet_cost_history_ids - bad_costs
         self.employee_id.sudo().write(
             {
-                "timesheet_cost": self.hourly_cost,
+                "hourly_cost": self.hourly_cost,
                 "timesheet_cost_history_ids": [
                     fields.Command.set(costs.ids),
                     fields.Command.create(
