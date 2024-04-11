@@ -9,10 +9,10 @@
     >
         <field name="name">hr.employee.view.form.inherit</field>
         <field name="model">hr.employee</field>
-        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="inherit_id" ref="hr_hourly_cost.view_employee_form" />
         <field name="arch" type="xml">
 
-            <xpath expr="//field[@name='timesheet_cost']" position="attributes">
+            <xpath expr="//field[@name='hourly_cost']" position="attributes">
                 <attribute name="readonly">1</attribute>
             </xpath>
 
@@ -28,7 +28,7 @@
                     class="btn btn-link oe_inline"
                     role="button"
                     groups="hr.group_hr_user"
-                    context="{'default_employee_id': id, 'default_timesheet_cost': timesheet_cost}"
+                    context="{'default_employee_id': id, 'default_hourly_cost': hourly_cost}"
                 >
                     <i class="fa fa-fw o_button_icon fa-arrow-right" /> Update Cost
                 </button>

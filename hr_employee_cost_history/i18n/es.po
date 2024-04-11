@@ -90,6 +90,12 @@ msgid "From Date"
 msgstr "Desde"
 
 #. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__hourly_cost
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__hourly_cost
+msgid "Hourly Cost"
+msgstr ""
+
+#. module: hr_employee_cost_history
 #: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__id
 #: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__id
 msgid "ID"
@@ -124,12 +130,6 @@ msgid "The cost change has effect since this date."
 msgstr "El cambio de coste se aplica desde esta fecha."
 
 #. module: hr_employee_cost_history
-#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__timesheet_cost
-#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__timesheet_cost
-msgid "Timesheet Cost"
-msgstr "Coste del parte de horas"
-
-#. module: hr_employee_cost_history
 #: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee__timesheet_cost_history_ids
 msgid "Timesheet Cost History"
 msgstr "Histórico coste en parte de horas"
@@ -144,3 +144,6 @@ msgstr "Actualizar"
 #: model_terms:ir.ui.view,arch_db:hr_employee_cost_history.hr_employee_timesheet_cost_wizard_view_form
 msgid "Update Timesheet Cost"
 msgstr "Actualizar coste en partes de horas"
+
+#~ msgid "Timesheet Cost"
+#~ msgstr "Coste del parte de horas"
