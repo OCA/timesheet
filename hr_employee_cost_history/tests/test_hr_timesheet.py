@@ -14,8 +14,15 @@ class HrEmployeeCostHistory(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(HrEmployeeCostHistory, cls).setUpClass()
+        cls.default_plan = cls.env["account.analytic.plan"].create(
+            {"name": "Default", "company_id": False}
+        )
         cls.analytic_account = cls.env["account.analytic.account"].create(
-            {"name": "Analytic Account for Test Customer", "code": "TEST"}
+            {
+                "name": "Analytic Account for Test Customer",
+                "code": "TEST",
+                "plan_id": cls.default_plan.id,
+            }
         )
         # users
         new_test_user(
@@ -32,7 +39,7 @@ class HrEmployeeCostHistory(TransactionCase):
         cls.employee = cls.env["hr.employee"].create(
             {
                 "name": "User Empl Employee",
-                "timesheet_cost": 10.0,
+                "hourly_cost": 10.0,
                 "user_id": cls.user_employee.id,
             }
         )
