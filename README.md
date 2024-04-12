@@ -22,6 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [crm_timesheet](crm_timesheet/) | 15.0.1.0.0 |  | CRM Timesheet
+[hr_employee_cost_history](hr_employee_cost_history/) | 15.0.1.0.0 | [![edlopen](https://github.com/edlopen.png?size=30px)](https://github.com/edlopen) [![rafaelbn](https://github.com/rafaelbn.png?size=30px)](https://github.com/rafaelbn) | Adds an history to employee's costs.
 [hr_employee_product](hr_employee_product/) | 15.0.1.0.0 |  | Product is an employee
 [hr_timesheet_begin_end](hr_timesheet_begin_end/) | 15.0.1.0.0 |  | Timesheet - Begin/End Hours
 [hr_timesheet_sheet](hr_timesheet_sheet/) | 15.0.1.3.0 |  | Timesheet Sheets, Activities
