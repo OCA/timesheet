@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team S.L. <info@moduon.team>
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+
+    <record
+        id="hr_timesheet_retroactive_cost_view_employee_form_inherit"
+        model="ir.ui.view"
+    >
+        <field name="name">hr.employee.view.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr_hourly_cost.view_employee_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='hourly_cost']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='currency_id']" position="before">
+                <field
+                    name="timesheet_cost_history_ids"
+                    invisible="1"
+                    groups="hr.group_hr_user"
+                />
+                <button
+                    type="action"
+                    name="%(action_hr_employee_timesheet_cost_wizard)d"
+                    class="btn btn-link oe_inline"
+                    role="button"
+                    groups="hr.group_hr_user"
+                    context="{'default_employee_id': id, 'default_hourly_cost': hourly_cost}"
+                >
+                    <i class="fa fa-fw o_button_icon fa-arrow-right" /> Update Cost
+                </button>
+                <button
+                    type="action"
+                    name="%(hr_employee_timesheet_cost_action)d"
+                    class="btn btn-link oe_inline"
+                    role="button"
+                    context="{'default_employee_id': id}"
+                    groups="hr.group_hr_user"
+                    attrs="{'invisible': [('timesheet_cost_history_ids', '=', [])]}"
+                >
+                    <i class="fa fa-fw o_button_icon fa-history" /> Cost History
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
