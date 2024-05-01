@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2024-05-01 12:37+0000\n"
+"PO-Revision-Date: 2024-05-01 15:37+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: Portuguese (https://www.transifex.com/odoo/teams/41243/pt/)\n"
 "Language: pt\n"
@@ -887,6 +887,8 @@ msgid ""
 "Timesheet sheets can also be invoiced to customers, depending on\n"
 "             the configuration of each project's related contract."
 msgstr ""
+"As folhas de horas também podem ser faturadas aos clientes, dependendo\n"
+"             da configuração dos contratos relativos a cada projeto."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
@@ -1087,6 +1089,10 @@ msgid ""
 "it should be\n"
 "            validated by a reviewer."
 msgstr ""
+"Deve registar tempos todos os dias e confirmar no final\n"
+"            do período do relatório. Uma vez confirmada a folha de horas, "
+"esta deverá ser\n"
+"            validado por um revisor."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
@@ -1096,6 +1102,10 @@ msgid ""
 "it should be\n"
 "             validated by a reviewer."
 msgstr ""
+"Deve registar tempos todos os dias e confirmar no final\n"
+"             do período do relatório. Uma vez confirmada a folha de horas, "
+"esta deverá ser\n"
+"             validado por um revisor."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
