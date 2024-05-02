@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-18 09:36+0000\n"
+"PO-Revision-Date: 2024-05-02 14:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -299,7 +299,7 @@ msgstr "Raggruppa per espressione"
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__grouping_field_ids
 msgid "Grouping Fields"
-msgstr "Raggruppamento campi"
+msgstr "Campi raggruppamento"
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__group_ids
