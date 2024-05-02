@@ -113,11 +113,7 @@ repos:
       - id: check-symlinks
       - id: check-xml
       - id: mixed-line-ending
-<<<<<<< before updating
-        args: ["--fix=lf"] # ruff doesn't support python 3.6
-=======
         args: ["--fix=lf"]
->>>>>>> after updating
   - repo: https://github.com/asottile/pyupgrade
     rev: v2.38.2
     hooks:
