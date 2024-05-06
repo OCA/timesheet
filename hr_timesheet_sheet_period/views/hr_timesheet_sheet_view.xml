@@ -30,6 +30,29 @@
             <field name="date_start" position="after">
                 <field name="hr_period_id" />
             </field>
+            <xpath expr='//filter[@name="to_review"]' position="after">
+                <separator />
+                <filter
+                    name="current_period"
+                    string="Current Period"
+                    domain="[('hr_period_id.date_start', '&lt;=', datetime.date.today().strftime('%Y-%m-%d')),
+                    ('hr_period_id.date_end', '&gt;=', datetime.date.today().strftime('%Y-%m-%d'))]"
+                />
+                <separator />
+            </xpath>
         </field>
     </record>
+
+    <!-- When seeing all timesheets default to current period -->
+
+    <record
+        id="hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets"
+        model="ir.actions.act_window"
+    >
+        <field name="context">{
+            'search_default_current_period': 1
+        }
+        </field>
+    </record>
+
 </odoo>
