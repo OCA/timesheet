@@ -4,7 +4,7 @@
 
 {
     "name": "Timesheet - Begin/End Hours",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "author": "Camptocamp, Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Human Resources",
