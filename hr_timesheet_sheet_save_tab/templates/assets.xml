@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Hunki Enterprises BV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+
+<template id="assets_backend" inherit_id="web.assets_backend">
+    <xpath expr=".">
+        <script
+                type="text/javascript"
+                src="/hr_timesheet_sheet_save_tab/static/src/js/hr_timesheet_sheet_save_tab.js"
+            />
+    </xpath>
+</template>
+
+</data>
