@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2024-04-17 09:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -65,8 +66,8 @@ msgid ""
 "The timesheet cannot be validated as it does not contain an equal number of "
 "sign ins and sign outs."
 msgstr ""
-"La hoja de servicios no puede ser validada ya que no contiene el mismo número de "
-"entradas y salidas."
+"La hoja de servicios no puede ser validada ya que no contiene el mismo "
+"número de entradas y salidas."
 
 #. module: hr_timesheet_sheet_attendance
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_attendance.hr_timesheet_sheet_form
@@ -95,7 +96,8 @@ msgstr "Asistencia Total"
 msgid ""
 "You can not enter an attendance date outside the current timesheet dates."
 msgstr ""
-"No puedes introducir una fecha de asistencia fuera de las fechas para la hoja de servicios actual."
+"No puedes introducir una fecha de asistencia fuera de las fechas para la "
+"hoja de servicios actual."
 
 #. module: hr_timesheet_sheet_attendance
 #. odoo-python
@@ -105,8 +107,9 @@ msgid ""
 "You can not enter an attendance in a submitted timesheet. Ask your manager "
 "to reset it before adding attendance."
 msgstr ""
-"No puedes introducir una asistencia en una hoja de servicios enviada a revisión. Pídale a su responsable "
-"que la restablezca antes de introducir la asistencia."
+"No puedes introducir una asistencia en una hoja de servicios enviada a "
+"revisión. Pídale a su responsable que la restablezca antes de introducir la "
+"asistencia."
 
 #. module: hr_timesheet_sheet_attendance
 #. odoo-python
