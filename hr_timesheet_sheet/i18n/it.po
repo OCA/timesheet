@@ -200,6 +200,7 @@ msgid "Config Settings"
 msgstr "Impostazioni configurazione"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open__create_uid
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__create_uid
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__create_uid
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__create_uid
@@ -207,6 +208,7 @@ msgid "Created by"
 msgstr "Creato da"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open__create_date
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__create_date
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__create_date
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__create_date
@@ -263,6 +265,7 @@ msgid "Details"
 msgstr "Dettagli"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__display_name
@@ -375,6 +378,7 @@ msgid "How Timesheet Sheets review is performed."
 msgstr "Come viene eseguita la revisione dei prospetti fogli ore."
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__id
@@ -451,6 +455,7 @@ msgid "Is Follower"
 msgstr "Segue"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line____last_update
@@ -458,6 +463,7 @@ msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open__write_uid
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__write_uid
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__write_uid
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__write_uid
@@ -465,6 +471,7 @@ msgid "Last Updated by"
 msgstr "Ultimo aggiornamento di"
 
 #. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_current_open__write_date
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__write_date
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__write_date
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__write_date
@@ -500,6 +507,16 @@ msgstr "Mese"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__my_activity_date_deadline
 msgid "My Activity Deadline"
 msgstr "Scadenza mia attività"
+
+#. module: hr_timesheet_sheet
+#: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_form_my_current
+msgid "My Current Timesheet"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.actions.server,name:hr_timesheet_sheet.ir_actions_server_timesheet_sheet
+msgid "My Timesheet"
+msgstr "Il mio Timesheet"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
@@ -598,6 +615,12 @@ msgstr "Solo un direttore o un responsabile RU può revisionare il prospetto."
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__hr_timesheet_sheet__state__draft
 msgid "Open"
 msgstr "Aperti"
+
+#. module: hr_timesheet_sheet
+#: code:addons/hr_timesheet_sheet/wizard/hr_timesheet_current.py:0
+#, python-format
+msgid "Open Timesheet"
+msgstr "Timesheet Corrente"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_tree
@@ -1125,6 +1148,11 @@ msgstr ""
 "            deve essere validato da un revisore."
 
 #. module: hr_timesheet_sheet
+#: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_current_open
+msgid "hr.timesheet.current.open"
+msgstr "hr.timesheet.current.open"
+
+#. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 msgid "to"
 msgstr "fino al"
@@ -1350,12 +1378,6 @@ msgstr "fino al"
 #~ msgid "More Info"
 #~ msgstr "Più informazioni"
 
-#~ msgid "My Timesheet"
-#~ msgstr "Il mio Timesheet"
-
-#~ msgid "Open Timesheet"
-#~ msgstr "Timesheet Corrente"
-
 #~ msgid "Periodicity on which you validate your timesheets."
 #~ msgstr "Cadenza con cui i timesheet vengono validati."
 
@@ -1383,6 +1405,3 @@ msgstr "fino al"
 #~ msgid "You will be able to register your working hours and activities."
 #~ msgstr ""
 #~ "Sarai in grado di registrare le attività lavorative e gli orari di lavoro."
-
-#~ msgid "hr.timesheet.current.open"
-#~ msgstr "hr.timesheet.current.open"
