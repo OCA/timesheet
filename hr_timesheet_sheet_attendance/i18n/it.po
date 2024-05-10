@@ -54,29 +54,12 @@ msgid "Difference"
 msgstr "Differenza"
 
 #. module: hr_timesheet_sheet_attendance
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_attendance__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: hr_timesheet_sheet_attendance
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_attendance__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet__id
-msgid "ID"
-msgstr "ID"
-
-#. module: hr_timesheet_sheet_attendance
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_attendance____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: hr_timesheet_sheet_attendance
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_attendance__sheet_id
 msgid "Sheet"
 msgstr "Prospetto"
 
 #. module: hr_timesheet_sheet_attendance
+#. odoo-python
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid ""
@@ -107,6 +90,7 @@ msgid "Total Attendance"
 msgstr "Totale presenze"
 
 #. module: hr_timesheet_sheet_attendance
+#. odoo-python
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:0
 #, python-format
 msgid ""
@@ -116,6 +100,7 @@ msgstr ""
 "fogli ore attuale."
 
 #. module: hr_timesheet_sheet_attendance
+#. odoo-python
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:0
 #, python-format
 msgid ""
@@ -126,7 +111,17 @@ msgstr ""
 "responsabile di resettarlo prima di aggiungere la presenza."
 
 #. module: hr_timesheet_sheet_attendance
+#. odoo-python
 #: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:0
 #, python-format
 msgid "You cannot modify an entry in a confirmed timesheet"
 msgstr "Non si può modificare una registrazione in un fogli ore confermato"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
