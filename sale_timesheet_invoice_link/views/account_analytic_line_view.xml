@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<data>
+    <record id="timesheet_view_tree_user" model="ir.ui.view">
+        <field name="name">Add invoice field</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.timesheet_view_tree_user" />
+        <field name="arch" type="xml">
+            <field name="so_line" position="after">
+                <field name="commercial_partner_id" invisible="1" />
+                <field
+                    domain="[('partner_id', 'child_of', commercial_partner_id), ('state', '!=', 'cancel'), ('move_type', '=', 'out_invoice')]"
+                    groups="hr_timesheet.group_timesheet_manager"
+                    name="timesheet_invoice_id"
+                    optional="hide"
+                    options="{'no_create': True}"
+                    readonly="False"
+                />
+            </field>
+        </field>
+    </record>
+</data>
