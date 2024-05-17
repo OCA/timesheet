@@ -2,100 +2,61 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests import common
+from odoo.tests.common import TransactionCase, new_test_user
 
 
-class TestHrTimesheetSheetPolicyDepartmentManager(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
-
-        self.ResCompany = self.env["res.company"]
-        self.ResUsers = self.env["res.users"]
-        self.HrTimesheetSheet = self.env["hr_timesheet.sheet"]
-        self.HrEmployee = self.env["hr.employee"]
-        self.HrDepartment = self.env["hr.department"]
-
-        self.group_hr_user = self.env.ref("hr.group_hr_user")
-        self.group_multi_company = self.env.ref("base.group_multi_company")
-        self.group_hr_timesheet_user = self.env.ref(
-            "hr_timesheet.group_hr_timesheet_user"
-        )
-        self.group_project_user = self.env.ref("project.group_project_user")
-
-        self.company = self.ResCompany.create(
+class TestHrTimesheetSheetPolicyDepartmentManager(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.HrTimesheetSheet = cls.env["hr_timesheet.sheet"]
+        cls.company = cls.env["res.company"].create(
             {
                 "name": "Company",
             }
         )
-        self.env.user.company_ids += self.company
-        self.department_manager_user = self.ResUsers.with_context(
-            {
+        cls.env.user.company_ids += cls.company
+        cls.department_manager_user = new_test_user(
+            cls.env,
+            "department_manager_user",
+            groups="hr_timesheet.group_hr_timesheet_user,"
+            "project.group_project_user,base.group_multi_company",
+            company_id=cls.company.id,
+            context={
                 "no_reset_password": True,
-            }
-        ).create(
-            {
-                "name": "Department Manager User",
-                "login": "department_manager_user",
-                "email": "department_manager_user@example.com",
-                "groups_id": [
-                    (
-                        6,
-                        0,
-                        [
-                            self.group_hr_timesheet_user.id,
-                            self.group_project_user.id,
-                            self.group_multi_company.id,
-                        ],
-                    )
-                ],
-                "company_id": self.company.id,
-                "company_ids": [(4, self.company.id)],
-            }
+                "company_ids": cls.company.ids,
+            },
         )
-        self.employee_user = self.ResUsers.with_context(
-            {
+        cls.employee_user = new_test_user(
+            cls.env,
+            "employee_user",
+            groups="hr.group_hr_user,hr_timesheet.group_hr_timesheet_user,"
+            "project.group_project_user,base.group_multi_company",
+            company_id=cls.company.id,
+            context={
                 "no_reset_password": True,
-            }
-        ).create(
-            {
-                "name": "Employee User",
-                "login": "employee_user",
-                "email": "employee_user@example.com",
-                "groups_id": [
-                    (
-                        6,
-                        0,
-                        [
-                            self.group_hr_user.id,
-                            self.group_hr_timesheet_user.id,
-                            self.group_project_user.id,
-                            self.group_multi_company.id,
-                        ],
-                    )
-                ],
-                "company_id": self.company.id,
-                "company_ids": [(4, self.company.id)],
-            }
+                "company_ids": cls.company.ids,
+            },
         )
-        self.employee = self.HrEmployee.create(
+        cls.employee = cls.env["hr.employee"].create(
             {
                 "name": "Employee",
-                "user_id": self.employee_user.id,
-                "company_id": self.company.id,
+                "user_id": cls.employee_user.id,
+                "company_id": cls.company.id,
             }
         )
-        self.department_manager = self.HrEmployee.create(
+        cls.department_manager = cls.env["hr.employee"].create(
             {
                 "name": "Department Manager",
-                "user_id": self.department_manager_user.id,
-                "company_id": self.company.id,
+                "user_id": cls.department_manager_user.id,
+                "company_id": cls.company.id,
             }
         )
-        self.department = self.HrDepartment.create(
+        cls.department = cls.env["hr.department"].create(
             {
                 "name": "Department",
-                "company_id": self.company.id,
-                "manager_id": self.department_manager.id,
+                "company_id": cls.company.id,
+                "manager_id": cls.department_manager.id,
             }
         )
 
@@ -115,10 +76,10 @@ class TestHrTimesheetSheetPolicyDepartmentManager(common.TransactionCase):
     def test_department_manager_review_policy(self):
         self.company.timesheet_sheet_review_policy = "department_manager"
 
-        self.HrTimesheetSheet.with_user(self.employee_user).fields_view_get(
+        self.HrTimesheetSheet.with_user(self.employee_user).get_view(
             view_type="form",
         )
-        self.HrTimesheetSheet.with_user(self.employee_user).fields_view_get(
+        self.HrTimesheetSheet.with_user(self.employee_user).get_view(
             view_type="tree",
         )
 
