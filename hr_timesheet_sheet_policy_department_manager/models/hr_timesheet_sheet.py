@@ -13,15 +13,8 @@ class HrTimesheetSheet(models.Model):
     _inherit = "hr_timesheet.sheet"
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        res = super().fields_view_get(
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
-        )
+    def get_view(self, view_id=None, view_type="form", **options):
+        res = super().get_view(view_id, view_type, **options)
         review_policy = self.env.user.company_id.timesheet_sheet_review_policy
         if review_policy == "department_manager" and view_type == "tree":
             view = etree.XML(res["arch"])
@@ -60,9 +53,10 @@ class HrTimesheetSheet(models.Model):
         return res
 
     def _check_can_review(self):
-        super()._check_can_review()
+        res = super()._check_can_review()
         if self.filtered(
             lambda sheet: not sheet.can_review
             and sheet.review_policy == "department_manager"
         ):
             raise UserError(_("Only a Department's Manager can review the sheet."))
+        return res
