@@ -27,7 +27,7 @@ addon | version | maintainers | summary
 [hr_timesheet_analysis](hr_timesheet_analysis/) | 14.0.1.0.0 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | Analyze tracked time in Graph views
 [hr_timesheet_employee_analytic_tag](hr_timesheet_employee_analytic_tag/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Hr Timesheet Employee Analytic Tag
 [hr_timesheet_purchase_order](hr_timesheet_purchase_order/) | 14.0.1.1.0 | [![dessanhemrayev](https://github.com/dessanhemrayev.png?size=30px)](https://github.com/dessanhemrayev) [![aleuffre](https://github.com/aleuffre.png?size=30px)](https://github.com/aleuffre) [![renda-dev](https://github.com/renda-dev.png?size=30px)](https://github.com/renda-dev) | HR Timesheet Purchase Order
-[hr_timesheet_report](hr_timesheet_report/) | 14.0.1.0.0 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | Generate Timesheet Report from Task Logs
+[hr_timesheet_report](hr_timesheet_report/) | 14.0.1.0.1 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | Generate Timesheet Report from Task Logs
 [hr_timesheet_report_milestone](hr_timesheet_report_milestone/) | 14.0.1.0.0 |  | Extend Timesheet by adding Milestone
 [hr_timesheet_sheet](hr_timesheet_sheet/) | 14.0.1.4.3 |  | Timesheet Sheets, Activities
 [hr_timesheet_sheet_activity](hr_timesheet_sheet_activity/) | 14.0.1.0.0 |  | Automatic activities related to submission and review of timesheet sheets
