@@ -58,6 +58,12 @@ msgid "<strong>Subtotal</strong>"
 msgstr ""
 
 #. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
+#, python-format
+msgid "Absolute"
+msgstr ""
+
+#. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__any_line_id
 msgid "Account Analytics Lines"
 msgstr ""
@@ -149,6 +155,12 @@ msgstr ""
 #: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
 #, python-format
 msgid "Date-To can not be earlier than Date-From"
+msgstr ""
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
+#, python-format
+msgid "Decimal"
 msgstr ""
 
 #. module: hr_utilization_report
@@ -367,6 +379,18 @@ msgid "Has Multi-Entry Blocks"
 msgstr ""
 
 #. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
+#, python-format
+msgid "Hours, minutes"
+msgstr ""
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
+#, python-format
+msgid "Hours, minutes, seconds"
+msgstr ""
+
+#. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_report_hr_utilization_report_report
 msgid "Hr Utilization Report"
 msgstr ""
@@ -450,6 +474,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__only_active_employees
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__only_active_employees
 msgid "Only Active Employees"
+msgstr ""
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
+#, python-format
+msgid "Percentage"
 msgstr ""
 
 #. module: hr_utilization_report
