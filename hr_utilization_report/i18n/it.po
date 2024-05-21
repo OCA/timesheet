@@ -61,6 +61,12 @@ msgid "<strong>Subtotal</strong>"
 msgstr "<strong>Subtotale</strong>"
 
 #. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
+#, python-format
+msgid "Absolute"
+msgstr ""
+
+#. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_entry__any_line_id
 msgid "Account Analytics Lines"
 msgstr "Righe conto analitico"
@@ -151,6 +157,12 @@ msgstr "Creato il"
 #, python-format
 msgid "Date-To can not be earlier than Date-From"
 msgstr "La data fine non può essere antecedente alla data inizio"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
+#, python-format
+msgid "Decimal"
+msgstr ""
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report__department_ids
@@ -368,6 +380,18 @@ msgid "Has Multi-Entry Blocks"
 msgstr "Ha blocchi multi-voce"
 
 #. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
+#, python-format
+msgid "Hours, minutes"
+msgstr ""
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
+#, python-format
+msgid "Hours, minutes, seconds"
+msgstr ""
+
+#. module: hr_utilization_report
 #: model:ir.model,name:hr_utilization_report.model_report_hr_utilization_report_report
 msgid "Hr Utilization Report"
 msgstr "Resoconto utilizzo RU"
@@ -451,6 +475,12 @@ msgstr "No"
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_wizard__only_active_employees
 msgid "Only Active Employees"
 msgstr "Solo dipendenti attivi"
+
+#. module: hr_utilization_report
+#: code:addons/hr_utilization_report/report/hr_utilization_report.py:0
+#, python-format
+msgid "Percentage"
+msgstr ""
 
 #. module: hr_utilization_report
 #: model:ir.model.fields,field_description:hr_utilization_report.field_hr_utilization_report_field__report_id
