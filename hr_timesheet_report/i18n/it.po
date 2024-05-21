@@ -115,6 +115,12 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: hr_timesheet_report
+#: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:0
+#, python-format
+msgid "Decimal"
+msgstr ""
+
+#. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report__department_ids
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__department_ids
 msgid "Departments"
@@ -316,6 +322,18 @@ msgstr "Gruppo resoconto foglio ore RU"
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_hr_timesheet_report_wizard__has_line_ids
 msgid "Has lines (technical)"
 msgstr "Ha delle righe (tecnico)"
+
+#. module: hr_timesheet_report
+#: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:0
+#, python-format
+msgid "Hours, minutes"
+msgstr ""
+
+#. module: hr_timesheet_report
+#: code:addons/hr_timesheet_report/report/hr_timesheet_report.py:0
+#, python-format
+msgid "Hours, minutes, seconds"
+msgstr ""
 
 #. module: hr_timesheet_report
 #: model:ir.model.fields,field_description:hr_timesheet_report.field_account_analytic_line__id
