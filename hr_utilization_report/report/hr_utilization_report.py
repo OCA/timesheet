@@ -128,16 +128,16 @@ class HrUtilizationReport(models.TransientModel):
     @api.model
     def _selection_utilization_format(self):
         return [
-            ("percentage", "Percentage"),
-            ("absolute", "Absolute"),
+            ("percentage", _("Percentage")),
+            ("absolute", _("Absolute")),
         ]
 
     @api.model
     def _selection_time_format(self):
         return [
-            ("hh_mm", "Hours, minutes"),
-            ("hh_mm_ss", "Hours, minutes, seconds"),
-            ("decimal", "Decimal"),
+            ("hh_mm", _("Hours, minutes")),
+            ("hh_mm_ss", _("Hours, minutes, seconds")),
+            ("decimal", _("Decimal")),
         ]
 
     @api.model
