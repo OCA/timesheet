@@ -43,7 +43,7 @@ addon | version | maintainers | summary
 [hr_timesheet_time_restriction](hr_timesheet_time_restriction/) | 14.0.1.0.1 |  | Restrictions on the creation of time sheets for past dates
 [hr_timesheet_time_type](hr_timesheet_time_type/) | 14.0.1.0.1 |  | Ability to add time type in timesheet lines.
 [hr_utilization_analysis](hr_utilization_analysis/) | 14.0.2.0.1 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | View Utilization Analysis from Task Logs.
-[hr_utilization_report](hr_utilization_report/) | 14.0.1.0.2 |  | Generate Utilization Report from Task Logs
+[hr_utilization_report](hr_utilization_report/) | 14.0.1.0.3 |  | Generate Utilization Report from Task Logs
 [project_task_stage_allow_timesheet](project_task_stage_allow_timesheet/) | 14.0.1.0.0 |  | Allows to tell that a task stage is opened for timesheets.
 [sale_timesheet_budget](sale_timesheet_budget/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale timesheet budget
 [sale_timesheet_line_exclude](sale_timesheet_line_exclude/) | 14.0.1.0.1 |  | Exclude Timesheet Line from Sale Order
