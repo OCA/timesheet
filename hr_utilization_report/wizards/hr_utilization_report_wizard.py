@@ -18,7 +18,6 @@ class HrUtilizationReportWizard(models.TransientModel):
         required=True,
     )
     only_active_employees = fields.Boolean(
-        string="Only Active Employees",
         default=True,
     )
     employee_ids = fields.Many2many(
@@ -194,7 +193,6 @@ class HrUtilizationReportWizardField(models.AbstractModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
         default=10,
     )
