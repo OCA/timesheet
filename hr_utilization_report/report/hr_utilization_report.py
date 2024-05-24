@@ -28,7 +28,6 @@ class HrUtilizationReport(models.TransientModel):
         required=True,
     )
     only_active_employees = fields.Boolean(
-        string="Only Active Employees",
         default=True,
     )
     employee_ids = fields.Many2many(
@@ -84,7 +83,6 @@ class HrUtilizationReport(models.TransientModel):
         store=True,
     )
     total_capacity = fields.Float(
-        string="Total Capacity",
         compute="_compute_total_capacity",
         store=True,
     )
@@ -292,7 +290,7 @@ class HrUtilizationReport(models.TransientModel):
         self.ensure_one()
 
         if report_type not in self._supported_report_types():
-            raise UserError(_('"%s" report type is not supported' % (report_type)))
+            raise UserError(_('"%s" report type is not supported') % report_type)
 
         report_name = "hr_utilization_report.report"
 
@@ -306,11 +304,12 @@ class HrUtilizationReport(models.TransientModel):
         )
         if not action:
             raise UserError(
-                _('"%s" report with "%s" type not found' % (report_name, report_type))
+                _('"%(report_name)s" report with "%(report_type)s" type not found')
+                % (report_name, report_type)
             )
 
         context = dict(self.env.context)
-        return action.with_context(context).report_action(self)
+        return action.with_context(**context).report_action(self)
 
 
 class HrUtilizationReportAbstractField(models.AbstractModel):
@@ -325,7 +324,6 @@ class HrUtilizationReportAbstractField(models.AbstractModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
     field_name = fields.Char(
@@ -340,9 +338,7 @@ class HrUtilizationReportAbstractField(models.AbstractModel):
         string="Field type",
         required=True,
     )
-    aggregation = fields.Char(
-        string="Aggregation",
-    )
+    aggregation = fields.Char()
     groupby = fields.Char(
         string="Group-by expression",
         compute="_compute_groupby",
@@ -404,11 +400,9 @@ class HrUtilizationReportGroup(models.TransientModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
     scope = fields.Char(
-        string="Scope",
         required=True,
     )
     name = fields.Char()
@@ -425,7 +419,6 @@ class HrUtilizationReportGroup(models.TransientModel):
         store=True,
     )
     total_capacity = fields.Float(
-        string="Total Capacity",
         compute="_compute_total_capacity",
         store=True,
     )
@@ -516,7 +509,6 @@ class HrUtilizationReportBlock(models.TransientModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
     employee_id = fields.Many2one(
@@ -537,7 +529,6 @@ class HrUtilizationReportBlock(models.TransientModel):
         store=True,
     )
     capacity = fields.Float(
-        string="Capacity",
         compute="_compute_capacity",
         store=True,
     )
@@ -683,11 +674,9 @@ class HrUtilizationReportEntry(models.TransientModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
     scope = fields.Char(
-        string="Scope",
         required=True,
     )
     any_line_id = fields.Many2one(
