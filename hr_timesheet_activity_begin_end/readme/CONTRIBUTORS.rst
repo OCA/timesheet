@@ -8,3 +8,4 @@
 
   * Andrea Stirpe
 * Sunanda Chhatbar <sunanda.chhatbar@initos.com>
+* Eduardo López <elp@moduon.team>

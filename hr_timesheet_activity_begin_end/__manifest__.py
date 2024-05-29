@@ -4,7 +4,7 @@
 
 {
     "name": "Timesheet Activities - Begin/End Hours",
-    "version": "14.0.1.0.2",
+    "version": "16.0.1.0.0",
     "author": "Camptocamp, Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Human Resources",
@@ -17,4 +17,5 @@
     ],
     "installable": True,
     "auto_install": False,
+    "maintainers": ["rafaelbn", "edlopen"],
 }
