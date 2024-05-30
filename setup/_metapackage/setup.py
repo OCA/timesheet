@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo-addon-hr_timesheet_sheet>=16.0dev,<16.1dev',
         'odoo-addon-hr_timesheet_sheet_attendance>=16.0dev,<16.1dev',
         'odoo-addon-hr_timesheet_sheet_autodraft>=16.0dev,<16.1dev',
+        'odoo-addon-hr_timesheet_sheet_policy_department_manager>=16.0dev,<16.1dev',
         'odoo-addon-hr_timesheet_sheet_policy_project_manager>=16.0dev,<16.1dev',
         'odoo-addon-hr_timesheet_task_domain>=16.0dev,<16.1dev',
         'odoo-addon-hr_timesheet_task_required>=16.0dev,<16.1dev',
