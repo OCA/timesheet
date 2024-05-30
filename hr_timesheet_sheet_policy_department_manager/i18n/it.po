@@ -27,29 +27,12 @@ msgid "Companies"
 msgstr "Aziende"
 
 #. module: hr_timesheet_sheet_policy_department_manager
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_hr_timesheet_sheet__display_name
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_res_company__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: hr_timesheet_sheet_policy_department_manager
 #: model:ir.model.fields,help:hr_timesheet_sheet_policy_department_manager.field_res_company__timesheet_sheet_review_policy
 msgid "How Timesheet Sheets review is performed."
 msgstr "Come viene eseguita la revisione dei prospetti fogli ore."
 
 #. module: hr_timesheet_sheet_policy_department_manager
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_hr_timesheet_sheet__id
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_res_company__id
-msgid "ID"
-msgstr "ID"
-
-#. module: hr_timesheet_sheet_policy_department_manager
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_hr_timesheet_sheet____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_res_company____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: hr_timesheet_sheet_policy_department_manager
+#. odoo-python
 #: code:addons/hr_timesheet_sheet_policy_department_manager/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Only a Department's Manager can review the sheet."
@@ -64,3 +47,12 @@ msgstr "Prospetto foglio ore"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_res_company__timesheet_sheet_review_policy
 msgid "Timesheet Sheet Review Policy"
 msgstr "Politica revisione prospetto foglio ore"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
