@@ -9,7 +9,7 @@
     'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
     'version': '10.0.1.0.3',
-    'author': 'Scopea, Niboo, Camptocamp SA, Odoo Community Association (OCA)',
+    'author': 'Scopea, Niboo, Camptocamp, Odoo Community Association (OCA)',
     'depends': ['hr_timesheet_sheet'],
     'data': [
         'views/hr_timesheet_assets.xml',
