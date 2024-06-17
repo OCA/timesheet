@@ -1,0 +1,1 @@
+Changed ``unit_amount`` into a computed (stored, writeable) field.
