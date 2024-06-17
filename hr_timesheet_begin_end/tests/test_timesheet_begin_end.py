@@ -21,18 +21,39 @@ class TestBeginEnd(common.TransactionCase):
             "employee_id": self.employee.id,
         }
 
-    def test_onchange(self):
-        line = self.timesheet_line_model.new(
-            {"name": "test", "time_start": 10.0, "time_stop": 12.0}
-        )
-        line.onchange_hours_start_stop()
-        self.assertEqual(line.unit_amount, 2)
+    def test_compute_unit_amount(self):
+        line = self.base_line.copy()
+        del line["unit_amount"]
+        line_record = self.timesheet_line_model.create(line)
+        self.assertEqual(line_record.unit_amount, 2)
+        line_record.time_stop = 14.0
+        self.assertEqual(line_record.unit_amount, 4)
 
-    def test_onchange_no_update(self):
+    def test_compute_unit_amount_no_compute_if_no_times(self):
+        line = self.base_line.copy()
+        del line["time_start"]
+        del line["time_stop"]
+        line_record = self.timesheet_line_model.create(line)
+        self.assertEqual(line_record.unit_amount, 2.0)
+        line_record.unit_amount = 3.0
+        self.assertEqual(line_record.unit_amount, 3.0)
+
+    def test_compute_unit_amount_to_zero(self):
+        line = self.base_line.copy()
+        del line["unit_amount"]
+        line_record = self.timesheet_line_model.create(line)
+        self.assertEqual(line_record.unit_amount, 2)
+        line_record.write({"time_start": 0, "time_stop": 0})
+        self.assertEqual(line_record.unit_amount, 0)
+
+    def test_compute_unit_amount_to_zero_no_record(self):
+        # Cannot create/save this model because it breaks a constraint, so using
+        # .new().
         line = self.timesheet_line_model.new(
             {"name": "test", "time_start": 13.0, "time_stop": 12.0}
         )
-        line.onchange_hours_start_stop()
+        self.assertEqual(line.unit_amount, 0)
+        line.time_stop = 10.0
         self.assertEqual(line.unit_amount, 0)
 
     def test_check_begin_before_end(self):

@@ -16,9 +16,29 @@ class AccountAnalyticLine(models.Model):
     time_start = fields.Float(string="Begin Hour")
     time_stop = fields.Float(string="End Hour")
 
-    @api.onchange("time_start", "time_stop", "project_id")
-    def onchange_hours_start_stop(self):
-        self.unit_amount = self.unit_amount_from_start_stop()
+    # Override to be a computed field.
+    unit_amount = fields.Float(
+        compute="_compute_unit_amount",
+        store=True,
+        readonly=False,
+        # This default is a workaround for a bizarre situation: if a line is
+        # created with a time range but WITHOUT defining unit_amount, then you
+        # would expect unit_amount to be computed from the range. But this never
+        # happens, and it is instead set to default value 0. Subsequently the
+        # constraint _validate_unit_amount_equal_to_time_diff kicks in and
+        # raises an exception.
+        #
+        # By setting the default to None, the computation is correctly
+        # triggered. If nothing is computed, None falls back to 0.
+        default=None,
+    )
+
+    @api.depends("time_start", "time_stop", "project_id")
+    def _compute_unit_amount(self):
+        # Do not compute/adjust the unit_amount of non-timesheets.
+        lines = self.filtered(lambda line: line.project_id)
+        for line in lines:
+            line.unit_amount = line.unit_amount_from_start_stop()
 
     def _validate_start_before_stop(self):
         value_to_html = self.env["ir.qweb.field.float_time"].value_to_html
