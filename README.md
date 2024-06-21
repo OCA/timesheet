@@ -9,7 +9,7 @@
 
 # Odoo Timesheet Management Modules
 
-None
+TODO: add repo description.
 
 <!-- /!\ do not modify below this line -->
 
