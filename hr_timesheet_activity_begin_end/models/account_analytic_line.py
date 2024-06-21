@@ -1,10 +1,11 @@
 # Copyright 2015 Camptocamp SA - Guewen Baconnier
 # Copyright 2017 Tecnativa, S.L. - Luis M. Ontalba
+# Copyright 2024 Coop IT Easy SC - Carmen Bianca BAKKER
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from datetime import timedelta
 
-from odoo import models, fields, api, exceptions, _
+from odoo import _, api, exceptions, fields, models
 from odoo.tools.float_utils import float_compare
 
 
@@ -15,55 +16,90 @@ class AccountAnalyticLine(models.Model):
     time_start = fields.Float(string='Begin Hour')
     time_stop = fields.Float(string='End Hour')
 
-    @api.constrains('time_start', 'time_stop', 'unit_amount')
-    def _check_time_start_stop(self):
-        self.ensure_one()
-        value_to_html = self.env['ir.qweb.field.float_time'].value_to_html
-        start = timedelta(hours=self.time_start)
-        stop = timedelta(hours=self.time_stop)
-        if stop < start:
-            raise exceptions.ValidationError(
-                _('The beginning hour (%s) must '
-                  'precede the ending hour (%s).') %
-                (value_to_html(self.time_start, None),
-                 value_to_html(self.time_stop, None))
-            )
-        hours = (stop - start).seconds / 3600
-        rounding = self.env.ref("uom.product_uom_hour").rounding
-        if (hours and
-                float_compare(hours, self.unit_amount, precision_rounding=rounding)):
-            raise exceptions.ValidationError(
-                _('The duration (%s) must be equal to the difference '
-                  'between the hours (%s).') %
-                (value_to_html(self.unit_amount, None),
-                 value_to_html(hours, None))
-            )
-        # check if lines overlap
-        others = self.search([
-            ('id', '!=', self.id),
-            ('user_id', '=', self.user_id.id),
-            ('date', '=', self.date),
-            ('time_start', '<', self.time_stop),
-            ('time_stop', '>', self.time_start),
-        ])
-        if others:
-            message = _("Lines can't overlap:\n")
-            message += '\n'.join(['%s - %s' %
-                                  (value_to_html(line.time_start, None),
-                                   value_to_html(line.time_stop, None))
-                                  for line
-                                  in (self + others).sorted(
-                                      lambda l: l.time_start
-                                  )])
-            raise exceptions.ValidationError(message)
-
-    @api.onchange('time_start', 'time_stop')
+    @api.onchange("time_start", "time_stop", "project_id")
     def onchange_hours_start_stop(self):
-        start = timedelta(hours=self.time_start)
-        stop = timedelta(hours=self.time_stop)
+        self.unit_amount = self.unit_amount_from_start_stop()
+
+    def _validate_start_before_stop(self):
+        value_to_html = self.env["ir.qweb.field.float_time"].value_to_html
+        for line in self:
+            if line.time_stop < line.time_start:
+                raise exceptions.ValidationError(
+                    _("The beginning hour (%s) must " "precede the ending hour (%s).")
+                    % (
+                        value_to_html(line.time_start, None),
+                        value_to_html(line.time_stop, None),
+                    )
+                )
+
+    def _validate_unit_amount_equal_to_time_diff(self):
+        value_to_html = self.env["ir.qweb.field.float_time"].value_to_html
+        for line in self:
+            hours = line.unit_amount_from_start_stop()
+            rounding = self.env.ref("uom.product_uom_hour").rounding
+            if hours and float_compare(
+                hours, line.unit_amount, precision_rounding=rounding
+            ):
+                raise exceptions.ValidationError(
+                    _(
+                        "The duration (%s) must be equal to the difference "
+                        "between the hours (%s)."
+                    )
+                    % (
+                        value_to_html(line.unit_amount, None),
+                        value_to_html(hours, None),
+                    )
+                )
+
+    def _overlap_domain(self):
+        self.ensure_one()
+        return [
+            ("id", "!=", self.id),
+            ("user_id", "=", self.user_id.id),
+            ("date", "=", self.date),
+            ("time_start", "<", self.time_stop),
+            ("time_stop", ">", self.time_start),
+        ]
+
+    def _validate_no_overlap(self):
+        value_to_html = self.env["ir.qweb.field.float_time"].value_to_html
+        for line in self:
+            others = self.search(line._overlap_domain())
+            if others:
+                message = _("Lines can't overlap:\n")
+                message += "\n".join(
+                    [
+                        "%s - %s"
+                        % (
+                            value_to_html(line.time_start, None),
+                            value_to_html(line.time_stop, None),
+                        )
+                        for line in (line + others).sorted(lambda l: l.time_start)
+                    ]
+                )
+                raise exceptions.ValidationError(message)
+
+    @api.constrains("time_start", "time_stop", "unit_amount")
+    def _check_time_start_stop(self):
+        self._validate_start_before_stop()
+        self._validate_unit_amount_equal_to_time_diff()
+        self._validate_no_overlap()
+
+    @api.model
+    def _hours_from_start_stop(self, time_start, time_stop):
+        start = timedelta(hours=time_start)
+        stop = timedelta(hours=time_stop)
         if stop < start:
-            return
-        self.unit_amount = (stop - start).seconds / 3600
+            # Invalid case, but return something sensible.
+            return 0
+        return (stop - start).seconds / 3600
+
+    def unit_amount_from_start_stop(self):
+        self.ensure_one()
+        # Don't handle non-timesheet lines.
+        if not self.project_id:
+            return 0
+        return self._hours_from_start_stop(self.time_start, self.time_stop)
 
     def merge_timesheets(self):  # pragma: no cover
         """This method is needed in case hr_timesheet_sheet is installed"""
