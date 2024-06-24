@@ -3,8 +3,8 @@
 {
     "name": "HR Employee Cost History",
     "summary": """Adds an history to employee's costs.""",
-    "version": "16.0.1.0.0",
-    "development_status": "Alpha",
+    "version": "16.0.1.0.1",
+    "development_status": "Beta",
     "category": "Human Resources",
     "website": "https://github.com/OCA/timesheet",
     "author": "Moduon, Odoo Community Association (OCA)",
