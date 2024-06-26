@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_account_analytic_line_form_inherit" model="ir.ui.view">
+        <field name="name">account.analytic.line.form.inherit</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='unit_amount']" position="after">
+                <field
+                    name="unit_amount_rounded"
+                    readonly="readonly_timesheet"
+                    string="Quantity Rounded"
+                    widget="float_time"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="account_analytic_line_kanban_inherit" model="ir.ui.view">
+        <field name="name">account.analytic.line.kanban.inherit</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.view_kanban_account_analytic_line" />
+        <field name="arch" type="xml">
+            <xpath expr="//span[@name='duration']" position="inside">
+                <br />
+                <strong>Rounded: </strong>
+                <field name="unit_amount_rounded" widget="float_time" />
+            </xpath>
+        </field>
+    </record>
+    <record id="account_analytic_line_tree_inherit" model="ir.ui.view">
+        <field name="name">account.analytic.line.tree.inherit</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='unit_amount']" position="after">
+                <field
+                    name="unit_amount_rounded"
+                    string="Quantity rounded"
+                    sum="Total quantity rounded"
+                    widget="float_time"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
