@@ -1,0 +1,1 @@
+Fixed the test to use timesheet lines instead of bare analytic lines.

@@ -9,17 +9,16 @@ class TestBeginEnd(common.TransactionCase):
     def setUp(self):
         super(TestBeginEnd, self).setUp()
         self.timesheet_line_model = self.env["account.analytic.line"]
-        self.analytic = self.env.ref("analytic.analytic_administratif")
-        self.user = self.env.ref("base.user_root")
+        self.project = self.env.ref("project.project_project_1")
+        self.employee = self.env.ref("hr.employee_qdp")
         self.base_line = {
             "name": "test",
             "date": fields.Date.today(),
             "time_start": 10.0,
             "time_stop": 12.0,
-            "user_id": self.user.id,
             "unit_amount": 2.0,
-            "account_id": self.analytic.id,
-            "amount": -60.0,
+            "project_id": self.project.id,
+            "employee_id": self.employee.id,
         }
 
     def test_onchange(self):
