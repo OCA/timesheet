@@ -37,32 +37,39 @@ jobs:
         include:
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
             include: "sale_timesheet_rounded"
-            makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            include: "sale_timesheet_rounded,hr_timesheet_report,hr_timesheet_report_rounded"
-            name: test with OCB
-          - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            exclude: "sale_timesheet_rounded,hr_timesheet_report,hr_timesheet_report_rounded"
-            makepot: "true"
-            name: test with Odoo
-          - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            include: "sale_timesheet_rounded,hr_timesheet_report,hr_timesheet_report_rounded"
+            include: "sale_timesheet_rounded"
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            include: "sale_timesheet_rounded,hr_timesheet_report,hr_timesheet_report_rounded"
+            include: "hr_timesheet_begin_end"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
+            include: "hr_timesheet_begin_end"
+            name: test with OCB
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
+            include: "hr_timesheet_report"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
+            include: "hr_timesheet_report"
+            name: test with OCB
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
+            include: "hr_timesheet_report_rounded"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
             include: "hr_timesheet_report_rounded"
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            exclude: "sale_timesheet_rounded,hr_timesheet_report,hr_timesheet_report_rounded"
+            exclude: "sale_timesheet_rounded,hr_timesheet_begin_end,hr_timesheet_report,hr_timesheet_report_rounded"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            exclude: "sale_timesheet_rounded,hr_timesheet_report,hr_timesheet_report_rounded"
+            exclude: "sale_timesheet_rounded,hr_timesheet_begin_end,hr_timesheet_report,hr_timesheet_report_rounded"
             name: test with OCB
+            makepot: "true"
     services:
       postgres:
         image: postgres:12.0
@@ -93,9 +100,5 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Update .pot files
-        run:
-          oca_export_and_push_pot https://x-access-token:${{ secrets.GIT_PUSH_TOKEN
-          }}@github.com/${{ github.repository }}
-        if:
-          ${{ matrix.makepot == 'true' && github.event_name == 'push' &&
-          github.repository_owner == 'OCA' }}
+        run: oca_export_and_push_pot https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}
+        if: ${{ matrix.makepot == 'true' && github.event_name == 'push' && github.repository_owner == 'OCA' }}

@@ -18,6 +18,7 @@ org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups:
 - sale_timesheet_rounded
+- hr_timesheet_begin_end
 - hr_timesheet_report
 - hr_timesheet_report_rounded
 repo_description: 'TODO: add repo description.'
