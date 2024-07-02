@@ -17,13 +17,13 @@ Sale timesheet budget
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ftimesheet-lightgray.png?logo=github
-    :target: https://github.com/OCA/timesheet/tree/14.0/sale_timesheet_budget
+    :target: https://github.com/OCA/timesheet/tree/16.0/sale_timesheet_budget
     :alt: OCA/timesheet
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/timesheet-14-0/timesheet-14-0-sale_timesheet_budget
+    :target: https://translation.odoo-community.org/projects/timesheet-16-0/timesheet-16-0-sale_timesheet_budget
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=14.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=16.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -39,14 +39,14 @@ some additional lines (incomes/expenses) linked to a planned budget.
 Usage
 =====
 
-#. Go to *Projects* and create a new one, setting Customer and analytic account.
+#. Go to *Projects* and create a new one, setting Customer, analytic account and Billable.
 #. Go to *Sales -> Orders -> Quotations* and create a new one setting the same
    customer and project previously created.
 #. Alternatively, you can create a sales order with lines that creates a project.
 #. Go to the project, and edit it.
 #. Add some records (positive or negative) in the "Budget" tab.
-#. Go to *Project Overview* smart-button and a new line called "Budget" in the
-   *Profitability* section will appear with the total amount of the lines.
+#. Go to *Project Updates* button and a new line (Budget) in the
+   *Profitability > Revenues* section will appear with the total amount of the lines.
 
 Known issues / Roadmap
 ======================
@@ -59,7 +59,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/timesheet/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20sale_timesheet_budget%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20sale_timesheet_budget%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -100,6 +100,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-victoralmau| 
 
-This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/14.0/sale_timesheet_budget>`_ project on GitHub.
+This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/16.0/sale_timesheet_budget>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
