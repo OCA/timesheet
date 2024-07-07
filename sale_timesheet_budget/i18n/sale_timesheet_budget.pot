@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,13 +14,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_timesheet_budget
-#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__allowed_sale_order_ids
-msgid "Allowed Sale Order"
-msgstr ""
-
-#. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__amount
-#: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.project_project_view_form
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.view_project_project_budget_tree
 msgid "Amount"
 msgstr ""
 
@@ -32,13 +27,10 @@ msgstr ""
 #. module: sale_timesheet_budget
 #: model:ir.model.fields,help:sale_timesheet_budget.field_project_project_budget__analytic_account_id
 msgid ""
-"Analytic account to which this project is linked for financial management. "
-"Use an analytic account to record cost and revenue on your project."
-msgstr ""
-
-#. module: sale_timesheet_budget
-#: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.timesheet_plan
-msgid "Budget"
+"Analytic account to which this project, its tasks and its timesheets are linked. \n"
+"Track the costs and revenues of your project by setting this analytic account on your related documents (e.g. sales orders, invoices, purchase orders, vendor bills, expenses etc.).\n"
+"This analytic account can be changed on each task individually if necessary.\n"
+"An analytic account is required in order to use timesheets."
 msgstr ""
 
 #. module: sale_timesheet_budget
@@ -47,8 +39,11 @@ msgid "Budget Amount"
 msgstr ""
 
 #. module: sale_timesheet_budget
+#. odoo-python
+#: code:addons/sale_timesheet_budget/models/project_project.py:0
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project__budget_ids
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.project_project_view_form
+#, python-format
 msgid "Budgets"
 msgstr ""
 
@@ -73,19 +68,16 @@ msgid "Date"
 msgstr ""
 
 #. module: sale_timesheet_budget
-#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project__display_name
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: sale_timesheet_budget
-#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project__id
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__id
 msgid "ID"
 msgstr ""
 
 #. module: sale_timesheet_budget
-#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project____last_update
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -112,6 +104,11 @@ msgid "Project"
 msgstr ""
 
 #. module: sale_timesheet_budget
+#: model:ir.actions.act_window,name:sale_timesheet_budget.action_project_project_budget
+msgid "Project Budgets"
+msgstr ""
+
+#. module: sale_timesheet_budget
 #: model:ir.model,name:sale_timesheet_budget.model_project_project_budget
 msgid "Project Project Budget"
 msgstr ""
@@ -124,4 +121,9 @@ msgstr ""
 #. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__sale_order_id
 msgid "Sale Order"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__sale_order_id_domain
+msgid "Sale Order Id Domain"
 msgstr ""
