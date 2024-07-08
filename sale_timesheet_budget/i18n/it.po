@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-02-01 18:45+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-07-08 08:59+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__amount
@@ -39,6 +39,14 @@ msgid ""
 "necessary.\n"
 "An analytic account is required in order to use timesheets."
 msgstr ""
+"Cono analitico a cui sono collegati il progetto, i suoi lavori e e suoi "
+"fogli ore. \n"
+"Traccia i costi e i ricavi dei progetti impostando questo conto analitico "
+"nei documenti relativi (es. ordini di vendita, fatture, ordini di acquisto, "
+"fatture cliente, spese, ecc.).\n"
+"Questo conto analitico può esere modificato per singolo lavoro se necessario."
+"\n"
+"Per l'utilizzo dei fogli ore è richiesto un conto analitico."
 
 #. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project__budget_amount
@@ -113,7 +121,7 @@ msgstr "Progetto"
 #. module: sale_timesheet_budget
 #: model:ir.actions.act_window,name:sale_timesheet_budget.action_project_project_budget
 msgid "Project Budgets"
-msgstr ""
+msgstr "Budget progetto"
 
 #. module: sale_timesheet_budget
 #: model:ir.model,name:sale_timesheet_budget.model_project_project_budget
@@ -133,7 +141,7 @@ msgstr "Ordine di vendita"
 #. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__sale_order_id_domain
 msgid "Sale Order Id Domain"
-msgstr ""
+msgstr "Dominio ID ordine di vendita"
 
 #~ msgid "Allowed Sale Order"
 #~ msgstr "Ordine vendita consentito"
