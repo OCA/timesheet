@@ -22,6 +22,11 @@ msgid "Companies"
 msgstr "Empresas"
 
 #. module: hr_timesheet_sheet_period
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_period.view_hr_timesheet_sheet_filter
+msgid "Current Period"
+msgstr ""
+
+#. module: hr_timesheet_sheet_period
 #: model:ir.model.fields,field_description:hr_timesheet_sheet_period.field_hr_timesheet_sheet__is_hr_period_required
 msgid "Is Hr Period Required"
 msgstr "É Requerido Período de HR"
