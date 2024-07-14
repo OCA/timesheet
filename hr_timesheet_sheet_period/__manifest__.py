@@ -5,7 +5,7 @@
 
 {
     "name": "HR Timesheet Sheet based on Payroll Period",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.1.0",
     "category": "Human Resources",
     "author": "ForgeFlow S.L., "
     "Serpent Consulting Services Pvt. Ltd., "
