@@ -12,14 +12,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2016-09-07 08:56+0000\n"
-"Last-Translator: Josep Sànchez <papapep@gmx.com>, 2016\n"
+"PO-Revision-Date: 2024-07-16 07:44+0000\n"
+"Last-Translator: QuiJoQuim <quim.rebull@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
@@ -53,13 +54,12 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acció necessària"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_ids
-#, fuzzy
 msgid "Activities"
-msgstr "Activitats del full de treball"
+msgstr "Activitats"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_exception_decoration
@@ -69,7 +69,7 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Estat de la activitat"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_type_icon
@@ -85,15 +85,13 @@ msgstr "Afegir una línia"
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_all_timesheets
-#, fuzzy
 msgid "All Timesheet Sheets"
-msgstr "Línies full de serveis"
+msgstr "Totes les Fulles de Servei"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
-#, fuzzy
 msgid "Analytic Account"
-msgstr "Comptes analítics"
+msgstr "Compte analític"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_line
@@ -116,45 +114,45 @@ msgstr "Aprovat"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Nombre d'adjunts"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr_manager
 msgid "By HR Managers"
-msgstr ""
+msgstr "Pels responsables de RRHH"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr
 msgid "By HR Officers"
-msgstr ""
+msgstr "Pels treballadors de RRHH"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__timesheet_manager
 msgid "By Timesheets Managers"
-msgstr ""
+msgstr "Pels responsables de Fulles de Servei"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
 msgid "Can Review"
-msgstr ""
+msgstr "Pot revisar"
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot approve a non-submitted sheet."
-msgstr ""
+msgstr "No es pot aprovar una Fulla no confirmada."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot reject a non-submitted sheet."
-msgstr ""
+msgstr "No es pot rebutjar una fulla no confirmada."
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
 #, python-format
 msgid "Cannot revert to draft a non-approved sheet."
-msgstr ""
+msgstr "No es pot tornar a esborrany una fulla no confirmada."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
@@ -165,18 +163,17 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose the week start day."
-msgstr ""
+msgstr "Escull el dia d'inici de la setmana."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
-#, fuzzy
 msgid "Choose timesheet sheets review policy."
-msgstr "nova fulla d'assistència."
+msgstr "Escull una política de revisió de Fulles de Servei."
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
 msgid "Choose which timesheet sheet ranges should be used by default"
-msgstr ""
+msgstr "Escull el rang per defecte de les fulles de servei"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_res_company
@@ -193,15 +190,13 @@ msgstr "Companyia"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__complete_name
-#, fuzzy
 msgid "Complete Name"
-msgstr "Nom del treballador"
+msgstr "Nom Complet"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_res_config_settings
-#, fuzzy
 msgid "Config Settings"
-msgstr "project.config.settings"
+msgstr "Paràmetres de Configuració"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__create_uid
@@ -220,15 +215,14 @@ msgstr "Creat el"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__access_url
 msgid "Customer Portal URL"
-msgstr ""
+msgstr "URL del Portal de Client"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__date
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__date
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__date
-#, fuzzy
 msgid "Date"
-msgstr "Data fins"
+msgstr "Data"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__date_start
@@ -237,9 +231,8 @@ msgstr "Data des de"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__value_x
-#, fuzzy
 msgid "Date Name"
-msgstr "Data des de"
+msgstr "Nom de la data"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__date_end
@@ -249,12 +242,12 @@ msgstr "Data fins"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__sheet_range__daily
 msgid "Day"
-msgstr ""
+msgstr "Dia"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 msgid "Delete"
-msgstr ""
+msgstr "Esborra"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_department
@@ -280,29 +273,29 @@ msgstr "Detalls"
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__display_name
 msgid "Display Name"
-msgstr "Mostrar Nom"
+msgstr "Nom Mostrat"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__hr_timesheet_reviewer_no_email
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__hr_timesheet_reviewer_no_email
 msgid "Don't send email to Reviewer"
-msgstr ""
+msgstr "No enviïs correu al Revisor"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-#, fuzzy
 msgid "Draft Timesheet Sheets"
-msgstr "Línies full de serveis"
+msgstr "Fulls de Servei en esborrany"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
+#, fuzzy
 msgid "Dropdown menu"
-msgstr ""
+msgstr "Menú desplegable"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 msgid "Edit"
-msgstr ""
+msgstr "Edita"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_employee
@@ -311,7 +304,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__employee_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__employee_id
 msgid "Employee"
-msgstr "Empleat"
+msgstr "Treballador"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -346,27 +339,27 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidors"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Seguidors (Canals)"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidors (Contactes)"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icona de Font Awesome (p.ex. fa-tasks)"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__4
 msgid "Friday"
-msgstr ""
+msgstr "Divendres"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -381,9 +374,8 @@ msgstr "Hores"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
-#, fuzzy
 msgid "How Timesheet Sheets review is performed."
-msgstr "Fulla d'hores per aprovar"
+msgstr "Com es revisen les Fulles de Servei."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_account__id
@@ -402,23 +394,23 @@ msgstr "ID"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icona"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "ICona per indicar alerta en activitat."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si està actiu, els nous missatges requeriran atenció."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Si actiu, alguns missatges tenen error de lliurament."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_project_id
@@ -451,18 +443,18 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "In order to review a timesheet sheet, your user needs to be linked to an "
 "employee."
 msgstr ""
-"Per crear una part d'hores per aquest treballador, ha d'enllaçar-lo amb un "
-"usuari."
+"Per revisar una Fulla d'Hores, el vostre usuari ha d'estar enllaçat amb un "
+"treballador."
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "És seguidor"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_account_analytic_account____last_update
@@ -476,7 +468,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings____last_update
 msgid "Last Modified on"
-msgstr "Última modificació el "
+msgstr "Última modificació el"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__write_uid
@@ -495,23 +487,22 @@ msgstr "Última actualització el"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adjunt principal"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Error de lliurament de missatge"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_ids
-#, fuzzy
 msgid "Messages"
-msgstr "Missatges pendents de llegir"
+msgstr "Missatges"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_week_start__0
 msgid "Monday"
-msgstr ""
+msgstr "Dilluns"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__sheet_range__monthly
@@ -526,28 +517,24 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_my_timesheets
-#, fuzzy
 msgid "My Timesheet Sheets"
-msgstr "La meva fulla d'assistència"
+msgstr "Les meves Fulles de Serveis"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit_my
-#, fuzzy
 msgid "My Timesheets to Submit"
-msgstr "Full de serveis"
+msgstr "Les meves Fulles de Serveis a enviar"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
-#, fuzzy
 msgid "My timesheets to submit."
-msgstr "Fulla d'hores per aprovar"
+msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
-#, fuzzy
 msgid "Name"
-msgstr "Data des de"
+msgstr "Nom"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__hr_timesheet_sheet__state__new
