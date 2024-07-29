@@ -17,7 +17,7 @@
                     tabindex="-1"
                     type="object"
                     icon="fa-folder-o"
-                    attrs="{'invisible': ['|', ('is_task_closed', '=', True), ('task_id', '=', False)]}"
+                    invisible="is_task_closed or not task_id"
                 />
                 <button
                     name="action_open_task"
@@ -25,7 +25,7 @@
                     tabindex="-1"
                     type="object"
                     icon="fa-folder-open-o"
-                    attrs="{'invisible': ['|', ('is_task_closed', '=', False), ('task_id', '=', False)]}"
+                    invisible="not is_task_closed or not task_id"
                 />
             </field>
         </field>
@@ -40,7 +40,7 @@
                     <field name="is_task_closed" invisible="1" />
                     <button
                         name="action_toggle_task_stage"
-                        attrs="{'invisible': [('is_task_closed', '=', True)]}"
+                        invisible="is_task_closed"
                         class="oe_stat_button"
                         type="object"
                         icon="fa-folder"
@@ -51,7 +51,7 @@
                     </button>
                     <button
                         name="action_toggle_task_stage"
-                        attrs="{'invisible': [('is_task_closed', '=', False)]}"
+                        invisible="not is_task_closed"
                         class="oe_stat_button"
                         type="object"
                         icon="fa-folder-open"

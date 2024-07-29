@@ -76,6 +76,11 @@ Contributors
 
 -  Dhara Solanki <dhara.solanki@initos.com>
 
+-  `Sygel <https://www.sygel.es>`__:
+
+      -  Valentín Vinagre
+      -  Roger Sans
+
 Maintainers
 -----------
 
