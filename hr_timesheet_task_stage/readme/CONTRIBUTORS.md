@@ -14,3 +14,8 @@
   - Alexey Pelykh \<<alexey.pelykh@corphub.eu>\>
 
 - Dhara Solanki \<<dhara.solanki@initos.com>\>
+
+- [Sygel](https://www.sygel.es):
+
+  > - Valentín Vinagre
+  > - Roger Sans
