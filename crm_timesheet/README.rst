@@ -82,6 +82,12 @@ Contributors
 
 -  Foram Shah <foram.shah@initos.com>
 
+-  `Sygel <https://www.sygel.es>`__
+
+   -  Harald Panten
+   -  Valentin Vinagre
+   -  Roger Sans
+
 Maintainers
 -----------
 
