@@ -8,7 +8,7 @@
 
 {
     "name": "Task Log: Open/Close Task",
-    "version": "16.0.1.0.1",
+    "version": "17.0.1.0.0",
     "category": "Operations/Timesheets",
     "website": "https://github.com/OCA/timesheet",
     "author": "Tecnativa, CorporateHub, Odoo Community Association (OCA)",
