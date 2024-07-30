@@ -42,17 +42,6 @@ msgid "Folded in Kanban"
 msgstr "Minimizzato nel Kanban"
 
 #. module: hr_timesheet_task_stage
-#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid ""
-"If enabled, this stage will be displayed as folded in the Kanban view of "
-"your tasks. Tasks in a folded stage are considered as closed (not applicable "
-"to personal stages)."
-msgstr ""
-"Se attivo, questa fase verrà visualizzata minimizzata nella vista Kanban dei "
-"tuoi lavori. I lavori nelle fasi minimizzate sono considerati chiusi (non "
-"applicabile alle fasi personali)."
-
-#. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
 msgid "Open task"
 msgstr "Apri lavoro"
@@ -70,6 +59,15 @@ msgstr "Non c'è nessuna fase marcata come \"Chiusa\". Impostarne una."
 #, python-format
 msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
 msgstr "Tutte la fasi sono marcate come \"Chiuse\". Deselezionarne una."
+
+#~ msgid ""
+#~ "If enabled, this stage will be displayed as folded in the Kanban view of "
+#~ "your tasks. Tasks in a folded stage are considered as closed (not "
+#~ "applicable to personal stages)."
+#~ msgstr ""
+#~ "Se attivo, questa fase verrà visualizzata minimizzata nella vista Kanban "
+#~ "dei tuoi lavori. I lavori nelle fasi minimizzate sono considerati chiusi "
+#~ "(non applicabile alle fasi personali)."
 
 #~ msgid "Closing Stage"
 #~ msgstr "Chiusura fase"
