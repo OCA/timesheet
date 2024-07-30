@@ -43,14 +43,6 @@ msgid "Folded in Kanban"
 msgstr ""
 
 #. module: hr_timesheet_task_stage
-#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid ""
-"If enabled, this stage will be displayed as folded in the Kanban view of "
-"your tasks. Tasks in a folded stage are considered as closed (not applicable "
-"to personal stages)."
-msgstr ""
-
-#. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
 msgid "Open task"
 msgstr "משימה פתוחה"

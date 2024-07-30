@@ -42,17 +42,6 @@ msgid "Folded in Kanban"
 msgstr "Hopvikt i Kanban"
 
 #. module: hr_timesheet_task_stage
-#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid ""
-"If enabled, this stage will be displayed as folded in the Kanban view of "
-"your tasks. Tasks in a folded stage are considered as closed (not applicable "
-"to personal stages)."
-msgstr ""
-"Om det är aktiverat kommer detta steg att visas som vikt i Kanban-vyn för "
-"dina uppgifter. Uppgifter i ett hopvikt stadium anses vara stängda (ej "
-"tillämpligt på personliga scener)."
-
-#. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
 msgid "Open task"
 msgstr "Öppna aktivitet"
@@ -72,6 +61,15 @@ msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
 msgstr ""
 "Det finns ingen etapp med \"Stängd\" som inte är ikryssad. Var vänlig "
 "avmarkera en."
+
+#~ msgid ""
+#~ "If enabled, this stage will be displayed as folded in the Kanban view of "
+#~ "your tasks. Tasks in a folded stage are considered as closed (not "
+#~ "applicable to personal stages)."
+#~ msgstr ""
+#~ "Om det är aktiverat kommer detta steg att visas som vikt i Kanban-vyn för "
+#~ "dina uppgifter. Uppgifter i ett hopvikt stadium anses vara stängda (ej "
+#~ "tillämpligt på personliga scener)."
 
 #~ msgid "Closing Stage"
 #~ msgstr "Stängningsetapp"

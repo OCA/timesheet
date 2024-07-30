@@ -43,17 +43,6 @@ msgid "Folded in Kanban"
 msgstr "Doblado en Kanban"
 
 #. module: hr_timesheet_task_stage
-#: model:ir.model.fields,help:hr_timesheet_task_stage.field_account_analytic_line__is_task_closed
-msgid ""
-"If enabled, this stage will be displayed as folded in the Kanban view of "
-"your tasks. Tasks in a folded stage are considered as closed (not applicable "
-"to personal stages)."
-msgstr ""
-"Si se activa, esta etapa se mostrará como plegada en la vista Kanban de sus "
-"tareas. Las tareas en una etapa plegada se consideran cerradas (no aplicable "
-"a las etapas personales)."
-
-#. module: hr_timesheet_task_stage
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_task_stage.account_analytic_line_tree
 msgid "Open task"
 msgstr "Abrir tarea"
@@ -74,6 +63,15 @@ msgid "There isn't any stage with \"Closed\" unchecked. Please unmark any."
 msgstr ""
 "No hay ninguna etapa con \"Cerrado\" sin marcar. Por favor, desmarque "
 "cualquiera."
+
+#~ msgid ""
+#~ "If enabled, this stage will be displayed as folded in the Kanban view of "
+#~ "your tasks. Tasks in a folded stage are considered as closed (not "
+#~ "applicable to personal stages)."
+#~ msgstr ""
+#~ "Si se activa, esta etapa se mostrará como plegada en la vista Kanban de "
+#~ "sus tareas. Las tareas en una etapa plegada se consideran cerradas (no "
+#~ "aplicable a las etapas personales)."
 
 #~ msgid "Closing Stage"
 #~ msgstr "Etapa de Clausura"
