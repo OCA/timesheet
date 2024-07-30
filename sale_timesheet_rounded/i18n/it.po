@@ -71,6 +71,11 @@ msgstr ""
 "arrotondate automaticamente)."
 
 #. module: sale_timesheet_rounded
+#: model:ir.model,name:sale_timesheet_rounded.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: sale_timesheet_rounded
 #: model:ir.model.fields.selection,name:sale_timesheet_rounded.selection__project_project__timesheet_rounding_method__no
 msgid "No rounding"
 msgstr "Senza arrotondamento"
@@ -100,6 +105,11 @@ msgstr "Unità arrotondamento"
 #: model:ir.model.fields,field_description:sale_timesheet_rounded.field_project_project__timesheet_rounding_method
 msgid "Rounding method"
 msgstr "Metodo arrotondamento"
+
+#. module: sale_timesheet_rounded
+#: model:ir.model,name:sale_timesheet_rounded.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr ""
 
 #. module: sale_timesheet_rounded
 #: model:ir.model,name:sale_timesheet_rounded.model_sale_order_line
