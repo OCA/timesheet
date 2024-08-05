@@ -149,12 +149,14 @@ class Sheet(models.Model):
     add_line_project_id = fields.Many2one(
         comodel_name="project.project",
         string="Select Project",
+        store=False,
         help="If selected, the associated project is added "
         "to the timesheet sheet when clicked the button.",
     )
     add_line_task_id = fields.Many2one(
         comodel_name="project.task",
         string="Select Task",
+        store=False,
         help="If selected, the associated task is added "
         "to the timesheet sheet when clicked the button.",
     )
