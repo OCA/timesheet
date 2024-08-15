@@ -612,9 +612,7 @@ class Sheet(models.Model):
     def _get_line_name(self, project_id, task_id=None, **kwargs):
         self.ensure_one()
         if task_id:
-            return "{} - {}".format(
-                project_id.name_get()[0][1], task_id.name_get()[0][1]
-            )
+            return f"{project_id.name_get()[0][1]} - {task_id.name_get()[0][1]}"
 
         return project_id.name_get()[0][1]
 
