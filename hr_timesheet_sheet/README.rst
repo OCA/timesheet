@@ -103,6 +103,7 @@ Credits
 Authors
 -------
 
+* Kodershop
 * ForgeFlow
 * Onestein
 * CorporateHub
@@ -114,11 +115,11 @@ Contributors
 -  Andrea Stirpe <a.stirpe@onestein.nl>
 -  Lois Rilo <lois.rilo@forgeflow.com>
 -  `CorporateHub <https://corporatehub.eu/>`__
-
-   -  Alexey Pelykh <alexey.pelykh@corphub.eu>
-
+-  Alexey Pelykh <alexey.pelykh@corphub.eu>
 -  Dennis Sluijk <d.sluijk@onestein.nl>
 -  Sunanda Chhatbar <sunanda.chhatbar@initos.com>
+-  Vasiliy Nikolayev <vnikolayev1@gmail.com>
+-  Kodershop (https://kodershop-erp.com/)
 
 Maintainers
 -----------

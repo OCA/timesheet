@@ -12,7 +12,7 @@ class AccountAnalyticAccount(models.Model):
     def _check_timesheet_sheet_company_id(self):
         for rec in self.sudo():
             sheets = rec.line_ids.mapped("sheet_id").filtered(
-                lambda s: s.company_id and s.company_id != rec.company_id
+                lambda s, rec=rec: s.company_id and s.company_id != rec.company_id
             )
             if sheets:
                 raise ValidationError(
