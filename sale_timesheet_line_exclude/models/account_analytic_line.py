@@ -11,6 +11,7 @@ class AccountAnalyticLine(models.Model):
     exclude_from_sale_order = fields.Boolean(
         string="Non-billable",
         help="Checking this would exclude this timesheet entry from Sale Order",
+        groups="sale_timesheet_line_exclude.group_exclude_from_sale_order",
     )
 
     @api.constrains("exclude_from_sale_order")
