@@ -14,7 +14,7 @@ from odoo.tests.common import Form, TransactionCase
 from ..models.hr_timesheet_sheet import empty_name
 
 
-class TestHrTimesheetSheet(TransactionCase):
+class TestHrTimesheetSheetCommon(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -233,6 +233,8 @@ class TestHrTimesheetSheet(TransactionCase):
             }
         )
 
+
+class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
     def test_0(self):
         sheet_form = Form(self.sheet_model.with_user(self.user))
         self.assertEqual(len(sheet_form.line_ids), 0)
