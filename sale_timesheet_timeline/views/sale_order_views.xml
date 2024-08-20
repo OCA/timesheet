@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="view_sale_order_line_timeline" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="type">timeline</field>
+        <field name="arch" type="xml">
+            <timeline
+                date_start="task_date_start"
+                date_stop="task_date_end"
+                default_group_by="task_user_ids"
+                event_open_popup="true"
+                colors="white: task_user_ids == ''"
+            >
+                <field name="name" />
+                <field name="task_user_ids" />
+                <field name="product_uom_qty" />
+                <templates>
+                    <t t-name="timeline-item">
+                        <div class="o_project_timeline_item">
+                            <t t-foreach="record.task_user_ids" t-as="user">
+                                <img
+                                    t-if="record.task_user_ids"
+                                    t-attf-src="/web/image/res.users/#{user}/avatar_128/16x16"
+                                    t-att-title="record.user"
+                                    width="16"
+                                    height="16"
+                                    class="mr8"
+                                    alt="User"
+                                />
+                            </t>
+                            <span name="name">
+                                <t t-esc="record.name.split('\n')[0]" />
+                            </span>
+                            <small
+                                name="planned_hours"
+                                class="text-info ml4"
+                                t-if="record.product_uom_qty"
+                            >
+                                <t
+                                    t-esc="field_utils.format.float_time(record.product_uom_qty)"
+                                />
+                            </small>
+                        </div>
+                    </t>
+                </templates>
+            </timeline>
+        </field>
+    </record>
+    <record id="action_sale_order_line_timeline" model="ir.actions.act_window">
+        <field name="name">Sales Tasks Planning</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">timeline</field>
+        <field
+            name="domain"
+        >[('order_id', '=', active_id), ('product_type', '=', 'service')]</field>
+    </record>
+    <!-- Put this one after the action definition -->
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree" position="inside">
+                <field
+                    name="task_date_start"
+                    optional="hide"
+                    attrs="{'invisible': [('product_type', '!=', 'service')], 'readonly': [('state', 'not in', ('draft', 'sent'))]}"
+                />
+                <field
+                    name="task_date_end"
+                    optional="hide"
+                    attrs="{'invisible': [('product_type', '!=', 'service')], 'readonly': [('state', 'not in', ('draft', 'sent'))]}"
+                />
+                <field
+                    name="task_user_ids"
+                    optional="hide"
+                    widget="many2many_avatar_user"
+                    attrs="{'invisible': [('product_type', '!=', 'service')], 'readonly': [('state', 'not in', ('draft', 'sent'))]}"
+                />
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <field name="any_service_line" invisible="1" />
+                <button
+                    name="%(action_sale_order_line_timeline)d"
+                    type="action"
+                    class="oe_stat_button"
+                    icon="fa-tasks"
+                    attrs="{'invisible': [('any_service_line', '=', False)]}"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Planning</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
