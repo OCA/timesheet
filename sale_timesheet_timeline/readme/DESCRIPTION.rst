@@ -3,3 +3,5 @@ order lines that are services, and they are transferred to the created task (if 
 when confirming the order.
 
 It includes a timeline view for pre-viewing and managing the planning.
+
+In addition, this planning is shown in the order portal view.

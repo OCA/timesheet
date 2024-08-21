@@ -1,0 +1,72 @@
+<odoo>
+    <template
+        id="sale_order_portal_content"
+        inherit_id="sale.sale_order_portal_content"
+    >
+        <xpath expr="//div[@id='total']" position="after">
+            <t
+                t-set="show_timeline"
+                t-value="lines_to_report.filtered(lambda x: x.task_date_start or x.task_date_end or x.task_user_ids)"
+            />
+            <div t-if="show_timeline" id="timeline">
+                <h3>Planning</h3>
+                <table class="table table-sm" id="sales_order_planning_table">
+                    <thead class="bg-100">
+                        <tr>
+                            <th class="text-start" id="product_name_header">Task</th>
+                            <th class="text-center">Start</th>
+                            <th class="text-center">End</th>
+                            <th class="text-end">Assignees</th>
+                        </tr>
+                    </thead>
+                    <tbody class="sale_tbody">
+                        <t
+                            t-set="sorted_lines"
+                            t-value="sorted(lines_to_report, key=lambda l: (l.task_date_start is False and l.task_date_end is False, l.task_date_start is not False, l.task_date_start or l.task_date_end))"
+                        />
+                        <t t-foreach="sorted_lines" t-as="line">
+                            <t
+                                t-set="show_line"
+                                t-value="line.task_date_start or line.task_date_end or line.task_user_ids"
+                            />
+                            <tr
+                                t-if="show_line"
+                                t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''"
+                            >
+                                <t t-if="not line.display_type">
+                                    <t t-set="name" t-value="line.name.split('\n')" />
+                                    <td id="name">
+                                        <span
+                                            t-esc="name[0] + ' ' + name[1] if len(name) > 1 else name[0]"
+                                        />
+                                    </td>
+                                    <td class="text-center">
+                                        <div id="date_start">
+                                            <span
+                                                t-field="line.task_date_start"
+                                                t-options='{"widget": "date"}'
+                                            />
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div id="date_end">
+                                            <span
+                                                t-field="line.task_date_end"
+                                                t-options='{"widget": "date"}'
+                                            />
+                                        </div>
+                                    </td>
+                                    <td class="text-end">
+                                        <div id="user_ids">
+                                            <span t-field="line.task_user_ids" />
+                                        </div>
+                                    </td>
+                                </t>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </xpath>
+    </template>
+</odoo>

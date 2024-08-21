@@ -11,5 +11,5 @@
     "installable": True,
     "application": False,
     "depends": ["sale_timesheet", "project_timeline"],
-    "data": ["views/sale_order_views.xml"],
+    "data": ["views/sale_order_views.xml", "views/sale_portal_templates.xml"],
 }

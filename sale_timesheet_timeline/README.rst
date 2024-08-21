@@ -34,6 +34,8 @@ when confirming the order.
 
 It includes a timeline view for pre-viewing and managing the planning.
 
+In addition, this planning is shown in the order portal view.
+
 **Table of contents**
 
 .. contents::
@@ -50,6 +52,11 @@ Usage
    "Task Start", "Task End" and "Task Assignees".
 #. You can also click on the "Planning" button and plan the dates visually in the
    timeline view.
+
+Known issues / Roadmap
+======================
+
+- Timeline visualization in portal.
 
 Bug Tracker
 ===========
