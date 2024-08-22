@@ -12,6 +12,7 @@ class AccountAnalyticLine(models.Model):
         string="Non-billable",
         help="Checking this would exclude this timesheet entry from Sale Order",
         groups="sale_timesheet_line_exclude.group_exclude_from_sale_order",
+        copy=False,
     )
 
     @api.constrains("exclude_from_sale_order")
