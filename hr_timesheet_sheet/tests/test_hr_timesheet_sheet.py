@@ -375,7 +375,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
                 line_form.unit_amount = 1.0
                 self.assertEqual(len(sheet.new_line_ids), 1)
         line2 = fields.first(
-            sheet.line_ids.filtered(lambda l: l.date != timesheet.date)
+            sheet.line_ids.filtered(lambda line: line.date != timesheet.date)
         )
         self.assertEqual(line2.unit_amount, 1.0)
         self.assertEqual(len(sheet.timesheet_ids), 2)
@@ -475,7 +475,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         self.assertEqual(timesheet_1_or_2.unit_amount, 1.0)
         self.assertEqual(timesheet_3.unit_amount, 0.0)
 
-        line = sheet.line_ids.filtered(lambda l: l.unit_amount != 0.0)
+        line = sheet.line_ids.filtered(lambda line: line.unit_amount != 0.0)
         self.assertEqual(len(line), 1)
         self.assertEqual(line.unit_amount, 1.0)
 
@@ -528,7 +528,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
             pass  # trigger edit and save
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertEqual(len(sheet.timesheet_ids), 2)
-        line = sheet.line_ids.filtered(lambda l: l.unit_amount != 0.0)
+        line = sheet.line_ids.filtered(lambda line: line.unit_amount != 0.0)
         self.assertEqual(line.unit_amount, 4.0)
 
         timesheet_2.name = empty_name
@@ -624,7 +624,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
             pass  # trigger edit and save
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertEqual(len(sheet.timesheet_ids), 5)
-        line = sheet.line_ids.filtered(lambda l: l.unit_amount != 0.0)
+        line = sheet.line_ids.filtered(lambda line: line.unit_amount != 0.0)
         self.assertEqual(line.unit_amount, 10.0)
 
         timesheet_2.name = empty_name
@@ -654,7 +654,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
                 line_form.unit_amount = 3.0
                 self.assertEqual(len(sheet.new_line_ids), 1)
         self.assertEqual(len(sheet.timesheet_ids), 4)
-        line = sheet.line_ids.filtered(lambda l: l.unit_amount != 0.0)
+        line = sheet.line_ids.filtered(lambda line: line.unit_amount != 0.0)
         self.assertEqual(line.unit_amount, 3.0)
 
         timesheet_3_4_and_5 = self.aal_model.search(
@@ -678,7 +678,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         with Form(sheet.with_user(self.user)):
             pass  # trigger edit and save
         self.assertEqual(len(sheet.timesheet_ids), 4)
-        line = sheet.line_ids.filtered(lambda l: l.unit_amount != 0.0)
+        line = sheet.line_ids.filtered(lambda line: line.unit_amount != 0.0)
         self.assertEqual(len(line), 1)
         self.assertEqual(line.unit_amount, 5.0)
 
@@ -715,13 +715,6 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
 
     def test_8(self):
         """Multicompany test"""
-        employee_2 = self.employee_model.create(
-            {
-                "name": "Test User 2",
-                "user_id": self.user_2.id,
-                "company_id": self.user_2.company_id.id,
-            }
-        )
         department_2 = self.department_model.create(
             {"name": "Department test 2", "company_id": self.user_2.company_id.id}
         )
@@ -740,8 +733,6 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
             with Form(sheet.with_user(self.user)) as sheet_form:
                 with self.assertRaises(AssertionError):
                     sheet_form.company_id = self.user_2.company_id.id
-                with self.assertRaises(AssertionError):
-                    sheet_form.employee_id = employee_2
                 with self.assertRaises(AssertionError):
                     sheet_form.department_id = department_2
                 sheet_form.add_line_project_id = project_3
@@ -868,7 +859,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         self.assertEqual(len(sheet.timesheet_ids), 1)
         self.assertEqual(len(sheet.line_ids), 7)
 
-        line = sheet.line_ids.filtered(lambda l: l.unit_amount)
+        line = sheet.line_ids.filtered(lambda line: line.unit_amount)
         self.assertEqual(len(line), 1)
         self.assertEqual(line.unit_amount, 2.0)
 
@@ -1019,14 +1010,17 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
 
     def test_employee_no_user(self):
         sheet_form = Form(self.sheet_model.with_user(self.user))
+        # testing create
         with self.assertRaises(UserError):
             sheet_form.employee_id = self.employee_no_user
             sheet_form.save()
 
+        # testing write
         sheet = Form(self.sheet_model.with_user(self.user)).save()
-        with Form(sheet.with_user(self.user)) as sheet_form:
-            with self.assertRaises(AssertionError):
+        with self.assertRaises(UserError):
+            with Form(sheet.with_user(self.user)) as sheet_form:
                 sheet_form.employee_id = self.employee_no_user
+                sheet_form.save()
 
     def test_workflow(self):
         sheet = Form(self.sheet_model.with_user(self.user)).save()

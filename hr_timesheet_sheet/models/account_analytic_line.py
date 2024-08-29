@@ -135,5 +135,5 @@ class AccountAnalyticLine(models.Model):
         self[1:].unlink()
         return self[0]
 
-    def _check_can_update_timesheet(self):
-        return super()._check_can_update_timesheet() or not self.filtered("sheet_id")
+    def _check_can_write(self, values):
+        return super()._check_can_write(values) or not self.filtered("sheet_id")
