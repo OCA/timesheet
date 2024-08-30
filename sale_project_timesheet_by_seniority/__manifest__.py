@@ -7,7 +7,7 @@
         Automatically map employee and sale order line when timesheeting.""",
     'version': '12.0.1.0.0',
     'license': 'AGPL-3',
-    'author': 'Camptocamp SA,Odoo Community Association (OCA)',
+    'author': 'Camptocamp,Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/timesheet',
     'depends': [
         'sale_timesheet',
