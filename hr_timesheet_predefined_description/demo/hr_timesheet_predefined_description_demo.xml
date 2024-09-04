@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <!-- Predefined Description 1 -->
+        <record
+            id="timesheet_predefined_description_1"
+            model="timesheet.predefined.description"
+        >
+            <field name="name">Development Task</field>
+        </record>
+
+        <!-- Predefined Description 2 -->
+        <record
+            id="timesheet_predefined_description_2"
+            model="timesheet.predefined.description"
+        >
+            <field name="name">Bug Fixing</field>
+        </record>
+
+        <!-- Predefined Description 3 -->
+        <record
+            id="timesheet_predefined_description_3"
+            model="timesheet.predefined.description"
+        >
+            <field name="name">Meeting with Client</field>
+        </record>
+    </data>
+</odoo>
