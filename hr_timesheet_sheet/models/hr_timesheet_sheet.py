@@ -677,9 +677,8 @@ class Sheet(models.Model):
         if existing_unique_ids:
             self.delete_empty_lines(False)
         if frozenset(new_line_unique_id.items()) not in existing_unique_ids:
-            self.timesheet_ids |= self.env["account.analytic.line"]._sheet_create(
-                values
-            )
+            new_line = self.env["account.analytic.line"]._sheet_create(values)
+            self.write({"timesheet_ids": [(4, new_line.id)]})
 
     def link_timesheets_to_sheet(self, timesheets):
         self.ensure_one()
