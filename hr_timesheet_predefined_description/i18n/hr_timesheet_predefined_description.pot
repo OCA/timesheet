@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_predefined_description
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_timesheet_predefined_description
+#: model:ir.model,name:hr_timesheet_predefined_description.model_account_analytic_line
+msgid "Analytic Line"
+msgstr ""
+
+#. module: hr_timesheet_predefined_description
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__company_id
+msgid "Company"
+msgstr ""
+
+#. module: hr_timesheet_predefined_description
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hr_timesheet_predefined_description
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hr_timesheet_predefined_description
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__name
+msgid "Description"
+msgstr ""
+
+#. module: hr_timesheet_predefined_description
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_account_analytic_line__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_timesheet_predefined_description
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_account_analytic_line__id
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_timesheet_predefined_description
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_account_analytic_line____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: hr_timesheet_predefined_description
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hr_timesheet_predefined_description
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hr_timesheet_predefined_description
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_account_analytic_line__predefined_description_id
+#: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_hr_timesheet_switch__predefined_description_id
+msgid "Predefined Description"
+msgstr ""
+
+#. module: hr_timesheet_predefined_description
+#: model:ir.model,name:hr_timesheet_predefined_description.model_timesheet_predefined_description
+msgid "Predefined Description for Timesheets"
+msgstr ""
+
+#. module: hr_timesheet_predefined_description
+#: model:ir.actions.act_window,name:hr_timesheet_predefined_description.action_timesheet_predefined_description
+#: model:ir.ui.menu,name:hr_timesheet_predefined_description.menu_timesheet_predefined_description
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_predefined_description.view_timesheet_predefined_description_tree
+msgid "Predefined Descriptions"
+msgstr ""
