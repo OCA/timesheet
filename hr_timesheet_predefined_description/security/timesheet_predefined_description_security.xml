@@ -1,0 +1,8 @@
+<odoo>
+    <record id="timesheet_predefined_description_rule" model="ir.rule">
+        <field name="name">Predefined Descriptions: multi-company access</field>
+        <field name="model_id" ref="model_timesheet_predefined_description" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+</odoo>
