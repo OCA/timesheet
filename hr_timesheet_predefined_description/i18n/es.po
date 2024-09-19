@@ -6,81 +6,83 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-09-19 09:06+0000\n"
+"Last-Translator: Víctor Martínez <victor.martinez@tecnativa.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: hr_timesheet_predefined_description
 #: model:ir.model,name:hr_timesheet_predefined_description.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Línea analítica"
 
 #. module: hr_timesheet_predefined_description
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__company_id
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: hr_timesheet_predefined_description
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: hr_timesheet_predefined_description
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: hr_timesheet_predefined_description
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__name
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #. module: hr_timesheet_predefined_description
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_account_analytic_line__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre mostrado"
 
 #. module: hr_timesheet_predefined_description
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_account_analytic_line__id
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hr_timesheet_predefined_description
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_account_analytic_line____last_update
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación el"
 
 #. module: hr_timesheet_predefined_description
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: hr_timesheet_predefined_description
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_timesheet_predefined_description__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización el"
 
 #. module: hr_timesheet_predefined_description
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_account_analytic_line__predefined_description_id
 #: model:ir.model.fields,field_description:hr_timesheet_predefined_description.field_hr_timesheet_switch__predefined_description_id
 msgid "Predefined Description"
-msgstr ""
+msgstr "Descripción predefinida"
 
 #. module: hr_timesheet_predefined_description
 #: model:ir.model,name:hr_timesheet_predefined_description.model_timesheet_predefined_description
 msgid "Predefined Description for Timesheets"
-msgstr ""
+msgstr "Descripción predefinida para partes de horas"
 
 #. module: hr_timesheet_predefined_description
 #: model:ir.actions.act_window,name:hr_timesheet_predefined_description.action_timesheet_predefined_description
 #: model:ir.ui.menu,name:hr_timesheet_predefined_description.menu_timesheet_predefined_description
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_predefined_description.view_timesheet_predefined_description_tree
 msgid "Predefined Descriptions"
-msgstr ""
+msgstr "Descripciones predefinidas"
