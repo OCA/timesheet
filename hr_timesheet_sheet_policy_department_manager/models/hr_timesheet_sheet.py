@@ -41,10 +41,6 @@ class HrTimesheetSheet(models.Model):
             ).replace("\t", "")
         return res
 
-    @api.depends("department_id.manager_id.user_id")
-    def _compute_department_manager_as_reviewer(self):
-        self._compute_possible_reviewer_ids()
-
     def _get_complete_name_components(self):
         self.ensure_one()
         result = super()._get_complete_name_components()
@@ -60,9 +56,10 @@ class HrTimesheetSheet(models.Model):
         return res
 
     def _check_can_review(self):
-        super()._check_can_review()
+        res = super()._check_can_review()
         if self.filtered(
             lambda sheet: not sheet.can_review
             and sheet.review_policy == "department_manager"
         ):
             raise UserError(_("Only a Department's Manager can review the sheet."))
+        return res

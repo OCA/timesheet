@@ -29,9 +29,7 @@ class TestHrTimesheetSheetPolicyDepartmentManager(common.TransactionCase):
         )
         self.env.user.company_ids += self.company
         self.department_manager_user = self.ResUsers.with_context(
-            {
-                "no_reset_password": True,
-            }
+            no_reset_password=True
         ).create(
             {
                 "name": "Department Manager User",
@@ -52,11 +50,7 @@ class TestHrTimesheetSheetPolicyDepartmentManager(common.TransactionCase):
                 "company_ids": [(4, self.company.id)],
             }
         )
-        self.employee_user = self.ResUsers.with_context(
-            {
-                "no_reset_password": True,
-            }
-        ).create(
+        self.employee_user = self.ResUsers.with_context(no_reset_password=True).create(
             {
                 "name": "Employee User",
                 "login": "employee_user",
