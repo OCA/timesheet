@@ -174,7 +174,9 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "account_id": self.project.analytic_account_id.id,
             }
         )
+        self.assertTrue(timesheet.so_line)
         timesheet.write({"exclude_from_sale_order": True})
+        self.assertFalse(timesheet.so_line)
 
         self.assertEqual(timesheet.timesheet_invoice_type, "non_billable")
         self.assertEqual(self.sale_order_line.qty_delivered, 0)
