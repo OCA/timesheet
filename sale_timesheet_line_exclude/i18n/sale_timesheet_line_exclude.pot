@@ -24,8 +24,18 @@ msgid "Checking this would exclude this timesheet entry from Sale Order"
 msgstr ""
 
 #. module: sale_timesheet_line_exclude
+#: model:res.groups,name:sale_timesheet_line_exclude.group_exclude_from_sale_order
+msgid "Exclude timesheets from sale order"
+msgstr ""
+
+#. module: sale_timesheet_line_exclude
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_line_exclude.account_analytic_line_search
 msgid "Excluded From Sale Order"
+msgstr ""
+
+#. module: sale_timesheet_line_exclude
+#: model:res.groups,comment:sale_timesheet_line_exclude.group_exclude_from_sale_order
+msgid "Gives access to the Non-Billable field on timesheets."
 msgstr ""
 
 #. module: sale_timesheet_line_exclude
