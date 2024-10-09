@@ -38,8 +38,8 @@ class AccountAnalyticLine(models.Model):
         return res
 
     @api.depends("exclude_from_sale_order")
-    def _compute_so_line_on_exclude(self):
-        self._compute_so_line()
+    def _compute_so_line(self):
+        return super()._compute_so_line()
 
     def _timesheet_determine_sale_line(self):
         self.ensure_one()
