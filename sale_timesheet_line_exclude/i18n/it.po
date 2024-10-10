@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-10 22:44+0000\n"
+"PO-Revision-Date: 2024-10-10 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_timesheet_line_exclude
 #: model:ir.model,name:sale_timesheet_line_exclude.model_account_analytic_line
@@ -31,7 +31,7 @@ msgstr ""
 #. module: sale_timesheet_line_exclude
 #: model:res.groups,name:sale_timesheet_line_exclude.group_exclude_from_sale_order
 msgid "Exclude timesheets from sale order"
-msgstr ""
+msgstr "Escludi fogli ore dagli ordini di vendita"
 
 #. module: sale_timesheet_line_exclude
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_line_exclude.account_analytic_line_search
@@ -41,7 +41,7 @@ msgstr "Esclusa dall'ordine di vendita"
 #. module: sale_timesheet_line_exclude
 #: model:res.groups,comment:sale_timesheet_line_exclude.group_exclude_from_sale_order
 msgid "Gives access to the Non-Billable field on timesheets."
-msgstr ""
+msgstr "Consenti accesso ai campi non fatturabili nei fogli ore."
 
 #. module: sale_timesheet_line_exclude
 #: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_account_analytic_line__exclude_from_sale_order
