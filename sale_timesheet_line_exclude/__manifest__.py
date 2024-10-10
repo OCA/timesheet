@@ -4,7 +4,7 @@
 
 {
     "name": "Sales Timesheet: exclude Timesheet Line from Sale Order",
-    "version": "16.0.1.1.0",
+    "version": "16.0.1.1.1",
     "category": "Sales",
     "website": "https://github.com/OCA/timesheet",
     "author": "CorporateHub, " "Odoo Community Association (OCA)",
