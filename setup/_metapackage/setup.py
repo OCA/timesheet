@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo-addon-sale_timesheet_line_exclude>=16.0dev,<16.1dev',
         'odoo-addon-sale_timesheet_rounded>=16.0dev,<16.1dev',
         'odoo-addon-sale_timesheet_task_exclude>=16.0dev,<16.1dev',
+        'odoo-addon-sale_timesheet_timeline>=16.0dev,<16.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',

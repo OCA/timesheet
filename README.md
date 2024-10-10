@@ -44,6 +44,7 @@ addon | version | maintainers | summary
 [sale_timesheet_line_exclude](sale_timesheet_line_exclude/) | 16.0.1.1.1 |  | Exclude Timesheet Line from Sale Order
 [sale_timesheet_rounded](sale_timesheet_rounded/) | 16.0.1.0.0 |  | Round timesheet entries amount based on project settings.
 [sale_timesheet_task_exclude](sale_timesheet_task_exclude/) | 16.0.1.0.0 |  | Exclude Task and related Timesheets from Sale Order
+[sale_timesheet_timeline](sale_timesheet_timeline/) | 16.0.1.0.0 |  | Dates planning in sales order lines
 
 [//]: # (end addons)
 
