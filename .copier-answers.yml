@@ -1,5 +1,5 @@
 # Do NOT update manually; changes here will be overwritten by Copier
-_commit: v1.21.1
+_commit: '1.23'
 _src_path: gh:oca/oca-addons-repo-template
 ci: GitHub
 convert_readme_fragments_to_markdown: false
@@ -17,6 +17,8 @@ org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups:
 - sale_timesheet_rounded
+- hr_timesheet_begin_end
+- hr_timesheet_begin_end_no_end
 repo_description: 'TODO: add repo description.'
 repo_name: timesheet
 repo_slug: timesheet
