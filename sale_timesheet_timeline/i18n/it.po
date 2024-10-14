@@ -6,80 +6,82 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-10-14 09:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_timesheet_timeline
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_timeline.view_order_form
 msgid "<span class=\"o_stat_text\">Planning</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Pianificazione</span>"
 
 #. module: sale_timesheet_timeline
 #: model:ir.model.fields,field_description:sale_timesheet_timeline.field_sale_order__any_service_line
 msgid "Any Service Line"
-msgstr ""
+msgstr "Ogni riga servizio"
 
 #. module: sale_timesheet_timeline
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_timeline.sale_order_portal_content
 msgid "Assignees"
-msgstr ""
+msgstr "Assegnatari"
 
 #. module: sale_timesheet_timeline
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_timeline.sale_order_portal_content
 msgid "End"
-msgstr ""
+msgstr "Fine"
 
 #. module: sale_timesheet_timeline
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_timeline.sale_order_portal_content
 msgid "Planning"
-msgstr ""
+msgstr "Pianificazione"
 
 #. module: sale_timesheet_timeline
 #: model:ir.model,name:sale_timesheet_timeline.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_timesheet_timeline
 #: model:ir.model,name:sale_timesheet_timeline.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Riga ordine di vendita"
 
 #. module: sale_timesheet_timeline
 #: model:ir.actions.act_window,name:sale_timesheet_timeline.action_sale_order_line_timeline
 msgid "Sales Tasks Planning"
-msgstr ""
+msgstr "Pianificazione attività vendite"
 
 #. module: sale_timesheet_timeline
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_timeline.sale_order_portal_content
 msgid "Start"
-msgstr ""
+msgstr "Avvio"
 
 #. module: sale_timesheet_timeline
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_timeline.sale_order_portal_content
 msgid "Task"
-msgstr ""
+msgstr "Attività"
 
 #. module: sale_timesheet_timeline
 #: model:ir.model.fields,field_description:sale_timesheet_timeline.field_sale_order_line__task_user_ids
 msgid "Task Assignees"
-msgstr ""
+msgstr "Assegnatario attività"
 
 #. module: sale_timesheet_timeline
 #: model:ir.model.fields,field_description:sale_timesheet_timeline.field_sale_order_line__task_date_end
 msgid "Task End"
-msgstr ""
+msgstr "Fine attività"
 
 #. module: sale_timesheet_timeline
 #: model:ir.model.fields,field_description:sale_timesheet_timeline.field_sale_order_line__task_date_start
 msgid "Task Start"
-msgstr ""
+msgstr "Inizio attività"
 
 #. module: sale_timesheet_timeline
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_timeline.view_sale_order_line_timeline
 msgid "User"
-msgstr ""
+msgstr "Utente"
