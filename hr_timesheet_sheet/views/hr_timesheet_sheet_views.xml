@@ -178,6 +178,24 @@
                                     />
                                     <field name="name" />
                                     <field
+                                        name="commercial_partner_id"
+                                        invisible="1"
+                                        groups="sales_team.group_sale_salesman"
+                                    />
+                                    <field
+                                        name="is_so_line_edited"
+                                        invisible="1"
+                                        groups="sales_team.group_sale_salesman"
+                                    />
+                                    <field
+                                        name="so_line"
+                                        widget="so_line_field"
+                                        optional="hide"
+                                        options="{'no_create': True}"
+                                        context="{'create': False, 'edit': False, 'delete': False}"
+                                        groups="sales_team.group_sale_salesman"
+                                    />
+                                    <field
                                         name="unit_amount"
                                         widget="float_time"
                                         string="Hours"
@@ -194,6 +212,24 @@
                                             name="task_id"
                                             domain="[('project_id', '=', project_id)]"
                                             context="{'default_project_id': project_id}"
+                                        />
+                                        <field
+                                            name="commercial_partner_id"
+                                            invisible="1"
+                                            groups="sales_team.group_sale_salesman"
+                                        />
+                                        <field
+                                            name="is_so_line_edited"
+                                            invisible="1"
+                                            groups="sales_team.group_sale_salesman"
+                                        />
+                                        <field
+                                            name="so_line"
+                                            widget="so_line_field"
+                                            optional="hide"
+                                            options="{'no_create': True}"
+                                            context="{'create': False, 'edit': False, 'delete': False}"
+                                            groups="sales_team.group_sale_salesman"
                                         />
                                         <field
                                             name="unit_amount"
