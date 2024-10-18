@@ -119,6 +119,10 @@ Contributors
 
 -  Dennis Sluijk <d.sluijk@onestein.nl>
 -  Sunanda Chhatbar <sunanda.chhatbar@initos.com>
+-  `Sodexis <https://www.sodexis.com>`__
+
+   -  SodexisTeam <dev@sodexis.com>
+   -  Sowrirajan <sowrirajan@sodexis.com>
 
 Maintainers
 -----------

@@ -10,91 +10,35 @@
         <field name="priority" eval="55" />
         <field name="inherit_id" ref="hr_timesheet.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//div[hasclass('settings')]/div[@groups='hr_timesheet.group_timesheet_manager']/div[position()=1]"
-                position="after"
-            >
-                <h2>Timesheet Options</h2>
-                <div class="row mt16 o_settings_container" name="hr_timesheet_sheet">
-                    <div class="col-xs-12 col-md-6 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <label for="sheet_range" />
-                            <span
-                                class="fa fa-lg fa-building"
-                                title="Values set here are company-specific."
-                                aria-label="Values set here are company-specific."
-                                groups="base.group_multi_company"
-                                role="img"
-                            />
-                            <div class="text-muted">
-                                Choose which timesheet sheet ranges should be used by default
-                            </div>
-                            <div class="content-group">
-                                <div class="mt16">
-                                    <field
-                                        name="sheet_range"
-                                        class="o_light_label"
-                                        widget="selection"
-                                        required="1"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="col-xs-12 col-md-6 o_setting_box"
-                        attrs="{'invisible':[('sheet_range','!=','WEEKLY')], 'required':[('sheet_range','=','WEEKLY')]}"
+            <xpath expr="//block[@name='timesheet_control']" position="after">
+                <block title="Timesheet Options">
+                <setting
+                        help="Choose which timesheet sheet ranges should be used by default"
+                        company_specific="1"
                     >
-                        <div class="o_setting_right_pane">
-                            <label for="timesheet_week_start" />
-                            <span
-                                class="fa fa-lg fa-building"
-                                title="Values set here are company-specific."
-                                aria-label="Values set here are company-specific."
-                                groups="base.group_multi_company"
-                                role="img"
-                            />
-                            <div class="text-muted">
-                                Choose the week start day.
-                            </div>
-                            <div class="content-group">
-                                <div class="mt16">
-                                    <field
-                                        name="timesheet_week_start"
-                                        class="o_light_label"
-                                        widget="selection"
-                                        required="1"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-md-6 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <label for="timesheet_sheet_review_policy" />
-                            <span
-                                class="fa fa-lg fa-building"
-                                title="Values set here are company-specific."
-                                aria-label="Values set here are company-specific."
-                                groups="base.group_multi_company"
-                                role="img"
-                            />
-                            <div class="text-muted">
-                                Choose timesheet sheets review policy.
-                            </div>
-                            <div class="content-group">
-                                <div class="mt16">
-                                    <field
-                                        name="timesheet_sheet_review_policy"
-                                        class="o_light_label"
-                                        widget="radio"
-                                        required="1"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                     <field name="sheet_range" required="1" />
+                 </setting>
+                 <setting
+                        help="Choose the week start day."
+                        invisible="sheet_range != 'WEEKLY'"
+                        company_specific="1"
+                    >
+                        <field
+                            name="timesheet_week_start"
+                            required="sheet_range == 'WEEKLY'"
+                        />
+                    </setting>
+                    <setting
+                        help="Choose timesheet sheets review policy."
+                        company_specific="1"
+                    >
+                        <field
+                            name="timesheet_sheet_review_policy"
+                            widget="radio"
+                            required="1"
+                        />
+                    </setting>
+                </block>
             </xpath>
         </field>
     </record>
