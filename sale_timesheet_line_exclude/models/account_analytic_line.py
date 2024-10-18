@@ -11,6 +11,8 @@ class AccountAnalyticLine(models.Model):
     exclude_from_sale_order = fields.Boolean(
         string="Non-billable",
         help="Checking this would exclude this timesheet entry from Sale Order",
+        groups="sale_timesheet_line_exclude.group_exclude_from_sale_order",
+        copy=False,
     )
 
     @api.constrains("exclude_from_sale_order")
@@ -36,8 +38,8 @@ class AccountAnalyticLine(models.Model):
         return res
 
     @api.depends("exclude_from_sale_order")
-    def _compute_so_line_on_exclude(self):
-        self._compute_so_line()
+    def _compute_so_line(self):
+        return super()._compute_so_line()
 
     def _timesheet_determine_sale_line(self):
         self.ensure_one()
