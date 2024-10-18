@@ -136,4 +136,30 @@ class AccountAnalyticLine(models.Model):
         return self[0]
 
     def _check_can_write(self, values):
-        return super()._check_can_write(values) or not self.filtered("sheet_id")
+        is_installed = (
+            self.env["ir.module.module"]
+            .sudo()
+            .search(
+                [
+                    ("name", "=", "project_timesheet_holidays"),
+                    ("state", "=", "installed"),
+                ]
+            )
+        )
+        if is_installed:
+            if not self.env.su:
+                if (
+                    hasattr(self, "holiday_id")
+                    and self.holiday_id
+                    and values.get("sheet_id", False)
+                ):  # Dont raise error during create
+                    return True
+                if hasattr(self, "holiday_id") and self.holiday_id and self.sheet_id:
+                    raise UserError(
+                        _(
+                            """You cannot modify timesheets that are linked to \
+    time off requests.
+    Please use the Time Off application to modify your time off requests instead."""
+                        )
+                    )
+        return super()._check_can_write(values)
