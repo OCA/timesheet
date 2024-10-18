@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2019-2020 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+    -->
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.hr.timesheet</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="55" />
+        <field name="inherit_id" ref="hr_timesheet.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='timesheet_control']" position="after">
+                <block title="Timesheet Options">
+                <setting
+                        help="Choose which timesheet sheet ranges should be used by default"
+                        company_specific="1"
+                    >
+                     <field name="sheet_range" required="1" />
+                 </setting>
+                 <setting
+                        help="Choose the week start day."
+                        invisible="sheet_range != 'WEEKLY'"
+                        company_specific="1"
+                    >
+                        <field
+                            name="timesheet_week_start"
+                            required="sheet_range == 'WEEKLY'"
+                        />
+                    </setting>
+                    <setting
+                        help="Choose timesheet sheets review policy."
+                        company_specific="1"
+                    >
+                        <field
+                            name="timesheet_sheet_review_policy"
+                            widget="radio"
+                            required="1"
+                        />
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
