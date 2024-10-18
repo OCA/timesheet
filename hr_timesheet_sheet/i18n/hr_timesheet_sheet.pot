@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,14 +12,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: hr_timesheet_sheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
-msgid ""
-"<span class=\"fa fa-lg fa-building\" title=\"Values set here are company-"
-"specific.\" aria-label=\"Values set here are company-specific.\" "
-"groups=\"base.group_multi_company\" role=\"img\"/>"
-msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
@@ -375,7 +367,6 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_error
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -422,13 +413,6 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__write_uid
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__write_uid
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__write_uid
@@ -440,11 +424,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__write_date
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__write_date
 msgid "Last Updated on"
-msgstr ""
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_main_attachment_id
-msgid "Main Attachment"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -577,6 +556,13 @@ msgid "Period"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#. odoo-python
+#: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
+#, python-format
+msgid "Please enter start and end date"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_url
 msgid "Portal Access URL"
 msgstr ""
@@ -598,6 +584,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__unit_amount
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__unit_amount
 msgid "Quantity"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__rating_ids
+msgid "Ratings"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -625,11 +616,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__reviewer_id
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Reviewer"
-msgstr ""
-
-#. module: hr_timesheet_sheet
-#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -675,6 +661,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line__sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_line_abstract__sheet_id
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet_new_analytic_line__sheet_id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet.field_timesheets_analysis_report__sheet_id
 msgid "Sheet"
 msgstr ""
 
@@ -881,6 +868,11 @@ msgid "Timesheets"
 msgstr ""
 
 #. module: hr_timesheet_sheet
+#: model:ir.model,name:hr_timesheet_sheet.model_timesheets_analysis_report
+msgid "Timesheets Analysis Report"
+msgstr ""
+
+#. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 msgid ""
@@ -1055,6 +1047,15 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
 #, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %(names)s"
+msgstr ""
+
+#. module: hr_timesheet_sheet
+#. odoo-python
+#: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
+#, python-format
+msgid ""
+"You cannot modify timesheets that are linked to     time off requests.\n"
+"    Please use the Time Off application to modify your time off requests instead."
 msgstr ""
 
 #. module: hr_timesheet_sheet
