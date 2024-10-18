@@ -5,3 +5,6 @@
   - Alexey Pelykh \<<alexey.pelykh@corphub.eu>\>
 - Dennis Sluijk \<<d.sluijk@onestein.nl>\>
 - Sunanda Chhatbar \<<sunanda.chhatbar@initos.com>\>
+- [Sodexis](https://www.sodexis.com)
+  - SodexisTeam \<<dev@sodexis.com>\>
+  - Sowrirajan \<<sowrirajan@sodexis.com>\>
