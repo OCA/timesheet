@@ -28,34 +28,29 @@
             <xpath expr="//div[hasclass('o_kanban_primary_right')]" position="inside">
                 <div
                     t-if="record.timesheet_sheet_to_approve_count.raw_value > 0"
-                    class="row"
+                    class="row ml16"
                     groups="hr_timesheet.group_hr_timesheet_user"
                 >
-                    <div class="col-xs-9">
+                    <div class="col">
                         <a
                             name="%(hr_timesheet_sheet.hr_timesheet_action_from_department)d"
                             type="action"
                         >
-                            Timesheets
+                            <field name="timesheet_sheet_to_approve_count" /> Timesheets
                         </a>
-                    </div>
-                    <div class="col-xs-3">
-                        <t t-esc="record.timesheet_sheet_to_approve_count.raw_value" />
                     </div>
                 </div>
             </xpath>
             <xpath expr="//div[hasclass('o_kanban_manage_reports')]" position="inside">
                 <div class="row" groups="hr_timesheet.group_hr_timesheet_user">
-                    <div class="col-xs-12 text-left">
                         <a
-                            name="%(hr_timesheet_sheet.hr_timesheet_action_from_department)d"
-                            type="action"
-                        >
-                            <t
-                                t-esc="record.timesheet_sheet_to_approve_count.raw_value or 0"
-                            /> Timesheets
-                        </a>
-                    </div>
+                        role="menuitem"
+                        class="dropdown-item"
+                        name="%(hr_timesheet_sheet.hr_timesheet_action_from_department)d"
+                        type="action"
+                    >
+                            <field name="timesheet_sheet_to_approve_count" /> Timesheets
+                         </a>
                 </div>
             </xpath>
         </field>

@@ -15,15 +15,15 @@
                 decoration-muted="state == 'done'"
                 decoration-bf="message_needaction == True"
             >
-                <field name="employee_id" />
+                <field name="employee_id" readonly="state != 'new'" />
                 <field name="name" string="Period" />
-                <field name="department_id" invisible="1" />
-                <field name="date_start" />
-                <field name="date_end" />
-                <field name="reviewer_id" />
-                <field name="state" />
+                <field name="department_id" readonly="state != 'new'" optional="hide" />
+                <field name="date_start" readonly="state != 'new'" />
+                <field name="date_end" readonly="state != 'new'" />
+                <field name="reviewer_id" readonly="1" />
+                <field name="state" readonly="1" />
                 <field name="total_time" widget="float_time" />
-                <field name="message_needaction" invisible="1" />
+                <field name="message_needaction" column_invisible="1" />
             </tree>
         </field>
     </record>
@@ -35,7 +35,7 @@
         <field name="priority">1000</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='employee_id']" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="column_invisible">1</attribute>
             </xpath>
         </field>
     </record>
@@ -53,26 +53,26 @@
                         string="Submit to Reviewer"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                        invisible="state != 'draft'"
                     />
                     <button
                         name="action_timesheet_done"
                         string="Approve"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible': ['|', ('can_review', '!=', True), ('state', '!=', 'confirm')]}"
+                        invisible="can_review != True or state != 'confirm'"
                     />
                     <button
                         name="action_timesheet_draft"
                         string="Set to Draft"
                         type="object"
-                        attrs="{'invisible': ['|', ('can_review', '!=', True), ('state', '!=', 'done')]}"
+                        invisible="can_review != True or state != 'done'"
                     />
                     <button
                         name="action_timesheet_refuse"
                         string="Refuse"
                         type="object"
-                        attrs="{'invisible': ['|', ('can_review', '!=', True), ('state', '!=', 'confirm')]}"
+                        invisible="can_review != True or state != 'confirm'"
                     />
                     <field
                         name="state"
@@ -98,10 +98,15 @@
                             <div style="display: inline;"><field
                                     name="date_start"
                                     class="oe_inline"
-                                /> to <field name="date_end" class="oe_inline" /></div>
+                                    readonly="state != 'new'"
+                                /> to <field
+                                    name="date_end"
+                                    class="oe_inline"
+                                    readonly="state != 'new'"
+                                /></div>
                         </group>
                         <group name="details">
-                            <field name="company_id" force_save="1" />
+                            <field name="company_id" force_save="1" readonly="1" />
                             <field name="department_id" invisible="1" />
                         </group>
                     </group>
@@ -112,7 +117,7 @@
                                 <field
                                     name="line_ids"
                                     nolabel="1"
-                                    attrs="{'readonly': [('state', 'not in', ['new', 'draft'])]}"
+                                    readonly="state not in ['new', 'draft']"
                                     widget="x2many_2d_matrix"
                                     field_x_axis="value_x"
                                     field_y_axis="value_y"
@@ -134,6 +139,7 @@
                                         <field
                                             name="company_id"
                                             groups="base.group_multi_company"
+                                            readonly="1"
                                         />
                                         <field name="employee_id" />
                                         <field name="new_line_id" invisible="1" />
@@ -142,13 +148,13 @@
                                 </field>
                                 <group
                                     class="oe_edit_only"
-                                    attrs="{'invisible': [('state', 'not in', ['new', 'draft'])]}"
+                                    invisible="state not in ['new', 'draft']"
                                 >
                                     <field name="add_line_project_id" />
                                     <field name="available_task_ids" invisible="1" />
                                     <field
                                         name="add_line_task_id"
-                                        attrs="{'invisible': [('add_line_project_id', '=', False)]}"
+                                        invisible="not add_line_project_id"
                                         context="{'default_project_id': add_line_project_id}"
                                     />
                                     <button
@@ -157,7 +163,7 @@
                                         colspan="2"
                                         string="Add new line"
                                         class="oe_highlight"
-                                        attrs="{'invisible': [('add_line_project_id', '=', False)]}"
+                                        invisible="not add_line_project_id"
                                     />
                                 </group>
                             </group>
@@ -167,6 +173,7 @@
                                 name="timesheet_ids"
                                 nolabel="1"
                                 context="{'user_id': user_id}"
+                                readonly="state not in ['new', 'draft']"
                             >
                                 <tree editable="bottom">
                                     <field name="date" />
@@ -254,10 +261,10 @@
                                 </div>
                                 <div class="col-10">
                                     <strong class="o_kanban_record_title">
-                                        <t t-esc="record.employee_id.value" />
+                                        <t t-out="record.employee_id.value" />
                                     </strong>
                                     <div class="text-muted o_kanban_record_subtitle">
-                                        <t t-esc="record.complete_name.value" />
+                                        <t t-out="record.complete_name.value" />
                                     </div>
                                     <div
                                         class="o_dropdown_kanban dropdown"
@@ -323,8 +330,8 @@
                                     <span class="text-muted text-nowrap">Period</span>
                                 </div>
                                 <div class="col-7"><t
-                                        t-esc="record.date_start.value"
-                                    /> - <t t-esc="record.date_end.value" /></div>
+                                        t-out="record.date_start.value"
+                                    /> - <t t-out="record.date_end.value" /></div>
                                 <div class="w-100" />
                                 <div class="col-3">
                                     <span
@@ -332,10 +339,7 @@
                                     >Total time</span>
                                 </div>
                                 <div class="col-7">
-                                    <t
-                                        t-esc="record.total_time.value"
-                                        t-options="{'widget': 'float_time'}"
-                                    />
+                                    <field name="total_time" widget="float_time" />
                                 </div>
                             </div>
                         </div>
