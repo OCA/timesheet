@@ -25,12 +25,3 @@ msgstr "Ligne analytique"
 #: model:ir.model.fields,field_description:hr_timesheet_task_domain.field_account_analytic_line__task_id
 msgid "Task"
 msgstr ""
-
-#~ msgid "Display Name"
-#~ msgstr "Nom affiché"
-
-#~ msgid "ID"
-#~ msgstr "Id."
-
-#~ msgid "Last Modified on"
-#~ msgstr "Dernière modification le"
