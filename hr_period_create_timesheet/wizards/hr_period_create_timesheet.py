@@ -94,7 +94,9 @@ class HrPeriodCreateTimesheet(models.TransientModel):
         timesheet_obj = self.env["hr_timesheet.sheet"]
         today = fields.Date.today()
         periods = self.env["hr.period"].search([("date_end", ">=", today)])
-        employees = self.env["hr.employee"].search([("user_id", "!=", False)])
+        employees = self.env["hr.employee"].search(
+            [("user_id", "!=", False), ("contract_id.date_start", "<=", today)]
+        )
         if not periods or not employees:
             return
         # Create a dictionary to store existing timesheets per employee

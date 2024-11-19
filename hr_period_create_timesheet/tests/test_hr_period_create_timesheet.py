@@ -59,6 +59,52 @@ class TestHRPeriodCreateTimesheet(common.TransactionCase):
                 "company_id": self.company_id.id,
             }
         )
+        # create another User
+        self.user_test_2 = self.user_model.create(
+            {
+                "name": "User 2",
+                "login": "anoth@example.com",
+                "password": "base-test-passwd",
+            }
+        )
+        # create another Employee
+        self.employee_2 = self.hr_employee.create(
+            {
+                "name": "Employee 2",
+                "user_id": self.user_test_2.id,
+                "address_id": self.user_test_2.partner_id.id,
+                "parent_id": self.root.id,
+                "company_id": self.company_id.id,
+            }
+        )
+        # create contracts only open for the first employee
+        self.contract1 = self.env["hr.contract"].create(
+            {
+                "name": "Contract 1",
+                "employee_id": self.employee.id,
+                "wage": 1000,
+                "date_start": time.strftime("%Y-01-01"),
+                "date_end": time.strftime("%Y-12-31"),
+                "state": "open",
+                "resource_calendar_id": self.env["resource.calendar"].browse([1]).id,
+            }
+        )
+        current_year = datetime.now().year
+        new_year = current_year + 1
+        date_start = datetime(new_year, 1, 1).strftime("%Y-%m-%d")
+        date_end = datetime(new_year, 12, 31).strftime("%Y-%m-%d")
+        # Creating the contract
+        self.contract2 = self.env["hr.contract"].create(
+            {
+                "name": "Contract 2",
+                "employee_id": self.employee_2.id,
+                "wage": 1000,
+                "date_start": date_start,
+                "date_end": date_end,
+                "state": "open",
+                "resource_calendar_id": self.env["resource.calendar"].browse([1]).id,
+            }
+        )
 
     def create_data_range_type(self, name):
         # create Data Range Type
@@ -167,3 +213,12 @@ class TestHRPeriodCreateTimesheet(common.TransactionCase):
         periods_left = last_period.date_end.month - datetime.now().month + 1
         # timesheets for the rest of the year
         self.assertEqual(len(timesheets), periods_left)
+        # check no timesheet created for the employee whose contract has not started
+        timesheets = self.timesheet_sheet.search(
+            [
+                ("employee_id", "=", self.employee_2.id),
+                ("date_end", ">", datetime.now()),
+                ("company_id", "=", periods[0].company_id.id),
+            ]
+        )
+        self.assertEqual(len(timesheets), 0)
