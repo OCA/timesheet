@@ -9,7 +9,8 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 from ..models.hr_timesheet_sheet import empty_name
 
@@ -1026,7 +1027,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet = Form(self.sheet_model.with_user(self.user)).save()
 
         self.sheet_model.with_user(self.user).get_view(view_type="form")
-        self.sheet_model.with_user(self.user).get_view(view_type="tree")
+        self.sheet_model.with_user(self.user).get_view(view_type="list")
 
         with self.assertRaises(UserError):
             sheet.with_user(self.user_3).action_timesheet_refuse()

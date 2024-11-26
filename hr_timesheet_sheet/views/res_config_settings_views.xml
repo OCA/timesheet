@@ -11,17 +11,17 @@
         <field name="inherit_id" ref="hr_timesheet.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//block[@name='timesheet_control']" position="after">
-                <block title="Timesheet Options">
+                <block title="Timesheet Options" name="hr_timesheet_sheet_settings">
                     <setting
                         help="Choose which timesheet sheet ranges should be used by default"
-                        company_specific="1"
+                        company_dependent="1"
                     >
                         <field name="sheet_range" required="1" />
                     </setting>
                     <setting
                         help="Choose the week start day."
                         invisible="sheet_range != 'WEEKLY'"
-                        company_specific="1"
+                        company_dependent="1"
                     >
                         <field
                             name="timesheet_week_start"
@@ -30,7 +30,7 @@
                     </setting>
                     <setting
                         help="Choose timesheet sheets review policy."
-                        company_specific="1"
+                        company_dependent="1"
                     >
                         <field
                             name="timesheet_sheet_review_policy"
