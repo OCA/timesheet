@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -125,21 +125,18 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid "Cannot approve a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid "Cannot reject a non-submitted sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid "Cannot revert to draft a non-approved sheet."
 msgstr ""
 
@@ -254,11 +251,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Draft Timesheet Sheets"
-msgstr ""
-
-#. module: hr_timesheet_sheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
-msgid "Dropdown menu"
 msgstr ""
 
 #. module: hr_timesheet_sheet
@@ -392,7 +384,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid ""
 "In order to create a sheet for this employee, you must link him/her to an "
 "user: %s"
@@ -401,7 +392,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid ""
 "In order to review a timesheet sheet, your user needs to be linked to an "
 "employee."
@@ -541,7 +531,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
 msgstr ""
 
@@ -558,7 +547,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid "Please enter start and end date"
 msgstr ""
 
@@ -598,11 +586,6 @@ msgid "Refuse"
 msgstr ""
 
 #. module: hr_timesheet_sheet
-#: model:ir.model.fields,help:hr_timesheet_sheet.field_hr_timesheet_sheet__user_id
-msgid "Related user name for the resource to manage its access."
-msgstr ""
-
-#. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_user_id
 msgid "Responsible User"
 msgstr ""
@@ -626,7 +609,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid "Save the Timesheet Sheet first."
 msgstr ""
 
@@ -730,7 +712,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Department must be the same."
 msgstr ""
@@ -738,7 +719,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Employee must be the same."
 msgstr ""
@@ -746,7 +726,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid ""
 "The Company in the Timesheet Sheet and in the Project must be the same."
 msgstr ""
@@ -754,7 +733,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid "The Company in the Timesheet Sheet and in the Task must be the same."
 msgstr ""
 
@@ -767,7 +745,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid "The start date cannot be later than the end date."
 msgstr ""
 
@@ -946,7 +923,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid "Warning"
 msgstr ""
 
@@ -973,7 +949,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid "Week %(end)s"
 msgstr ""
 
@@ -990,7 +965,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid "Weeks %(start)s - %(end)s"
 msgstr ""
 
@@ -999,7 +973,6 @@ msgstr ""
 #: code:addons/hr_timesheet_sheet/models/account_analytic_account.py:0
 #: code:addons/hr_timesheet_sheet/models/hr_department.py:0
 #: code:addons/hr_timesheet_sheet/models/hr_employee.py:0
-#, python-format
 msgid ""
 "You cannot change the company, as this %(rec_name)s (%(rec_display_name)s) "
 "is assigned to %(current_name)s (%(current_display_name)s)."
@@ -1008,7 +981,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, python-format
 msgid ""
 "You cannot create a timesheet of a different company than the one of the timesheet sheet:\n"
 " - %(sheet_name)s of %(sheet_company)s\n"
@@ -1018,7 +990,6 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid ""
 "You cannot delete a timesheet sheet which is already submitted or confirmed:"
 " %s"
@@ -1027,14 +998,12 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid "You cannot duplicate a sheet."
 msgstr ""
 
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, python-format
 msgid ""
 "You cannot have 2 or more sheets that overlap!\n"
 "Please use the menu \"Timesheet Sheet\" to avoid this problem.\n"
@@ -1045,14 +1014,12 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, python-format
 msgid "You cannot modify an entry in a confirmed timesheet sheet: %(names)s"
 msgstr ""
 
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/account_analytic_line.py:0
-#, python-format
 msgid ""
 "You cannot modify timesheets that are linked to     time off requests.\n"
 "    Please use the Time Off application to modify your time off requests instead."
