@@ -2,7 +2,7 @@
 # Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -44,7 +44,7 @@ class HrEmployee(models.Model):
                     and rec.company_id != field.company_id
                 ):
                     raise ValidationError(
-                        _(
+                        rec.env._(
                             "You cannot change the company, as this"
                             " %(rec_name)s (%(rec_display_name)s) is assigned"
                             " to %(current_name)s (%(current_display_name)s).",

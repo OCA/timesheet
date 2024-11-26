@@ -11,7 +11,7 @@ from datetime import datetime, time
 import babel.dates
 from dateutil.relativedelta import SU, relativedelta
 
-from odoo import SUPERUSER_ID, _, api, fields, models
+from odoo import SUPERUSER_ID, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -158,7 +158,7 @@ class Sheet(models.Model):
         locale = self.env.context.get("lang") or self.env.user.lang or "en_US"
         for sheet in self:
             if not sheet.date_start or not sheet.date_end:
-                raise UserError(_("Please enter start and end date"))
+                raise UserError(sheet.env._("Please enter start and end date"))
             if sheet.date_start == sheet.date_end:
                 sheet.name = babel.dates.format_skeleton(
                     skeleton="MMMEd",
@@ -171,9 +171,9 @@ class Sheet(models.Model):
             period_end = sheet.date_end.strftime("%V, %Y")
 
             if sheet.date_end <= sheet.date_start + relativedelta(weekday=SU):
-                sheet.name = _("Week %(end)s", end=period_end)
+                sheet.name = sheet.env._("Week %(end)s", end=period_end)
             else:
-                sheet.name = _(
+                sheet.name = sheet.env._(
                     "Weeks %(start)s - %(end)s", start=period_start, end=period_end
                 )
 
@@ -222,7 +222,7 @@ class Sheet(models.Model):
         for sheet in self:
             if sheet.date_start > sheet.date_end:
                 raise ValidationError(
-                    _("The start date cannot be later than the end date.")
+                    sheet.env._("The start date cannot be later than the end date.")
                 )
 
     def _get_complete_name_components(self):
@@ -249,7 +249,7 @@ class Sheet(models.Model):
             overlapping_sheets = self.search(sheet._get_overlapping_sheet_domain())
             if overlapping_sheets:
                 raise ValidationError(
-                    _(
+                    sheet.env._(
                         "You cannot have 2 or more sheets that overlap!\n"
                         'Please use the menu "Timesheet Sheet" '
                         "to avoid this problem.\nConflicting sheets:\n - %(names)s",
@@ -268,7 +268,7 @@ class Sheet(models.Model):
                 and rec.company_id != rec.employee_id.company_id
             ):
                 raise ValidationError(
-                    _(
+                    rec.env._(
                         "The Company in the Timesheet Sheet and in "
                         "the Employee must be the same."
                     )
@@ -283,7 +283,7 @@ class Sheet(models.Model):
                 and rec.company_id != rec.department_id.company_id
             ):
                 raise ValidationError(
-                    _(
+                    rec.env._(
                         "The Company in the Timesheet Sheet and in "
                         "the Department must be the same."
                     )
@@ -298,7 +298,7 @@ class Sheet(models.Model):
                 and rec.company_id != rec.add_line_project_id.company_id
             ):
                 raise ValidationError(
-                    _(
+                    rec.env._(
                         "The Company in the Timesheet Sheet and in "
                         "the Project must be the same."
                     )
@@ -313,7 +313,7 @@ class Sheet(models.Model):
                 and rec.company_id != rec.add_line_task_id.company_id
             ):
                 raise ValidationError(
-                    _(
+                    rec.env._(
                         "The Company in the Timesheet Sheet and in "
                         "the Task must be the same."
                     )
@@ -460,7 +460,7 @@ class Sheet(models.Model):
             employee = self.env["hr.employee"].sudo().browse(vals["employee_id"])
             if not employee.user_id:
                 raise UserError(
-                    _(
+                    employee.env._(
                         "In order to create a sheet for this employee, you must"
                         " link him/her to an user: %s"
                     )
@@ -471,7 +471,7 @@ class Sheet(models.Model):
 
     def copy(self, default=None):
         if not self.env.context.get("allow_copy_timesheet"):
-            raise UserError(_("You cannot duplicate a sheet."))
+            raise UserError(self.env._("You cannot duplicate a sheet."))
         return super().copy(default=default)
 
     @api.model_create_multi
@@ -499,7 +499,7 @@ class Sheet(models.Model):
         for sheet in self:
             if sheet.state in ("confirm", "done"):
                 raise UserError(
-                    _(
+                    sheet.env._(
                         "You cannot delete a timesheet sheet which is already"
                         " submitted or confirmed: %s",
                         sheet.complete_name,
@@ -536,7 +536,7 @@ class Sheet(models.Model):
 
     def action_timesheet_draft(self):
         if self.filtered(lambda sheet: sheet.state != "done"):
-            raise UserError(_("Cannot revert to draft a non-approved sheet."))
+            raise UserError(self.env._("Cannot revert to draft a non-approved sheet."))
         self._check_can_review()
         self.write({"state": "draft", "reviewer_id": False})
 
@@ -547,13 +547,13 @@ class Sheet(models.Model):
 
     def action_timesheet_done(self):
         if self.filtered(lambda sheet: sheet.state != "confirm"):
-            raise UserError(_("Cannot approve a non-submitted sheet."))
+            raise UserError(self.env._("Cannot approve a non-submitted sheet."))
         self._check_can_review()
         self.write({"state": "done", "reviewer_id": self._get_current_reviewer().id})
 
     def action_timesheet_refuse(self):
         if self.filtered(lambda sheet: sheet.state != "confirm"):
-            raise UserError(_("Cannot reject a non-submitted sheet."))
+            raise UserError(self.env._("Cannot reject a non-submitted sheet."))
         self._check_can_review()
         self.write({"state": "draft", "reviewer_id": False})
 
@@ -564,7 +564,7 @@ class Sheet(models.Model):
         )
         if not reviewer:
             raise UserError(
-                _(
+                reviewer.env._(
                     "In order to review a timesheet sheet, your user needs to be"
                     " linked to an employee."
                 )
@@ -573,7 +573,9 @@ class Sheet(models.Model):
 
     def _check_can_review(self):
         if self.filtered(lambda x: not x.can_review and x.review_policy == "hr"):
-            raise UserError(_("Only a HR Officer or Manager can review the sheet."))
+            raise UserError(
+                self.env._("Only a HR Officer or Manager can review the sheet.")
+            )
 
     def button_add_line(self):
         for rec in self:
@@ -847,8 +849,8 @@ class SheetLine(models.TransientModel):
         if not sheet:
             return {
                 "warning": {
-                    "title": _("Warning"),
-                    "message": _("Save the Timesheet Sheet first."),
+                    "title": self.env._("Warning"),
+                    "message": self.env._("Save the Timesheet Sheet first."),
                 }
             }
         sheet.add_new_line(self)
