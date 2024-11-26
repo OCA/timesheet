@@ -591,7 +591,7 @@ class Sheet(models.Model):
             locale=(self.env.context.get("lang") or self.env.user.lang or "en_US"),
         )
         name = re.sub(r"(\s*[^\w\d\s])\s+", r"\1\n", name)
-        name = re.sub(r"([\w\d])\s([\w\d])", "\\1\u00A0\\2", name)
+        name = re.sub(r"([\w\d])\s([\w\d])", "\\1\u00a0\\2", name)
         return name
 
     def _get_dates(self):

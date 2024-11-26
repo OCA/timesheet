@@ -12,13 +12,13 @@
         <field name="arch" type="xml">
             <xpath expr="//block[@name='timesheet_control']" position="after">
                 <block title="Timesheet Options">
-                <setting
+                    <setting
                         help="Choose which timesheet sheet ranges should be used by default"
                         company_specific="1"
                     >
-                     <field name="sheet_range" required="1" />
-                 </setting>
-                 <setting
+                        <field name="sheet_range" required="1" />
+                    </setting>
+                    <setting
                         help="Choose the week start day."
                         invisible="sheet_range != 'WEEKLY'"
                         company_specific="1"
