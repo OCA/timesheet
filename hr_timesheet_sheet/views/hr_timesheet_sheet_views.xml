@@ -96,14 +96,14 @@
                         <group name="dates">
                             <label for="date_start" string="Timesheet Period" />
                             <div style="display: inline;"><field
-                                    name="date_start"
-                                    class="oe_inline"
-                                    readonly="state != 'new'"
-                                /> to <field
-                                    name="date_end"
-                                    class="oe_inline"
-                                    readonly="state != 'new'"
-                                /></div>
+                                name="date_start"
+                                class="oe_inline"
+                                readonly="state != 'new'"
+                            /> to <field
+                                name="date_end"
+                                class="oe_inline"
+                                readonly="state != 'new'"
+                            /></div>
                         </group>
                         <group name="details">
                             <field name="company_id" force_save="1" readonly="1" />
@@ -330,8 +330,8 @@
                                     <span class="text-muted text-nowrap">Period</span>
                                 </div>
                                 <div class="col-7"><t
-                                        t-out="record.date_start.value"
-                                    /> - <t t-out="record.date_end.value" /></div>
+                                    t-out="record.date_start.value"
+                                /> - <t t-out="record.date_end.value" /></div>
                                 <div class="w-100" />
                                 <div class="col-3">
                                     <span
