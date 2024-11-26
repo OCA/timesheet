@@ -2,7 +2,7 @@
 # Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 
@@ -44,7 +44,7 @@ class AccountAnalyticLine(models.Model):
                 and aal.company_id != aal.sheet_id.company_id
             ):
                 raise ValidationError(
-                    _(
+                    aal.env._(
                         "You cannot create a timesheet of a different company "
                         "than the one of the timesheet sheet:"
                         "\n - %(sheet_name)s of %(sheet_company)s"
@@ -121,7 +121,7 @@ class AccountAnalyticLine(models.Model):
         for line in self.exists().filtered("sheet_id"):
             if line.sheet_id.state not in ["new", "draft"]:
                 raise UserError(
-                    _(
+                    line.env._(
                         "You cannot modify an entry in a confirmed timesheet sheet"
                         ": %(names)s",
                         names=line.sheet_id.complete_name,
@@ -156,7 +156,7 @@ class AccountAnalyticLine(models.Model):
                     return True
                 if hasattr(self, "holiday_id") and self.holiday_id and self.sheet_id:
                     raise UserError(
-                        _(
+                        self.env._(
                             """You cannot modify timesheets that are linked to \
     time off requests.
     Please use the Time Off application to modify your time off requests instead."""

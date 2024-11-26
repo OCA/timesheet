@@ -1,7 +1,7 @@
 # Copyright 2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import ValidationError
 
 
@@ -16,7 +16,7 @@ class AccountAnalyticAccount(models.Model):
             )
             if sheets:
                 raise ValidationError(
-                    _(
+                    rec.env._(
                         "You cannot change the company, as this "
                         "%(rec_name)s (%(rec_display_name)s) is assigned "
                         "to %(current_name)s (%(current_display_name)s).",
