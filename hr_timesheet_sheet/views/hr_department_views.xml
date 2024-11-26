@@ -43,7 +43,7 @@
             </xpath>
             <xpath expr="//div[hasclass('o_kanban_manage_reports')]" position="inside">
                 <div class="row" groups="hr_timesheet.group_hr_timesheet_user">
-                        <a
+                    <a
                         role="menuitem"
                         class="dropdown-item"
                         name="%(hr_timesheet_sheet.hr_timesheet_action_from_department)d"
