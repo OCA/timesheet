@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="wizard_hr_employee_hour_updater_view" model="ir.ui.view">
+        <field name="name">Update HR Employee hours</field>
+        <field name="model">wizard.hr.employee.hour.updater</field>
+        <field name="arch" type="xml">
+            <form string="Timesheet Submission">
+                <group>
+                    <group name="group_period" string="Period">
+                        <field name="date_from" />
+                        <field name="date_to" />
+                    </group>
+                    <group name="group_options" string="Hour's types">
+                        <field name="contract_hours" />
+                        <field name="timesheet_hours" />
+                    </group>
+                </group>
+                <group name="group_employees">
+                    <field
+                        name="employee_ids"
+                        groups="hr.group_hr_manager"
+                        widget="many2many_tags"
+                    />
+                </group>
+                <footer>
+                    <button
+                        string="Update"
+                        name="action_submit"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_hr_employee_hour_updater" model="ir.actions.act_window">
+        <field name="name">Update HR Employee hours</field>
+        <field name="res_model">wizard.hr.employee.hour.updater</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_wizard_hr_employee_hour_updater"
+        name="Update HR Employee hours"
+        groups="base.group_user"
+        parent="menu_hr_report_dashboard"
+        sequence="100"
+        action="action_wizard_hr_employee_hour_updater"
+    />
+
+</odoo>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="hr_employee_hour_report_tree_view" model="ir.ui.view">
+        <field name="name">hr.employee.hour.report.tree</field>
+        <field name="model">hr.employee.hour.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date" />
+                <field name="type" />
+                <field name="name_id" />
+                <field name="employee_id" />
+                <field name="manager_id" />
+                <field name="user_id" />
+                <field name="company_id" />
+                <field name="project_id" />
+                <field name="task_id" />
+                <field name="analytic_group_id" />
+                <field name="days_qty" />
+                <field name="hours_qty" widget="float_time" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_employee_hour_report_pivot_view" model="ir.ui.view">
+        <field name="name">hr.employee.hour.report.pivot</field>
+        <field name="model">hr.employee.hour.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Hours Report" stacked="True">
+                <field name="date" type="row" />
+                <field name="type" type="col" />
+                <field name="hours_qty" widget="float_time" type="measure" />
+                <field name="days_qty" widget="float_time" type="measure" />
+                <field name="name_id" invisible="1" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="hr_employee_hour_report_graph_view" model="ir.ui.view">
+        <field name="name">hr.employee.hour.report.graph</field>
+        <field name="model">hr.employee.hour.report</field>
+        <field name="arch" type="xml">
+            <graph string="Hours Report" type="pie" stacked="True">
+                <field name="analytic_group_id" type="col" />
+                <field name="hours_qty" type="measure" widget="float_time" />
+                <field name="days_qty" type="measure" widget="float_time" />
+                <field name="hours_qty_abs" type="measure" widget="float_time" />
+                <field name="days_qty_abs" type="measure" widget="float_time" />
+                <field name="percentage" type="measure" widget="float_time" />
+                <field name="name_id" invisible="1" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="hr_employee_hour_report_search_view" model="ir.ui.view">
+        <field name="name">hr.employee.hour.report.search</field>
+        <field name="model">hr.employee.hour.report</field>
+        <field name="arch" type="xml">
+            <search string="Hours Report">
+                <field name="employee_id" />
+                <field name="user_id" />
+                <field name="date" />
+                <field name="type" />
+                <field name="project_id" />
+                <field name="task_id" />
+                <field name="manager_id" />
+                <field name="name_id" />
+                <group expand="1" string="Group By">
+                    <filter
+                        name="filter_my_report"
+                        domain="[('user_id', '=', uid)]"
+                        string="My report"
+                    />
+                    <filter
+                        name="filter_my_team"
+                        domain="[('manager_id', '=', uid)]"
+                        string="My team"
+                    />
+                    <separator />
+                    <filter
+                        name="filter_until_today"
+                        string="Until today"
+                        domain="[('date', '&lt;=', context_today().strftime('%Y-%m-%d'))]"
+                    />
+                    <filter
+                        name="filter_this_year_until_today"
+                        string="This Year Until Today"
+                        domain="[('date', '&gt;=', context_today().strftime('%Y-01-01')), ('date', '&lt;=', context_today().strftime('%Y-%m-%d'))]"
+                    />
+                    <filter
+                        name="filter_date"
+                        date="date"
+                        string="Custom Date"
+                        default_period="this_year"
+                    />
+                    <filter
+                        name="filter_group_by_date"
+                        string="Date"
+                        context="{'group_by':'date'}"
+                    />
+                    <filter
+                        name="filter_employee"
+                        string="Employee"
+                        context="{'group_by':'employee_id'}"
+                    />
+                    <filter
+                        name="filter_user"
+                        string="User"
+                        context="{'group_by':'user_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_hr_employee_hour_report" model="ir.actions.act_window">
+        <field name="name">Hours Report</field>
+        <field name="res_model">hr.employee.hour.report</field>
+        <field name="view_mode">pivot,graph,tree</field>
+        <field name="search_view_id" ref="hr_employee_hour_report_search_view" />
+        <field name="context">{
+            'search_default_filter_my_report': 1,
+            'search_default_filter_this_year_until_today': 1,
+            }
+        </field>
+        <field name="domain" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No data yet!
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_hr_employee_hour_report"
+        name="Hours Report"
+        groups="base.group_user"
+        parent="menu_hr_report_dashboard"
+        sequence="10"
+        action="action_hr_employee_hour_report"
+    />
+
+</odoo>
