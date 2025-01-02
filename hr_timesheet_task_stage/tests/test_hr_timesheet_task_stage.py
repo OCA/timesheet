@@ -11,7 +11,7 @@ class TestHrTimesheetTaskStage(common.TransactionCase):
         super().setUp()
 
         self.project = self.env["project.project"].create({"name": "Test project"})
-        self.analytic_account = self.project.analytic_account_id
+        self.analytic_account = self.project.account_id
         self.task = self.env["project.task"].create(
             {"name": "Test task", "project_id": self.project.id}
         )
