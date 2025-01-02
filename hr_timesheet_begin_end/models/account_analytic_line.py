@@ -64,10 +64,8 @@ class AccountAnalyticLine(models.Model):
                 message = _("Lines can't overlap:\n")
                 message += "\n".join(
                     [
-                        "{} - {}".format(
-                            value_to_html(other.time_start, None),
-                            value_to_html(other.time_stop, None),
-                        )
+                        f"{value_to_html(other.time_start, None)} - "
+                        f"{value_to_html(other.time_stop, None)}"
                         for other in (line + others).sorted(
                             key=lambda item: item.time_start
                         )
