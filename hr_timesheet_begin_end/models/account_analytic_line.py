@@ -21,15 +21,9 @@ class AccountAnalyticLine(models.Model):
         compute="_compute_unit_amount",
         store=True,
         readonly=False,
-        # This default is a workaround for a bizarre situation: if a line is
-        # created with a time range but WITHOUT defining unit_amount, then you
-        # would expect unit_amount to be computed from the range. But this never
-        # happens, and it is instead set to default value 0. Subsequently the
-        # constraint _validate_unit_amount_equal_to_time_diff kicks in and
-        # raises an exception.
-        #
-        # By setting the default to None, the computation is correctly
-        # triggered. If nothing is computed, None falls back to 0.
+        # remove the default of 0.0 to ensure it is computed when not
+        # provided. if not computed (because project_id is False), None is
+        # automatically converted to 0.
         default=None,
     )
 
