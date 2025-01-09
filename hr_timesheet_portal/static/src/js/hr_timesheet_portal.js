@@ -4,63 +4,56 @@
 odoo.define("hr_timesheet_portal", function (require) {
     "use strict";
 
-    var sAnimation = require("website.content.snippets.animation"),
-        rpc = require("web.rpc"),
-        core = require("web.core"),
-        _t = core._t;
+    const sAnimation = require("website.content.snippets.animation");
+    const core = require("web.core");
+    const _t = core._t;
 
     sAnimation.registry.hr_timesheet_portal = sAnimation.Class.extend({
         selector: "div.hr_timesheet_portal",
+        disabledInEditableMode: true,
         events: {
-            "click h5": "_onclick_add",
-            "click tr[data-line-id]:not(.edit)": "_onclick_edit",
-            "click i.fa-remove": "_onclick_delete",
+            "click h5 .fa-plus": "_onclick_add",
+            "click tr[data-line-id].editable:not(.edit)": "_onclick_edit",
+            "click tr[data-line-id].editable i.fa-remove": "_onclick_delete",
             "click button.submit": "_onclick_submit",
             "submit form": "_onclick_submit",
             "click button.cancel": "_reload_timesheet",
         },
 
-        start: function (editable_mode) {
-            if (editable_mode) {
-                this.stop();
-                return;
-            }
-        },
-
         _onclick_delete: function (e) {
             e.stopPropagation();
-            rpc.query({
+            return this._rpc({
                 model: "account.analytic.line",
                 method: "unlink",
                 args: [[jQuery(e.currentTarget).parents("tr").data("line-id")]],
-            })
-                .done(this.proxy("_reload_timesheet"))
-                .fail(this.proxy("_display_failure"));
+            }).then(this.proxy("_reload_timesheet"), this.proxy("_display_failure"));
         },
 
         _onclick_add: function (e) {
+            var $currentTarget = jQuery(e.currentTarget);
+            if ($currentTarget.prop("disabled") || this.$("input").length) {
+                return;
+            }
+            $currentTarget.prop("disabled", true);
             var self = this;
-            return rpc
-                .query({
-                    model: "account.analytic.line",
-                    method: "create",
-                    args: [
-                        {
-                            user_id: this.getSession().user_id,
-                            account_id: this.$el.data("account-id"),
-                            project_id: this.$el.data("project-id"),
-                            task_id: this.$el.data("task-id"),
-                            unit_amount: 0,
-                            name: "/",
-                        },
-                    ],
-                })
-                .done(function (line_id) {
-                    return self._reload_timesheet().then(function () {
-                        setTimeout(self._edit_line.bind(self, line_id), 0);
-                    });
-                })
-                .fail(this.proxy("_display_failure"));
+            return this._rpc({
+                model: "account.analytic.line",
+                method: "create",
+                args: [
+                    {
+                        user_id: this.getSession().user_id,
+                        account_id: this.$el.data("account-id"),
+                        project_id: this.$el.data("project-id"),
+                        task_id: this.$el.data("task-id"),
+                        unit_amount: 0,
+                        name: "/",
+                    },
+                ],
+            }).then(function (line_id) {
+                return self._reload_timesheet().then(function () {
+                    setTimeout(self._edit_line.bind(self, line_id), 0);
+                });
+            }, this.proxy("_display_failure"));
         },
 
         _onclick_edit: function (e) {
@@ -75,14 +68,11 @@ odoo.define("hr_timesheet_portal", function (require) {
                         return [a.name, a.value];
                     })
                 );
-            return rpc
-                .query({
-                    model: "account.analytic.line",
-                    method: "write",
-                    args: [$tr.data("line-id"), data],
-                })
-                .done(this.proxy("_reload_timesheet"))
-                .fail(this.proxy("_display_failure"));
+            return this._rpc({
+                model: "account.analytic.line",
+                method: "write",
+                args: [$tr.data("line-id"), data],
+            }).then(this.proxy("_reload_timesheet"), this.proxy("_display_failure"));
         },
 
         _reload_timesheet: function () {
@@ -96,23 +86,31 @@ odoo.define("hr_timesheet_portal", function (require) {
                             jQuery(element).find("div.hr_timesheet_portal").length > 0
                         );
                     }),
-                    $tbody = jQuery(timesheets).find("tbody");
+                    $tbody = jQuery(timesheets).find("div.hr_timesheet_portal tbody"),
+                    $existing_tbody = self.$("tbody");
+                if (!$existing_tbody.length) {
+                    return self.$("thead").after($tbody);
+                }
+                self.$("h5 .fa-plus").prop("disabled", false);
                 return self.$("tbody").replaceWith($tbody);
             });
         },
 
         _display_failure: function (error) {
             this.$el.prepend(
-                jQuery('<div class="alert alert-danger">').text(error.data.message)
+                jQuery('<div class="alert alert-danger">').text(
+                    error.message.data.message
+                )
             );
             this.$el.prepend(
-                jQuery('<div class="alert alert-danger">').text(error.message)
+                jQuery('<div class="alert alert-danger">').text(error.message.message)
             );
         },
 
         _edit_line(line_id) {
             var $line = this.$(_.str.sprintf("tr[data-line-id=%s]", line_id)),
                 $edit_line = $line.clone();
+            this.$("h5 .fa-plus").prop("disabled", true);
             this.$("tbody tr.edit").remove();
             this.$("tbody tr").show();
             $line.before($edit_line);
@@ -142,5 +140,5 @@ odoo.define("hr_timesheet_portal", function (require) {
         },
     });
 
-    return {animation: hr_timesheet_portal};
+    return {animation: sAnimation.registry.hr_timesheet_portal};
 });

@@ -10,10 +10,10 @@ div.hr_timesheet_portal:hover h5 i {
     display: inline-block;
     cursor: pointer;
 }
-div.hr_timesheet_portal tr[data-line-id]:hover {
+div.hr_timesheet_portal tr[data-line-id].editable:hover {
     cursor: pointer;
 }
-div.hr_timesheet_portal tr[data-line-id]:hover i {
+div.hr_timesheet_portal tr[data-line-id].editable:hover i {
     display: block;
     cursor: pointer;
     position: absolute;

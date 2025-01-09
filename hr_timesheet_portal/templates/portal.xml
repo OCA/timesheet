@@ -4,7 +4,7 @@
 <odoo>
 
     <template id="portal_my_task" inherit_id="hr_timesheet.portal_my_task">
-        <div t-if="task.timesheet_ids" position="attributes">
+        <div t-if="timesheets" position="attributes">
             <attribute name="class" add="hr_timesheet_portal" separator=" " />
             <attribute name="t-att-data-project-id">task.project_id.id</attribute>
             <attribute
@@ -12,19 +12,41 @@
             >task.project_id.analytic_account_id.id</attribute>
             <attribute name="t-att-data-task-id">task.id</attribute>
         </div>
-        <xpath expr="//div[@t-if='task.timesheet_ids']//h5" position="inside">
-            <i class="fa fa-plus" />
+        <xpath expr="//div[@t-if='timesheets']//h5" position="inside">
+            <i
+                class="fa fa-plus"
+                groups="hr_timesheet_portal.group_hr_timesheet_portal"
+            />
         </xpath>
-        <tr t-foreach="task.timesheet_ids" position="attributes">
+        <div t-if="timesheets" position="after">
+            <div
+                t-if="not timesheets and task.project_id.allow_timesheets"
+                class="container hr_timesheet_portal"
+                t-att-data-project-id="task.project_id.id"
+                t-att-data-account-id="task.project_id.analytic_account_id.id"
+                t-att-data-task-id="task.id"
+                groups="hr_timesheet_portal.group_hr_timesheet_portal"
+            >
+                <hr class="mt-4 mb-1" />
+                <h5 class="mt-2 mb-2">Timesheets <i class="fa fa-plus" /></h5>
+                <t t-call="hr_timesheet.portal_timesheet_table" />
+            </div>
+        </div>
+    </template>
+    <template
+        id="portal_timesheet_table"
+        inherit_id="hr_timesheet.portal_timesheet_table"
+    >
+        <tr t-foreach="timesheets" position="attributes">
             <attribute name="t-att-data-line-id">timesheet.id</attribute>
+            <attribute
+                name="t-att-class"
+            >(timesheet.user_id == request.env.user and request.env.user.has_group('hr_timesheet_portal.group_hr_timesheet_portal')) and 'editable'</attribute>
         </tr>
-        <xpath expr="//tr[@t-foreach='task.timesheet_ids']/td" position="inside">
+        <xpath expr="//tr[@t-foreach='timesheets']/td" position="inside">
             <i t-if="timesheet.user_id == request.env.user" class="fa fa-edit" />
         </xpath>
-        <xpath
-            expr="//tr[@t-foreach='task.timesheet_ids']/td[last()]"
-            position="inside"
-        >
+        <xpath expr="//tr[@t-foreach='timesheets']/td[last()]" position="inside">
             <i t-if="timesheet.user_id == request.env.user" class="fa fa-remove" />
         </xpath>
         <xpath expr="//t[@t-esc='timesheet.name']/parent::td" position="attributes">
