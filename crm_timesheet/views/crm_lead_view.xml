@@ -54,7 +54,7 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.view_crm_lead_kanban" />
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="inside">
+            <xpath expr="//footer" position="inside">
                 <field name="show_time_control" invisible="1" />
                 <a
                     name="button_start_work"
@@ -86,7 +86,7 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
         <field name="arch" type="xml">
-            <tree position="inside">
+            <list position="inside">
                 <field name="show_time_control" invisible="1" />
                 <button
                     name="button_start_work"
@@ -108,7 +108,7 @@
                     class="oe_stat_button"
                     groups="hr_timesheet.group_hr_timesheet_user"
                 />
-            </tree>
+            </list>
         </field>
     </record>
     <!-- Opportunities -->
@@ -117,7 +117,7 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="inside">
+            <xpath expr="//footer" position="inside">
                 <field name="show_time_control" invisible="1" />
                 <a
                     name="button_start_work"
@@ -149,7 +149,7 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
         <field name="arch" type="xml">
-            <tree position="inside">
+            <list position="inside">
                 <field name="show_time_control" invisible="1" />
                 <button
                     name="button_start_work"
@@ -171,7 +171,7 @@
                     class="oe_stat_button"
                     groups="hr_timesheet.group_hr_timesheet_user"
                 />
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>

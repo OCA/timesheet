@@ -35,7 +35,7 @@ class AccountAnalyticLineCase(TransactionCase):
         cls.project1 = Project.create(
             {
                 "name": "Test Project 1",
-                "analytic_account_id": cls.account1.id,
+                "account_id": cls.account1.id,
             }
         )
         cls.lead = env["crm.lead"].create(
