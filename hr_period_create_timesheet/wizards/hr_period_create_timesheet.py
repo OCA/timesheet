@@ -1,6 +1,8 @@
 # Copyright 2023 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from dateutil.relativedelta import relativedelta
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -93,25 +95,46 @@ class HrPeriodCreateTimesheet(models.TransientModel):
     def create_timesheets_on_future_periods(self):
         timesheet_obj = self.env["hr_timesheet.sheet"]
         today = fields.Date.today()
-        periods = self.env["hr.period"].search([("date_end", ">=", today)])
+
+        # Search for employees who have a user and a valid contract
         employees = self.env["hr.employee"].search(
             [("user_id", "!=", False), ("contract_id.date_start", "<=", today)]
         )
-        if not periods or not employees:
+        if not employees:
             return
+
         # Create a dictionary to store existing timesheets per employee
         existing_timesheets = {}
-        timesheet_domain = [
-            ("employee_id", "in", employees.ids),
-            ("date_start", "<=", max(periods.mapped("date_end"))),
-            ("date_end", ">=", min(periods.mapped("date_start"))),
-        ]
-        for timesheet in timesheet_obj.search(timesheet_domain):
-            key = (timesheet.employee_id.id, timesheet.date_start, timesheet.date_end)
-            existing_timesheets[key] = timesheet
+        for employee in employees:
+            # Get the company configuration for months in advance
+            months_in_advance = (
+                employee.company_id.hr_period_create_months_in_advance or 1
+            )
+            advance_date_limit = today + relativedelta(months=months_in_advance)
 
-        for hr_period in periods:
-            for employee in employees:
+            # Search for periods within the allowed range for this employee's company
+            periods = self.env["hr.period"].search(
+                [("date_end", ">=", today), ("date_end", "<=", advance_date_limit)]
+            )
+            if not periods:
+                continue
+
+            # Find existing timesheets for this employee
+            timesheet_domain = [
+                ("employee_id", "=", employee.id),
+                ("date_start", "<=", max(periods.mapped("date_end"))),
+                ("date_end", ">=", min(periods.mapped("date_start"))),
+            ]
+            for timesheet in timesheet_obj.search(timesheet_domain):
+                key = (
+                    timesheet.employee_id.id,
+                    timesheet.date_start,
+                    timesheet.date_end,
+                )
+                existing_timesheets[key] = timesheet
+
+            # Create timesheets for missing periods
+            for hr_period in periods:
                 key = (employee.id, hr_period.date_start, hr_period.date_end)
                 if key not in existing_timesheets:
                     ts_data = self._prepare_timesheet(employee, hr_period)

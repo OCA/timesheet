@@ -15,6 +15,7 @@
         "security/ir.model.access.csv",
         "data/ir_cron.xml",
         "wizards/hr_period_create_timesheet_view.xml",
+        "views/res_config_settings.xml",
     ],
     "installable": True,
 }

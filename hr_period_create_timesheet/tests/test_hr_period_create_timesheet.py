@@ -28,6 +28,7 @@ class TestHRPeriodCreateTimesheet(common.TransactionCase):
         self.dept_1 = self.env.ref("hr.dep_rd")
         self.dept.write({"parent_id": self.root.id})
         self.company_id = self.env.user.company_id
+        self.company_id.hr_period_create_months_in_advance = 12
         self.type = self.create_data_range_type("test_hr_period")
 
         self.vals = {
@@ -163,11 +164,13 @@ class TestHRPeriodCreateTimesheet(common.TransactionCase):
             time.strftime("%Y-04-02"),
         )
         # the payment is in next year
+        next_year = datetime.now().year + 1
+
         self.check_period(
             periods[11],
             time.strftime("%Y-12-01"),
             time.strftime("%Y-12-31"),
-            "2025-01-02",
+            f"{next_year}-01-02",  # Use next year for the last parameter
         )
 
         period_id = self.period_model.search(
