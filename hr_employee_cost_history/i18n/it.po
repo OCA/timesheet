@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-19 14:35+0000\n"
+"PO-Revision-Date: 2025-05-20 06:59+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: hr_employee_cost_history
 #: model_terms:ir.ui.view,arch_db:hr_employee_cost_history.hr_timesheet_retroactive_cost_view_employee_form_inherit
@@ -35,6 +35,12 @@ msgstr "Annulla"
 #: model:ir.model.fields,help:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__starting_date
 msgid "Change timesheet cost from this date onwards."
 msgstr "Modifica i costi fogli ore da questa data in poi."
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__comment
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__comment
+msgid "Comment"
+msgstr "Commento"
 
 #. module: hr_employee_cost_history
 #: model_terms:ir.ui.view,arch_db:hr_employee_cost_history.hr_employee_timesheet_cost_wizard_view_form

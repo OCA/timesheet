@@ -10,6 +10,7 @@
             <tree>
                 <field name="hourly_cost" />
                 <field name="starting_date" />
+                <field name="comment" />
                 <field name="create_uid" optional="hide" />
                 <field name="create_date" optional="hide" />
             </tree>

@@ -17,6 +17,9 @@
                             <field name="starting_date" />
                         </group>
                     </group>
+                    <group>
+                        <field name="comment" />
+                    </group>
                 </sheet>
                 <footer>
                     <button

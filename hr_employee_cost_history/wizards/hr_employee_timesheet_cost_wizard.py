@@ -20,6 +20,7 @@ class HrEmployeeTimesheetCost(models.TransientModel):
         default=fields.Datetime.now,
         string="From Date",
     )
+    comment = fields.Char()
 
     @api.model
     def default_get(self, fields):
@@ -54,6 +55,7 @@ class HrEmployeeTimesheetCost(models.TransientModel):
                             "currency_id": self.currency_id.id,
                             "hourly_cost": self.hourly_cost,
                             "starting_date": self.starting_date,
+                            "comment": self.comment,
                         }
                     ),
                 ],

@@ -34,6 +34,12 @@ msgid "Change timesheet cost from this date onwards."
 msgstr ""
 
 #. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__comment
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__comment
+msgid "Comment"
+msgstr ""
+
+#. module: hr_employee_cost_history
 #: model_terms:ir.ui.view,arch_db:hr_employee_cost_history.hr_employee_timesheet_cost_wizard_view_form
 msgid "Cost"
 msgstr ""
