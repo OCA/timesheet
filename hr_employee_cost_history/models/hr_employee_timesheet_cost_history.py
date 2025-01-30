@@ -22,3 +22,4 @@ class HrEmployeeTimesheetCostHistory(models.Model):
         help="The cost change has effect since this date.",
         default=fields.Date.context_today,
     )
+    comment = fields.Char()

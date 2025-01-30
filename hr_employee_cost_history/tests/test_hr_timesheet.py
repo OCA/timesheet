@@ -196,3 +196,28 @@ class HrEmployeeCostHistory(TransactionCase):
             )
         last_timesheet = timesheet_cost_ids[-1]
         self.assertEqual(last_timesheet.hourly_cost, 20.0)
+
+    @users("test_user_manager")
+    def test_field_comment(self):
+        """Test comment field."""
+        wizard = Form(
+            self.env["hr.employee.timesheet.cost.wizard"].with_context(
+                default_employee_id=self.employee.id,
+                default_hourly_cost=123,
+                default_starting_date=date.today(),
+                default_comment="Test comment",
+            )
+        )
+        wizard_result = wizard.save()
+        wizard_result.update_employee_cost()
+        comment = (
+            self.env["hr.employee.timesheet.cost.history"]
+            .search(
+                [
+                    ("employee_id", "=", self.employee.id),
+                    ("hourly_cost", "=", 123),
+                ]
+            )
+            .comment
+        )
+        self.assertEqual(comment, "Test comment")
