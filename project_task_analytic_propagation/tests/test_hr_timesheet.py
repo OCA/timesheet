@@ -1,5 +1,7 @@
 # Copyright 2024 Moduon Team S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/LGPL-3.0)
+import requests
+
 from odoo.tests import new_test_user, tagged, users
 
 from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheet
@@ -9,6 +11,7 @@ from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheet
 class HrTimesheet(TestCommonSaleTimesheet):
     @classmethod
     def setUpClass(cls):
+        cls._super_send = requests.Session.send
         super().setUpClass()
         cls.analytic_user = new_test_user(
             cls.env, "test_user", "analytic.group_analytic_accounting,base.group_user"
@@ -18,7 +21,6 @@ class HrTimesheet(TestCommonSaleTimesheet):
             {
                 "name": "Task One",
                 "priority": "0",
-                "kanban_state": "normal",
                 "project_id": cls.project_global.id,
                 "partner_id": cls.partner_b.id,
                 "user_ids": [(6, 0, cls.analytic_user.ids)],
@@ -52,7 +54,6 @@ class HrTimesheet(TestCommonSaleTimesheet):
         cls.plan = cls.env["account.analytic.plan"].create(
             {
                 "name": "Projects Plan",
-                "company_id": False,
             }
         )
         cls.analytic_account_maintenance = cls.env["account.analytic.account"].create(
@@ -87,8 +88,12 @@ class HrTimesheet(TestCommonSaleTimesheet):
             ]
         )
         cls.task1.sale_line_id = cls.so_line_1
-        cls.so.action_confirm()
         cls.so._create_invoices()
+
+    @classmethod
+    def _request_handler(cls, s, r, /, **kw):
+        """Don't block external requests."""
+        return cls._super_send(s, r, **kw)
 
     @users("test_user")
     def test_compute_account_id_01(self):
