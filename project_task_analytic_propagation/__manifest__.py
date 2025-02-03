@@ -3,8 +3,9 @@
 
 {
     "name": "Project Task Analytic Propagation",
-    "summary": "Updates timesheet's analytic account when their task changes the analytic.",
-    "version": "16.0.1.0.0",
+    "summary": "Updates timesheet's analytic account"
+    " when their task changes the analytic.",
+    "version": "17.0.1.0.0",
     "development_status": "Alpha",
     "category": "Timesheet",
     "website": "https://github.com/OCA/timesheet",
