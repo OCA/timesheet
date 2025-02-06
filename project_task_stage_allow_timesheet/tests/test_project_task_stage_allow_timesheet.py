@@ -31,7 +31,7 @@ class TestProjectTaskStageAllowTimesheet(TransactionCase):
 
         self.stage_new.allow_timesheet = False
         with self.assertRaises(ValidationError) as e, self.env.cr.savepoint():
-            self.AnalyticLine.create(values)
+            self.AnalyticLine.with_context(is_timesheet=1).create(values)
 
         self.assertIn(
             "You can't link a timesheet line to a task if its stage doesn't allow it.",
