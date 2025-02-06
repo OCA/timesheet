@@ -16,20 +16,21 @@ class AccountAnalyticLine(models.Model):
 
     @api.constrains("task_id")
     def _check_task_allow_timesheet(self):
-        for rec in self:
-            task = rec.task_id
-            stage = task.stage_id
-            if task and stage and not stage.allow_timesheet:
-                raise ValidationError(
-                    _(
-                        "You can't link a timesheet line to a task if its stage"
-                        " doesn't allow it. (Task: %(task_name)s, Stage: %(stage_name)s)"
+        if self.env.context.get("is_timesheet"):
+            for rec in self:
+                task = rec.task_id
+                stage = task.stage_id
+                if task and stage and not stage.allow_timesheet:
+                    raise ValidationError(
+                        _(
+                            "You can't link a timesheet line to a task if its stage"
+                            " doesn't allow it. (Task: %(task_name)s, Stage: %(stage_name)s)"
+                        )
+                        % {
+                            "task_name": task.display_name,
+                            "stage_name": stage.display_name,
+                        }
                     )
-                    % {
-                        "task_name": task.display_name,
-                        "stage_name": stage.display_name,
-                    }
-                )
 
     @api.model
     def _get_task_domain(self):
