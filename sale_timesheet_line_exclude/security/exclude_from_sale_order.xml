@@ -10,5 +10,9 @@
         <field
             name="comment"
         >Gives access to the Non-Billable field on timesheets.</field>
+        <field
+            name="users"
+            eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
+        />
     </record>
 </odoo>
