@@ -6,7 +6,7 @@ from odoo.tests.common import TransactionCase
 class TestCommonNameCustomer(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestCommonNameCustomer, cls).setUpClass()
+        super().setUpClass()
 
         # customer partner
         cls.partner = cls.env["res.partner"].create(

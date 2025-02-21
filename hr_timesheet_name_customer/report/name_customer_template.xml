@@ -54,8 +54,8 @@
                                 <span>Timesheets
                                     <t t-if="len(docs.project_id) == 1">
                                         for the <t
-                                            t-out="docs.project_id.name"
-                                        /> Project
+                                    t-out="docs.project_id.name"
+                                /> Project
                                     </t>
                                 </span>
                             </h2>
