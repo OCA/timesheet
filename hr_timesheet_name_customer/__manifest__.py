@@ -1,7 +1,7 @@
 {
     "name": "Timesheet Description Customer",
     "summary": "Add ‘Description Customer’ field for timesheets",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "category": "Timesheet",
     "website": "https://github.com/OCA/timesheet",
     "maintainers": ["solo4games", "CetmixGitDrone"],
