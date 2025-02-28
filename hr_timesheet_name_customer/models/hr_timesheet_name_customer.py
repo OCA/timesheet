@@ -6,12 +6,15 @@ from odoo import api, fields, models
 class NameCustomer(models.Model):
     _inherit = "account.analytic.line"
 
-    name_customer = fields.Char(string="Customer Description")
-    """override create method, initialize name_customer"""
+    name_customer = fields.Char(
+        string="Customer Description",
+        compute="_compute_name_customer",
+        store=True,
+        readonly=False,
+    )
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            if not vals.get("name_customer"):
-                vals["name_customer"] = vals["name"]
-        return super(NameCustomer, self).create(vals_list)
+    @api.depends("name")
+    def _compute_name_customer(self):
+        for rec in self:
+            if not rec.name_customer and rec.name:
+                rec.name_customer = rec.name
