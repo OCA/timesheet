@@ -1,7 +1,7 @@
 # Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -18,7 +18,6 @@ class HrUtilizationReportWizard(models.TransientModel):
         required=True,
     )
     only_active_employees = fields.Boolean(
-        string="Only Active Employees",
         default=True,
     )
     employee_ids = fields.Many2many(
@@ -65,7 +64,10 @@ class HrUtilizationReportWizard(models.TransientModel):
     @api.model
     def _default_grouping_field_ids(self):
         return list(
-            map(lambda values: (0, False, values), self._get_default_grouping_fields())
+            map(
+                lambda values: Command.create(values),
+                self._get_default_grouping_fields(),
+            )
         )
 
     @api.model
@@ -80,7 +82,7 @@ class HrUtilizationReportWizard(models.TransientModel):
     @api.model
     def _default_entry_field_ids(self):
         return list(
-            map(lambda values: (0, False, values), self._get_default_entry_fields())
+            map(lambda values: Command.create(values), self._get_default_entry_fields())
         )
 
     @api.model
@@ -159,21 +161,17 @@ class HrUtilizationReportWizard(models.TransientModel):
             "date_from": self.date_from,
             "date_to": self.date_to,
             "only_active_employees": self.only_active_employees,
-            "employee_ids": [(6, False, self.employee_ids.ids)],
-            "employee_category_ids": [(6, False, self.employee_category_ids.ids)],
-            "department_ids": [(6, False, self.department_ids.ids)],
-            "groupby_field_ids": list(
-                map(
-                    lambda x: (0, False, x._collect_report_values()),
-                    self.grouping_field_ids,
-                )
-            ),
-            "entry_field_ids": list(
-                map(
-                    lambda x: (0, False, x._collect_report_values()),
-                    self.entry_field_ids,
-                )
-            ),
+            "employee_ids": [Command.set(self.employee_ids.ids)],
+            "employee_category_ids": [Command.set(self.employee_category_ids.ids)],
+            "department_ids": [Command.set(self.department_ids.ids)],
+            "groupby_field_ids": [
+                Command.create(field._collect_report_values())
+                for field in self.grouping_field_ids
+            ],
+            "entry_field_ids": [
+                Command.create(field._collect_report_values())
+                for field in self.entry_field_ids
+            ],
             "split_by_field_name": self.split_by_field_name,
             "utilization_format": self.utilization_format,
             "time_format": self.time_format,
@@ -194,7 +192,6 @@ class HrUtilizationReportWizardField(models.AbstractModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
         default=10,
     )

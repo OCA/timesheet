@@ -9,7 +9,7 @@ from functools import reduce
 import pytz
 from xlsxwriter.utility import xl_rowcol_to_cell
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import ustr
 from odoo.tools.safe_eval import safe_eval
@@ -28,7 +28,6 @@ class HrUtilizationReport(models.TransientModel):
         required=True,
     )
     only_active_employees = fields.Boolean(
-        string="Only Active Employees",
         default=True,
     )
     employee_ids = fields.Many2many(
@@ -84,7 +83,6 @@ class HrUtilizationReport(models.TransientModel):
         store=True,
     )
     total_capacity = fields.Float(
-        string="Total Capacity",
         compute="_compute_total_capacity",
         store=True,
     )
@@ -179,7 +177,7 @@ class HrUtilizationReport(models.TransientModel):
         HrEmployee = self.env["hr.employee"]
 
         for report in self:
-            group_ids = [(5, False, False)]
+            group_ids = [Command.clear()]
 
             if report.groupby_field_ids:
                 grouped_employees = HrEmployee.read_group(
@@ -202,12 +200,10 @@ class HrUtilizationReport(models.TransientModel):
                             "sequence": len(group_ids),
                         }
                     )
-                    group_ids.append((0, False, group_values))
+                    group_ids.append(Command.create(group_values))
             else:
                 group_ids.append(
-                    (
-                        0,
-                        False,
+                    Command.create(
                         {
                             "sequence": len(group_ids),
                             "name": None,
@@ -292,7 +288,7 @@ class HrUtilizationReport(models.TransientModel):
         self.ensure_one()
 
         if report_type not in self._supported_report_types():
-            raise UserError(_('"%s" report type is not supported' % (report_type)))
+            raise UserError(_('"%s" report type is not supported') % report_type)
 
         report_name = "hr_utilization_report.report"
 
@@ -306,11 +302,12 @@ class HrUtilizationReport(models.TransientModel):
         )
         if not action:
             raise UserError(
-                _('"%s" report with "%s" type not found' % (report_name, report_type))
+                _('"%(report_name)s" report with "%(report_type)s" type not found')
+                % (report_name, report_type)
             )
 
         context = dict(self.env.context)
-        return action.with_context(context).report_action(self)
+        return action.with_context(**context).report_action(self)
 
 
 class HrUtilizationReportAbstractField(models.AbstractModel):
@@ -325,7 +322,6 @@ class HrUtilizationReportAbstractField(models.AbstractModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
     field_name = fields.Char(
@@ -340,9 +336,7 @@ class HrUtilizationReportAbstractField(models.AbstractModel):
         string="Field type",
         required=True,
     )
-    aggregation = fields.Char(
-        string="Aggregation",
-    )
+    aggregation = fields.Char()
     groupby = fields.Char(
         string="Group-by expression",
         compute="_compute_groupby",
@@ -404,11 +398,9 @@ class HrUtilizationReportGroup(models.TransientModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
     scope = fields.Char(
-        string="Scope",
         required=True,
     )
     name = fields.Char()
@@ -425,7 +417,6 @@ class HrUtilizationReportGroup(models.TransientModel):
         store=True,
     )
     total_capacity = fields.Float(
-        string="Total Capacity",
         compute="_compute_total_capacity",
         store=True,
     )
@@ -457,12 +448,10 @@ class HrUtilizationReportGroup(models.TransientModel):
         for group in self:
             employee_ids = HrEmployee.search(safe_eval(group.scope))
 
-            block_ids = [(5, False, False)]
+            block_ids = [Command.clear()]
             for employee_id in employee_ids:
                 block_ids.append(
-                    (
-                        0,
-                        False,
+                    Command.create(
                         {
                             "sequence": len(block_ids),
                             "employee_id": employee_id.id,
@@ -516,7 +505,6 @@ class HrUtilizationReportBlock(models.TransientModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
     employee_id = fields.Many2one(
@@ -537,7 +525,6 @@ class HrUtilizationReportBlock(models.TransientModel):
         store=True,
     )
     capacity = fields.Float(
-        string="Capacity",
         compute="_compute_capacity",
         store=True,
     )
@@ -577,7 +564,7 @@ class HrUtilizationReportBlock(models.TransientModel):
                 lazy=False,
             )
 
-            entry_ids = [(5, False, False)]
+            entry_ids = [Command.clear()]
             for entry_data in grouped_lines:
                 entry_values = block._get_entry_values(entry_data)
                 if not entry_values:
@@ -588,7 +575,7 @@ class HrUtilizationReportBlock(models.TransientModel):
                         "sequence": len(entry_ids),
                     }
                 )
-                entry_ids.append((0, False, entry_values))
+                entry_ids.append(Command.create(entry_values))
             block.entry_ids = entry_ids
 
     @api.depends("entry_ids")
@@ -683,11 +670,9 @@ class HrUtilizationReportEntry(models.TransientModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
     scope = fields.Char(
-        string="Scope",
         required=True,
     )
     any_line_id = fields.Many2one(
