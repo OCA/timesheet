@@ -22,7 +22,7 @@
                     'views': [[False, 'form']],
                     'target': 'new',
                     'context': {
-                        'default_employee_ids': [(6, False, records.ids)],
+                        'default_employee_ids': [Command.set(records.ids)],
                     },
                 }
         </field>
