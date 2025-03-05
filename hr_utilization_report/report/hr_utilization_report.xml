@@ -5,7 +5,6 @@
         License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
     -->
 
-
     <template id="report_header">
         <div class="row">
             <div class="col-lg-12">
@@ -334,9 +333,9 @@
     <template id="report_utilization">
         <span t-if="report.utilization_format == 'percentage'">
             <t
-                t-esc="utilization_value * 100.0"
-                t-options="{'widget': 'float', 'precision': 1}"
-            />%
+            t-esc="utilization_value * 100.0"
+            t-options="{'widget': 'float', 'precision': 1}"
+        />%
         </span>
         <t t-elif="report.utilization_format == 'absolute'">
             <span
@@ -377,7 +376,7 @@
 
     <record id="action_report_qweb_pdf" model="ir.actions.report">
         <field name="name">Utilization Report</field>
-         <field name="model">hr.utilization.report</field>
+        <field name="model">hr.utilization.report</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">hr_utilization_report.report</field>
         <field name="report_file">hr_utilization_report.report</field>
@@ -386,23 +385,22 @@
     </record>
 
     <record id="action_report_qweb_html" model="ir.actions.report">
-         <field name="name">Utilization Report HTML</field>
-         <field name="model">hr.utilization.report</field>
-         <field name="report_type">qweb-html</field>
-         <field name="report_name">hr_utilization_report.report</field>
-         <field name="report_file">hr_utilization_report.report</field>
+        <field name="name">Utilization Report HTML</field>
+        <field name="model">hr.utilization.report</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">hr_utilization_report.report</field>
+        <field name="report_file">hr_utilization_report.report</field>
         <field name="binding_model_id" ref="hr.model_hr_employee" />
         <field name="binding_type">report</field>
-     </record>
+    </record>
 
     <record id="action_report_xlsx" model="ir.actions.report">
-         <field name="name">Utilization Report XLSX</field>
-         <field name="model">hr.utilization.report</field>
-         <field name="report_type">xlsx</field>
-         <field name="report_name">hr_utilization_report.report</field>
-         <field name="report_file">hr_utilization_report.report</field>
+        <field name="name">Utilization Report XLSX</field>
+        <field name="model">hr.utilization.report</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">hr_utilization_report.report</field>
+        <field name="report_file">hr_utilization_report.report</field>
         <field name="binding_model_id" ref="hr.model_hr_employee" />
         <field name="binding_type">report</field>
-     </record>
-
+    </record>
 </odoo>

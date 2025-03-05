@@ -816,7 +816,6 @@ class Report(models.AbstractModel):
 
         group_row_indices = []
         for group in report.group_ids:
-
             if report.groupby_field_ids:
                 group_row_indices.append(rows_emitted)
                 rows_emitted += self._emit_group_header(
