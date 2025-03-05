@@ -35,18 +35,18 @@
                 <group name="content">
                     <group>
                         <field name="grouping_field_ids">
-                            <tree editable="bottom">
+                            <list editable="bottom">
                                 <field name="sequence" widget="handle" />
                                 <field name="field_name" />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                     <group>
                         <field name="entry_field_ids">
-                            <tree editable="bottom">
+                            <list editable="bottom">
                                 <field name="sequence" widget="handle" />
                                 <field name="field_name" />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                     <group>

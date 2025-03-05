@@ -9,9 +9,8 @@ from functools import reduce
 import pytz
 from xlsxwriter.utility import xl_rowcol_to_cell
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools import ustr
 from odoo.tools.safe_eval import safe_eval
 
 
@@ -28,7 +27,6 @@ class HrUtilizationReport(models.TransientModel):
         required=True,
     )
     only_active_employees = fields.Boolean(
-        string="Only Active Employees",
         default=True,
     )
     employee_ids = fields.Many2many(
@@ -84,7 +82,6 @@ class HrUtilizationReport(models.TransientModel):
         store=True,
     )
     total_capacity = fields.Float(
-        string="Total Capacity",
         compute="_compute_total_capacity",
         store=True,
     )
@@ -179,7 +176,7 @@ class HrUtilizationReport(models.TransientModel):
         HrEmployee = self.env["hr.employee"]
 
         for report in self:
-            group_ids = [(5, False, False)]
+            group_ids = [Command.clear()]
 
             if report.groupby_field_ids:
                 grouped_employees = HrEmployee.read_group(
@@ -202,16 +199,14 @@ class HrUtilizationReport(models.TransientModel):
                             "sequence": len(group_ids),
                         }
                     )
-                    group_ids.append((0, False, group_values))
+                    group_ids.append(Command.create(group_values))
             else:
                 group_ids.append(
-                    (
-                        0,
-                        False,
+                    Command.create(
                         {
                             "sequence": len(group_ids),
                             "name": None,
-                            "scope": ustr(report._get_employees_domain()),
+                            "scope": str(report._get_employees_domain()),
                         },
                     )
                 )
@@ -226,15 +221,17 @@ class HrUtilizationReport(models.TransientModel):
             value = grouped_lines.get(field.field_name, None)
 
             if not value:
-                value = _("%s not set") % (field.field_title)
+                value = _("{} not set").format(field.field_title)
             else:
                 value = value[1]
 
             values.append(value)
 
         return {
-            "name": reduce(lambda l, r: _("{l} » {r}").format(l=l, r=r), values),
-            "scope": ustr(grouped_lines["__domain"]),
+            "name": reduce(
+                lambda left, right: _("{l} » {r}").format(l=left, r=right), values
+            ),
+            "scope": str(grouped_lines["__domain"]),
         }
 
     @api.depends("group_ids.has_multientry_blocks")
@@ -292,7 +289,7 @@ class HrUtilizationReport(models.TransientModel):
         self.ensure_one()
 
         if report_type not in self._supported_report_types():
-            raise UserError(_('"%s" report type is not supported' % (report_type)))
+            raise UserError(_('"{}" report type is not supported').format(report_type))
 
         report_name = "hr_utilization_report.report"
 
@@ -306,11 +303,12 @@ class HrUtilizationReport(models.TransientModel):
         )
         if not action:
             raise UserError(
-                _('"%s" report with "%s" type not found' % (report_name, report_type))
+                _('"%(report_name)s" report with "%(report_type)s" type not found')
+                % (report_name, report_type)
             )
 
         context = dict(self.env.context)
-        return action.with_context(context).report_action(self)
+        return action.with_context(**context).report_action(self)
 
 
 class HrUtilizationReportAbstractField(models.AbstractModel):
@@ -325,7 +323,6 @@ class HrUtilizationReportAbstractField(models.AbstractModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
     field_name = fields.Char(
@@ -340,9 +337,7 @@ class HrUtilizationReportAbstractField(models.AbstractModel):
         string="Field type",
         required=True,
     )
-    aggregation = fields.Char(
-        string="Aggregation",
-    )
+    aggregation = fields.Char()
     groupby = fields.Char(
         string="Group-by expression",
         compute="_compute_groupby",
@@ -360,7 +355,7 @@ class HrUtilizationReportAbstractField(models.AbstractModel):
     def _compute_groupby(self):
         for field in self:
             if field.aggregation:
-                field.groupby = "%s:%s" % (field.field_name, field.aggregation)
+                field.groupby = f"{field.field_name}:{field.aggregation}"
             else:
                 field.groupby = field.field_name
 
@@ -404,11 +399,9 @@ class HrUtilizationReportGroup(models.TransientModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
     scope = fields.Char(
-        string="Scope",
         required=True,
     )
     name = fields.Char()
@@ -425,7 +418,6 @@ class HrUtilizationReportGroup(models.TransientModel):
         store=True,
     )
     total_capacity = fields.Float(
-        string="Total Capacity",
         compute="_compute_total_capacity",
         store=True,
     )
@@ -457,12 +449,10 @@ class HrUtilizationReportGroup(models.TransientModel):
         for group in self:
             employee_ids = HrEmployee.search(safe_eval(group.scope))
 
-            block_ids = [(5, False, False)]
+            block_ids = [Command.clear()]
             for employee_id in employee_ids:
                 block_ids.append(
-                    (
-                        0,
-                        False,
+                    Command.create(
                         {
                             "sequence": len(block_ids),
                             "employee_id": employee_id.id,
@@ -516,7 +506,6 @@ class HrUtilizationReportBlock(models.TransientModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
     employee_id = fields.Many2one(
@@ -537,7 +526,6 @@ class HrUtilizationReportBlock(models.TransientModel):
         store=True,
     )
     capacity = fields.Float(
-        string="Capacity",
         compute="_compute_capacity",
         store=True,
     )
@@ -577,7 +565,7 @@ class HrUtilizationReportBlock(models.TransientModel):
                 lazy=False,
             )
 
-            entry_ids = [(5, False, False)]
+            entry_ids = [Command.clear()]
             for entry_data in grouped_lines:
                 entry_values = block._get_entry_values(entry_data)
                 if not entry_values:
@@ -588,7 +576,7 @@ class HrUtilizationReportBlock(models.TransientModel):
                         "sequence": len(entry_ids),
                     }
                 )
-                entry_ids.append((0, False, entry_values))
+                entry_ids.append(Command.create(entry_values))
             block.entry_ids = entry_ids
 
     @api.depends("entry_ids")
@@ -667,7 +655,7 @@ class HrUtilizationReportBlock(models.TransientModel):
         self.ensure_one()
 
         return {
-            "scope": ustr(grouped_lines["__domain"]),
+            "scope": str(grouped_lines["__domain"]),
         }
 
 
@@ -683,11 +671,9 @@ class HrUtilizationReportEntry(models.TransientModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
         required=True,
     )
     scope = fields.Char(
-        string="Scope",
         required=True,
     )
     any_line_id = fields.Many2one(
@@ -806,7 +792,7 @@ class Report(models.AbstractModel):
 
     @api.model
     def _emit_report(self, workbook, report, report_index):
-        sheet = workbook.add_worksheet(_("Report %s") % (report_index + 1))
+        sheet = workbook.add_worksheet(_("Report {}").format(report_index + 1))
 
         formats = self._create_workbook_formats(report, workbook)
         columns = self._get_columns(report)
@@ -865,7 +851,7 @@ class Report(models.AbstractModel):
                 columns["utilization_a"],
                 0,
                 columns["total_utilization_b"],
-                _("%s, %%") % (report.split_by_field_title),
+                _(f"{report.split_by_field_title}, %"),
                 formats["header_title"],
             )
             sheet.merge_range(
@@ -889,7 +875,7 @@ class Report(models.AbstractModel):
             columns["unit_amount_a"],
             0,
             columns["total_unit_amount_b"],
-            _("Amount, %s") % (uom_hour.name),
+            _("Amount, {}").format(uom_hour.name),
             formats["header_title"],
         )
         sheet.merge_range(
@@ -913,7 +899,7 @@ class Report(models.AbstractModel):
             columns["capacity"],
             1,
             columns["capacity"],
-            _("Capacity, %s") % (uom_hour.name),
+            _("Capacity, {}").format(uom_hour.name),
             formats["header_title"],
         )
         return 2
@@ -940,13 +926,13 @@ class Report(models.AbstractModel):
             columns["unit_amount_a"],
             0,
             columns["total_unit_amount_a"],
-            _("Amount, %s") % (uom_hour.name),
+            _(f"Amount, {uom_hour.name}"),
             formats["header_title"],
         )
         sheet.write(
             0,
             columns["capacity"],
-            _("Capacity, %s") % (uom_hour.name),
+            _(f"Capacity, {uom_hour.name}"),
             formats["header_title"],
         )
         return 1
@@ -980,8 +966,7 @@ class Report(models.AbstractModel):
             sheet.write_formula(
                 rows_emitted,
                 columns["utilization_a"],
-                "=%s/%s"
-                % (
+                "={}/{}".format(
                     xl_rowcol_to_cell(rows_emitted, columns["unit_amount_a"]),
                     xl_rowcol_to_cell(rows_emitted, columns["capacity"]),
                 ),
@@ -1001,8 +986,7 @@ class Report(models.AbstractModel):
                 sheet.write_formula(
                     rows_emitted,
                     columns["utilization_b"],
-                    "=%s/%s"
-                    % (
+                    "={}/{}".format(
                         xl_rowcol_to_cell(rows_emitted, columns["unit_amount_b"]),
                         xl_rowcol_to_cell(rows_emitted, columns["capacity"]),
                     ),
@@ -1020,8 +1004,7 @@ class Report(models.AbstractModel):
         sheet.write_formula(
             rows_emitted,
             columns["unit_amount_a"],
-            "=SUM(%s:%s)"
-            % (
+            "=SUM({}:{})".format(
                 xl_rowcol_to_cell(rows_emitted + 1, columns["total_unit_amount_a"]),
                 xl_rowcol_to_cell(
                     rows_emitted + group_rows_count, columns["total_unit_amount_a"]
@@ -1042,8 +1025,7 @@ class Report(models.AbstractModel):
             sheet.write_formula(
                 rows_emitted,
                 columns["unit_amount_b"],
-                "=SUM(%s:%s)"
-                % (
+                "=SUM({}:{})".format(
                     xl_rowcol_to_cell(rows_emitted + 1, columns["total_unit_amount_b"]),
                     xl_rowcol_to_cell(
                         rows_emitted + group_rows_count, columns["total_unit_amount_b"]
@@ -1055,8 +1037,7 @@ class Report(models.AbstractModel):
         sheet.write_formula(
             rows_emitted,
             columns["capacity"],
-            "=SUM(%s:%s)"
-            % (
+            "=SUM({}:{})".format(
                 xl_rowcol_to_cell(rows_emitted + 1, columns["capacity"]),
                 xl_rowcol_to_cell(rows_emitted + group_rows_count, columns["capacity"]),
             ),
@@ -1120,8 +1101,7 @@ class Report(models.AbstractModel):
         sheet.write_formula(
             rows_emitted,
             columns["total_unit_amount_a"],
-            "=SUM(%s:%s)"
-            % (
+            "=SUM({}:{})".format(
                 xl_rowcol_to_cell(rows_emitted, columns["unit_amount_a"]),
                 xl_rowcol_to_cell(
                     rows_emitted + entry_rows_emitted - 1, columns["unit_amount_a"]
@@ -1144,8 +1124,7 @@ class Report(models.AbstractModel):
             sheet.write_formula(
                 rows_emitted,
                 columns["total_utilization_a"],
-                "=SUM(%s:%s)"
-                % (
+                "=SUM({}:{})".format(
                     xl_rowcol_to_cell(rows_emitted, columns["utilization_a"]),
                     xl_rowcol_to_cell(
                         rows_emitted + entry_rows_emitted - 1, columns["utilization_a"]
@@ -1168,8 +1147,7 @@ class Report(models.AbstractModel):
             sheet.write_formula(
                 rows_emitted,
                 columns["total_unit_amount_b"],
-                "=SUM(%s:%s)"
-                % (
+                "=SUM({}:{})".format(
                     xl_rowcol_to_cell(rows_emitted, columns["unit_amount_b"]),
                     xl_rowcol_to_cell(
                         rows_emitted + entry_rows_emitted - 1, columns["unit_amount_b"]
@@ -1192,8 +1170,7 @@ class Report(models.AbstractModel):
                 sheet.write_formula(
                     rows_emitted,
                     columns["total_utilization_b"],
-                    "=SUM(%s:%s)"
-                    % (
+                    "=SUM({}:{})".format(
                         xl_rowcol_to_cell(rows_emitted, columns["utilization_b"]),
                         xl_rowcol_to_cell(
                             rows_emitted + entry_rows_emitted - 1,
@@ -1249,7 +1226,7 @@ class Report(models.AbstractModel):
         sheet.write_formula(
             rows_emitted,
             columns["total_unit_amount_a"],
-            "=%s" % (xl_rowcol_to_cell(rows_emitted, columns["unit_amount_a"]),),
+            "={}".format(xl_rowcol_to_cell(rows_emitted, columns["unit_amount_a"])),
             formats["block_total_amount"],
             self._convert_time_num_format(report, block.total_unit_amount_a),
         )
@@ -1264,7 +1241,7 @@ class Report(models.AbstractModel):
             sheet.write_formula(
                 rows_emitted,
                 columns["total_utilization_a"],
-                "=%s" % (xl_rowcol_to_cell(rows_emitted, columns["utilization_a"]),),
+                "={}".format(xl_rowcol_to_cell(rows_emitted, columns["utilization_a"])),
                 formats["block_total_utilization"],
                 block.total_utilization_a,
             )
@@ -1279,7 +1256,7 @@ class Report(models.AbstractModel):
             sheet.write_formula(
                 rows_emitted,
                 columns["total_unit_amount_b"],
-                "=%s" % (xl_rowcol_to_cell(rows_emitted, columns["unit_amount_b"]),),
+                "={}".format(xl_rowcol_to_cell(rows_emitted, columns["unit_amount_b"])),
                 formats["block_total_amount"],
                 self._convert_time_num_format(report, block.total_unit_amount_b),
             )
@@ -1294,8 +1271,9 @@ class Report(models.AbstractModel):
                 sheet.write_formula(
                     rows_emitted,
                     columns["total_utilization_b"],
-                    "=%s"
-                    % (xl_rowcol_to_cell(rows_emitted, columns["utilization_b"]),),
+                    "={}".format(
+                        xl_rowcol_to_cell(rows_emitted, columns["utilization_b"])
+                    ),
                     formats["block_total_utilization"],
                     block.total_utilization_b,
                 )
@@ -1333,8 +1311,7 @@ class Report(models.AbstractModel):
             sheet.write_formula(
                 rows_emitted,
                 columns["utilization_a"],
-                "=%s/%s"
-                % (
+                "={}/{}".format(
                     xl_rowcol_to_cell(rows_emitted, columns["unit_amount_a"]),
                     xl_rowcol_to_cell(block_row_index, columns["capacity"]),
                 ),
@@ -1346,8 +1323,7 @@ class Report(models.AbstractModel):
                 sheet.write_formula(
                     rows_emitted,
                     columns["utilization_b"],
-                    "=%s/%s"
-                    % (
+                    "={}/{}".format(
                         xl_rowcol_to_cell(rows_emitted, columns["unit_amount_b"]),
                         xl_rowcol_to_cell(block_row_index, columns["capacity"]),
                     ),
@@ -1397,8 +1373,7 @@ class Report(models.AbstractModel):
             sheet.write_formula(
                 rows_emitted,
                 columns["utilization_a"],
-                "=%s/%s"
-                % (
+                "={}/{}".format(
                     xl_rowcol_to_cell(rows_emitted, columns["unit_amount_a"]),
                     xl_rowcol_to_cell(rows_emitted, columns["capacity"]),
                 ),
@@ -1418,8 +1393,7 @@ class Report(models.AbstractModel):
                 sheet.write_formula(
                     rows_emitted,
                     columns["utilization_b"],
-                    "=%s/%s"
-                    % (
+                    "={}/{}".format(
                         xl_rowcol_to_cell(rows_emitted, columns["unit_amount_b"]),
                         xl_rowcol_to_cell(rows_emitted, columns["capacity"]),
                     ),
@@ -1438,8 +1412,7 @@ class Report(models.AbstractModel):
             sheet.write_formula(
                 rows_emitted,
                 columns["unit_amount_a"],
-                "=SUM(%s)"
-                % (
+                "=SUM({})".format(
                     "+".join(
                         map(
                             lambda x: xl_rowcol_to_cell(x, columns["unit_amount_a"]),
@@ -1462,8 +1435,7 @@ class Report(models.AbstractModel):
             sheet.write_formula(
                 rows_emitted,
                 columns["unit_amount_a"],
-                "=SUM(%s:%s)"
-                % (
+                "=SUM({}:{})".format(
                     xl_rowcol_to_cell(1, columns["unit_amount_a"]),
                     xl_rowcol_to_cell(rows_emitted - 1, columns["unit_amount_a"]),
                 ),
@@ -1483,8 +1455,7 @@ class Report(models.AbstractModel):
                 sheet.write_formula(
                     rows_emitted,
                     columns["unit_amount_b"],
-                    "=SUM(%s)"
-                    % (
+                    "=SUM({})".format(
                         "+".join(
                             map(
                                 lambda x: xl_rowcol_to_cell(
@@ -1509,8 +1480,7 @@ class Report(models.AbstractModel):
                 sheet.write_formula(
                     rows_emitted,
                     columns["unit_amount_b"],
-                    "=SUM(%s:%s)"
-                    % (
+                    "=SUM({}:{})".format(
                         xl_rowcol_to_cell(1, columns["unit_amount_b"]),
                         xl_rowcol_to_cell(rows_emitted - 1, columns["unit_amount_b"]),
                     ),
@@ -1522,8 +1492,7 @@ class Report(models.AbstractModel):
             sheet.write_formula(
                 rows_emitted,
                 columns["capacity"],
-                "=SUM(%s)"
-                % (
+                "=SUM({})".format(
                     "+".join(
                         map(
                             lambda x: xl_rowcol_to_cell(x, columns["capacity"]),
@@ -1538,8 +1507,7 @@ class Report(models.AbstractModel):
             sheet.write_formula(
                 rows_emitted,
                 columns["capacity"],
-                "=SUM(%s:%s)"
-                % (
+                "=SUM({}:{})".format(
                     xl_rowcol_to_cell(1, columns["capacity"]),
                     xl_rowcol_to_cell(rows_emitted - 1, columns["capacity"]),
                 ),
