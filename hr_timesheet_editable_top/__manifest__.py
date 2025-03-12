@@ -5,7 +5,7 @@
 {
     "name": "Timesheets - Edit on top",
     "summary": "Add new timesheet entries to the top of the list",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "author": "Coop IT Easy SC, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Human Resources",
