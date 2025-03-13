@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hr_timesheet.act_hr_timesheet_line" model="ir.actions.act_window">
+            <field name="view_mode">tree,form,kanban,pivot,graph,calendar</field>
+    </record>
+
+    <record id="hr_timesheet_line_calendar" model="ir.ui.view">
+        <field name="model">account.analytic.line</field>
+        <field name="arch" type="xml">
+            <calendar
+                string="Timesheets"
+                date_start="date_time"
+                date_stop="date_time_end"
+            >
+                <field name="name" />
+            </calendar>
+        </field>
+    </record>
+
+    <record id="act_hr_timesheet_line_view_calendar" model="ir.actions.act_window.view">
+        <field name="view_mode">calendar</field>
+        <field name="sequence" eval="4" />
+        <field name="view_id" ref="hr_timesheet_line_calendar" />
+        <field name="act_window_id" ref="hr_timesheet.act_hr_timesheet_line" />
+    </record>
+</odoo>
