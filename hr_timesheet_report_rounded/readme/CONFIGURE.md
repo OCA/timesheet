@@ -1,0 +1,1 @@
+Please refer to the documentation of the [Task Logs Timesheet Report](https://github.com/cetmix/oca-timesheet/tree/16.0/hr_timesheet_report) and [Sale Timesheet Rounded](https://github.com/cetmix/oca-timesheet/tree/16.0/sale_timesheet_rounded) modules.
