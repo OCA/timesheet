@@ -87,7 +87,7 @@
         <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
         <field name="arch" type="xml">
             <list position="inside">
-                <field name="show_time_control" invisible="1" />
+                <field name="show_time_control" column_invisible="1" />
                 <button
                     name="button_start_work"
                     string="Start work"
