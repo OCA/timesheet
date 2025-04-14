@@ -29,7 +29,6 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
         self.SudoSaleOrder = self.SaleOrder.sudo()
         self.SaleOrderLine = self.env["sale.order.line"]
         self.SudoSaleOrderLine = self.SaleOrderLine.sudo()
-        self.ProjectCreateSaleOrder = self.env["project.create.sale.order"]
 
         self.analytic_plan = self.AccountAccountPlan.create(
             {
@@ -57,7 +56,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
             {
                 "name": "Project #1",
                 "allow_timesheets": True,
-                "analytic_account_id": self.analytic_account_sale.id,
+                "account_id": self.analytic_account_sale.id,
                 "allow_billable": True,
             }
         )
@@ -135,7 +134,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "name": "Entry #1-1",
                 "unit_amount": 1,
                 "employee_id": self.employee.id,
-                "account_id": self.project.analytic_account_id.id,
+                "account_id": self.project.account_id.id,
             }
         )
         self.assertEqual(timesheet.timesheet_invoice_type, "billable_time")
@@ -152,7 +151,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "unit_amount": 1,
                 "employee_id": self.employee.id,
                 "exclude_from_sale_order": True,
-                "account_id": self.project.analytic_account_id.id,
+                "account_id": self.project.account_id.id,
             }
         )
         self.assertEqual(timesheet.timesheet_invoice_type, "non_billable")
@@ -169,7 +168,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "unit_amount": 1,
                 "employee_id": self.employee.id,
                 "exclude_from_sale_order": False,
-                "account_id": self.project.analytic_account_id.id,
+                "account_id": self.project.account_id.id,
             }
         )
         self.assertTrue(timesheet.so_line)
@@ -190,7 +189,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "unit_amount": 1,
                 "employee_id": self.employee.id,
                 "exclude_from_sale_order": True,
-                "account_id": self.project.analytic_account_id.id,
+                "account_id": self.project.account_id.id,
             }
         )
         timesheet.write({"exclude_from_sale_order": False})
@@ -209,7 +208,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "name": "Entry #1-1",
                 "unit_amount": 1,
                 "employee_id": self.employee.id,
-                "account_id": self.project.analytic_account_id.id,
+                "account_id": self.project.account_id.id,
             }
         )
 
@@ -221,7 +220,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "unit_amount": 1,
                 "employee_id": self.employee.id,
                 "exclude_from_sale_order": True,
-                "account_id": self.project.analytic_account_id.id,
+                "account_id": self.project.account_id.id,
             }
         )
 
@@ -244,7 +243,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "name": "Entry #1-1",
                 "unit_amount": 1,
                 "employee_id": self.employee.id,
-                "account_id": self.project.analytic_account_id.id,
+                "account_id": self.project.account_id.id,
             }
         )
 
@@ -256,7 +255,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "unit_amount": 1,
                 "employee_id": self.employee.id,
                 "exclude_from_sale_order": True,
-                "account_id": self.project.analytic_account_id.id,
+                "account_id": self.project.account_id.id,
             }
         )
 
@@ -282,7 +281,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "name": "Entry #1-1",
                 "unit_amount": 1,
                 "employee_id": self.employee.id,
-                "account_id": self.project.analytic_account_id.id,
+                "account_id": self.project.account_id.id,
             }
         )
         timesheet2 = self.SudoAccountAnalyticLine.create(
@@ -293,7 +292,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "unit_amount": 1,
                 "employee_id": self.employee.id,
                 "exclude_from_sale_order": False,
-                "account_id": self.project.analytic_account_id.id,
+                "account_id": self.project.account_id.id,
             }
         )
 
@@ -310,7 +309,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "name": "Entry #1-3",
                 "unit_amount": 1,
                 "employee_id": self.employee.id,
-                "account_id": self.project.analytic_account_id.id,
+                "account_id": self.project.account_id.id,
             }
         )
         self.assertEqual(timesheet3.timesheet_invoice_type, "billable_time")

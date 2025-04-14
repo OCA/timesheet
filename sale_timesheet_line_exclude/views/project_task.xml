@@ -14,7 +14,7 @@
         />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='timesheet_ids']/tree/field[@name='so_line']"
+                expr="//field[@name='timesheet_ids']/list/field[@name='so_line']"
                 position="before"
             >
                 <field name="exclude_from_sale_order" />
