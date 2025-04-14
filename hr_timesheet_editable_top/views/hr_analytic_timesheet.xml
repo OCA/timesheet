@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="hr_timesheet_line_tree" model="ir.ui.view">
-        <field name="name">hr.analytic.timesheet.tree</field>
+        <field name="name">hr.analytic.timesheet.list</field>
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute name="editable">top</attribute>
             </xpath>
         </field>
