@@ -17,4 +17,10 @@
     "data": [
         "views/hr_timesheet_views.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "hr_timesheet_calendar/static/src/views/**/*.js",
+            "hr_timesheet_calendar/static/src/views/**/*.xml",
+        ]
+    },
 }

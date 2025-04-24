@@ -8,11 +8,18 @@
         <field name="model">account.analytic.line</field>
         <field name="arch" type="xml">
             <calendar
+                js_class="timesheet_calendar"
                 string="Timesheets"
                 date_start="date_time"
                 date_stop="date_time_end"
+                event_open_popup="1"
+                quick_create="1"
+                quick_create_view_id="%(hr_timesheet.hr_timesheet_line_form)d"
             >
-                <field name="name" />
+                <field name="project_id" />
+                <field name="task_id" invisible="not task_id" />
+
+
             </calendar>
         </field>
     </record>
