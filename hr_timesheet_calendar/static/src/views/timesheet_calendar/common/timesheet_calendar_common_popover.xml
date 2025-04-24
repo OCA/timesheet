@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t
+        t-name="timesheet.TimesheetCalendarCommonPopover.body"
+        t-inherit="web.CalendarCommonPopover.body"
+        t-inherit-mode="primary"
+    >
+        <xpath expr="//small[@t-if='timeDuration']" position="replace">
+            <small t-if="props.record.allocated_hours">
+                <b t-esc="`(${allocatedHoursFormatted})`" />
+            </small>
+            <small
+                t-if="props.record.allocated_percentage and props.record.resource_type === 'user'"
+            >
+                <b t-esc="`(${allocatedPercentageFormatted} %)`" />
+            </small>
+            <t
+                t-if="timeDuration and !(props.record.allocated_hours or props.record.allocated_percentage)"
+            >$0</t>
+        </xpath>
+    </t>
+
+    <t
+        t-name="timesheet.TimesheetCalendarCommonPopover.footer"
+        t-inherit="web.CalendarCommonPopover.footer"
+        t-inherit-mode="primary"
+    >
+        <xpath expr="//a[@t-on-click='onEditEvent']" position="after">
+            <a
+                class="btn btn-primary o_cw_popover_copy ms-2"
+                href="#"
+                t-on-click="onCopyEvent"
+            >Duplicate</a>
+        </xpath>
+    </t>
+</templates>
