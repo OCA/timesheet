@@ -6,7 +6,7 @@ from odoo.tests.common import TransactionCase
 class TestCommonNameCustomer(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestCommonNameCustomer, cls).setUpClass()
+        super().setUpClass()
 
         # customer partner
         cls.partner = cls.env["res.partner"].create(
@@ -20,7 +20,6 @@ class TestCommonNameCustomer(TransactionCase):
         cls.analytic_plan = cls.env["account.analytic.plan"].create(
             {
                 "name": "Plan Test",
-                "company_id": False,
             }
         )
         cls.analytic_account = cls.env["account.analytic.account"].create(
@@ -45,7 +44,6 @@ class TestCommonNameCustomer(TransactionCase):
             {
                 "name": "Task One",
                 "priority": "0",
-                "kanban_state": "normal",
                 "project_id": cls.project_customer.id,
                 "partner_id": cls.partner.id,
             }
@@ -54,7 +52,6 @@ class TestCommonNameCustomer(TransactionCase):
             {
                 "name": "Task Two",
                 "priority": "1",
-                "kanban_state": "done",
                 "project_id": cls.project_customer.id,
             }
         )
