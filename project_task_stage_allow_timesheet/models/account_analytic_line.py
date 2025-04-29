@@ -7,7 +7,6 @@ from odoo.exceptions import ValidationError
 
 
 class AccountAnalyticLine(models.Model):
-
     _inherit = "account.analytic.line"
 
     task_id = fields.Many2one(
@@ -23,8 +22,9 @@ class AccountAnalyticLine(models.Model):
                 if task and stage and not stage.allow_timesheet:
                     raise ValidationError(
                         _(
-                            "You can't link a timesheet line to a task if its stage"
-                            " doesn't allow it. (Task: %(task_name)s, Stage: %(stage_name)s)"
+                            "You can't link a timesheet line to "
+                            "a task if its stage doesn't allow it."
+                            "(Task: %(task_name)s, Stage: %(stage_name)s)"
                         )
                         % {
                             "task_name": task.display_name,
