@@ -77,10 +77,14 @@ Authors
 Contributors
 ------------
 
-- `CorporateHub <https://corporatehub.eu/>`__
+-  `CorporateHub <https://corporatehub.eu/>`__
 
-  - Alexey Pelykh <alexey.pelykh@corphub.eu>
-  - Freni Patel <fpatel@opensourceintegrators.com>
+   -  Alexey Pelykh <alexey.pelykh@corphub.eu>
+   -  Freni Patel <fpatel@opensourceintegrators.com>
+
+-  `APSL-Nagarro <https://apsl.tech>`__
+
+   -  Miquel Pascual <mpascual@apsl.net>
 
 Maintainers
 -----------
