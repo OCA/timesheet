@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_employee_form" model="ir.ui.view">
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="attributes">
+                <attribute
+                    name="domain"
+                >["|", ("share", "=", False), ('groups_id', '=', %(hr_timesheet_portal.group_hr_timesheet_portal)s)]</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -19,6 +19,7 @@
         "templates/portal.xml",
         "security/hr_timesheet_portal_security.xml",
         "security/ir.model.access.csv",
+        "views/hr_employee.xml",
     ],
     "demo": [
         "demo/hr_timesheet_portal.xml",
