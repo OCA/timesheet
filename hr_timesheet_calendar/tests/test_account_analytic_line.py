@@ -2,15 +2,20 @@ from datetime import date, datetime
 
 from freezegun import freeze_time
 
-from odoo.tests.common import TransactionCase
+from odoo import fields
+from odoo.exceptions import UserError
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestAccountAnalyticLine(TransactionCase):
+class TestAccountAnalyticLine(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.analytic_line_model = cls.env["account.analytic.line"]
         cls.test_user = cls.env.ref("base.user_admin")
+        cls.project = cls.env.ref("project.project_home_construction")
+        cls.employee = cls.env.ref("hr.employee_admin")
 
     @freeze_time("2025-04-03")
     def test_duplicate_today(self):
@@ -21,6 +26,9 @@ class TestAccountAnalyticLine(TransactionCase):
                 "date": date(2025, 4, 2),
                 "date_time": datetime(2025, 4, 2, 9, 0),
                 "date_time_end": datetime(2025, 4, 2, 17, 0),
+                "project_id": self.project.id,
+                "account_id": self.project.account_id,
+                "employee_id": self.employee.id,
             }
         )
 
@@ -46,6 +54,9 @@ class TestAccountAnalyticLine(TransactionCase):
                 "name": "Test Analytic Line",
                 "date": date(2025, 4, 2),
                 "date_time": datetime(2025, 4, 2, 9, 0),
+                "project_id": self.project.id,
+                "account_id": self.project.account_id,
+                "employee_id": self.employee.id,
             }
         )
 
