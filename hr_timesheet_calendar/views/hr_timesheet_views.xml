@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="hr_timesheet.act_hr_timesheet_line" model="ir.actions.act_window">
-            <field name="view_mode">tree,form,kanban,pivot,graph,calendar</field>
+        <field name="view_mode">tree,form,kanban,pivot,graph,calendar</field>
     </record>
 
     <record id="hr_timesheet_line_calendar" model="ir.ui.view">
@@ -18,8 +18,6 @@
             >
                 <field name="project_id" />
                 <field name="task_id" invisible="not task_id" />
-
-
             </calendar>
         </field>
     </record>
