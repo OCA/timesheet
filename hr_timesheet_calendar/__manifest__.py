@@ -16,6 +16,7 @@
     ],
     "data": [
         "views/hr_timesheet_views.xml",
+        "views/res_config_settings_view.xml",
     ],
     "assets": {
         "web.assets_backend": [
