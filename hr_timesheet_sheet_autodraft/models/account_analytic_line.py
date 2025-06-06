@@ -44,6 +44,7 @@ class AccountAnalyticLine(models.Model):
                 self.company_id, self.date
             ),
             "date_end": HrTimesheetSheet._get_period_end(self.company_id, self.date),
+            "department_id": self.employee_id.department_id.id,
         }
 
     def action_autodraft_timesheet_sheets(self):
