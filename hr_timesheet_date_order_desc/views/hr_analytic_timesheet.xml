@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
                 <attribute name="editable">top</attribute>
-                <attribute name="default_order">date desc</attribute>
+                <attribute name="default_order">date_time desc</attribute>
             </xpath>
         </field>
     </record>
@@ -18,7 +18,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='timesheet_ids']//tree" position="attributes">
                 <attribute name="editable">top</attribute>
-                <attribute name="default_order">date desc</attribute>
+                <attribute name="default_order">date_time desc</attribute>
             </xpath>
         </field>
     </record>

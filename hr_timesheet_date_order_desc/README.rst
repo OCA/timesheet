@@ -53,7 +53,6 @@ Credits
 Authors
 -------
 
-* Lansana Barry Sow
 * APSL-Nagarro
 
 Contributors
@@ -75,6 +74,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-lbarry-apsl| image:: https://github.com/lbarry-apsl.png?size=40px
+    :target: https://github.com/lbarry-apsl
+    :alt: lbarry-apsl
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-lbarry-apsl| 
 
 This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/17.0/hr_timesheet_date_order_desc>`_ project on GitHub.
 
