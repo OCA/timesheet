@@ -1,10 +1,10 @@
 # Copyright 2020 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests import common
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestHrTimesheetSheetAutodraft(common.TransactionCase):
+class TestHrTimesheetSheetAutodraft(BaseCommon):
     def setUp(self):
         super().setUp()
 
@@ -125,3 +125,28 @@ class TestHrTimesheetSheetAutodraft(common.TransactionCase):
         aal.action_autodraft_timesheet_sheets()
 
         self.assertEqual(aal.sheet_id, sheet)
+
+    def test_manual_autodraft_timesheet_sheet(self):
+        user = self.ResUsers.sudo().create(
+            {
+                "name": "User",
+                "login": "user",
+                "email": "user@example.com",
+                "company_id": self.company_id.id,
+            }
+        )
+        employee = self.HrEmployee.create({"name": "Employee", "user_id": user.id})
+        project = self.Project.create({"name": "Project"})
+
+        self.company_id.timesheet_sheets_autodraft = True
+
+        aal = self.AccountAnalyticLine.with_context(
+            manual_autodraft_timesheet_sheet=True
+        ).create(
+            {
+                "project_id": project.id,
+                "employee_id": employee.id,
+                "name": "Time Entry",
+            }
+        )
+        self.assertTrue(aal.sheet_id)
