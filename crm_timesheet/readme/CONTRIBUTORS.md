@@ -6,6 +6,7 @@
   - Vicent Cubells
   - Jairo Llopis
   - Carolina Fernandez
+  - Víctor Martínez
 - Foram Shah \<<foram.shah@initos.com>\>
 
 - [Sygel](https://www.sygel.es)

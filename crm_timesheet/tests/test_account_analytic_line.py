@@ -1,81 +1,74 @@
-# Copyright 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2017 tecnativa - Jairo Llopis
 # Copyright 2023 Tecnativa - Carolina Fernandez
+# Copyright 2025 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo.tests.common import TransactionCase
+from odoo import exceptions, fields
+from odoo.tests.common import users
+
+from odoo.addons.project_timesheet_time_control.tests import (
+    test_project_timesheet_time_control,
+)
 
 
-class AccountAnalyticLineCase(TransactionCase):
+class AccountAnalyticLineCase(
+    test_project_timesheet_time_control.TestProjectTimesheetTimeControlBase
+):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        admin = cls.env.ref("base.user_admin")
-        # Stop any timer running
-        cls.env["account.analytic.line"].search(
-            [
-                ("date_time", "!=", False),
-                ("user_id", "=", admin.id),
-                ("project_id.allow_timesheets", "=", True),
-                ("unit_amount", "=", 0),
-            ]
-        ).button_end_work()
-        admin.groups_id |= (
-            cls.env.ref("hr_timesheet.group_hr_timesheet_user")
-            | cls.env.ref("sales_team.group_sale_salesman")
-            | cls.env.ref("project.group_project_manager")
-        )
-        env = cls.env(user=admin)
-        Account = env["account.analytic.account"]
-        Project = env["project.project"]
-        cls.analytic_plan = cls.env["account.analytic.plan"].create({"name": "Default"})
-        cls.account1 = Account.create(
-            {"name": "Test Account 1", "plan_id": cls.analytic_plan.id}
-        )
-        cls.project1 = Project.create(
-            {
-                "name": "Test Project 1",
-                "analytic_account_id": cls.account1.id,
-            }
-        )
-        cls.lead = env["crm.lead"].create(
-            {
-                "name": "Test lead",
-                "project_id": cls.project1.id,
-            }
-        )
-
-    def setUp(self):
-        super().setUp()
-        self.uid = self.ref("base.user_admin")
-
-    def _create_wizard(self, action, active_record):
-        """Create a new hr.timesheet.switch wizard in the specified context.
-        :param dict action: Action definition that creates the wizard.
-        :param active_record: Record being browsed when creating the wizard.
-        """
-        self.assertEqual(action["res_model"], "hr.timesheet.switch")
-        self.assertEqual(action["target"], "new")
-        self.assertEqual(action["type"], "ir.actions.act_window")
-        self.assertEqual(action["view_mode"], "form")
-        self.assertEqual(action["view_type"], "form")
-        return (
-            active_record.env[action["res_model"]]
-            .with_context(
-                active_id=active_record.id,
-                active_ids=active_record.ids,
-                active_model=active_record._name,
-                **action.get("context", {}),
+        cls.user.groups_id |= cls.env.ref("sales_team.group_sale_salesman_all_leads")
+        cls.lead = (
+            cls.env["crm.lead"]
+            .with_user(cls.user)
+            .create(
+                {
+                    "name": "Test lead",
+                    "project_id": cls.project.id,
+                }
             )
-            .create({})
         )
+        cls.line.lead_id = cls.lead
 
     def test_onchange_lead(self):
         """Changing the lead changes the associated project."""
-        line = self.env["account.analytic.line"].new(
-            {
-                "lead_id": self.lead.id,
-            }
-        )
+        line = self.env["account.analytic.line"].new({"lead_id": self.lead.id})
         line._onchange_lead_id()
-        self.assertEqual(line.project_id, self.project1)
+        self.assertEqual(line.project_id, self.project)
+
+    def test_aal_time_control_flow(self):
+        """Test account.analytic.line time controls."""
+        resume_action = self.line.button_resume_work()
+        wizard = self._create_wizard(resume_action, self.line)
+        self.assertEqual(wizard.analytic_line_id, self.line)
+        self.assertEqual(wizard.project_id, self.line.project_id)
+        # Stop old timer, start new one
+        new_act = wizard.with_context(show_created_timer=True).action_switch()
+        new_line = self.env[new_act["res_model"]].browse(new_act["res_id"])
+        self.assertEqual(new_line.lead_id, self.lead)
+
+    @users("test-user")
+    def test_lead_time_control_flow(self):
+        """Test crm.lead time controls."""
+        # Running line found, stop the timer
+        self.assertEqual(self.lead.show_time_control, "stop")
+        self.lead.button_end_work()
+        # No more running lines, cannot stop again
+        with self.assertRaises(exceptions.UserError):
+            self.lead.button_end_work()
+        # All lines stopped, start new one
+        self.assertEqual(self.lead.show_time_control, "start")
+        start_action = self.lead.button_start_work()
+        wizard = self._create_wizard(start_action, self.lead)
+        self.assertLessEqual(wizard.date_time, fields.Datetime.now())
+        self.assertEqual(
+            wizard.analytic_line_id.account_id, self.lead.project_id.account_id
+        )
+        self.assertEqual(wizard.name, self.line.name)
+        self.assertEqual(wizard.project_id, self.lead.project_id)
+        new_act = wizard.with_context(show_created_timer=True).action_switch()
+        new_line = self.env[new_act["res_model"]].browse(new_act["res_id"])
+        self.assertEqual(new_line.employee_id, self.env.user.employee_ids)
+        self.assertEqual(new_line.project_id, self.project)
+        self.assertEqual(new_line.lead_id, self.lead)
