@@ -64,7 +64,9 @@
                     tabindex="-1"
                     type="object"
                     groups="hr_timesheet.group_hr_timesheet_user"
-                ><i class="fa fa-lg fa-play-circle" title="Start" /></a>
+                >
+                    <i class="fa fa-lg fa-play-circle" title="Start" />
+                </a>
                 <a
                     name="button_end_work"
                     invisible="show_time_control != 'stop'"
@@ -73,7 +75,9 @@
                     tabindex="-1"
                     type="object"
                     groups="hr_timesheet.group_hr_timesheet_user"
-                ><i class="fa fa-lg fa-stop-circle" title="Stop" /></a>
+                >
+                    <i class="fa fa-lg fa-stop-circle" title="Stop" />
+                </a>
             </xpath>
         </field>
     </record>
@@ -123,7 +127,9 @@
                     tabindex="-1"
                     type="object"
                     groups="hr_timesheet.group_hr_timesheet_user"
-                ><i class="fa fa-lg fa-play-circle" title="Start" /></a>
+                >
+                    <i class="fa fa-lg fa-play-circle" title="Start" />
+                </a>
                 <a
                     name="button_end_work"
                     invisible="show_time_control != 'stop'"
@@ -132,7 +138,9 @@
                     tabindex="-1"
                     type="object"
                     groups="hr_timesheet.group_hr_timesheet_user"
-                ><i class="fa fa-lg fa-stop-circle" title="Stop" /></a>
+                >
+                    <i class="fa fa-lg fa-stop-circle" title="Stop" />
+                </a>
             </xpath>
         </field>
     </record>
