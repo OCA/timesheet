@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_day_week
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_timesheet_day_week
+#: model:ir.model,name:hr_timesheet_day_week.model_account_analytic_line
+msgid "Analytic Line"
+msgstr ""
+
+#. module: hr_timesheet_day_week
+#: model:ir.model.fields,field_description:hr_timesheet_day_week.field_account_analytic_line__day_week
+#: model:ir.model.fields,field_description:hr_timesheet_day_week.field_timesheets_analysis_report__day_week
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_day_week.hr_timesheet_line_search
+msgid "Day of Week"
+msgstr ""
+
+#. module: hr_timesheet_day_week
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__account_analytic_line__day_week__4
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__timesheets_analysis_report__day_week__4
+msgid "Friday"
+msgstr ""
+
+#. module: hr_timesheet_day_week
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__account_analytic_line__day_week__0
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__timesheets_analysis_report__day_week__0
+msgid "Monday"
+msgstr ""
+
+#. module: hr_timesheet_day_week
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__account_analytic_line__day_week__5
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__timesheets_analysis_report__day_week__5
+msgid "Saturday"
+msgstr ""
+
+#. module: hr_timesheet_day_week
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__account_analytic_line__day_week__6
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__timesheets_analysis_report__day_week__6
+msgid "Sunday"
+msgstr ""
+
+#. module: hr_timesheet_day_week
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__account_analytic_line__day_week__3
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__timesheets_analysis_report__day_week__3
+msgid "Thursday"
+msgstr ""
+
+#. module: hr_timesheet_day_week
+#: model:ir.model,name:hr_timesheet_day_week.model_timesheets_analysis_report
+msgid "Timesheets Analysis Report"
+msgstr ""
+
+#. module: hr_timesheet_day_week
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__account_analytic_line__day_week__1
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__timesheets_analysis_report__day_week__1
+msgid "Tuesday"
+msgstr ""
+
+#. module: hr_timesheet_day_week
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__account_analytic_line__day_week__2
+#: model:ir.model.fields.selection,name:hr_timesheet_day_week.selection__timesheets_analysis_report__day_week__2
+msgid "Wednesday"
+msgstr ""
+
+#. module: hr_timesheet_day_week
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_day_week.hr_timesheet_line_search
+msgid "Weekend"
+msgstr ""

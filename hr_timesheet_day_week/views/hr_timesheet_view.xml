@@ -1,0 +1,42 @@
+<odoo>
+    <record id="hr_timesheet_line_search" model="ir.ui.view">
+        <field
+            name="name"
+        >account.analytic.line.search (in hr_timesheet_day_week)</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date']" position="after">
+                <field name="day_week" />
+            </xpath>
+            <xpath expr="//filter[@name='month']" position="after">
+                <separator />
+                <filter
+                    name="day_week"
+                    string="Weekend"
+                    domain="[('day_week','in', ['5', '6'])]"
+                />
+            </xpath>
+            <xpath expr="//filter[@name='group_date']" position="after">
+                <filter
+                    name="group_day_week"
+                    string="Day of Week"
+                    context="{'group_by': 'day_week'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_timesheet_line_tree" model="ir.ui.view">
+        <field
+            name="name"
+        >account.analytic.line.list.hr_timesheet (in hr_timesheet_day_week)</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="attributes">
+                <attribute name="decoration-warning">day_week in ['5', '6']</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
