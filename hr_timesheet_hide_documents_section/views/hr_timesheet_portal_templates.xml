@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2025 Kencove (https://www.kencove.com).
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="hr_timesheet.portal_my_home_timesheet" model="ir.ui.view">
+        <field name="active" eval="False" />
+    </record>
+
+</odoo>
