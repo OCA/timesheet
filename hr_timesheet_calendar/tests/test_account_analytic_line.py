@@ -34,7 +34,7 @@ class TestAccountAnalyticLine(BaseCommon):
                 "date_time": datetime(2025, 4, 2, 9, 0),
                 "date_time_end": datetime(2025, 4, 2, 17, 0),
                 "project_id": self.project.id,
-                "account_id": self.project.account_id,
+                "account_id": self.project.account_id.id,
                 "employee_id": self.employee.id,
             }
         )
@@ -62,7 +62,7 @@ class TestAccountAnalyticLine(BaseCommon):
                 "date": date(2025, 4, 2),
                 "date_time": datetime(2025, 4, 2, 9, 0),
                 "project_id": self.project.id,
-                "account_id": self.project.account_id,
+                "account_id": self.project.account_id.id,
                 "employee_id": self.employee.id,
             }
         )
