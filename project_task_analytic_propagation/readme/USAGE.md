@@ -7,5 +7,5 @@ To use this module, you need to:
 5. Go back to your order and create an invoice.
 6. Go to the previous task and record some time. Then change the analytic account.
 7. In timesheet's page only not invoiced timesheets changed the analytic account.
-8. To check this go to Timesheets > Reporting > by Task.
-9. Change to list view and group by Project > Task > Analytic Account.
+8. To check this go to Timesheets > All Timesheets.
+9. Change to list view and group by Project > Task and add custom group Project.
