@@ -69,7 +69,7 @@ class HrTimesheetSheet(models.Model):
 
     def action_timesheet_confirm(self):
         self.check_employee_attendance_state()
-        return super(HrTimesheetSheet, self).action_timesheet_confirm()
+        return super().action_timesheet_confirm()
 
     def check_employee_attendance_state(self):
         """Restrict to submit sheet contains
@@ -89,7 +89,7 @@ class HrTimesheetSheet(models.Model):
 
     @api.model
     def create(self, vals):
-        res = super(HrTimesheetSheet, self).create(vals)
+        res = super().create(vals)
         attendances = self.env["hr.attendance"].search(
             [
                 ("employee_id", "=", res.employee_id.id),

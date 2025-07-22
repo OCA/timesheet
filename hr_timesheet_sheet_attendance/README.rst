@@ -17,22 +17,23 @@ HR Timesheet Sheet Attendance
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ftimesheet-lightgray.png?logo=github
-    :target: https://github.com/OCA/timesheet/tree/16.0/hr_timesheet_sheet_attendance
+    :target: https://github.com/OCA/timesheet/tree/18.0/hr_timesheet_sheet_attendance
     :alt: OCA/timesheet
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/timesheet-16-0/timesheet-16-0-hr_timesheet_sheet_attendance
+    :target: https://translation.odoo-community.org/projects/timesheet-18-0/timesheet-18-0-hr_timesheet_sheet_attendance
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module extends the functionality of hr_timesheet_sheet
-and help employees to manage their attendance according to timesheet period.
-It provide functionality to checkin/checkout directly from timesheet-sheet.
-It also help you/management in performace evaluation by displaing
-total attendance time and difference of total attendance time and total working time.
+This module extends the functionality of hr_timesheet_sheet and help
+employees to manage their attendance according to timesheet period. It
+provide functionality to checkin/checkout directly from timesheet-sheet.
+It also help you/management in performace evaluation by displaing total
+attendance time and difference of total attendance time and total
+working time.
 
 **Table of contents**
 
@@ -44,29 +45,51 @@ Installation
 
 This module relies on:
 
-* The OCA module 'HR Timesheet Sheet', and can be downloaded from
-  Github: https://github.com/OCA/hr-timesheet/tree/15.0/hr_timesheet_sheet
+-  The OCA module 'HR Timesheet Sheet', and can be downloaded from
+   Github:
+   https://github.com/OCA/hr-timesheet/tree/15.0/hr_timesheet_sheet
 
 Usage
 =====
 
-* Goto Timesheets > My Timesheet Sheets and create a timesheet
-* Goto tab Attendances on timesheet form
-    - You can see there your current status checkin/checkout
-    - You also can create attendance by clicking on button Check In/Check Out on right side
-    - You can see your attendance that belongs to current timesheet on left side in same tab
-* 'Total Attendance' is total working time based on your attendance
-* 'Difference' is the difference betwwen total attandance time and working time (sum(attendace-time) - sum(unit amount in timessheet lines))
-* Two smart buttons are present on top-right corner of timesheet form
-    - First one(with time icon) will take you list of your timesheets (by default filter timesheets related to current timesheet-sheet)
-    - Second one(labeled as Attendances) will take you to list of your attendances (by default filter ateendances related to current timesheet-sheet)
-* It prevents to change in any attendance related to timesheet-sheet that already has submitted
-* It also prevents to submit such a timesheet-sheet not having equal number of checkin and checkout
+-  Goto Timesheets > My Timesheet Sheets and create a timesheet
+
+-  Goto tab Attendances on timesheet form
+
+   -  You can see there your current status checkin/checkout
+   -  You also can create attendance by clicking on button Check
+      In/Check Out on right side
+   -  You can see your attendance that belongs to current timesheet on
+      left side in same tab
+
+-  'Total Attendance' is total working time based on your attendance
+
+-  'Difference' is the difference betwwen total attandance time and
+   working time (sum(attendace-time) - sum(unit amount in timessheet
+   lines))
+
+-  Two smart buttons are present on top-right corner of timesheet form
+
+   -  First one(with time icon) will take you list of your timesheets
+      (by default filter timesheets related to current timesheet-sheet)
+   -  Second one(labeled as Attendances) will take you to list of your
+      attendances (by default filter ateendances related to current
+      timesheet-sheet)
+
+-  It prevents to change in any attendance related to timesheet-sheet
+   that already has submitted
+
+-  It also prevents to submit such a timesheet-sheet not having equal
+   number of checkin and checkout
 
 Known issues / Roadmap
 ======================
 
-By having Check-in/out button in the timesheet, there could perhaps be a case where the user does two clicks in a fast way, then the check-in and check-out times are the same and the attendance gets blocked as there is an Odoo standard check which verifies that the attendance check-in time is strictly minor than the check-out time
+By having Check-in/out button in the timesheet, there could perhaps be a
+case where the user does two clicks in a fast way, then the check-in and
+check-out times are the same and the attendance gets blocked as there is
+an Odoo standard check which verifies that the attendance check-in time
+is strictly minor than the check-out time
 
 Bug Tracker
 ===========
@@ -74,7 +97,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/timesheet/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20hr_timesheet_sheet_attendance%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20hr_timesheet_sheet_attendance%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -82,23 +105,23 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * BizzAppDev
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Ruchir Shukla <ruchir@bizzappdev.com>
-* Shruti Singh <shruti.singh@bizzappdev.com>
-* Chirag Parmar <chirag.parmar@bizzappdev.com>
-* Naglis Jonaitis <naglis@versada.eu>
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  Ruchir Shukla <ruchir@bizzappdev.com>
+-  Shruti Singh <shruti.singh@bizzappdev.com>
+-  Chirag Parmar <chirag.parmar@bizzappdev.com>
+-  Naglis Jonaitis <naglis@versada.eu>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Ernesto Tejeda
+   -  Ernesto Tejeda
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -110,6 +133,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/16.0/hr_timesheet_sheet_attendance>`_ project on GitHub.
+This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/18.0/hr_timesheet_sheet_attendance>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

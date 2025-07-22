@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- create action for Attendances view-->
     <record
         id="hr_timesheet_sheet_action_sheet_attendance"
@@ -105,5 +104,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
