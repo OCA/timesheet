@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- hr_attendance inherited filter view-->
     <record id="hr_attendance_view_filter" model="ir.ui.view">
         <field name="name">view_hr_attendance_filter</field>
@@ -38,5 +37,4 @@
             </field>
         </field>
     </record>
-
 </odoo>

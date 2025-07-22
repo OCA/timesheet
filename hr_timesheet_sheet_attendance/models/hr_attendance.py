@@ -64,7 +64,7 @@ class HrAttendance(models.Model):
         for attendance in self:
             attendance._check_timesheet_state()
 
-        return super(HrAttendance, self).unlink()
+        return super().unlink()
 
     @api.constrains("check_in", "check_out")
     def _check_timesheet(self):
