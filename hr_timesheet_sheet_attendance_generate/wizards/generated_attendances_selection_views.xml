@@ -1,8 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!--
-    Copyright 2024 ForgeFlow, S.L.
-    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
--->
+<?xml version='1.0' encoding='utf-8' ?>
 <odoo>
     <record id="view_generated_attendances_selection_form" model="ir.ui.view">
         <field
@@ -20,15 +16,15 @@
                 </div>
                 <br />
                 <field name="attendance_ids" nolabel="1" options="{'link': False}">
-                    <tree editable="top" no_open="True">
+                    <list editable="top" no_open="True">
                         <field
                             name="employee_id"
                             options="{'no_open': True}"
-                            attrs="{'readonly': True}"
+                            readonly="True"
                         />
-                        <field name="check_in" attrs="{'readonly': True}" />
-                        <field name="check_out" attrs="{'readonly': True}" />
-                    </tree>
+                        <field name="check_in" readonly="True" />
+                        <field name="check_out" readonly="True" />
+                    </list>
                 </field>
                 <footer>
                     <button

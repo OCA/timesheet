@@ -1,8 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!--
-    Copyright 2024 ForgeFlow, S.L.
-    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
--->
+<?xml version='1.0' encoding='utf-8' ?>
 <odoo>
     <record id="hr_timesheet_sheet_form_attendance_generate" model="ir.ui.view">
         <field name="name">hr.timesheet.sheet.form.attendance_generate</field>
@@ -17,11 +13,9 @@
                     name="button_generate_attendances"
                     string="Generate Attendances"
                     type="object"
-                    attrs="{'invisible': [('state', '!=', 'draft')]}"
-                    help="Generate attendances for dates which have imputed hours
-                    in the timesheet sheet but no attendances. The attendances are
-                    generated using the employee's working hours calendar."
-                    groups="hr_attendance.group_hr_attendance"
+                    invisible="state != 'draft'"
+                    help="Generate attendances for dates which have imputed hours in the timesheet sheet but no attendances. The attendances are generated using the employee's working hours calendar."
+                    groups="hr_attendance.group_hr_attendance_own_reader"
                 />
             </xpath>
         </field>
