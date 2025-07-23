@@ -29,8 +29,8 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
         and attendance count"""
 
         # Attendance - 1
-        checkInDate = datetime.datetime(2018, 12, 12, 10, 0, 0)
-        checkOutDate = datetime.datetime(2018, 12, 12, 12, 0, 0)
+        checkInDate = datetime.datetime(2018, 12, 12, 9, 0, 0)
+        checkOutDate = datetime.datetime(2018, 12, 12, 11, 0, 0)
         self._create_attendance(
             employee=self.employee,
             checkIn=checkInDate,
