@@ -57,6 +57,7 @@ class HrTimesheetSheet(models.Model):
         related="employee_id.attendance_state",
         related_sudo=True,
         string="Current Status",
+        groups="hr_attendance.group_hr_attendance_own_reader,hr.group_hr_user",
     )
     attendance_count = fields.Integer(compute="_compute_attendance_count")
 
@@ -87,21 +88,23 @@ class HrTimesheetSheet(models.Model):
                 )
             )
 
-    @api.model
-    def create(self, vals):
-        res = super().create(vals)
-        attendances = self.env["hr.attendance"].search(
-            [
-                ("employee_id", "=", res.employee_id.id),
-                ("sheet_id", "=", False),
-                ("check_in", ">=", res.date_start),
-                ("check_in", "<=", res.date_end),
-                "|",
-                ("check_out", "=", False),
-                "&",
-                ("check_out", ">=", res.date_start),
-                ("check_out", "<=", res.date_end),
-            ]
-        )
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        attendances = self.env["hr.attendance"]
+        for res in records:
+            attendances |= self.env["hr.attendance"].search(
+                [
+                    ("employee_id", "=", res.employee_id.id),
+                    ("sheet_id", "=", False),
+                    ("check_in", ">=", res.date_start),
+                    ("check_in", "<=", res.date_end),
+                    "|",
+                    ("check_out", "=", False),
+                    "&",
+                    ("check_out", ">=", res.date_start),
+                    ("check_out", "<=", res.date_end),
+                ]
+            )
         attendances._compute_sheet_id()
-        return res
+        return records
