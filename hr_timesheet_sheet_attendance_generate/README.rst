@@ -17,32 +17,33 @@ HR Timesheet Sheet Attendance Generate
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ftimesheet-lightgray.png?logo=github
-    :target: https://github.com/OCA/timesheet/tree/16.0/hr_timesheet_sheet_attendance_generate
+    :target: https://github.com/OCA/timesheet/tree/18.0/hr_timesheet_sheet_attendance_generate
     :alt: OCA/timesheet
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/timesheet-16-0/timesheet-16-0-hr_timesheet_sheet_attendance_generate
+    :target: https://translation.odoo-community.org/projects/timesheet-18-0/timesheet-18-0-hr_timesheet_sheet_attendance_generate
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module automates the creation of attendances based on the data in the
-employee's timesheet sheets, ensuring consistency between recorded hours and
-imputed timesheet hours for employees.
+This module automates the creation of attendances based on the data in
+the employee's timesheet sheets, ensuring consistency between recorded
+hours and imputed timesheet hours for employees.
 
-For each day in the timesheet sheet, one or more attendances will be created
-if the day has imputed hours in the timesheet sheet but the employee does not
-have any attendances in that same day.
-The check in and check out times of the attendances, as well as the number of
+For each day in the timesheet sheet, one or more attendances will be
+created if the day has imputed hours in the timesheet sheet but the
+employee does not have any attendances in that same day. The check in
+and check out times of the attendances, as well as the number of
 generated attendances for each day, are retrieved from the employee's
 established working hours or schedule.
 
-Once the proposed attendances are created, the user can decide whether they
-want them to be removed in the database or not (in case some of them are not
-true or accurate, or for other reasons). The attendances will only be proposed
-to users who have permissions to create attendances.
+Once the proposed attendances are created, the user can decide whether
+they want them to be removed in the database or not (in case some of
+them are not true or accurate, or for other reasons). The attendances
+will only be proposed to users who have permissions to create
+attendances.
 
 **Table of contents**
 
@@ -54,21 +55,22 @@ Installation
 
 This module relies on:
 
-* The OCA module 'HR Timesheet Sheet Attendance', and can be downloaded from
-  Github: https://github.com/OCA/timesheet/tree/16.0/hr_timesheet_sheet_attendance
+-  The OCA module 'HR Timesheet Sheet Attendance', and can be downloaded
+   from Github:
+   https://github.com/OCA/timesheet/tree/16.0/hr_timesheet_sheet_attendance
 
 Usage
 =====
 
-By activating the `Generate Attendances` button in a timesheet sheet (which
-can be found next to the `Submit to Reviewer` button for timesheet sheets in
-draft state), the corresponding attendances will be created and later
-displayed in the screen using a wizard.
+By activating the Generate Attendances button in a timesheet sheet
+(which can be found next to the Submit to Reviewer button for timesheet
+sheets in draft state), the corresponding attendances will be created
+and later displayed in the screen using a wizard.
 
-There, the user will be able to remove any created attendance that they do
-not want to be kept in the database. After that, by activating the `Save`
-button only the attendances that were accepted by the user will be persisted
-in the system.
+There, the user will be able to remove any created attendance that they
+do not want to be kept in the database. After that, by activating the
+Save button only the attendances that were accepted by the user will be
+persisted in the system.
 
 Bug Tracker
 ===========
@@ -76,7 +78,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/timesheet/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20hr_timesheet_sheet_attendance_generate%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20hr_timesheet_sheet_attendance_generate%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -84,17 +86,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ForgeFlow
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Laura Cazorla <laura.cazorla@forgeflow.com>
+-  Laura Cazorla <laura.cazorla@forgeflow.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -106,6 +108,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/16.0/hr_timesheet_sheet_attendance_generate>`_ project on GitHub.
+This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/18.0/hr_timesheet_sheet_attendance_generate>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

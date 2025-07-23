@@ -21,7 +21,7 @@ class SheetGeneratedAttendancesSelection(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = super(SheetGeneratedAttendancesSelection, self).default_get(fields_list)
+        res = super().default_get(fields_list)
         attendances_to_add = [
             (4, attendance_id) for attendance_id in self.env.context["attendances"]
         ]
