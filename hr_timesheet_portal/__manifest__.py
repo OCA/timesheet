@@ -3,7 +3,7 @@
 {
     "name": "Timesheet portal (editable)",
     "summary": "Fill in timesheets via the portal",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "development_status": "Alpha",
     "category": "Website",
     "website": "https://github.com/OCA/timesheet",
@@ -15,7 +15,6 @@
         "website",
     ],
     "data": [
-        "templates/assets.xml",
         "templates/portal.xml",
         "security/hr_timesheet_portal_security.xml",
         "security/ir.model.access.csv",
@@ -24,4 +23,9 @@
     "demo": [
         "demo/hr_timesheet_portal.xml",
     ],
+    "assets": {
+        "web.assets_frontend": [
+            "hr_timesheet_portal/static/src/**/*",
+        ],
+    },
 }

@@ -87,12 +87,16 @@ odoo.define("hr_timesheet_portal", function (require) {
                         );
                     }),
                     $tbody = jQuery(timesheets).find("div.hr_timesheet_portal tbody"),
+                    $tfoot = jQuery(timesheets).find("div.hr_timesheet_portal tfoot"),
                     $existing_tbody = self.$("tbody");
                 if (!$existing_tbody.length) {
                     return self.$("thead").after($tbody);
                 }
                 self.$("h5 .fa-plus").prop("disabled", false);
-                return self.$("tbody").replaceWith($tbody);
+                return (
+                    self.$("tbody").replaceWith($tbody),
+                    self.$("tfoot").replaceWith($tfoot)
+                );
             });
         },
 
