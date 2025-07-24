@@ -3,7 +3,7 @@
 
 {
     "name": "HR Timesheet Sheet Warning",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Human Resources",
     "summary": "Timesheet Sheets, Activities",
     "license": "AGPL-3",
@@ -13,10 +13,10 @@
     "auto_install": False,
     "depends": ["hr_timesheet_sheet"],
     "data": [
+        "security/hr_timesheet_sheet_warning_rules.xml",
+        "security/ir.model.access.csv",
         "views/hr_timesheet_sheet_warning_definition.xml",
         "views/hr_timesheet_sheet_warning_item.xml",
         "views/hr_timesheet_sheet.xml",
-        "security/ir.model.access.csv",
-        "security/hr_timesheet_sheet_warning_rules.xml",
     ],
 }

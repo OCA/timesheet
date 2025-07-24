@@ -7,9 +7,9 @@
         <field name="name">hr_timesheet.sheet.warning.item.tree</field>
         <field name="model">hr_timesheet.sheet.warning.item</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>
