@@ -17,23 +17,24 @@ HR Timesheet Sheet Warning
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ftimesheet-lightgray.png?logo=github
-    :target: https://github.com/OCA/timesheet/tree/16.0/hr_timesheet_sheet_warning
+    :target: https://github.com/OCA/timesheet/tree/18.0/hr_timesheet_sheet_warning
     :alt: OCA/timesheet
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/timesheet-16-0/timesheet-16-0-hr_timesheet_sheet_warning
+    :target: https://translation.odoo-community.org/projects/timesheet-18-0/timesheet-18-0-hr_timesheet_sheet_warning
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module provides functionality for defining custom warning criteria related to
-Timesheet Sheets using Python expressions. Users can establish specific conditions
-for evaluating certain aspects of the Sheets.
-Once the warnings are defined, the module facilitates a systematic evaluation of
-Timesheet Sheets against these conditions. It generates individual warnings for each
-Sheet, if the warnings criteria are met.
+This module provides functionality for defining custom warning criteria
+related to Timesheet Sheets using Python expressions. Users can
+establish specific conditions for evaluating certain aspects of the
+Sheets. Once the warnings are defined, the module facilitates a
+systematic evaluation of Timesheet Sheets against these conditions. It
+generates individual warnings for each Sheet, if the warnings criteria
+are met.
 
 **Table of contents**
 
@@ -45,29 +46,32 @@ Installation
 
 This module relies on:
 
-* The OCA module '2D matrix for x2many fields', and can be downloaded from
-  Github: https://github.com/OCA/web/tree/16.0/web_widget_x2many_2d_matrix
+-  The OCA module '2D matrix for x2many fields', and can be downloaded
+   from Github:
+   https://github.com/OCA/web/tree/16.0/web_widget_x2many_2d_matrix
 
 Usage
 =====
 
-In order to create warning definitions for Timesheet Sheets, you need to go:
+In order to create warning definitions for Timesheet Sheets, you need to
+go:
 
-* In the menu `Configuration` -> **Warnings**,
-  and start creating a new instance of a warning definition.
-* Once inside, you will be able to specify the domain of the warning (the Timesheet
-  Sheets it will be checked against) and the warning expression (the Python code
-  that will be run and, if it evaluates to true, will indicate that a warning
-  should be raised for that specific Sheet), amongst other fields.
+-  In the menu Configuration -> **Warnings**, and start creating a new
+   instance of a warning definition.
+-  Once inside, you will be able to specify the domain of the warning
+   (the Timesheet Sheets it will be checked against) and the warning
+   expression (the Python code that will be run and, if it evaluates to
+   true, will indicate that a warning should be raised for that specific
+   Sheet), amongst other fields.
 
-To run those checks and raise the necessary warnings for a specific Timesheet
-Sheet, you need to go:
+To run those checks and raise the necessary warnings for a specific
+Timesheet Sheet, you need to go:
 
-* When looking at a Timesheet Sheet, go to the 'Warnings' tab.
-* There you can press the button 'Generate Warnings', and you will be able to
-  see the generated warnings in the list below the button.
-* Warnings are also automatically generated when a Timesheet Sheet is
-  submitted to the reviewer.
+-  When looking at a Timesheet Sheet, go to the 'Warnings' tab.
+-  There you can press the button 'Generate Warnings', and you will be
+   able to see the generated warnings in the list below the button.
+-  Warnings are also automatically generated when a Timesheet Sheet is
+   submitted to the reviewer.
 
 Bug Tracker
 ===========
@@ -75,7 +79,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/timesheet/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20hr_timesheet_sheet_warning%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20hr_timesheet_sheet_warning%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -83,17 +87,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ForgeFlow
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Laura Cazorla <laura.cazorla@forgeflow.com>
+-  Laura Cazorla <laura.cazorla@forgeflow.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -105,6 +109,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/16.0/hr_timesheet_sheet_warning>`_ project on GitHub.
+This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/18.0/hr_timesheet_sheet_warning>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
