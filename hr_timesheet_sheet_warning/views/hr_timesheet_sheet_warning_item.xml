@@ -3,7 +3,6 @@
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
  -->
 <odoo>
-
     <record id="hr_timesheet_sheet_warning_item_tree" model="ir.ui.view">
         <field name="name">hr_timesheet.sheet.warning.item.tree</field>
         <field name="model">hr_timesheet.sheet.warning.item</field>
@@ -13,5 +12,4 @@
             </tree>
         </field>
     </record>
-
 </odoo>

@@ -48,4 +48,4 @@ class Sheet(models.Model):
 
     def action_timesheet_confirm(self):
         self.action_generate_warnings()
-        return super(Sheet, self).action_timesheet_confirm()
+        return super().action_timesheet_confirm()

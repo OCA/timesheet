@@ -3,7 +3,6 @@
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
  -->
 <odoo>
-
     <record id="hr_timesheet_sheet_warning_definition_tree" model="ir.ui.view">
         <field name="name">hr_timesheet.sheet.warning.definition.tree</field>
         <field name="model">hr_timesheet.sheet.warning.definition</field>
@@ -88,5 +87,4 @@
         groups="base.group_system"
         sequence="85"
     />
-
 </odoo>
