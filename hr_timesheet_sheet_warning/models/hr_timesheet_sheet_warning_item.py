@@ -31,4 +31,7 @@ class SheetWarningItem(models.Model):
 
     def _compute_name(self):
         for rec in self:
-            rec.name = f"{rec.warning_definition_id.display_name} in {rec.sheet_id.complete_name}"
+            rec.name = (
+                f"{rec.warning_definition_id.display_name} "
+                f"in {rec.sheet_id.complete_name}"
+            )
