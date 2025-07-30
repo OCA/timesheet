@@ -4,10 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0+e\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-07 09:39+0000\n"
-"PO-Revision-Date: 2024-03-07 09:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -61,6 +59,14 @@ msgid ""
 msgstr ""
 
 #. module: hr_timesheet_sheet_warning
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_warning/models/hr_timesheet_sheet_warning_definition.py:0
+msgid ""
+"Error evaluating %(name)s.\n"
+" %(error)s"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_warning.hr_timesheet_sheet_form
 msgid "Generate Warnings"
 msgstr ""
@@ -80,12 +86,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_warning.hr_timesheet_sheet_warning_definition_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_warning.hr_timesheet_sheet_warning_definition_search
 msgid "Inactive"
-msgstr ""
-
-#. module: hr_timesheet_sheet_warning
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_definition____last_update
-#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_item____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: hr_timesheet_sheet_warning
