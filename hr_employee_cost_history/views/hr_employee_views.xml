@@ -2,7 +2,6 @@
 <!-- Copyright 2024 Moduon Team S.L. <info@moduon.team>
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
 <odoo>
-
     <record
         id="hr_timesheet_retroactive_cost_view_employee_form_inherit"
         model="ir.ui.view"
@@ -11,7 +10,6 @@
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr_hourly_cost.view_employee_form" />
         <field name="arch" type="xml">
-
             <xpath expr="//field[@name='hourly_cost']" position="attributes">
                 <attribute name="readonly">1</attribute>
             </xpath>
@@ -46,5 +44,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
