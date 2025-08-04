@@ -2,7 +2,6 @@
 <!-- Copyright 2024 Moduon Team S.L. <info@moduon.team>
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
 <odoo>
-
     <record id="hr_employee_timesheet_cost_view_tree" model="ir.ui.view">
         <field name="name">hr.employee.timesheet.cost.history.view.tree</field>
         <field name="model">hr.employee.timesheet.cost.history</field>
@@ -24,5 +23,4 @@
         <field name="domain">[('employee_id', '=', active_id)]</field>
         <field name="target">current</field>
     </record>
-
 </odoo>
