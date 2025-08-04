@@ -13,7 +13,7 @@ from odoo.tests.common import Form, TransactionCase, new_test_user, users
 class HrEmployeeCostHistory(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(HrEmployeeCostHistory, cls).setUpClass()
+        super().setUpClass()
         cls.default_plan = cls.env["account.analytic.plan"].create(
             {"name": "Default", "company_id": False}
         )
@@ -174,7 +174,9 @@ class HrEmployeeCostHistory(TransactionCase):
             ]
         )
         self.assertEqual(len(timesheet_cost_ids), len(new_days_history_cost))
-        for timesheet_cost, days in zip(timesheet_cost_ids, new_days_history_cost):
+        for timesheet_cost, days in zip(
+            timesheet_cost_ids, new_days_history_cost, strict=False
+        ):
             self.assertEqual(
                 timesheet_cost.starting_date,
                 date.today() - relativedelta(days=days),
@@ -189,7 +191,9 @@ class HrEmployeeCostHistory(TransactionCase):
             ]
         )
         self.assertEqual(len(timesheet_cost_ids), len(new_days_history_cost))
-        for timesheet_cost, days in zip(timesheet_cost_ids, new_days_history_cost):
+        for timesheet_cost, days in zip(
+            timesheet_cost_ids, new_days_history_cost, strict=False
+        ):
             self.assertEqual(
                 timesheet_cost.starting_date,
                 date.today() - relativedelta(days=days),
