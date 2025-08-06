@@ -9,14 +9,8 @@ class HrEmployeeTimesheetCostHistory(models.Model):
     _description = "Employee Timesheet Cost History"
     _order = "create_date DESC"
 
-    employee_id = fields.Many2one(
-        comodel_name="hr.employee",
-        string="Employee",
-    )
-    currency_id = fields.Many2one(
-        comodel_name="res.currency",
-        string="Currency",
-    )
+    employee_id = fields.Many2one("hr.employee", string="Employee")
+    currency_id = fields.Many2one("res.currency", string="Currency")
     hourly_cost = fields.Monetary(currency_field="currency_id")
     starting_date = fields.Date(
         help="The cost change has effect since this date.",
