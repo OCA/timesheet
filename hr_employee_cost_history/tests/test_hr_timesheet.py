@@ -6,7 +6,7 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 from freezegun import freeze_time
 
-from odoo.tests.common import Form, TransactionCase, new_test_user, users
+from odoo.tests import Form, TransactionCase, new_test_user, users
 
 
 @freeze_time("2024-02-23", tick=True)
@@ -14,9 +14,7 @@ class HrEmployeeCostHistory(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.default_plan = cls.env["account.analytic.plan"].create(
-            {"name": "Default", "company_id": False}
-        )
+        cls.default_plan = cls.env["account.analytic.plan"].create({"name": "Default"})
         cls.analytic_account = cls.env["account.analytic.account"].create(
             {
                 "name": "Analytic Account for Test Customer",
@@ -48,14 +46,15 @@ class HrEmployeeCostHistory(TransactionCase):
             {
                 "name": "Project X",
                 "allow_timesheets": True,
-                "analytic_account_id": cls.analytic_account.id,
+                "account_id": cls.analytic_account.id,
+                "company_id": False,
             }
         )
         cls.task1 = cls.env["project.task"].create(
             {
                 "name": "Task One",
                 "priority": "0",
-                "kanban_state": "normal",
+                "state": "01_in_progress",
                 "project_id": cls.project_customer.id,
             }
         )
@@ -63,7 +62,7 @@ class HrEmployeeCostHistory(TransactionCase):
             {
                 "name": "Task Two",
                 "priority": "1",
-                "kanban_state": "done",
+                "state": "03_approved",
                 "project_id": cls.project_customer.id,
             }
         )

@@ -37,7 +37,7 @@
                     role="button"
                     context="{'default_employee_id': id}"
                     groups="hr.group_hr_user"
-                    attrs="{'invisible': [('timesheet_cost_history_ids', '=', [])]}"
+                    invisible="not timesheet_cost_history_ids"
                 >
                     <i class="fa fa-fw o_button_icon fa-history" /> Cost History
                 </button>
