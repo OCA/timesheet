@@ -8,7 +8,7 @@
     "category": "Human Resources",
     "website": "https://github.com/OCA/timesheet",
     "author": "Moduon, Odoo Community Association (OCA)",
-    "maintainers": ["edlopen", "rafaelbn"],
+    "maintainers": ["SabrinaRMArtin", "rafaelbn"],
     "license": "LGPL-3",
     "external_dependencies": {"python": ["freezegun"]},
     "installable": True,

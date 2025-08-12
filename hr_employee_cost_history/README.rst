@@ -85,16 +85,16 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-edlopen| image:: https://github.com/edlopen.png?size=40px
-    :target: https://github.com/edlopen
-    :alt: edlopen
+.. |maintainer-SabrinaRMArtin| image:: https://github.com/SabrinaRMArtin.png?size=40px
+    :target: https://github.com/SabrinaRMArtin
+    :alt: SabrinaRMArtin
 .. |maintainer-rafaelbn| image:: https://github.com/rafaelbn.png?size=40px
     :target: https://github.com/rafaelbn
     :alt: rafaelbn
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-edlopen| |maintainer-rafaelbn| 
+|maintainer-SabrinaRMArtin| |maintainer-rafaelbn| 
 
 This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/18.0/hr_employee_cost_history>`_ project on GitHub.
 

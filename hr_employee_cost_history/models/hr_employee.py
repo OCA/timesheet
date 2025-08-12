@@ -8,5 +8,7 @@ class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
     timesheet_cost_history_ids = fields.One2many(
-        "hr.employee.timesheet.cost.history", "employee_id", copy=False
+        comodel_name="hr.employee.timesheet.cost.history",
+        inverse_name="employee_id",
+        copy=False,
     )
