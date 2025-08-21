@@ -122,9 +122,7 @@ class TestAccountAnalyticLine(BaseCommon):
             ]
         )
         # act
-        analytic_line = self.analytic_line_model.with_context(
-            default_employee_id=self.employee.id
-        ).create(
+        analytic_line = self.analytic_line_model.create(
             {
                 "name": "Test Line",
                 "employee_id": self.employee.id,
@@ -133,10 +131,12 @@ class TestAccountAnalyticLine(BaseCommon):
             }
         )
         # assert
+        self.assertEqual(analytic_line.date, date(2025, 4, 2))
         self.assertEqual(analytic_line.date_time, datetime(2025, 4, 2, 15, 0, 0))
         self.assertEqual(analytic_line.date_time_end, datetime(2025, 4, 2, 17, 0, 0))
         self.assertEqual(analytic_line.unit_amount, 2)
 
+    @freeze_time("2025-04-05 12:00:00")
     def test_compute_date_time_end(self):
         """Test the computation of date_time_end based on unit_amount."""
         analytic_line = self.analytic_line_model.create(
@@ -148,6 +148,7 @@ class TestAccountAnalyticLine(BaseCommon):
                 "product_uom_id": self.uom_hour.id,
             }
         )
+        self.assertEqual(analytic_line.date, date(2025, 4, 2))
         self.assertEqual(analytic_line.date_time_end, datetime(2025, 4, 2, 14, 0, 0))
 
     def test_compute_unit_amount(self):
