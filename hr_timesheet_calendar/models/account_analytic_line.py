@@ -67,6 +67,17 @@ class AccountAnalyticLine(models.Model):
         string="Start Time", default=_get_default_start_time, copy=False
     )
 
+    def _add_missing_default_values(self, vals):
+        if "employee_id" in vals:
+            self = self.with_context(default_employee_id=vals["employee_id"])
+        if "date" in vals:
+            self = self.with_context(default_date=vals["date"])
+        elif "date_time" in vals:
+            self = self.with_context(default_date=vals["date_time"].date())
+        elif "date_time_end" in vals:
+            self = self.with_context(default_date=vals["date_time_end"].date())
+        return super()._add_missing_default_values(vals)
+
     @api.onchange("product_uom_id", "date_time", "date_time_end")
     def _compute_unit_amount(self):
         hour_uom = self.env.ref("uom.product_uom_hour")
