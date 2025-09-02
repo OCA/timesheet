@@ -9,23 +9,19 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+from odoo.tests import Form, new_test_user
+from odoo.tools import mute_logger
+
+from odoo.addons.base.tests.common import BaseCommon
 
 from ..models.hr_timesheet_sheet import empty_name
 
 
-class TestHrTimesheetSheetCommon(TransactionCase):
+class TestHrTimesheetSheetCommon(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        officer_group = cls.env.ref("hr.group_hr_user")
-        multi_company_group = cls.env.ref("base.group_multi_company")
-        sheet_user_group = cls.env.ref("hr_timesheet.group_hr_timesheet_user")
-        project_user_group = cls.env.ref("project.group_project_user")
-        cls.sheet_model = cls.env["hr_timesheet.sheet"].with_context(
-            tracking_disable=True
-        )
+        cls.sheet_model = cls.env["hr_timesheet.sheet"]
         cls.sheet_line_model = cls.env["hr_timesheet.sheet.line"]
         cls.project_model = cls.env["project.project"]
         cls.task_model = cls.env["project.task"]
@@ -39,114 +35,30 @@ class TestHrTimesheetSheetCommon(TransactionCase):
         )
         cls.env.user.company_ids += cls.company
         cls.env.user.company_ids += cls.company_2
-
-        cls.user = (
-            cls.env["res.users"]
-            .with_user(cls.env.user)
-            .with_context(no_reset_password=True)
-            .create(
-                {
-                    "name": "Test User",
-                    "login": "test_user",
-                    "email": "test@oca.com",
-                    "groups_id": [
-                        (
-                            6,
-                            0,
-                            [
-                                officer_group.id,
-                                sheet_user_group.id,
-                                project_user_group.id,
-                                multi_company_group.id,
-                            ],
-                        )
-                    ],
-                    "company_id": cls.company.id,
-                    "company_ids": [(4, cls.company.id)],
-                }
-            )
+        cls.user = new_test_user(
+            cls.env,
+            login="test_user",
+            groups="hr.group_hr_user,hr_timesheet.group_hr_timesheet_user,project.group_project_user",
+            company_id=cls.company.id,
         )
-
-        cls.user_2 = (
-            cls.env["res.users"]
-            .with_user(cls.env.user)
-            .with_context(no_reset_password=True)
-            .create(
-                {
-                    "name": "Test User 2",
-                    "login": "test_user_2",
-                    "email": "test2@oca.com",
-                    "groups_id": [
-                        (
-                            6,
-                            0,
-                            [
-                                officer_group.id,
-                                sheet_user_group.id,
-                                project_user_group.id,
-                                multi_company_group.id,
-                            ],
-                        )
-                    ],
-                    "company_id": cls.company_2.id,
-                    "company_ids": [(4, cls.company_2.id)],
-                }
-            )
+        cls.user_2 = new_test_user(
+            cls.env,
+            login="test_user_2",
+            groups="hr.group_hr_user,hr_timesheet.group_hr_timesheet_user,project.group_project_user",
+            company_id=cls.company_2.id,
         )
-
-        cls.user_3 = (
-            cls.env["res.users"]
-            .with_user(cls.env.user)
-            .with_context(no_reset_password=True)
-            .create(
-                {
-                    "name": "Test User 3",
-                    "login": "test_user_3",
-                    "email": "test3@oca.com",
-                    "groups_id": [
-                        (
-                            6,
-                            0,
-                            [
-                                sheet_user_group.id,
-                                project_user_group.id,
-                                multi_company_group.id,
-                            ],
-                        )
-                    ],
-                    "company_id": cls.company.id,
-                    "company_ids": [(4, cls.company.id)],
-                }
-            )
+        cls.user_3 = new_test_user(
+            cls.env,
+            login="test_user_3",
+            groups="hr_timesheet.group_hr_timesheet_user,project.group_project_user",
+            company_id=cls.company.id,
         )
-
-        cls.user_4 = (
-            cls.env["res.users"]
-            .with_user(cls.env.user)
-            .with_context(no_reset_password=True)
-            .create(
-                {
-                    "name": "Test User 4",
-                    "login": "test_user_4",
-                    "email": "test4@oca.com",
-                    "groups_id": [
-                        (
-                            6,
-                            0,
-                            [
-                                officer_group.id,
-                                sheet_user_group.id,
-                                project_user_group.id,
-                                multi_company_group.id,
-                            ],
-                        )
-                    ],
-                    "company_id": cls.company.id,
-                    "company_ids": [(4, cls.company.id)],
-                }
-            )
+        cls.user_4 = new_test_user(
+            cls.env,
+            login="test_user_4",
+            groups="hr.group_hr_user,hr_timesheet.group_hr_timesheet_user,project.group_project_user",
+            company_id=cls.company.id,
         )
-
         cls.employee_manager = cls.employee_model.create(
             {
                 "name": "Test Manager",
@@ -154,7 +66,6 @@ class TestHrTimesheetSheetCommon(TransactionCase):
                 "company_id": cls.user.company_id.id,
             }
         )
-
         cls.employee = cls.employee_model.create(
             {
                 "name": "Test Employee",
@@ -163,7 +74,6 @@ class TestHrTimesheetSheetCommon(TransactionCase):
                 "company_id": cls.user.company_id.id,
             }
         )
-
         cls.employee_no_user = cls.employee_model.create(
             {
                 "name": "Test Employee (no user)",
@@ -171,30 +81,25 @@ class TestHrTimesheetSheetCommon(TransactionCase):
                 "company_id": cls.user.company_id.id,
             }
         )
-
         cls.department_manager = cls.employee_model.create(
             {
                 "name": "Test Department Manager",
                 "user_id": cls.user_3.id,
-                "company_id": cls.user.company_id.id,
+                "company_id": cls.user_3.company_id.id,
             }
         )
-
         cls.employee_4 = cls.employee_model.create(
             {
                 "name": "Test User 4",
                 "user_id": cls.user_4.id,
                 "parent_id": cls.department_manager.id,
-                "company_id": cls.user.company_id.id,
+                "company_id": cls.user_4.company_id.id,
             }
         )
-
         cls.department = cls.department_model.create(
             {"name": "Department test", "company_id": cls.user.company_id.id}
         )
-
         cls.employee.department_id = cls.department
-
         cls.department_2 = cls.department_model.create(
             {
                 "name": "Department test 2",
@@ -202,7 +107,6 @@ class TestHrTimesheetSheetCommon(TransactionCase):
                 "manager_id": cls.department_manager.id,
             }
         )
-
         cls.project_1 = cls.project_model.create(
             {
                 "name": "Project 1",
@@ -254,6 +158,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         self.assertEqual(len(sheet.timesheet_ids), 1)
         self.assertEqual(len(sheet.line_ids), 7)
 
+    @mute_logger("odoo.models.unlink")
     def test_1(self):
         sheet_form = Form(self.sheet_model.with_user(self.user))
         self.assertEqual(sheet_form.employee_id.id, self.employee.id)
@@ -305,6 +210,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         self.assertEqual(len(sheet.timesheet_ids), 2)
         self.assertEqual(len(sheet.line_ids), 7)
 
+    @mute_logger("odoo.models.unlink")
     def test_1_B(self):
         sheet_form = Form(self.sheet_model.with_user(self.user))
         with sheet_form.timesheet_ids.new() as timesheet:
@@ -336,6 +242,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet = sheet_form.save()
         self.assertEqual(len(sheet.line_ids), 7)
 
+    @mute_logger("odoo.models.unlink")
     def test_2(self):
         sheet = Form(self.sheet_model.with_user(self.user)).save()
         self.assertEqual(sheet.department_id.id, self.department.id)
@@ -414,7 +321,9 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet.action_timesheet_draft()
         self.assertEqual(sheet.state, "draft")
         sheet.unlink()
+        self.assertFalse(sheet.exists())
 
+    @mute_logger("odoo.models.unlink")
     def test_3(self):
         timesheet = self.aal_model.create(
             {
@@ -436,6 +345,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         self.assertEqual(len(sheet.timesheet_ids), 0)
         self.assertFalse(self.aal_model.search([("id", "=", timesheet.id)]))
 
+    @mute_logger("odoo.models.unlink")
     def test_4(self):
         timesheet_1 = self.aal_model.create(
             {
@@ -504,6 +414,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertFalse(self.aal_model.search([("id", "=", timesheet_3.id)]))
 
+    @mute_logger("odoo.models.unlink")
     def test_5(self):
         timesheet_1 = self.aal_model.create(
             {
@@ -576,6 +487,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertEqual(len(sheet.timesheet_ids), 1)
 
+    @mute_logger("odoo.models.unlink")
     def test_6(self):
         timesheet_1 = self.aal_model.create(
             {
@@ -739,6 +651,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
                 sheet_form.add_line_project_id = project_3
                 sheet_form.add_line_task_id = task_3
 
+    @mute_logger("odoo.models.unlink")
     def test_9(self):
         sheet = Form(self.sheet_model.with_user(self.user)).save()
         with Form(sheet.with_user(self.user)) as sheet_form:
@@ -768,6 +681,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet.action_timesheet_draft()
         self.assertEqual(sheet.state, "draft")
         sheet.unlink()
+        self.assertFalse(sheet.exists())
 
     def test_10_start_day(self):
         """Test that the start day can be configured for weekly timesheets."""
@@ -949,24 +863,12 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         with self.assertRaises(UserError):
             analytic_account.company_id = self.company_2
 
+    @mute_logger("odoo.models.unlink")
     def test_16(self):
         department = self.department_model.create(
             {"name": "Department test", "company_id": False}
         )
-        self.user_16 = (
-            self.env["res.users"]
-            .with_user(self.env.user)
-            .with_context(no_reset_password=True)
-            .create(
-                {
-                    "name": "Test User 16",
-                    "login": "test_user_16",
-                    "email": "test16@oca.com",
-                    "company_id": self.company.id,
-                    "company_ids": [(4, self.company.id)],
-                }
-            )
-        )
+        self.user_16 = new_test_user(self.env, login="test_user_16")
         new_employee = self.employee_model.create(
             {
                 "name": "Test User",
@@ -986,6 +888,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         self.assertTrue(sheet_no_department.company_id)
 
         sheet_no_department.unlink()
+        self.assertFalse(sheet_no_department.exists())
         sheet_form = Form(self.sheet_model.with_user(self.user))
         sheet_form.employee_id = self.employee_model
         with self.assertRaises(AssertionError):
@@ -1023,6 +926,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
                 sheet_form.employee_id = self.employee_no_user
                 sheet_form.save()
 
+    @mute_logger("odoo.models.unlink")
     def test_workflow(self):
         sheet = Form(self.sheet_model.with_user(self.user)).save()
 
@@ -1065,12 +969,15 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet.action_timesheet_done()
         sheet.action_timesheet_draft()
         sheet.unlink()
+        self.assertFalse(sheet.exists())
 
+    @mute_logger("odoo.models.unlink")
     def test_review_policy_default(self):
         self.assertEqual(self.company.timesheet_sheet_review_policy, "hr")
         sheet = Form(self.sheet_model.with_user(self.user)).save()
         self.assertEqual(sheet.review_policy, "hr")
         sheet.unlink()
+        self.assertFalse(sheet.exists())
 
     def test_same_week_different_years(self):
         sheet_form = Form(self.sheet_model.with_user(self.user))
@@ -1084,6 +991,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet_form.date_end = date(2020, 1, 5)
         self.assertEqual(sheet_form.name, "Weeks 52, 2019 - 01, 2020")
 
+    @mute_logger("odoo.models.unlink")
     def test_onchange_project_id_merging_timesheets(self):
         """Test that we don't try merging timesheets when in onchange"""
         sheet = Form(self.sheet_model.with_user(self.user)).save()
