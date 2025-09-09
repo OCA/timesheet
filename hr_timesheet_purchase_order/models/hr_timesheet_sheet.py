@@ -118,7 +118,7 @@ class HrTimesheetSheet(models.Model):
                             date_timesheet,
                         ),
                         "product_qty": sum(
-                            [timesheet.total_time for timesheet in timesheets]
+                            timesheet.total_time for timesheet in timesheets
                         ),
                         "price_unit": employee.timesheet_cost,
                     },
