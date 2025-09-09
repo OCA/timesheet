@@ -80,12 +80,15 @@ class HrTimesheetSheet(models.Model):
             "params": {
                 "type": "success",
                 "message": _(
-                    "{} POs created from timesheet sheet selected "
-                    "for the following employees: {}",
-                ).format(
-                    order_count,
-                    ", ".join([employee.name for employee in group_by_employee.keys()]),
-                ),
+                    "%(count)s POs created from timesheet sheet selected "
+                    "for the following employees: %(employees)s"
+                )
+                % {
+                    "count": order_count,
+                    "employees": ", ".join(
+                        employee.name for employee in group_by_employee.keys()
+                    ),
+                },
                 "next": {
                     "type": "ir.actions.act_window_close",
                 },
@@ -157,4 +160,4 @@ class HrTimesheetSheet(models.Model):
                     "Please delete the related PO first.",
                 ),
             )
-        super().action_timesheet_draft()
+        return super().action_timesheet_draft()

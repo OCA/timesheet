@@ -67,13 +67,13 @@ class ResPartner(models.Model):
         readonly=False,
     )
 
-    mon = fields.Boolean(string="Mon", compute="_compute_repeat", readonly=False)
-    tue = fields.Boolean(string="Tue", compute="_compute_repeat", readonly=False)
-    wed = fields.Boolean(string="Wed", compute="_compute_repeat", readonly=False)
-    thu = fields.Boolean(string="Thu", compute="_compute_repeat", readonly=False)
-    fri = fields.Boolean(string="Fri", compute="_compute_repeat", readonly=False)
-    sat = fields.Boolean(string="Sat", compute="_compute_repeat", readonly=False)
-    sun = fields.Boolean(string="Sun", compute="_compute_repeat", readonly=False)
+    mon = fields.Boolean(compute="_compute_repeat", readonly=False)
+    tue = fields.Boolean(compute="_compute_repeat", readonly=False)
+    wed = fields.Boolean(compute="_compute_repeat", readonly=False)
+    thu = fields.Boolean(compute="_compute_repeat", readonly=False)
+    fri = fields.Boolean(compute="_compute_repeat", readonly=False)
+    sat = fields.Boolean(compute="_compute_repeat", readonly=False)
+    sun = fields.Boolean(compute="_compute_repeat", readonly=False)
 
     repeat_day = fields.Integer(
         compute="_compute_repeat",

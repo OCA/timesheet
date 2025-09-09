@@ -49,13 +49,13 @@ class HRTimeSheetRecurrence(models.Model):
         selection=ON_YEAR_SELECTION,
     )
 
-    mon = fields.Boolean(string="Mon")
-    tue = fields.Boolean(string="Tue")
-    wed = fields.Boolean(string="Wed")
-    thu = fields.Boolean(string="Thu")
-    fri = fields.Boolean(string="Fri")
-    sat = fields.Boolean(string="Sat")
-    sun = fields.Boolean(string="Sun")
+    mon = fields.Boolean()
+    tue = fields.Boolean()
+    wed = fields.Boolean()
+    thu = fields.Boolean()
+    fri = fields.Boolean()
+    sat = fields.Boolean()
+    sun = fields.Boolean()
 
     repeat_day = fields.Integer()
     repeat_week = fields.Selection(selection=WEEKS_SELECTION)
