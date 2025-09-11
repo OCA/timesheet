@@ -1,4 +1,4 @@
-# Copyright 2024 Moduon Team S.L.
+# Copyright 2025 Moduon Team S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/LGPL-3.0)
 import requests
 
@@ -56,12 +56,33 @@ class HrTimesheet(TestCommonSaleTimesheet):
                 "name": "Projects Plan",
             }
         )
+        cls.plan2 = cls.env["account.analytic.plan"].create(
+            {
+                "name": "Internal Plan",
+            }
+        )
         cls.analytic_account_maintenance = cls.env["account.analytic.account"].create(
             {
                 "name": "Maintenance Analytic Account for Test Customer",
                 "partner_id": cls.partner_b.id,
                 "code": "MAINTENANCE",
                 "plan_id": cls.plan.id,
+            }
+        )
+        cls.analytic_account_sales = cls.env["account.analytic.account"].create(
+            {
+                "name": "Sales Analytic Account for Test Customer",
+                "partner_id": cls.partner_b.id,
+                "code": "SALES",
+                "plan_id": cls.plan.id,
+            }
+        )
+        cls.analytic_account_develop = cls.env["account.analytic.account"].create(
+            {
+                "name": "Develop Analytic Account for Test Customer",
+                "partner_id": cls.partner_b.id,
+                "code": "DEVELOP",
+                "plan_id": cls.plan2.id,
             }
         )
 
@@ -97,20 +118,27 @@ class HrTimesheet(TestCommonSaleTimesheet):
 
     @users("test_user")
     def test_compute_account_id_01(self):
-        """Test analytic account doesn't change if timesheets are invoiced."""
+        """Test analytic account change if timesheets are invoiced."""
+        plan2_fname = f"x_plan{self.plan2.id}_id"
         self.assertEqual(
             self.task1.timesheet_ids.mapped("account_id"),
             self.analytic_account_sale,
         )
-        self.task1.analytic_account_id = self.analytic_account_maintenance
+        self.task1[plan2_fname] = self.analytic_account_develop
+        self.task1.account_id = self.analytic_account_maintenance
         self.assertEqual(
             self.task1.timesheet_ids.mapped("account_id"),
-            self.analytic_account_sale,
+            self.analytic_account_maintenance,
+        )
+        self.assertEqual(
+            self.task1.timesheet_ids.mapped(plan2_fname),
+            self.analytic_account_develop,
         )
 
     @users("test_user")
     def test_compute_account_id_02(self):
-        """Test only not billed analytic account lines change."""
+        """Test not billed analytic account lines change."""
+        plan2_fname = f"x_plan{self.plan2.id}_id"
         self.assertEqual(
             self.task1.timesheet_ids.mapped("account_id"),
             self.analytic_account_sale,
@@ -126,9 +154,39 @@ class HrTimesheet(TestCommonSaleTimesheet):
                 }
             ]
         )
-        self.task1.analytic_account_id = self.analytic_account_maintenance
+        self.task1.account_id = self.analytic_account_maintenance
+        self.task1[plan2_fname] = self.analytic_account_develop
         self.assertEqual(timesheet_id.account_id, self.analytic_account_maintenance)
-        self.assertNotEqual(
+        self.assertEqual(
             self.task1.timesheet_ids.mapped("account_id"),
             self.analytic_account_maintenance,
         )
+        self.assertEqual(
+            self.task1.timesheet_ids.mapped(plan2_fname),
+            self.analytic_account_develop,
+        )
+
+    @users("test_user")
+    def test_recompute_analytic_account_from_project(self):
+        self.project_global.account_id = self.analytic_account_sales
+        self.assertEqual(self.analytic_account_sales, self.project_global.account_id)
+        self.assertEqual(self.analytic_account_sales, self.task1.account_id)
+        self.assertEqual(
+            self.analytic_account_sales, self.task1.timesheet_ids.mapped("account_id")
+        )
+
+    @users("test_user")
+    def test_change_project_and_propagate_analytic_account_to_task(self):
+        self.project_task_rate.account_id = self.analytic_account_sales
+        self.task1.project_id = self.project_task_rate
+        self.assertEqual(self.analytic_account_sales, self.project_task_rate.account_id)
+        self.assertEqual(self.analytic_account_sales, self.task1.account_id)
+        self.assertEqual(
+            self.analytic_account_sales, self.task1.timesheet_ids.mapped("account_id")
+        )
+
+    @users("test_user")
+    def test_change_task_project_and_propagate_to_all_timesheets(self):
+        self.task1.project_id = self.project_task_rate
+        project_id = self.task1.timesheet_ids.mapped("project_id")
+        self.assertEqual(self.project_task_rate, project_id)

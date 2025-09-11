@@ -1,17 +1,18 @@
-# Copyright 2024 Moduon Team S.L.
+# Copyright 2025 Moduon Team S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/LGPL-3.0)
 
 {
     "name": "Project Task Analytic Propagation",
-    "summary": "Updates timesheet's analytic account"
-    " when their task changes the analytic.",
-    "version": "18.0.1.0.1",
+    "summary": """Updates timesheet's analytic account
+    when their task changes the analytic.""",
+    "version": "18.0.3.0.1",
     "development_status": "Alpha",
     "category": "Timesheet",
     "website": "https://github.com/OCA/timesheet",
     "author": "Moduon, Odoo Community Association (OCA)",
-    "maintainers": ["Andrii9090", "rafaelbn"],
+    "maintainers": ["Andrii9090", "rafaelbn", "sabrinaRMartin"],
     "license": "LGPL-3",
+    "post_init_hook": "post_init_hook",
     "application": False,
     "installable": True,
     "depends": [
