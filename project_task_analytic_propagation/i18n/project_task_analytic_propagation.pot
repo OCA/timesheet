@@ -14,7 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: project_task_analytic_propagation
-#: model:ir.model.fields,field_description:project_task_analytic_propagation.field_project_task__analytic_account_id
+#: model_terms:ir.ui.view,arch_db:project_task_analytic_propagation.project_task_analytic__propagation_view_task_form2
+msgid "Analytic"
+msgstr ""
+
+#. module: project_task_analytic_propagation
+#: model:ir.model.fields,field_description:project_task_analytic_propagation.field_project_task__auto_account_id
 msgid "Analytic Account"
 msgstr ""
 
@@ -24,12 +29,7 @@ msgid "Analytic Line"
 msgstr ""
 
 #. module: project_task_analytic_propagation
-#: model:ir.model.fields,help:project_task_analytic_propagation.field_project_task__analytic_account_id
-msgid "Analytic account to which this task and its timesheets are linked."
-msgstr ""
-
-#. module: project_task_analytic_propagation
-#: model:ir.model.fields,field_description:project_task_analytic_propagation.field_account_analytic_line__account_id
+#: model:ir.model.fields,field_description:project_task_analytic_propagation.field_project_task__account_id
 msgid "Project Account"
 msgstr ""
 
