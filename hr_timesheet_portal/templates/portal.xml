@@ -4,14 +4,17 @@
 <odoo>
 
     <template id="portal_my_task" inherit_id="hr_timesheet.portal_my_task">
-        <div t-if="timesheets and allow_timesheets" position="attributes">
+        <xpath
+            expr="//div[@id='card_body']/div[@t-if='timesheets and allow_timesheets']"
+            position="attributes"
+        >
             <attribute name="class" add="hr_timesheet_portal" separator=" " />
             <attribute name="t-att-data-project-id">task.project_id.id</attribute>
             <attribute
                 name="t-att-data-account-id"
             >task.project_id.analytic_account_id.id</attribute>
             <attribute name="t-att-data-task-id">task.id</attribute>
-        </div>
+        </xpath>
         <xpath
             expr="//div[@t-if='timesheets and allow_timesheets']//h5"
             position="inside"
@@ -21,7 +24,10 @@
                 groups="hr_timesheet_portal.group_hr_timesheet_portal"
             />
         </xpath>
-        <div t-if="timesheets and allow_timesheets" position="after">
+        <xpath
+            expr="//div[@id='card_body']/div[@t-if='timesheets and allow_timesheets']"
+            position="after"
+        >
             <div
                 t-if="not timesheets and task.project_id.allow_timesheets"
                 class="container hr_timesheet_portal"
@@ -30,11 +36,10 @@
                 t-att-data-task-id="task.id"
                 groups="hr_timesheet_portal.group_hr_timesheet_portal"
             >
-                <hr class="mt-4 mb-1" />
                 <h5 class="mt-2 mb-2">Timesheets <i class="fa fa-plus" /></h5>
                 <t t-call="hr_timesheet.portal_timesheet_table" />
             </div>
-        </div>
+        </xpath>
     </template>
     <template
         id="portal_timesheet_table"
