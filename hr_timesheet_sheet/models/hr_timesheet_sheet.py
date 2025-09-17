@@ -355,6 +355,7 @@ class Sheet(models.Model):
             ("employee_id", "=", self.employee_id.id),
             ("company_id", "=", self._get_timesheet_sheet_company().id),
             ("project_id", "!=", False),
+            ("sheet_id", "=", False),
         ]
 
     @api.depends(
