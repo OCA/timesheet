@@ -54,6 +54,28 @@ To configure this module, you need to:
    users be able to edit timesheets, add the group as an implied group
    of the Portal group
 
+Usage
+=====
+
+Users in the Website group Editable timesheets will see a plus button
+when they hover over Timesheets.
+
+|Portal general view|
+
+Clicking the plus button allows them to add a new timesheet line:
+
+|Add timesheet line|
+
+They can also edit their timesheet lines by hovering over a line and
+clicking the pencil button next to the date, or delete a line by
+clicking the cross next to the duration:
+
+|Edit timesheet line|
+
+.. |Portal general view| image:: https://raw.githubusercontent.com/OCA/timesheet/17.0/hr_timesheet_portal/static/img/01_portal_general_view.png
+.. |Add timesheet line| image:: https://raw.githubusercontent.com/OCA/timesheet/17.0/hr_timesheet_portal/static/img/02_add_timesheet_line.png
+.. |Edit timesheet line| image:: https://raw.githubusercontent.com/OCA/timesheet/17.0/hr_timesheet_portal/static/img/03_edit_timesheet_line.png
+
 Bug Tracker
 ===========
 
