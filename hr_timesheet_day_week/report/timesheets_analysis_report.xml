@@ -1,0 +1,14 @@
+<odoo>
+    <record id="timesheets_analysis_report_list" model="ir.ui.view">
+        <field
+            name="name"
+        >timesheets.analysis.report.list (in hr_timesheet_day_week)</field>
+        <field name="model">timesheets.analysis.report</field>
+        <field name="inherit_id" ref="hr_timesheet.timesheets_analysis_report_list" />
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="attributes">
+                <attribute name="decoration-warning">day_week in ['5', '6']</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,11 +1,12 @@
 [project]
 name = "odoo-addons-oca-timesheet"
-version = "18.0.20250908.0"
+version = "18.0.20250916.0"
 dependencies = [
     "odoo-addon-crm_timesheet==18.0.*",
     "odoo-addon-hr_employee_cost_history==18.0.*",
     "odoo-addon-hr_timesheet_begin_end==18.0.*",
     "odoo-addon-hr_timesheet_calendar==18.0.*",
+    "odoo-addon-hr_timesheet_day_week==18.0.*",
     "odoo-addon-hr_timesheet_editable_top==18.0.*",
     "odoo-addon-hr_timesheet_sheet==18.0.*",
     "odoo-addon-hr_timesheet_sheet_attendance==18.0.*",
