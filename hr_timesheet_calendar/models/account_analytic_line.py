@@ -25,6 +25,7 @@ class AccountAnalyticLine(models.Model):
             return start_time
         defaults = self.default_get(["employee_id", "company_id", "date"])
         date_day = defaults.get("date", now.date())
+        start_time = datetime.combine(date_day, start_time.time())
         employee_id = defaults.get(
             "employee_id",
             self._context.get("default_employee_id", self.env.user.employee_id.id),
@@ -44,7 +45,7 @@ class AccountAnalyticLine(models.Model):
         )
         if analytic_lines.date_time_end:
             start_time = analytic_lines.date_time_end
-        if not analytic_lines:
+        elif not analytic_lines:
             # if employee has no analytic_lines at this day,
             # get the employee calendar and set the start time
             # to the first interval of the day
