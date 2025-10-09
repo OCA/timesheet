@@ -9,7 +9,7 @@ from odoo.tests.common import TransactionCase
 class TestProjectTaskStageAllowTimesheet(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestProjectTaskStageAllowTimesheet, cls).setUpClass()
+        super().setUpClass()
         cls.AnalyticLine = cls.env["account.analytic.line"]
 
         cls.employee_1 = cls.env.ref("hr.employee_qdp")
