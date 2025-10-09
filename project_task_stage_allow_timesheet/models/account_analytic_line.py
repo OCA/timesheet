@@ -23,12 +23,11 @@ class AccountAnalyticLine(models.Model):
                     raise ValidationError(
                         _(
                             "You can't link a timesheet line to a task if its stage"
-                            " doesn't allow it. (Task: %(task_name)s, Stage: %(stage_name)s)"
+                            " doesn't allow it. (Task: %(task_name)s, "
+                            "Stage: %(stage_name)s)",
+                            task_name=task.display_name,
+                            stage_name=stage.display_name,
                         )
-                        % {
-                            "task_name": task.display_name,
-                            "stage_name": stage.display_name,
-                        }
                     )
 
     @api.model
