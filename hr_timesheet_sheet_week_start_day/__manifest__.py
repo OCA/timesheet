@@ -8,9 +8,9 @@
     "summary": "Allows to define the week start date for Timesheets at "
                "company level",
     "version": "10.0.1.0.0",
-    "author": "Eficent Business and IT Consulting Services, S.L., "
+    "author": "Eficent Business and IT Consulting Services S.L., "
               "Odoo Community Association (OCA)",
-    "website": "http://www.eficent.com",
+    "website": "https://github.com/OCA/timesheet",
     "category": "Generic",
     "depends": ["hr_timesheet_sheet", "project"],
     "license": "AGPL-3",
