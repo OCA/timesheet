@@ -92,6 +92,15 @@ class AccountAnalyticLine(models.Model):
             else:
                 one.show_time_control = "stop"
 
+    @api.onchange("date_time", "date_time_end")
+    def _onchange_date_time(self):
+        hour_uom = self.env.ref("uom.product_uom_hour")
+        if self.product_uom_id == hour_uom:
+            if self.date_time and self.date_time_end:
+                self.unit_amount = self._duration(self.date_time, self.date_time_end)
+            else:
+                self.unit_amount = 0
+
     @api.model_create_multi
     def create(self, vals_list):
         return super().create(list(map(self._eval_date, vals_list)))

@@ -290,3 +290,31 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
         )
         line.unit_amount = 500.0
         self.assertFalse(line.date_time_end)
+
+    def test_onchange_date_time_with_hour_uom_and_dates(self):
+        hour_uom = self.env.ref("uom.product_uom_hour")
+        form = Form(
+            self.env["account.analytic.line"]
+            .with_user(self.user)
+            .with_context(default_product_uom_id=hour_uom.id),
+            view=self.env.ref("project_timesheet_time_control.hr_timesheet_line_form"),
+        )
+        form.date_time = datetime(2023, 1, 1, 8, 0, 0)
+        form.date_time_end = datetime(2023, 1, 1, 10, 0, 0)
+        self.assertEqual(form.unit_amount, 2.0)
+
+        form.date_time_end = datetime(2023, 1, 1, 12, 0, 0)
+        self.assertEqual(form.unit_amount, 4.0)
+
+    def test_onchange_date_time_with_hour_uom_no_end_date(self):
+        hour_uom = self.env.ref("uom.product_uom_hour")
+        form = Form(
+            self.env["account.analytic.line"]
+            .with_user(self.user)
+            .with_context(default_product_uom_id=hour_uom.id),
+            view=self.env.ref("project_timesheet_time_control.hr_timesheet_line_form"),
+        )
+        form.date_time = datetime(2023, 1, 1, 8, 0, 0)
+        form.date_time_end = False
+
+        self.assertEqual(form.unit_amount, 0)
