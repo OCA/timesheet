@@ -92,9 +92,16 @@ class AccountAnalyticLine(models.Model):
             else:
                 one.show_time_control = "stop"
 
+    @api.onchange("date")
+    def _onchange_date(self):
+        hour_uom = self.env.ref("uom.product_uom_hour")
+        if self.product_uom_id == hour_uom and self.date_time:
+            self.date_time = datetime.combine(self.date, self.date_time.time())
+
     @api.onchange("date_time", "date_time_end")
     def _onchange_date_time(self):
         hour_uom = self.env.ref("uom.product_uom_hour")
+        self.date = self.date_time.date()
         if self.product_uom_id == hour_uom:
             if self.date_time and self.date_time_end:
                 self.unit_amount = self._duration(self.date_time, self.date_time_end)
@@ -103,10 +110,30 @@ class AccountAnalyticLine(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        for vals in vals_list:
+            if "date" in vals and "date_time" not in vals:
+                date = fields.Date.to_date(vals["date"])
+                vals["date_time"] = datetime.combine(date, fields.Datetime.now().time())
         return super().create(list(map(self._eval_date, vals_list)))
 
     def write(self, vals):
-        return super().write(self._eval_date(vals))
+        if "date" in vals and "date_time" not in vals:
+            res = super(
+                AccountAnalyticLine, self.filtered(lambda r: not r.date_time)
+            ).write(vals)
+
+            # only overwrite the date part of date_time
+            for record in self.filtered(lambda r: r.date_time):
+                vals["date_time"] = fields.Datetime.to_string(
+                    datetime.combine(
+                        fields.Date.to_date(vals["date"]),
+                        record.date_time.time(),
+                    )
+                )
+                res |= super(AccountAnalyticLine, record).write(vals)
+            return res
+        else:
+            return super().write(self._eval_date(vals))
 
     def button_resume_work(self):
         """Create a new record starting now, with a running timer."""
