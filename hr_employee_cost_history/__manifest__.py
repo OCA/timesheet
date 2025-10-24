@@ -3,7 +3,7 @@
 {
     "name": "HR Employee Cost History",
     "summary": """Adds an history to employee's costs.""",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "development_status": "Beta",
     "category": "Human Resources",
     "website": "https://github.com/OCA/timesheet",

@@ -119,11 +119,10 @@ class HrEmployeeCostHistory(TransactionCase):
             .search([("project_id", "=", self.project_customer.id)])
             .mapped("amount")
         )
-        old_cost = self.env["account.analytic.line"].read_group(
+        old_cost = self.env["account.analytic.line"]._read_group(
             [("project_id", "=", self.project_customer.id)],
-            ["amount"],
-            ["project_id"],
-        )[0]["amount"]
+            aggregates=["amount:sum"],
+        )[0][0]
         self.assertEqual(old_cost, -90.0)
         self.new_timesheet_cost_wizard(
             self.employee, 15.0, date.today() - relativedelta(days=2)
