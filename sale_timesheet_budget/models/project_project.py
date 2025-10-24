@@ -73,23 +73,22 @@ class ProjectProjectBudget(models.Model):
     sale_order_id = fields.Many2one(
         comodel_name="sale.order",
         string="Sale Order",
+        domain="sale_order_id_domain",
     )
-    analytic_account_id = fields.Many2one(related="project_id.analytic_account_id")
+    analytic_account_id = fields.Many2one(related="project_id.account_id")
     quantity = fields.Float(digits="Account", default=1, required=True)
     price_unit = fields.Float(string="Product Price", digits="Account", required=True)
     amount = fields.Float(compute="_compute_amount", store=True)
 
-    @api.depends(
-        "project_id", "project_id.partner_id", "project_id.analytic_account_id"
-    )
+    @api.depends("project_id", "project_id.partner_id", "project_id.account_id")
     def _compute_sale_order_id_domain(self):
         for item in self:
             item.sale_order_id_domain = [
                 ("partner_id", "=", item.project_id.partner_id.id),
                 (
-                    "analytic_account_id",
+                    "project_account_id",
                     "=",
-                    item.project_id.analytic_account_id.id,
+                    item.project_id.account_id.id,
                 ),
                 ("state", "!=", "cancel"),
             ]

@@ -142,18 +142,3 @@ msgstr "Ordine di vendita"
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__sale_order_id_domain
 msgid "Sale Order Id Domain"
 msgstr "Dominio ID ordine di vendita"
-
-#~ msgid "Allowed Sale Order"
-#~ msgstr "Ordine vendita consentito"
-
-#~ msgid ""
-#~ "Analytic account to which this project is linked for financial "
-#~ "management. Use an analytic account to record cost and revenue on your "
-#~ "project."
-#~ msgstr ""
-#~ "Conto analitico a cui è collegato questo progetto per la gestione "
-#~ "finanziaria. Utilizzare un conto analitico per registrare i costi e "
-#~ "ricavi del progetto."
-
-#~ msgid "Budget"
-#~ msgstr "Budget"

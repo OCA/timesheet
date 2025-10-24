@@ -22,14 +22,14 @@ class TestSaleTimesheetBudget(BaseCommon):
         cls.sale_order = cls.env["sale.order"].create(
             {
                 "partner_id": cls.customer.id,
-                "analytic_account_id": cls.analytic_account.id,
+                "project_account_id": cls.analytic_account.id,
             }
         )
         cls.project = cls.env["project.project"].create(
             {
                 "name": "Test project",
                 "partner_id": cls.customer.id,
-                "analytic_account_id": cls.analytic_account.id,
+                "account_id": cls.analytic_account.id,
                 "allow_billable": True,
             }
         )
