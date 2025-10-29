@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,20 +20,6 @@ msgid "Amount"
 msgstr ""
 
 #. module: sale_timesheet_budget
-#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__analytic_account_id
-msgid "Analytic Account"
-msgstr ""
-
-#. module: sale_timesheet_budget
-#: model:ir.model.fields,help:sale_timesheet_budget.field_project_project_budget__analytic_account_id
-msgid ""
-"Analytic account to which this project, its tasks and its timesheets are linked. \n"
-"Track the costs and revenues of your project by setting this analytic account on your related documents (e.g. sales orders, invoices, purchase orders, vendor bills, expenses etc.).\n"
-"This analytic account can be changed on each task individually if necessary.\n"
-"An analytic account is required in order to use timesheets."
-msgstr ""
-
-#. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project__budget_amount
 msgid "Budget Amount"
 msgstr ""
@@ -43,7 +29,6 @@ msgstr ""
 #: code:addons/sale_timesheet_budget/models/project_project.py:0
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project__budget_ids
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.project_project_view_form
-#, python-format
 msgid "Budgets"
 msgstr ""
 
@@ -78,11 +63,6 @@ msgid "ID"
 msgstr ""
 
 #. module: sale_timesheet_budget
-#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: sale_timesheet_budget
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -101,6 +81,11 @@ msgstr ""
 #: model:ir.model,name:sale_timesheet_budget.model_project_project
 #: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__project_id
 msgid "Project"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__analytic_account_id
+msgid "Project Account"
 msgstr ""
 
 #. module: sale_timesheet_budget
