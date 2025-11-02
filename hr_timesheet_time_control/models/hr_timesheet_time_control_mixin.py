@@ -1,7 +1,7 @@
 # Copyright 2019 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -30,15 +30,12 @@ class HrTimesheetTimeControlMixin(models.AbstractModel):
     def _compute_show_time_control(self):
         """Decide which time control button to show, if any."""
         related_field = self._relation_with_timesheet_line()
-        grouped = self.env["account.analytic.line"].read_group(
+        grouped = self.env["account.analytic.line"]._read_group(
             domain=self._timesheet_running_domain(),
-            fields=["id"],
+            aggregates=["id:count_distinct"],
             groupby=[related_field],
         )
-        lines_per_record = {
-            group[related_field][0]: group[f"{related_field}_count"]
-            for group in grouped
-        }
+        lines_per_record = {group[0].id: group[1] for group in grouped}
         button_per_lines = {0: "start", 1: "stop"}
         for record in self:
             record.show_time_control = button_per_lines.get(
@@ -51,7 +48,7 @@ class HrTimesheetTimeControlMixin(models.AbstractModel):
         related_field = self._relation_with_timesheet_line()
         return {
             "context": {f"default_{related_field}": self.id},
-            "name": _("Start work"),
+            "name": self.env._("Start work"),
             "res_model": "hr.timesheet.switch",
             "target": "new",
             "type": "ir.actions.act_window",
@@ -65,11 +62,12 @@ class HrTimesheetTimeControlMixin(models.AbstractModel):
         )
         if not running_lines:
             model = self.env["ir.model"].sudo().search([("model", "=", self._name)])
-            message = _(
+            message = self.env._(
                 "No running timer found in %(model)s %(record)s. "
-                "Refresh the page and check again."
+                "Refresh the page and check again.",
+                model=model.name,
+                record=self.display_name,
             )
-            raise UserError(
-                message % {"model": model.name, "record": self.display_name}
-            )
+            raise UserError(message)
+
         return running_lines.button_end_work()

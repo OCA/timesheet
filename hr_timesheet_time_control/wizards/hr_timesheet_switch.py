@@ -1,9 +1,9 @@
 # Copyright 2019 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
-from odoo.osv import expression
+from odoo.fields import Domain
 
 
 class HrTimesheetSwitch(models.TransientModel):
@@ -13,7 +13,7 @@ class HrTimesheetSwitch(models.TransientModel):
     def _domain_project_id(self):
         domain = [("allow_timesheets", "=", True)]
         if not self.env.user.has_group("hr_timesheet.group_timesheet_manager"):
-            return expression.AND(
+            return Domain.AND(
                 [
                     domain,
                     [
@@ -54,7 +54,7 @@ class HrTimesheetSwitch(models.TransientModel):
         compute="_compute_project_id",
         store=True,
         readonly=False,
-        domain=_domain_project_id,
+        domain=lambda self: self._domain_project_id(),
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
@@ -108,11 +108,11 @@ class HrTimesheetSwitch(models.TransientModel):
         )
         if len(running) > 1:
             raise UserError(
-                _(
+                self.env._(
                     "%d running timers found. Cannot know which one to stop. "
-                    "Please stop them manually."
+                    "Please stop them manually.",
+                    len(running),
                 )
-                % len(running)
             )
         return running
 

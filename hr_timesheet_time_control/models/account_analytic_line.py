@@ -7,7 +7,7 @@ from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -15,8 +15,14 @@ class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
     _order = "date_time desc"
 
+    @api.model
+    def _get_default_start_time(self):
+        return fields.Datetime.now()
+
     date_time = fields.Datetime(
-        string="Start Time", default=fields.Datetime.now, copy=False
+        string="Start Time",
+        default=lambda self: self._get_default_start_time(),
+        copy=False,
     )
     date_time_end = fields.Datetime(
         string="End Time",
@@ -143,7 +149,7 @@ class AccountAnalyticLine(models.Model):
     def button_resume_work(self):
         """Create a new record starting now, with a running timer."""
         return {
-            "name": _("Resume work"),
+            "name": self.env._("Resume work"),
             "res_model": "hr.timesheet.switch",
             "target": "new",
             "type": "ir.actions.act_window",
@@ -158,11 +164,11 @@ class AccountAnalyticLine(models.Model):
         for line in self:
             if line.unit_amount:
                 raise UserError(
-                    _(
+                    self.env._(
                         "Cannot stop timer %d because it is not running. "
-                        "Refresh the page and check again."
+                        "Refresh the page and check again.",
+                        line.id,
                     )
-                    % line.id
                 )
             line.unit_amount = line._duration(line.date_time, end)
         return True

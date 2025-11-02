@@ -311,7 +311,7 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
             self.env["account.analytic.line"]
             .with_user(self.user)
             .with_context(default_product_uom_id=hour_uom.id),
-            view=self.env.ref("project_timesheet_time_control.hr_timesheet_line_form"),
+            view=self.env.ref("hr_timesheet_time_control.hr_timesheet_line_form"),
         )
         form.date_time = datetime(2023, 1, 1, 8, 0, 0)
         form.date_time_end = datetime(2023, 1, 1, 10, 0, 0)
@@ -327,7 +327,7 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
             self.env["account.analytic.line"]
             .with_user(self.user)
             .with_context(default_product_uom_id=hour_uom.id),
-            view=self.env.ref("project_timesheet_time_control.hr_timesheet_line_form"),
+            view=self.env.ref("hr_timesheet_time_control.hr_timesheet_line_form"),
         )
         form.date_time = datetime(2023, 1, 1, 8, 0, 0)
         form.date_time_end = False
