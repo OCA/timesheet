@@ -44,7 +44,6 @@
         <field name="model">hr_timesheet.sheet</field>
         <field name="arch" type="xml">
             <form string="Timesheet Sheet">
-                <field name="can_review" invisible="1" />
                 <field name="user_id" invisible="1" />
                 <field name="review_policy" invisible="1" />
                 <header>
@@ -372,7 +371,7 @@
                 <field name="employee_id" />
                 <field name="department_id" />
                 <field name="reviewer_id" />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         name="groupby_employees"
                         string="Employees"

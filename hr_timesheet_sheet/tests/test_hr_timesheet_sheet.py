@@ -267,10 +267,10 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
             with sheet_form.line_ids.edit(0) as line_form:
                 line_form.unit_amount = 2.0
                 self.assertEqual(len(sheet.new_line_ids), 1)
-        line = fields.first(sheet.line_ids)
+        line = next(iter(sheet.line_ids), sheet.line_ids)
         self.assertEqual(line.unit_amount, 2.0)
         self.assertEqual(len(sheet.timesheet_ids), 1)
-        timesheet = fields.first(sheet.timesheet_ids)
+        timesheet = next(iter(sheet.timesheet_ids), sheet.timesheet_ids)
 
         with Form(sheet.with_user(self.user)) as sheet_form:
             lines_to_edit = [
@@ -282,9 +282,8 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
                 self.assertEqual(line_form.unit_amount, 0.0)
                 line_form.unit_amount = 1.0
                 self.assertEqual(len(sheet.new_line_ids), 1)
-        line2 = fields.first(
-            sheet.line_ids.filtered(lambda line: line.date != timesheet.date)
-        )
+        lines = sheet.line_ids.filtered(lambda line: line.date != timesheet.date)
+        line2 = next(iter(lines), lines)
         self.assertEqual(line2.unit_amount, 1.0)
         self.assertEqual(len(sheet.timesheet_ids), 2)
 
@@ -454,7 +453,9 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
                 line_form.unit_amount = 3.0
                 self.assertEqual(len(sheet.new_line_ids), 1)
         self.assertEqual(len(sheet.timesheet_ids), 1)
-        self.assertEqual(fields.first(sheet.timesheet_ids).unit_amount, 3.0)
+        self.assertEqual(
+            next(iter(sheet.timesheet_ids), sheet.timesheet_ids).unit_amount, 3.0
+        )
 
         timesheet_1_or_2 = self.aal_model.search(
             [("id", "in", [timesheet_1.id, timesheet_2.id])]
@@ -472,7 +473,9 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
                 line_form.unit_amount = 4.0
                 self.assertEqual(len(sheet.new_line_ids), 1)
         self.assertEqual(len(sheet.timesheet_ids), 1)
-        self.assertEqual(fields.first(sheet.timesheet_ids).unit_amount, 4.0)
+        self.assertEqual(
+            next(iter(sheet.timesheet_ids), sheet.timesheet_ids).unit_amount, 4.0
+        )
         self.assertEqual(timesheet_1_or_2.unit_amount, 4.0)
 
         with Form(sheet.with_user(self.user)) as sheet_form:
@@ -739,7 +742,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertEqual(len(sheet.new_line_ids), 1)
 
-        new_line = fields.first(sheet.new_line_ids)
+        new_line = next(iter(sheet.new_line_ids), sheet.new_line_ids)
         self.assertEqual(new_line.unit_amount, unit_amount + 1.0)
 
         for line in sheet.line_ids:
