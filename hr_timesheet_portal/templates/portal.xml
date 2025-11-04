@@ -2,7 +2,6 @@
 <!-- Copyright 2021 Hunki Enterprises BV
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <template id="portal_my_task" inherit_id="hr_timesheet.portal_my_task">
         <xpath
             expr="//div[@id='card_body']/div[@t-if='timesheets and allow_timesheets']"
@@ -74,5 +73,4 @@
             <attribute name="t-att-data-field-value">timesheet.unit_amount</attribute>
         </xpath>
     </template>
-
 </odoo>
