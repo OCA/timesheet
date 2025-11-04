@@ -11,7 +11,7 @@
             <attribute name="t-att-data-project-id">task.project_id.id</attribute>
             <attribute
                 name="t-att-data-account-id"
-            >task.project_id.analytic_account_id.id</attribute>
+            >task.project_id.account_id.id</attribute>
             <attribute name="t-att-data-task-id">task.id</attribute>
         </xpath>
         <xpath
@@ -31,7 +31,7 @@
                 t-if="not timesheets and task.project_id.allow_timesheets"
                 class="container hr_timesheet_portal"
                 t-att-data-project-id="task.project_id.id"
-                t-att-data-account-id="task.project_id.analytic_account_id.id"
+                t-att-data-account-id="task.project_id.account_id.id"
                 t-att-data-task-id="task.id"
                 groups="hr_timesheet_portal.group_hr_timesheet_portal"
             >

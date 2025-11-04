@@ -1,7 +1,6 @@
-/** @odoo-module **/
-
+import {browser} from "@web/core/browser/browser";
 import publicWidget from "@web/legacy/js/public/public_widget";
-import {session} from "@web/session";
+import {user} from "@web/core/user";
 
 export const HrTimesheetPortal = publicWidget.Widget.extend({
     selector: "div.hr_timesheet_portal",
@@ -22,7 +21,6 @@ export const HrTimesheetPortal = publicWidget.Widget.extend({
         this._super(...arguments);
         this.orm = this.bindService("orm");
         this.ui = this.bindService("ui");
-        this.user = this.bindService("user");
     },
 
     _onclick_delete: async function (e) {
@@ -40,9 +38,7 @@ export const HrTimesheetPortal = publicWidget.Widget.extend({
 
     _onclick_add: async function () {
         const self = this;
-        const uid =
-            this.user?.userId ||
-            (Array.isArray(session.user_id) ? session.user_id[0] : session.user_id);
+        const uid = user.userId;
         const account = this.$el.data("account-id");
         const project = this.$el.data("project-id");
         const task = this.$el.data("task-id");
@@ -63,7 +59,7 @@ export const HrTimesheetPortal = publicWidget.Widget.extend({
             ])
             .then(function (line_id) {
                 return self._reload_timesheet().then(function () {
-                    setTimeout(self._edit_line.bind(self, line_id), 0);
+                    browser.setTimeout(() => self._edit_line(line_id), 0);
                 });
             })
             .catch(this.proxy("_display_failure"))
