@@ -18,7 +18,7 @@ class AccountAnalyticLineCase(
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.user.groups_id |= cls.env.ref("sales_team.group_sale_salesman_all_leads")
+        cls.user.group_ids |= cls.env.ref("sales_team.group_sale_salesman_all_leads")
         cls.lead = (
             cls.env["crm.lead"]
             .with_user(cls.user)
