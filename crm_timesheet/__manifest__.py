@@ -9,8 +9,8 @@
 {
     "name": "CRM Timesheet",
     "category": "Customer Relationship Management",
-    "version": "18.0.1.0.0",
-    "depends": ["crm", "project_timesheet_time_control"],
+    "version": "19.0.1.0.0",
+    "depends": ["crm", "hr_timesheet_time_control"],
     "data": [
         "security/ir.model.access.csv",
         "views/crm_lead_view.xml",
