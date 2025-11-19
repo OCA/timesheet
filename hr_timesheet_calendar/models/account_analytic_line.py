@@ -17,15 +17,15 @@ class AccountAnalyticLine(models.Model):
             "project_timesheet_time_control.timesheet_alignment"
         )
         # default to now
-        now = fields.Datetime.now()
-        start_time = datetime.combine(
-            now.date(), time(hour=now.hour, minute=now.minute, second=0)
-        )
+        start_time = fields.Datetime.now()
         if timesheet_alignment == "now":
             return start_time
         defaults = self.default_get(["employee_id", "company_id", "date"])
-        date_day = defaults.get("date", now.date())
-        start_time = datetime.combine(date_day, start_time.time())
+        date_day = defaults.get("date", start_time.date())
+        start_time = datetime.combine(
+            date_day,
+            time(hour=start_time.hour, minute=start_time.minute, second=0),
+        )
         employee_id = defaults.get(
             "employee_id",
             self._context.get("default_employee_id", self.env.user.employee_id.id),
@@ -63,6 +63,24 @@ class AccountAnalyticLine(models.Model):
                         intervals._items[0][0].astimezone(pytz.UTC).replace(tzinfo=None)
                     )
         return start_time
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if "date" in vals and "date_time" not in vals:
+                date = fields.Date.to_date(vals["date"])
+                vals["date_time"] = datetime.combine(
+                    date,
+                    self.with_context(
+                        default_employee_id=vals.get(
+                            "employee_id", self.env.context.get("default_employee_id")
+                        ),
+                        default_date=date,
+                    )
+                    ._get_default_start_time()
+                    .time(),
+                )
+        return super().create(list(map(self._eval_date, vals_list)))
 
     date_time = fields.Datetime(
         string="Start Time", default=_get_default_start_time, copy=False
