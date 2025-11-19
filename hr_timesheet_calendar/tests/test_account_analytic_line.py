@@ -115,7 +115,7 @@ class TestAccountAnalyticLine(BaseCommon):
         )._get_default_start_time()
         self.assertEqual(default_start_time, datetime(2025, 4, 1, 6, 0, 0))
 
-    @freeze_time("2025-04-01 12:00:00")
+    @freeze_time("2025-04-01 12:00:10")
     def test_get_default_start_time_no_working_hours_other_default_day(self):
         """Test the default start time calculation on days without working hours."""
         default_start_time = self.analytic_line_model.with_context(
@@ -123,7 +123,7 @@ class TestAccountAnalyticLine(BaseCommon):
         )._get_default_start_time()
         self.assertEqual(default_start_time, datetime(2025, 4, 5, 12, 0, 0))
 
-    @freeze_time("2025-04-01 12:00:00")
+    @freeze_time("2025-04-01 12:00:10")
     def test_get_default_start_time_no_employee_other_default_day(self):
         """Test the default start time calculation on days without working hours."""
         default_start_time = self.analytic_line_model.with_context(
