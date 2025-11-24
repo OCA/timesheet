@@ -4,7 +4,7 @@
 {
     "name": "Timesheets - Day of Week",
     "category": "Human Resources",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "depends": ["hr_timesheet"],
     "data": ["views/hr_timesheet_view.xml", "report/timesheets_analysis_report.xml"],
     "author": "Solvos, Odoo Community Association (OCA)",
