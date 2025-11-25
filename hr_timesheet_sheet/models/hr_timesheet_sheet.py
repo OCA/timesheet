@@ -421,11 +421,6 @@ class Sheet(models.Model):
             domain = sheet._get_timesheet_sheet_lines_domain()
             timesheets = AccountAnalyticLines.search(domain)
             sheet.link_timesheets_to_sheet(timesheets)
-            sheet.timesheet_ids = [(6, 0, timesheets.ids)]
-
-    @api.onchange("date_start", "date_end", "employee_id")
-    def _onchange_scope(self):
-        self._compute_timesheet_ids()
 
     @api.onchange("date_start", "date_end")
     def _onchange_dates(self):
@@ -479,6 +474,7 @@ class Sheet(models.Model):
         for vals in vals_list:
             self._check_employee_user_link(vals)
         res = super().create(vals_list)
+        res._compute_timesheet_ids()
         res.write({"state": "draft"})
         return res
 

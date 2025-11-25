@@ -423,17 +423,10 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
             }
         )
         sheet_form = Form(self.sheet_model.with_user(self.user))
-        self.assertEqual(len(sheet_form.line_ids), 7)
-        self.assertEqual(len(sheet_form.timesheet_ids), 1)
-        self.assertTrue(self.aal_model.search([("id", "=", timesheet.id)]))
-
-        timesheets = [x.get("id") for x in sheet_form.timesheet_ids._records]
         sheet = sheet_form.save()
-        # analytic line cleaned up on form save
-        self.assertFalse(self.aal_model.search([("id", "in", timesheets)]))
+        self.assertFalse(timesheet.exists())
         self.assertEqual(len(sheet.line_ids), 0)
         self.assertEqual(len(sheet.timesheet_ids), 0)
-        self.assertFalse(self.aal_model.search([("id", "=", timesheet.id)]))
 
     def test_4(self):
         timesheet_1 = self.aal_model.create(
@@ -521,11 +514,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
             }
         )
         sheet_form = Form(self.sheet_model.with_user(self.user))
-        timesheets = [x.get("id") for x in sheet_form.timesheet_ids._records]
         sheet = sheet_form.save()
-        sheet.timesheet_ids = [(6, 0, timesheets)]
-        with Form(sheet.with_user(self.user)):
-            pass  # trigger edit and save
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertEqual(len(sheet.timesheet_ids), 2)
         line = sheet.line_ids.filtered(lambda line: line.unit_amount != 0.0)
@@ -617,11 +606,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
             }
         )
         sheet_form = Form(self.sheet_model.with_user(self.user))
-        timesheets = [x.get("id") for x in sheet_form.timesheet_ids._records]
         sheet = sheet_form.save()
-        sheet.timesheet_ids = [(6, 0, timesheets)]
-        with Form(sheet.with_user(self.user)):
-            pass  # trigger edit and save
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertEqual(len(sheet.timesheet_ids), 5)
         line = sheet.line_ids.filtered(lambda line: line.unit_amount != 0.0)
@@ -799,11 +784,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
             }
         )
         sheet_form = Form(self.sheet_model.with_user(self.user))
-        timesheets = [x.get("id") for x in sheet_form.timesheet_ids._records]
         sheet = sheet_form.save()
-        sheet.timesheet_ids = [(6, 0, timesheets)]
-        with Form(sheet.with_user(self.user)):
-            pass  # trigger edit and save
         self.assertEqual(len(sheet.timesheet_ids), 2)
         self.assertEqual(len(sheet.line_ids), 7)
 
@@ -851,11 +832,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
             }
         )
         sheet_form = Form(self.sheet_model.with_user(self.user))
-        timesheets = [x.get("id") for x in sheet_form.timesheet_ids._records]
         sheet = sheet_form.save()
-        sheet.timesheet_ids = [(6, 0, timesheets)]
-        with Form(sheet.with_user(self.user)):
-            pass  # trigger edit and save
         self.assertEqual(len(sheet.timesheet_ids), 1)
         self.assertEqual(len(sheet.line_ids), 7)
 
@@ -933,11 +910,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         )
         self.assertNotEqual(self.company, self.company_2)
         sheet_form = Form(self.sheet_model.with_user(self.user))
-        timesheets = [x.get("id") for x in sheet_form.timesheet_ids._records]
         sheet = sheet_form.save()
-        sheet.timesheet_ids = [(6, 0, timesheets)]
-        with Form(sheet.with_user(self.user)):
-            pass  # trigger edit and save
         self.assertEqual(sheet.company_id, self.company)
         self.assertEqual(len(sheet.timesheet_ids), 1)
         self.assertEqual(sheet.timesheet_ids.company_id, self.company)
