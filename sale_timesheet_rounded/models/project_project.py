@@ -20,7 +20,7 @@ class ProjectProject(models.Model):
         selection=[
             ("NO", "No rounding"),
             ("UP", "Up"),
-            ("HALF_UP", "Closest"),
+            ("HALF-UP", "Closest"),
             ("DOWN", "Down"),
         ],
         default="NO",
