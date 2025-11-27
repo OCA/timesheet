@@ -20,7 +20,7 @@
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="hr_timesheet.view_kanban_account_analytic_line" />
         <field name="arch" type="xml">
-            <xpath expr="//span[@name='duration']" position="inside">
+            <xpath expr="//field[@name='unit_amount']/.." position="inside">
                 <br />
                 <strong>Rounded: </strong>
                 <field name="unit_amount_rounded" widget="float_time" />
@@ -28,7 +28,7 @@
         </field>
     </record>
     <record id="account_analytic_line_tree_inherit" model="ir.ui.view">
-        <field name="name">account.analytic.line.tree.inherit</field>
+        <field name="name">account.analytic.line.list.inherit</field>
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
         <field name="arch" type="xml">

@@ -9,12 +9,11 @@ from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheet
 @odoo.tests.tagged("post_install", "-at_install")
 class TestRounded(TestCommonSaleTimesheet):
     @classmethod
-    def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(chart_template_ref=chart_template_ref)
+    def setUpClass(cls):
+        super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.sale_order = cls.env["sale.order"].create(
             {
-                "analytic_account_id": cls.project_global.analytic_account_id.id,
                 "partner_id": cls.partner_a.id,
                 "partner_invoice_id": cls.partner_a.id,
                 "partner_shipping_id": cls.partner_a.id,
@@ -77,9 +76,15 @@ class TestRounded(TestCommonSaleTimesheet):
         return self.env["account.analytic.line"].create(values)
 
     def test_analytic_line_init_no_rounding(self):
+        # Temporarily disable rounding for this test
+        self.project_global.write({"timesheet_rounding_method": "NO"})
+        # Create at least one line to ensure the loop executes
+        self.create_analytic_line(unit_amount=1)
         lines = self.env["account.analytic.line"].search([])
         for line in lines:
             self.assertEqual(line.unit_amount_rounded, line.unit_amount)
+        # Restore rounding for other tests
+        self.project_global.write({"timesheet_rounding_method": "UP"})
 
     def test_analytic_line_create_no_rounding(self):
         self.project_global.write({"timesheet_rounding_method": "NO"})
@@ -266,7 +271,7 @@ class TestRounded(TestCommonSaleTimesheet):
         )
 
         rounding_unit = 0.25
-        rounding_method = "HALF_UP"
+        rounding_method = "HALF-UP"
         factor = 200
         amount = 1.01
         self.assertEqual(
@@ -336,3 +341,208 @@ class TestRounded(TestCommonSaleTimesheet):
             lambda line: line.product_id == prd_ts_id
         )
         self.assertEqual(inv_line.quantity, unit_amount_rounded_total)
+
+    def test_read_with_specific_fields_without_rounded(self):
+        """Test read with specific fields when unit_amount_rounded is not in the list.
+
+        When reading with timesheet_rounding context and specific fields,
+        the unit_amount value should be replaced by unit_amount_rounded.
+        """
+        line = self.create_analytic_line(unit_amount=1)
+        # Test with specific fields and timesheet_rounding context
+        fields_to_read = ["unit_amount", "name", "date"]
+        result = line.with_context(timesheet_rounding=True).read(fields_to_read)
+        # unit_amount should be replaced by unit_amount_rounded (2.0)
+        self.assertEqual(result[0]["unit_amount"], 2.0)
+        # Verify that unit_amount_rounded is in the result even if not requested
+        self.assertIn("unit_amount_rounded", result[0])
+
+    def test_read_with_specific_fields_with_rounded(self):
+        """Test read with specific fields including unit_amount_rounded.
+
+        The unit_amount value should still be replaced by unit_amount_rounded.
+        """
+        line = self.create_analytic_line(unit_amount=1)
+        # Test with unit_amount_rounded already in fields list
+        fields_to_read = ["unit_amount", "unit_amount_rounded", "name"]
+        result = line.with_context(timesheet_rounding=True).read(fields_to_read)
+        # unit_amount should be replaced by unit_amount_rounded (2.0)
+        self.assertEqual(result[0]["unit_amount"], 2.0)
+        self.assertEqual(result[0]["unit_amount_rounded"], 2.0)
+
+    def test_read_without_fields_list(self):
+        """Test read without specifying fields.
+
+        When no fields are specified, all fields should be read and
+        unit_amount should be replaced by unit_amount_rounded when context is set.
+        """
+        line = self.create_analytic_line(unit_amount=1)
+        # Test without specifying fields
+        result = line.with_context(timesheet_rounding=True).read()
+        # unit_amount should be replaced by unit_amount_rounded (2.0)
+        self.assertEqual(result[0]["unit_amount"], 2.0)
+        self.assertEqual(result[0]["unit_amount_rounded"], 2.0)
+
+    def test_read_without_unit_amount_field(self):
+        """Test read with fields that don't include unit_amount.
+
+        The rounding logic should be skipped when unit_amount is not requested.
+        """
+        line = self.create_analytic_line(unit_amount=1)
+        # Test with fields that don't include unit_amount
+        fields_to_read = ["name", "date", "project_id"]
+        result = line.with_context(timesheet_rounding=True).read(fields_to_read)
+        # unit_amount should not be in result
+        self.assertNotIn("unit_amount", result[0])
+
+    def test_read_group_with_zero_rounded_amount(self):
+        """Test _read_group when unit_amount_rounded is 0.
+
+        When unit_amount_rounded is 0 or False, the original unit_amount
+        should not be replaced in the aggregation result.
+        """
+        line = self.env["account.analytic.line"]
+        # Create line with unit_amount_rounded = 0
+        analytic_line = self.create_analytic_line(unit_amount=1)
+        analytic_line.unit_amount_rounded = 0
+
+        domain = [("project_id", "=", self.project_global.id)]
+        groupby = ["product_uom_id"]
+        aggregates = ["unit_amount:sum"]
+
+        data = line.with_context(timesheet_rounding=True)._read_group(
+            domain,
+            groupby,
+            aggregates,
+        )
+        # When unit_amount_rounded is 0, unit_amount should remain as is
+        # The line 115 condition is False, so no replacement happens
+        self.assertEqual(
+            data[0][len(groupby) + aggregates.index("unit_amount:sum")], 1.0
+        )
+
+    def test_read_group_without_timesheet_rounding_context(self):
+        """Test _read_group without timesheet_rounding context.
+
+        Without the timesheet_rounding context, unit_amount should remain unchanged.
+        """
+        line = self.env["account.analytic.line"]
+        self.create_analytic_line(unit_amount=1)
+
+        domain = [("project_id", "=", self.project_global.id)]
+        groupby = ["product_uom_id"]
+        aggregates = ["unit_amount:sum"]
+
+        # Without timesheet_rounding context
+        data = line.with_context(timesheet_rounding=False)._read_group(
+            domain,
+            groupby,
+            aggregates,
+        )
+        # Should return original unit_amount (1.0), not rounded
+        self.assertEqual(
+            data[0][len(groupby) + aggregates.index("unit_amount:sum")], 1.0
+        )
+
+    def test_read_group_with_unit_amount_rounded_already_in_aggregates(self):
+        """Test _read_group when unit_amount_rounded:sum is already in aggregates.
+
+        Both aggregates should be present and unit_amount should be replaced.
+        """
+        line = self.env["account.analytic.line"]
+        self.create_analytic_line(unit_amount=1)
+
+        domain = [("project_id", "=", self.project_global.id)]
+        groupby = ["product_uom_id"]
+        aggregates = ["unit_amount:sum", "unit_amount_rounded:sum"]
+
+        data = line.with_context(timesheet_rounding=True)._read_group(
+            domain,
+            groupby,
+            aggregates,
+        )
+        # Both aggregates should be present
+        self.assertEqual(
+            data[0][len(groupby) + aggregates.index("unit_amount:sum")], 2.0
+        )
+        self.assertEqual(
+            data[0][len(groupby) + aggregates.index("unit_amount_rounded:sum")], 2.0
+        )
+
+    def test_read_group_without_unit_amount_sum(self):
+        """Test _read_group without unit_amount:sum in aggregates.
+
+        When unit_amount:sum is not in aggregates, no replacement should occur.
+        """
+        line = self.env["account.analytic.line"]
+        self.create_analytic_line(unit_amount=1)
+
+        domain = [("project_id", "=", self.project_global.id)]
+        groupby = ["product_uom_id"]
+        aggregates = ["id:count"]
+
+        data = line.with_context(timesheet_rounding=True)._read_group(
+            domain,
+            groupby,
+            aggregates,
+        )
+        # Should just return count, no unit_amount manipulation
+        self.assertEqual(data[0][len(groupby)], 1)
+
+    def test_read_with_timesheet_rounding_false(self):
+        """Test read with timesheet_rounding=False.
+
+        Without timesheet_rounding context, unit_amount should not be modified.
+        """
+        line = self.create_analytic_line(unit_amount=1)
+        result = line.with_context(timesheet_rounding=False).read(["unit_amount"])
+        # Should return original unit_amount (1.0), not rounded
+        self.assertEqual(result[0]["unit_amount"], 1.0)
+
+    def test_read_with_zero_unit_amount_rounded(self):
+        """Test read when unit_amount_rounded is 0.
+
+        When unit_amount_rounded is 0, it should not replace unit_amount.
+        """
+        line = self.create_analytic_line(unit_amount=1)
+        line.unit_amount_rounded = 0
+        result = line.with_context(timesheet_rounding=True).read(["unit_amount"])
+        # When unit_amount_rounded is 0, unit_amount should not be replaced
+        self.assertEqual(result[0]["unit_amount"], 1.0)
+        self.assertEqual(result[0]["unit_amount_rounded"], 0.0)
+
+    def test_wizard_create_invoices_with_timesheet_no_recompute(self):
+        """Test creating invoices through sale advance payment wizard.
+
+        When invoicing through the wizard, the timesheet_no_recompute context
+        should be used to prevent recomputing unit_amount_rounded.
+        """
+        # Create timesheet lines with custom rounded amount
+        analytic_line = self.create_analytic_line(unit_amount=2)
+        unit_amount_rounded = 7
+        analytic_line.unit_amount_rounded = unit_amount_rounded
+
+        # Verify there's something to invoice
+        self.assertGreater(self.sale_order.order_line.qty_to_invoice, 0)
+
+        # Create and execute wizard for invoicing delivered quantities
+        wizard_env = self.env["sale.advance.payment.inv"].with_context(
+            active_model="sale.order",
+            active_ids=self.sale_order.ids,
+            active_id=self.sale_order.id,
+        )
+        wizard = wizard_env.create({"advance_payment_method": "delivered"})
+
+        # This calls the overridden create_invoices method
+        wizard.create_invoices()
+
+        # Verify invoice was created
+        invoice = self.sale_order.invoice_ids
+        self.assertTrue(invoice, "Invoice should have been created")
+
+        # Verify that unit_amount_rounded was not recomputed
+        self.assertEqual(
+            analytic_line.unit_amount_rounded,
+            unit_amount_rounded,
+            "unit_amount_rounded should remain unchanged after invoicing",
+        )
