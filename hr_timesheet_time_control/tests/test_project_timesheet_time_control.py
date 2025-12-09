@@ -94,6 +94,18 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
         line.with_context(tz="EST").date_time = "2016-03-24 03:00:00"
         self.assertEqual(line.date, date(2016, 3, 23))
 
+    def test_write_analytic_line_date(self):
+        line = self._create_analytic_line(datetime(2016, 3, 24, 12, 0))
+        line2 = self._create_analytic_line(datetime(2016, 3, 23, 13, 0))
+
+        lines = self.env["account.analytic.line"]
+        lines += line
+        lines += line2
+
+        lines.write({"date": datetime(2016, 1, 1)})
+        self.assertEqual(line.date_time, datetime(2016, 1, 1, 12, 0))
+        self.assertEqual(line2.date_time, datetime(2016, 1, 1, 13, 0))
+
     def test_write_analytic_line_with_string_datetime(self):
         line = self._create_analytic_line(datetime.now())
         line.with_context(tz="EST").date_time = datetime(2016, 3, 24, 3)

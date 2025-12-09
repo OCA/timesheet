@@ -54,6 +54,13 @@ class AccountAnalyticLine(models.Model):
 
     @api.model
     def _eval_date(self, vals):
+        if vals.get("date") and not vals.get("date_time"):
+            return dict(
+                vals,
+                date_time=datetime.combine(
+                    fields.Date.to_date(vals["date"]), fields.Datetime.now().time()
+                ),
+            )
         if vals.get("date_time"):
             return dict(vals, date=self._convert_datetime_to_date(vals["date_time"]))
         return vals
@@ -110,30 +117,28 @@ class AccountAnalyticLine(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        for vals in vals_list:
-            if "date" in vals and "date_time" not in vals:
-                date = fields.Date.to_date(vals["date"])
-                vals["date_time"] = datetime.combine(date, fields.Datetime.now().time())
         return super().create(list(map(self._eval_date, vals_list)))
 
     def write(self, vals):
+        self_individual = self.env["account.analytic.line"]
+        res_individual = True
         if "date" in vals and "date_time" not in vals:
-            res = super(
-                AccountAnalyticLine, self.filtered(lambda r: not r.date_time)
-            ).write(vals)
-
-            # only overwrite the date part of date_time
-            for record in self.filtered(lambda r: r.date_time):
+            self_individual = self.filtered(lambda r: r.date_time)
+            # overwrite the date part of date_time for each record
+            for record in self_individual:
                 vals["date_time"] = fields.Datetime.to_string(
                     datetime.combine(
                         fields.Date.to_date(vals["date"]),
                         record.date_time.time(),
                     )
                 )
-                res |= super(AccountAnalyticLine, record).write(vals)
-            return res
-        else:
-            return super().write(self._eval_date(vals))
+                res_individual |= super(AccountAnalyticLine, record).write(vals)
+        return (
+            super(AccountAnalyticLine, self - self_individual).write(
+                self._eval_date(vals)
+            )
+            and res_individual
+        )
 
     def button_resume_work(self):
         """Create a new record starting now, with a running timer."""
