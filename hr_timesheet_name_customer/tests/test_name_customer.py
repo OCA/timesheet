@@ -5,7 +5,8 @@ from .common import TestCommonNameCustomer
 
 class TestTimesheet(TestCommonNameCustomer):
     def test_custom_name(self):
-        """Test when Customer Description set or not: check name and name_customer equality"""
+        """Test when Customer Description set or not:
+        check name and name_customer equality"""
         Timesheet = self.env["account.analytic.line"]
         timesheet1 = Timesheet.with_user(self.user_employee).create(
             {

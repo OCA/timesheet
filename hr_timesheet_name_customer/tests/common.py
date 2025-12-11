@@ -20,7 +20,6 @@ class TestCommonNameCustomer(TransactionCase):
         cls.analytic_plan = cls.env["account.analytic.plan"].create(
             {
                 "name": "Plan Test",
-                "company_id": False,
             }
         )
         cls.analytic_account = cls.env["account.analytic.account"].create(
@@ -38,14 +37,12 @@ class TestCommonNameCustomer(TransactionCase):
                 "name": "Project X",
                 "allow_timesheets": True,
                 "partner_id": cls.partner.id,
-                "analytic_account_id": cls.analytic_account.id,
             }
         )
         cls.task1 = cls.env["project.task"].create(
             {
                 "name": "Task One",
                 "priority": "0",
-                "kanban_state": "normal",
                 "project_id": cls.project_customer.id,
                 "partner_id": cls.partner.id,
             }
@@ -54,7 +51,6 @@ class TestCommonNameCustomer(TransactionCase):
             {
                 "name": "Task Two",
                 "priority": "1",
-                "kanban_state": "done",
                 "project_id": cls.project_customer.id,
             }
         )
