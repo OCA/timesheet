@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 ACSONE SA/NV
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="sale_order_unit_price_update_view_form">
+        <field name="name">sale.order.unit.price.update.view.form</field>
+        <field name="model">sale.order.unit.price.update</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="group_main">
+                    <group name="group_main_left">
+                        <field name="order_line_name" />
+                        <field name="old_line_prefix" />
+                    </group>
+                    <group name="group_main_right">
+                        <field name="old_unit_price" />
+                        <field name="new_unit_price" />
+                    </group>
+                </group>
+                <group name="group_invisible" invisible="1">
+                    <field name="order_line_id" />
+                </group>
+                <footer>
+                    <button
+                        name="action_update_unit_price"
+                        string="OK"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_sale_order_unit_price_update" model="ir.actions.act_window">
+        <field name="name">Change Sale Order Line Unit Price</field>
+        <field name="res_model">sale.order.unit.price.update</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

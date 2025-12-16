@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Onestein (<http://www.onestein.eu>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="sale_order_form_view" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <list position="inside">
+                <field name="show_update_price_button" invisible="1" />
+            </list>
+            <xpath expr="//list/field[@name='price_unit']" position="after">
+                <button
+                    name="%(action_sale_order_unit_price_update)d"
+                    title="Update Unit Price"
+                    type="action"
+                    icon="fa-money"
+                    attrs="{'invisible': [('show_update_price_button', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

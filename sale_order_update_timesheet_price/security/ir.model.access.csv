@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+sale_order_unit_price_update_access,access_sale_order_unit_price_update,sale_order_update_timesheet_price.model_sale_order_unit_price_update,sales_team.group_sale_salesman,1,0,1,0
