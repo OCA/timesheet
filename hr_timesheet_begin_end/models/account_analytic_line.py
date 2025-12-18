@@ -97,4 +97,3 @@ class AccountAnalyticLine(models.Model):
         if lines:
             return super(AccountAnalyticLine, lines).merge_timesheets()
         return self[0]
-        
