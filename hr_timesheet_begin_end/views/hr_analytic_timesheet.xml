@@ -12,7 +12,7 @@
                     name="break_duration"
                     widget="float_time"
                     optional="show"
-                    string="Pavza"
+                    string="Break"
                 />
             </field>
             <xpath expr="//field[@name='unit_amount']" position="attributes">
@@ -31,7 +31,7 @@
             <field name="unit_amount" position="before">
                 <field name="time_start" widget="float_time" />
                 <field name="time_stop" widget="float_time" />
-                <field name="break_duration" widget="float_time" string="Brake" />
+                <field name="break_duration" widget="float_time" string="Break" />
             </field>
             <xpath expr="//field[@name='unit_amount']" position="attributes">
                 <attribute name="force_save">1</attribute>

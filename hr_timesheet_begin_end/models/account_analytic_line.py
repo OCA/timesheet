@@ -35,8 +35,6 @@ class AccountAnalyticLine(models.Model):
                     }
                 )
 
-            # Hour calculation now takes the break into account
-            # (End - Start) - Break
             actual_duration_seconds = (stop - start).seconds
             break_seconds = line.break_duration * 3600
             hours = (actual_duration_seconds - break_seconds) / 3600
@@ -56,7 +54,6 @@ class AccountAnalyticLine(models.Model):
                     }
                 )
 
-            # check if lines overlap
             others = self.search(
                 [
                     ("id", "!=", line.id),
@@ -86,13 +83,12 @@ class AccountAnalyticLine(models.Model):
         if stop < start:
             return
 
-        # Calculation: Difference in seconds - break in seconds
         diff_seconds = (stop - start).seconds
         break_seconds = (self.break_duration or 0.0) * 3600
 
         self.unit_amount = max((diff_seconds - break_seconds) / 3600, 0.0)
 
-    def merge_timesheets(self):  # pragma: no cover
+    def merge_timesheets(self):
         lines = self.filtered(lambda line: not line.time_start and not line.time_stop)
         if lines:
             return super(AccountAnalyticLine, lines).merge_timesheets()

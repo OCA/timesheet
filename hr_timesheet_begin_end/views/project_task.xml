@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_task_form2_inherited" model="ir.ui.view">
-        <field
-            name="name"
-        >project.task.form.inherited (in hr_timesheet_begin_end)</field>
+        <field name="name">project.task.form.inherit.timesheet.break</field>
         <field name="model">project.task</field>
         <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited" />
         <field name="arch" type="xml">
@@ -11,15 +9,20 @@
                 expr="//field[@name='timesheet_ids']/list/field[@name='unit_amount']"
                 position="before"
             >
-                <field name="time_start" widget="float_time" />
-                <field name="time_stop" widget="float_time" />
+                <field name="time_start" widget="float_time" optional="show" />
+                <field name="time_stop" widget="float_time" optional="show" />
+                <field
+                    name="break_duration"
+                    widget="float_time"
+                    string="Break"
+                    optional="show"
+                />
             </xpath>
             <xpath
-                expr="//field[@name='timesheet_ids']/form/sheet/group/field[@name='unit_amount']"
-                position="before"
+                expr="//field[@name='timesheet_ids']/list/field[@name='unit_amount']"
+                position="attributes"
             >
-                <field name="time_start" widget="float_time" />
-                <field name="time_stop" widget="float_time" />
+                <attribute name="force_save">1</attribute>
             </xpath>
         </field>
     </record>
