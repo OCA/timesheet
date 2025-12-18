@@ -83,11 +83,12 @@ class TestBeginEnd(common.TransactionCase):
         self.timesheet_line_model.create(line1)
 
     def test_break_duration_calculation(self):
-        # Ta koda mora biti zamaknjena v desno!
-        self.line1.write({
-            'hour_start': 8.0,  # 08:00
-            'hour_stop': 10.0,  # 10:00
-            'break_duration': 0.5  # 30 min
-        })
+        self.line1.write(
+            {
+                "hour_start": 8.0,  # 08:00
+                "hour_stop": 10.0,  # 10:00
+                "break_duration": 0.5,  # 30 min
+            }
+        )
         self.assertEqual(self.line1.unit_amount, 1.5)
         
