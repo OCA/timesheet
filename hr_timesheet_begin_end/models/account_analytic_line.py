@@ -3,8 +3,10 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from datetime import timedelta
+
 from odoo import _, api, exceptions, fields, models
 from odoo.tools.float_utils import float_compare
+
 
 class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
@@ -12,7 +14,6 @@ class AccountAnalyticLine(models.Model):
 
     time_start = fields.Float(string="Begin Hour")
     time_stop = fields.Float(string="End Hour")
-    # ADDED: New field for break
     break_duration = fields.Float(string="Break", default=0.0)
 
     @api.constrains("time_start", "time_stop", "break_duration", "unit_amount")
@@ -21,7 +22,7 @@ class AccountAnalyticLine(models.Model):
             value_to_html = self.env["ir.qweb.field.float_time"].value_to_html
             start = timedelta(hours=line.time_start)
             stop = timedelta(hours=line.time_stop)
-            
+
             if stop < start:
                 raise exceptions.ValidationError(
                     _(
@@ -34,10 +35,10 @@ class AccountAnalyticLine(models.Model):
                     }
                 )
 
-            # FIXED: Hour calculation now takes the break into account
+            # Hour calculation now takes the break into account
             # (End - Start) - Break
             actual_duration_seconds = (stop - start).seconds
-            break_seconds = (line.break_duration * 3600)
+            break_seconds = line.break_duration * 3600
             hours = (actual_duration_seconds - break_seconds) / 3600
 
             rounding = self.env.ref("uom.product_uom_hour").rounding
@@ -78,18 +79,17 @@ class AccountAnalyticLine(models.Model):
                 )
                 raise exceptions.ValidationError(message)
 
-    # FIXED: Onchange now immediately subtracts the break in the interface
     @api.onchange("time_start", "time_stop", "break_duration")
     def onchange_hours_start_stop(self):
         start = timedelta(hours=self.time_start or 0.0)
         stop = timedelta(hours=self.time_stop or 0.0)
         if stop < start:
             return
-        
+
         # Calculation: Difference in seconds - break in seconds
         diff_seconds = (stop - start).seconds
         break_seconds = (self.break_duration or 0.0) * 3600
-        
+
         self.unit_amount = max((diff_seconds - break_seconds) / 3600, 0.0)
 
     def merge_timesheets(self):  # pragma: no cover
@@ -97,3 +97,4 @@ class AccountAnalyticLine(models.Model):
         if lines:
             return super(AccountAnalyticLine, lines).merge_timesheets()
         return self[0]
+        
