@@ -91,4 +91,3 @@ class TestBeginEnd(common.TransactionCase):
             }
         )
         self.assertEqual(self.line1.unit_amount, 1.5)
-        
