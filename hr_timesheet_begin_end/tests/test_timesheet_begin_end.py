@@ -45,8 +45,8 @@ class TestBeginEnd(common.TransactionCase):
 
     def test_check_wrong_duration(self):
         message_re = (
-            r"The duration \(\d\d:\d\d\) must be equal to the "
-            r"difference between the hours \(\d\d:\d\d\)\."
+            r"The duration \(\d\d:\d\d\) must be equal to the difference "
+            r"between the hours minus break \(\d\d:\d\d\)\."
         )
         line = self.base_line.copy()
         line.update({"time_start": 10.0, "time_stop": 12.0, "unit_amount": 5.0})
