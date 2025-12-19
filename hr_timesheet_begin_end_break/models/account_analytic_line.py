@@ -8,6 +8,13 @@ class AccountAnalyticLine(models.Model):
 
     break_duration = fields.Float(default=0.0)
 
+    @api.onchange("time_start", "time_stop", "break_duration")
+    def onchange_hours_start_stop(self):
+        res = super().onchange_hours_start_stop()
+        if self.time_start and self.time_stop and self.break_duration:
+            self.unit_amount -= self.break_duration
+        return res
+
     @api.constrains("time_start", "time_stop", "unit_amount", "break_duration")
     def _check_time_start_stop(self):
         # Call super to trigger the overlap check from the base module
@@ -20,10 +27,8 @@ class AccountAnalyticLine(models.Model):
             # Calculate the expected amount: (Stop - Start) - Break
             expected_amount = line.time_stop - line.time_start - line.break_duration
 
-            # Compare floats and break line to satisfy Ruff (length < 88)
-            diff = float_compare(
-                line.unit_amount, expected_amount, precision_digits=2
-            )
+            # Compare floats
+            diff = float_compare(line.unit_amount, expected_amount, precision_digits=2)
             if diff != 0:
                 # Helper to format float as HH:MM for the error message
                 def float_to_time(f):
