@@ -27,15 +27,17 @@ class AccountAnalyticLine(models.Model):
                 float_compare(line.unit_amount, expected_amount, precision_digits=2)
                 != 0
             ):
+                # Uporaba poimenovanih parametrov za prevod (OCA standard W8120)
                 raise ValidationError(
                     _(
-                        "The duration (%s) must be equal to the difference between the "
-                        "hours (%s-%s) minus the break (%s)."
+                        "The duration (%(duration)s) must be equal to the difference "
+                        "between the hours (%(stop)s-%(start)s) minus the "
+                        "break (%(break)s)."
                     )
-                    % (
-                        line.unit_amount,
-                        line.time_stop,
-                        line.time_start,
-                        line.break_duration,
-                    )
+                    % {
+                        "duration": line.unit_amount,
+                        "stop": line.time_stop,
+                        "start": line.time_start,
+                        "break": line.break_duration,
+                    }
                 )
