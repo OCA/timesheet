@@ -83,11 +83,21 @@ class TestBeginEnd(common.TransactionCase):
         self.timesheet_line_model.create(line1)
 
     def test_break_duration_calculation(self):
-        self.line1.write(
-            {
-                "hour_start": 8.0,  # 08:00
-                "hour_stop": 10.0,  # 10:00
-                "break_duration": 0.5,  # 30 min
-            }
-        )
-        self.assertEqual(self.line1.unit_amount, 1.5)
+        vals = self.base_line.copy()
+        vals.update({
+            "time_start": 8.0,      # 08:00
+            "time_stop": 10.0,      # 10:00
+            "break_duration": 0.5,  # 30 min
+            "unit_amount": 1.5,     # (10-8-0.5)
+        })
+        line = self.timesheet_line_model.create(vals)
+        self.assertEqual(line.unit_amount, 1.5)
+
+    def test_onchange_with_break(self):
+        line = self.timesheet_line_model.new({
+            "time_start": 8.0,
+            "time_stop": 10.0,
+            "break_duration": 0.5
+        })
+        line.onchange_hours_start_stop()
+        self.assertEqual(line.unit_amount, 1.5)
