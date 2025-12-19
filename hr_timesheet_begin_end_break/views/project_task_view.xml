@@ -4,20 +4,20 @@
         <field name="name">project.task.form.inherit.timesheet.break</field>
         <field name="model">project.task</field>
         <field
-			name="inherit_id"
-			ref="hr_timesheet_begin_end.view_task_form2_inherited"
-		/>
+            name="inherit_id"
+            ref="hr_timesheet_begin_end.view_task_form2_inherited"
+        />
         <field name="arch" type="xml">
             <xpath
-				expr="//field[@name='timesheet_ids']//list//field[@name='time_stop']"
-				position="after"
-			>
+                expr="//field[@name='timesheet_ids']//list//field[@name='time_stop']"
+                position="after"
+            >
                 <field
-					name="break_duration"
-					widget="float_time"
-					string="Break"
-					optional="show"
-				/>
+                    name="break_duration"
+                    widget="float_time"
+                    string="Break"
+                    optional="show"
+                />
             </xpath>
         </field>
     </record>
