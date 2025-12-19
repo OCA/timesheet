@@ -14,16 +14,17 @@ class AccountAnalyticLine(models.Model):
 
     time_start = fields.Float(string="Begin Hour")
     time_stop = fields.Float(string="End Hour")
-    break_duration = fields.Float(string="Break", default=0.0)
 
-    @api.constrains("time_start", "time_stop", "break_duration", "unit_amount")
+    @api.constrains("time_start", "time_stop", "unit_amount")
     def _check_time_start_stop(self):
         for line in self:
             value_to_html = self.env["ir.qweb.field.float_time"].value_to_html
             start = timedelta(hours=line.time_start)
             stop = timedelta(hours=line.time_stop)
-
             if stop < start:
+                value_to_html(line.time_start, None)
+                value_to_html(line.time_stop, None)
+
                 raise exceptions.ValidationError(
                     _(
                         "The beginning hour (%(html_start)s) must "
@@ -34,11 +35,7 @@ class AccountAnalyticLine(models.Model):
                         "html_stop": value_to_html(line.time_stop, None),
                     }
                 )
-
-            actual_duration_seconds = (stop - start).seconds
-            break_seconds = line.break_duration * 3600
-            hours = (actual_duration_seconds - break_seconds) / 3600
-
+            hours = (stop - start).seconds / 3600
             rounding = self.env.ref("uom.product_uom_hour").rounding
             if hours and float_compare(
                 hours, line.unit_amount, precision_rounding=rounding
@@ -46,14 +43,14 @@ class AccountAnalyticLine(models.Model):
                 raise exceptions.ValidationError(
                     _(
                         "The duration (%(html_unit_amount)s) must be equal to "
-                        "the difference between the hours minus break (%(html_hours)s)."
+                        "the difference between the hours (%(html_hours)s)."
                     )
                     % {
                         "html_unit_amount": value_to_html(line.unit_amount, None),
                         "html_hours": value_to_html(hours, None),
                     }
                 )
-
+            # check if lines overlap
             others = self.search(
                 [
                     ("id", "!=", line.id),
@@ -76,19 +73,16 @@ class AccountAnalyticLine(models.Model):
                 )
                 raise exceptions.ValidationError(message)
 
-    @api.onchange("time_start", "time_stop", "break_duration")
+    @api.onchange("time_start", "time_stop")
     def onchange_hours_start_stop(self):
-        start = timedelta(hours=self.time_start or 0.0)
-        stop = timedelta(hours=self.time_stop or 0.0)
+        start = timedelta(hours=self.time_start)
+        stop = timedelta(hours=self.time_stop)
         if stop < start:
             return
+        self.unit_amount = (stop - start).seconds / 3600
 
-        diff_seconds = (stop - start).seconds
-        break_seconds = (self.break_duration or 0.0) * 3600
-
-        self.unit_amount = max((diff_seconds - break_seconds) / 3600, 0.0)
-
-    def merge_timesheets(self):
+    def merge_timesheets(self):  # pragma: no cover
+        """This method is needed in case hr_timesheet_sheet is installed"""
         lines = self.filtered(lambda line: not line.time_start and not line.time_stop)
         if lines:
             return super(AccountAnalyticLine, lines).merge_timesheets()

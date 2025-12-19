@@ -45,8 +45,8 @@ class TestBeginEnd(common.TransactionCase):
 
     def test_check_wrong_duration(self):
         message_re = (
-            r"The duration \(\d\d:\d\d\) must be equal to the "
-            r"difference between the hours \(\d\d:\d\d\)\."
+            r"The duration \(\d\d:\d\d\) must be equal to the difference "
+            r"between the hours minus break \(\d\d:\d\d\)\."
         )
         line = self.base_line.copy()
         line.update({"time_start": 10.0, "time_stop": 12.0, "unit_amount": 5.0})
@@ -81,3 +81,23 @@ class TestBeginEnd(common.TransactionCase):
         line1 = self.base_line.copy()
         line1.update({"time_start": 19.0, "time_stop": 20.314, "unit_amount": 1.314})
         self.timesheet_line_model.create(line1)
+
+    def test_break_duration_calculation(self):
+        vals = self.base_line.copy()
+        vals.update(
+            {
+                "time_start": 8.0,  # 08:00
+                "time_stop": 10.0,  # 10:00
+                "break_duration": 0.5,  # 30 min
+                "unit_amount": 1.5,  # (10-8-0.5)
+            }
+        )
+        line = self.timesheet_line_model.create(vals)
+        self.assertEqual(line.unit_amount, 1.5)
+
+    def test_onchange_with_break(self):
+        line = self.timesheet_line_model.new(
+            {"time_start": 8.0, "time_stop": 10.0, "break_duration": 0.5}
+        )
+        line.onchange_hours_start_stop()
+        self.assertEqual(line.unit_amount, 1.5)
