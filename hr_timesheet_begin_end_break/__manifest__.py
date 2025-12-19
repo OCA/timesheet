@@ -1,3 +1,6 @@
+# Copyright 2025 S.S.
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+
 {
     "name": "Timesheet - Begin/End Hours + Break",
     "version": "18.0.1.0.0",
