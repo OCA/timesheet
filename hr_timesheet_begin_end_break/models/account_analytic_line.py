@@ -11,30 +11,50 @@ class AccountAnalyticLine(models.Model):
     @api.onchange("time_start", "time_stop", "break_duration")
     def onchange_hours_start_stop(self):
         res = super().onchange_hours_start_stop()
-        if self.time_start and self.time_stop and self.break_duration:
-            self.unit_amount -= self.break_duration
+        if self.time_start and self.time_stop:
+            # Re-calculate unit_amount to include break
+            self.unit_amount = self.time_stop - self.time_start - self.break_duration
         return res
 
     @api.constrains("time_start", "time_stop", "unit_amount", "break_duration")
     def _check_time_start_stop(self):
-        # Call super to trigger the overlap check from the base module
-        res = super()._check_time_start_stop()
-
+        # We do NOT call super() here because the base module's constraint
+        # does not account for break_duration and would raise a ValidationError.
+        
         for line in self:
             if not line.time_start and not line.time_stop:
                 continue
 
-            # Calculate the expected amount: (Stop - Start) - Break
-            expected_amount = line.time_stop - line.time_start - line.break_duration
+            # 1. Check if start is before end (Standard check)
+            if line.time_start > line.time_stop:
+                raise ValidationError(_("The start hour must be before the end hour."))
 
-            # Compare floats
-            diff = float_compare(line.unit_amount, expected_amount, precision_digits=2)
-            if diff != 0:
-                # Helper to format float as HH:MM for the error message
+            # 2. Check for overlaps (Copied from base to ensure it still works)
+            domain = [
+                ("id", "!=", line.id),
+                ("employee_id", "=", line.employee_id.id),
+                ("date", "=", line.date),
+                "|",
+                "|",
+                "&",
+                ("time_start", "<=", line.time_start),
+                ("time_stop", ">", line.time_start),
+                "&",
+                ("time_start", "<", line.time_stop),
+                ("time_stop", ">=", line.time_stop),
+                "&",
+                ("time_start", ">=", line.time_start),
+                ("time_stop", "<=", line.time_stop),
+            ]
+            if self.search_count(domain):
+                raise ValidationError(_("You cannot have an overlap of timesheets."))
+
+            # 3. Check duration with break (The core of this module)
+            expected_amount = line.time_stop - line.time_start - line.break_duration
+            if float_compare(line.unit_amount, expected_amount, precision_digits=2) != 0:
                 def float_to_time(f):
                     return "%02d:%02d" % (int(f), int(round((f - int(f)) * 60)))
 
-                # The error message must match the format expected by the tests
                 raise ValidationError(
                     _(
                         "The duration (%(duration)s) must be equal to the "
@@ -45,4 +65,3 @@ class AccountAnalyticLine(models.Model):
                         "expected": float_to_time(expected_amount),
                     }
                 )
-        return res
