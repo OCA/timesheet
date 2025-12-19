@@ -20,7 +20,7 @@ class AccountAnalyticLine(models.Model):
     def _check_time_start_stop(self):
         # We do NOT call super() here because the base module's constraint
         # does not account for break_duration and would raise a ValidationError.
-        
+
         for line in self:
             if not line.time_start and not line.time_stop:
                 continue
@@ -51,7 +51,11 @@ class AccountAnalyticLine(models.Model):
 
             # 3. Check duration with break (The core of this module)
             expected_amount = line.time_stop - line.time_start - line.break_duration
-            if float_compare(line.unit_amount, expected_amount, precision_digits=2) != 0:
+            if (
+                float_compare(line.unit_amount, expected_amount, precision_digits=2)
+                != 0
+            ):
+
                 def float_to_time(f):
                     return "%02d:%02d" % (int(f), int(round((f - int(f)) * 60)))
 
