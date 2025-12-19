@@ -27,7 +27,7 @@ class AccountAnalyticLine(models.Model):
                 float_compare(line.unit_amount, expected_amount, precision_digits=2)
                 != 0
             ):
-                # Uporaba poimenovanih parametrov za prevod (OCA standard W8120)
+                # OCA standard: Uporabimo poimenovane parametre za prevajanje
                 raise ValidationError(
                     _(
                         "The duration (%(duration)s) must be equal to the difference "
