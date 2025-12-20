@@ -12,15 +12,15 @@ class TestBeginEnd(common.TransactionCase):
         cls.timesheet_line_model = cls.env["account.analytic.line"]
         cls.analytic = cls.env.ref("analytic.analytic_administratif")
         cls.user = cls.env.ref("base.user_root")
-        
+
         cls.employee = cls.env["hr.employee"].search(
             [("user_id", "=", cls.user.id)], limit=1
         )
         if not cls.employee:
             cls.employee = cls.env["hr.employee"].create(
                 {
-                "name": "Test Employee",
-                "user_id": cls.user.id,
+                    "name": "Test Employee",
+                    "user_id": cls.user.id,
                 }
             )
 
@@ -44,7 +44,12 @@ class TestBeginEnd(common.TransactionCase):
 
     def test_onchange_no_update(self):
         line = self.timesheet_line_model.new(
-            {"name": "test", "time_start": 12.0, "time_stop": 12.0, "break_duration": 0.0}
+            {
+                "name": "test",
+                "time_start": 12.0,
+                "time_stop": 12.0,
+                "break_duration": 0.0
+            }
         )
         line.onchange_hours_start_stop()
         self.assertEqual(line.unit_amount, 0)
