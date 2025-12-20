@@ -48,7 +48,7 @@ class TestBeginEnd(common.TransactionCase):
                 "name": "test",
                 "time_start": 12.0,
                 "time_stop": 12.0,
-                "break_duration": 0.0
+                "break_duration": 0.0,
             }
         )
         line.onchange_hours_start_stop()
@@ -74,7 +74,7 @@ class TestBeginEnd(common.TransactionCase):
         line1 = self.base_line.copy()
         line1.update({"time_start": 10.0, "time_stop": 12.0, "unit_amount": 2.0})
         self.timesheet_line_model.create(line1)
-        
+
         line2 = self.base_line.copy()
         line2.update({"time_start": 12.0, "time_stop": 14.0, "unit_amount": 2.0})
         self.timesheet_line_model.create(line2)
