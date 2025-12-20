@@ -13,13 +13,16 @@ class TestBeginEnd(common.TransactionCase):
         cls.analytic = cls.env.ref("analytic.analytic_administratif")
         cls.user = cls.env.ref("base.user_root")
         
-        # Poiščemo ali ustvarimo zaposlenega za root userja, da se izognemo težavam z employee_id
-        cls.employee = cls.env["hr.employee"].search([("user_id", "=", cls.user.id)], limit=1)
+        cls.employee = cls.env["hr.employee"].search(
+            [("user_id", "=", cls.user.id)], limit=1
+        )
         if not cls.employee:
-            cls.employee = cls.env["hr.employee"].create({
+            cls.employee = cls.env["hr.employee"].create(
+                {
                 "name": "Test Employee",
                 "user_id": cls.user.id,
-            })
+                }
+            )
 
         cls.base_line = {
             "name": "test",
@@ -40,7 +43,6 @@ class TestBeginEnd(common.TransactionCase):
         self.assertEqual(line.unit_amount, 2)
 
     def test_onchange_no_update(self):
-        # POPRAVEK: Zagotovimo, da unit_amount ne postane negativen zaradi break_duration
         line = self.timesheet_line_model.new(
             {"name": "test", "time_start": 12.0, "time_stop": 12.0, "break_duration": 0.0}
         )
@@ -54,10 +56,10 @@ class TestBeginEnd(common.TransactionCase):
             self.timesheet_line_model.create(line)
 
     def test_check_wrong_duration(self):
-        # POPRAVEK: Prilagodili smo regex, da sprejme obe verziji sporočila (z ali brez "minus break")
-        # To omogoča, da test prestane, tudi če ValidationError sproži starševski modul
-        message_re = r"The duration .* must be equal to the difference between the hours"
-        
+        message_re = (
+            r"The duration .* must be equal to the difference between the hours"
+        )
+
         line = self.base_line.copy()
         line.update({"time_start": 10.0, "time_stop": 12.0, "unit_amount": 5.0})
         with self.assertRaisesRegex(exceptions.ValidationError, message_re):
