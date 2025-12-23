@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 class CrmPhonecallCase(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(CrmPhonecallCase, cls).setUpClass()
+        super().setUpClass()
         cls.analytic_account_1 = cls.env["account.analytic.account"].create(
             {
                 "name": "Test Account 1",
