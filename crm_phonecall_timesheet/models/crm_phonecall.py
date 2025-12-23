@@ -7,7 +7,7 @@
 import logging
 from datetime import datetime
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.fields import DATE_LENGTH
 
@@ -43,27 +43,24 @@ class CrmPhonecall(models.Model):
             "name": vals.get("name", self.name),
             "project_id": project_id,
             "unit_amount": unit_amount / 60.0,
-            "code": "phone",
         }
         return res
 
-    @api.model
-    def create(self, vals):
-        if vals.get("project_id") and vals.get("duration", 0) > 0:
-            timesheet_data = self._timesheet_prepare(vals)
-            vals["timesheet_ids"] = vals.get("timesheet_ids", [])
-            vals["timesheet_ids"].append((0, 0, timesheet_data))
-        res = super().create(vals)
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("project_id") and vals.get("duration", 0) > 0:
+                timesheet_data = self._timesheet_prepare(vals)
+                vals["timesheet_ids"] = vals.get("timesheet_ids", [])
+                vals["timesheet_ids"].append(Command.create(timesheet_data))
+        records = super().create(vals_list)
+        return records
 
     def write(self, vals):
         AccountAnalitycLineObj = self.env["account.analytic.line"]
         for record in self:
             timesheet = AccountAnalitycLineObj.search(
-                [
-                    ("phonecall_id", "=", record.id),
-                    ("code", "=", "phone"),
-                ]
+                [("phonecall_id", "=", record.id)]
             )
             project_id = vals.get("project_id", record.project_id.id)
             duration = vals.get("duration", record.duration) or 0
@@ -77,13 +74,13 @@ class CrmPhonecall(models.Model):
                 )
             if timesheet:
                 if not can_create_ts:
-                    vals["timesheet_ids"] = [(2, timesheet.id, 0)]
+                    vals["timesheet_ids"] = [Command.delete(timesheet.id)]
                 else:
                     vals["timesheet_ids"] = [
-                        (1, timesheet.id, self._timesheet_prepare(vals))
+                        Command.update(timesheet.id, self._timesheet_prepare(vals))
                     ]
             elif can_create_ts:
-                vals["timesheet_ids"] = [(0, 0, self._timesheet_prepare(vals))]
+                vals["timesheet_ids"] = [Command.create(self._timesheet_prepare(vals))]
         return super().write(vals)
 
     def button_end_call(self):

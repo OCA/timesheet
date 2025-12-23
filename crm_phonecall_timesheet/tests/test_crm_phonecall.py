@@ -11,30 +11,39 @@ from odoo.tests import common
 _logger = logging.getLogger(__name__)
 
 
-class CrmPhonecallCase(common.SavepointCase):
+class CrmPhonecallCase(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Create an analytic plan
+        cls.plan = cls.env["account.analytic.plan"].create(
+            {
+                "name": "Test Plan",
+                "default_applicability": "optional",
+            }
+        )
         cls.analytic_account_1 = cls.env["account.analytic.account"].create(
             {
+                "plan_id": cls.plan.id,
                 "name": "Test Account 1",
             }
         )
         cls.analytic_account_2 = cls.env["account.analytic.account"].create(
             {
+                "plan_id": cls.plan.id,
                 "name": "Test Account 2",
             }
         )
         cls.project_1 = cls.env["project.project"].create(
             {
                 "name": "Test Project 1",
-                "analytic_account_id": cls.analytic_account_1.id,
+                "account_id": cls.analytic_account_1.id,
             }
         )
         cls.project_2 = cls.env["project.project"].create(
             {
                 "name": "Test Project 2",
-                "analytic_account_id": cls.analytic_account_1.id,
+                "account_id": cls.analytic_account_1.id,
             }
         )
         cls.partner_1 = cls.env["res.partner"].create(
@@ -47,6 +56,8 @@ class CrmPhonecallCase(common.SavepointCase):
                 "name": "Test Partner 2",
             }
         )
+        # Use admin user for tests since he is linked to an employee by default
+        cls.admin = cls.env.ref("base.user_admin")
 
     def _phonecall_create(self, vals):
         phonecall = self.env["crm.phonecall"].create(vals)
@@ -102,7 +113,7 @@ class CrmPhonecallCase(common.SavepointCase):
                 "name": "test_01",
                 "project_id": self.project_1.id,
                 "partner_id": self.partner_1.id,
-                "user_id": self.uid,
+                "user_id": self.admin.id,
             },
             {
                 "date": "2017-08-21 10:15:00",
@@ -110,7 +121,7 @@ class CrmPhonecallCase(common.SavepointCase):
                 "name": "test_02",
                 "project_id": self.project_1.id,
                 "partner_id": self.partner_1.id,
-                "user_id": self.uid,
+                "user_id": self.admin.id,
             },
         )
         write_cases = (
