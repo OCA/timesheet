@@ -1,36 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="name_customer_table" inherit_id="hr_timesheet.timesheet_table">
+    <template
+        id="name_customer_table"
+        inherit_id="hr_timesheet.timesheet_table"
+        priority="99"
+    >
         <xpath
-            expr="//table[hasclass('table', 'table-sm')]/thead/tr/th[5]"
-            position="attributes"
+            expr="//table[hasclass('table', 'table-sm')]/tbody//span[@t-field='line.name']"
+            position="replace"
         >
-            <attribute name="t-if">not show_desc</attribute>
-        </xpath>
-
-        <xpath
-            expr="//table[hasclass('table', 'table-sm')]/thead/tr/th[5]"
-            position="after"
-        >
-            <th class="text-start align-middle" t-if="show_custom_desc">
-                <span>Description</span>
-            </th>
-        </xpath>
-
-        <xpath
-            expr="//table[hasclass('table', 'table-sm')]/tbody/tr[1]/td[5]"
-            position="attributes"
-        >
-            <attribute name="t-if">not show_desc</attribute>
-        </xpath>
-
-        <xpath
-            expr="//table[hasclass('table', 'table-sm')]/tbody/tr[1]/td[5]"
-            position="after"
-        >
-            <td t-if="show_custom_desc" class="align-middle">
+            <t t-if="show_custom_desc">
                 <span t-field="line.name_customer" t-options="{'widget': 'text'}" />
-            </td>
+            </t>
+            <t t-else="">
+                <span t-field="line.name" />
+            </t>
         </xpath>
     </template>
 
@@ -44,8 +28,6 @@
                 />
                 <t t-set="show_task" t-value="bool(docs.task_id)" />
                 <t t-set="show_project" t-value="len(docs.project_id) > 1" />
-                <t t-set="show_desc" t-value="True" />
-                <t t-set="show_custom_desc" t-value="True" />
                 <div class="page">
                     <div />
                     <div class="row mt8">
@@ -62,7 +44,9 @@
                         </div>
                     </div>
                     <t t-set='lines' t-value='docs' />
-                    <t t-call="hr_timesheet_name_customer.name_customer_table" />
+                    <t t-call="hr_timesheet_name_customer.name_customer_table">
+                        <t t-set="show_custom_desc" t-value="True" />
+                    </t>
                     <div />
                 </div>
             </t>
