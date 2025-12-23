@@ -77,8 +77,8 @@ class CrmPhonecallCase(common.TransactionCase):
             (datetime.datetime(2017, 8, 25, 12, 30), False),
             (False, False),
         )
-        with self.assertRaises(UserError):
-            for start_dt, end_dt in warning_cases:
+        for start_dt, end_dt in warning_cases:
+            with self.assertRaises(UserError):
                 self.env["crm.phonecall"]._end_call(start_dt, end_dt)
         cases = (
             (
