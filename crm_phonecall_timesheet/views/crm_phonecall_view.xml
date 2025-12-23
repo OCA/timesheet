@@ -14,7 +14,7 @@
                     string="Stop"
                     type="object"
                     icon="fa-stop-circle"
-                    attrs="{'invisible': [('duration', '>', 0)]}"
+                    invisible="duration > 0"
                 />
             </field>
             <field name="name" position="after">
@@ -24,14 +24,10 @@
                 />
             </field>
             <field name="date" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'required': [('project_id', '!=', False)]}</attribute>
+                <attribute name="required">project_id != False</attribute>
             </field>
             <field name="user_id" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'required': [('project_id', '!=', False)]}</attribute>
+                <attribute name="required">project_id != False</attribute>
             </field>
         </field>
     </record>
@@ -47,7 +43,7 @@
                     string="Stop"
                     type="object"
                     icon="fa-stop-circle"
-                    attrs="{'invisible': [('duration', '>', 0)]}"
+                    invisible="duration > 0"
                 />
             </field>
             <field name="date" position="after">
@@ -60,14 +56,10 @@
                 />
             </field>
             <field name="date" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'required': [('project_id', '!=', False)]}</attribute>
+                <attribute name="required">project_id != False</attribute>
             </field>
             <field name="user_id" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'required': [('project_id', '!=', False)]}</attribute>
+                <attribute name="required">project_id != False</attribute>
             </field>
         </field>
     </record>
@@ -88,7 +80,11 @@
                     <page string="Timesheet">
                         <field
                             name="timesheet_ids"
-                            context="{'tree_view_ref': 'hr_timesheet.hr_timesheet_line_tree','default_project_id': project_id, 'default_user_id': uid}"
+                            context="{
+                                'list_view_ref': 'hr_timesheet.hr_timesheet_line_tree',
+                                'default_project_id': project_id,
+                                'default_user_id': uid
+                            }"
                         />
                     </page>
                 </notebook>
