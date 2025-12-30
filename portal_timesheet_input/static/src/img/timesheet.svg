@@ -1,0 +1,22 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <!-- Offset Background Accent -->
+    <rect x="22" y="8" width="34" height="46" rx="4" fill="#FBDBD0" />
+
+    <!-- Main Document -->
+    <rect x="14" y="14" width="34" height="46" rx="4" fill="#FFFFFF" stroke="#374874" stroke-width="2"/>
+
+    <!-- Top Bar / Header -->
+    <path d="M15 18C15 16.3431 16.3431 15 18 15H44C45.6569 15 47 16.3431 47 18V24H15V18Z" fill="#C1DBF6"/>
+    <line x1="14" y1="24" x2="48" y2="24" stroke="#374874" stroke-width="2"/>
+
+    <!-- Content Lines -->
+    <line x1="22" y1="32" x2="40" y2="32" stroke="#374874" stroke-width="2" stroke-linecap="round"/>
+    <line x1="22" y1="40" x2="36" y2="40" stroke="#374874" stroke-width="2" stroke-linecap="round"/>
+    <line x1="22" y1="48" x2="30" y2="48" stroke="#374874" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Clock Overlay -->
+    <circle cx="48" cy="48" r="11" fill="#FFFFFF" stroke="#374874" stroke-width="2"/>
+    <path d="M48 42V48H52" stroke="#374874" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="48" cy="48" r="2" fill="#FBDBD0"/>
+</svg>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="portal_my_home_timesheet_input"
+        name="Show Timesheet Input"
+        inherit_id="portal.portal_my_home"
+        customize_show="True"
+        priority="25"
+    >
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Timesheet Input</t>
+                <t t-set="url" t-value="'/my/timesheet/input'" />
+                <t
+                    t-set="icon"
+                    t-value="'/portal_timesheet_input/static/src/img/timesheet.svg'"
+                />
+                <t t-set="text">Weekly timesheet input</t>
+                <t t-set="config_card" t-value="True" />
+            </t>
+        </xpath>
+    </template>
+
+    <template
+        id="portal_my_home_menu_timesheet_input"
+        name="Portal layout : timesheet input menu"
+        inherit_id="portal.portal_breadcrumbs"
+        priority="25"
+    >
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if='page_name == "timesheet_input_grid"' class="breadcrumb-item">
+                <a t-attf-href="/my/timesheet/input">Timesheet Input</a>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="timesheet_error" name="Timesheet Input Error">
+        <t t-call="portal.portal_layout">
+            <div class="alert alert-danger" role="alert">
+                <t t-esc="error_message" />
+            </div>
+        </t>
+    </template>
+
+    <template id="timesheet_input_grid" name="Weekly Timesheet Grid">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+
+            <div class="o_portal_timesheet_input_grid mt-4">
+                <!-- Header / Navigation -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3>Weekly Timesheet</h3>
+                    <div class="btn-group">
+                        <a
+                            t-attf-href="/my/timesheet/input?week_start={{ prev_week }}"
+                            class="btn btn-secondary"
+                        >&lt; Previous</a>
+                        <button class="btn btn-outline-secondary" disabled="disabled">
+                            <t t-esc="week_start" />
+                        </button>
+                        <a
+                            t-attf-href="/my/timesheet/input?week_start={{ next_week }}"
+                            class="btn btn-secondary"
+                        >Next &gt;</a>
+                    </div>
+                    <button
+                        class="btn btn-primary"
+                        id="btn_save_timesheet"
+                    >Save Changes</button>
+                    <input
+                        type="hidden"
+                        id="week_start_date"
+                        t-att-value="week_start"
+                    />
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm o_timesheet_grid_table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th style="width: 25%;">Project / Task</th>
+                                <t t-foreach="days" t-as="day">
+                                    <th class="text-center">
+                                        <div t-esc="day['name']" />
+                                        <!-- <small t-esc="day['date']"/> -->
+                                    </th>
+                                </t>
+                                <th class="text-center" style="width: 80px;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timesheet_grid_body">
+                            <t t-foreach="rows" t-as="row">
+                                <tr
+                                    t-att-data-project-id="row['project_id']"
+                                    t-att-data-task-id="row['id'] if row['type'] == 'task' else ''"
+                                    t-att-data-type="row['type']"
+                                >
+                                    <td class="align-middle">
+                                        <div
+                                            class="font-weight-bold"
+                                            t-esc="row['project_name']"
+                                        />
+                                        <div
+                                            t-if="row['type'] == 'task'"
+                                            class="small text-muted"
+                                            t-esc="row['name']"
+                                        />
+                                    </td>
+                                    <t t-foreach="days" t-as="day">
+                                        <td class="p-0">
+                                            <input
+                                                type="number"
+                                                step="0.5"
+                                                class="form-control border-0 text-center timesheet-input"
+                                                t-att-data-date="day['day_str']"
+                                                t-att-value="row['days'].get(day['day_str'], '')"
+                                                t-att-name="'cell_%s_%s' % (row['id'], day['day_str'])"
+                                            />
+                                        </td>
+                                    </t>
+                                    <td
+                                        class="text-center align-middle row-total font-weight-bold"
+                                    >0.0</td>
+                                </tr>
+                            </t>
+
+                            <!-- Add Line Row -->
+                            <tr class="bg-light add-line-row">
+                                <td colspan="9">
+                                    <div class="form-row align-items-center">
+                                        <div class="col-auto">
+                                            <span>Add Line:</span>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select
+                                                id="new_line_project_id"
+                                                class="form-control form-control-sm"
+                                            >
+                                                <option
+                                                    value=""
+                                                >Select Project...</option>
+                                                <t t-foreach="projects" t-as="p">
+                                                    <option
+                                                        t-att-value="p.id"
+                                                        t-esc="p.name"
+                                                    />
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select
+                                                id="new_line_task_id"
+                                                class="form-control form-control-sm"
+                                                disabled="disabled"
+                                            >
+                                                <option value="">Select Task...</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button
+                                                class="btn btn-sm btn-success"
+                                                id="btn_add_line"
+                                            >Add</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="font-weight-bold">
+                                <td>Week Total</td>
+                                <t t-foreach="days" t-as="day">
+                                    <td
+                                        class="text-center col-total"
+                                        t-att-data-date="day['day_str']"
+                                    >0.0</td>
+                                </t>
+                                <td class="text-center grand-total">0.0</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
