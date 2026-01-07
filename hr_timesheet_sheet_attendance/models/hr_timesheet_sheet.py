@@ -66,7 +66,7 @@ class HrTimesheetSheet(models.Model):
         perform Check In/Check Out action
         Returns last attendance record"""
 
-        return self.employee_id._attendance_action_change()
+        return self.employee_id.sudo()._attendance_action_change()
 
     def action_timesheet_confirm(self):
         self.check_employee_attendance_state()
@@ -106,5 +106,5 @@ class HrTimesheetSheet(models.Model):
                     ("check_out", "<=", res.date_end),
                 ]
             )
-        attendances._compute_sheet_id()
+        attendances.sudo()._compute_sheet_id()
         return records
