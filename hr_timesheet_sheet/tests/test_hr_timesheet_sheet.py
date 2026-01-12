@@ -620,6 +620,26 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet_form.save()
         # self assert something
 
+    def test_change_period_with_existing_sheet_line(self):
+        date_line = self.sheet_model._default_date_start() + relativedelta(days=4)
+        analytic_line = self.aal_model.create(
+            {
+                "name": self.project_1.name,
+                "employee_id": self.employee.id,
+                "company_id": self.company.id,
+                "project_id": self.project_1.id,
+                "date": date_line,
+            }
+        )
+        sheet_form = Form(self.sheet_model.with_user(self.user))
+        self.assertEqual(len(sheet_form.line_ids), 7)
+        self.assertEqual(len(sheet_form.timesheet_ids), 1)
+        sheet_form.date_end = sheet_form.date_start + relativedelta(days=2)
+        self.assertEqual(len(sheet_form.line_ids), 0)
+        self.assertEqual(len(sheet_form.timesheet_ids), 0)
+        sheet_form.save()
+        self.assertTrue(analytic_line.exists())
+
     def test_no_copy(self):
         sheet = Form(self.sheet_model.with_user(self.user)).save()
         with self.assertRaises(UserError):
