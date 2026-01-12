@@ -355,7 +355,7 @@ class Sheet(models.Model):
             ("employee_id", "=", self.employee_id.id),
             ("company_id", "=", self._get_timesheet_sheet_company().id),
             ("project_id", "!=", False),
-            ("sheet_id", "=", False),
+            ("sheet_id", "in", [self.id, False]),
         ]
 
     @api.depends(
@@ -485,6 +485,14 @@ class Sheet(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             self._check_employee_user_link(vals)
+            if "timesheet_ids" in vals:
+                timesheets = vals["timesheet_ids"]
+                filtered_timesheets = []
+                for val in timesheets:
+                    if val[0] != 2:
+                        # deleting Delete commands that may appear when changing period
+                        filtered_timesheets.append(val)
+                vals["timesheet_ids"] = filtered_timesheets
         res = super().create(vals_list)
         res.write({"state": "draft"})
         return res
