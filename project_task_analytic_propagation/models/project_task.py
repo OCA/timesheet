@@ -25,7 +25,7 @@ class ProjectTask(models.Model):
     @api.depends(lambda self: self._get_project_analytic_plan_columns())
     def _compute_task_analytic_accounts(self):
         plan_fnames = self._get_plan_fnames()
-        for task in self._origin:
+        for task in self._origin or self:
             # By using _origin, new records (with a NewId) are excluded and
             # the computation works automagically for virtual onchange records as well
             task_analytic_accounts = {}
