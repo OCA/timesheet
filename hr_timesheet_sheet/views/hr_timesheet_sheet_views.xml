@@ -124,6 +124,7 @@
                                     field_value="unit_amount"
                                     x_axis_clickable="0"
                                     y_axis_clickable="1"
+                                    sort_y="True"
                                     can_create="false"
                                     can_write="false"
                                     options="{'no_open': true}"
