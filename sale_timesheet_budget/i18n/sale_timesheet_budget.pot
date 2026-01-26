@@ -1,0 +1,114 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_timesheet_budget
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__amount
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.view_project_project_budget_tree
+msgid "Amount"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project__budget_amount
+msgid "Budget Amount"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#. odoo-python
+#: code:addons/sale_timesheet_budget/models/project_project.py:0
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project__budget_ids
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_budget.project_project_view_form
+msgid "Budgets"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__name
+msgid "Concept"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__date
+msgid "Date"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__price_unit
+msgid "Product Price"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model,name:sale_timesheet_budget.model_project_project
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__project_id
+msgid "Project"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__analytic_account_id
+msgid "Project Account"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.actions.act_window,name:sale_timesheet_budget.action_project_project_budget
+msgid "Project Budgets"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model,name:sale_timesheet_budget.model_project_project_budget
+msgid "Project Project Budget"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__quantity
+msgid "Quantity"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__sale_order_id
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_timesheet_budget
+#: model:ir.model.fields,field_description:sale_timesheet_budget.field_project_project_budget__sale_order_id_domain
+msgid "Sale Order Id Domain"
+msgstr ""
