@@ -19,10 +19,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.3.2\n"
 
-#. module: project_timesheet_time_control
+#. module: hr_timesheet_time_control
 #. odoo-python
-#: code:addons/project_timesheet_time_control/wizards/hr_timesheet_switch.py:0
-#, python-format
+#: code:addons/hr_timesheet_time_control/wizards/hr_timesheet_switch.py:0
 msgid ""
 "%d running timers found. Cannot know which one to stop. Please stop them "
 "manually."
@@ -30,15 +29,15 @@ msgstr ""
 "%d minuteurs en cours. Impossible de déterminer lequel arrêter. Merci de les "
 "arrêter manuellement."
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.hr_timesheet_switch_form
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
 msgid ""
 ".\n"
 "                            If you continue, it will be stopped with"
 msgstr ""
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_kanban_account_analytic_line
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_kanban_account_analytic_line
 msgid ""
 "<br/>\n"
 "                    <span>to</span>"
@@ -46,8 +45,8 @@ msgstr ""
 "<br/>\n"
 "                    <span>à</span>"
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_project_kanban_inherited
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_project_kanban_inherited
 msgid ""
 "<span class=\"o_label\">\n"
 "                            <i class=\"fa fa-lg fa-play-circle text-"
@@ -61,8 +60,8 @@ msgstr ""
 "                            Démarrer le travail\n"
 "                        </span>"
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_project_kanban_inherited
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_project_kanban_inherited
 msgid ""
 "<span class=\"o_label\">\n"
 "                            <i class=\"fa fa-lg fa-stop-circle text-"
@@ -76,20 +75,19 @@ msgstr ""
 "                            Arrêter le travail\n"
 "                        </span>"
 
-#. module: project_timesheet_time_control
-#: model:ir.model,name:project_timesheet_time_control.model_account_analytic_line
+#. module: hr_timesheet_time_control
+#: model:ir.model,name:hr_timesheet_time_control.model_account_analytic_line
 msgid "Analytic Line"
 msgstr "Ligne analytique"
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.hr_timesheet_switch_form
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
 msgid "Cancel"
 msgstr "Annuler"
 
-#. module: project_timesheet_time_control
+#. module: hr_timesheet_time_control
 #. odoo-python
-#: code:addons/project_timesheet_time_control/models/account_analytic_line.py:0
-#, python-format
+#: code:addons/hr_timesheet_time_control/models/account_analytic_line.py:0
 msgid ""
 "Cannot stop timer %d because it is not running. Refresh the page and check "
 "again."
@@ -97,88 +95,95 @@ msgstr ""
 "Impossible d'arrêter le minuteur %d parce qu'il n'est pas démarré. "
 "Rafraîchissez la page et essayez de nouveau."
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__company_id
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__company_id
 msgid "Company"
 msgstr "Société"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__create_uid
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__create_uid
 msgid "Created by"
 msgstr "Créé par"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__create_date
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__create_date
 msgid "Created on"
 msgstr "Créé le"
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_task_form2_inherited
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_form2_inherited
 msgid "Date"
 msgstr "Date"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__name
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__name
 msgid "Description"
 msgstr ""
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__display_name
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_account_analytic_line__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_time_control_mixin__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_project__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_task__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_account_analytic_line__date_time_end
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__date_time_end
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_account_analytic_line__date_time_end
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__date_time_end
 msgid "End Time"
 msgstr "Heure de Fin"
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.project_invoice_form
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_kanban_account_analytic_line
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_project_tree
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_task_form2_inherited
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_task_tree2_inherited
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.project_invoice_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_kanban_account_analytic_line
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_project_tree
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_form2_inherited
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_tree2_inherited
 msgid "End work"
 msgstr ""
 
-#. module: project_timesheet_time_control
-#: model:ir.model,name:project_timesheet_time_control.model_hr_timesheet_switch
+#. module: hr_timesheet_time_control
+#: model:ir.model,name:hr_timesheet_time_control.model_hr_timesheet_switch
 msgid "Helper to quickly switch between timesheet lines"
 msgstr "Assistant pour changer rapidement de ligne de temps"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__id
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_account_analytic_line__id
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__id
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_time_control_mixin__id
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_project__id
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_task__id
 msgid "ID"
 msgstr ""
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,help:project_timesheet_time_control.field_account_analytic_line__show_time_control
-#: model:ir.model.fields,help:project_timesheet_time_control.field_hr_timesheet_time_control_mixin__show_time_control
-#: model:ir.model.fields,help:project_timesheet_time_control.field_project_project__show_time_control
-#: model:ir.model.fields,help:project_timesheet_time_control.field_project_task__show_time_control
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_account_analytic_line__show_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_hr_timesheet_time_control_mixin__show_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_project_project__show_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_project_task__show_time_control
 msgid "Indicate which time control button to show, if any."
 msgstr "Indiquer quel bouton de contrôle du temps afficher, si applicable."
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__write_uid
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__write_uid
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__write_date
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
-#. module: project_timesheet_time_control
-#: model:ir.model,name:project_timesheet_time_control.model_hr_timesheet_time_control_mixin
+#. module: hr_timesheet_time_control
+#: model:ir.model,name:hr_timesheet_time_control.model_hr_timesheet_time_control_mixin
 msgid "Mixin for records related with timesheet lines"
 msgstr "Mixin pour les éléments liés aux lignes de temps"
 
-#. module: project_timesheet_time_control
+#. module: hr_timesheet_time_control
 #. odoo-python
-#: code:addons/project_timesheet_time_control/models/hr_timesheet_time_control_mixin.py:0
-#, python-format
+#: code:addons/hr_timesheet_time_control/models/hr_timesheet_time_control_mixin.py:0
 msgid ""
 "No running timer found in %(model)s %(record)s. Refresh the page and check "
 "again."
@@ -186,159 +191,173 @@ msgstr ""
 "Aucun minuteur en cours trouvé pour %(model)s %(record)s. Rafraîchissez la "
 "page et essayez de nouveau."
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__analytic_line_id
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__analytic_line_id
 msgid "Origin line"
 msgstr ""
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__running_timer_id
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.hr_timesheet_switch_form
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__running_timer_id
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
 msgid "Previous timer"
 msgstr "Minuteur précédent"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__running_timer_duration
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__running_timer_duration
 msgid "Previous timer duration"
 msgstr "Durée du minuteur précédent"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__running_timer_start
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__running_timer_start
 msgid "Previous timer start"
 msgstr "Démarrage du minuteur précédent"
 
-#. module: project_timesheet_time_control
-#: model:ir.model,name:project_timesheet_time_control.model_project_project
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__project_id
+#. module: hr_timesheet_time_control
+#: model:ir.model,name:hr_timesheet_time_control.model_project_project
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__project_id
 msgid "Project"
 msgstr "Projet"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields.selection,name:project_timesheet_time_control.selection__account_analytic_line__show_time_control__resume
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__account_analytic_line__show_time_control__resume
 msgid "Resume"
 msgstr "Reprendre"
 
-#. module: project_timesheet_time_control
+#. module: hr_timesheet_time_control
 #. odoo-python
-#: code:addons/project_timesheet_time_control/models/account_analytic_line.py:0
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.account_analytic_line_tree
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.hr_timesheet_line_form
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_kanban_account_analytic_line
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_task_form2_inherited
-#, python-format
+#: code:addons/hr_timesheet_time_control/models/account_analytic_line.py:0
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.account_analytic_line_tree
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_line_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_kanban_account_analytic_line
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_form2_inherited
 msgid "Resume work"
 msgstr "Reprendre le travail"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_account_analytic_line__show_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_time_control_mixin__show_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_project_project__show_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_project_task__show_time_control
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_account_analytic_line__show_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_time_control_mixin__show_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_project__show_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_task__show_time_control
 msgid "Show Time Control"
 msgstr "Montrer les Minuteurs"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields.selection,name:project_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__start
-#: model:ir.model.fields.selection,name:project_timesheet_time_control.selection__project_project__show_time_control__start
-#: model:ir.model.fields.selection,name:project_timesheet_time_control.selection__project_task__show_time_control__start
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__start
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_project__show_time_control__start
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_task__show_time_control__start
 msgid "Start"
 msgstr "Démarrer"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_account_analytic_line__date_time
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__date_time
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_account_analytic_line__date_time
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__date_time
 msgid "Start Time"
 msgstr "Heure de démarrage"
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.hr_timesheet_switch_form
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
 msgid "Start new timer"
 msgstr "Démarrer un nouveau minuteur"
 
-#. module: project_timesheet_time_control
+#. module: hr_timesheet_time_control
 #. odoo-python
-#: code:addons/project_timesheet_time_control/models/hr_timesheet_time_control_mixin.py:0
-#: model:ir.actions.act_window,name:project_timesheet_time_control.hr_timesheet_switch_action
-#: model:ir.ui.menu,name:project_timesheet_time_control.hr_timesheet_switch_menu
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.project_invoice_form
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_kanban_account_analytic_line
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_project_tree
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_task_form2_inherited
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_task_kanban
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_task_tree2_inherited
-#, python-format
+#: code:addons/hr_timesheet_time_control/models/hr_timesheet_time_control_mixin.py:0
+#: model:ir.actions.act_window,name:hr_timesheet_time_control.hr_timesheet_switch_action
+#: model:ir.ui.menu,name:hr_timesheet_time_control.hr_timesheet_switch_menu
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.project_invoice_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_kanban_account_analytic_line
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_project_tree
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_form2_inherited
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_kanban
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_tree2_inherited
 msgid "Start work"
 msgstr "Démarrer le travail"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields.selection,name:project_timesheet_time_control.selection__account_analytic_line__show_time_control__stop
-#: model:ir.model.fields.selection,name:project_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__stop
-#: model:ir.model.fields.selection,name:project_timesheet_time_control.selection__project_project__show_time_control__stop
-#: model:ir.model.fields.selection,name:project_timesheet_time_control.selection__project_task__show_time_control__stop
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__account_analytic_line__show_time_control__stop
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__stop
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_project__show_time_control__stop
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_task__show_time_control__stop
 msgid "Stop"
 msgstr "Arreter"
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.hr_timesheet_switch_form
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
 msgid "Stop previous timer and start the new one"
 msgstr "Arrêter le minuteur précédent et en démarrer un nouveau"
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.hr_timesheet_switch_form
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
 msgid "Stop that very old timer and start the new one"
 msgstr "Arrêter ce très ancien minuteur et en démarrer un nouveau"
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.account_analytic_line_tree
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.hr_timesheet_line_form
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.project_invoice_form
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_kanban_account_analytic_line
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_project_tree
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_task_form2_inherited
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_task_kanban
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.view_task_tree2_inherited
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.account_analytic_line_tree
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_line_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.project_invoice_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_kanban_account_analytic_line
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_project_tree
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_form2_inherited
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_kanban
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_tree2_inherited
 msgid "Stop work"
 msgstr "Arrêter le travail"
 
-#. module: project_timesheet_time_control
-#: model:ir.model,name:project_timesheet_time_control.model_project_task
-#: model:ir.model.fields,field_description:project_timesheet_time_control.field_hr_timesheet_switch__task_id
+#. module: hr_timesheet_time_control
+#: model:ir.model,name:hr_timesheet_time_control.model_project_task
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__task_id
 msgid "Task"
 msgstr "Tâche"
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.hr_timesheet_switch_form
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
 msgid "That is a lot of time! Make sure it is fine before saving."
 msgstr "Ça fait long ! Assurez-vous que c'est OK avant de sauvegarder."
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.hr_timesheet_switch_form
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
 msgid "The previous timer is old. Do you really want to stop it now?"
 msgstr ""
 "Le minuteur précédent est ancien. Voulez-vous vraiment l'arrêter maintenant ?"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,help:project_timesheet_time_control.field_hr_timesheet_switch__running_timer_id
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_hr_timesheet_switch__running_timer_id
 msgid "This timer is running and will be stopped"
 msgstr "Ce minuteur est en cours et sera arrêté"
 
-#. module: project_timesheet_time_control
-#: model:ir.model.fields,help:project_timesheet_time_control.field_hr_timesheet_switch__running_timer_duration
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_project_task__display_name
+msgid ""
+"Use these keywords in the title to set new tasks:\n"
+"\n"
+"        30h Allocate 30 hours to the task\n"
+"        #tags Set tags on the task\n"
+"        @user Assign the task to a user\n"
+"        ! Set the task a medium priority\n"
+"        !! Set the task a high priority\n"
+"        !!! Set the task a urgent priority\n"
+"\n"
+"        Make sure to use the right format and order e.g. Improve the "
+"configuration screen 5h #feature #v16 @Mitchell !"
+msgstr ""
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_hr_timesheet_switch__running_timer_duration
 msgid "When the previous timer is stopped, it will save this duration."
 msgstr "Quand le minuteur précédent est arrêté, la durée sera enregistrée."
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.hr_timesheet_switch_form
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
 msgid "You have a running timer called"
 msgstr "Vous avez un minuteur en cours, appelé"
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.hr_timesheet_switch_form
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
 msgid "and started at"
 msgstr "et démarré à"
 
-#. module: project_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:project_timesheet_time_control.hr_timesheet_switch_form
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
 msgid "hour(s)."
 msgstr "heure(s)."
 
