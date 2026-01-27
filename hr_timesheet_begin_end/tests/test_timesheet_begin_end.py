@@ -10,8 +10,20 @@ class TestBeginEnd(common.TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.timesheet_line_model = cls.env["account.analytic.line"]
-        cls.analytic = cls.env.ref("analytic.analytic_administratif")
         cls.user = cls.env.ref("base.user_root")
+        cls.analytic_plan = cls.env["account.analytic.plan"].create(
+            {
+                "name": "Departments",
+                "default_applicability": "optional",
+            }
+        )
+        cls.analytic = cls.env["account.analytic.account"].create(
+            {
+                "name": "Administrative",
+                "plan_id": cls.analytic_plan.id,
+                "company_id": False,
+            }
+        )
         cls.base_line = {
             "name": "test",
             "date": fields.Date.today(),

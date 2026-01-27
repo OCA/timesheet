@@ -4,7 +4,7 @@
 
 from datetime import timedelta
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.tools.float_utils import float_compare
 
 
@@ -24,16 +24,13 @@ class AccountAnalyticLine(models.Model):
             if stop < start:
                 value_to_html(line.time_start, None)
                 value_to_html(line.time_stop, None)
-
                 raise exceptions.ValidationError(
-                    _(
+                    self.env._(
                         "The beginning hour (%(html_start)s) must "
-                        "precede the ending hour (%(html_stop)s)."
+                        "precede the ending hour (%(html_stop)s).",
+                        html_start=value_to_html(line.time_start, None),
+                        html_stop=value_to_html(line.time_stop, None),
                     )
-                    % {
-                        "html_start": value_to_html(line.time_start, None),
-                        "html_stop": value_to_html(line.time_stop, None),
-                    }
                 )
             hours = (stop - start).seconds / 3600
             rounding = self.env.ref("uom.product_uom_hour").rounding
@@ -41,14 +38,12 @@ class AccountAnalyticLine(models.Model):
                 hours, line.unit_amount, precision_rounding=rounding
             ):
                 raise exceptions.ValidationError(
-                    _(
+                    self.env._(
                         "The duration (%(html_unit_amount)s) must be equal to "
-                        "the difference between the hours (%(html_hours)s)."
+                        "the difference between the hours (%(html_hours)s).",
+                        html_unit_amount=value_to_html(line.unit_amount, None),
+                        html_hours=value_to_html(hours, None),
                     )
-                    % {
-                        "html_unit_amount": value_to_html(line.unit_amount, None),
-                        "html_hours": value_to_html(hours, None),
-                    }
                 )
             # check if lines overlap
             others = self.search(
@@ -61,7 +56,7 @@ class AccountAnalyticLine(models.Model):
                 ]
             )
             if others:
-                message = _("Lines can't overlap:\n")
+                message = self.env._("Lines can't overlap:\n")
                 message += "\n".join(
                     [
                         f"{value_to_html(other.time_start, None)} - "
