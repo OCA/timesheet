@@ -15,8 +15,8 @@ class AccountAnalyticLine(models.Model):
     def default_get(self, field_list):
         result = super().default_get(field_list)
         if (
-            not self._context.get("default_project_id")
-            and self._context.get("is_timesheet")
+            not self.env.context.get("default_project_id")
+            and self.env.context.get("is_timesheet")
             and result.get("project_id", False)
         ):
             result["project_id"] = False
