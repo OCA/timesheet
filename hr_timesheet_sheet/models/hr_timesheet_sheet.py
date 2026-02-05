@@ -131,7 +131,8 @@ class Sheet(models.Model):
     add_line_project_id = fields.Many2one(
         comodel_name="project.project",
         string="Select Project",
-        domain="[('company_id', '=', company_id), ('allow_timesheets', '=', True)]",
+        domain="[('company_id', 'in', [company_id, False]), "
+        "('allow_timesheets', '=', True)]",
         help="If selected, the associated project is added "
         "to the timesheet sheet when clicked the button.",
     )
