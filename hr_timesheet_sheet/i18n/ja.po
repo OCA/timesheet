@@ -13,15 +13,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2018-06-20 00:18+0000\n"
-"Last-Translator: Yoshi Tashiro <tashiro@roomsfor.hk>\n"
+"PO-Revision-Date: 2026-02-05 09:01+0000\n"
+"Last-Translator: Tatsuki Kanda <kanda@quartile.co>\n"
 "Language-Team: Japanese (https://www.transifex.com/odoo/teams/41243/ja/)\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
@@ -87,9 +87,8 @@ msgstr "明細を追加"
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_all_timesheets
-#, fuzzy
 msgid "All Timesheet Sheets"
-msgstr "勤務表の行"
+msgstr "全てのタイムシートレポート"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_account_analytic_account
@@ -505,27 +504,24 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_my_timesheets
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_my_timesheets
-#, fuzzy
 msgid "My Timesheet Sheets"
-msgstr "自分のタイムシート"
+msgstr "自分のタイムシートレポート"
 
 #. module: hr_timesheet_sheet
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_hr_my_timesheets
 msgid "My Timesheets"
-msgstr ""
+msgstr "自分のタイムシート"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_line_to_submit_my
-#, fuzzy
 msgid "My Timesheets to Submit"
-msgstr "タイムシート"
+msgstr "自分の未申請タイムシート"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit_my
-#, fuzzy
 msgid "My timesheets to submit."
-msgstr "未承認タイムシート"
+msgstr "自分の未申請タイムシート"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__name
@@ -872,9 +868,8 @@ msgstr "勤務表の行"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__sheet_range
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__sheet_range
-#, fuzzy
 msgid "Timesheet Sheet Range"
-msgstr "勤務表の範囲"
+msgstr "タイムシートレポートの対象期間"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
