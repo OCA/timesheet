@@ -185,15 +185,21 @@
                                         name="task_id"
                                         domain="[('project_id', '=', project_id)]"
                                         context="{'default_project_id': project_id}"
+                                        optional="show"
                                     />
-                                    <field name="name" />
+                                    <field
+                                        name="name"
+                                        optional="show"
+                                        required="0"
+                                        readonly="readonly_timesheet"
+                                    />
                                     <field
                                         name="unit_amount"
                                         widget="float_time"
                                         string="Hours"
                                         sum="Hours"
                                     />
-                                    <field name="user_id" invisible="1" />
+                                    <field name="user_id" column_invisible="1" />
                                 </list>
                                 <form string="Timesheet Activities">
                                     <group>
