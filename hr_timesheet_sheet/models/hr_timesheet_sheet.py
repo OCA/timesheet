@@ -640,13 +640,13 @@ class Sheet(models.Model):
         return values
 
     @api.model
-    def _prepare_empty_analytic_line(self):
+    def _prepare_empty_analytic_line(self, project=None, task=None):
         return {
             "name": empty_name,
             "employee_id": self.employee_id.id,
             "date": self.date_start,
-            "project_id": self.add_line_project_id.id,
-            "task_id": self.add_line_task_id.id,
+            "project_id": (project or self.add_line_project_id).id,
+            "task_id": (task or self.add_line_task_id).id,
             "sheet_id": self.id,
             "unit_amount": 0.0,
             "company_id": self.company_id.id,
