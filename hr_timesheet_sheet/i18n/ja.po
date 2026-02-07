@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2026-02-05 09:01+0000\n"
-"Last-Translator: Tatsuki Kanda <kanda@quartile.co>\n"
+"PO-Revision-Date: 2026-02-07 08:12+0000\n"
+"Last-Translator: Yoshi Tashiro <tashiro@roomsfor.hk>\n"
 "Language-Team: Japanese (https://www.transifex.com/odoo/teams/41243/ja/)\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -30,38 +30,39 @@ msgid ""
 "specific.\" aria-label=\"Values set here are company-specific.\" groups="
 "\"base.group_multi_company\" role=\"img\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building\" title=\"こちらの設定値は会社固有です"
+"。\" aria-label=\"こちらの設定値は会社固有です。\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 msgid "<span class=\"text-muted text-nowrap\">Period</span>"
-msgstr ""
+msgstr "<span class=\"text-muted text-nowrap\">期間</span>"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
 msgid "<span class=\"text-muted text-nowrap\">Total time</span>"
-msgstr ""
+msgstr "<span class=\"text-muted text-nowrap\">合計時間</span>"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model,name:hr_timesheet_sheet.model_hr_timesheet_sheet_line_abstract
-#, fuzzy
 msgid "Abstract Timesheet Sheet Line"
-msgstr "勤務表の行"
+msgstr "抽象タイムシートレポート明細行"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__access_warning
 msgid "Access warning"
-msgstr ""
+msgstr "アクセス警告"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "要アクション"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_ids
-#, fuzzy
 msgid "Activities"
-msgstr "タイムシート活動明細"
+msgstr "活動"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__activity_exception_decoration
@@ -127,22 +128,22 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr_manager
 msgid "By HR Managers"
-msgstr ""
+msgstr "HRマネジャー"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__hr
 msgid "By HR Officers"
-msgstr ""
+msgstr "HRオフィサー"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__res_company__timesheet_sheet_review_policy__timesheet_manager
 msgid "By Timesheets Managers"
-msgstr ""
+msgstr "タイムシートマネジャー"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__can_review
 msgid "Can Review"
-msgstr ""
+msgstr "レビュー可"
 
 #. module: hr_timesheet_sheet
 #. odoo-python
@@ -172,9 +173,8 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
-#, fuzzy
 msgid "Choose timesheet sheets review policy."
-msgstr "新しいタイムシート"
+msgstr "タイムシートレポートのレビューポリシーを選択してください。"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
@@ -371,9 +371,8 @@ msgstr "時間"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
 #: model:ir.model.fields,help:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
-#, fuzzy
 msgid "How Timesheet Sheets review is performed."
-msgstr "未承認タイムシート"
+msgstr "タイムシートレポートのレビュー主体を選択。"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__id
@@ -436,13 +435,13 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "In order to review a timesheet sheet, your user needs to be linked to an "
 "employee."
 msgstr ""
-"この従業員のタイムシートを作成するには、そのユーザを本人ととリンクさせる必要"
-"があります。"
+"タイムシートレポートをレビューするには、自分のユーザを従業員レコードに紐づけ"
+"てください。"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_is_follower
@@ -594,9 +593,9 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #. odoo-python
 #: code:addons/hr_timesheet_sheet/models/hr_timesheet_sheet.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "Only a HR Officer or Manager can review the sheet."
-msgstr "HR担当者またはマネージャのみがタイムシートを承認できます。"
+msgstr "HR担当者またはマネージャのみがタイムシートをレビューできます。"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__hr_timesheet_sheet__state__draft
@@ -651,13 +650,13 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__review_policy
 msgid "Review Policy"
-msgstr ""
+msgstr "レビュー方針"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__reviewer_id
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "Reviewer"
-msgstr ""
+msgstr "レビュー担当者"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__message_has_sms_error
@@ -689,12 +688,12 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_project_id
 msgid "Select Project"
-msgstr ""
+msgstr "プロジェクトを選択"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__add_line_task_id
 msgid "Select Task"
-msgstr ""
+msgstr "タスクを選択"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -737,9 +736,8 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_kanban
-#, fuzzy
 msgid "Submit to Reviewer"
-msgstr "マネジャに申請"
+msgstr "レビュー担当者に提出"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
@@ -831,9 +829,8 @@ msgstr "タイムシート活動明細"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.res_config_settings_view_form
-#, fuzzy
 msgid "Timesheet Options"
-msgstr "勤務表の行"
+msgstr "タイムシートオプション"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.hr_timesheet_sheet_form
@@ -874,9 +871,8 @@ msgstr "タイムシートレポートの対象期間"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_sheet_review_policy
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_sheet_review_policy
-#, fuzzy
 msgid "Timesheet Sheet Review Policy"
-msgstr "勤務表の行"
+msgstr "タイムシートレポートレビュー方針"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_employee_2_hr_timesheet
@@ -901,9 +897,8 @@ msgstr "未承認タイムシート"
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_act_hr_timesheet_sheet_to_review
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
-#, fuzzy
 msgid "Timesheet Sheets to Review"
-msgstr "未承認タイムシート"
+msgstr "レビュー待ちタイムシートレポート"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_all_timesheets
@@ -942,9 +937,8 @@ msgstr ""
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.hr_timesheet_action_from_department
-#, fuzzy
 msgid "Timesheets to Review"
-msgstr "未承認タイムシート"
+msgstr "レビュー待ちタイムシート"
 
 #. module: hr_timesheet_sheet
 #: model:ir.actions.act_window,name:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
@@ -955,9 +949,8 @@ msgstr "タイムシート"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_sheet_to_review
-#, fuzzy
 msgid "Timesheets to review."
-msgstr "未承認タイムシート"
+msgstr "レビュー待ちタイムシート"
 
 #. module: hr_timesheet_sheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet_sheet.act_hr_timesheet_line_to_submit
@@ -969,7 +962,7 @@ msgstr "未承認タイムシート"
 #: model:ir.ui.menu,name:hr_timesheet_sheet.menu_hr_to_review
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet.view_hr_timesheet_sheet_filter
 msgid "To Review"
-msgstr ""
+msgstr "レビュー待ち"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_hr_timesheet_sheet__total_time
@@ -999,15 +992,13 @@ msgstr "ユーザ"
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields.selection,name:hr_timesheet_sheet.selection__hr_timesheet_sheet__state__confirm
 #: model:mail.message.subtype,name:hr_timesheet_sheet.mt_timesheet_confirmed
-#, fuzzy
 msgid "Waiting Review"
-msgstr "承認待ち"
+msgstr "レビュー待ち"
 
 #. module: hr_timesheet_sheet
 #: model:mail.message.subtype,description:hr_timesheet_sheet.mt_timesheet_confirmed
-#, fuzzy
 msgid "Waiting review"
-msgstr "承認待ち"
+msgstr "レビュー待ち"
 
 #. module: hr_timesheet_sheet
 #. odoo-python
@@ -1047,7 +1038,7 @@ msgstr ""
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_config_settings__timesheet_week_start
 msgid "Week Start Day"
-msgstr ""
+msgstr "週開始曜日"
 
 #. module: hr_timesheet_sheet
 #: model:ir.model.fields,field_description:hr_timesheet_sheet.field_res_company__timesheet_week_start
