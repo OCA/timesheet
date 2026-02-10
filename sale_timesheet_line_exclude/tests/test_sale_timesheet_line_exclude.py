@@ -6,45 +6,47 @@ from odoo.tests import common
 
 
 class TestSaleTimesheetLineExclude(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
+    
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
-        self.uom_hour = self.env.ref("uom.product_uom_hour")
-        self.Partner = self.env["res.partner"]
-        self.SudoPartner = self.Partner.sudo()
-        self.Employee = self.env["hr.employee"]
-        self.SudoEmployee = self.Employee.sudo()
-        self.AccountAccount = self.env["account.account"]
-        self.AccountAccountPlan = self.env["account.analytic.plan"]
-        self.SudoAccountAccount = self.AccountAccount.sudo()
-        self.Project = self.env["project.project"]
-        self.SudoProject = self.Project.sudo()
-        self.ProjectTask = self.env["project.task"]
-        self.SudoProjectTask = self.ProjectTask.sudo()
-        self.AccountAnalyticLine = self.env["account.analytic.line"]
-        self.SudoAccountAnalyticLine = self.AccountAnalyticLine.sudo()
-        self.ProductProduct = self.env["product.product"]
-        self.SudoProductProduct = self.ProductProduct.sudo()
-        self.SaleOrder = self.env["sale.order"]
-        self.SudoSaleOrder = self.SaleOrder.sudo()
-        self.SaleOrderLine = self.env["sale.order.line"]
-        self.SudoSaleOrderLine = self.SaleOrderLine.sudo()
+        cls.uom_hour = cls.env.ref("uom.product_uom_hour")
+        cls.Partner = cls.env["res.partner"]
+        cls.SudoPartner = cls.Partner.sudo()
+        cls.Employee = cls.env["hr.employee"]
+        cls.SudoEmployee = cls.Employee.sudo()
+        cls.AccountAccount = cls.env["account.account"]
+        cls.AccountAccountPlan = cls.env["account.analytic.plan"]
+        cls.SudoAccountAccount = cls.AccountAccount.sudo()
+        cls.Project = cls.env["project.project"]
+        cls.SudoProject = cls.Project.sudo()
+        cls.ProjectTask = cls.env["project.task"]
+        cls.SudoProjectTask = cls.ProjectTask.sudo()
+        cls.AccountAnalyticLine = cls.env["account.analytic.line"]
+        cls.SudoAccountAnalyticLine = cls.AccountAnalyticLine.sudo()
+        cls.ProductProduct = cls.env["product.product"]
+        cls.SudoProductProduct = cls.ProductProduct.sudo()
+        cls.SaleOrder = cls.env["sale.order"]
+        cls.SudoSaleOrder = cls.SaleOrder.sudo()
+        cls.SaleOrderLine = cls.env["sale.order.line"]
+        cls.SudoSaleOrderLine = cls.SaleOrderLine.sudo()
 
-        self.analytic_plan = self.AccountAccountPlan.create(
+        cls.analytic_plan = cls.AccountAccountPlan.create(
             {
                 "name": "Plan Test",
             }
         )
 
-        self.analytic_account_sale = self.env["account.analytic.account"].create(
+        cls.analytic_account_sale = cls.env["account.analytic.account"].create(
             {
                 "name": "Project for selling timesheet - AA",
                 "code": "AA-20300",
-                "plan_id": self.analytic_plan.id,
+                "plan_id": cls.analytic_plan.id,
             }
         )
 
-        self.account = self.SudoAccountAccount.create(
+        cls.account = cls.SudoAccountAccount.create(
             {
                 "code": "TEST1",
                 "name": "Sales #1",
@@ -52,34 +54,34 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "account_type": "expense_direct_cost",
             }
         )
-        self.project = self.SudoProject.create(
+        cls.project = cls.SudoProject.create(
             {
                 "name": "Project #1",
                 "allow_timesheets": True,
-                "account_id": self.analytic_account_sale.id,
+                "account_id": cls.analytic_account_sale.id,
                 "allow_billable": True,
             }
         )
-        self.product = self.SudoProductProduct.create(
+        cls.product = cls.SudoProductProduct.create(
             {
                 "name": "Service #1",
                 "standard_price": 30,
                 "list_price": 90,
                 "type": "service",
                 "invoice_policy": "delivery",
-                "uom_id": self.uom_hour.id,
+                "uom_id": cls.uom_hour.id,
                 "default_code": "CODE-1",
                 "service_type": "timesheet",
                 "service_tracking": "task_global_project",
-                "project_id": self.project.id,
+                "project_id": cls.project.id,
                 "taxes_id": False,
-                "property_account_income_id": self.account.id,
+                "property_account_income_id": cls.account.id,
             }
         )
-        self.employee = self.SudoEmployee.create(
+        cls.employee = cls.SudoEmployee.create(
             {"name": "Employee #1", "hourly_cost": 42}
         )
-        self.account_payable = self.SudoAccountAccount.create(
+        cls.account_payable = cls.SudoAccountAccount.create(
             {
                 "code": "AP4",
                 "name": "Payable #1",
@@ -87,7 +89,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "reconcile": True,
             }
         )
-        self.account_receivable = self.SudoAccountAccount.create(
+        cls.account_receivable = cls.SudoAccountAccount.create(
             {
                 "code": "AR1",
                 "name": "Receivable #1",
@@ -95,34 +97,34 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "reconcile": True,
             }
         )
-        self.partner = self.SudoPartner.create(
+        cls.partner = cls.SudoPartner.create(
             {
                 "name": "Partner #1",
                 "email": "partner1@localhost",
-                "property_account_payable_id": self.account_payable.id,
-                "property_account_receivable_id": self.account_receivable.id,
+                "property_account_payable_id": cls.account_payable.id,
+                "property_account_receivable_id": cls.account_receivable.id,
             }
         )
-        self.sale_order = self.SudoSaleOrder.create(
+        cls.sale_order = cls.SudoSaleOrder.create(
             {
-                "partner_id": self.partner.id,
-                "partner_invoice_id": self.partner.id,
-                "partner_shipping_id": self.partner.id,
+                "partner_id": cls.partner.id,
+                "partner_invoice_id": cls.partner.id,
+                "partner_shipping_id": cls.partner.id,
             }
         )
-        self.sale_order_line = self.SudoSaleOrderLine.create(
+        cls.sale_order_line = cls.SudoSaleOrderLine.create(
             {
-                "order_id": self.sale_order.id,
-                "name": self.product.name,
-                "product_id": self.product.id,
+                "order_id": cls.sale_order.id,
+                "name": cls.product.name,
+                "product_id": cls.product.id,
                 "product_uom_qty": 2,
-                "product_uom_id": self.uom_hour.id,
-                "price_unit": self.product.list_price,
+                "product_uom_id": cls.uom_hour.id,
+                "price_unit": cls.product.list_price,
             }
         )
-        self.sale_order.action_confirm()
-        self.task = self.SudoProjectTask.search(
-            [("sale_line_id", "=", self.sale_order_line.id)]
+        cls.sale_order.action_confirm()
+        cls.task = cls.SudoProjectTask.search(
+            [("sale_line_id", "=", cls.sale_order_line.id)]
         )
 
     def test_create_without_exclude_from_sale_order(self):
