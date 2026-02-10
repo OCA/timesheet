@@ -68,7 +68,6 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "type": "service",
                 "invoice_policy": "delivery",
                 "uom_id": self.uom_hour.id,
-                "uom_po_id": self.uom_hour.id,
                 "default_code": "CODE-1",
                 "service_type": "timesheet",
                 "service_tracking": "task_global_project",
@@ -117,7 +116,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "name": self.product.name,
                 "product_id": self.product.id,
                 "product_uom_qty": 2,
-                "product_uom": self.uom_hour.id,
+                "product_uom_id": self.uom_hour.id,
                 "price_unit": self.product.list_price,
             }
         )
