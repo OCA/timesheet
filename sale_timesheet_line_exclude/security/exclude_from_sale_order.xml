@@ -6,12 +6,11 @@
 <odoo>
     <record id="group_exclude_from_sale_order" model="res.groups">
         <field name="name">Exclude timesheets from sale order</field>
-        <field name="category_id" ref="base.module_category_hidden" />
         <field
             name="comment"
         >Gives access to the Non-Billable field on timesheets.</field>
         <field
-            name="users"
+            name="user_ids"
             eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
         />
     </record>
