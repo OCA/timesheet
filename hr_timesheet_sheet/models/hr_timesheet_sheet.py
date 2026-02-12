@@ -229,7 +229,7 @@ class Sheet(models.Model):
     def _get_complete_name_components(self):
         """Hook for extensions"""
         self.ensure_one()
-        return [self.employee_id.display_name]
+        return [self.employee_id.display_name or ""]
 
     def _get_overlapping_sheet_domain(self):
         """Hook for extensions"""
