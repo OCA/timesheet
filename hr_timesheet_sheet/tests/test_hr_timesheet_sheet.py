@@ -21,6 +21,10 @@ class TestHrTimesheetSheetCommon(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Remove global leaves from other modules to avoid test interference
+        cls.env["resource.calendar.leaves"].search(
+            [("resource_id", "=", False)]
+        ).sudo().unlink()
         cls.sheet_model = cls.env["hr_timesheet.sheet"]
         cls.sheet_line_model = cls.env["hr_timesheet.sheet.line"]
         cls.project_model = cls.env["project.project"]
