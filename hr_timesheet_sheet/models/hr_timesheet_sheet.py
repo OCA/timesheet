@@ -398,12 +398,10 @@ class Sheet(models.Model):
     def _get_matrix_sortby(self, key):
         res = []
         for attribute in key:
-            if hasattr(attribute, "name_get"):
-                name = attribute.display_name
-                value = name if name else ""
+            if attribute:
+                res.append(getattr(attribute, "display_name", attribute))
             else:
-                value = attribute
-            res.append(value)
+                res.append("")
         return res
 
     def _get_data_matrix(self):
