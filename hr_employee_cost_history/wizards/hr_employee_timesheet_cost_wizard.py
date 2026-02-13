@@ -40,31 +40,47 @@ class HrEmployeeTimesheetCost(models.TransientModel):
         Finally logs cost changes in cost history model.
         """
         self.ensure_one()
+
         bad_costs = self.employee_id.timesheet_cost_history_ids.filtered_domain(
             [("starting_date", ">=", self.starting_date)]
         )
-        costs = self.employee_id.timesheet_cost_history_ids - bad_costs
-        self.employee_id.sudo().write(
-            {
-                "hourly_cost": self.hourly_cost,
-                "timesheet_cost_history_ids": [
-                    fields.Command.set(costs.ids),
-                    fields.Command.create(
-                        {
-                            "employee_id": self.employee_id.id,
-                            "currency_id": self.currency_id.id,
-                            "hourly_cost": self.hourly_cost,
-                            "starting_date": self.starting_date,
-                            "comment": self.comment,
-                        }
-                    ),
-                ],
-            }
-        )
+        bad_costs.sudo().unlink()
+
+        self.employee_id.sudo().write(self._get_employee_cost_vals())
+
+        self._recompute_timesheets()
+
+    def _get_cost_history_vals(self):
+        self.ensure_one()
+        return {
+            "employee_id": self.employee_id.id,
+            "currency_id": self.currency_id.id,
+            "hourly_cost": self.hourly_cost,
+            "starting_date": self.starting_date,
+            "comment": self.comment,
+        }
+
+    def _get_employee_cost_vals(self):
+        """Return the values dict for writing on the employee record."""
+        self.ensure_one()
+        return {
+            "hourly_cost": self.hourly_cost,
+            "timesheet_cost_history_ids": [
+                fields.Command.create(self._get_cost_history_vals()),
+            ],
+        }
+
+    def _get_timesheet_domain(self):
+        self.ensure_one()
+        return [
+            ("employee_id", "=", self.employee_id.id),
+            ("date", ">=", self.starting_date),
+        ]
+
+    def _recompute_timesheets(self):
+        """Search and recompute timesheets from the given date."""
+        self.ensure_one()
         timesheet_ids = self.env["account.analytic.line"].search(
-            [
-                ("employee_id", "=", self.employee_id.id),
-                ("date", ">=", self.starting_date),
-            ]
+            self._get_timesheet_domain()
         )
         timesheet_ids._timesheet_postprocess({"employee_id": self.employee_id.id})

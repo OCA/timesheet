@@ -11,6 +11,7 @@
                     <group>
                         <group>
                             <field name="hourly_cost" string="Cost" />
+                            <field name="currency_id" invisible="1" />
                         </group>
                         <group>
                             <field name="starting_date" />

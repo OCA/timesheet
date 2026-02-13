@@ -12,6 +12,7 @@
                 <field name="comment" />
                 <field name="create_uid" optional="hide" />
                 <field name="create_date" optional="hide" />
+                <field name="currency_id" column_invisible="1" />
             </list>
         </field>
     </record>
