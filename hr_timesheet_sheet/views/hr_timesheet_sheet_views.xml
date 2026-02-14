@@ -119,6 +119,7 @@
                                     nolabel="1"
                                     readonly="state not in ['new', 'draft']"
                                     widget="x2many_2d_matrix"
+                                    class="o_hr_timesheet_matrix"
                                     field_x_axis="value_x"
                                     field_y_axis="value_y"
                                     field_value="unit_amount"
