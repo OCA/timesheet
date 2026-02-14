@@ -1,0 +1,18 @@
+.o_form_view .o_field_x2many_2d_matrix.o_hr_timesheet_matrix .table-responsive {
+    max-height: none;
+    overflow-y: visible;
+}
+
+.o_hr_timesheet_matrix {
+    .o_matrix_today {
+        background-color: rgba($info, 0.2);
+    }
+
+    .o_matrix_value_nonzero {
+        font-weight: bold;
+    }
+
+    .o_matrix_value_zero {
+        opacity: 0.5;
+    }
+}
