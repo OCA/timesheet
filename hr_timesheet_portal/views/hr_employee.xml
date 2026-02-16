@@ -6,7 +6,7 @@
             <field name="user_id" position="attributes">
                 <attribute
                     name="domain"
-                >["|", ("share", "=", False), ('groups_id', '=', %(hr_timesheet_portal.group_hr_timesheet_portal)s)]</attribute>
+                >["|", ("share", "=", False), ("group_ids", "in", [%(hr_timesheet_portal.group_hr_timesheet_portal)d])]</attribute>
             </field>
         </field>
     </record>

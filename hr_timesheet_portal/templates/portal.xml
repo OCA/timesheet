@@ -4,7 +4,7 @@
 <odoo>
     <template id="portal_my_task" inherit_id="hr_timesheet.portal_my_task">
         <xpath
-            expr="//div[@id='card_body']/div[@t-if='timesheets and allow_timesheets']"
+            expr="//div[@id='card_body']/div[@t-if='timesheets and allow_timesheets and show_portal_timesheets']"
             position="attributes"
         >
             <attribute name="class" add="hr_timesheet_portal" separator=" " />
@@ -15,7 +15,7 @@
             <attribute name="t-att-data-task-id">task.id</attribute>
         </xpath>
         <xpath
-            expr="//div[@t-if='timesheets and allow_timesheets']//h5"
+            expr="//div[@t-if='timesheets and allow_timesheets and show_portal_timesheets']//h5"
             position="inside"
         >
             <i
@@ -24,7 +24,7 @@
             />
         </xpath>
         <xpath
-            expr="//div[@id='card_body']/div[@t-if='timesheets and allow_timesheets']"
+            expr="//div[@id='card_body']/div[@t-if='timesheets and allow_timesheets and show_portal_timesheets']"
             position="after"
         >
             <div
