@@ -3,9 +3,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests import common
+from odoo.tests import common, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestHrTimesheetSheetPolicyDirectManager(common.TransactionCase):
     def setUp(self):
         super().setUp()
@@ -25,11 +26,7 @@ class TestHrTimesheetSheetPolicyDirectManager(common.TransactionCase):
             }
         )
         self.env.user.company_ids += self.company
-        self.employee_user = self.ResUsers.with_context(
-            {
-                "no_reset_password": True,
-            }
-        ).create(
+        self.employee_user = self.ResUsers.with_context(no_reset_password=True).create(
             {
                 "name": "Employee User",
                 "login": "employee_user",
@@ -51,9 +48,7 @@ class TestHrTimesheetSheetPolicyDirectManager(common.TransactionCase):
             }
         )
         self.direct_manager_user = self.ResUsers.with_context(
-            {
-                "no_reset_password": True,
-            }
+            no_reset_password=True
         ).create(
             {
                 "name": "Direct Manager User",
@@ -92,7 +87,7 @@ class TestHrTimesheetSheetPolicyDirectManager(common.TransactionCase):
 
     def test_review_policy_capture(self):
         self.company.timesheet_sheet_review_policy = "direct_manager"
-        sheet = self.HrTimesheetSheet.sudo(self.employee_user).create(
+        sheet = self.HrTimesheetSheet.with_user(self.employee_user).create(
             {
                 "company_id": self.company.id,
             }
@@ -105,7 +100,7 @@ class TestHrTimesheetSheetPolicyDirectManager(common.TransactionCase):
     def test_direct_manager_review_policy(self):
         self.company.timesheet_sheet_review_policy = "direct_manager"
 
-        sheet = self.HrTimesheetSheet.sudo(self.employee_user).create(
+        sheet = self.HrTimesheetSheet.with_user(self.employee_user).create(
             {
                 "company_id": self.company.id,
             }
@@ -115,17 +110,17 @@ class TestHrTimesheetSheetPolicyDirectManager(common.TransactionCase):
         sheet._compute_complete_name()
 
         sheet.action_timesheet_confirm()
-        self.assertFalse(sheet.sudo(self.employee_user).can_review)
+        self.assertFalse(sheet.with_user(self.employee_user).can_review)
         self.assertEqual(
-            self.HrTimesheetSheet.sudo(self.employee_user).search_count(
+            self.HrTimesheetSheet.with_user(self.employee_user).search_count(
                 [("can_review", "=", True)]
             ),
             0,
         )
         with self.assertRaises(UserError):
-            sheet.sudo(self.employee_user).action_timesheet_done()
-        sheet.sudo(self.direct_manager_user).action_timesheet_done()
-        sheet.sudo(self.direct_manager_user).action_timesheet_draft()
+            sheet.with_user(self.employee_user).action_timesheet_done()
+        sheet.with_user(self.direct_manager_user).action_timesheet_done()
+        sheet.with_user(self.direct_manager_user).action_timesheet_draft()
         sheet.unlink()
 
     def test_top_manager_review_policy(self):
@@ -133,20 +128,20 @@ class TestHrTimesheetSheetPolicyDirectManager(common.TransactionCase):
 
         self.assertTrue(self.direct_manager.child_ids)
         self.assertFalse(self.direct_manager.parent_id)
-        sheet = self.HrTimesheetSheet.sudo(self.direct_manager_user).create(
+        sheet = self.HrTimesheetSheet.with_user(self.direct_manager_user).create(
             {
                 "company_id": self.company.id,
             }
         )
         sheet._compute_complete_name()
         sheet.action_timesheet_confirm()
-        self.assertFalse(sheet.sudo(self.employee_user).can_review)
-        self.assertTrue(sheet.sudo(self.direct_manager_user).can_review)
+        self.assertFalse(sheet.with_user(self.employee_user).can_review)
+        self.assertTrue(sheet.with_user(self.direct_manager_user).can_review)
 
         with self.assertRaises(UserError):
-            sheet.sudo(self.employee_user).action_timesheet_done()
-        sheet.sudo(self.direct_manager_user).action_timesheet_done()
+            sheet.with_user(self.employee_user).action_timesheet_done()
+        sheet.with_user(self.direct_manager_user).action_timesheet_done()
         with self.assertRaises(UserError):
-            sheet.sudo(self.employee_user).action_timesheet_draft()
-        sheet.sudo(self.direct_manager_user).action_timesheet_draft()
+            sheet.with_user(self.employee_user).action_timesheet_draft()
+        sheet.with_user(self.direct_manager_user).action_timesheet_draft()
         sheet.unlink()
