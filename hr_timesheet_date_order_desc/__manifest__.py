@@ -2,7 +2,7 @@
     "name": "Timesheets Date Order Desc",
     "summary": "Add new timesheet entries to the top of the list and "
     "order by date descending",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "APSL-Nagarro, Odoo Community Association (OCA)",
     "maintainers": ["lbarry-apsl"],
     "license": "AGPL-3",

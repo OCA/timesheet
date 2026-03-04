@@ -5,7 +5,7 @@
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute name="editable">top</attribute>
                 <attribute name="default_order">date_time desc</attribute>
             </xpath>
@@ -16,7 +16,7 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='timesheet_ids']//tree" position="attributes">
+            <xpath expr="//field[@name='timesheet_ids']//list" position="attributes">
                 <attribute name="editable">top</attribute>
                 <attribute name="default_order">date_time desc</attribute>
             </xpath>
