@@ -6,7 +6,7 @@
 
 {
     "name": "HR Timesheet Sheet",
-    "version": "18.0.1.3.1",
+    "version": "18.0.1.3.2",
     "category": "Human Resources",
     "sequence": 80,
     "summary": "Timesheet Sheets, Activities",

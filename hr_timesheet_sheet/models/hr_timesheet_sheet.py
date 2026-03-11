@@ -454,7 +454,7 @@ class Sheet(models.Model):
                 rec.available_task_ids = project_task_obj.search(
                     [
                         ("project_id", "=", rec.add_line_project_id.id),
-                        ("company_id", "=", rec.company_id.id),
+                        ("company_id", "in", [rec.company_id.id, False]),
                         ("id", "not in", rec.timesheet_ids.mapped("task_id").ids),
                     ]
                 ).ids
