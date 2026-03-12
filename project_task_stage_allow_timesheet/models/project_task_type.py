@@ -5,7 +5,6 @@ from odoo import fields, models
 
 
 class ProjectTaskType(models.Model):
-
     _inherit = "project.task.type"
 
     allow_timesheet = fields.Boolean(

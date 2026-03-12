@@ -2,7 +2,6 @@
 <!-- Copyright 2018 ACSONE SA/NV
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record model="ir.ui.view" id="project_task_type_form_view">
         <field
             name="name"
@@ -10,11 +9,9 @@
         <field name="model">project.task.type</field>
         <field name="inherit_id" ref="project.task_type_edit" />
         <field name="arch" type="xml">
-
             <field name="fold" position="before">
                 <field name="allow_timesheet" />
             </field>
-
         </field>
     </record>
 
@@ -25,12 +22,9 @@
         <field name="model">project.task.type</field>
         <field name="inherit_id" ref="project.task_type_tree" />
         <field name="arch" type="xml">
-
             <field name="fold" position="before">
                 <field name="allow_timesheet" />
             </field>
-
         </field>
     </record>
-
 </odoo>
