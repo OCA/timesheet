@@ -1,5 +1,7 @@
 from datetime import datetime
 
+import pytz
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -90,17 +92,29 @@ class HrTimesheetSheet(models.Model):
     @api.model
     def create(self, vals):
         res = super(HrTimesheetSheet, self).create(vals)
+        tz_name = res.employee_id.user_id.partner_id.tz or "UTC"
+        employee_tz = pytz.timezone(tz_name)
+        date_start_utc = (
+            employee_tz.localize(datetime.combine(res.date_start, datetime.min.time()))
+            .astimezone(pytz.utc)
+            .replace(tzinfo=None)
+        )
+        date_end_utc = (
+            employee_tz.localize(datetime.combine(res.date_end, datetime.max.time()))
+            .astimezone(pytz.utc)
+            .replace(tzinfo=None)
+        )
         attendances = self.env["hr.attendance"].search(
             [
                 ("employee_id", "=", res.employee_id.id),
                 ("sheet_id", "=", False),
-                ("check_in", ">=", res.date_start),
-                ("check_in", "<=", res.date_end),
+                ("check_in", ">=", date_start_utc),
+                ("check_in", "<=", date_end_utc),
                 "|",
                 ("check_out", "=", False),
                 "&",
-                ("check_out", ">=", res.date_start),
-                ("check_out", "<=", res.date_end),
+                ("check_out", ">=", date_start_utc),
+                ("check_out", "<=", date_end_utc),
             ]
         )
         attendances._compute_sheet_id()

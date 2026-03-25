@@ -123,6 +123,24 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
             \nMethod: action_timesheet_confirm",
         )
 
+    def test_02_check_timesheet_compute_old_attendance_timezone(self):
+        """sheet_id should be set for attendances created before the sheet
+        when check_in UTC falls before date_start midnight due to timezone offset"""
+        self.user_id.tz = "Europe/Brussels"
+        # 2019-01-14 23:30 UTC = 2019-01-15 00:30 Europe/Brussels (UTC+1)
+        attendance = self._create_attendance(
+            employee=self.employee,
+            checkIn=datetime.datetime(2019, 1, 14, 23, 30, 0),
+        )
+        time_sheet = self._create_timesheet_sheet(
+            self.employee, datetime.date(2019, 1, 15)
+        )
+        self.assertEqual(
+            attendance.sheet_id,
+            time_sheet,
+            "Attendance with UTC check_in before date_start midnight should be linked",
+        )
+
     def test_03_sighin_sighout(self):
         """test Check In/Check Out button on timesheet-sheet"""
         time_sheet = self._create_timesheet_sheet(self.employee)
