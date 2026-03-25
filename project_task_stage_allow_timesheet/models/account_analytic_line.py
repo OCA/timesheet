@@ -2,7 +2,7 @@
 # Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -21,21 +21,21 @@ class AccountAnalyticLine(models.Model):
                 stage = task.stage_id
                 if task and stage and not stage.allow_timesheet:
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "You can't link a timesheet line to a task if its stage"
-                            " doesn't allow it. (Task: %(task_name)s, Stage: %(stage_name)s)"
+                            " doesn't allow it. (Task: %(task_name)s,"
+                            " Stage: %(stage_name)s)",
+                            task_name=task.display_name,
+                            stage_name=stage.display_name,
                         )
-                        % {
-                            "task_name": task.display_name,
-                            "stage_name": stage.display_name,
-                        }
                     )
 
     @api.model
     def _get_task_domain(self):
         return (
             "["
-            "('project_id', '=', project_id),"
+            "('allow_timesheets', '=', True),"
+            "('project_id', '=?', project_id),"
             "('stage_id.allow_timesheet', '=', True),"
             "]"
         )

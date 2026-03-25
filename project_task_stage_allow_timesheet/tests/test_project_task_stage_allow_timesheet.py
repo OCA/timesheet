@@ -28,6 +28,7 @@ class TestProjectTaskStageAllowTimesheet(TransactionCase):
             "employee_id": self.employee_1.id,
         }
         self.AnalyticLine.create(values)
+        self.AnalyticLine.with_context(is_timesheet=1).create(values)
 
         self.stage_new.allow_timesheet = False
         with self.assertRaises(ValidationError) as e, self.env.cr.savepoint():
