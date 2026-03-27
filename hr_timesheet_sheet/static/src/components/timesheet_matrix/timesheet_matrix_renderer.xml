@@ -9,6 +9,10 @@
             <attribute name="t-att-class">{o_matrix_today: column.isToday}</attribute>
         </xpath>
 
+        <xpath expr="//tbody/tr" position="attributes">
+            <attribute name="t-att-class">_getRowClass(row)</attribute>
+        </xpath>
+
         <xpath expr="//tbody//td[@t-foreach]" position="attributes">
             <attribute name="t-att-class">_getCellClass(column, row.value)</attribute>
         </xpath>
