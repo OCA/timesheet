@@ -33,16 +33,89 @@
                 <field
                     name="project_id"
                     groups="hr_timesheet.group_hr_timesheet_user"
+                    domain="[('allow_timesheets', '=', True), ('company_id', 'in', [False, company_id])]"
+                />
+                <field
+                    name="total_time_spent"
+                    widget="float_time"
+                    groups="hr_timesheet.group_hr_timesheet_user"
                 />
             </field>
             <page name="extra" position="after">
-                <page string="Timesheet" groups="hr_timesheet.group_hr_timesheet_user">
-                    <field name="timesheet_ids" invisible="1" />
+                <page
+                    name="page_timesheets"
+                    string="Timesheets"
+                    groups="hr_timesheet.group_hr_timesheet_user"
+                >
                     <field
                         name="timesheet_ids"
-                        groups="hr_timesheet.group_hr_timesheet_user"
-                        context="{'default_project_id': project_id, 'default_user_id': uid, 'tree_view_ref': 'hr_timesheet.timesheet_view_tree_user', 'form_view_ref': 'hr_timesheet.hr_timesheet_line_form'}"
-                    />
+                        mode="list,kanban"
+                        context="{'default_project_id': project_id, 'default_name': ''}"
+                    >
+                        <list editable="top" string="Timesheet Activities">
+                            <field name="date" />
+                            <field name="user_id" column_invisible="True" />
+                            <field
+                                name="employee_id"
+                                widget="many2one_avatar_employee"
+                                context="{'active_test': True}"
+                                required="1"
+                            />
+                            <field name="project_id" required="True" optional="hide" />
+                            <field name="name" string="Description" required="0" />
+                            <field
+                                name="unit_amount"
+                                string="Time Spent"
+                                widget="timesheet_uom"
+                                decoration-danger="unit_amount &gt; 24 or unit_amount &lt; 0"
+                            />
+                            <field name="project_id" column_invisible="True" />
+                            <field name="company_id" column_invisible="True" />
+                        </list>
+                        <kanban class="o_kanban_mobile">
+                            <templates>
+                                <t t-name="card">
+                                    <div class="row">
+                                        <div class="col-6 d-flex">
+                                            <field
+                                                name="employee_id"
+                                                class="me-1"
+                                                widget="many2one_avatar_employee"
+                                                context="{'active_test': True}"
+                                            />
+                                            <field
+                                                name="employee_id"
+                                                class="ps-1 fw-bold"
+                                            />
+                                        </div>
+                                        <field
+                                            name="date"
+                                            class="col-6 text-end fw-bold"
+                                        />
+                                    </div>
+                                    <div class="row mt-2">
+                                        <field
+                                            name="name"
+                                            class="col-8 text-muted"
+                                            required="0"
+                                        />
+                                        <field
+                                            name="unit_amount"
+                                            widget="float_time"
+                                            class="col-4 text-end fw-bold"
+                                        />
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                    </field>
+                    <group class="oe_subtotal_footer">
+                        <field
+                            name="total_time_spent"
+                            widget="timesheet_uom"
+                            string="Total Time Spent"
+                        />
+                    </group>
                 </page>
             </page>
         </field>
@@ -85,6 +158,13 @@
         <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
         <field name="arch" type="xml">
             <list position="inside">
+                <field
+                    name="total_time_spent"
+                    widget="float_time"
+                    sum="Total"
+                    optional="hide"
+                    groups="hr_timesheet.group_hr_timesheet_user"
+                />
                 <button
                     name="button_start_work"
                     string="Start work"
@@ -146,6 +226,13 @@
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
         <field name="arch" type="xml">
             <list position="inside">
+                <field
+                    name="total_time_spent"
+                    widget="float_time"
+                    sum="Total"
+                    optional="hide"
+                    groups="hr_timesheet.group_hr_timesheet_user"
+                />
                 <button
                     name="button_start_work"
                     string="Start work"

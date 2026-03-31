@@ -93,6 +93,10 @@ Contributors
    -  Valentin Vinagre
    -  Roger Sans
 
+-  `Studio73, S.L. <https://www.studio73.es>`__
+
+   -  Pablo Cortés
+
 Maintainers
 -----------
 

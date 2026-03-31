@@ -14,6 +14,8 @@
     "data": [
         "security/ir.model.access.csv",
         "views/crm_lead_view.xml",
+        "views/crm_team_view.xml",
+        "views/hr_timesheet_stop_view.xml",
         "views/hr_timesheet_view.xml",
     ],
     "author": "Tecnativa, Odoo Community Association (OCA)",

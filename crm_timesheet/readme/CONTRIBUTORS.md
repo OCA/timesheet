@@ -13,3 +13,6 @@
   - Harald Panten
   - Valentin Vinagre
   - Roger Sans
+
+- [Studio73, S.L.](https://www.studio73.es)
+  - Pablo Cortés
