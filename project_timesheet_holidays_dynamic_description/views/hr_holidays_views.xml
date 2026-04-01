@@ -1,0 +1,20 @@
+<odoo>
+    <record id="hr_holiday_status_view_form_inherit_description" model="ir.ui.view">
+        <field
+            name="name"
+        >hr.leave.type.form (in project_timesheet_holidays_leave_description_on_ts_lines)</field>
+        <field name="model">hr.leave.type</field>
+        <field
+            name="inherit_id"
+            ref="project_timesheet_holidays.hr_holiday_status_view_form_inherit"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='timesheet_generate']" position="after">
+                <field
+                    name="dynamic_timesheet_description"
+                    invisible="not timesheet_generate"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
