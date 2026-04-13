@@ -141,3 +141,28 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
             "Error while signout using button on timesheet.\
             \nMethod: attendance_action_change",
         )
+
+    def test_04_create_timezone_boundary_next_day(self):
+        """Test attendance at UTC date boundary that's next day in employee timezone.
+        Employee timezone is Europe/Brussels (UTC+1 in winter, UTC+2 in summer).
+        """
+        # Set employee timezone to Europe/Brussels for timezone boundary tests
+        self.user_id.tz = "Europe/Brussels"
+        # Attendance at Jan 14, 23:30 UTC = Jan 15, 00:30 Brussels (UTC+1)
+        # So it's Jan 15 in employee's timezone
+        attendance = self._create_attendance(
+            employee=self.employee,
+            checkIn=datetime.datetime(2019, 1, 14, 23, 30, 0),
+            checkOut=datetime.datetime(2019, 1, 15, 2, 0, 0),
+        )
+        # Timesheet for Jan 15-20
+        timesheet = self._create_timesheet_sheet(
+            self.employee, datetime.date(2019, 1, 15)
+        )
+        # Should be included (check_in is Jan 15 in Brussels)
+        self.assertIn(
+            attendance.id,
+            timesheet.attendances_ids.ids,
+            "Attendance should be included (Jan 14 23:30 UTC = Jan 15 in Brussels).\
+            \nMethod: create",
+        )
