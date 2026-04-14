@@ -9,6 +9,8 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
+from odoo.tools.sql import SQL
 
 
 class AccountAnalyticLine(models.Model):
@@ -28,6 +30,7 @@ class AccountAnalyticLine(models.Model):
         string="End Time",
         compute="_compute_date_time_end",
         inverse="_inverse_date_time_end",
+        search="_search_date_time_end",
     )
     show_time_control = fields.Selection(
         selection=[("resume", "Resume"), ("stop", "Stop")],
@@ -37,18 +40,25 @@ class AccountAnalyticLine(models.Model):
 
     @api.depends("date_time", "unit_amount", "product_uom_id")
     def _compute_date_time_end(self):
-        hour_uom = self.env.ref("uom.product_uom_hour")
+        uom_ref = self.env.ref("uom.product_uom_hour")
         for record in self:
             if (
-                record.product_uom_id == hour_uom
+                record.unit_amount
                 and record.date_time
-                and record.unit_amount
+                and uom_ref
+                in (
+                    record.product_uom_id.related_uom_ids | record.product_uom_id
+                    or record.company_id.project_time_mode_id
+                )
             ):
                 record.date_time_end = record.date_time + relativedelta(
                     hours=record.unit_amount
+                    * (
+                        record.product_uom_id or record.company_id.project_time_mode_id
+                    ).factor
                 )
             else:
-                record.date_time_end = record.date_time_end
+                record.date_time_end = False
 
     def _inverse_date_time_end(self):
         hour_uom = self.env.ref("uom.product_uom_hour")
@@ -172,3 +182,28 @@ class AccountAnalyticLine(models.Model):
                 )
             line.unit_amount = line._duration(line.date_time, end)
         return True
+
+    @api.model
+    def _search_date_time_end(self, operator, value):
+        allowed_operators = {"<", "<=", ">", ">=", "=", "!="}
+        if operator not in allowed_operators:
+            raise UserError(self.env._("Unsupported operator: %s", operator))
+
+        value = fields.Datetime.to_datetime(value)
+        hour_uom = self.env.ref("uom.product_uom_hour")
+        return Domain.custom(
+            to_sql=lambda model, alias, query: SQL(
+                "("
+                "%(date_time)s + %(unit_amount)s * "
+                "(select 1 / factor * %(day_factor)s "
+                "from uom_uom where id = %(product_uom_id)s) * "
+                "interval '1 hour'"
+                ") %(operator)s %(value)s",
+                date_time=model._field_to_sql(alias, "date_time", query),
+                unit_amount=model._field_to_sql(alias, "unit_amount", query),
+                product_uom_id=model._field_to_sql(alias, "product_uom_id", query),
+                day_factor=hour_uom.factor,
+                operator=SQL(operator),
+                value=value,
+            )
+        )

@@ -55,7 +55,6 @@ class TestProjectTimesheetTimeControlBase(BaseCommon):
 
     def _create_wizard(self, action, active_record):
         """Create a new hr.timesheet.switch wizard in the specified context.
-
         :param dict action: Action definition that creates the wizard.
         :param active_record: Record being browsed when creating the wizard.
         """
@@ -97,11 +96,9 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
     def test_write_analytic_line_date(self):
         line = self._create_analytic_line(datetime(2016, 3, 24, 12, 0))
         line2 = self._create_analytic_line(datetime(2016, 3, 23, 13, 0))
-
         lines = self.env["account.analytic.line"]
         lines += line
         lines += line2
-
         lines.write({"date": datetime(2016, 1, 1)})
         self.assertEqual(line.date_time, datetime(2016, 1, 1, 12, 0))
         self.assertEqual(line2.date_time, datetime(2016, 1, 1, 13, 0))
@@ -305,6 +302,28 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
         line.unit_amount = 500.0
         self.assertFalse(line.date_time_end)
 
+    def test_search(self):
+        line = (
+            self.env["account.analytic.line"]
+            .with_user(self.user)
+            .create(
+                {
+                    "date": date(2023, 1, 10),
+                    "date_time": datetime(2023, 1, 10, 8, 0, 0),
+                    "unit_amount": 2.0,
+                    "project_id": self.project.id,
+                    "name": "Test line",
+                }
+            )
+        )
+        result = self.env["account.analytic.line"].search(
+            [
+                ("date_time_end", ">=", "2023-01-10 09:00:00"),
+                ("date_time_end", "<=", "2023-01-10 11:00:00"),
+            ]
+        )
+        self.assertIn(line, result)
+
     def test_onchange_date_time_with_hour_uom_and_dates(self):
         hour_uom = self.env.ref("uom.product_uom_hour")
         form = Form(
@@ -316,7 +335,7 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
         form.date_time = datetime(2023, 1, 1, 8, 0, 0)
         form.date_time_end = datetime(2023, 1, 1, 10, 0, 0)
         self.assertEqual(form.unit_amount, 2.0)
-
+        # Changing end time updates unit_amount
         form.date_time_end = datetime(2023, 1, 1, 12, 0, 0)
         self.assertEqual(form.unit_amount, 4.0)
         self.assertEqual(form.date, date(2023, 1, 1))
@@ -330,8 +349,8 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
             view=self.env.ref("hr_timesheet_time_control.hr_timesheet_line_form"),
         )
         form.date_time = datetime(2023, 1, 1, 8, 0, 0)
+        # Setting end date to False should set unit_amount to 0
         form.date_time_end = False
-
         self.assertEqual(form.unit_amount, 0)
         self.assertEqual(form.date, date(2023, 1, 1))
 
@@ -349,7 +368,7 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
             )
         )
         self.assertEqual(line.date_time.date(), date(2023, 1, 1))
-
+        # Time part should be set to current time
         line.date = date(2023, 1, 3)
         self.assertEqual(line.date, date(2023, 1, 3))
         self.assertEqual(line.date_time.date(), date(2023, 1, 3))
@@ -369,7 +388,7 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
             )
         )
         self.assertEqual(line.date_time, datetime(2023, 1, 1, 8, 0, 0))
-
+        # Changing date should not change time part
         line.date = date(2023, 1, 3)
         self.assertEqual(line.date, date(2023, 1, 3))
         self.assertEqual(line.date_time, datetime(2023, 1, 3, 8, 0, 0))
