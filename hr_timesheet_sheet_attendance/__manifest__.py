@@ -1,6 +1,6 @@
 {
     "name": "HR Timesheet Sheet Attendance",
-    "version": "18.0.1.0.2",
+    "version": "18.0.1.0.3",
     "category": "Human Resources",
     "sequence": 80,
     "license": "AGPL-3",
