@@ -14,10 +14,10 @@ class AccountAnalyticLine(models.Model):
         # or after the previous entry.
         params = self.env["ir.config_parameter"].sudo()
         timesheet_alignment = params.get_param(
-            "project_timesheet_time_control.timesheet_alignment"
+            "hr_timesheet_time_control.timesheet_alignment"
         )
         # default to now
-        start_time = fields.Datetime.now()
+        start_time = super()._get_default_start_time()
         if timesheet_alignment == "now":
             return start_time
         defaults = self.default_get(["employee_id", "company_id", "date"])
@@ -28,7 +28,7 @@ class AccountAnalyticLine(models.Model):
         )
         employee_id = defaults.get(
             "employee_id",
-            self._context.get("default_employee_id", self.env.user.employee_id.id),
+            self.env.user.employee_id.id,
         )
         if not employee_id:
             return start_time
@@ -64,27 +64,13 @@ class AccountAnalyticLine(models.Model):
                     )
         return start_time
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            if "date" in vals and "date_time" not in vals:
-                date = fields.Date.to_date(vals["date"])
-                vals["date_time"] = datetime.combine(
-                    date,
-                    self.with_context(
-                        default_employee_id=vals.get(
-                            "employee_id", self.env.context.get("default_employee_id")
-                        ),
-                        default_date=date,
-                    )
-                    ._get_default_start_time()
-                    .time(),
-                )
-        return super().create(list(map(self._eval_date, vals_list)))
-
-    date_time = fields.Datetime(
-        string="Start Time", default=_get_default_start_time, copy=False
-    )
+    @api.model
+    def _eval_date(self, vals):
+        ctx = {}
+        if vals.get("employee_id"):
+            ctx["default_employee_id"] = vals["employee_id"]
+        # Should be replaced by something like this:
+        return super(AccountAnalyticLine, self.with_context(**ctx))._eval_date(vals)
 
     def _add_missing_default_values(self, vals):
         if "employee_id" in vals:
@@ -113,9 +99,41 @@ class AccountAnalyticLine(models.Model):
 
     @api.model
     def default_get(self, fields_list):
-        vals = super().default_get(fields_list)
+        # Convert default_date_time from string to datetime
+        default_date_time = self.env.context.get("default_date_time")
+        default_date_time_end = self.env.context.get("default_date_time_end")
+        if isinstance(default_date_time, str):
+            default_date_time = fields.Datetime.from_string(default_date_time)
+        if isinstance(default_date_time_end, str):
+            default_date_time_end = fields.Datetime.from_string(default_date_time_end)
+        ctx = {}
+        if default_date_time:
+            ctx["default_date_time"] = default_date_time
+        if default_date_time_end:
+            ctx["default_date_time_end"] = default_date_time_end
+        vals = super(
+            AccountAnalyticLine,
+            self.with_context(**ctx),
+        ).default_get(fields_list)
+        # Handle calendar context: fill in date_time_end and unit_amount
+        # when calendar creates a quick event with a time range
+        if "date_time_end" in fields_list:
+            if default_date_time_end:
+                vals["date_time_end"] = default_date_time_end
+
+        # Calculate unit_amount if both start and end times are available
+        date_time = vals.get("date_time") or default_date_time
+        if "unit_amount" in fields_list:
+            date_time_end = vals.get("date_time_end") or default_date_time_end
+            if date_time and date_time_end:
+                # Calculate duration in hours
+                duration = date_time_end - date_time
+                hours = duration.total_seconds() / 3600
+                vals["unit_amount"] = max(0, hours)
+        if date_time:
+            vals["date"] = date_time.date()
         if (
-            self._context.get("is_timesheet", False)
+            self.env.context.get("is_timesheet", False)
             and "product_uom_id" in fields_list
             and "product_uom_id" not in vals
         ):
@@ -125,19 +143,16 @@ class AccountAnalyticLine(models.Model):
                 company = self.env["res.company"].browse(company_id)
             if not company:
                 employee_in_id = vals.get(
-                    "employee_id", self._context.get("default_employee_id", False)
+                    "employee_id", self.env.context.get("default_employee_id", False)
                 )
                 if employee_in_id:
                     company = self.env["hr.employee"].browse(employee_in_id).company_id
                 else:
                     company = self.env["res.company"].browse(self.env.company.id)
-
             if "company_id" in fields_list:
                 vals["company_id"] = company.id
-
             if company:
                 vals["product_uom_id"] = company.project_time_mode_id.id
-
         return vals
 
     @api.model

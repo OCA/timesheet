@@ -2,7 +2,7 @@ from datetime import date, datetime, timedelta
 
 from freezegun import freeze_time
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.exceptions import UserError
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -14,14 +14,120 @@ class TestAccountAnalyticLine(BaseCommon):
         super().setUpClass()
         cls.analytic_line_model = cls.env["account.analytic.line"]
         cls.test_user = cls.env.ref("base.user_admin")
-        cls.employee = cls.env.ref("hr.employee_hne")
-        cls.project = cls.env.ref("project.project_project_2")
-        cls.task = cls.env.ref("project.project_2_task_6")
+        calendar = cls.env["resource.calendar"].create(
+            {
+                "name": "Test Calendar (6-15)",
+                "tz": "Europe/Brussels",
+                "attendance_ids": [
+                    Command.create(
+                        {
+                            "name": "Mon AM",
+                            "dayofweek": "0",
+                            "hour_from": 8.0,
+                            "hour_to": 12.0,
+                            "day_period": "morning",
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Mon PM",
+                            "dayofweek": "0",
+                            "hour_from": 13.0,
+                            "hour_to": 15.0,
+                            "day_period": "afternoon",
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Tue AM",
+                            "dayofweek": "1",
+                            "hour_from": 8.0,
+                            "hour_to": 12.0,
+                            "day_period": "morning",
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Tue PM",
+                            "dayofweek": "1",
+                            "hour_from": 13.0,
+                            "hour_to": 15.0,
+                            "day_period": "afternoon",
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Wed AM",
+                            "dayofweek": "2",
+                            "hour_from": 8.0,
+                            "hour_to": 12.0,
+                            "day_period": "morning",
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Wed PM",
+                            "dayofweek": "2",
+                            "hour_from": 13.0,
+                            "hour_to": 15.0,
+                            "day_period": "afternoon",
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Thu AM",
+                            "dayofweek": "3",
+                            "hour_from": 8.0,
+                            "hour_to": 12.0,
+                            "day_period": "morning",
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Thu PM",
+                            "dayofweek": "3",
+                            "hour_from": 13.0,
+                            "hour_to": 15.0,
+                            "day_period": "afternoon",
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Fri AM",
+                            "dayofweek": "4",
+                            "hour_from": 8.0,
+                            "hour_to": 12.0,
+                            "day_period": "morning",
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Fri PM",
+                            "dayofweek": "4",
+                            "hour_from": 13.0,
+                            "hour_to": 15.0,
+                            "day_period": "afternoon",
+                        }
+                    ),
+                ],
+            }
+        )
+        cls.employee = cls.env["hr.employee"].create(
+            {
+                "name": "Test Employee",
+                "resource_calendar_id": calendar.id,
+                "tz": "Europe/Brussels",
+            }
+        )
+        cls.project = cls.env["project.project"].create({"name": "Test Project"})
+        cls.task = cls.env["project.task"].create(
+            {"name": "Test Task", "project_id": cls.project.id}
+        )
 
         cls.analytic_line_model = cls.env["account.analytic.line"]
         cls.uom_hour = cls.env.ref("uom.product_uom_hour")
         cls.env["ir.config_parameter"].sudo().set_param(
-            "project_timesheet_time_control.timesheet_alignment", "no-gap"
+            "hr_timesheet_time_control.timesheet_alignment", "no-gap"
         )
 
     @freeze_time("2025-04-03")
@@ -86,7 +192,7 @@ class TestAccountAnalyticLine(BaseCommon):
     def test_get_default_start_time_now(self):
         """Test the default start time calculation."""
         self.env["ir.config_parameter"].sudo().set_param(
-            "project_timesheet_time_control.timesheet_alignment", "now"
+            "hr_timesheet_time_control.timesheet_alignment", "now"
         )
         default_start_time = self.analytic_line_model._get_default_start_time()
         self.assertEqual(default_start_time, datetime(2025, 4, 2, 12, 0, 0))
@@ -183,6 +289,58 @@ class TestAccountAnalyticLine(BaseCommon):
         self.assertEqual(analytic_line.date, date(2025, 4, 2))
         self.assertEqual(analytic_line.date_time_end, datetime(2025, 4, 2, 14, 0, 0))
 
+    @freeze_time("2025-04-05 12:00:00")
+    def test_create_date_no_date_time(self):
+        # arrange
+        self.analytic_line_model.create(
+            [
+                {
+                    "name": "Test Line",
+                    "employee_id": self.employee.id,
+                    "date_time": datetime(2025, 4, 2, 14, 0, 0),
+                    "date_time_end": datetime(2025, 4, 2, 15, 0, 0),
+                    "product_uom_id": self.uom_hour.id,
+                },
+                {
+                    "name": "Test Line 2",
+                    "employee_id": self.employee.id,
+                    "date_time": datetime(2025, 4, 2, 12, 0, 0),
+                    "date_time_end": datetime(2025, 4, 2, 13, 0, 0),
+                    "product_uom_id": self.uom_hour.id,
+                },
+            ]
+        )
+        # act
+        analytic_line = self.analytic_line_model.create(
+            {
+                "name": "Test Line",
+                "date": date(2025, 4, 2),
+                "employee_id": self.employee.id,
+                "unit_amount": 2,
+                "product_uom_id": self.uom_hour.id,
+            }
+        )
+        # assert
+        self.assertEqual(analytic_line.date, date(2025, 4, 2))
+        self.assertEqual(analytic_line.date_time, datetime(2025, 4, 2, 15, 0, 0))
+        self.assertEqual(analytic_line.date_time_end, datetime(2025, 4, 2, 17, 0, 0))
+        self.assertEqual(analytic_line.unit_amount, 2)
+
+    def test_create_with_default_date_time(self):
+        """Calender uses default_date_time as string"""
+        analytic_line = self.analytic_line_model.with_context(
+            default_date_time="2025-04-05 12:00:00"
+        ).create(
+            {
+                "name": "Test Line",
+                "employee_id": self.employee.id,
+                "unit_amount": 2,
+                "product_uom_id": self.uom_hour.id,
+            }
+        )
+        self.assertEqual(analytic_line.date, date(2025, 4, 5))
+        self.assertEqual(analytic_line.date_time_end, datetime(2025, 4, 5, 14, 0, 0))
+
     def test_compute_unit_amount(self):
         """Test the computation of date_time_end based on unit_amount."""
         analytic_line = self.analytic_line_model.create(
@@ -259,3 +417,20 @@ class TestAccountAnalyticLine(BaseCommon):
         vals = self.analytic_line_model.default_get(["product_uom_id"])
         self.assertNotIn("product_uom_id", vals)
         self.assertNotIn("company_id", vals)
+
+    @freeze_time("2025-04-02 12:00:00")
+    def test_default_get_calendar_context_with_end_time(self):
+        """Test default_get with calendar context including end time."""
+        start_time = datetime(2025, 4, 2, 14, 0, 0)
+        end_time = datetime(2025, 4, 2, 16, 30, 0)  # 2.5 hours
+
+        # Simulate calendar context with start and end times
+        vals = self.analytic_line_model.with_context(
+            default_date_time=start_time,
+            default_date_time_end=end_time,
+        ).default_get(["date_time", "date_time_end", "unit_amount"])
+
+        # Check that end time is populated from context
+        self.assertEqual(vals.get("date_time_end"), end_time)
+        # Check that unit_amount is calculated correctly (2.5 hours)
+        self.assertAlmostEqual(vals.get("unit_amount", 0), 2.5, places=5)
