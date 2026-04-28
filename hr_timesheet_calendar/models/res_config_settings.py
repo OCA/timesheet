@@ -10,6 +10,6 @@ class ResConfigSettings(models.TransientModel):
             ("no-gap", "Align to previous entry"),
         ],
         default="now",
-        config_parameter="project_timesheet_time_control.timesheet_alignment",
+        config_parameter="hr_timesheet_time_control.timesheet_alignment",
         help="Choose the alignment of new timesheet entries without start time.",
     )
