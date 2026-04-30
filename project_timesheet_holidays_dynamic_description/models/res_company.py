@@ -4,8 +4,8 @@
 from odoo import fields, models
 
 
-class HolidaysType(models.Model):
-    _inherit = "hr.leave.type"
+class ResCompany(models.Model):
+    _inherit = "res.company"
 
     dynamic_timesheet_description = fields.Boolean(
         string="Dynamic Description",

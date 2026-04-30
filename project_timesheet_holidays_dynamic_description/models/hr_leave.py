@@ -14,7 +14,7 @@ class HrLeave(models.Model):
             index, work_hours_data, day_date, work_hours_count, project, task
         )
 
-        if self.holiday_status_id.dynamic_timesheet_description and self.name:
+        if self.company_id.dynamic_timesheet_description and self.name:
             old_ts_line = timesheet_line.get("name", "")
             timesheet_line["name"] = self.name + " - " + old_ts_line
 

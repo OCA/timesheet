@@ -7,11 +7,10 @@
         Use the time off description for the generated timesheet lines.
     """,
     "category": "Human Resources",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "depends": ["project_timesheet_holidays"],
-    "data": ["views/hr_holidays_views.xml"],
+    "data": ["views/res_config_settings_views.xml"],
     "author": "Solvos Consultoría Informática, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/timesheet",
     "license": "AGPL-3",
-    "installable": True,
 }

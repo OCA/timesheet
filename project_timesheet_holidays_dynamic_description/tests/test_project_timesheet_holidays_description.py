@@ -5,11 +5,13 @@ from odoo import Command, fields
 from odoo.tests.common import TransactionCase, tagged
 
 
-@tagged("post_install", "-at_install")
+@tagged("post_install", "-at_install", "testeando")
 class TestProjectTimesheetHolidaysDescription(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
         cls.Employee = cls.env["hr.employee"]
         cls.LeaveType = cls.env["hr.leave.type"]
@@ -18,12 +20,13 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
 
         cls.Project = cls.env["project.project"]
         cls.Task = cls.env["project.task"]
+        cls.Company = cls.env.user.company_id
 
         cls.user_employee = cls.env["res.users"].create(
             {
                 "name": "HR Employee",
                 "login": "hr_employee",
-                "groups_id": [
+                "group_ids": [
                     Command.set(
                         [
                             cls.env.ref("hr_timesheet.group_hr_timesheet_user").id,
@@ -37,7 +40,7 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
             {
                 "name": "HR Approver",
                 "login": "hr_approver",
-                "groups_id": [
+                "group_ids": [
                     Command.set(
                         [
                             cls.env.ref("hr_holidays.group_hr_holidays_user").id,
@@ -51,6 +54,8 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
         cls.project = cls.Project.create(
             {
                 "name": "Project Vacations",
+                "company_id": cls.Company.id,
+                "allow_timesheets": True,
             }
         )
 
@@ -58,6 +63,15 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
             {
                 "name": "Vacations Task",
                 "project_id": cls.project.id,
+                "company_id": cls.Company.id,
+            }
+        )
+
+        cls.Company.write(
+            {
+                "internal_project_id": cls.project.id,
+                "leave_timesheet_task_id": cls.task.id,
+                "dynamic_timesheet_description": True,
             }
         )
 
@@ -65,21 +79,30 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
             {
                 "name": "Test Employee",
                 "user_id": cls.user_employee.id,
+                "company_id": cls.Company.id,
             }
         )
 
         cls.leave_type = cls.LeaveType.create(
             {
                 "name": "Leave Test",
-                "requires_allocation": "no",
-                "timesheet_generate": True,
-                "timesheet_project_id": cls.project.id,
-                "timesheet_task_id": cls.task.id,
-                "dynamic_timesheet_description": True,
+                "requires_allocation": "yes",
+                "company_id": cls.Company.id,
             }
         )
 
-    def _create_leave_with_timesheet(self):
+        cls.allocation = cls.env["hr.leave.allocation"].create(
+            {
+                "name": "Test Allocation",
+                "employee_id": cls.employee.id,
+                "holiday_status_id": cls.leave_type.id,
+                "number_of_days": 30,
+                "state": "confirm",
+            }
+        )
+        cls.allocation._action_validate()
+
+    def _create_leave_with_timesheet(self, days_offset=0):
         self.leave = self.Leave.create(
             {
                 "name": "Vacations",
@@ -90,7 +113,7 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
             }
         )
 
-        self.leave.action_validate()
+        self.leave._action_validate()
 
         ts = self.AnalyticLine.search([("holiday_id", "=", self.leave.id)], limit=1)
 
@@ -98,7 +121,7 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
         return ts
 
     def test_match_timesheet_and_leave_description(self):
-        ts = self._create_leave_with_timesheet()
+        ts = self._create_leave_with_timesheet(days_offset=1)
 
         self.assertTrue(
             ts.name.startswith(self.leave.name),
@@ -106,9 +129,9 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
         )
 
     def test_no_match_when_config_disabled(self):
-        self.leave_type.dynamic_timesheet_description = False
+        self.Company.dynamic_timesheet_description = False
 
-        ts = self._create_leave_with_timesheet()
+        ts = self._create_leave_with_timesheet(days_offset=5)
 
         self.assertNotIn(
             self.leave.name,
