@@ -17,3 +17,13 @@ msgstr ""
 #: model:ir.model,name:hr_timesheet_autofill_project_off.model_account_analytic_line
 msgid "Analytic Line"
 msgstr ""
+
+#. module: hr_timesheet_autofill_project_off
+#: model:ir.model.fields,field_description:hr_timesheet_autofill_project_off.field_account_analytic_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_timesheet_autofill_project_off
+#: model:ir.model.fields,field_description:hr_timesheet_autofill_project_off.field_account_analytic_line__id
+msgid "ID"
+msgstr ""
