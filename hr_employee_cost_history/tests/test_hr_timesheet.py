@@ -4,13 +4,15 @@
 from datetime import date
 
 from dateutil.relativedelta import relativedelta
-from freezegun import freeze_time
 
-from odoo.tests import Form, TransactionCase, new_test_user, users
+from odoo.tests import Form, new_test_user, users
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-@freeze_time("2024-02-23", tick=True)
-class HrEmployeeCostHistory(TransactionCase):
+class HrEmployeeCostHistory(BaseCommon):
+    BASE_DATE = date(2024, 2, 23)
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -76,7 +78,7 @@ class HrEmployeeCostHistory(TransactionCase):
                     "unit_amount": 4,
                     "user_id": cls.user_employee.id,
                     "employee_id": cls.employee.id,
-                    "date": date.today() - relativedelta(days=5),
+                    "date": cls.BASE_DATE - relativedelta(days=5),
                 },
                 {
                     "project_id": cls.project_customer.id,
@@ -85,7 +87,7 @@ class HrEmployeeCostHistory(TransactionCase):
                     "unit_amount": 3,
                     "user_id": cls.user_employee.id,
                     "employee_id": cls.employee.id,
-                    "date": date.today() - relativedelta(days=3),
+                    "date": cls.BASE_DATE - relativedelta(days=3),
                 },
                 {
                     "project_id": cls.project_customer.id,
@@ -94,7 +96,7 @@ class HrEmployeeCostHistory(TransactionCase):
                     "unit_amount": 2,
                     "user_id": cls.user_employee.id,
                     "employee_id": cls.employee.id,
-                    "date": date.today() - relativedelta(days=1),
+                    "date": cls.BASE_DATE - relativedelta(days=1),
                 },
             ]
         )
@@ -114,19 +116,15 @@ class HrEmployeeCostHistory(TransactionCase):
     @users("test_user_manager")
     def test_update_employee_cost_change(self):
         """Test modify employee's costs."""
-        old_cost = sum(
-            self.env["account.analytic.line"]
-            .search([("project_id", "=", self.project_customer.id)])
-            .mapped("amount")
-        )
-        old_cost = self.env["account.analytic.line"].read_group(
+        old_cost_group = self.env["account.analytic.line"]._read_group(
             [("project_id", "=", self.project_customer.id)],
-            ["amount"],
             ["project_id"],
-        )[0]["amount"]
+            ["amount:sum"],
+        )
+        old_cost = old_cost_group[0][1] if old_cost_group else 0.0
         self.assertEqual(old_cost, -90.0)
         self.new_timesheet_cost_wizard(
-            self.employee, 15.0, date.today() - relativedelta(days=2)
+            self.employee, 15.0, self.BASE_DATE - relativedelta(days=2)
         )
         new_cost = sum(
             self.env["account.analytic.line"]
@@ -135,7 +133,7 @@ class HrEmployeeCostHistory(TransactionCase):
         )
         self.assertEqual(new_cost, -100.0)
         self.new_timesheet_cost_wizard(
-            self.employee, 20.0, date.today() - relativedelta(days=4)
+            self.employee, 20.0, self.BASE_DATE - relativedelta(days=4)
         )
         new_cost = sum(
             self.env["account.analytic.line"]
@@ -144,7 +142,7 @@ class HrEmployeeCostHistory(TransactionCase):
         )
         self.assertEqual(new_cost, -140.0)
         self.new_timesheet_cost_wizard(
-            self.employee, 20.0, date.today() - relativedelta(days=5)
+            self.employee, 20.0, self.BASE_DATE - relativedelta(days=5)
         )
         new_cost = sum(
             self.env["account.analytic.line"]
@@ -160,11 +158,11 @@ class HrEmployeeCostHistory(TransactionCase):
         days_history_cost = [15, 10, 5, 1]
         for days in days_history_cost:
             self.new_timesheet_cost_wizard(
-                self.employee, 15.0, date.today() - relativedelta(days=days)
+                self.employee, 15.0, self.BASE_DATE - relativedelta(days=days)
             )
         # overlap the last two cost changes
         self.new_timesheet_cost_wizard(
-            self.employee, 15.0, date.today() - relativedelta(days=7)
+            self.employee, 15.0, self.BASE_DATE - relativedelta(days=7)
         )
         new_days_history_cost = [15, 10, 7]
         timesheet_cost_ids = self.env["hr.employee.timesheet.cost.history"].search(
@@ -178,11 +176,11 @@ class HrEmployeeCostHistory(TransactionCase):
         ):
             self.assertEqual(
                 timesheet_cost.starting_date,
-                date.today() - relativedelta(days=days),
+                self.BASE_DATE - relativedelta(days=days),
             )
         # modify same day but change cost
         self.new_timesheet_cost_wizard(
-            self.employee, 20.0, date.today() - relativedelta(days=7)
+            self.employee, 20.0, self.BASE_DATE - relativedelta(days=7)
         )
         timesheet_cost_ids = self.env["hr.employee.timesheet.cost.history"].search(
             [
@@ -195,7 +193,7 @@ class HrEmployeeCostHistory(TransactionCase):
         ):
             self.assertEqual(
                 timesheet_cost.starting_date,
-                date.today() - relativedelta(days=days),
+                self.BASE_DATE - relativedelta(days=days),
             )
         last_timesheet = timesheet_cost_ids[-1]
         self.assertEqual(last_timesheet.hourly_cost, 20.0)
@@ -207,7 +205,7 @@ class HrEmployeeCostHistory(TransactionCase):
             self.env["hr.employee.timesheet.cost.wizard"].with_context(
                 default_employee_id=self.employee.id,
                 default_hourly_cost=123,
-                default_starting_date=date.today(),
+                default_starting_date=self.BASE_DATE,
                 default_comment="Test comment",
             )
         )

@@ -3,18 +3,18 @@
 {
     "name": "HR Employee Cost History",
     "summary": """Adds an history to employee's costs.""",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "development_status": "Beta",
     "category": "Human Resources",
     "website": "https://github.com/OCA/timesheet",
     "author": "Moduon, Odoo Community Association (OCA)",
     "maintainers": ["SabrinaRMArtin", "rafaelbn"],
     "license": "LGPL-3",
-    "external_dependencies": {"python": ["freezegun"]},
     "installable": True,
     "auto_install": False,
     "depends": [
         "hr_timesheet",
+        "hr_hourly_cost",
     ],
     "data": [
         "security/ir.model.access.csv",
