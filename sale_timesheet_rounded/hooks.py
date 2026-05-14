@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 def pre_init_hook(env):
     """Initialize the value of the given column for existing rows in a fast way."""
     _logger.info(
-        "Initializing column `unit_amount_rounded` with the " "value of `unit_amount`"
+        "Initializing column `unit_amount_rounded` with the value of `unit_amount`"
     )
     table = sql.Identifier("account_analytic_line")
     column = sql.Identifier("unit_amount_rounded")

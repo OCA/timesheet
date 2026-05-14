@@ -25,7 +25,7 @@ class TestRounded(TestCommonSaleTimesheet):
                 "name": cls.product_delivery_timesheet2.name,
                 "product_id": cls.product_delivery_timesheet2.id,
                 "product_uom_qty": 1,
-                "product_uom": cls.product_delivery_timesheet2.uom_id.id,
+                "product_uom_id": cls.product_delivery_timesheet2.uom_id.id,
                 "price_unit": cls.product_delivery_timesheet2.list_price,
             }
         )
@@ -46,7 +46,6 @@ class TestRounded(TestCommonSaleTimesheet):
                 "type": "service",
                 "invoice_policy": "order",
                 "uom_id": cls.product_delivery_timesheet2.uom_id.id,
-                "uom_po_id": cls.product_delivery_timesheet2.uom_id.id,
             }
         )
         cls.analytic_plan = cls.env["account.analytic.plan"].create(
