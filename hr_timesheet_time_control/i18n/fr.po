@@ -242,6 +242,7 @@ msgid "Show Time Control"
 msgstr "Montrer les Minuteurs"
 
 #. module: hr_timesheet_time_control
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__crm_lead__show_time_control__start
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__start
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_project__show_time_control__start
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_task__show_time_control__start
@@ -275,6 +276,7 @@ msgstr "Démarrer le travail"
 
 #. module: hr_timesheet_time_control
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__account_analytic_line__show_time_control__stop
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__crm_lead__show_time_control__stop
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__stop
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_project__show_time_control__stop
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_task__show_time_control__stop

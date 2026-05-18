@@ -193,8 +193,8 @@ msgid ""
 "No running timer found in %(model)s %(record)s. Refresh the page and check "
 "again."
 msgstr ""
-"No se ha encontrado ningún cronómetro corriendo en el/la %(model)s "
-"%(record)s. Refresque la página y pruebe de nuevo."
+"No se ha encontrado ningún cronómetro corriendo en el/la %(model)s %"
+"(record)s. Refresque la página y pruebe de nuevo."
 
 #. module: hr_timesheet_time_control
 #: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__analytic_line_id
@@ -247,6 +247,7 @@ msgid "Show Time Control"
 msgstr "Mostrar controles del cronómetro"
 
 #. module: hr_timesheet_time_control
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__crm_lead__show_time_control__start
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__start
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_project__show_time_control__start
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_task__show_time_control__start
@@ -280,6 +281,7 @@ msgstr "Comenzar trabajo"
 
 #. module: hr_timesheet_time_control
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__account_analytic_line__show_time_control__stop
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__crm_lead__show_time_control__stop
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__stop
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_project__show_time_control__stop
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_task__show_time_control__stop

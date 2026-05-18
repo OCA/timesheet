@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-05-10 02:40+0000\n"
 "PO-Revision-Date: 2023-10-28 09:51+0000\n"
 "Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -246,6 +246,7 @@ msgid "Show Time Control"
 msgstr "Mostrar Controle de Tempo"
 
 #. module: hr_timesheet_time_control
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__crm_lead__show_time_control__start
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__start
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_project__show_time_control__start
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_task__show_time_control__start
@@ -279,6 +280,7 @@ msgstr "Começar a trabalhar"
 
 #. module: hr_timesheet_time_control
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__account_analytic_line__show_time_control__stop
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__crm_lead__show_time_control__stop
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__stop
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_project__show_time_control__stop
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_task__show_time_control__stop

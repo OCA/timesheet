@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-04-29 02:48+0000\n"
 "PO-Revision-Date: 2023-02-22 16:12+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
-"teams/23907/es_AR/)\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/"
+"23907/es_AR/)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,8 +191,8 @@ msgid ""
 "No running timer found in %(model)s %(record)s. Refresh the page and check "
 "again."
 msgstr ""
-"No se encontró ningún temporizador en funcionamiento en %(model)s "
-"%(record)s. Actualice la página y vuelva a verificar."
+"No se encontró ningún temporizador en funcionamiento en %(model)s %"
+"(record)s. Actualice la página y vuelva a verificar."
 
 #. module: hr_timesheet_time_control
 #: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__analytic_line_id
@@ -245,6 +245,7 @@ msgid "Show Time Control"
 msgstr "Mostrar Control de Tiempo"
 
 #. module: hr_timesheet_time_control
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__crm_lead__show_time_control__start
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__start
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_project__show_time_control__start
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_task__show_time_control__start
@@ -278,6 +279,7 @@ msgstr "Inicio de trabajo"
 
 #. module: hr_timesheet_time_control
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__account_analytic_line__show_time_control__stop
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__crm_lead__show_time_control__stop
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__stop
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_project__show_time_control__stop
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_task__show_time_control__stop
