@@ -1,7 +1,7 @@
 # Copyright 2022-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _lt, api, fields, models
+from odoo import api, fields, models
 
 
 class ProjectProject(models.Model):
@@ -17,12 +17,12 @@ class ProjectProject(models.Model):
 
     @api.depends("budget_ids")
     def _compute_budget_amount(self):
-        data = self.env["project.project.budget"].read_group(
+        data = self.env["project.project.budget"]._read_group(
             domain=[("project_id", "in", self.ids)],
-            fields=["project_id", "amount:sum"],
             groupby=["project_id"],
+            aggregates=["amount:sum"],
         )
-        mapped_data = {x["project_id"][0]: x["amount"] for x in data}
+        mapped_data = {project.id: amount_sum for project, amount_sum in data}
         for item in self:
             item.budget_amount = mapped_data.get(item.id, 0)
 
@@ -35,18 +35,24 @@ class ProjectProject(models.Model):
 
     def _get_profitability_labels(self):
         res = super()._get_profitability_labels()
-        res["budgets"] = _lt("Budgets")
+        res["budgets"] = self.env._("Budgets")
+        return res
+
+    def _get_profitability_sequence_per_invoice_type(self):
+        res = super()._get_profitability_sequence_per_invoice_type()
+        res["budgets"] = 8
         return res
 
     def _get_profitability_items(self, with_action=True):
         items = super()._get_profitability_items(with_action)
         if not self.budget_ids:
             return items
-        last_sequence = len(items["revenues"]["data"])
         items["revenues"]["data"].append(
             {
                 "id": "budgets",
-                "sequence": last_sequence + 1,
+                "sequence": self._get_profitability_sequence_per_invoice_type()[
+                    "budgets"
+                ],
                 "invoiced": 0,
                 "to_invoice": self.budget_amount,
                 "action": {

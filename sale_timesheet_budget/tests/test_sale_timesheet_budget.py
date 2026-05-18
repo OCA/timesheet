@@ -19,12 +19,6 @@ class TestSaleTimesheetBudget(BaseCommon):
                 "plan_id": cls.plan.id,
             }
         )
-        cls.sale_order = cls.env["sale.order"].create(
-            {
-                "partner_id": cls.customer.id,
-                "project_account_id": cls.analytic_account.id,
-            }
-        )
         cls.project = cls.env["project.project"].create(
             {
                 "name": "Test project",
@@ -33,8 +27,27 @@ class TestSaleTimesheetBudget(BaseCommon):
                 "allow_billable": True,
             }
         )
+        cls.sale_order = cls.env["sale.order"].create(
+            {
+                "partner_id": cls.customer.id,
+                "project_id": cls.project.id,
+            }
+        )
 
     def test_project_budget(self):
+        # Test project without budgets to cover early return in _get_profitability_items
+        data_no_budget = self.project.get_panel_data()
+        if "profitability_items" in data_no_budget:
+            self.assertNotIn(
+                "budgets",
+                [
+                    item["id"]
+                    for item in data_no_budget["profitability_items"]["revenues"][
+                        "data"
+                    ]
+                ],
+            )
+
         project_form = Form(self.project)
         with project_form.budget_ids.new() as budget_form:
             budget_form.sale_order_id = self.sale_order
