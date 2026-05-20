@@ -15,6 +15,5 @@ class NameCustomer(models.Model):
 
     @api.depends("name")
     def _compute_name_customer(self):
-        for rec in self:
-            if not rec.name_customer and rec.name:
-                rec.name_customer = rec.name
+        for rec in self.filtered(lambda r: r.name and r.name != "/"):
+            rec.name_customer = rec.name

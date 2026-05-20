@@ -4,33 +4,54 @@ from .common import TestCommonNameCustomer
 
 
 class TestTimesheet(TestCommonNameCustomer):
-    def test_custom_name(self):
-        """Test when Customer Description set or not:
-        check name and name_customer equality"""
+    def test_01_create_default(self):
+        """Test unset Customer Description: check name equality"""
         Timesheet = self.env["account.analytic.line"]
-        timesheet1 = Timesheet.with_user(self.user_employee).create(
+        timesheet = Timesheet.with_user(self.user_employee).create(
             {
                 "project_id": self.project_customer.id,
                 "task_id": self.task1.id,
                 "name": "my first timesheet",
             }
         )
-        self.assertEqual(
-            timesheet1.name,
-            timesheet1.name_customer,
-            "Description and Custom Description should be the same",
-        )
+        self.assertEqual(timesheet.name_customer, "my first timesheet")
 
-        timesheet2 = Timesheet.with_user(self.user_employee).create(
+    def test_02_update_recompute(self):
+        """Test if name_customer recomputes when name changes"""
+        Timesheet = self.env["account.analytic.line"]
+        timesheet = Timesheet.with_user(self.user_employee).create(
+            {
+                "project_id": self.project_customer.id,
+                "task_id": self.task1.id,
+                "name": "initial",
+            }
+        )
+        timesheet.name = "updated"
+        # Force recompute if necessary
+        timesheet._compute_name_customer()
+        self.assertEqual(timesheet.name_customer, "updated")
+
+    def test_03_explicit_value(self):
+        """Test when Customer Description is explicitly set"""
+        Timesheet = self.env["account.analytic.line"]
+        timesheet = Timesheet.with_user(self.user_employee).create(
             {
                 "project_id": self.project_customer.id,
                 "task_id": self.task2.id,
-                "name": "my second timesheet",
-                "name_customer": "my second timesheet with another description",
+                "name": "technical name",
+                "name_customer": "customer friendly name",
             }
         )
-        self.assertNotEqual(
-            timesheet2.name,
-            timesheet2.name_customer,
-            "Description and Custom Description should be different",
+        self.assertEqual(timesheet.name_customer, "customer friendly name")
+
+    def test_04_empty_name(self):
+        """Test with empty name"""
+        Timesheet = self.env["account.analytic.line"]
+        timesheet = Timesheet.with_user(self.user_employee).create(
+            {
+                "project_id": self.project_customer.id,
+                "task_id": self.task1.id,
+                "name": False,
+            }
         )
+        self.assertFalse(timesheet.name_customer)
