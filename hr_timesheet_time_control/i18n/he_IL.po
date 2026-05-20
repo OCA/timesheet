@@ -321,6 +321,12 @@ msgid "This timer is running and will be stopped"
 msgstr "טיימר זה פועל והוא יופסק"
 
 #. module: hr_timesheet_time_control
+#. odoo-python
+#: code:addons/hr_timesheet_time_control/models/account_analytic_line.py:0
+msgid "Unsupported operator: %s"
+msgstr ""
+
+#. module: hr_timesheet_time_control
 #: model:ir.model.fields,help:hr_timesheet_time_control.field_project_task__display_name
 msgid ""
 "Use these keywords in the title to set new tasks:\n"
