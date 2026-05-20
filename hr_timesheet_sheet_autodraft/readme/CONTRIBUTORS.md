@@ -3,3 +3,5 @@
   - Dhara Solanki \<dhara.solanki@initos.com\>
 - [Innovara](https://innovara.tech)
   - Manuel Fombuena \<mfombuena@innovara.tech\>
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia

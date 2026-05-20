@@ -1,6 +1,8 @@
 # Copyright 2020 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from odoo import Command
+
 from odoo.addons.base.tests.common import BaseCommon
 
 
@@ -23,6 +25,11 @@ class TestHrTimesheetSheetAutodraft(BaseCommon):
                 "login": "user",
                 "email": "user@example.com",
                 "company_id": self.company_id.id,
+                "group_ids": [
+                    Command.link(
+                        self.env.ref("hr_timesheet.group_hr_timesheet_user").id
+                    )
+                ],
             }
         )
         employee = self.HrEmployee.create({"name": "Employee", "user_id": user.id})
@@ -41,6 +48,11 @@ class TestHrTimesheetSheetAutodraft(BaseCommon):
                 "login": "user",
                 "email": "user@example.com",
                 "company_id": self.company_id.id,
+                "group_ids": [
+                    Command.link(
+                        self.env.ref("hr_timesheet.group_hr_timesheet_user").id
+                    )
+                ],
             }
         )
         employee = self.HrEmployee.create({"name": "Employee", "user_id": user.id})
@@ -75,6 +87,11 @@ class TestHrTimesheetSheetAutodraft(BaseCommon):
                 "login": "user",
                 "email": "user@example.com",
                 "company_id": self.company_id.id,
+                "group_ids": [
+                    Command.link(
+                        self.env.ref("hr_timesheet.group_hr_timesheet_user").id
+                    )
+                ],
             }
         )
         employee = self.HrEmployee.create({"name": "Employee", "user_id": user.id})
@@ -108,6 +125,11 @@ class TestHrTimesheetSheetAutodraft(BaseCommon):
                 "login": "user",
                 "email": "user@example.com",
                 "company_id": self.company_id.id,
+                "group_ids": [
+                    Command.link(
+                        self.env.ref("hr_timesheet.group_hr_timesheet_user").id
+                    )
+                ],
             }
         )
         employee = self.HrEmployee.create({"name": "Employee", "user_id": user.id})
@@ -133,6 +155,11 @@ class TestHrTimesheetSheetAutodraft(BaseCommon):
                 "login": "user",
                 "email": "user@example.com",
                 "company_id": self.company_id.id,
+                "group_ids": [
+                    Command.link(
+                        self.env.ref("hr_timesheet.group_hr_timesheet_user").id
+                    )
+                ],
             }
         )
         employee = self.HrEmployee.create({"name": "Employee", "user_id": user.id})

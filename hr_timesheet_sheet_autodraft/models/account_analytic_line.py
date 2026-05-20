@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models
+from odoo.fields import Domain
 
 
 class AccountAnalyticLine(models.Model):
@@ -24,8 +25,8 @@ class AccountAnalyticLine(models.Model):
             {**HrTimesheetSheet.default_get(HrTimesheetSheet._fields.keys()), **values}
         )
         existing_sheets_domain = sheet._get_overlapping_sheet_domain()
-        existing_sheets_domain = list(
-            filter(lambda criteria: criteria[0] != "id", existing_sheets_domain)
+        existing_sheets_domain = Domain(existing_sheets_domain).map_conditions(
+            lambda criteria: Domain.TRUE if criteria.field_expr == "id" else criteria
         )
         if HrTimesheetSheet.search(existing_sheets_domain, limit=1):
             return None
