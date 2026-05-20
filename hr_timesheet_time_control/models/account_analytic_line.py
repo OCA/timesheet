@@ -19,6 +19,10 @@ class AccountAnalyticLine(models.Model):
 
     @api.model
     def _get_default_start_time(self):
+        if default_date := self.env.context.get("default_date"):
+            if isinstance(default_date, str):
+                default_date = fields.Date.from_string(default_date)
+            return datetime.combine(default_date, fields.Datetime.now().time())
         return fields.Datetime.now()
 
     date_time = fields.Datetime(
@@ -73,9 +77,9 @@ class AccountAnalyticLine(models.Model):
         if vals.get("date") and not vals.get("date_time"):
             return dict(
                 vals,
-                date_time=datetime.combine(
-                    fields.Date.to_date(vals["date"]), fields.Datetime.now().time()
-                ),
+                date_time=self.with_context(
+                    default_date=vals["date"]
+                )._get_default_start_time(),
             )
         if vals.get("date_time"):
             return dict(vals, date=self._convert_datetime_to_date(vals["date_time"]))
