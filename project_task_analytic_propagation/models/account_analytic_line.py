@@ -37,7 +37,8 @@ class AccountAnalyticLine(models.Model):
         return True
 
     def write(self, values):
-        self = self.with_context(propagate_project_id_for_timesheet=True)
+        if self.env.context.get("propagate_project_id"):
+            self = self.with_context(propagate_project_id_for_timesheet=True)
         return super().write(values)
 
     def _check_can_write(self, values):

@@ -2,6 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/LGPL-3.0)
 import requests
 
+from odoo.exceptions import UserError
 from odoo.tests import new_test_user, tagged, users
 
 from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheet
@@ -14,7 +15,7 @@ class HrTimesheet(TestCommonSaleTimesheet):
         cls._super_send = requests.Session.send
         super().setUpClass()
         cls.analytic_user = new_test_user(
-            cls.env, "test_user", "analytic.group_analytic_accounting,base.group_user"
+            cls.env, "test_user", "hr_timesheet.group_hr_timesheet_user"
         )
         cls.employee_user.user_id = cls.analytic_user.id
         cls.task1 = cls.env["project.task"].create(
@@ -190,3 +191,56 @@ class HrTimesheet(TestCommonSaleTimesheet):
         self.task1.project_id = self.project_task_rate
         project_id = self.task1.timesheet_ids.mapped("project_id")
         self.assertEqual(self.project_task_rate, project_id)
+
+    @users("test_user")
+    def test_direct_project_change_on_invoiced_timesheet_is_forbidden(self):
+        """Direct project changes must not bypass invoiced timesheet protections."""
+        timesheet = self.task1.timesheet_ids[:1]
+        with self.assertRaises(UserError):
+            timesheet.write({"project_id": self.project_task_rate.id})
+
+    @users("test_user")
+    def test_direct_task_change_on_invoiced_timesheet_is_forbidden(self):
+        """Direct task changes must keep the standard invoiced protections."""
+        task = (
+            self.env["project.task"]
+            .sudo()
+            .create(
+                {
+                    "name": "Target task",
+                    "project_id": self.project_task_rate.id,
+                    "user_ids": [(6, 0, self.analytic_user.ids)],
+                }
+            )
+        )
+        timesheet = self.task1.timesheet_ids[:1]
+        with self.assertRaises(UserError):
+            timesheet.write({"task_id": task.id})
+
+    @users("test_user")
+    def test_direct_task_change_on_open_timesheet_propagates_project_and_analytic(self):
+        self.project_task_rate.account_id = self.analytic_account_sales
+        task = (
+            self.env["project.task"]
+            .sudo()
+            .create(
+                {
+                    "name": "Target task",
+                    "project_id": self.project_task_rate.id,
+                    "user_ids": [(6, 0, self.analytic_user.ids)],
+                }
+            )
+        )
+        timesheet = self.env["account.analytic.line"].create(
+            {
+                "project_id": self.project_global.id,
+                "task_id": self.task1.id,
+                "name": "Open timesheet",
+                "unit_amount": 1,
+                "employee_id": self.employee_user.id,
+            }
+        )
+        timesheet.write({"task_id": task.id})
+        self.assertEqual(task, timesheet.task_id)
+        self.assertEqual(self.project_task_rate, timesheet.project_id)
+        self.assertEqual(self.analytic_account_sales, timesheet.account_id)
