@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2025 Moduon Team SL
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo noupdate="1">
+    <record id="hr_timesheet.timesheet_line_rule_approver" model="ir.rule">
+        <field name="domain_force">[
+            ('project_id', '!=', False),
+            '|', '|', '|',
+                ('project_id.privacy_visibility', '!=', 'followers'),
+                ('project_id.message_partner_ids', 'in', [user.partner_id.id]),
+                ('task_id.message_partner_ids', 'in', [user.partner_id.id]),
+                ('employee_id.parent_id.user_id', '=', user.id)
+        ]</field>
+    </record>
+</odoo>
