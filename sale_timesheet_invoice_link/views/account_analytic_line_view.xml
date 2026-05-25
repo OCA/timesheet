@@ -7,8 +7,8 @@
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="hr_timesheet.timesheet_view_tree_user" />
         <field name="arch" type="xml">
-            <field name="so_line" position="after">
-                <field name="commercial_partner_id" invisible="1" />
+            <xpath expr="//list/field[@name='so_line']" position="after">
+                <field name="commercial_partner_id" column_invisible="True" />
                 <field
                     domain="[('partner_id', 'child_of', commercial_partner_id), ('state', '!=', 'cancel'), ('move_type', '=', 'out_invoice')]"
                     groups="hr_timesheet.group_timesheet_manager"
@@ -17,7 +17,7 @@
                     options="{'no_create': True}"
                     readonly="False"
                 />
-            </field>
+            </xpath>
         </field>
     </record>
 </data>
