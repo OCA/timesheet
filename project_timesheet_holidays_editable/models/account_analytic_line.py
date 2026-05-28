@@ -15,9 +15,9 @@ class AccountAnalyticLine(models.Model):
         if (
             holiday
             and (
-                holiday.holiday_status_id.timesheet_edit_level == "all"
+                holiday.employee_id.company_id.timesheet_edit_level == "all"
                 or (
-                    holiday.holiday_status_id.timesheet_edit_level == "approver"
+                    holiday.employee_id.company_id.timesheet_edit_level == "approver"
                     and self.env.user.has_group("hr_holidays.group_hr_holidays_user")
                 )
             )

@@ -5,27 +5,13 @@ from datetime import date
 
 from odoo import Command
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase, tagged
+from odoo.tests.common import tagged
 
-try:
-    from odoo.addons.hr_timesheet_sheet.models.hr_timesheet_sheet import Sheet
-
-    original_method = Sheet._get_timesheet_sheet_lines_domain
-
-    def _patched_get_timesheet_sheet_lines_domain(self):
-        domain = original_method(self)
-        domain.append(("holiday_id", "=", False))
-        domain.append(("global_leave_id", "=", False))
-        return domain
-
-    Sheet._get_timesheet_sheet_lines_domain = _patched_get_timesheet_sheet_lines_domain
-
-except ImportError:
-    HAS_TIMESHEET_SHEET = False
+from odoo.addons.base.tests.common import BaseCommon
 
 
-@tagged("post_install", "-at_install")
-class TestProjectTimesheetHolidays(TransactionCase):
+@tagged("post_install", "-at_install", "pruebilla")
+class TestProjectTimesheetHolidays(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -41,7 +27,7 @@ class TestProjectTimesheetHolidays(TransactionCase):
             {
                 "name": "HR Employee",
                 "login": "hr_employee",
-                "groups_id": [
+                "group_ids": [
                     Command.set(
                         [
                             cls.env.ref("hr_timesheet.group_hr_timesheet_user").id,
@@ -55,7 +41,7 @@ class TestProjectTimesheetHolidays(TransactionCase):
             {
                 "name": "HR Approver",
                 "login": "hr_approver",
-                "groups_id": [
+                "group_ids": [
                     Command.set(
                         [
                             cls.env.ref("hr_holidays.group_hr_holidays_user").id,
@@ -69,6 +55,7 @@ class TestProjectTimesheetHolidays(TransactionCase):
         cls.project = cls.Project.create(
             {
                 "name": "Project Vacations",
+                "company_id": cls.env.company.id,
             }
         )
 
@@ -76,6 +63,14 @@ class TestProjectTimesheetHolidays(TransactionCase):
             {
                 "name": "Vacations Task",
                 "project_id": cls.project.id,
+                "company_id": cls.env.company.id,
+            }
+        )
+
+        cls.env.company.write(
+            {
+                "internal_project_id": cls.project.id,
+                "leave_timesheet_task_id": cls.task.id,
             }
         )
 
@@ -83,17 +78,20 @@ class TestProjectTimesheetHolidays(TransactionCase):
             {
                 "name": "Test Employee",
                 "user_id": cls.user_employee.id,
+                "company_id": cls.env.company.id,
             }
         )
 
     def _create_leave_with_timesheet(self, edit_level):
+        self.employee.company_id.write(
+            {
+                "timesheet_edit_level": edit_level,
+            }
+        )
+
         leave_type = self.LeaveType.create(
             {
                 "name": f"Leave {edit_level}",
-                "timesheet_generate": True,
-                "timesheet_project_id": self.project.id,
-                "timesheet_task_id": self.task.id,
-                "timesheet_edit_level": edit_level,
             }
         )
 
@@ -129,7 +127,7 @@ class TestProjectTimesheetHolidays(TransactionCase):
 
         ts.with_user(self.user_employee).write(
             {
-                "name": "Nuevo nombre",
+                "name": "New name",
                 "unit_amount": 4,
             }
         )

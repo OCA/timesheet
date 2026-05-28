@@ -1,1 +1,1 @@
-from . import test_project_timesheet_holidays_edit_ts
+from . import test_project_timesheet_holidays_editable

@@ -374,7 +374,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:729ca2ced074913d51d934ec8a6604ddca29291c6dbf52c758185403365c1650
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/timesheet/tree/18.0/project_timesheet_holidays_editable"><img alt="OCA/timesheet" src="https://img.shields.io/badge/github-OCA%2Ftimesheet-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/timesheet-18-0/timesheet-18-0-project_timesheet_holidays_editable"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/timesheet&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/timesheet/tree/19.0/project_timesheet_holidays_editable"><img alt="OCA/timesheet" src="https://img.shields.io/badge/github-OCA%2Ftimesheet-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/timesheet-19-0/timesheet-19-0-project_timesheet_holidays_editable"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/timesheet&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>By default, every timesheet generated from a leave becomes read-only, so
 nobody can directly edit it and e.g. change its hour count. This
 shouldn’t occur in Odoo previous versions.</p>
@@ -401,21 +401,23 @@ depending on leave type.</p>
 <div class="section" id="usage">
 <h2><a class="toc-backref" href="#toc-entry-1">Usage</a></h2>
 <p>Once installed, it adds a configuration option to define the editability
-level of timesheets generated from each Time Off Type.</p>
+level of timesheets generated from time off requests at the company
+level.</p>
 <p>Configuration</p>
 <p>After installing the module, follow these steps:</p>
 <ol class="arabic simple">
-<li>Go to Time Off (hr_holidays)</li>
-<li>Navigate to Configuration → Time Off Types</li>
-<li>Select the desired Time Off Type</li>
-<li>Make sure the option “Generate Timesheets” (timesheet_generate) is
-enabled (This configuration menu is only visible if timesheet
-generation is enabled).</li>
-<li>Configure the Timesheet Restriction Level</li>
+<li>Go to Settings (or navigate to Configuration → Settings within the
+Timesheets or Time Off apps).</li>
+<li>Locate the Time Off section (where timesheet generation for leaves is
+configured).</li>
+<li>Make sure an Internal Project (<tt class="docutils literal">internal_project_id</tt>) is set. (The
+editability configuration menu is only visible if a global internal
+project is defined for the company).</li>
+<li>Configure the Timesheet Edit Level.</li>
 </ol>
 <p>Timesheet Restriction Levels</p>
-<p>Each Time Off Type can define how restrictive the generated timesheets
-are:</p>
+<p>You can define how restrictive the generated timesheets are for the
+company:</p>
 <ol class="arabic simple">
 <li>None<ul>
 <li>The generated timesheet entries cannot be edited by anyone</li>
@@ -439,7 +441,7 @@ timesheets</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/timesheet/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/timesheet/issues/new?body=module:%20project_timesheet_holidays_editable%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/timesheet/issues/new?body=module:%20project_timesheet_holidays_editable%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -455,6 +457,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <ul class="simple">
 <li><a class="reference external" href="https://www.solvos.es">Solvos</a>:<ul>
 <li>David ALonso &lt;<a class="reference external" href="mailto:david.alonso&#64;solvos.es">david.alonso&#64;solvos.es</a>&gt;</li>
+<li>Carlos García &lt;<a class="reference external" href="mailto:carlos.garcia&#64;solvos.es">carlos.garcia&#64;solvos.es</a>&gt;</li>
 </ul>
 </li>
 </ul>
@@ -468,7 +471,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/timesheet/tree/18.0/project_timesheet_holidays_editable">OCA/timesheet</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/timesheet/tree/19.0/project_timesheet_holidays_editable">OCA/timesheet</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
