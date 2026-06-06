@@ -146,7 +146,11 @@
                                     <field name="project_id" />
                                     <field name="task_id" optional="show" />
                                     <field name="name" />
-                                    <field name="unit_amount" string="Hours" />
+                                    <field
+                                        name="unit_amount"
+                                        string="Hours"
+                                        sum="Total Hours"
+                                    />
                                     <field name="currency_id" column_invisible="1" />
                                 </list>
                             </field>

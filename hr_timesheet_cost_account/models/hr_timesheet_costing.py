@@ -176,53 +176,78 @@ class HrTimesheetCosting(models.Model):
             "credit": total_credit,
         }
 
-    def _get_grouping_key(self, ts):
+    def _get_timesheet_cost_items(self, ts):
+        """Return cost breakdown items for a timesheet line.
+        Override in extensions to split cost by type. Each item is a dict::
+
+            {
+                "amount": float,        # cost amount for this item
+                "label_suffix": str,    # appended to group label
+                "type_code": str,       # used in grouping key
+            }
+
+        Default returns a single item with the total timesheet amount.
+        """
+        return [{"amount": abs(ts.amount), "label_suffix": "", "type_code": ""}]
+
+    def _get_grouping_key(self, ts, cost_item=None):
         """Return the dict key used to group timesheets."""
         if self.group_by_project and self.group_by_employee:
-            return (ts.project_id.id, ts.employee_id.id)
-        if self.group_by_project:
-            return ts.project_id.id
-        if self.group_by_employee:
-            return ts.employee_id.id
-        return ts.id  # no grouping — each ts is its own group
+            key = (ts.project_id.id, ts.employee_id.id)
+        elif self.group_by_project:
+            key = ts.project_id.id
+        elif self.group_by_employee:
+            key = ts.employee_id.id
+        else:
+            key = ts.id  # no grouping, each ts is its own group
+        if cost_item and cost_item.get("type_code"):
+            return (key, cost_item["type_code"])
+        return key
 
-    def _get_group_label(self, ts):
+    def _get_group_label(self, ts, cost_item=None):
         """Return a human-readable label for the group that `ts` belongs to."""
         if self.group_by_project and self.group_by_employee:
-            return f"{ts.project_id.name} / {ts.employee_id.name}"
-        if self.group_by_project:
-            return ts.project_id.name or self.env._("No Project")
-        if self.group_by_employee:
-            return ts.employee_id.name or self.env._("No Employee")
-        return f"{ts.employee_id.name} - {ts.date} - {ts.name}"
+            label = f"{ts.project_id.name} / {ts.employee_id.name}"
+        elif self.group_by_project:
+            label = ts.project_id.name or self.env._("No Project")
+        elif self.group_by_employee:
+            label = ts.employee_id.name or self.env._("No Employee")
+        else:
+            label = f"{ts.employee_id.name} - {ts.date} - {ts.name}"
+        if cost_item and cost_item.get("label_suffix"):
+            return f"{label}{cost_item['label_suffix']}"
+        return label
 
     def _prepare_account_move_lines(self, cost_account, suspense_account):
         """Prepare movelines for the JV.
 
         Debit lines are grouped according to *group_by_project* /
-        *group_by_employee*. A single credit (suspense) line is appended.
+        *group_by_employee* and further split by cost items (via
+        ``_get_timesheet_cost_items``). A single credit (suspense)
+        line is appended.
         """
         self.ensure_one()
         # Group timesheets
         groups = {}  # key -> {label, amount, analytic_amounts}
         for ts in self.timesheet_ids:
-            amount = abs(ts.amount)
-            if not amount:
-                continue
-            key = self._get_grouping_key(ts)
-            if key not in groups:
-                groups[key] = {
-                    "label": self._get_group_label(ts),
-                    "amount": 0.0,
-                    "analytic_amounts": {},
-                }
-            groups[key]["amount"] += amount
-            analytic_account = ts.project_id.account_id
-            if analytic_account:
-                acc_key = str(analytic_account.id)
-                groups[key]["analytic_amounts"][acc_key] = (
-                    groups[key]["analytic_amounts"].get(acc_key, 0.0) + amount
-                )
+            for cost_item in self._get_timesheet_cost_items(ts):
+                amount = cost_item["amount"]
+                if not amount:
+                    continue
+                key = self._get_grouping_key(ts, cost_item)
+                if key not in groups:
+                    groups[key] = {
+                        "label": self._get_group_label(ts, cost_item),
+                        "amount": 0.0,
+                        "analytic_amounts": {},
+                    }
+                groups[key]["amount"] += amount
+                analytic_account = ts.project_id.account_id
+                if analytic_account:
+                    acc_key = str(analytic_account.id)
+                    groups[key]["analytic_amounts"][acc_key] = (
+                        groups[key]["analytic_amounts"].get(acc_key, 0.0) + amount
+                    )
 
         if not groups:
             raise UserError(self.env._("No amount found in selected timesheet lines."))
@@ -269,11 +294,17 @@ class HrTimesheetCosting(models.Model):
             domain.append(("employee_id", "in", self.employee_ids.ids))
         return domain
 
+    def _action_auto_post(self, move):
+        self.ensure_one()
+        if self.auto_post:
+            move.action_post()
+        return move
+
     def action_get_timesheets(self):
         self.ensure_one()
         domain = self._get_timesheet_domain()
         timesheets = self.env["account.analytic.line"].search(domain)
-        return self.write({"timesheet_ids": [(Command.set(timesheets.ids))]})
+        return self.write({"timesheet_ids": [Command.set(timesheets.ids)]})
 
     def action_confirm(self):
         self.ensure_one()
@@ -325,8 +356,7 @@ class HrTimesheetCosting(models.Model):
                 "line_ids": line_vals,
             }
         )
-        if self.auto_post:
-            move.action_post()
+        self._action_auto_post(move)
 
         self.timesheet_ids.write({"timesheet_costing_id": self.id})
         self.write({"move_id": move.id, "state": "done"})
