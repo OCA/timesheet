@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_timesheet_costs_revenues_user,sale.timesheet.costs.revenues.user,model_sale_timesheet_costs_revenues,project.group_project_user,1,0,0,0
+access_sale_timesheet_costs_revenues_manager,sale.timesheet.costs.revenues.manager,model_sale_timesheet_costs_revenues,project.group_project_manager,1,0,0,0
