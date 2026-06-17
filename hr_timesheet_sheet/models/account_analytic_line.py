@@ -4,6 +4,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.fields import Domain
 
 
 class AccountAnalyticLine(models.Model):
@@ -15,13 +16,15 @@ class AccountAnalyticLine(models.Model):
     def _get_sheet_domain(self):
         """Hook for extensions"""
         self.ensure_one()
-        return [
-            ("date_end", ">=", self.date),
-            ("date_start", "<=", self.date),
-            ("employee_id", "=", self.employee_id.id),
-            ("company_id", "in", [self.company_id.id, False]),
-            ("state", "in", ["new", "draft"]),
-        ]
+        return Domain.AND(
+            [
+                Domain("date_end", ">=", self.date),
+                Domain("date_start", "<=", self.date),
+                Domain("employee_id", "=", self.employee_id.id),
+                Domain("company_id", "in", [self.company_id.id, False]),
+                Domain("state", "in", ["new", "draft"]),
+            ]
+        )
 
     def _determine_sheet(self):
         """Hook for extensions"""
@@ -140,10 +143,12 @@ class AccountAnalyticLine(models.Model):
             self.env["ir.module.module"]
             .sudo()
             .search(
-                [
-                    ("name", "=", "project_timesheet_holidays"),
-                    ("state", "=", "installed"),
-                ]
+                Domain.AND(
+                    [
+                        Domain("name", "=", "project_timesheet_holidays"),
+                        Domain("state", "=", "installed"),
+                    ]
+                )
             )
         )
         if is_installed:

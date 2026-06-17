@@ -3,6 +3,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Domain
 
 
 class HrDepartment(models.Model):
@@ -13,15 +14,18 @@ class HrDepartment(models.Model):
     )
 
     def _compute_timesheet_to_approve(self):
-        timesheet_data = self.env["hr_timesheet.sheet"].read_group(
-            [("department_id", "in", self.ids), ("state", "=", "confirm")],
-            ["department_id"],
-            ["department_id"],
+        timesheet_data = self.env["hr_timesheet.sheet"]._read_group(
+            domain=Domain.AND(
+                [
+                    Domain("department_id", "in", self.ids),
+                    Domain("state", "=", "confirm"),
+                ]
+            ),
+            groupby=["department_id"],
+            aggregates=["department_id:count"],
         )
-        result = {
-            data["department_id"][0]: data["department_id_count"]
-            for data in timesheet_data
-        }
+        # timesheet data contains a list of (department_id: count_for_department_id)
+        result = {data[0].id: data[1] for data in timesheet_data}
         for department in self:
             department.timesheet_sheet_to_approve_count = result.get(department.id, 0)
 
@@ -30,11 +34,13 @@ class HrDepartment(models.Model):
         for rec in self.sudo().filtered("company_id"):
             for field in [
                 rec.env["hr_timesheet.sheet"].search(
-                    [
-                        ("department_id", "=", rec.id),
-                        ("company_id", "!=", rec.company_id.id),
-                        ("company_id", "!=", False),
-                    ],
+                    Domain.AND(
+                        [
+                            Domain("department_id", "=", rec.id),
+                            Domain("company_id", "!=", rec.company_id.id),
+                            Domain("company_id", "!=", False),
+                        ]
+                    ),
                     limit=1,
                 )
             ]:

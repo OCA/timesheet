@@ -4,6 +4,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Domain
 
 
 class HrEmployee(models.Model):
@@ -22,7 +23,7 @@ class HrEmployee(models.Model):
         Sheet = self.env["hr_timesheet.sheet"]
         for employee in self:
             employee.timesheet_sheet_count = Sheet.search_count(
-                [("employee_id", "=", employee.id)]
+                Domain("employee_id", "=", employee.id)
             )
 
     @api.constrains("company_id")
@@ -30,11 +31,13 @@ class HrEmployee(models.Model):
         for rec in self.sudo().filtered("company_id"):
             for field in [
                 rec.env["hr_timesheet.sheet"].search(
-                    [
-                        ("employee_id", "=", rec.id),
-                        ("company_id", "!=", rec.company_id.id),
-                        ("company_id", "!=", False),
-                    ],
+                    Domain.AND(
+                        [
+                            Domain("employee_id", "=", rec.id),
+                            Domain("company_id", "!=", rec.company_id.id),
+                            Domain("company_id", "!=", False),
+                        ]
+                    ),
                     limit=1,
                 )
             ]:

@@ -379,7 +379,7 @@
                 <field name="employee_id" />
                 <field name="department_id" />
                 <field name="reviewer_id" />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         name="groupby_employees"
                         string="Employees"
