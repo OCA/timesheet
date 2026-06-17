@@ -3,7 +3,6 @@
 # Copyright 2018-2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import logging
 import re
 from collections import namedtuple
 from datetime import datetime, time
@@ -11,10 +10,10 @@ from datetime import datetime, time
 import babel.dates
 from dateutil.relativedelta import SU, relativedelta
 
-from odoo import SUPERUSER_ID, api, fields, models
+from odoo import api, fields, models
+from odoo.api import SUPERUSER_ID
 from odoo.exceptions import UserError, ValidationError
-
-_logger = logging.getLogger(__name__)
+from odoo.fields import Domain
 
 empty_name = "/"
 
@@ -47,10 +46,19 @@ class Sheet(models.Model):
 
     def _default_employee(self):
         company = self.env.company
-        return self.env["hr.employee"].search(
-            [("user_id", "=", self.env.uid), ("company_id", "in", [company.id, False])],
-            limit=1,
-            order="company_id ASC",
+        return (
+            self.env["hr.employee"]
+            .sudo()
+            .search(
+                Domain.AND(
+                    [
+                        Domain("user_id", "=", self.env.uid),
+                        Domain("company_id", "in", [company.id, False]),
+                    ]
+                ),
+                limit=1,
+                order="company_id ASC",
+            )
         )
 
     def _default_department_id(self):
@@ -190,21 +198,16 @@ class Sheet(models.Model):
 
     @api.model
     def _search_can_review(self, operator, value):
-        def check_in(users):
-            return self.env.user in users
+        # The ORM now transforms all non-trivial conditions to
+        #   `(x, 'in', [True])`, or `(x, 'not in', [True])`
+        #   and uses `~Domain(_search_xxx('in', value))` for `not in`.
+        if not (operator == "in" and list(value) == [True]):
+            return NotImplemented
 
-        def check_not_in(users):
-            return self.env.user not in users
-
-        if (operator == "=" and value) or (operator in ["<>", "!="] and not value):
-            check = check_in
-        else:
-            check = check_not_in
-
-        sheets = self.search([]).filtered(
-            lambda sheet: check(sheet._get_possible_reviewers())
+        sheets = self.search(Domain(True)).filtered(
+            lambda sheet: self.env.user in sheet._get_possible_reviewers()
         )
-        return [("id", "in", sheets.ids)]
+        return Domain("id", "in", sheets.ids)
 
     @api.depends("name", "employee_id")
     def _compute_complete_name(self):
@@ -234,13 +237,15 @@ class Sheet(models.Model):
     def _get_overlapping_sheet_domain(self):
         """Hook for extensions"""
         self.ensure_one()
-        return [
-            ("id", "!=", self.id),
-            ("date_start", "<=", self.date_end),
-            ("date_end", ">=", self.date_start),
-            ("employee_id", "=", self.employee_id.id),
-            ("company_id", "=", self._get_timesheet_sheet_company().id),
-        ]
+        return Domain.AND(
+            [
+                Domain("id", "!=", self.id),
+                Domain("date_start", "<=", self.date_end),
+                Domain("date_end", ">=", self.date_start),
+                Domain("employee_id", "=", self.employee_id.id),
+                Domain("company_id", "=", self._get_timesheet_sheet_company().id),
+            ]
+        )
 
     @api.constrains(
         "date_start", "date_end", "company_id", "employee_id", "review_policy"
@@ -324,11 +329,11 @@ class Sheet(models.Model):
         self.ensure_one()
         res = self.env["res.users"].browse(SUPERUSER_ID)
         if self.review_policy == "hr":
-            res |= self.env.ref("hr.group_hr_user").users
+            res |= self.env.ref("hr.group_hr_user").user_ids
         elif self.review_policy == "hr_manager":
-            res |= self.env.ref("hr.group_hr_manager").users
+            res |= self.env.ref("hr.group_hr_manager").user_ids
         elif self.review_policy == "timesheet_manager":
-            res |= self.env.ref("hr_timesheet.group_hr_timesheet_approver").users
+            res |= self.env.ref("hr_timesheet.group_hr_timesheet_approver").user_ids
         return res
 
     def _get_timesheet_sheet_company(self):
@@ -349,14 +354,16 @@ class Sheet(models.Model):
 
     def _get_timesheet_sheet_lines_domain(self):
         self.ensure_one()
-        return [
-            ("date", "<=", self.date_end),
-            ("date", ">=", self.date_start),
-            ("employee_id", "=", self.employee_id.id),
-            ("company_id", "=", self._get_timesheet_sheet_company().id),
-            ("project_id", "!=", False),
-            ("sheet_id", "in", [self.id, False]),
-        ]
+        return Domain.AND(
+            [
+                Domain("date", "<=", self.date_end),
+                Domain("date", ">=", self.date_start),
+                Domain("employee_id", "=", self.employee_id.id),
+                Domain("company_id", "=", self._get_timesheet_sheet_company().id),
+                Domain("project_id", "!=", False),
+                Domain("sheet_id", "in", [self.id, False]),
+            ]
+        )
 
     @api.depends(
         "date_start",
@@ -452,11 +459,15 @@ class Sheet(models.Model):
         for rec in self:
             if rec.add_line_project_id:
                 rec.available_task_ids = project_task_obj.search(
-                    [
-                        ("project_id", "=", rec.add_line_project_id.id),
-                        ("company_id", "in", [rec.company_id.id, False]),
-                        ("id", "not in", rec.timesheet_ids.mapped("task_id").ids),
-                    ]
+                    Domain.AND(
+                        [
+                            Domain("project_id", "=", rec.add_line_project_id.id),
+                            Domain("company_id", "in", [rec.company_id.id, False]),
+                            Domain(
+                                "id", "not in", rec.timesheet_ids.mapped("task_id").ids
+                            ),
+                        ]
+                    )
                 ).ids
             else:
                 rec.available_task_ids = []
@@ -469,9 +480,9 @@ class Sheet(models.Model):
                 raise UserError(
                     employee.env._(
                         "In order to create a sheet for this employee, you must"
-                        " link him/her to an user: %s"
+                        " link him/her to an user: %s",
+                        employee.name,
                     )
-                    % (employee.name,)
                 )
             return employee.user_id.id
         return False
@@ -510,7 +521,8 @@ class Sheet(models.Model):
                     rec.delete_empty_lines(True)
         return res
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_state_confirm_or_done(self):
         for sheet in self:
             if sheet.state in ("confirm", "done"):
                 raise UserError(
@@ -520,7 +532,6 @@ class Sheet(models.Model):
                         sheet.complete_name,
                     )
                 )
-        return super().unlink()
 
     def onchange(self, values, field_name, field_onchange):
         """
@@ -575,7 +586,7 @@ class Sheet(models.Model):
     @api.model
     def _get_current_reviewer(self):
         reviewer = self.env["hr.employee"].search(
-            [("user_id", "=", self.env.uid)], limit=1
+            Domain("user_id", "=", self.env.uid), limit=1
         )
         if not reviewer:
             raise UserError(
@@ -715,7 +726,7 @@ class Sheet(models.Model):
             rows = self.line_ids.filtered(lambda line, name=name: line.value_y == name)
             if not rows:
                 continue
-            row = fields.first(rows)
+            row = next(iter(rows))
             if delete_empty_rows and self._is_add_line(row):
                 check = any([line.unit_amount for line in rows])
             else:
@@ -827,96 +838,3 @@ class Sheet(models.Model):
             elif "state" in init_values and record.state == "done":
                 return self.env.ref("hr_timesheet_sheet.mt_timesheet_approved")
         return super()._track_subtype(init_values)
-
-
-class AbstractSheetLine(models.AbstractModel):
-    _name = "hr_timesheet.sheet.line.abstract"
-    _description = "Abstract Timesheet Sheet Line"
-
-    sheet_id = fields.Many2one(comodel_name="hr_timesheet.sheet", ondelete="cascade")
-    date = fields.Date()
-    project_id = fields.Many2one(comodel_name="project.project", string="Project")
-    task_id = fields.Many2one(comodel_name="project.task", string="Task")
-    unit_amount = fields.Float(string="Quantity", default=0.0)
-    company_id = fields.Many2one(comodel_name="res.company", string="Company")
-    employee_id = fields.Many2one(comodel_name="hr.employee", string="Employee")
-
-    def get_unique_id(self):
-        """Hook for extensions"""
-        self.ensure_one()
-        return {"project_id": self.project_id, "task_id": self.task_id}
-
-
-class SheetLine(models.TransientModel):
-    _name = "hr_timesheet.sheet.line"
-    _inherit = "hr_timesheet.sheet.line.abstract"
-    _description = "Timesheet Sheet Line"
-
-    value_x = fields.Char(string="Date Name")
-    value_y = fields.Char(string="Project Name")
-    new_line_id = fields.Integer(default=0)
-
-    @api.onchange("unit_amount")
-    def onchange_unit_amount(self):
-        """This method is called when filling a cell of the matrix."""
-        self.ensure_one()
-        sheet = self._get_sheet()
-        if not sheet:
-            return {
-                "warning": {
-                    "title": self.env._("Warning"),
-                    "message": self.env._("Save the Timesheet Sheet first."),
-                }
-            }
-        sheet.add_new_line(self)
-
-    @api.model
-    def _get_sheet(self):
-        sheet = (self._origin or self).sheet_id
-        if not sheet:
-            model = self.env.context.get("params", {}).get("model", "")
-            obj_id = self.env.context.get("params", {}).get("id")
-            if model == "hr_timesheet.sheet" and isinstance(obj_id, int):
-                sheet = self.env["hr_timesheet.sheet"].browse(obj_id)
-        return sheet
-
-
-class SheetNewAnalyticLine(models.TransientModel):
-    _name = "hr_timesheet.sheet.new.analytic.line"
-    _inherit = "hr_timesheet.sheet.line.abstract"
-    _description = "Timesheet Sheet New Analytic Line"
-
-    @api.model
-    def _is_similar_analytic_line(self, aal):
-        """Hook for extensions"""
-        return (
-            aal.date == self.date
-            and aal.project_id.id == self.project_id.id
-            and aal.task_id.id == self.task_id.id
-        )
-
-    @api.model
-    def _update_analytic_lines(self):
-        sheet = self.sheet_id
-        timesheets = sheet.timesheet_ids.filtered(
-            lambda aal: self._is_similar_analytic_line(aal)
-        )
-        new_ts = timesheets.filtered(lambda t: t.name == empty_name)
-        amount = sum(t.unit_amount for t in timesheets)
-        diff_amount = self.unit_amount - amount
-        if len(new_ts) > 1:
-            new_ts = new_ts.merge_timesheets()
-            sheet._sheet_write("timesheet_ids", sheet.timesheet_ids.exists())
-        if not diff_amount:
-            return
-        if new_ts:
-            unit_amount = new_ts.unit_amount + diff_amount
-            if unit_amount:
-                new_ts.write({"unit_amount": unit_amount})
-            else:
-                new_ts.unlink()
-                sheet._sheet_write("timesheet_ids", sheet.timesheet_ids.exists())
-        else:
-            new_ts_values = sheet._prepare_new_line(self)
-            new_ts_values.update({"name": empty_name, "unit_amount": diff_amount})
-            self.env["account.analytic.line"]._sheet_create(new_ts_values)

@@ -2,7 +2,8 @@
 <!--
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 -->
-<odoo>
+<!-- Set NOUPDATE so that users can customize/delete them -->
+<odoo noupdate="1">
     <!-- Timesheet sheet related subtypes for messaging / Chatter -->
     <record id="mt_timesheet_confirmed" model="mail.message.subtype">
         <field name="name">Waiting Review</field>
