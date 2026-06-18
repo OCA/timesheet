@@ -158,11 +158,16 @@ class HrTimesheetCosting(models.Model):
             )
         return super().unlink()
 
+    def _get_cost_account_for_item(self, cost_item, default_account):
+        """Return the debit account to use for a given cost item."""
+        return default_account
+
     def _prepare_timesheet_debit_line_vals(self, group, cost_account):
         """One debit line for a group of timesheets (or individual if not grouped)."""
+        account = group.get("cost_account") or cost_account
         return {
             "name": group.get("label"),
-            "account_id": cost_account.id,
+            "account_id": account.id,
             "debit": group.get("amount"),
             "analytic_distribution": group.get("analytic_distribution") or {},
             "credit": 0.0,
@@ -240,6 +245,9 @@ class HrTimesheetCosting(models.Model):
                         "label": self._get_group_label(ts, cost_item),
                         "amount": 0.0,
                         "analytic_amounts": {},
+                        "cost_account": self._get_cost_account_for_item(
+                            cost_item, cost_account
+                        ),
                     }
                 groups[key]["amount"] += amount
                 analytic_account = ts.project_id.account_id

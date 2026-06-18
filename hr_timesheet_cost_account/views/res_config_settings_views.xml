@@ -20,7 +20,7 @@
                     </setting>
                     <setting
                         string="Timesheet Cost Account"
-                        help="Debit account for Hourly, Maintenance, and Insurance Costs"
+                        help="Default debit account for timesheet costs."
                     >
                         <field name="timesheet_cost_account_id" />
                     </setting>
