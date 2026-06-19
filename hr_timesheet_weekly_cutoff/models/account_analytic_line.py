@@ -60,17 +60,16 @@ class AccountAnalyticLine(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if "product_id" in vals:
-                continue
-            record = self.new(vals)
-            weekly_cutoff = record._validate_timesheet_lock()
-            vals["is_outside_weekly_cutoff"] = weekly_cutoff
+            if "project_id" in vals:
+                record = self.new(vals)
+                weekly_cutoff = record._validate_timesheet_lock()
+                vals["is_outside_weekly_cutoff"] = weekly_cutoff
         return super().create(vals_list)
 
     def write(self, vals):
         result = super().write(vals)
-        if "timesheet_invoice_id" not in vals:
-            for record in self:
+        for record in self:
+            if record.project_id and "validated" not in vals:
                 weekly_cutoff = record._validate_timesheet_lock()
                 if "date" in vals:
                     record.is_outside_weekly_cutoff = weekly_cutoff
