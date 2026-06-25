@@ -1,11 +1,10 @@
-# Translation of hr_timesheet_amount_security
-# Copyright (C) 2025 Moduon Team S.L.
-# This file is distributed under the same license as the hr_timesheet_amount_security package.
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_amount_security
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 18.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,6 +12,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: hr_timesheet_amount_security
+#: model:ir.model.fields,field_description:hr_timesheet_amount_security.field_timesheets_analysis_report__amount
+msgid "Amount"
+msgstr ""
 
 #. module: hr_timesheet_amount_security
 #: model:ir.model.fields,field_description:hr_timesheet_amount_security.field_hr_timesheet_attendance_report__attendance_cost
@@ -25,18 +29,13 @@ msgid "Cost Difference"
 msgstr ""
 
 #. module: hr_timesheet_amount_security
-#: model:ir.model.fields,field_description:hr_timesheet_amount_security.field_timesheets_analysis_report__amount
-msgid "Amount"
+#: model:ir.model,name:hr_timesheet_amount_security.model_hr_timesheet_attendance_report
+msgid "Timesheet Attendance Report"
 msgstr ""
 
 #. module: hr_timesheet_amount_security
 #: model:ir.model.fields,field_description:hr_timesheet_amount_security.field_hr_timesheet_attendance_report__timesheets_cost
-msgid "Timesheets Cost"
-msgstr ""
-
-#. module: hr_timesheet_amount_security
-#: model:ir.model,name:hr_timesheet_amount_security.model_hr_timesheet_attendance_report
-msgid "Timesheet Attendance Report"
+msgid "Timesheet Cost"
 msgstr ""
 
 #. module: hr_timesheet_amount_security
