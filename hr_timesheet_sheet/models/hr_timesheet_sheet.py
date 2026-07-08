@@ -183,7 +183,12 @@ class Sheet(models.Model):
         for sheet in self:
             sheet.total_time = sum(sheet.mapped("timesheet_ids.unit_amount"))
 
-    @api.depends("review_policy")
+    @api.depends(
+        "review_policy",
+        "employee_id",
+        "company_id.timesheet_sheet_approver_field_id",
+    )
+    @api.depends_context("uid")
     def _compute_can_review(self):
         for sheet in self:
             sheet.can_review = self.env.user in sheet._get_possible_reviewers()
@@ -329,7 +334,33 @@ class Sheet(models.Model):
             res |= self.env.ref("hr.group_hr_manager").users
         elif self.review_policy == "timesheet_manager":
             res |= self.env.ref("hr_timesheet.group_hr_timesheet_approver").users
+        res |= self._get_employee_approver()
         return res
+
+    def _get_employee_approver(self):
+        """Return the user set in the employee field configured on the company.
+
+        Both reads need `sudo`: `ir.model.fields` is not readable by
+        `base.group_user`, and employee fields are private unless mirrored on
+        `hr.employee.public`.
+        """
+        self.ensure_one()
+        field = self.company_id.sudo().timesheet_sheet_approver_field_id
+        if not field or field.model != "hr.employee":
+            return self.env["res.users"]
+        # The `domain` of the setting is a client-side hint only, and the
+        # registry may have changed since it was set, so make sure the field
+        # really links to a user before dereferencing it.
+        employee = self.employee_id.sudo()
+        employee_field = employee._fields.get(field.name)
+        if (
+            not employee_field
+            or employee_field.comodel_name != "res.users"
+            or employee_field.type not in ("many2one", "many2many")
+        ):
+            return self.env["res.users"]
+        # `with_env` keeps the `sudo` from escaping this method.
+        return employee[field.name].with_env(self.env)
 
     def _get_timesheet_sheet_company(self):
         self.ensure_one()

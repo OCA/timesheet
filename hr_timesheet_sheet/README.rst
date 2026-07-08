@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ==================
 HR Timesheet Sheet
 ==================
@@ -17,7 +13,7 @@ HR Timesheet Sheet
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ftimesheet-lightgray.png?logo=github
@@ -70,6 +66,13 @@ accordingly.
 
 For adding more review policies, look at the
 *hr_timesheet_sheet_policy_xxx* extra modules.
+
+To let specific users review an employee's sheets in addition to the
+users allowed by the review policy, go to *Configuration > Settings >
+Timesheet Options* and set **Timesheet Approver Field** to an employee
+field pointing to one or more users. For every sheet, the users found in
+that field on the employee are allowed to review it. Leave the setting
+empty to rely on the review policy only.
 
 Usage
 =====
