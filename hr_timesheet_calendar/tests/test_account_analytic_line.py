@@ -130,9 +130,10 @@ class TestAccountAnalyticLine(BaseCommon):
             "hr_timesheet_time_control.timesheet_alignment", "no-gap"
         )
 
-    @freeze_time("2025-04-03")
+    @freeze_time("2025-04-02 23:00:00")
     def test_duplicate_today(self):
         # Create a sample analytic line record
+        self.env.user.tz = "Europe/Brussels"
         analytic_line = self.analytic_line_model.create(
             {
                 "name": "Test Analytic Line",
@@ -159,7 +160,7 @@ class TestAccountAnalyticLine(BaseCommon):
         # Assert the new record is not the same as the original
         self.assertNotEqual(new_record.id, analytic_line.id)
 
-    @freeze_time("2025-04-03")
+    @freeze_time("2025-04-03 12:00:00")
     def test_duplicate_today_no_end(self):
         # Create a sample analytic line record
         analytic_line = self.analytic_line_model.create(
