@@ -14,5 +14,6 @@
     "depends": ["sale_timesheet"],
     "data": [
         "views/account_analytic_line_view.xml",
+        "views/account_move_view.xml",
     ],
 }
