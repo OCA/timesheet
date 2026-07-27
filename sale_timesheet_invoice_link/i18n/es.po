@@ -4,26 +4,28 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0+e\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-27 06:22+0000\n"
-"PO-Revision-Date: 2026-07-27 06:22+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Emilio Pascual <emilio@moduon.team>\n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.9\n"
 
 #. module: sale_timesheet_invoice_link
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_invoice_link.account_move_view_form_inherit_timesheet_link
 msgid "Dismiss"
-msgstr ""
+msgstr "Descartar"
 
 #. module: sale_timesheet_invoice_link
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_invoice_link.account_move_view_form_inherit_timesheet_link
 msgid "Dismiss this alert"
-msgstr ""
+msgstr "Ignorar esta alerta"
 
 #. module: sale_timesheet_invoice_link
 #: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_move__display_name
@@ -40,44 +42,45 @@ msgstr ""
 #: model:ir.model.fields,help:sale_timesheet_invoice_link.field_account_move__timesheet_alert_dismissed
 msgid "If unchecked, shows a warning alert about unlinked timesheets"
 msgstr ""
+"Si está desmarcado, muestra una alerta sobre partes de horas no vinculados"
 
 #. module: sale_timesheet_invoice_link
 #: model:ir.model,name:sale_timesheet_invoice_link.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Asiento contable"
 
 #. module: sale_timesheet_invoice_link
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_invoice_link.account_move_view_form_inherit_timesheet_link
 msgid "Link All"
-msgstr ""
+msgstr "Vincular todos"
 
 #. module: sale_timesheet_invoice_link
 #: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_bank_statement_line__timesheet_pending_ids
 #: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_move__timesheet_pending_ids
 msgid "Pending Timesheets"
-msgstr ""
+msgstr "Partes de horas pendientes"
 
 #. module: sale_timesheet_invoice_link
 #: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_bank_statement_line__timesheet_pending_count
 #: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_move__timesheet_pending_count
 msgid "Pending Timesheets Count"
-msgstr ""
+msgstr "N.º de partes de horas pendientes"
 
 #. module: sale_timesheet_invoice_link
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_invoice_link.account_move_view_form_inherit_timesheet_link
 msgid "Select Manually"
-msgstr ""
+msgstr "Seleccionar manualmente"
 
 #. module: sale_timesheet_invoice_link
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_invoice_link.account_move_view_form_inherit_timesheet_link
 msgid "There is/are"
-msgstr ""
+msgstr "Hay"
 
 #. module: sale_timesheet_invoice_link
 #: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_bank_statement_line__timesheet_alert_dismissed
 #: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_move__timesheet_alert_dismissed
 msgid "Timesheet Alert Dismissed"
-msgstr ""
+msgstr "Alerta de partes descartada"
 
 #. module: sale_timesheet_invoice_link
 #: model:ir.model.fields,help:sale_timesheet_invoice_link.field_account_bank_statement_line__timesheet_pending_ids
@@ -86,8 +89,10 @@ msgid ""
 "Timesheets linked to this invoice's SO lines that are not yet linked to any "
 "non-cancelled invoice"
 msgstr ""
+"Partes de horas vinculados a las líneas de pedido de esta factura que aún no "
+"están vinculados a ninguna factura no cancelada"
 
 #. module: sale_timesheet_invoice_link
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_invoice_link.account_move_view_form_inherit_timesheet_link
 msgid "timesheet(s) not linked to this invoice yet."
-msgstr ""
+msgstr "partes de horas no vinculados a esta factura todavía."
