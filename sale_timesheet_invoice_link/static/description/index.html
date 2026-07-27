@@ -378,6 +378,9 @@ ul.auto-toc {
 <p>This module extends the functionality of timesheets to support linking
 them to preexisting invoices and to allow you to anticipate invoicing,
 even before the work hours are actually done.</p>
+<p>It also adds a warning alert on invoices that detects timesheets linked
+to the invoice’s sale order lines that are not yet linked to any
+invoice, allowing you to link them all at once or select them manually.</p>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p class="last">This is an alpha version, the data model and design can change at any time without warning.
@@ -429,6 +432,17 @@ manually and not even when the invoice was already done in the past.</p>
 <li>Link the timesheet lines with the invoices you want from the same
 customer.</li>
 </ol>
+<p>Additionally, when you open an invoice that has timesheets linked to its
+sale order lines but not yet linked to the invoice itself, a warning
+alert will appear at the top of the invoice form. From there you can:</p>
+<ul class="simple">
+<li>Click <strong>Link All</strong> to automatically link all pending timesheets to
+this invoice.</li>
+<li>Click <strong>Select Manually</strong> to open a filtered list of pending
+timesheets where you can select specific ones and click <strong>Link to
+Invoice</strong>.</li>
+<li>Click <strong>Dismiss</strong> to hide the alert for this invoice.</li>
+</ul>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h2><a class="toc-backref" href="#toc-entry-4">Known issues / Roadmap</a></h2>
@@ -457,6 +471,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <h3><a class="toc-backref" href="#toc-entry-8">Contributors</a></h3>
 <ul class="simple">
 <li>Jairo Llopis (<a class="reference external" href="https://www.moduon.team/">Moduon</a>)</li>
+<li>Emilio Pascual (<a class="reference external" href="https://www.moduon.team/">Moduon</a>)</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
