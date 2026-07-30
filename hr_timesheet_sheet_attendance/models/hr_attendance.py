@@ -71,19 +71,23 @@ class HrAttendance(models.Model):
         """- Restrict to create attendance in confirmed timesheet-sheet
         - Restrict to add attendance date outside the current
         timesheet dates"""
-        timesheet = self.sheet_id
-        if not timesheet:
-            return
-        if timesheet and timesheet.state != "draft":
-            raise UserError(
-                _(
-                    "You can not enter an attendance in a submitted timesheet. "
-                    + "Ask your manager to reset it before adding attendance."
+        for attendance in self:
+            timesheet = attendance.sheet_id
+            if not timesheet:
+                continue
+            if timesheet.state != "draft":
+                raise UserError(
+                    _(
+                        "You can not enter an attendance in a submitted timesheet. "
+                        + "Ask your manager to reset it before adding attendance."
+                    )
                 )
+            checkin_tz_date = attendance._get_attendance_employee_tz(
+                date=attendance.check_in
             )
-        else:
-            checkin_tz_date = self._get_attendance_employee_tz(date=self.check_in)
-            checkout_tz_date = self._get_attendance_employee_tz(date=self.check_out)
+            checkout_tz_date = attendance._get_attendance_employee_tz(
+                date=attendance.check_out
+            )
             if (
                 (
                     timesheet.date_start > checkin_tz_date
