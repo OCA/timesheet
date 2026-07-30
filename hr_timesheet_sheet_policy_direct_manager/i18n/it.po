@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_sheet_policy_direct_manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-10-10 16:36+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: hr_timesheet_sheet_policy_direct_manager
+#: selection:res.company,timesheet_sheet_review_policy:0
+msgid "By Department Manager"
+msgstr "Dal responsabile reparto"
+
+#. module: hr_timesheet_sheet_policy_direct_manager
+#: selection:res.company,timesheet_sheet_review_policy:0
+msgid "By Direct Manager"
+msgstr "Da responsabile diretto"
+
+#. module: hr_timesheet_sheet_policy_direct_manager
+#: selection:res.company,timesheet_sheet_review_policy:0
+msgid "By HR Managers"
+msgstr "Dai responsabili RU"
+
+#. module: hr_timesheet_sheet_policy_direct_manager
+#: selection:res.company,timesheet_sheet_review_policy:0
+msgid "By HR Officers"
+msgstr "Dai funzionari RU"
+
+#. module: hr_timesheet_sheet_policy_direct_manager
+#: selection:res.company,timesheet_sheet_review_policy:0
+msgid "By Project Manager"
+msgstr "Da responsabile progetto"
+
+#. module: hr_timesheet_sheet_policy_direct_manager
+#: selection:res.company,timesheet_sheet_review_policy:0
+msgid "By Timesheets Managers"
+msgstr "Dai responsabili fogli ore"
+
+#. module: hr_timesheet_sheet_policy_direct_manager
+#: model:ir.model,name:hr_timesheet_sheet_policy_direct_manager.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: hr_timesheet_sheet_policy_direct_manager
+#: model:ir.model.fields,help:hr_timesheet_sheet_policy_direct_manager.field_res_company__timesheet_sheet_review_policy
+msgid "How Timesheet Sheets review is performed."
+msgstr "Come viene eseguita la revisione dei prospetti fogli ore."
+
+#. module: hr_timesheet_sheet_policy_direct_manager
+#: code:addons/hr_timesheet_sheet_policy_direct_manager/models/hr_timesheet_sheet.py:34
+#, python-format
+msgid "Only a employee's Direct Manager can review the sheet."
+msgstr "Solo un responsabile diretto del dipendente può revisionare la scheda."
+
+#. module: hr_timesheet_sheet_policy_direct_manager
+#: model:ir.model,name:hr_timesheet_sheet_policy_direct_manager.model_hr_timesheet_sheet
+msgid "Timesheet Sheet"
+msgstr "Prospetto foglio ore"
+
+#. module: hr_timesheet_sheet_policy_direct_manager
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_direct_manager.field_res_company__timesheet_sheet_review_policy
+msgid "Timesheet Sheet Review Policy"
+msgstr "Politica revisione prospetto foglio ore"
