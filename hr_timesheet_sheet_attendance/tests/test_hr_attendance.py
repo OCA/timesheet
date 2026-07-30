@@ -64,6 +64,45 @@ class TestHrAttendance(HrTimesheetTestCases):
                 }
             )
 
+    def test_04_check_timesheet_multi_record(self):
+        # Odoo passes the whole created recordset to the constraint, so
+        # creating several attendances at once must not raise
+        # "Expected singleton".
+        self.attendance_1.check_out = datetime.datetime(2018, 12, 12, 13, 0, 0)
+        attendances = self.env["hr.attendance"].create(
+            [
+                {
+                    "employee_id": self.employee.id,
+                    "check_in": datetime.datetime(2018, 12, 12, 14, 0, 0),
+                    "check_out": datetime.datetime(2018, 12, 12, 15, 0, 0),
+                },
+                {
+                    "employee_id": self.employee.id,
+                    "check_in": datetime.datetime(2018, 12, 12, 16, 0, 0),
+                    "check_out": datetime.datetime(2018, 12, 12, 17, 0, 0),
+                },
+            ]
+        )
+        self.assertEqual(len(attendances), 2)
+
+        # A single offending record in a batch is still rejected.
+        with self.assertRaises(UserError):
+            self.env["hr.attendance"].create(
+                [
+                    {
+                        "employee_id": self.employee.id,
+                        "check_in": datetime.datetime(2018, 12, 12, 18, 0, 0),
+                        "check_out": datetime.datetime(2018, 12, 12, 19, 0, 0),
+                    },
+                    {
+                        # Same sheet, but the check-out falls outside its dates.
+                        "employee_id": self.employee.id,
+                        "check_in": datetime.datetime(2018, 12, 12, 20, 0, 0),
+                        "check_out": datetime.datetime(2018, 12, 16, 19, 0, 0),
+                    },
+                ]
+            )
+
     def test_03_check_timesheet(self):
         # check when create attendance out_side the current timesheet date
         with self.assertRaises(UserError):
