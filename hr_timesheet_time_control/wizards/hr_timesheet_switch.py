@@ -188,7 +188,7 @@ class HrTimesheetSwitch(models.TransientModel):
         ).running_timer_id.button_end_work()
         # Start new timer
         if self.analytic_line_id:
-            new = self.analytic_line_id.copy(self._prepare_copy_values(self))
+            new = self.analytic_line_id.sudo().copy(self._prepare_copy_values(self))
         else:
             fields = self.env["account.analytic.line"]._fields.keys()
             vals = self.env["account.analytic.line"].default_get(fields)

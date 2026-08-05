@@ -133,7 +133,7 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
         with self.assertRaises(exceptions.UserError):
             self.line.button_end_work()
         # Open a new running AAL without wizard
-        running_timer = self.line.copy({"unit_amount": False})
+        running_timer = self.line.sudo().copy({"unit_amount": False})
         # Use resume wizard
         self.line.invalidate_model()
         self.assertEqual(self.line.show_time_control, "resume")
@@ -171,8 +171,8 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
 
     def test_error_multiple_running_timers(self):
         """If there are multiple running timers, I don't know which to stop."""
-        self.line.copy({})
-        self.line.copy({})
+        self.line.sudo().copy({})
+        self.line.sudo().copy({})
         self.line.button_end_work()
         resume_action = self.line.button_resume_work()
         with self.assertRaises(exceptions.UserError):
@@ -182,7 +182,7 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
     def test_project_time_control_flow(self):
         """Test project.project time controls."""
         # Resuming a project will try to find lines without task
-        line_without_task = self.line.copy(
+        line_without_task = self.line.sudo().copy(
             {"task_id": False, "project_id": self.project.id, "name": "No task here"}
         )
         self.assertFalse(line_without_task.unit_amount)
@@ -280,7 +280,7 @@ class TestProjectTimesheetTimeControl(TestProjectTimesheetTimeControlBase):
         self.assertEqual(len(new_line), 1)
 
     def test_start_end_time(self):
-        line = self.line.copy(
+        line = self.line.sudo().copy(
             {"task_id": False, "project_id": self.project.id, "name": "No task here"}
         )
         line.date_time = datetime(2020, 8, 1, 10, 0, 0)
