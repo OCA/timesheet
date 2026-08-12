@@ -4,7 +4,6 @@
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 <odoo noupdate="1">
-
     <!-- Activities -->
 
     <record id="activity_sheet_submission" model="mail.activity.type">
@@ -24,5 +23,4 @@
         <field name="icon">fa-calendar-check-o</field>
         <field name="res_model_id" ref="hr_timesheet_sheet.model_hr_timesheet_sheet" />
     </record>
-
 </odoo>
