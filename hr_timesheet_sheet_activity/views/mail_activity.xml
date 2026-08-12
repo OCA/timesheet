@@ -10,15 +10,8 @@
     >
         <field name="name">Activity Types</field>
         <field name="res_model">mail.activity.type</field>
-        <field name="view_mode">tree,form</field>
-        <field name="domain">[('res_model_id.model', '=', 'hr_timesheet.sheet')]</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('res_model', '=', 'hr_timesheet.sheet')]</field>
         <field name="context">{'default_res_model': 'hr_timesheet.sheet'}</field>
     </record>
-
-    <menuitem
-        id="menu_view_hr_timesheet_sheet_mail_activity_types"
-        action="action_view_hr_timesheet_sheet_mail_activity_types"
-        parent="hr_timesheet.hr_timesheet_menu_configuration"
-        groups="base.group_no_one"
-    />
 </odoo>

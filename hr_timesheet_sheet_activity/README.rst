@@ -72,6 +72,10 @@ Contributors
 
   - Ilyas <irazor147@gmail.com>
 
+- `PyTech <https://www.pytech.it>`__:
+
+  - Simone Rubino <simone.rubino@pytech.it>
+
 Maintainers
 -----------
 
