@@ -4,7 +4,6 @@
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 <odoo>
-
     <record
         id="action_view_hr_timesheet_sheet_mail_activity_types"
         model="ir.actions.act_window"
@@ -22,5 +21,4 @@
         parent="hr_timesheet.hr_timesheet_menu_configuration"
         groups="base.group_no_one"
     />
-
 </odoo>
