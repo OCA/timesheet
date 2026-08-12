@@ -4,15 +4,13 @@
 
 {
     "name": "HR Timesheet Sheet Activities",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Human Resources",
     "website": "https://github.com/OCA/timesheet",
-    "author": "CorporateHub, " "Odoo Community Association (OCA)",
+    "author": "CorporateHub, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "installable": True,
-    "application": False,
     "summary": (
-        "Automatic activities related to submission and review of timesheet" " sheets"
+        "Automatic activities related to submission and review of timesheet sheets"
     ),
     "depends": [
         "hr_timesheet_sheet",
@@ -20,5 +18,6 @@
     "data": [
         "data/hr_timesheet_sheet_activity_data.xml",
         "views/mail_activity.xml",
+        "views/res_config_settings_views.xml",
     ],
 }

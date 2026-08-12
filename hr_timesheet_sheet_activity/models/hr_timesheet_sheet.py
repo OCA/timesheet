@@ -97,10 +97,10 @@ class HrTimesheetSheet(models.Model):
                 user_id=sheet.user_id.id,
             )
 
-        super().action_timesheet_draft()
+        return super().action_timesheet_draft()
 
     def action_timesheet_confirm(self):
-        super().action_timesheet_confirm()
+        res = super().action_timesheet_confirm()
 
         # NOTE: activity_reschedule is used instead of activity_feedback
         # to accomodate non-assigned-user completion
@@ -125,8 +125,10 @@ class HrTimesheetSheet(models.Model):
                     user_id=reviewer.id,
                 )
 
+        return res
+
     def action_timesheet_done(self):
-        super().action_timesheet_done()
+        res = super().action_timesheet_done()
 
         # NOTE: activity_reschedule is used instead of activity_feedback
         # to accomodate non-assigned-user completion
@@ -140,6 +142,8 @@ class HrTimesheetSheet(models.Model):
                 # NOTE: Only assigned user can update the activity
                 activity = activity.sudo()
             activity.action_feedback()
+
+        return res
 
     def action_timesheet_refuse(self):
         for sheet in self:
@@ -149,7 +153,7 @@ class HrTimesheetSheet(models.Model):
                 user_id=sheet.user_id.id,
             )
 
-        super().action_timesheet_refuse()
+        res = super().action_timesheet_refuse()
 
         # NOTE: activity_reschedule is used instead of activity_feedback
         # to accomodate non-assigned-user completion
@@ -163,6 +167,8 @@ class HrTimesheetSheet(models.Model):
                 # NOTE: Only assigned user can update the activity
                 activity = activity.sudo()
             activity.action_feedback()
+
+        return res
 
     def _activity_sheet_submission_deadline(self):
         """Hook for extensions"""
@@ -185,10 +191,10 @@ class HrTimesheetSheet(models.Model):
         datetime_end = datetime.combine(
             max(self.date_end, employee_today), time.max
         ).replace(tzinfo=employee_timezone)
-        worktimes = self.employee_id.list_work_time_per_day(
+        worktimes = self.employee_id._list_work_time_per_day(
             datetime_start,
             datetime_end,
-        )
+        )[self.employee_id.id]
         worktimes = list(filter(lambda worktime: worktime[1] > 0, worktimes))
         if worktimes:
             return worktimes[-1][0]  # Last workday of period
@@ -226,12 +232,12 @@ class HrTimesheetSheet(models.Model):
         if not reviewer_employee:
             return deadline
 
-        worktimes = reviewer_employee.list_work_time_per_day(
+        worktimes = reviewer_employee._list_work_time_per_day(
             datetime.combine(deadline, time.min).replace(tzinfo=employee_timezone),
             datetime.combine(
                 deadline + self._activity_sheet_review_max_period(), time.max
             ).replace(tzinfo=employee_timezone),
-        )
+        )[reviewer_employee.id]
         worktimes = list(filter(lambda worktime: worktime[1] > 0, worktimes))
         if worktimes:
             return worktimes[0][0]  # First workday of period
