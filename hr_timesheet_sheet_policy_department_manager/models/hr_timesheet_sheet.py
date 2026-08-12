@@ -5,7 +5,7 @@ import json
 
 from lxml import etree
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import UserError
 
 
@@ -16,12 +16,12 @@ class HrTimesheetSheet(models.Model):
     def get_view(self, view_id=None, view_type="form", **options):
         res = super().get_view(view_id, view_type, **options)
         review_policy = self.env.user.company_id.timesheet_sheet_review_policy
-        if review_policy == "department_manager" and view_type == "tree":
+        if review_policy == "department_manager" and view_type == "list":
             view = etree.XML(res["arch"])
             field = view.find(".//field[@name='department_id']")
             if field is not None:
                 field.set("invisible", "0")
-                modifiers = json.loads(field.get("modifiers"))
+                modifiers = json.loads(field.get("modifiers", "{}"))
                 modifiers.update(
                     {
                         "column_invisible": False,
@@ -42,7 +42,7 @@ class HrTimesheetSheet(models.Model):
         self.ensure_one()
         result = super()._get_complete_name_components()
         if self.review_policy == "department_manager":
-            result += [self.department_id.name_get()[0][1]]
+            result += [self.department_id.display_name]
         return result
 
     def _get_possible_reviewers(self):
@@ -58,5 +58,7 @@ class HrTimesheetSheet(models.Model):
             lambda sheet: not sheet.can_review
             and sheet.review_policy == "department_manager"
         ):
-            raise UserError(_("Only a Department's Manager can review the sheet."))
+            raise UserError(
+                self.env._("Only a Department's Manager can review the sheet.")
+            )
         return res

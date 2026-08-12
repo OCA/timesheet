@@ -80,7 +80,7 @@ class TestHrTimesheetSheetPolicyDepartmentManager(TransactionCase):
             view_type="form",
         )
         self.HrTimesheetSheet.with_user(self.employee_user).get_view(
-            view_type="tree",
+            view_type="list",
         )
 
         sheet = self.HrTimesheetSheet.with_user(self.employee_user).create(
