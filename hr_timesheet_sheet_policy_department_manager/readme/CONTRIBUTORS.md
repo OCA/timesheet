@@ -1,0 +1,4 @@
+- [CorporateHub](https://corporatehub.eu/)
+  - Alexey Pelykh \<alexey.pelykh@corphub.eu\>
+- [Tecnativa](https://www.tecnativa.com)
+  - Ernesto Tejeda
