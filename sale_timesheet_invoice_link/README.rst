@@ -36,6 +36,10 @@ This module extends the functionality of timesheets to support linking
 them to preexisting invoices and to allow you to anticipate invoicing,
 even before the work hours are actually done.
 
+It also adds a warning alert on invoices that detects timesheets linked
+to the invoice's sale order lines that are not yet linked to any
+invoice, allowing you to link them all at once or select them manually.
+
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
    Only for development or testing purpose, do not use in production.
@@ -78,6 +82,17 @@ To use this module, you need to:
 4. Link the timesheet lines with the invoices you want from the same
    customer.
 
+Additionally, when you open an invoice that has timesheets linked to its
+sale order lines but not yet linked to the invoice itself, a warning
+alert will appear at the top of the invoice form. From there you can:
+
+- Click **Link All** to automatically link all pending timesheets to
+  this invoice.
+- Click **Select Manually** to open a filtered list of pending
+  timesheets where you can select specific ones and click **Link to
+  Invoice**.
+- Click **Dismiss** to hide the alert for this invoice.
+
 Known issues / Roadmap
 ======================
 
@@ -106,6 +121,7 @@ Contributors
 ------------
 
 - Jairo Llopis (`Moduon <https://www.moduon.team/>`__)
+- Emilio Pascual (`Moduon <https://www.moduon.team/>`__)
 
 Maintainers
 -----------

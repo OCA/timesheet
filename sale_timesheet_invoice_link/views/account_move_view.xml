@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<data>
+    <record id="account_move_view_form_inherit_timesheet_link" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.timesheet.link</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="before">
+                <div
+                    class="alert alert-warning w-100 d-flex align-items-center gap-1"
+                    role="alert"
+                    invisible="not timesheet_pending_count or timesheet_alert_dismissed"
+                >
+                    <span>
+                        There is/are
+                        <field name="timesheet_pending_count" />
+                        timesheet(s) not linked to this invoice yet.
+                    </span>
+                    <button
+                        name="action_link_timesheets"
+                        string="Link All"
+                        type="object"
+                        class="btn btn-primary btn-sm ms-2"
+                    />
+                    <button
+                        name="action_select_timesheets"
+                        string="Select Manually"
+                        type="object"
+                        class="btn btn-secondary btn-sm ms-2"
+                    />
+                    <button
+                        name="action_dismiss_timesheet_alert"
+                        string="Dismiss"
+                        type="object"
+                        class="btn btn-sm ms-2"
+                        title="Dismiss this alert"
+                    />
+                </div>
+            </div>
+        </field>
+    </record>
+</data>
