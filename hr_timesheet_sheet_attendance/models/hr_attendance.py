@@ -1,6 +1,6 @@
 import pytz
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -54,10 +54,12 @@ class HrAttendance(models.Model):
 
     def _check_timesheet_state(self):
         """Check and raise error if current sheet not in draftstate"""
-        if self._context.get("allow_modify_confirmed_sheet", False):
+        if self.env.context.get("allow_modify_confirmed_sheet", False):
             return
         if self.sheet_id and self.sheet_id.state != "draft":
-            raise UserError(_("You cannot modify an entry in a confirmed timesheet"))
+            raise UserError(
+                self.env._("You cannot modify an entry in a confirmed timesheet")
+            )
 
     def unlink(self):
         # Restrict to delete attendance from confirmed timesheet-sheet
@@ -76,9 +78,9 @@ class HrAttendance(models.Model):
             return
         if timesheet and timesheet.state != "draft":
             raise UserError(
-                _(
+                self.env._(
                     "You can not enter an attendance in a submitted timesheet. "
-                    + "Ask your manager to reset it before adding attendance."
+                    "Ask your manager to reset it before adding attendance."
                 )
             )
         else:
@@ -96,8 +98,8 @@ class HrAttendance(models.Model):
                 )
             ):
                 raise UserError(
-                    _(
+                    self.env._(
                         "You can not enter an attendance date "
-                        + "outside the current timesheet dates."
+                        "outside the current timesheet dates."
                     )
                 )

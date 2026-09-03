@@ -72,3 +72,32 @@ class TestHrAttendance(HrTimesheetTestCases):
                     "check_out": datetime.datetime(2018, 12, 16, 17, 0, 0),
                 }
             )
+
+    def test_04_unlink_success(self):
+        # test successful unlink in draft state
+        attendance = self._create_attendance(
+            employee=self.employee,
+            checkIn=datetime.datetime(2018, 12, 13, 10, 0, 0),
+            checkOut=datetime.datetime(2018, 12, 13, 11, 0, 0),
+        )
+        self.assertTrue(attendance.unlink())
+
+    def test_05_unlink_with_context(self):
+        # test unlink with allow_modify_confirmed_sheet context
+        attendance = self._create_attendance(
+            employee=self.employee,
+            checkIn=datetime.datetime(2018, 12, 12, 14, 0, 0),
+            checkOut=datetime.datetime(2018, 12, 12, 15, 0, 0),
+        )
+        # Ensure attendance_1 is closed so we can confirm the sheet
+        if not self.attendance_1.check_out:
+            self.attendance_1.check_out = datetime.datetime(2018, 12, 12, 11, 0, 0)
+        # Confirm the timesheet
+        self.timesheet.action_timesheet_confirm()
+        # Should raise UserError without context
+        with self.assertRaises(UserError):
+            attendance.unlink()
+        # Should succeed with context
+        self.assertTrue(
+            attendance.with_context(allow_modify_confirmed_sheet=True).unlink()
+        )
