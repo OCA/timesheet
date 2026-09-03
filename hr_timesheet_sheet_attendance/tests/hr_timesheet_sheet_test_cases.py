@@ -13,8 +13,13 @@ class HrTimesheetTestCases(TransactionCase):
         cls.timesheet = cls._create_timesheet_sheet(
             cls.employee, datetime.date(2018, 12, 12)
         )
-        cls.project_id = cls.env.ref("project.project_project_1")
-        cls.task_1 = cls.env.ref("project.project_1_task_9")
+        cls.project_id = cls.env["project.project"].create({"name": "Test Project"})
+        cls.task_1 = cls.env["project.task"].create(
+            {
+                "name": "Test Task",
+                "project_id": cls.project_id.id,
+            }
+        )
 
     @classmethod
     def _create_user(cls):
@@ -23,32 +28,23 @@ class HrTimesheetTestCases(TransactionCase):
             "name": "TestUser",
             "login": "test",
             "password": "test",
-            "company_id": cls.env.ref("base.main_company").id,
-            "groups_id": [
-                (
-                    6,
-                    0,
-                    [
-                        cls.env.ref("base.group_user").id,
-                        cls.env.ref("base.group_partner_manager").id,
-                    ],
-                )
+            "company_id": cls.env.company.id,
+            "group_ids": [
+                (6, 0, [cls.env.ref("base.group_user").id]),
             ],
         }
         return cls.env["res.users"].create(user_vals)
 
     @classmethod
     def _create_employee(cls, user):
-        """Create employee
-        :param user: record set of res.user
-        :param return: recordset of hr.employee"""
+        """Create employee"""
+        department = cls.env["hr.department"].create({"name": "Test Dept"})
+        job = cls.env["hr.job"].create({"name": "Test Job"})
         employee_vals = {
             "name": "TestEmployee",
             "user_id": cls.user_id.id,
-            "department_id": cls.env.ref("hr.dep_rd").id,
-            "job_id": cls.env.ref("hr.job_developer").id,
-            "category_ids": [(6, 0, [cls.env.ref("hr.employee_category_4").id])],
-            "work_location_id": cls.env.ref("hr.work_location_1").id,
+            "department_id": department.id,
+            "job_id": job.id,
             "work_email": "test@test.com",
             "work_phone": "+3281813700",
         }

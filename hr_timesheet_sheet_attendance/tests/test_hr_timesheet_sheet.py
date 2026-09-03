@@ -111,6 +111,11 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
             employee=self.employee,
             checkIn=checkInDate,
         )
+        self.assertGreater(
+            self.timesheet.total_attendance,
+            3.0,
+            "Error while computing total working time with open attendance.",
+        )
         with self.assertRaises(UserError):
             self.timesheet.action_timesheet_confirm()
 
@@ -148,6 +153,9 @@ class TestHrTimesheetSheet(HrTimesheetTestCases):
         """
         # Set employee timezone to Europe/Brussels for timezone boundary tests
         self.user_id.tz = "Europe/Brussels"
+        self.employee.tz = "Europe/Brussels"
+        self.employee.resource_calendar_id.tz = "Europe/Brussels"
+        self.env.flush_all()
         # Attendance at Jan 14, 23:30 UTC = Jan 15, 00:30 Brussels (UTC+1)
         # So it's Jan 15 in employee's timezone
         attendance = self._create_attendance(

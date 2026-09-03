@@ -2,7 +2,7 @@ from datetime import datetime
 
 import pytz
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -53,7 +53,8 @@ class HrTimesheetSheet(models.Model):
         string="Difference",
     )
     attendances_ids = fields.One2many(
-        comodel_name="hr.attendance", inverse_name="sheet_id", string="Attendances"
+        comodel_name="hr.attendance",
+        inverse_name="sheet_id",
     )
     attendance_state = fields.Selection(
         related="employee_id.attendance_state",
@@ -84,9 +85,9 @@ class HrTimesheetSheet(models.Model):
             if not ids_not_checkout:
                 continue
             raise UserError(
-                _(
+                sheet.env._(
                     "The timesheet cannot be validated as it does "
-                    + "not contain an equal number of sign ins and sign outs."
+                    "not contain an equal number of sign ins and sign outs."
                 )
             )
 
