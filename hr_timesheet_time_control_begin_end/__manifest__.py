@@ -13,6 +13,7 @@
     "data": [
         "views/account_analytic_line_view.xml",
         "views/project_task_view.xml",
+        "views/hr_timesheet_portal_templates.xml",
     ],
     "license": "AGPL-3",
     "installable": True,

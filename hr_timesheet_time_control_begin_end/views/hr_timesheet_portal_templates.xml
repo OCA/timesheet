@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="portal_my_timesheets_inherit_begin_end"
+        inherit_id="hr_timesheet.portal_my_timesheets"
+    >
+        <xpath expr="//thead/tr/th[hasclass('text-end')]" position="before">
+            <th>Begin Hour</th>
+            <th>End Hour</th>
+        </xpath>
+        <xpath
+            expr="//tr[hasclass('table-light')]//th[.//span[contains(@t-field,'project_id')]]"
+            position="attributes"
+        >
+            <attribute name="t-att-colspan">7</attribute>
+        </xpath>
+        <xpath
+            expr="//tr[hasclass('table-light')]//th[.//span[contains(@t-field,'task_id')]]"
+            position="attributes"
+        >
+            <attribute name="t-att-colspan">7</attribute>
+        </xpath>
+        <xpath
+            expr="//tr[hasclass('table-light')]//th[.//span[contains(@t-field,'date')]]"
+            position="attributes"
+        >
+            <attribute name="t-att-colspan">7</attribute>
+        </xpath>
+        <xpath
+            expr="//tr[hasclass('table-light')]//th[.//span[contains(@t-field,'employee_id')]]"
+            position="attributes"
+        >
+            <attribute name="t-att-colspan">7</attribute>
+        </xpath>
+        <xpath
+            expr="//tr[hasclass('table-light')]//th[.//span[contains(@t-field,'parent_task_id')]]"
+            position="attributes"
+        >
+            <attribute name="t-att-colspan">8</attribute>
+        </xpath>
+        <xpath expr="//tbody//tr/td[hasclass('text-end')]" position="before">
+            <td>
+                <span
+                    t-esc="timesheet.time_begin"
+                    t-options='{"widget": "float_time"}'
+                />
+            </td>
+            <td>
+                <span t-esc="timesheet.time_end" t-options='{"widget": "float_time"}' />
+            </td>
+        </xpath>
+    </template>
+
+    <template
+        id="portal_timesheet_table_inherit_begin_end"
+        inherit_id="hr_timesheet.portal_timesheet_table"
+    >
+        <xpath expr="//thead/tr/th[hasclass('text-end')]" position="before">
+            <th>Begin Hour</th>
+            <th>End Hour</th>
+        </xpath>
+        <xpath expr="//table/tr/td[hasclass('text-end')]" position="before">
+            <td>
+                <span
+                    t-esc="timesheet.time_begin"
+                    t-options='{"widget": "float_time"}'
+                />
+            </td>
+            <td>
+                <span t-esc="timesheet.time_end" t-options='{"widget": "float_time"}' />
+            </td>
+        </xpath>
+    </template>
+</odoo>

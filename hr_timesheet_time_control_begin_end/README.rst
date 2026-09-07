@@ -97,6 +97,14 @@ Authors
 
 * glueckkanja AG
 
+Contributors
+------------
+
+-  `NICO SOLUTIONS - ENGINEERING &
+   IT <https://www.nico-solutions.de>`__:
+
+      -  Nils Coenen
+
 Maintainers
 -----------
 
