@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_sheet_autodraft
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-01-12 09:44+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: hr_timesheet_sheet_autodraft
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_autodraft.res_config_settings_view_form
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-specific."
+"\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
+"specifici per azienda.\" role=\"img\" aria-label=\"I valori impostati qui "
+"sono specifici per azienda.\" groups=\"base.group_multi_company\"/>"
+
+#. module: hr_timesheet_sheet_autodraft
+#: model:ir.model,name:hr_timesheet_sheet_autodraft.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Riga analitica"
+
+#. module: hr_timesheet_sheet_autodraft
+#: model:ir.actions.server,name:hr_timesheet_sheet_autodraft.action_autodraft_timesheet_sheets
+msgid "Auto-draft Timesheet Sheet(s)"
+msgstr "Compilazione automatica scheda(e) foglio ore"
+
+#. module: hr_timesheet_sheet_autodraft
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_autodraft.res_config_settings_view_form
+msgid "Auto-draft Timesheet Sheets"
+msgstr "Compilazione automatica fogli scheda attività"
+
+#. module: hr_timesheet_sheet_autodraft
+#: model:ir.model.fields,help:hr_timesheet_sheet_autodraft.field_res_config_settings__timesheet_sheets_autodraft
+msgid ""
+"Auto-draft Timesheet Sheets whenever a Timesheet entry is created or "
+"modified to ensure it's covered by a relevant Timesheet Sheet"
+msgstr ""
+"Compilazione automatica delle schede foglio ore ogni volta che una voce del "
+"foglio ore viene creata o modificata per garantire che sia coperta da una "
+"scheda del foglio ore pertinente"
+
+#. module: hr_timesheet_sheet_autodraft
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_autodraft.res_config_settings_view_form
+msgid "Check to enable Timesheet Sheet(s) auto-drafting on Timesheet altering."
+msgstr ""
+"Selezionare per abilitare la redazione automatica della scheda(e) del foglio "
+"ore durante la modifica del foglio ore."
+
+#. module: hr_timesheet_sheet_autodraft
+#: model:ir.model,name:hr_timesheet_sheet_autodraft.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: hr_timesheet_sheet_autodraft
+#: model:ir.model,name:hr_timesheet_sheet_autodraft.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni configurazione"
+
+#. module: hr_timesheet_sheet_autodraft
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_res_company__timesheet_sheets_autodraft
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_autodraft.field_res_config_settings__timesheet_sheets_autodraft
+msgid "Timesheet Sheets Auto-draft"
+msgstr "Compilazione automatica fogli scheda attività"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"

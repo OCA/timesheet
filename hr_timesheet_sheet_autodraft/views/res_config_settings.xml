@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2020 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet_sheet.res_config_settings_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//block[@name='hr_timesheet_sheet_settings']"
+                position="inside"
+            >
+                <setting
+                    id="timesheet_sheets_autodraft"
+                    company_dependent="1"
+                    help="Auto-draft timesheet when an entry is created and no sheet covering this period exists"
+                >
+                    <field name="timesheet_sheets_autodraft" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
