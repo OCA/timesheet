@@ -24,6 +24,12 @@ msgid "Begin"
 msgstr ""
 
 #. module: hr_timesheet_time_control_begin_end
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control_begin_end.portal_my_timesheets_inherit_begin_end
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control_begin_end.portal_timesheet_table_inherit_begin_end
+msgid "Begin Hour"
+msgstr ""
+
+#. module: hr_timesheet_time_control_begin_end
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control_begin_end.view_task_form2_inherited
 msgid "Date Begin"
 msgstr ""
@@ -36,6 +42,12 @@ msgstr ""
 #. module: hr_timesheet_time_control_begin_end
 #: model:ir.model.fields,field_description:hr_timesheet_time_control_begin_end.field_account_analytic_line__time_end
 msgid "End"
+msgstr ""
+
+#. module: hr_timesheet_time_control_begin_end
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control_begin_end.portal_my_timesheets_inherit_begin_end
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control_begin_end.portal_timesheet_table_inherit_begin_end
+msgid "End Hour"
 msgstr ""
 
 #. module: hr_timesheet_time_control_begin_end
