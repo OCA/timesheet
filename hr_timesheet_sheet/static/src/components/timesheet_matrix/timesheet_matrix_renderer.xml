@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t
+        t-name="hr_timesheet_sheet.TimesheetMatrixRenderer"
+        t-inherit="web_widget_x2many_2d_matrix.X2Many2DMatrixRenderer"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//thead/tr/th[@t-foreach]" position="attributes">
+            <attribute name="t-att-class">{o_matrix_today: column.isToday}</attribute>
+        </xpath>
+
+        <xpath expr="//tbody//td[@t-foreach]" position="attributes">
+            <attribute name="t-att-class">_getCellClass(column, row.value)</attribute>
+        </xpath>
+
+        <xpath expr="//tfoot//th[@t-foreach]" position="attributes">
+            <attribute name="t-att-class">_getColumnTotalClass(column)</attribute>
+        </xpath>
+    </t>
+</templates>
