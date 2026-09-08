@@ -11,6 +11,7 @@ class TestHrTimesheetSheetAutodraft(BaseCommon):
         self.ResUsers = self.env["res.users"]
         self.Company = self.env["res.company"]
         self.Project = self.env["project.project"]
+        self.HrDepartment = self.env["hr.department"]
         self.HrEmployee = self.env["hr.employee"]
         self.HrTimesheetSheet = self.env["hr_timesheet.sheet"]
         self.AccountAnalyticLine = self.env["account.analytic.line"]
@@ -43,7 +44,10 @@ class TestHrTimesheetSheetAutodraft(BaseCommon):
                 "company_id": self.company_id.id,
             }
         )
-        employee = self.HrEmployee.create({"name": "Employee", "user_id": user.id})
+        department = self.HrDepartment.create({"name": "Department 1"})
+        employee = self.HrEmployee.create(
+            {"name": "Employee", "user_id": user.id, "department_id": department.id}
+        )
         project = self.Project.create({"name": "Project"})
 
         aal_1 = self.AccountAnalyticLine.create(
@@ -67,6 +71,7 @@ class TestHrTimesheetSheetAutodraft(BaseCommon):
         self.assertTrue(aal_1.sheet_id)
         self.assertTrue(aal_2.sheet_id)
         self.assertEqual(aal_1.sheet_id, aal_2.sheet_id)
+        self.assertEqual(aal_1.sheet_id.department_id, employee.department_id)
 
     def test_already_confirmed(self):
         user = self.ResUsers.sudo().create(
