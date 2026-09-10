@@ -1,0 +1,2 @@
+odoo-addon-hr_timesheet_sheet @ git+https://github.com/OCA/timesheet.git@refs/pull/841/head#subdirectory=hr_timesheet_sheet
+odoo-addon-web_widget_x2many_2d_matrix @ git+https://github.com/OCA/web.git@refs/pull/3310/head#subdirectory=web_widget_x2many_2d_matrix
