@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_begin_end_break
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_timesheet_begin_end_break
+#: model:ir.model,name:hr_timesheet_begin_end_break.model_account_analytic_line
+msgid "Analytic Line"
+msgstr ""
+
+#. module: hr_timesheet_begin_end_break
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_begin_end_break.hr_timesheet_line_form_break
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_begin_end_break.hr_timesheet_line_tree_break
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_begin_end_break.view_task_form2_inherited_break
+msgid "Break"
+msgstr ""
+
+#. module: hr_timesheet_begin_end_break
+#: model:ir.model.fields,field_description:hr_timesheet_begin_end_break.field_account_analytic_line__break_duration
+msgid "Break Duration"
+msgstr ""
+
+#. module: hr_timesheet_begin_end_break
+#: code:addons/hr_timesheet_begin_end_break/models/account_analytic_line.py:0
+msgid "Lines can't overlap:\n"
+msgstr ""
+
+#. module: hr_timesheet_begin_end_break
+#: code:addons/hr_timesheet_begin_end_break/models/account_analytic_line.py:0
+msgid ""
+"The beginning hour (%(html_start)s) must precede the ending hour "
+"(%(html_stop)s)."
+msgstr ""
+
+#. module: hr_timesheet_begin_end_break
+#: code:addons/hr_timesheet_begin_end_break/models/account_analytic_line.py:0
+msgid ""
+"The duration (%(html_unit_amount)s) must be equal to the difference between "
+"the hours minus the break (%(html_hours)s)."
+msgstr ""
