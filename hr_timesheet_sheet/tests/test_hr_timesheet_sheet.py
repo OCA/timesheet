@@ -1003,6 +1003,73 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet.unlink()
         self.assertFalse(sheet.exists())
 
+    def test_approver_from_configured_field(self):
+        # `activity_user_id` stands in for the dedicated approver field an
+        # integrator adds on the employee: it matches the domain of the
+        # setting, it is not `user_id`, and it is private, i.e. not mirrored on
+        # `hr.employee.public`, so reading it requires `sudo`.
+        self.assertNotIn("activity_user_id", self.env["hr.employee.public"]._fields)
+        approver = new_test_user(
+            self.env,
+            login="test_approver",
+            groups="hr_timesheet.group_hr_timesheet_user,project.group_project_user",
+            company_id=self.company.id,
+        )
+        # Neither `user_3` (the employee's own user) nor `approver` is an HR
+        # Officer, so the "hr" review policy alone lets neither of them review.
+        sheet = Form(self.sheet_model.with_user(self.user_3)).save()
+        self.assertEqual(sheet.employee_id, self.department_manager)
+        self.assertEqual(sheet.review_policy, "hr")
+        self.assertNotIn(self.user_3, sheet._get_possible_reviewers())
+        self.assertNotIn(approver, sheet._get_possible_reviewers())
+        self.department_manager.sudo().activity_schedule(
+            "mail.mail_activity_data_todo", user_id=approver.id
+        )
+        self.assertEqual(self.department_manager.sudo().activity_user_id, approver)
+        self.company.timesheet_sheet_approver_field_id = self.env[
+            "ir.model.fields"
+        ]._get("hr.employee", "activity_user_id")
+        # Designating the field grants review rights to the user it points to,
+        # on top of the review policy.
+        self.assertIn(approver, sheet._get_possible_reviewers())
+        self.assertTrue(sheet.with_user(approver).can_review)
+        # Nobody else gains rights. Reading a private employee field must not
+        # raise an AccessError for `user_3` either: `can_review` is part of the
+        # sheet form and list views, so they could not open their own sheet.
+        self.assertNotIn(self.user_3, sheet._get_possible_reviewers())
+        self.assertFalse(sheet.with_user(self.user_3).can_review)
+        # Same for the "Timesheet Sheets to Review" action, which searches on
+        # `can_review` over every sheet.
+        self.assertEqual(
+            self.sheet_model.with_user(approver).search_count(
+                [("can_review", "=", True)]
+            ),
+            1,
+        )
+        self.assertEqual(
+            self.sheet_model.with_user(self.user_3).search_count(
+                [("can_review", "=", True)]
+            ),
+            0,
+        )
+
+    def test_approver_field_mismatch_is_ignored(self):
+        # The `domain` of the setting is a client-side hint only, and the
+        # registry may change after it has been set, e.g. when a manual field
+        # is retyped. A mismatch must leave the review policy alone instead of
+        # breaking every sheet with a TypeError.
+        sheet = Form(self.sheet_model.with_user(self.user_3)).save()
+        for model, name in [
+            ("hr.employee", "department_id"),  # does not link to a user
+            ("hr.employee", "name"),  # not relational at all
+            ("res.partner", "user_id"),  # right name, wrong model
+        ]:
+            with self.subTest(field=f"{model}.{name}"):
+                self.company.timesheet_sheet_approver_field_id = self.env[
+                    "ir.model.fields"
+                ]._get(model, name)
+                self.assertFalse(sheet.with_user(self.user_3).can_review)
+
     def test_same_week_different_years(self):
         sheet_form = Form(self.sheet_model.with_user(self.user))
         sheet_form.date_start = date(2019, 12, 30)

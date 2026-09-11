@@ -37,3 +37,16 @@ class ResCompany(models.Model):
         default="hr",
         help="How Timesheet Sheets review is performed.",
     )
+    timesheet_sheet_approver_field_id = fields.Many2one(
+        comodel_name="ir.model.fields",
+        string="Timesheet Approver Field",
+        domain=[
+            ("model", "=", "hr.employee"),
+            ("relation", "=", "res.users"),
+            ("ttype", "in", ["many2one", "many2many"]),
+        ],
+        ondelete="set null",
+        help="Employee field pointing to one or more users (res.users). The "
+        "users found in this field on the employee can review the employee's "
+        "timesheet sheets, in addition to the review policy.",
+    )
