@@ -5,10 +5,12 @@
 from unittest.mock import patch
 
 from odoo.exceptions import UserError
-from odoo.tests import Form
+from odoo.fields import Command
+from odoo.tests import Form, new_test_user, tagged
 from odoo.tests.common import TransactionCase
 
 
+@tagged("post_install", "-at_install")
 class TestHrTimesheetSheetWarning(TransactionCase):
     @classmethod
     def setUpClass(cls):
@@ -17,6 +19,9 @@ class TestHrTimesheetSheetWarning(TransactionCase):
         cls.sheet_warning_definition_model = cls.env[
             "hr_timesheet.sheet.warning.definition"
         ]
+        cls.sheet_warning_definition_model.with_context(active_test=False).search(
+            []
+        ).unlink()
         cls.sheet_model = cls.env["hr_timesheet.sheet"]
         cls.project_model = cls.env["project.project"]
         cls.aal_model = cls.env["account.analytic.line"]
@@ -25,19 +30,12 @@ class TestHrTimesheetSheetWarning(TransactionCase):
         cls.company = cls.env["res.company"].create({"name": "Test company"})
         cls.env.user.company_ids += cls.company
 
-        cls.user = (
-            cls.env["res.users"]
-            .with_user(cls.env.user)
-            .with_context(no_reset_password=True)
-            .create(
-                {
-                    "name": "Test User",
-                    "login": "test_user",
-                    "email": "test@oca.com",
-                    "company_id": cls.company.id,
-                    "company_ids": [(4, cls.company.id)],
-                }
-            )
+        cls.user = new_test_user(
+            cls.env,
+            login="test_user",
+            groups="base.group_user,hr_timesheet.group_hr_timesheet_approver,hr.group_hr_user",
+            company_id=cls.company.id,
+            company_ids=[Command.link(cls.company.id)],
         )
         cls.employee = cls.employee_model.create(
             {
@@ -47,14 +45,15 @@ class TestHrTimesheetSheetWarning(TransactionCase):
             }
         )
 
-        cls.project = cls.project_model.create(
-            {
-                "name": "Project 1",
-                "company_id": cls.user.company_id.id,
-                "allow_timesheets": True,
-                "user_id": cls.user.id,
-            }
-        )
+        project_vals = {
+            "name": "Project 1",
+            "company_id": cls.user.company_id.id,
+            "allow_timesheets": True,
+            "user_id": cls.user.id,
+        }
+        if "billing_type" in cls.env["project.project"]._fields:
+            project_vals["billing_type"] = "manually"
+        cls.project = cls.project_model.create(project_vals)
         cls.timesheet = cls.aal_model.create(
             {
                 "name": "Test Timesheet",

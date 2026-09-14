@@ -15,7 +15,7 @@ class Sheet(models.Model):
 
     def _generate_hr_timesheet_sheet_warnings(self):
         definitions = self.env["hr_timesheet.sheet.warning.definition"].search(
-            [("active", "in", [True, False])]
+            [("active", "in", [True, False]), ("id", "!=", False)]
         )
         item_model = self.env["hr_timesheet.sheet.warning.item"]
 

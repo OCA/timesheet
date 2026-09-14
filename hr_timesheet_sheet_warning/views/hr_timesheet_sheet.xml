@@ -32,7 +32,7 @@
         />
         <field name="model">hr_timesheet.sheet</field>
         <field name="arch" type="xml">
-            <xpath expr="//filter[@name='message_needaction']" position="after">
+            <xpath expr="//filter[@name='to_review']" position="after">
                 <filter
                     name="with_warnings"
                     string="With Warnings"
