@@ -4,7 +4,7 @@
  -->
 <odoo>
     <record id="hr_timesheet_sheet_warning_item_tree" model="ir.ui.view">
-        <field name="name">hr_timesheet.sheet.warning.item.tree</field>
+        <field name="name">hr_timesheet.sheet.warning.item.list</field>
         <field name="model">hr_timesheet.sheet.warning.item</field>
         <field name="arch" type="xml">
             <list>

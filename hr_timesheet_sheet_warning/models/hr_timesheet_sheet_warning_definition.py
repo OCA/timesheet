@@ -1,9 +1,9 @@
 # Copyright 2024 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
-from odoo.osv import expression
+from odoo.fields import Domain
 from odoo.tools.safe_eval import safe_eval
 
 
@@ -37,7 +37,7 @@ class SheetWarning(models.Model):
         sheet_domain = [("id", "=", sheet.id)]
         return bool(
             self.env["hr_timesheet.sheet"].search_count(
-                expression.AND([sheet_domain, domain])
+                Domain.AND([sheet_domain, domain])
             )
         )
 
@@ -50,10 +50,13 @@ class SheetWarning(models.Model):
     def evaluate_definition(self, sheet):
         self.ensure_one()
         try:
-            res = safe_eval(self.python_code, globals_dict={"sheet": sheet})
+            res = safe_eval(self.python_code, {"sheet": sheet})
         except Exception as error:
             raise UserError(
-                _("Error evaluating %(name)s.\n %(error)s")
-                % ({"name": self._name, "error": error})
+                self.env._(
+                    "Error evaluating %(name)s.\n %(error)s",
+                    name=self._name,
+                    error=error,
+                )
             ) from error
         return res

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <odoo>
     <record id="hr_timesheet_sheet_warning_definition_tree" model="ir.ui.view">
-        <field name="name">hr_timesheet.sheet.warning.definition.tree</field>
+        <field name="name">hr_timesheet.sheet.warning.definition.list</field>
         <field name="model">hr_timesheet.sheet.warning.definition</field>
         <field name="arch" type="xml">
             <list>
@@ -20,7 +20,7 @@
                     <widget
                         name="web_ribbon"
                         title="Inactive"
-                        bg_color="bg-warning"
+                        bg_color="text-bg-warning"
                         invisible="active"
                     />
                     <div class="oe_title">
