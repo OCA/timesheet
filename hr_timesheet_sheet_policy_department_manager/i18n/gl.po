@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_sheet_policy_department_manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-05-23 17:18+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
+"Language-Team: none\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: hr_timesheet_sheet_policy_department_manager
+#: model:ir.model.fields.selection,name:hr_timesheet_sheet_policy_department_manager.selection__res_company__timesheet_sheet_review_policy__department_manager
+msgid "By Department Manager"
+msgstr "Polo responsable do departamento"
+
+#. module: hr_timesheet_sheet_policy_department_manager
+#: model:ir.model,name:hr_timesheet_sheet_policy_department_manager.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: hr_timesheet_sheet_policy_department_manager
+#: model:ir.model.fields,help:hr_timesheet_sheet_policy_department_manager.field_res_company__timesheet_sheet_review_policy
+msgid "How Timesheet Sheets review is performed."
+msgstr "Como ser realiza a revisión de Partes de horas."
+
+#. module: hr_timesheet_sheet_policy_department_manager
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_policy_department_manager/models/hr_timesheet_sheet.py:0
+#, python-format
+msgid "Only a Department's Manager can review the sheet."
+msgstr "Só o responsable de departamente pode revisar este parte."
+
+#. module: hr_timesheet_sheet_policy_department_manager
+#: model:ir.model,name:hr_timesheet_sheet_policy_department_manager.model_hr_timesheet_sheet
+msgid "Timesheet Sheet"
+msgstr "Parte de horas"
+
+#. module: hr_timesheet_sheet_policy_department_manager
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_department_manager.field_res_company__timesheet_sheet_review_policy
+msgid "Timesheet Sheet Review Policy"
+msgstr "Política de Revisión do Parte de horas"
