@@ -1,0 +1,27 @@
+<odoo>
+    <record id="res_config_settings_view_form_inherit_edit_ts" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.edit.ts</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="project_timesheet_holidays.res_config_settings_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='leave_timesheet_task_id']/.." position="after">
+                <div class="w-100 mt-2" invisible="not internal_project_id">
+                    <label
+                        string="Timesheet Edit Level"
+                        for="timesheet_edit_level"
+                        class="col-2 col-lg-3"
+                    />
+                    <field
+                        name="timesheet_edit_level"
+                        widget="radio"
+                        options="{'horizontal': true}"
+                        class="oe_inline ml16"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
