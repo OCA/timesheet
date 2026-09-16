@@ -4,7 +4,7 @@
 {
     "name": "Sale Timesheet Invoice Link",
     "summary": "Link invoices with timesheet lines",
-    "version": "19.0.0.1.1",
+    "version": "19.0.0.2.0",
     "development_status": "Alpha",
     "category": "Services/Timesheets",
     "website": "https://github.com/OCA/timesheet",
