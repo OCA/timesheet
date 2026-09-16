@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    ~ Copyright 2026 Simone Rubino - PyTech
+    ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">Add Timesheet Activity configuration</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr_timesheet.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <setting id="reminder_allow" position="after">
+                <setting
+                    id="timesheet_activity_types"
+                    string="Activities"
+                    help="Get notified of submission and review of timesheet sheets with activities"
+                    groups="base.group_no_one"
+                >
+                    <button
+                        string="Activity Types"
+                        class="btn-link"
+                        icon="oi-arrow-right"
+                        name="hr_timesheet_sheet_activity.action_view_hr_timesheet_sheet_mail_activity_types"
+                        type="action"
+                    />
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>
