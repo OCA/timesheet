@@ -12,3 +12,80 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: sale_timesheet_invoice_link
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_invoice_link.account_move_view_form_inherit_timesheet_link
+msgid "Dismiss"
+msgstr ""
+
+#. module: sale_timesheet_invoice_link
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_invoice_link.account_move_view_form_inherit_timesheet_link
+msgid "Dismiss this alert"
+msgstr ""
+
+#. module: sale_timesheet_invoice_link
+#: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_move__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_timesheet_invoice_link
+#: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_move__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_timesheet_invoice_link
+#: model:ir.model.fields,help:sale_timesheet_invoice_link.field_account_bank_statement_line__timesheet_alert_dismissed
+#: model:ir.model.fields,help:sale_timesheet_invoice_link.field_account_move__timesheet_alert_dismissed
+msgid "If unchecked, shows a warning alert about unlinked timesheets"
+msgstr ""
+
+#. module: sale_timesheet_invoice_link
+#: model:ir.model,name:sale_timesheet_invoice_link.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: sale_timesheet_invoice_link
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_invoice_link.account_move_view_form_inherit_timesheet_link
+msgid "Link All"
+msgstr ""
+
+#. module: sale_timesheet_invoice_link
+#: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_bank_statement_line__timesheet_pending_ids
+#: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_move__timesheet_pending_ids
+msgid "Pending Timesheets"
+msgstr ""
+
+#. module: sale_timesheet_invoice_link
+#: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_bank_statement_line__timesheet_pending_count
+#: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_move__timesheet_pending_count
+msgid "Pending Timesheets Count"
+msgstr ""
+
+#. module: sale_timesheet_invoice_link
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_invoice_link.account_move_view_form_inherit_timesheet_link
+msgid "Select Manually"
+msgstr ""
+
+#. module: sale_timesheet_invoice_link
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_invoice_link.account_move_view_form_inherit_timesheet_link
+msgid "There is/are"
+msgstr ""
+
+#. module: sale_timesheet_invoice_link
+#: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_bank_statement_line__timesheet_alert_dismissed
+#: model:ir.model.fields,field_description:sale_timesheet_invoice_link.field_account_move__timesheet_alert_dismissed
+msgid "Timesheet Alert Dismissed"
+msgstr ""
+
+#. module: sale_timesheet_invoice_link
+#: model:ir.model.fields,help:sale_timesheet_invoice_link.field_account_bank_statement_line__timesheet_pending_ids
+#: model:ir.model.fields,help:sale_timesheet_invoice_link.field_account_move__timesheet_pending_ids
+msgid ""
+"Timesheets linked to this invoice's SO lines that are not yet linked to any "
+"non-cancelled invoice"
+msgstr ""
+
+#. module: sale_timesheet_invoice_link
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_invoice_link.account_move_view_form_inherit_timesheet_link
+msgid "timesheet(s) not linked to this invoice yet."
+msgstr ""
