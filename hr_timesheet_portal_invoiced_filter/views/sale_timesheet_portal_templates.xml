@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright 2026 NICO SOLUTIONS - ENGINEERING & IT (https://www.nico-solutions.de)
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <template
+        id="portal_my_task_amount_due_inherit"
+        inherit_id="sale_timesheet.portal_my_task_inherit"
+    >
+        <xpath expr="//div[@name='amount_due']" position="attributes">
+            <attribute name="t-if">
+                task.sale_line_id.untaxed_amount_to_invoice &gt; 0 and task.show_amount_due
+            </attribute>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright 2026 NICO SOLUTIONS - ENGINEERING & IT (https://www.nico-solutions.de)
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="res_partner_timesheet_portal_visibility_form" model="ir.ui.view">
+        <field name="name">res.partner.timesheet.portal.visibility</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='accounting']" position="inside">
+                <group>
+                    <group string="Timesheet Portal Visibility">
+                        <field
+                            name="timesheet_portal_visibility"
+                            invisible="commercial_partner_id != id"
+                        />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
