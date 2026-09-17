@@ -1,0 +1,47 @@
+# Translation of hr_timesheet_amount_security
+# Copyright (C) 2025 Moduon Team S.L.
+# This file is distributed under the same license as the hr_timesheet_amount_security package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-05\n"
+"PO-Revision-Date: 2025-05-05\n"
+"Last-Translator: Emilio Pascual <emilio.pascual@moduon.team>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: hr_timesheet_amount_security
+#: model:ir.model.fields,field_description:hr_timesheet_amount_security.field_hr_timesheet_attendance_report__attendance_cost
+msgid "Attendance Cost"
+msgstr "Coste de Asistencia"
+
+#. module: hr_timesheet_amount_security
+#: model:ir.model.fields,field_description:hr_timesheet_amount_security.field_hr_timesheet_attendance_report__cost_difference
+msgid "Cost Difference"
+msgstr "Diferencia de Coste"
+
+#. module: hr_timesheet_amount_security
+#: model:ir.model.fields,field_description:hr_timesheet_amount_security.field_timesheets_analysis_report__amount
+msgid "Amount"
+msgstr "Importe"
+
+#. module: hr_timesheet_amount_security
+#: model:ir.model.fields,field_description:hr_timesheet_amount_security.field_hr_timesheet_attendance_report__timesheets_cost
+msgid "Timesheets Cost"
+msgstr "Coste de Parts de Horas"
+
+#. module: hr_timesheet_amount_security
+#: model:ir.model,name:hr_timesheet_amount_security.model_hr_timesheet_attendance_report
+msgid "Timesheet Attendance Report"
+msgstr "Informe de Partes de Horas y Asistencia"
+
+#. module: hr_timesheet_amount_security
+#: model:ir.model,name:hr_timesheet_amount_security.model_timesheets_analysis_report
+msgid "Timesheets Analysis Report"
+msgstr "Informe de Análisis de Parts de Horas"
