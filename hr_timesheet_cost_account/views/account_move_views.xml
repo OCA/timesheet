@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_move_form_timesheet_costing" model="ir.ui.view">
+        <field name="name">account.move.form.timesheet.costing</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_view_timesheet_costing"
+                    class="oe_stat_button"
+                    icon="fa-clock-o"
+                    type="object"
+                    invisible="not timesheet_costing_id"
+                >
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Timesheet Costing</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
