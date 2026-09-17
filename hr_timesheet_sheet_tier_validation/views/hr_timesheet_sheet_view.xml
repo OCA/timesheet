@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_hr_timesheet_sheet_filter" model="ir.ui.view">
+        <field name="name">hr_timesheet.sheet.tier.validation.search</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"
+        />
+        <field name="arch" type="xml">
+            <filter name="to_review" position="after">
+                <separator />
+                <filter
+                    name="needs_review"
+                    string="Needs my Review"
+                    domain="[('reviewer_ids', 'in', uid), ('state', 'not in', ['done'])]"
+                    help="Timesheet Sheets waiting for my review"
+                />
+                <filter
+                    name="tier_validated"
+                    string="Validated"
+                    domain="[('validated', '=', True)]"
+                    help="Timesheet Sheets validated and ready to be approved"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
