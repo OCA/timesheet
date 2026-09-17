@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form_rounded_timesheet" model="ir.ui.view">
+        <field name="name">sale.order.form.rounded.timesheet</field>
+        <field name="model">sale.order</field>
+        <field
+            name="inherit_id"
+            ref="sale_timesheet.view_order_form_inherit_sale_timesheet"
+        />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath
+                expr="//button[@name='action_view_timesheet']//div[hasclass('o_stat_info')]"
+                position="replace"
+            >
+                <div class="o_stat_info">
+                    <span class="o_stat_value">
+                        <field name="timesheet_total_duration_rounded" class="mr4" />
+                        <span> / </span>
+                        <field name="timesheet_total_duration" class="mr4" />
+                        <field
+                            name="timesheet_encode_uom_id"
+                            options="{'no_open': True}"
+                        />
+                    </span>
+                    <span class="o_stat_text">Recorded (Rounded / Actual)</span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
