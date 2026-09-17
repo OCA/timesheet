@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2020 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="action_autodraft_timesheet_sheets" model="ir.actions.server">
+        <field name="name">Auto-draft Timesheet Sheet(s)</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="analytic.model_account_analytic_line" />
+        <field name="binding_model_id" ref="analytic.model_account_analytic_line" />
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.action_autodraft_timesheet_sheets()
+        </field>
+    </record>
+</odoo>
