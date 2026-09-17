@@ -114,7 +114,7 @@ class AccountAnalyticLine(models.Model):
                     default_date_time = fields.Datetime.from_string(default_date_time)
                 ctx["default_date"] = default_date_time.date()
         vals = super(AccountAnalyticLine, self.with_context(**ctx)).default_get(
-            fields_list + ["product_uom_id"]
+            list(fields_list) + ["product_uom_id"]
         )
         if (
             vals.get("date_time")
