@@ -6,10 +6,10 @@
 # Quentin THEURET <odoo@kerpeo.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-18 00:44+0000\n"
-"PO-Revision-Date: 2017-08-18 00:44+0000\n"
+"PO-Revision-Date: 2026-08-29 00:00+0000\n"
 "Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -19,34 +19,47 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: crm_timesheet
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
-msgid "<i class=\"fa fa-lg fa-play-circle\" title=\"Start\"/>"
-msgstr ""
-
-#. module: crm_timesheet
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
-msgid "<i class=\"fa fa-lg fa-stop-circle\" title=\"Stop\"/>"
-msgstr ""
-
-#. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_account_analytic_line
 msgid "Analytic Line"
 msgstr "Ligne analytique"
 
 #. module: crm_timesheet
-#: model:ir.model,name:crm_timesheet.model_hr_timesheet_switch
-msgid "Helper to quickly switch between timesheet lines"
-msgstr ""
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_team__timesheet_project_id
+msgid "Default Timesheet Project"
+msgstr "Projet de feuille de temps par défaut"
 
 #. module: crm_timesheet
-#: model:ir.model.fields,help:crm_timesheet.field_crm_lead__show_time_control
-msgid "Indicate which time control button to show, if any."
+#: model:ir.model.fields,help:crm_timesheet.field_crm_team__timesheet_project_id
+msgid "Default project to use for timesheets in leads of this team."
 msgstr ""
+"Projet par défaut à utiliser pour les feuilles de temps des pistes de cette "
+"équipe."
+
+#. module: crm_timesheet
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
+msgid "Description"
+msgstr "Description"
+
+#. module: crm_timesheet
+#: model:ir.model.fields,field_description:crm_timesheet.field_account_analytic_line__display_name
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__display_name
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_team__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: crm_timesheet
+#: model:ir.model.fields,field_description:crm_timesheet.field_account_analytic_line__id
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__id
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_team__id
+msgid "ID"
+msgstr "ID"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_crm_lead
+msgid "Lead"
+msgstr "Piste"
+
+#. module: crm_timesheet
 #: model:ir.model.fields,field_description:crm_timesheet.field_account_analytic_line__lead_id
 msgid "Lead/Opportunity"
 msgstr "Piste/Opportunité"
@@ -54,33 +67,46 @@ msgstr "Piste/Opportunité"
 #. module: crm_timesheet
 #: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__project_id
 msgid "Project"
-msgstr ""
+msgstr "Projet"
 
 #. module: crm_timesheet
-#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__show_time_control
-msgid "Show Time Control"
-msgstr ""
+#: model:ir.model,name:crm_timesheet.model_crm_team
+msgid "Sales Team"
+msgstr "Équipe commerciale"
 
 #. module: crm_timesheet
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_leads
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
 #: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
-msgid "Start work"
-msgstr ""
-
-#. module: crm_timesheet
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_leads
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
-msgid "Stop work"
-msgstr ""
+msgid "Time Spent"
+msgstr "Temps passé"
 
 #. module: crm_timesheet
 #: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__timesheet_ids
-#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
 msgid "Timesheet"
 msgstr "Feuille de temps"
+
+#. module: crm_timesheet
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
+msgid "Timesheet Activities"
+msgstr "Activités de feuille de temps"
+
+#. module: crm_timesheet
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
+msgid "Timesheets"
+msgstr "Feuilles de temps"
+
+#. module: crm_timesheet
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
+msgid "Total"
+msgstr "Total"
+
+#. module: crm_timesheet
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__total_time_spent
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
+msgid "Total Time Spent"
+msgstr "Temps total passé"
+
+#. module: crm_timesheet
+#: model:ir.model.fields,help:crm_timesheet.field_crm_lead__total_time_spent
+msgid "Total time spent on this lead/opportunity"
+msgstr "Temps total passé sur cette piste/opportunité"
