@@ -22,6 +22,18 @@ patch(X2Many2DMatrixRenderer.prototype, {
         return columns;
     },
 
+    _getRows() {
+        const rows = super._getRows(...arguments);
+        if (this._knownRowValues) {
+            for (const row of rows) {
+                row.isNewlyAdded = !this._knownRowValues.has(row.value);
+                this._knownRowValues.add(row.value);
+            }
+        }
+        this._knownRowValues = new Set(rows.map((r) => r.value));
+        return rows;
+    },
+
     _getCellClass(column, rowValue) {
         const x = this.columns.findIndex((c) => c.value === column.value);
         const y = this.rows.findIndex((r) => r.value === rowValue);
@@ -31,6 +43,10 @@ patch(X2Many2DMatrixRenderer.prototype, {
             o_matrix_value_nonzero: val > 0,
             o_matrix_value_zero: val === 0,
         };
+    },
+
+    _getRowClass(row) {
+        return {o_matrix_new_row: row.isNewlyAdded};
     },
 
     _getColumnTotalClass(column) {
