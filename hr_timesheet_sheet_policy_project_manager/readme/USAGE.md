@@ -1,0 +1,3 @@
+- The "Project" field is added to the Timesheet Sheets.
+- The records that will be created in the sheets will be filtered by the defined project.
+- The possible reviewers will also be the Project Managers of the corresponding project.
