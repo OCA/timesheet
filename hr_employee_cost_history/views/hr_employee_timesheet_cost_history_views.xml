@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team S.L. <info@moduon.team>
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record id="hr_employee_timesheet_cost_view_tree" model="ir.ui.view">
+        <field name="name">hr.employee.timesheet.cost.history.view.list</field>
+        <field name="model">hr.employee.timesheet.cost.history</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="hourly_cost" />
+                <field name="starting_date" />
+                <field name="comment" />
+                <field name="create_uid" optional="hide" />
+                <field name="create_date" optional="hide" />
+            </list>
+        </field>
+    </record>
+
+    <record id="hr_employee_timesheet_cost_action" model="ir.actions.act_window">
+        <field name="name">Employee Timesheet Cost History</field>
+        <field name="res_model">hr.employee.timesheet.cost.history</field>
+        <field name="view_mode">list</field>
+        <field name="domain">[('employee_id', '=', active_id)]</field>
+        <field name="target">current</field>
+    </record>
+</odoo>
