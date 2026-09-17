@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_calendar
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-05-03 17:24+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: hr_timesheet_calendar
+#: model:ir.model,name:hr_timesheet_calendar.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Riga analitica"
+
+#. module: hr_timesheet_calendar
+#. odoo-javascript
+#: code:addons/hr_timesheet_calendar/static/src/views/timesheet_calendar/common/timesheet_calendar_common_popover.xml:0
+#, python-format
+msgid "Duplicate"
+msgstr "Duplica"
+
+#. module: hr_timesheet_calendar
+#. odoo-javascript
+#: code:addons/hr_timesheet_calendar/static/src/views/timesheet_calendar/timesheet_calendar_controller.esm.js:0
+#, python-format
+msgid "New Timesheet Entry"
+msgstr "Nuova registrazione foglio ore"
+
+#. module: hr_timesheet_calendar
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_calendar.hr_timesheet_line_calendar
+msgid "Timesheets"
+msgstr "Fogli ore"
