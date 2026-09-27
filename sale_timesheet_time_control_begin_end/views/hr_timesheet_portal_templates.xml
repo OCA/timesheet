@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2026 NICO SOLUTIONS - ENGINEERING & IT
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <template
+        id="portal_my_timesheets_inherit_sale_timesheet_begin_end"
+        inherit_id="sale_timesheet.portal_my_timesheets_inherit"
+    >
+        <xpath
+            expr="//t[@t-elif=&quot;groupby == 'so_line'&quot;]//th"
+            position="attributes"
+        >
+            <attribute name="t-att-colspan">7</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-elif=&quot;groupby == 'order_id'&quot;]//th"
+            position="attributes"
+        >
+            <attribute name="t-att-colspan">8</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-elif=&quot;groupby == 'timesheet_invoice_id'&quot;]//th"
+            position="attributes"
+        >
+            <attribute name="t-att-colspan">8</attribute>
+        </xpath>
+    </template>
+</odoo>
