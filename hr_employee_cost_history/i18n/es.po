@@ -1,0 +1,155 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_employee_cost_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-27 10:08+0000\n"
+"PO-Revision-Date: 2024-03-27 11:10+0100\n"
+"Last-Translator: Eduardo López <elp@moduon.team>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: hr_employee_cost_history
+#: model_terms:ir.ui.view,arch_db:hr_employee_cost_history.hr_timesheet_retroactive_cost_view_employee_form_inherit
+msgid "<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/> Update Cost"
+msgstr "<i class=\"fa fa-fw o_button_icon fa-arrow-right\"/> Actualizar coste"
+
+#. module: hr_employee_cost_history
+#: model_terms:ir.ui.view,arch_db:hr_employee_cost_history.hr_timesheet_retroactive_cost_view_employee_form_inherit
+msgid "<i class=\"fa fa-fw o_button_icon fa-history\"/> Cost History"
+msgstr "<i class=\"fa fa-fw o_button_icon fa-history\"/> Histórico de coste"
+
+#. module: hr_employee_cost_history
+#: model_terms:ir.ui.view,arch_db:hr_employee_cost_history.hr_employee_timesheet_cost_wizard_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,help:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__starting_date
+msgid "Change timesheet cost from this date onwards."
+msgstr "Cambiar el coste del parte de horas a partir de esta fecha."
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__comment
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__comment
+msgid "Comment"
+msgstr ""
+
+#. module: hr_employee_cost_history
+#: model_terms:ir.ui.view,arch_db:hr_employee_cost_history.hr_employee_timesheet_cost_wizard_view_form
+msgid "Cost"
+msgstr "Coste"
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__create_uid
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__create_date
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__currency_id
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__display_name
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: hr_employee_cost_history
+#: model:ir.model,name:hr_employee_cost_history.model_hr_employee
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__employee_id
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: hr_employee_cost_history
+#: model:ir.actions.act_window,name:hr_employee_cost_history.hr_employee_timesheet_cost_action
+#: model:ir.model,name:hr_employee_cost_history.model_hr_employee_timesheet_cost_history
+msgid "Employee Timesheet Cost History"
+msgstr "Histórico coste en parte de horas"
+
+#. module: hr_employee_cost_history
+#: model:ir.model,name:hr_employee_cost_history.model_hr_employee_timesheet_cost_wizard
+msgid "Employee timesheet cost wizard"
+msgstr ""
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__starting_date
+msgid "From Date"
+msgstr "Desde"
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__hourly_cost
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__hourly_cost
+msgid "Hourly Cost"
+msgstr ""
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__id
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history____last_update
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard____last_update
+msgid "Last Modified on"
+msgstr "Últimas páginas modificadas"
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__write_uid
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__write_date
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__starting_date
+msgid "Starting Date"
+msgstr "Fecha de inicio"
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,help:hr_employee_cost_history.field_hr_employee_timesheet_cost_history__starting_date
+msgid "The cost change has effect since this date."
+msgstr "El cambio de coste se aplica desde esta fecha."
+
+#. module: hr_employee_cost_history
+#: model:ir.model.fields,field_description:hr_employee_cost_history.field_hr_employee__timesheet_cost_history_ids
+msgid "Timesheet Cost History"
+msgstr "Histórico coste en parte de horas"
+
+#. module: hr_employee_cost_history
+#: model_terms:ir.ui.view,arch_db:hr_employee_cost_history.hr_employee_timesheet_cost_wizard_view_form
+msgid "Update"
+msgstr "Actualizar"
+
+#. module: hr_employee_cost_history
+#: model:ir.actions.act_window,name:hr_employee_cost_history.action_hr_employee_timesheet_cost_wizard
+#: model_terms:ir.ui.view,arch_db:hr_employee_cost_history.hr_employee_timesheet_cost_wizard_view_form
+msgid "Update Timesheet Cost"
+msgstr "Actualizar coste en partes de horas"
+
+#~ msgid "Timesheet Cost"
+#~ msgstr "Coste del parte de horas"
