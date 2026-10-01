@@ -5,11 +5,12 @@ import requests
 from odoo.exceptions import UserError
 from odoo.tests import new_test_user, tagged, users
 
+from odoo.addons.mail.tests.common import MailCase
 from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheet
 
 
 @tagged("-at_install", "post_install")
-class HrTimesheet(TestCommonSaleTimesheet):
+class HrTimesheet(TestCommonSaleTimesheet, MailCase):
     @classmethod
     def setUpClass(cls):
         cls._super_send = requests.Session.send
@@ -116,6 +117,39 @@ class HrTimesheet(TestCommonSaleTimesheet):
     def _request_handler(cls, s, r, /, **kw):
         """Don't block external requests."""
         return cls._super_send(s, r, **kw)
+
+    def test_analytic_account_tracking(self):
+        """Changes to primary and extra-plan task accounts are tracked."""
+        project_account = self.env["account.analytic.account"].create(
+            {"name": "Other project", "plan_id": self.analytic_plan.id}
+        )
+        plan_fname = f"x_plan{self.plan.id}_id"
+        self.project_global[plan_fname] = self.analytic_account_maintenance
+        self.flush_tracking()
+        self.assertEqual(self.task1.account_id, self.analytic_account_sale)
+        self.assertEqual(self.task1[plan_fname], self.analytic_account_maintenance)
+        task = self._reset_mail_context(self.task1).with_context(tracking_disable=False)
+        task.account_id = project_account
+        task[plan_fname] = self.analytic_account_sales
+        self.flush_tracking()
+        self.assertTracking(
+            task.message_ids[:1],
+            [
+                (
+                    "account_id",
+                    "many2one",
+                    self.analytic_account_sale,
+                    project_account,
+                ),
+                (
+                    plan_fname,
+                    "many2one",
+                    self.analytic_account_maintenance,
+                    self.analytic_account_sales,
+                ),
+            ],
+            strict=True,
+        )
 
     @users("test_user")
     def test_compute_account_id_01(self):

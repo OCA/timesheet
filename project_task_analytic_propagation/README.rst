@@ -80,6 +80,9 @@ To use this module, you need to:
 7. Change to list view and group by Project > Task and add custom group
    based on your analytic plans.
 
+Changes to a task's analytic accounts are tracked in its chatter for all
+analytic plans.
+
 Bug Tracker
 ===========
 

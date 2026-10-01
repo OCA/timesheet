@@ -15,6 +15,11 @@ class ProjectTask(models.Model):
         store=True,
     )
 
+    def _track_get_fields(self):
+        # Track analytic accounts from all plans, including dynamic fields
+        analytic_fields = self.fields_get(self._get_plan_fnames(), attributes=())
+        return super()._track_get_fields() | set(analytic_fields)
+
     def _get_project_analytic_plan_columns(self):
         return [
             f"project_id.{x}"
