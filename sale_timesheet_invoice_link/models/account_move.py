@@ -2,6 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo import api, fields, models
+from odoo.fields import Domain
 
 
 class AccountMove(models.Model):
@@ -23,17 +24,26 @@ class AccountMove(models.Model):
         help="If unchecked, shows a warning alert about unlinked timesheets",
     )
 
-    @api.depends("invoice_line_ids.sale_line_ids")
+    @api.depends("invoice_line_ids.sale_line_ids", "invoice_date")
     def _compute_timesheet_pending_ids(self):
         self.timesheet_pending_ids = False
         self.timesheet_pending_count = 0
         for invoice in self.filtered_domain([("move_type", "=", "out_invoice")]):
-            so_lines = invoice.invoice_line_ids.sale_line_ids
+            so_lines = invoice.invoice_line_ids.sale_line_ids.filtered(
+                lambda sol: sol.product_id
+                and not sol.product_id._is_delivered_timesheet()
+            )
             if not so_lines:
                 continue
-            domain = self.env["account.move.line"]._timesheet_domain_get_invoiced_lines(
-                so_lines
+            domain = Domain(
+                self.env["account.move.line"]._timesheet_domain_get_invoiced_lines(
+                    so_lines
+                )
             )
+            if invoice.invoice_date:
+                domain = Domain.AND(
+                    [domain, Domain("date", "<=", invoice.invoice_date)]
+                )
             pending = self.env["account.analytic.line"].search(domain)
             invoice.timesheet_pending_ids = pending
             invoice.timesheet_pending_count = len(pending)

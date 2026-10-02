@@ -1,6 +1,9 @@
 # Copyright 2024 Moduon Team S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
+from datetime import timedelta
+
+from odoo import fields
 from odoo.tests import common
 
 
@@ -142,7 +145,7 @@ class TestInvoiceLink(common.TransactionCase):
             [("sale_line_id", "=", cls.so_line_timesheet.id)]
         )
 
-    def _create_timesheet(self, task, unit_amount=1.0):
+    def _create_timesheet(self, task, unit_amount=1.0, date=None):
         return self.env["account.analytic.line"].create(
             {
                 "project_id": task.project_id.id,
@@ -151,6 +154,7 @@ class TestInvoiceLink(common.TransactionCase):
                 "unit_amount": unit_amount,
                 "employee_id": self.employee.id,
                 "account_id": self.project.account_id.id,
+                "date": date or fields.Date.today(),
             }
         )
 
@@ -286,3 +290,44 @@ class TestInvoiceLink(common.TransactionCase):
         invoice.button_draft()
         self.assertFalse(invoice.timesheet_alert_dismissed)
         self.assertEqual(invoice.timesheet_pending_count, 1)
+
+    def test_pending_only_until_invoice_date(self):
+        """Only timesheets up to the invoice date count as pending."""
+        invoice_date = fields.Date.today()
+        before = self._create_timesheet(
+            self.task_fixed, date=invoice_date - timedelta(days=1)
+        )
+        after = self._create_timesheet(
+            self.task_fixed, date=invoice_date + timedelta(days=1)
+        )
+        invoice = self.sale_order._create_invoices()
+        invoice.invoice_date = invoice_date
+        self.env.invalidate_all()
+        self.assertEqual(invoice.timesheet_pending_count, 1)
+        self.assertIn(before, invoice.timesheet_pending_ids)
+        self.assertNotIn(after, invoice.timesheet_pending_ids)
+
+    def test_no_pending_after_invoice_date(self):
+        """Timesheets after the invoice date are never offered as pending."""
+        invoice_date = fields.Date.today()
+        after = self._create_timesheet(
+            self.task_fixed, date=invoice_date + timedelta(days=5)
+        )
+        invoice = self.sale_order._create_invoices()
+        invoice.invoice_date = invoice_date
+        self.env.invalidate_all()
+        self.assertEqual(invoice.timesheet_pending_count, 0)
+        invoice.action_link_timesheets()
+        self.assertFalse(after.timesheet_invoice_id)
+
+    def test_no_pending_for_delivered_timesheet_without_autolink(self):
+        """Delivered-timesheet lines are never offered, even if not auto-linked."""
+        self._create_timesheet(self.task_timesheet)
+        invoice = self.sale_order._create_invoices()
+        self.env.invalidate_all()
+        ts = self._create_timesheet(self.task_timesheet)
+        self.env.invalidate_all()
+        self.assertFalse(ts.timesheet_invoice_id)
+        self.assertIn(self.so_line_timesheet, invoice.invoice_line_ids.sale_line_ids)
+        self.assertEqual(invoice.timesheet_pending_count, 0)
+        self.assertNotIn(ts, invoice.timesheet_pending_ids)
