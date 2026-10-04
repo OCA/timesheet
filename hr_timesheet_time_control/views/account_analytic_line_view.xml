@@ -17,7 +17,8 @@
                     name="button_resume_work"
                     tabindex="-1"
                     type="object"
-                    icon="fa-play-circle text-success"
+                    icon="play_circle"
+                    icon_class="text-success"
                     invisible="show_time_control != 'resume'"
                     class="oe_stat_button"
                     title="Resume work"
@@ -26,7 +27,8 @@
                     name="button_end_work"
                     tabindex="-1"
                     type="object"
-                    icon="fa-stop-circle text-warning"
+                    icon="stop_circle"
+                    icon_class="text-warning"
                     invisible="show_time_control != 'stop'"
                     class="oe_stat_button"
                     title="Stop work"
@@ -45,7 +47,8 @@
                     <button
                         name="button_resume_work"
                         type="object"
-                        icon="fa-play-circle text-success"
+                        icon="play_circle"
+                        icon_class="text-success"
                         invisible="show_time_control != 'resume'"
                         class="oe_stat_button"
                         context="{'show_created_timer': True}"
@@ -54,7 +57,8 @@
                     <button
                         name="button_end_work"
                         type="object"
-                        icon="fa-stop-circle text-warning"
+                        icon="stop_circle"
+                        icon_class="text-warning"
                         invisible="show_time_control != 'stop'"
                         class="oe_stat_button"
                         title="Stop work"
@@ -83,7 +87,8 @@
                     tabindex="-1"
                     type="object"
                     invisible="show_time_control != 'resume'"
-                    class="o_kanban_inline_block fa fa-lg fa-play-circle text-success"
+                    class="o_kanban_inline_block oi oi-lg text-success"
+                    data-icon="play_circle"
                     title="Start work"
                 />
                 <a
@@ -92,7 +97,8 @@
                     tabindex="-1"
                     type="object"
                     invisible="show_time_control != 'stop'"
-                    class="o_kanban_inline_block fa fa-lg fa-stop-circle text-warning"
+                    class="o_kanban_inline_block oi oi-lg text-warning"
+                    data-icon="stop_circle"
                     title="End work"
                 />
             </xpath>

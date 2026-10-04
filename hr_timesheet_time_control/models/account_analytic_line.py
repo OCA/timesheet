@@ -119,17 +119,22 @@ class AccountAnalyticLine(models.Model):
             else:
                 one.show_time_control = "stop"
 
+    def _get_time_uom(self):
+        # product_uom_id is not in the timesheet form view: fall back to the
+        # company time unit, as hr_timesheet does when creating the line
+        return self.product_uom_id or self.company_id.project_time_mode_id
+
     @api.onchange("date")
     def _onchange_date(self):
         hour_uom = self.env.ref("uom.product_uom_hour")
-        if self.product_uom_id == hour_uom and self.date_time:
+        if self._get_time_uom() == hour_uom and self.date_time:
             self.date_time = datetime.combine(self.date, self.date_time.time())
 
     @api.onchange("date_time", "date_time_end")
     def _onchange_date_time(self):
         hour_uom = self.env.ref("uom.product_uom_hour")
         self.date = self.date_time.date()
-        if self.product_uom_id == hour_uom:
+        if self._get_time_uom() == hour_uom:
             if self.date_time and self.date_time_end:
                 self.unit_amount = self._duration(self.date_time, self.date_time_end)
             else:
@@ -173,7 +178,7 @@ class AccountAnalyticLine(models.Model):
 
     def button_end_work(self):
         end = fields.Datetime.to_datetime(
-            self.env.context.get("stop_dt", datetime.now())
+            self.env.context.get("stop_dt", datetime.now())  # noqa: DTZ005
         )
         for line in self:
             if line.unit_amount:
@@ -196,16 +201,16 @@ class AccountAnalyticLine(models.Model):
         value = fields.Datetime.to_datetime(value)
         hour_uom = self.env.ref("uom.product_uom_hour")
         return Domain.custom(
-            to_sql=lambda model, alias, query: SQL(
+            to_sql=lambda table: SQL(
                 "("
                 "%(date_time)s + %(unit_amount)s * "
                 "(select 1 / factor * %(day_factor)s "
                 "from uom_uom where id = %(product_uom_id)s) * "
                 "interval '1 hour'"
                 ") %(operator)s %(value)s",
-                date_time=model._field_to_sql(alias, "date_time", query),
-                unit_amount=model._field_to_sql(alias, "unit_amount", query),
-                product_uom_id=model._field_to_sql(alias, "product_uom_id", query),
+                date_time=table.date_time,
+                unit_amount=table.unit_amount,
+                product_uom_id=table.product_uom_id,
                 day_factor=hour_uom.factor,
                 operator=SQL(operator),
                 value=value,

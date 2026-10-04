@@ -16,7 +16,8 @@
                     name="button_start_work"
                     string="Start work"
                     type="object"
-                    icon="fa-play-circle text-success"
+                    icon="play_circle"
+                    icon_class="text-success"
                     invisible="show_time_control != 'start'"
                     class="oe_stat_button"
                     title="Start work"
@@ -26,7 +27,8 @@
                     name="button_end_work"
                     string="Stop work"
                     type="object"
-                    icon="fa-stop-circle text-warning"
+                    icon="stop_circle"
+                    icon_class="text-warning"
                     invisible="show_time_control != 'stop'"
                     class="oe_stat_button"
                     title="End work"
@@ -53,7 +55,8 @@
                     title="Resume work"
                     tabindex="-1"
                     type="object"
-                    icon="fa-play-circle text-success"
+                    icon="play_circle"
+                    icon_class="text-success"
                     invisible="show_time_control != 'resume'"
                     class="oe_stat_button"
                     groups="hr_timesheet.group_hr_timesheet_user"
@@ -63,7 +66,8 @@
                     title="Stop work"
                     tabindex="-1"
                     type="object"
-                    icon="fa-stop-circle text-warning"
+                    icon="stop_circle"
+                    icon_class="text-warning"
                     invisible="show_time_control != 'stop'"
                     class="oe_stat_button"
                     groups="hr_timesheet.group_hr_timesheet_user"
@@ -100,7 +104,8 @@
                     type="object"
                     string="Resume work"
                     invisible="show_time_control != 'resume'"
-                    class="o_kanban_inline_block fa fa-lg fa-play-circle text-success"
+                    class="o_kanban_inline_block oi oi-lg text-success"
+                    data-icon="play_circle"
                     title="Resume work"
                     groups="hr_timesheet.group_hr_timesheet_user"
                 />
@@ -110,7 +115,8 @@
                     type="object"
                     string="Stop work"
                     invisible="show_time_control != 'stop'"
-                    class="o_kanban_inline_block fa fa-lg fa-stop-circle text-warning"
+                    class="o_kanban_inline_block oi oi-lg text-warning"
+                    data-icon="stop_circle"
                     title="Stop work"
                     groups="hr_timesheet.group_hr_timesheet_user"
                 />
@@ -139,7 +145,8 @@
                         name="button_resume_work"
                         tabindex="-1"
                         type="object"
-                        icon="fa-play-circle text-success"
+                        icon="play_circle"
+                        icon_class="text-success"
                         invisible="show_time_control != 'resume'"
                         class="oe_stat_button"
                         context="{'show_created_timer': True}"
@@ -150,7 +157,8 @@
                         name="button_end_work"
                         tabindex="-1"
                         type="object"
-                        icon="fa-stop-circle text-warning"
+                        icon="stop_circle"
+                        icon_class="text-warning"
                         invisible="show_time_control != 'stop'"
                         class="oe_stat_button"
                         title="Stop work"
@@ -163,7 +171,7 @@
     <record id="view_task_kanban" model="ir.ui.view">
         <field name="name">Add timesheet time controls</field>
         <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_kanban" />
+        <field name="inherit_id" ref="project.view_task_card" />
         <field name="arch" type="xml">
             <xpath expr="//footer" position="inside">
                 <field
@@ -174,7 +182,8 @@
                 <a
                     name="button_start_work"
                     invisible="show_time_control != 'start'"
-                    class="o_kanban_inline_block fa fa-lg fa-play-circle text-success"
+                    class="o_kanban_inline_block oi oi-lg text-success"
+                    data-icon="play_circle"
                     tabindex="-1"
                     type="object"
                     title="Start work"
@@ -183,7 +192,8 @@
                 <a
                     name="button_end_work"
                     invisible="show_time_control != 'stop'"
-                    class="o_kanban_inline_block fa fa-lg fa-stop-circle text-warning"
+                    class="o_kanban_inline_block oi oi-lg text-warning"
+                    data-icon="stop_circle"
                     tabindex="-1"
                     type="object"
                     title="Stop work"
@@ -208,7 +218,8 @@
                     string="Start work"
                     tabindex="-1"
                     type="object"
-                    icon="fa-play-circle text-success"
+                    icon="play_circle"
+                    icon_class="text-success"
                     invisible="show_time_control != 'start'"
                     class="oe_stat_button"
                     title="Start work"
@@ -219,7 +230,8 @@
                     string="Stop work"
                     tabindex="-1"
                     type="object"
-                    icon="fa-stop-circle text-warning"
+                    icon="stop_circle"
+                    icon_class="text-warning"
                     invisible="show_time_control != 'stop'"
                     class="oe_stat_button"
                     title="End work"

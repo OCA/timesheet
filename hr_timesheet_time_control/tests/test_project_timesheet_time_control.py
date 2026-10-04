@@ -1,6 +1,7 @@
 # Copyright 2016-2018 Tecnativa - Pedro M. Baeza
 # Copyright 2025 Tecnativa - Víctor Martínez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
+# ruff: noqa: DTZ001, DTZ005 - Odoo works with naive UTC datetimes
 
 from datetime import date, datetime, time, timedelta
 
@@ -15,6 +16,9 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestProjectTimesheetTimeControlBase(BaseCommon):
+    # The tests switch users explicitly (records created ``with_user``)
+    _test_user_groups = ()
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

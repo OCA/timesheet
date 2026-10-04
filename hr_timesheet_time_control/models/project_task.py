@@ -6,7 +6,7 @@ from odoo import api, models
 
 class ProjectTask(models.Model):
     _name = "project.task"
-    _inherit = ["project.task", "hr.timesheet.time_control.mixin"]
+    _inherit = ("project.task", "hr.timesheet.time_control.mixin")
 
     @api.model
     def _relation_with_timesheet_line(self):
