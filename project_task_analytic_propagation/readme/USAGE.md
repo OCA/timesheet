@@ -7,3 +7,5 @@ To use this module, you need to:
 5. On the *Extra Info* tab change the analytic account in any analytic plan.
 6. To check this go to Timesheets > All Timesheets.
 7. Change to list view and group by Project > Task and add custom group based on your analytic plans.
+
+Changes to a task's analytic accounts are tracked in its chatter for all analytic plans.
