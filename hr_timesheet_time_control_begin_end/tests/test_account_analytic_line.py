@@ -202,3 +202,10 @@ class TestAccountAnalyticLine(BaseCommon):
         )
         self.assertEqual(vals.get("date"), date(2025, 6, 15))
         self.assertEqual(vals.get("date_time"), start)
+
+    def test_default_get_accepts_dict_keys(self):
+        """Play button passes _fields.keys() (dict_keys), not list-concatenable."""
+        fields_list = self.env["account.analytic.line"]._fields.keys()
+        vals = self.env["account.analytic.line"].default_get(fields_list)
+        self.assertIsInstance(vals, dict)
+        self.assertIn("date", vals)
