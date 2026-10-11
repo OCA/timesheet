@@ -1,0 +1,76 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_sheet_policy_project_manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-10-10 16:37+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: hr_timesheet_sheet_policy_project_manager
+#: model:ir.model,name:hr_timesheet_sheet_policy_project_manager.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Riga analitica"
+
+#. module: hr_timesheet_sheet_policy_project_manager
+#: model:ir.model.fields.selection,name:hr_timesheet_sheet_policy_project_manager.selection__res_company__timesheet_sheet_review_policy__project_manager
+msgid "By Project Manager"
+msgstr "Da responsabile progetto"
+
+#. module: hr_timesheet_sheet_policy_project_manager
+#: model:ir.model,name:hr_timesheet_sheet_policy_project_manager.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: hr_timesheet_sheet_policy_project_manager
+#: model:ir.model.fields,help:hr_timesheet_sheet_policy_project_manager.field_res_company__timesheet_sheet_review_policy
+msgid "How Timesheet Sheets review is performed."
+msgstr "Come viene eseguita la revisione dei prospetti fogli ore."
+
+#. module: hr_timesheet_sheet_policy_project_manager
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:0
+#, python-format
+msgid "Only a Project Manager can review the sheet."
+msgstr "Solo un responsabile progetto può revisionare il prospetto."
+
+#. module: hr_timesheet_sheet_policy_project_manager
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_project_manager.field_hr_timesheet_sheet__project_id
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_policy_project_manager.view_hr_timesheet_sheet_filter
+msgid "Project"
+msgstr "Progetto"
+
+#. module: hr_timesheet_sheet_policy_project_manager
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:0
+#, python-format
+msgid "Review policy \"By Project Manager\" requires Project to be set"
+msgstr ""
+"La politica di revisione \"Da responsabile progetto\" richiede che sia "
+"impostato il progetto"
+
+#. module: hr_timesheet_sheet_policy_project_manager
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_policy_project_manager/models/hr_timesheet_sheet.py:0
+#, python-format
+msgid "The Company in the Timesheet Sheet and in the Project must be the same."
+msgstr "L'azienda del prospetto foglio ore e del progetto devono corrispondere."
+
+#. module: hr_timesheet_sheet_policy_project_manager
+#: model:ir.model,name:hr_timesheet_sheet_policy_project_manager.model_hr_timesheet_sheet
+msgid "Timesheet Sheet"
+msgstr "Prospetto foglio ore"
+
+#. module: hr_timesheet_sheet_policy_project_manager
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_policy_project_manager.field_res_company__timesheet_sheet_review_policy
+msgid "Timesheet Sheet Review Policy"
+msgstr "Politica revisione prospetto foglio ore"
