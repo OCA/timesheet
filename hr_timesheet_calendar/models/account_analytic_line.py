@@ -48,17 +48,17 @@ class AccountAnalyticLine(models.Model):
         elif not analytic_lines:
             # if employee has no analytic_lines at this day,
             # get the employee calendar and set the start time
-            # to the first interval of the day
+            # to the first attendance of the day
             employee = self.env["hr.employee"].browse(employee_id)
-            if employee.resource_calendar_id:
-                start_date = datetime.combine(
-                    date_day, time(0, tzinfo=pytz.timezone(employee.tz))
-                )
+            calendar = employee.resource_calendar_id
+            if calendar:
+                tz = pytz.timezone(employee.tz or calendar.tz)
+                start_date = tz.localize(datetime.combine(date_day, time.min))
                 end_date = start_date + timedelta(days=1)
-                intervals = employee.resource_calendar_id._work_intervals_batch(
-                    start_date, end_date
-                ).get(False, False)
-                if intervals and intervals._items:
+                intervals = calendar._attendance_intervals_batch(
+                    start_date, end_date, employee.resource_id, tz=tz
+                )[employee.resource_id.id]
+                if intervals:
                     start_time = (
                         intervals._items[0][0].astimezone(pytz.UTC).replace(tzinfo=None)
                     )

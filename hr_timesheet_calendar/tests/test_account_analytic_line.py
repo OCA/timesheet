@@ -206,6 +206,34 @@ class TestAccountAnalyticLine(BaseCommon):
         )._get_default_start_time()
         self.assertEqual(default_start_time, datetime(2025, 4, 2, 6, 0, 0))
 
+    @freeze_time("2025-04-02 12:00:00")
+    def test_get_default_start_time_public_holiday(self):
+        """A global time off on the day keeps the working hours as start.
+
+        The entries generated for a public holiday are created without a
+        start, so the lookup must still see the attendances of a day the
+        public holiday itself takes off.
+        """
+        self.env["resource.calendar.leaves"].create(
+            {
+                "name": "Public holiday",
+                "company_id": self.employee.company_id.id,
+                "date_from": datetime(2025, 4, 1, 22, 0),
+                "date_to": datetime(2025, 4, 2, 21, 59, 59),
+            }
+        )
+        # project_timesheet_holidays, when installed, books the day already.
+        lines = self.analytic_line_model.sudo().search(
+            [("employee_id", "=", self.employee.id), ("date", "=", date(2025, 4, 2))]
+        )
+        if "global_leave_id" in lines._fields:
+            lines.write({"global_leave_id": False})
+        lines.unlink()
+        default_start_time = self.analytic_line_model.with_context(
+            default_employee_id=self.employee.id
+        )._get_default_start_time()
+        self.assertEqual(default_start_time, datetime(2025, 4, 2, 6, 0, 0))
+
     @freeze_time("2025-04-05 12:00:00")
     def test_get_default_start_time_no_working_hours(self):
         """Test the default start time calculation on days without working hours."""
