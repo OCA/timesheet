@@ -1,6 +1,8 @@
 # © 2026 Solvos Consultoría Informática (<https://www.solvos.es>)
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
+from datetime import timedelta
+
 from odoo import Command, fields
 from odoo.tests.common import TransactionCase, tagged
 
@@ -102,14 +104,18 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
         )
         cls.allocation._action_validate()
 
-    def _create_leave_with_timesheet(self, days_offset=0):
+    def _create_leave_with_timesheet(self):
+        # Use a working day, leaves are refused on the employee's days off
+        leave_date = fields.Date.today()
+        while leave_date.weekday() >= 5:
+            leave_date += timedelta(days=1)
         self.leave = self.Leave.create(
             {
                 "name": "Vacations",
                 "employee_id": self.employee.id,
                 "holiday_status_id": self.leave_type.id,
-                "request_date_from": fields.Date.today(),
-                "request_date_to": fields.Date.today(),
+                "request_date_from": leave_date,
+                "request_date_to": leave_date,
             }
         )
 
@@ -121,7 +127,7 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
         return ts
 
     def test_match_timesheet_and_leave_description(self):
-        ts = self._create_leave_with_timesheet(days_offset=1)
+        ts = self._create_leave_with_timesheet()
 
         self.assertTrue(
             ts.name.startswith(self.leave.name),
@@ -131,7 +137,7 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
     def test_no_match_when_config_disabled(self):
         self.Company.dynamic_timesheet_description = False
 
-        ts = self._create_leave_with_timesheet(days_offset=5)
+        ts = self._create_leave_with_timesheet()
 
         self.assertNotIn(
             self.leave.name,
