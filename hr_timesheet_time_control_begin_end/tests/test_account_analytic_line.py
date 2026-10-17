@@ -202,3 +202,9 @@ class TestAccountAnalyticLine(BaseCommon):
         )
         self.assertEqual(vals.get("date"), date(2025, 6, 15))
         self.assertEqual(vals.get("date_time"), start)
+
+    def test_default_get_accepts_dict_keys(self):
+        """The web client may pass the fields as a dict view instead of a list."""
+        fields_list = {"date": None, "date_time": None}.keys()
+        vals = self.env["account.analytic.line"].default_get(fields_list)
+        self.assertIn("date", vals)
