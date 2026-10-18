@@ -1,5 +1,6 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
+from datetime import datetime, time
 
 import pytz
 from dateutil.relativedelta import relativedelta
@@ -45,6 +46,24 @@ class AccountAnalyticLine(models.Model):
             else:
                 record.time_end = False
 
+    def _get_local_day(self, tz):
+        """Day the line belongs to, in the employee's timezone.
+
+        ``date`` is the authoritative day. ``date_time`` may have been filled
+        with ``date`` + the current UTC time, which can fall on another day
+        once converted to the employee's timezone.
+        """
+        self.ensure_one()
+        if self.date:
+            return self.date
+        if self.date_time:
+            return pytz.utc.localize(self.date_time).astimezone(tz).date()
+        return False
+
+    def _local_to_utc(self, tz, day, hours, minutes):
+        local = tz.localize(datetime.combine(day, time(hours, minutes)))
+        return local.astimezone(pytz.utc).replace(tzinfo=None)
+
     def _inverse_time_begin(self):
         for record in self:
             tz = (
@@ -52,14 +71,12 @@ class AccountAnalyticLine(models.Model):
                 if record.employee_id.tz
                 else pytz.timezone(self.env.user.tz or "UTC")
             )
-            date = record.date_time.astimezone(tz)
+            day = record._get_local_day(tz)
+            if not day:
+                continue
             hours = int(record.time_begin)
             minutes = int(round((record.time_begin - hours) * 60))
-            record.date_time = (
-                date.replace(hour=hours, minute=minutes, second=0)
-                .astimezone(pytz.utc)
-                .replace(tzinfo=None)
-            )
+            record.date_time = record._local_to_utc(tz, day, hours, minutes)
 
     def _inverse_time_end(self):
         for record in self:
@@ -74,19 +91,17 @@ class AccountAnalyticLine(models.Model):
                 if record.employee_id.tz
                 else pytz.timezone(self.env.user.tz or "UTC")
             )
-            date = record.date_time.astimezone(tz)
+            day = record._get_local_day(tz)
+            if not day:
+                continue
 
             hours = int(record.time_end)
             minutes = int(round((record.time_end - hours) * 60))
-            date_time_end = (
-                date.replace(hour=hours % 24, minute=minutes, second=0)
-                .astimezone(pytz.utc)
-                .replace(tzinfo=None)
-            )
+            date_time_end = record._local_to_utc(tz, day, hours % 24, minutes)
             day_offset = hours // 24
             if day_offset > 0:
                 date_time_end += relativedelta(days=day_offset)
-            if date_time_end < record.date_time:
+            if record.date_time and date_time_end < record.date_time:
                 date_time_end += relativedelta(days=1)
 
             record.date_time_end = date_time_end
