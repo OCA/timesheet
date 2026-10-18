@@ -2,7 +2,7 @@ from datetime import date, datetime
 
 import pytz
 
-from odoo.tests import Form
+from odoo.tests import Form, freeze_time
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -94,6 +94,27 @@ class TestAccountAnalyticLine(BaseCommon):
         self.assertEqual(aal.date_time_end, datetime(2024, 6, 1, 8, 30, 0))
         self.assertEqual(aal.time_begin, 8.5)
         self.assertEqual(aal.time_end, 10.5)
+        self.assertEqual(aal.unit_amount, 2.0)
+
+    @freeze_time("2024-10-16 22:40:00")
+    def test_compute_time_by_date_after_local_midnight(self):
+        """date_time defaults to date + current UTC time. At 22:40 UTC it is
+        already the next day in Brussels, which must not shift the line."""
+        self.employee.tz = "Europe/Brussels"
+        aal = self.env["account.analytic.line"].create(
+            {
+                "name": "Test Line",
+                "date": "2024-06-01",
+                "time_begin": 8.5,
+                "time_end": 10.5,
+                "project_id": self.project.id,
+                "employee_id": self.employee.id,
+            }
+        )
+
+        self.assertEqual(aal.date, date(2024, 6, 1))
+        self.assertEqual(aal.date_time, datetime(2024, 6, 1, 6, 30, 0))
+        self.assertEqual(aal.date_time_end, datetime(2024, 6, 1, 8, 30, 0))
         self.assertEqual(aal.unit_amount, 2.0)
 
     def test_compute_time_begin_employee_timezone(self):
