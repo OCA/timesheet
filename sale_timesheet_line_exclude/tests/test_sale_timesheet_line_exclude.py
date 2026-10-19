@@ -137,7 +137,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "account_id": self.project.account_id.id,
             }
         )
-        self.assertEqual(timesheet.timesheet_invoice_type, "billable_time")
+        self.assertEqual(timesheet.billable_type, "04_billable_time")
         self.assertEqual(self.sale_order_line.qty_delivered, 1)
         self.assertEqual(self.sale_order_line.qty_to_invoice, 1)
         self.assertEqual(self.sale_order_line.qty_invoiced, 0)
@@ -154,7 +154,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "account_id": self.project.account_id.id,
             }
         )
-        self.assertEqual(timesheet.timesheet_invoice_type, "non_billable")
+        self.assertEqual(timesheet.billable_type, "09_non_billable")
         self.assertEqual(self.sale_order_line.qty_delivered, 0)
         self.assertEqual(self.sale_order_line.qty_to_invoice, 0)
         self.assertEqual(self.sale_order_line.qty_invoiced, 0)
@@ -175,7 +175,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
         timesheet.write({"exclude_from_sale_order": True})
         self.assertFalse(timesheet.so_line)
 
-        self.assertEqual(timesheet.timesheet_invoice_type, "non_billable")
+        self.assertEqual(timesheet.billable_type, "09_non_billable")
         self.assertEqual(self.sale_order_line.qty_delivered, 0)
         self.assertEqual(self.sale_order_line.qty_to_invoice, 0)
         self.assertEqual(self.sale_order_line.qty_invoiced, 0)
@@ -195,7 +195,7 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
         timesheet.write({"exclude_from_sale_order": False})
 
         self.assertTrue(timesheet.so_line)
-        self.assertEqual(timesheet.timesheet_invoice_type, "billable_time")
+        self.assertEqual(timesheet.billable_type, "04_billable_time")
         self.assertEqual(self.sale_order_line.qty_delivered, 1)
         self.assertEqual(self.sale_order_line.qty_to_invoice, 1)
         self.assertEqual(self.sale_order_line.qty_invoiced, 0)
@@ -224,13 +224,13 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
             }
         )
 
-        self.assertEqual(timesheet1.timesheet_invoice_type, "billable_time")
-        self.assertEqual(timesheet2.timesheet_invoice_type, "non_billable")
+        self.assertEqual(timesheet1.billable_type, "04_billable_time")
+        self.assertEqual(timesheet2.billable_type, "09_non_billable")
         self.assertEqual(self.sale_order_line.qty_delivered, 1)
         self.assertEqual(self.sale_order_line.qty_to_invoice, 1)
         self.assertEqual(self.sale_order_line.qty_invoiced, 0)
         self.sale_order._create_invoices()
-        self.assertTrue(timesheet1.timesheet_invoice_id)
+        self.assertTrue(timesheet1.reinvoice_move_id)
         self.assertEqual(self.sale_order_line.qty_delivered, 1)
         self.assertEqual(self.sale_order_line.qty_to_invoice, 0)
         self.assertEqual(self.sale_order_line.qty_invoiced, 1)
@@ -259,13 +259,13 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
             }
         )
 
-        self.assertEqual(timesheet1.timesheet_invoice_type, "billable_time")
-        self.assertEqual(timesheet2.timesheet_invoice_type, "non_billable")
+        self.assertEqual(timesheet1.billable_type, "04_billable_time")
+        self.assertEqual(timesheet2.billable_type, "09_non_billable")
         self.assertEqual(self.sale_order_line.qty_delivered, 1)
         self.assertEqual(self.sale_order_line.qty_to_invoice, 1)
         self.assertEqual(self.sale_order_line.qty_invoiced, 0)
         self.sale_order._create_invoices()
-        self.assertTrue(timesheet1.timesheet_invoice_id)
+        self.assertTrue(timesheet1.reinvoice_move_id)
         self.assertEqual(self.sale_order_line.qty_delivered, 1)
         self.assertEqual(self.sale_order_line.qty_to_invoice, 0)
         self.assertEqual(self.sale_order_line.qty_invoiced, 1)
@@ -296,8 +296,8 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
             }
         )
 
-        self.assertEqual(timesheet1.timesheet_invoice_type, "billable_time")
-        self.assertEqual(timesheet2.timesheet_invoice_type, "billable_time")
+        self.assertEqual(timesheet1.billable_type, "04_billable_time")
+        self.assertEqual(timesheet2.billable_type, "04_billable_time")
         self.assertEqual(self.sale_order_line.qty_delivered, 2)
         self.assertEqual(self.sale_order_line.qty_to_invoice, 2)
         self.assertEqual(self.sale_order_line.qty_invoiced, 0)
@@ -312,26 +312,26 @@ class TestSaleTimesheetLineExclude(common.TransactionCase):
                 "account_id": self.project.account_id.id,
             }
         )
-        self.assertEqual(timesheet3.timesheet_invoice_type, "billable_time")
+        self.assertEqual(timesheet3.billable_type, "04_billable_time")
         self.assertTrue(timesheet3.so_line)
         self.assertEqual(self.sale_order_line.qty_delivered, 3)
         self.assertEqual(self.sale_order_line.qty_to_invoice, 3)
         self.assertEqual(self.sale_order_line.qty_invoiced, 0)
 
-        self.assertEqual(timesheet1.timesheet_invoice_type, "billable_time")
+        self.assertEqual(timesheet1.billable_type, "04_billable_time")
         self.assertTrue(timesheet1.so_line)
 
         timesheet2.write({"exclude_from_sale_order": True})
-        self.assertEqual(timesheet2.timesheet_invoice_type, "non_billable")
+        self.assertEqual(timesheet2.billable_type, "09_non_billable")
         self.assertFalse(timesheet2.so_line)
 
         self.assertEqual(self.sale_order_line.qty_delivered, 2)
         self.assertEqual(self.sale_order_line.qty_to_invoice, 2)
         self.assertEqual(self.sale_order_line.qty_invoiced, 0)
 
-        self.assertFalse(timesheet1.timesheet_invoice_id)
+        self.assertFalse(timesheet1.reinvoice_move_id)
         self.sale_order._create_invoices()
-        self.assertTrue(timesheet1.timesheet_invoice_id)
+        self.assertTrue(timesheet1.reinvoice_move_id)
         self.assertEqual(self.sale_order_line.qty_delivered, 2)
         self.assertEqual(self.sale_order_line.qty_to_invoice, 0)
         self.assertEqual(self.sale_order_line.qty_invoiced, 2)

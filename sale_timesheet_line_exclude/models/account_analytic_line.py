@@ -19,7 +19,7 @@ class AccountAnalyticLine(models.Model):
     def _constrains_exclude_from_sale_order(self):
         for line in self:
             if (
-                line.timesheet_invoice_id
+                line.reinvoice_move_id
                 and line.so_line.product_id.invoice_policy == "delivery"
             ):
                 raise ValidationError(
@@ -30,11 +30,11 @@ class AccountAnalyticLine(models.Model):
                 )
 
     @api.depends("exclude_from_sale_order")
-    def _compute_timesheet_invoice_type(self):
-        res = super()._compute_timesheet_invoice_type()
+    def _compute_project_billable_type(self):
+        res = super()._compute_project_billable_type()
         for line in self:
             if line.exclude_from_sale_order:
-                line.timesheet_invoice_type = "non_billable"
+                line.billable_type = "09_non_billable"
         return res
 
     @api.depends("exclude_from_sale_order")
