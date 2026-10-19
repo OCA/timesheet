@@ -117,6 +117,128 @@ class TestAccountAnalyticLine(BaseCommon):
         self.assertEqual(aal.date_time_end, datetime(2024, 6, 1, 8, 30, 0))
         self.assertEqual(aal.unit_amount, 2.0)
 
+    @freeze_time("2024-10-16 22:40:00")
+    def test_compute_time_end_before_begin_in_vals(self):
+        """The result must not depend on the order of time_begin/time_end."""
+        self.employee.tz = "Europe/Brussels"
+        aal = self.env["account.analytic.line"].create(
+            {
+                "name": "Test Line",
+                "date": "2024-06-01",
+                "time_end": 10.5,
+                "time_begin": 8.5,
+                "project_id": self.project.id,
+                "employee_id": self.employee.id,
+            }
+        )
+
+        self.assertEqual(aal.date_time, datetime(2024, 6, 1, 6, 30, 0))
+        self.assertEqual(aal.date_time_end, datetime(2024, 6, 1, 8, 30, 0))
+        self.assertEqual(aal.unit_amount, 2.0)
+
+    def test_write_time_end_before_begin_in_vals(self):
+        self.employee.tz = "Europe/Brussels"
+        aal = self.env["account.analytic.line"].create(
+            {
+                "name": "Test Line",
+                "date": "2024-06-01",
+                "time_begin": 20.0,
+                "time_end": 22.0,
+                "project_id": self.project.id,
+                "employee_id": self.employee.id,
+            }
+        )
+        aal.write({"time_end": 10.5, "time_begin": 8.5})
+
+        self.assertEqual(aal.date_time, datetime(2024, 6, 1, 6, 30, 0))
+        self.assertEqual(aal.date_time_end, datetime(2024, 6, 1, 8, 30, 0))
+        self.assertEqual(aal.unit_amount, 2.0)
+
+    def test_date_uses_employee_timezone(self):
+        """date follows the employee's timezone, like time_begin/time_end."""
+        self.employee.tz = "Europe/Brussels"
+        self.env.user.tz = "America/New_York"
+        aal = self.env["account.analytic.line"].create(
+            {
+                "name": "Test Line",
+                "date": "2024-06-01",
+                "time_begin": 0.5,
+                "time_end": 2.0,
+                "project_id": self.project.id,
+                "employee_id": self.employee.id,
+            }
+        )
+
+        self.assertEqual(aal.date_time, datetime(2024, 5, 31, 22, 30, 0))
+        self.assertEqual(aal.date_time_end, datetime(2024, 6, 1, 0, 0, 0))
+        self.assertEqual(aal.date, date(2024, 6, 1))
+        self.assertEqual(aal.time_begin, 0.5)
+        self.assertEqual(aal.time_end, 2.0)
+
+    def test_date_from_date_time_uses_employee_timezone(self):
+        self.employee.tz = "Europe/Brussels"
+        self.env.user.tz = "America/New_York"
+        aal = self.env["account.analytic.line"].create(
+            {
+                "name": "Test Line",
+                "date_time": "2024-05-31 22:30:00",
+                "project_id": self.project.id,
+                "employee_id": self.employee.id,
+            }
+        )
+
+        self.assertEqual(aal.date, date(2024, 6, 1))
+        self.assertEqual(aal.time_begin, 0.5)
+
+    def test_write_date_keeps_local_time(self):
+        self.employee.tz = "Europe/Brussels"
+        aal = self.env["account.analytic.line"].create(
+            {
+                "name": "Test Line",
+                "date": "2024-06-01",
+                "time_begin": 0.5,
+                "time_end": 2.0,
+                "project_id": self.project.id,
+                "employee_id": self.employee.id,
+            }
+        )
+        aal.date = date(2024, 6, 3)
+
+        self.assertEqual(aal.date, date(2024, 6, 3))
+        self.assertEqual(aal.date_time, datetime(2024, 6, 2, 22, 30, 0))
+        self.assertEqual(aal.time_begin, 0.5)
+        self.assertEqual(aal.time_end, 2.0)
+        self.assertEqual(aal.unit_amount, 1.5)
+
+    def test_default_date_from_calendar_after_local_midnight(self):
+        self.env.user.tz = "Europe/Brussels"
+        defaults = (
+            self.env["account.analytic.line"]
+            .with_context(tz="Europe/Brussels", default_date_time="2024-05-31 22:30:00")
+            .default_get(["date", "date_time"])
+        )
+        self.assertEqual(defaults["date"], date(2024, 6, 1))
+
+    def test_onchange_time_begin_after_local_midnight(self):
+        self.employee.tz = "Europe/Brussels"
+        hour_uom = self.env.ref("uom.product_uom_hour")
+        form = Form(
+            self.env["account.analytic.line"].with_context(
+                default_product_uom_id=hour_uom.id
+            ),
+            view=self.env.ref(
+                "hr_timesheet_time_control_begin_end.hr_timesheet_line_form"
+            ),
+        )
+
+        form.date = date(2023, 6, 1)
+        form.time_begin = 0.5
+        form.time_end = 2
+        self.assertEqual(form.date, date(2023, 6, 1))
+        self.assertEqual(form.date_time, datetime(2023, 5, 31, 22, 30, 0))
+        self.assertEqual(form.date_time_end, datetime(2023, 6, 1, 0, 0, 0))
+        self.assertEqual(form.unit_amount, 1.5)
+
     def test_compute_time_begin_employee_timezone(self):
         self.employee.tz = "America/New_York"
         aal = self.env["account.analytic.line"].create(
