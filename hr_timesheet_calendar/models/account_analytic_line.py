@@ -64,21 +64,34 @@ class AccountAnalyticLine(models.Model):
                     )
         return start_time
 
+    @api.model
+    def _combine_date_with_local_time(self, date, datetime_, employee):
+        """Return ``date`` at the local time of day of ``datetime_`` (UTC).
+
+        Combining ``date`` with the UTC time of day would put date_time on
+        another local day, and ``date`` is then derived from date_time.
+        """
+        tz = pytz.timezone(
+            employee.tz or self.env.context.get("tz") or self.env.user.tz or "UTC"
+        )
+        local_time = pytz.utc.localize(datetime_).astimezone(tz).time()
+        local = tz.localize(datetime.combine(date, local_time))
+        return local.astimezone(pytz.UTC).replace(tzinfo=None)
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
             if "date" in vals and "date_time" not in vals:
                 date = fields.Date.to_date(vals["date"])
-                vals["date_time"] = datetime.combine(
-                    date,
-                    self.with_context(
-                        default_employee_id=vals.get(
-                            "employee_id", self.env.context.get("default_employee_id")
-                        ),
-                        default_date=date,
-                    )
-                    ._get_default_start_time()
-                    .time(),
+                employee_id = vals.get(
+                    "employee_id", self.env.context.get("default_employee_id")
+                )
+                start_time = self.with_context(
+                    default_employee_id=employee_id,
+                    default_date=date,
+                )._get_default_start_time()
+                vals["date_time"] = self._combine_date_with_local_time(
+                    date, start_time, self.env["hr.employee"].browse(employee_id)
                 )
         return super().create(list(map(self._eval_date, vals_list)))
 
