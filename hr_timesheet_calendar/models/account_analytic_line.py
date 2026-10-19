@@ -65,12 +65,37 @@ class AccountAnalyticLine(models.Model):
         return start_time
 
     @api.model
+    def _combine_date_with_local_time(self, date, datetime_, employee):
+        """Return ``date`` at the local time of day of ``datetime_`` (UTC).
+
+        Combining ``date`` with the UTC time of day would put date_time on
+        another local day, and ``date`` is then derived from date_time.
+        """
+        tz = pytz.timezone(
+            employee.tz or self.env.context.get("tz") or self.env.user.tz or "UTC"
+        )
+        local_time = pytz.utc.localize(datetime_).astimezone(tz).time()
+        local = tz.localize(datetime.combine(date, local_time))
+        return local.astimezone(pytz.UTC).replace(tzinfo=None)
+
+    @api.model
     def _eval_date(self, vals):
+        employee_id = vals.get(
+            "employee_id", self.env.context.get("default_employee_id")
+        )
         ctx = {}
-        if vals.get("employee_id"):
-            ctx["default_employee_id"] = vals["employee_id"]
-        # Should be replaced by something like this:
-        return super(AccountAnalyticLine, self.with_context(**ctx))._eval_date(vals)
+        if employee_id:
+            ctx["default_employee_id"] = employee_id
+        res = super(AccountAnalyticLine, self.with_context(**ctx))._eval_date(vals)
+        if vals.get("date") and not vals.get("date_time") and res.get("date_time"):
+            # The default start time carries the UTC time of day: keep the
+            # given date at that time of day in the employee's timezone.
+            res["date_time"] = self._combine_date_with_local_time(
+                fields.Date.to_date(vals["date"]),
+                fields.Datetime.to_datetime(res["date_time"]),
+                self.env["hr.employee"].browse(employee_id),
+            )
+        return res
 
     def _add_missing_default_values(self, vals):
         if "employee_id" in vals:
