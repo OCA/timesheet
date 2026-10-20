@@ -1,0 +1,424 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * project_timesheet_time_control
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-02 01:51+0000\n"
+"PO-Revision-Date: 2026-06-25 10:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: hr_timesheet_time_control
+#. odoo-python
+#: code:addons/hr_timesheet_time_control/wizards/hr_timesheet_switch.py:0
+msgid ""
+"%d running timers found. Cannot know which one to stop. Please stop them "
+"manually."
+msgstr ""
+"Najdeno je %d zagnanih časovnikov. Ne vem, katere naj ustavim. Ustavite jih "
+"ročno, prosim."
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
+msgid ""
+".\n"
+"                            If you continue, it will be stopped with"
+msgstr ""
+".\n"
+"                            Če boste nadaljevali, bo ustavljeno z"
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_kanban_account_analytic_line
+msgid ""
+"<br/>\n"
+"                    <span>to</span>"
+msgstr ""
+"<br/>\n"
+"                    <span>do</span>"
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_project_kanban_inherited
+msgid ""
+"<span class=\"o_label\">\n"
+"                            <i class=\"fa fa-lg fa-play-circle text-"
+"success\"/>\n"
+"                            Start work\n"
+"                        </span>"
+msgstr ""
+"<span class=\"o_label\">\n"
+"                            <i class=\"fa fa-lg fa-play-circle text-"
+"success\"/>\n"
+"                            Začni z delom\n"
+"                        </span>"
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_project_kanban_inherited
+msgid ""
+"<span class=\"o_label\">\n"
+"                            <i class=\"fa fa-lg fa-stop-circle text-"
+"warning\"/>\n"
+"                            Stop work\n"
+"                        </span>"
+msgstr ""
+"<span class=\"o_label\">\n"
+"                            <i class=\"fa fa-lg fa-stop-circle text-"
+"warning\"/>\n"
+"                            Končaj z delom\n"
+"                        </span>"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model,name:hr_timesheet_time_control.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Analitična postavka"
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
+msgid "Cancel"
+msgstr "Prekliči"
+
+#. module: hr_timesheet_time_control
+#. odoo-python
+#: code:addons/hr_timesheet_time_control/models/account_analytic_line.py:0
+msgid ""
+"Cannot stop timer %d because it is not running. Refresh the page and check "
+"again."
+msgstr ""
+"Časovnika %d ne morem ustaviti, ker ni zagnan. Osvežite stran in ponovno "
+"preverite."
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__company_id
+msgid "Company"
+msgstr "Družba"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__create_uid
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__create_date
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_form2_inherited
+msgid "Date"
+msgstr "Datum"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__name
+msgid "Description"
+msgstr "Opis"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_account_analytic_line__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_time_control_mixin__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_project__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_task__display_name
+msgid "Display Name"
+msgstr "Prikazani naziv"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_account_analytic_line__date_time_end
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__date_time_end
+msgid "End Time"
+msgstr "Čas dokončanja"
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.project_invoice_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_kanban_account_analytic_line
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_project_tree
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_form2_inherited
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_tree2_inherited
+msgid "End work"
+msgstr "Dokončanje"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model,name:hr_timesheet_time_control.model_hr_timesheet_switch
+msgid "Helper to quickly switch between timesheet lines"
+msgstr "Pomagalo za hitro preklapljanje med postavkami časovnice"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_account_analytic_line__id
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__id
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_time_control_mixin__id
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_project__id
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_task__id
+msgid "ID"
+msgstr "ID"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_account_analytic_line__show_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_hr_timesheet_time_control_mixin__show_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_project_project__show_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_project_task__show_time_control
+msgid "Indicate which time control button to show, if any."
+msgstr "Kaže katere gumbe časovne kontrole se prikazuje, če sploh katerega."
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__write_uid
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__write_date
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model,name:hr_timesheet_time_control.model_hr_timesheet_time_control_mixin
+msgid "Mixin for records related with timesheet lines"
+msgstr "Mixin za zapise v zvezi s postavkami časovnice"
+
+#. module: hr_timesheet_time_control
+#. odoo-python
+#: code:addons/hr_timesheet_time_control/models/hr_timesheet_time_control_mixin.py:0
+msgid ""
+"No running timer found in %(model)s %(record)s. Refresh the page and check "
+"again."
+msgstr ""
+"Za %(model)s %(record)s ni najdenih zagnanih časovnikov. Osvežite stran in "
+"ponovno preverite."
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__analytic_line_id
+msgid "Origin line"
+msgstr "Izvorna postavka"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__running_timer_id
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
+msgid "Previous timer"
+msgstr "Prejšnji časovnik"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__running_timer_duration
+msgid "Previous timer duration"
+msgstr "Trajanje prejšnjega časovnika"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__running_timer_start
+msgid "Previous timer start"
+msgstr "Zagon prejšnjega časovnika"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model,name:hr_timesheet_time_control.model_project_project
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__project_id
+msgid "Project"
+msgstr "Projekt"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__account_analytic_line__show_time_control__resume
+msgid "Resume"
+msgstr "Nadaljuj"
+
+#. module: hr_timesheet_time_control
+#. odoo-python
+#: code:addons/hr_timesheet_time_control/models/account_analytic_line.py:0
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.account_analytic_line_tree
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_line_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_kanban_account_analytic_line
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_form2_inherited
+msgid "Resume work"
+msgstr "Nadaljuj z delom"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_account_analytic_line__show_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_time_control_mixin__show_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_project__show_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_task__show_time_control
+msgid "Show Time Control"
+msgstr "Prikaži časovno kontrolo"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__crm_lead__show_time_control__start
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__start
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_project__show_time_control__start
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_task__show_time_control__start
+msgid "Start"
+msgstr "Zagon"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_account_analytic_line__date_time
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__date_time
+msgid "Start Time"
+msgstr "Čas pričetka"
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
+msgid "Start new timer"
+msgstr "Zaženi nov časovnik"
+
+#. module: hr_timesheet_time_control
+#. odoo-python
+#: code:addons/hr_timesheet_time_control/models/hr_timesheet_time_control_mixin.py:0
+#: model:ir.actions.act_window,name:hr_timesheet_time_control.hr_timesheet_switch_action
+#: model:ir.ui.menu,name:hr_timesheet_time_control.hr_timesheet_switch_menu
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.project_invoice_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_kanban_account_analytic_line
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_project_tree
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_form2_inherited
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_kanban
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_tree2_inherited
+msgid "Start work"
+msgstr "Začni z delom"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__account_analytic_line__show_time_control__stop
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__crm_lead__show_time_control__stop
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__hr_timesheet_time_control_mixin__show_time_control__stop
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_project__show_time_control__stop
+#: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__project_task__show_time_control__stop
+msgid "Stop"
+msgstr "Ustavi"
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
+msgid "Stop previous timer and start the new one"
+msgstr "Ustavi prejšnji časovnik in zaženi novega"
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
+msgid "Stop that very old timer and start the new one"
+msgstr "Ustavi tisti zelo star časovnik in zaženi novega"
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.account_analytic_line_tree
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_line_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.project_invoice_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_kanban_account_analytic_line
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_project_tree
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_form2_inherited
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_kanban
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_tree2_inherited
+msgid "Stop work"
+msgstr "Ustavi delo"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model,name:hr_timesheet_time_control.model_project_task
+#: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__task_id
+msgid "Task"
+msgstr "Opravilo"
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
+msgid "That is a lot of time! Make sure it is fine before saving."
+msgstr "To je veliko časa! Preverite, če je vse v redu preden shranite."
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
+msgid "The previous timer is old. Do you really want to stop it now?"
+msgstr "Prejšnji časovnik je zelo star. Ga res želite zaustaviti?"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_hr_timesheet_switch__running_timer_id
+msgid "This timer is running and will be stopped"
+msgstr "Ta časovnik je v teku in bo ustavljen"
+
+#. module: hr_timesheet_time_control
+#. odoo-python
+#: code:addons/hr_timesheet_time_control/models/account_analytic_line.py:0
+msgid "Unsupported operator: %s"
+msgstr "Nepodprt operator: %s"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_project_task__display_name
+msgid ""
+"Use these keywords in the title to set new tasks:\n"
+"\n"
+"        30h Allocate 30 hours to the task\n"
+"        #tags Set tags on the task\n"
+"        @user Assign the task to a user\n"
+"        ! Set the task a medium priority\n"
+"        !! Set the task a high priority\n"
+"        !!! Set the task a urgent priority\n"
+"\n"
+"        Make sure to use the right format and order e.g. Improve the "
+"configuration screen 5h #feature #v16 @Mitchell !"
+msgstr ""
+"Za nastavitev novih opravil uporabite te ključne besede v naslovu:\n"
+"\n"
+"        30h - dodelite nalogi 30 ur\n"
+"        #oznake - nastavite oznake za opravilo\n"
+"        @uporabnik - dodeli nalogo uporabniku\n"
+"        ! - nastavite opravilo na srednjo prioriteto\n"
+"        !! - nastavite opravilo na visoko prioriteto\n"
+"        !!! - nastavite opravilo na nujno prioriteto\n"
+"\n"
+"        Prepričajte se, da uporabljate pravilen format in vrstni red, npr. "
+"Izboljšajte konfiguracijski zaslon 5h #funkcija #v16 @Mitchell !"
+
+#. module: hr_timesheet_time_control
+#: model:ir.model.fields,help:hr_timesheet_time_control.field_hr_timesheet_switch__running_timer_duration
+msgid "When the previous timer is stopped, it will save this duration."
+msgstr "Ko bo prejšnji časovnik ustavljen, bo shranjeno trajanje."
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
+msgid "You have a running timer called"
+msgstr "Imate zagnan časovnik"
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
+msgid "and started at"
+msgstr "zagnan ob"
+
+#. module: hr_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
+msgid "hour(s)."
+msgstr "uri."
+
+#~ msgid "Analytic Account"
+#~ msgstr "Analitični konto"
+
+#~ msgid "Code"
+#~ msgstr "Koda"
+
+#~ msgid "Currency"
+#~ msgstr "Valuta"
+
+#~ msgid "Department"
+#~ msgstr "Oddelek"
+
+#~ msgid "Employee"
+#~ msgstr "Kader"
+
+#~ msgid "Financial Account"
+#~ msgstr "Finančni konto"
+
+#~ msgid "Group"
+#~ msgstr "Skupina"
+
+#~ msgid "Closed"
+#~ msgstr "Zaključeno"
+
+#~ msgid "Tasks in this stage are considered closed."
+#~ msgstr "Opravila v tej stopnji se smatrajo za zaključena."
+
+#, fuzzy
+#~ msgid "Date Time"
+#~ msgstr "Datum"
+
+#~ msgid "Close task"
+#~ msgstr "Zaključi opravilo"
+
+#~ msgid "Open task"
+#~ msgstr "Odpri opravilo"
+
+#~ msgid "There isn't any stage with closed check. Please mark any."
+#~ msgstr "Ni stopnje za zaključena opravila. Določite eno."
