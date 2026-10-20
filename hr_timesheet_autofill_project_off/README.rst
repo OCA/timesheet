@@ -103,6 +103,14 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
+.. |maintainer-innovara| image:: https://github.com/innovara.png?size=40px
+    :target: https://github.com/innovara
+    :alt: innovara
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-innovara| 
+
 This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/19.0/hr_timesheet_autofill_project_off>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
