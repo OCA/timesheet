@@ -17,10 +17,10 @@ class AccountAnalyticLine(models.Model):
         copy=False,
     )
 
-    @api.depends("timesheet_invoice_id.state")
+    @api.depends("reinvoice_move_id.state")
     def _compute_project_id(self):
         field_rounded = self._fields["unit_amount_rounded"]
-        if self._context.get("timesheet_no_recompute", False):
+        if self.env.context.get("timesheet_no_recompute", False):
             self.env.remove_to_compute(field_rounded, self)
         return super()._compute_project_id()
 
@@ -81,13 +81,13 @@ class AccountAnalyticLine(models.Model):
         """
         ctx_ts_rounded = self.env.context.get("timesheet_rounding")
         new_aggregates = list(aggregates) if aggregates else []
-        if ctx_ts_rounded:
-            if (
-                "unit_amount:sum" in aggregates
-                and "unit_amount_rounded:sum" not in aggregates
-            ):
-                # To add the unit_amount_rounded value on read_group
-                new_aggregates.append("unit_amount_rounded:sum")
+        if (
+            ctx_ts_rounded
+            and "unit_amount:sum" in aggregates
+            and "unit_amount_rounded:sum" not in aggregates
+        ):
+            # To add the unit_amount_rounded value on read_group
+            new_aggregates.append("unit_amount_rounded:sum")
         res = super()._read_group(
             domain=domain,
             groupby=groupby,
@@ -133,10 +133,14 @@ class AccountAnalyticLine(models.Model):
         ctx_ts_rounded = self.env.context.get("timesheet_rounding")
         fields_local = list(fields) if fields else []
         read_unit_amount = "unit_amount" in fields_local or not fields_local
-        if ctx_ts_rounded and read_unit_amount and fields_local:
-            if "unit_amount_rounded" not in fields_local:
-                # To add the unit_amount_rounded value on read
-                fields_local.append("unit_amount_rounded")
+        if (
+            ctx_ts_rounded
+            and read_unit_amount
+            and fields_local
+            and "unit_amount_rounded" not in fields_local
+        ):
+            # To add the unit_amount_rounded value on read
+            fields_local.append("unit_amount_rounded")
         res = super().read(fields=fields_local, load=load)
         if ctx_ts_rounded and read_unit_amount:
             # To set the unit_amount_rounded value instead of unit_amount
