@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_sheet_prefill
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-25 05:47+0000\n"
+"PO-Revision-Date: 2026-02-25 05:47+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_timesheet_sheet_prefill
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_prefill/models/hr_timesheet_sheet.py:0
+msgid "All project/task combinations from the previous period already exist."
+msgstr "前期間のプロジェクト/タスクの組み合わせはすべて既に存在しています。"
+
+#. module: hr_timesheet_sheet_prefill
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_prefill/models/hr_timesheet_sheet.py:0
+msgid "No previous confirmed or approved timesheet sheet found."
+msgstr "前期間の確認済みまたは承認済みのタイムシートレポートが見つかりませんでした。"
+
+#. module: hr_timesheet_sheet_prefill
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_prefill.hr_timesheet_sheet_form
+msgid "Prefill from Previous Period"
+msgstr "前期間から明細行を作成"
+
+#. module: hr_timesheet_sheet_prefill
+#: model:ir.model,name:hr_timesheet_sheet_prefill.model_hr_timesheet_sheet
+msgid "Timesheet Sheet"
+msgstr "タイムシート"
+
+#. module: hr_timesheet_sheet_prefill
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_prefill/models/hr_timesheet_sheet.py:0
+msgid "You can only prefill a draft timesheet sheet."
+msgstr "ドラフトのタイムシートレポートのみ仮入力できます。"
