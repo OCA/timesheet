@@ -1,0 +1,2 @@
+Sometimes you want to add timesheets that are not billable to clients. With this module you can configure which timesheet type are not billable
+so every timesheet with this type won't affect to project and task remaining time computation.
