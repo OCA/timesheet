@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- List View -->
+    <record id="view_hr_timesheet_costing_list" model="ir.ui.view">
+        <field name="name">hr.timesheet.costing.list</field>
+        <field name="model">hr.timesheet.costing</field>
+        <field name="arch" type="xml">
+            <list
+                string="Timesheet Costing"
+                decoration-info="state == 'draft'"
+                decoration-warning="state == 'confirmed'"
+                decoration-success="state == 'done'"
+                decoration-muted="state == 'cancelled'"
+            >
+                <field name="name" />
+                <field name="date_from" />
+                <field name="date_to" />
+                <field name="journal_id" optional="show" />
+                <field name="amount_total" optional="show" />
+                <field name="currency_id" column_invisible="1" />
+                <field name="company_id" optional="hide" />
+                <field name="state" widget="badge" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_hr_timesheet_costing_form" model="ir.ui.view">
+        <field name="name">hr.timesheet.costing.form</field>
+        <field name="model">hr.timesheet.costing</field>
+        <field name="arch" type="xml">
+            <form string="Timesheet Costing">
+                <header>
+                    <button
+                        name="action_confirm"
+                        string="Confirm"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'draft'"
+                    />
+                    <button
+                        name="action_create_jv"
+                        string="Create JV"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'confirmed'"
+                    />
+                    <button
+                        name="action_reset_draft"
+                        string="Reset to Draft"
+                        type="object"
+                        invisible="not can_reset_to_draft"
+                    />
+                    <button
+                        name="action_cancel"
+                        string="Cancel"
+                        type="object"
+                        invisible="state not in ('draft', 'confirmed')"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,confirmed,done"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_view_move"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            invisible="not move_id"
+                        >
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Journal Entry</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date_from" readonly="state != 'draft'" />
+                            <field name="date_to" readonly="state != 'draft'" />
+                            <field
+                                name="project_ids"
+                                widget="many2many_tags"
+                                readonly="state != 'draft'"
+                            />
+                            <field
+                                name="employee_ids"
+                                widget="many2many_tags"
+                                readonly="state != 'draft'"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="journal_id"
+                                required="1"
+                                readonly="state != 'draft'"
+                                domain="[('type', '=', 'general')]"
+                            />
+                            <field
+                                name="accounting_date"
+                                required="1"
+                                readonly="state != 'draft'"
+                            />
+                            <field name="auto_post" readonly="state != 'draft'" />
+                            <field
+                                name="group_by_project"
+                                readonly="state != 'draft'"
+                            />
+                            <field
+                                name="group_by_employee"
+                                readonly="state != 'draft'"
+                            />
+                            <field
+                                name="company_id"
+                                readonly="state != 'draft'"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="currency_id" invisible="1" />
+                            <field name="amount_total" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Timesheets" name="timesheets">
+                            <button
+                                name="action_get_timesheets"
+                                string="Get Timesheets"
+                                type="object"
+                                invisible="state != 'draft'"
+                            />
+                            <field
+                                name="timesheet_ids"
+                                readonly="state != 'draft'"
+                                domain="[('id', 'in', domain_timesheet_ids)]"
+                            >
+                                <list editable="bottom" edit="0">
+                                    <field name="date" />
+                                    <field name="employee_id" />
+                                    <field name="project_id" />
+                                    <field name="task_id" optional="show" />
+                                    <field name="name" />
+                                    <field
+                                        name="unit_amount"
+                                        string="Hours"
+                                        sum="Total Hours"
+                                    />
+                                    <field name="currency_id" column_invisible="1" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_timesheet_costing" model="ir.actions.act_window">
+        <field name="name">Timesheet Costing</field>
+        <field name="res_model">hr.timesheet.costing</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Accounting menu -->
+    <menuitem
+        id="menu_timesheet_costing_account"
+        name="Timesheet Costing"
+        parent="account.menu_finance_entries"
+        action="action_hr_timesheet_costing"
+        sequence="50"
+        groups="account.group_account_user"
+    />
+
+    <!-- Timesheets menu -->
+    <menuitem
+        id="menu_timesheet_costing_timesheet"
+        name="Timesheet Costing"
+        parent="hr_timesheet.timesheet_menu_root"
+        action="action_hr_timesheet_costing"
+        sequence="50"
+        groups="account.group_account_user"
+    />
+</odoo>
