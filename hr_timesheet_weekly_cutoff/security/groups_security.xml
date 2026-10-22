@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="group_timesheet_lock_manager" model="res.groups">
+        <field name="name">Timesheet Weekly Cutoff Manager</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+    <record id="group_bypass_timesheet_lock" model="res.groups">
+        <field name="name">Timesheet Weekly Cutoff Bypass</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+</odoo>

@@ -1,0 +1,128 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_weekly_cutoff
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-10 21:57+0000\n"
+"PO-Revision-Date: 2026-05-10 17:02-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_EC\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.9\n"
+
+#. module: hr_timesheet_weekly_cutoff
+#. odoo-python
+#: code:addons/hr_timesheet_weekly_cutoff/models/account_analytic_line.py:0
+msgid "A timesheet date is required."
+msgstr "Se requiere una fecha para la hoja de horas trabajadas."
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:ir.model,name:hr_timesheet_weekly_cutoff.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Línea analítica"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:ir.model,name:hr_timesheet_weekly_cutoff.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:ir.model,name:hr_timesheet_weekly_cutoff.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_weekly_cutoff.res_config_settings_form_day_lock
+msgid "Define the weekly cut off day for time tracking."
+msgstr "Defina el día límite semanal para el registro del tiempo."
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:ir.model.fields.selection,name:hr_timesheet_weekly_cutoff.selection__res_company__timesheet_lock_weekday__4
+msgid "Friday"
+msgstr "Viernes"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:ir.model.fields.selection,name:hr_timesheet_weekly_cutoff.selection__res_company__timesheet_lock_weekday__0
+msgid "Monday"
+msgstr "Lunes"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:ir.model.fields,field_description:hr_timesheet_weekly_cutoff.field_account_analytic_line__is_outside_weekly_cutoff
+msgid "Outside Weekly Cutoff"
+msgstr "Fuera del límite semanal"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:ir.model.fields.selection,name:hr_timesheet_weekly_cutoff.selection__res_company__timesheet_lock_weekday__5
+msgid "Saturday"
+msgstr "Sábado"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_weekly_cutoff.res_config_settings_form_day_lock
+msgid ""
+"Select the day used as the weekly closing date\n"
+"                                for time tracking.\n"
+"                                <br/>\n"
+"                                Once the configured day has passed, it will\n"
+"                                not be possible to register hours with dates\n"
+"                                prior to the weekly cutoff."
+msgstr ""
+"Seleccione el día que se utilizará como fecha de cierre semanal\n"
+"para el registro de horas.\n"
+"\n"
+"<br/>\n"
+"Una vez transcurrido el día configurado, no será posible\n"
+"registrar horas con fechas anteriores a la fecha límite semanal."
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:ir.model.fields.selection,name:hr_timesheet_weekly_cutoff.selection__res_company__timesheet_lock_weekday__6
+msgid "Sunday"
+msgstr "Domingo"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:ir.model.fields.selection,name:hr_timesheet_weekly_cutoff.selection__res_company__timesheet_lock_weekday__3
+msgid "Thursday"
+msgstr "Jueves"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:res.groups,name:hr_timesheet_weekly_cutoff.group_bypass_timesheet_lock
+msgid "Timesheet Weekly Cutoff Bypass"
+msgstr "Omisión del límite semanal de la hoja de horas"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:res.groups,name:hr_timesheet_weekly_cutoff.group_timesheet_lock_manager
+msgid "Timesheet Weekly Cutoff Manager"
+msgstr "Gerente de cierre semanal de hojas de horas"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:ir.model.fields.selection,name:hr_timesheet_weekly_cutoff.selection__res_company__timesheet_lock_weekday__1
+msgid "Tuesday"
+msgstr "Martes"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:ir.model.fields.selection,name:hr_timesheet_weekly_cutoff.selection__res_company__timesheet_lock_weekday__2
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_weekly_cutoff.res_config_settings_form_day_lock
+msgid "Weekly Cutoff Control"
+msgstr "Control de corte semanal"
+
+#. module: hr_timesheet_weekly_cutoff
+#: model:ir.model.fields,field_description:hr_timesheet_weekly_cutoff.field_res_company__timesheet_lock_weekday
+#: model:ir.model.fields,field_description:hr_timesheet_weekly_cutoff.field_res_config_settings__timesheet_lock_weekday
+msgid "Weekly Cutoff Day"
+msgstr "Día límite semanal"
+
+#. module: hr_timesheet_weekly_cutoff
+#. odoo-python
+#: code:addons/hr_timesheet_weekly_cutoff/models/account_analytic_line.py:0
+msgid "You cannot register timesheets dated due to the weekly cutoff control."
+msgstr "No puede registrar hojas de horas con fecha límite debido al control de corte semanal."
