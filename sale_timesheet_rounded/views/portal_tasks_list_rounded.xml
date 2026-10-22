@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="portal_tasks_list_inherit">
+        <field name="name">portal_tasks_list_inherit</field>
+        <field name="inherit_id" ref="hr_timesheet.portal_tasks_list_inherit" />
+        <field name="arch" type="xml">
+            <!-- oca-hooks:disable=xml-view-dangerous-replace-low-priority -->
+            <xpath
+                expr="//thead/tr/th[@name='project_portal_milestones']/following-sibling::t[@t-if]/th"
+                position="replace"
+            >
+                <th class="text-end">Time</th>
+            </xpath>
+            <!-- Fix the sum of time per project-->
+            <xpath
+                expr="//tbody/t/tr/td[@name='project_portal_milestones']/following-sibling::td[hasclass('text-end')]//t[@t-if='is_uom_day']/t[@t-out]"
+                position="attributes"
+            >
+                <attribute name="t-out">
+                    timesheet_ids._convert_hours_to_days(sum(task.timesheet_ids.mapped('unit_amount_rounded')))
+                </attribute>
+            </xpath>
+            <xpath
+                expr="//tbody/t/tr/td[@name='project_portal_milestones']/following-sibling::td[hasclass('text-end')]//t[@t-else]/span[@t-field='task.total_hours_spent']"
+                position="attributes"
+            >
+                <attribute name="t-field" />
+                <attribute name="t-out">
+                    sum(task.timesheet_ids.mapped('unit_amount_rounded'))
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

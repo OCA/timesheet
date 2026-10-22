@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="portal_my_timesheets_rounded">
+        <field name="name">portal_my_timesheets_rounded</field>
+        <field name="inherit_id" ref="hr_timesheet.portal_my_timesheets" />
+        <field name="arch" type="xml">
+            <!-- Update the header in the table -->
+            <!-- oca-hooks:disable=xml-view-dangerous-replace-low-priority -->
+            <xpath
+                expr="//t[@t-if='grouped_timesheets']//thead/tr/th[@name='t_label']"
+                position="replace"
+            >
+                <th name="t_label">Time</th>
+            </xpath>
+            <!-- On each line, only display the rounded amount -->
+            <xpath
+                expr="//span[@t-field='timesheet.unit_amount']"
+                position="attributes"
+            >
+                <attribute name="t-field" />
+                <attribute name="t-out">timesheet.unit_amount_rounded</attribute>
+            </xpath>
+            <!-- Update the partial sums when grouped -->
+            <xpath
+                expr="//t[@t-foreach='grouped_timesheets']//th[hasclass('text-end')]/t[@t-if='is_uom_day']/span"
+                position="attributes"
+            >
+                <attribute name="t-esc" />
+                <attribute
+                    name="t-out"
+                >timesheets._convert_hours_to_days(sum([t.unit_amount_rounded
+                    for t in timesheets]))</attribute>
+            </xpath>
+            <xpath
+                expr="//t[@t-foreach='grouped_timesheets']//th[hasclass('text-end')]/t[@t-else='']/span"
+                position="attributes"
+            >
+                <attribute name="t-esc" />
+                <attribute
+                    name="t-out"
+                >sum([t.unit_amount_rounded for t in timesheets])</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
