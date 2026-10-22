@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright 2026 NICO SOLUTIONS - ENGINEERING & IT (https://www.nico-solutions.de)
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="res_config_settings_timesheet_portal_visibility" model="ir.ui.view">
+        <field name="name">res.config.settings.timesheet.portal.visibility</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr_timesheet.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='section_leaves']" position="before">
+                <block title="Timesheet Portal Visibility">
+                    <setting
+                        string="Timesheet Portal Visibility"
+                        help="Define which timesheets should be shown in the portal"
+                        id="timesheet_portal_setting"
+                        company_dependent="1"
+                    >
+                        <field name="timesheet_portal_visibility" />
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
