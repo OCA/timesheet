@@ -9,12 +9,17 @@
     "license": "AGPL-3",
     "category": "Sales",
     "website": "https://github.com/OCA/timesheet",
-    "depends": ["project", "hr_timesheet", "sale_timesheet"],
+    "depends": [
+        "project",
+        "hr_timesheet",
+        "sale_timesheet",
+    ],
     "data": [
         # Views
         "views/account_analytic_line.xml",
         "views/project_project.xml",
         "views/project_task.xml",
+        "views/sale_order.xml",
     ],
     "installable": True,
     "pre_init_hook": "pre_init_hook",

@@ -4,14 +4,188 @@
         <field name="name">hr.timesheet.view.task.form2.inherited.inherit</field>
         <field name="model">project.task</field>
         <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited" />
+        <field name="priority">99</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='unit_amount']" position="after">
                 <field
                     name="unit_amount_rounded"
-                    string="Duration (rounded)"
-                    widget="float_time"
+                    string="Rounded Time Spent"
+                    widget="timesheet_uom"
                     readonly="readonly_timesheet"
                 />
+            </xpath>
+            <xpath expr="//group[@name='project_hours']" position="replace">
+                <group class="oe_subtotal_footer" name="project_hours">
+                    <table class="table table-sm table-bordered mb-0 w-100">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-2 py-1 fw-semibold text-muted">Metric</th>
+                                <th
+                                    class="text-end pe-2 py-1 fw-semibold text-muted"
+                                >Actual</th>
+                                <th
+                                    class="text-end pe-2 py-1 fw-semibold text-muted"
+                                >Rounded</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="ps-2 py-1">
+                                    <label
+                                        class="fw-bold o_form_label"
+                                        for="effective_hours"
+                                        string="Time Spent"
+                                    />
+                                </td>
+                                <td class="text-end pe-2 py-1">
+                                    <field
+                                        name="effective_hours"
+                                        widget="timesheet_uom"
+                                        nolabel="1"
+                                    />
+                                </td>
+                                <td class="text-end pe-2 py-1">
+                                    <field
+                                        name="effective_hours_rounded"
+                                        widget="timesheet_uom"
+                                        nolabel="1"
+                                    />
+                                </td>
+                            </tr>
+                            <tr invisible="subtask_effective_hours == 0.0">
+                                <td class="ps-2 py-1">
+                                    <button
+                                        name="action_view_subtask_timesheet"
+                                        type="object"
+                                        class="p-0 border-0 oe_inline oe_link fw-bold"
+                                    >
+                                        <span
+                                            class="text-nowrap"
+                                        >Time on Sub-tasks</span>
+                                    </button>
+                                </td>
+                                <td class="text-end pe-2 py-1">
+                                    <field
+                                        name="subtask_effective_hours"
+                                        widget="timesheet_uom"
+                                        nolabel="1"
+                                    />
+                                </td>
+                                <td class="text-end pe-2 py-1">
+                                    <field
+                                        name="subtask_effective_hours_rounded"
+                                        widget="timesheet_uom"
+                                        nolabel="1"
+                                    />
+                                </td>
+                            </tr>
+                            <tr invisible="subtask_effective_hours == 0.0">
+                                <td class="ps-2 py-1 border-top">
+                                    <label
+                                        class="fw-bold o_form_label"
+                                        for="total_hours_spent"
+                                        invisible="encode_uom_in_days"
+                                    />
+                                    <label
+                                        class="fw-bold o_form_label"
+                                        for="total_hours_spent"
+                                        invisible="not encode_uom_in_days"
+                                    />
+                                </td>
+                                <td class="text-end pe-2 py-1 border-top">
+                                    <field
+                                        name="total_hours_spent"
+                                        widget="timesheet_uom"
+                                        nolabel="1"
+                                    />
+                                </td>
+                                <td class="text-end pe-2 py-1 border-top">
+                                    <field
+                                        name="total_hours_spent_rounded"
+                                        widget="timesheet_uom"
+                                        nolabel="1"
+                                    />
+                                </td>
+                            </tr>
+                            <tr invisible="allocated_hours == 0.0">
+                                <td class="ps-2 py-1 border-top">
+                                    <label
+                                        class="fw-bold o_form_label"
+                                        for="remaining_hours"
+                                        invisible="remaining_hours &lt; 0"
+                                    />
+                                    <label
+                                        class="fw-bold text-danger o_form_label"
+                                        for="remaining_hours"
+                                        invisible="remaining_hours &gt;= 0"
+                                    />
+                                </td>
+                                <td class="text-end pe-2 py-1 border-top">
+                                    <field
+                                        name="remaining_hours"
+                                        widget="timesheet_uom"
+                                        nolabel="1"
+                                        decoration-danger="remaining_hours &lt; 0"
+                                    />
+                                </td>
+                                <td class="text-end pe-2 py-1 border-top">
+                                    <field
+                                        name="remaining_hours_rounded"
+                                        widget="timesheet_uom"
+                                        nolabel="1"
+                                        decoration-danger="remaining_hours &lt; 0"
+                                    />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_task_kanban_rounded_hours" model="ir.ui.view">
+        <field name="name">project.task.kanban.rounded.hours</field>
+        <field name="model">project.task</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet.view_task_kanban_inherited_progress"
+        />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <templates position="before">
+                <field name="remaining_hours_rounded" />
+            </templates>
+            <xpath expr="//t[@name='allocated_hours']" position="replace">
+                <t
+                    name="allocated_hours"
+                    t-if="record.allocated_hours.raw_value &gt; 0 and record.allow_timesheets.raw_value"
+                    groups="hr_timesheet.group_hr_timesheet_user"
+                >
+                    <t t-set="badge" t-value="'border border-success'" />
+                    <t
+                        t-set="badge"
+                        t-value="'border border-warning'"
+                        t-if="record.progress.raw_value &gt;= 0.8 and record.progress.raw_value &lt;= 1"
+                    />
+                    <t
+                        t-set="badge"
+                        t-value="'border border-danger'"
+                        t-if="record.remaining_hours_rounded.raw_value &lt; 0"
+                    />
+                    <t
+                        t-set="title"
+                        t-value="'Remaining days'"
+                        t-if="record.encode_uom_in_days.raw_value"
+                    />
+                    <t t-set="title" t-value="'Time Remaining'" t-else="" />
+                    <div
+                        t-attf-class="bg-transparent badge {{ badge }} me-0"
+                        t-att-title="title"
+                    >
+                        <field name="remaining_hours_rounded" widget="timesheet_uom" />
+                    </div>
+                </t>
             </xpath>
         </field>
     </record>
