@@ -1,0 +1,21 @@
+<odoo>
+    <record id="view_task_form2_inherited" model="ir.ui.view">
+        <field
+            name="name"
+        >project.task.form.inherited (in project_timesheet_holidays_task_enable)</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='timesheet_ids']" position="before">
+                <span>
+                    <label
+                        class="font-weight-bold"
+                        for="timeoff_enable_use_timesheets"
+                        string="Enable use in timesheets when used in Time Off"
+                    />
+                </span>
+                <field name="timeoff_enable_use_timesheets" widget="boolean_toggle" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* project_timesheet_holidays_task_enable
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-08 13:42+0000\n"
+"PO-Revision-Date: 2025-10-08 13:42+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: project_timesheet_holidays_task_enable
+#: model:ir.model.fields,help:project_timesheet_holidays_task_enable.field_project_task__timeoff_enable_use_timesheets
+msgid ""
+"\n"
+"        For a time off task, re-enables it usage in timesheets\n"
+"        "
+msgstr ""
+
+#. module: project_timesheet_holidays_task_enable
+#: model:ir.model.fields,field_description:project_timesheet_holidays_task_enable.field_project_task__timeoff_enable_use_timesheets
+msgid "Enable use in timesheets when Used in Time Off"
+msgstr ""
+
+#. module: project_timesheet_holidays_task_enable
+#: model_terms:ir.ui.view,arch_db:project_timesheet_holidays_task_enable.view_task_form2_inherited
+msgid "Enable use in timesheets when used in Time Off"
+msgstr ""
+
+#. module: project_timesheet_holidays_task_enable
+#: model:ir.model,name:project_timesheet_holidays_task_enable.model_project_task
+msgid "Task"
+msgstr ""
