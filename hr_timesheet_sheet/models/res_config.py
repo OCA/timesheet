@@ -25,3 +25,7 @@ class ResConfig(models.TransientModel):
     timesheet_sheet_review_policy = fields.Selection(
         related="company_id.timesheet_sheet_review_policy", readonly=False
     )
+
+    timesheet_sheet_approver_field_id = fields.Many2one(
+        related="company_id.timesheet_sheet_approver_field_id", readonly=False
+    )
