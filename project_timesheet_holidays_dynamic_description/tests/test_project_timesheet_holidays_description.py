@@ -1,7 +1,7 @@
 # © 2026 Solvos Consultoría Informática (<https://www.solvos.es>)
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import Command, fields
+from odoo import Command
 from odoo.tests.common import TransactionCase, tagged
 
 
@@ -80,13 +80,15 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
         )
 
     def _create_leave_with_timesheet(self):
+        # Fixed working day (Monday), leaves are refused on days off
+        leave_date = "2025-06-02"
         self.leave = self.Leave.create(
             {
                 "name": "Vacations",
                 "employee_id": self.employee.id,
                 "holiday_status_id": self.leave_type.id,
-                "request_date_from": fields.Date.today(),
-                "request_date_to": fields.Date.today(),
+                "request_date_from": leave_date,
+                "request_date_to": leave_date,
             }
         )
 
