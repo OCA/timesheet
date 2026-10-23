@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ========================
 Timesheet Report Rounded
 ========================
@@ -13,26 +17,27 @@ Timesheet Report Rounded
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ftimesheet-lightgray.png?logo=github
-    :target: https://github.com/OCA/timesheet/tree/16.0/hr_timesheet_report_rounded
+    :target: https://github.com/OCA/timesheet/tree/18.0/hr_timesheet_report_rounded
     :alt: OCA/timesheet
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/timesheet-16-0/timesheet-16-0-hr_timesheet_report_rounded
+    :target: https://translation.odoo-community.org/projects/timesheet-18-0/timesheet-18-0-hr_timesheet_report_rounded
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This is a bridge module between the `Task Logs Timesheet
-Report <https://github.com/cetmix/oca-timesheet/tree/16.0/hr_timesheet_report>`__
-and `Sale Timesheet
-Rounded <https://github.com/cetmix/oca-timesheet/tree/16.0/sale_timesheet_rounded>`__
-modules. It forces the rounded time to be used in report.
+Report <https://github.com/OCA/timesheet/tree/18.0/hr_timesheet_report>`__
+and `Sale Timesheet
+Rounded <https://github.com/OCA/timesheet/tree/18.0/sale_timesheet_rounded>`__
+modules. It uses the rounded quantity when the timesheet report computes
+its total.
 
 **Table of contents**
 
@@ -48,17 +53,49 @@ rounded time in the timesheet report as well.
 Configuration
 =============
 
-Please refer to the documentation of the `Task Logs Timesheet
-Report <https://github.com/cetmix/oca-timesheet/tree/16.0/hr_timesheet_report>`__
-and `Sale Timesheet
-Rounded <https://github.com/cetmix/oca-timesheet/tree/16.0/sale_timesheet_rounded>`__
-modules.
+This module has no settings. It is installed on its own when **Task Logs
+Timesheet Report** and **Sale Timesheet Rounded** are both installed.
+
+Rounding is set on the project. Only timesheet lines created after the
+change are rounded.
+
+**Set rounding on a project**
+
+1. Open the **Project** app.
+2. Open **Projects**.
+3. Open a project.
+4. Open the **Settings** tab.
+5. Under **Time rounding**, set **Rounding method**.
+6. When **Rounding method** is not **No rounding**, set **Rounding
+   Unit**.
+7. Set **Timesheet rounding factor in percentage**.
 
 Usage
 =====
 
-No configuration is required. This module will be automatically
-installed if both modules are installed in the system.
+The hours on **Timesheets Report** are computed from **Quantity
+rounded** on the timesheet lines, converted to hours.
+
+**Report on selected lines**
+
+1. Open the **Timesheets** app.
+2. Open **My Timesheets**, or open **Timesheets** and then **All
+   Timesheets**.
+3. Select the timesheet lines to include.
+4. Click **Action**, then **Generate Timesheet Report**.
+5. Click **View**, **Export to PDF**, or **Export to XLSX**.
+
+**Report from the wizard**
+
+**Timesheet Report Wizard** is visible to users in the group **User: all
+timesheets**. If the menu is missing, that group is not assigned.
+
+1. Open the **Timesheets** app.
+2. Open **Reporting**.
+3. Open **Timesheet Report Wizard**.
+4. Set the dates, projects, tasks, employees, tags, and departments to
+   include.
+5. Click **View**, **Export to PDF**, or **Export to XLSX**.
 
 Bug Tracker
 ===========
@@ -66,7 +103,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/timesheet/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20hr_timesheet_report_rounded%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20hr_timesheet_report_rounded%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -98,6 +135,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/16.0/hr_timesheet_report_rounded>`_ project on GitHub.
+This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/18.0/hr_timesheet_report_rounded>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
