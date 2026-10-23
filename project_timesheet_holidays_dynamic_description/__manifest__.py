@@ -7,7 +7,7 @@
         Use the time off description for the generated timesheet lines.
     """,
     "category": "Human Resources",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "depends": ["project_timesheet_holidays"],
     "data": ["views/res_config_settings_views.xml"],
     "author": "Solvos Consultoría Informática, Odoo Community Association (OCA)",
