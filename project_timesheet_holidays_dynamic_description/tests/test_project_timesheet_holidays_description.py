@@ -1,9 +1,7 @@
 # © 2026 Solvos Consultoría Informática (<https://www.solvos.es>)
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
-from datetime import timedelta
-
-from odoo import Command, fields
+from odoo import Command
 from odoo.tests.common import TransactionCase, tagged
 
 
@@ -99,16 +97,15 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
                 "employee_id": cls.employee.id,
                 "holiday_status_id": cls.leave_type.id,
                 "number_of_days": 30,
+                "date_from": "2025-01-01",
                 "state": "confirm",
             }
         )
         cls.allocation._action_validate()
 
     def _create_leave_with_timesheet(self):
-        # Use a working day, leaves are refused on the employee's days off
-        leave_date = fields.Date.today()
-        while leave_date.weekday() >= 5:
-            leave_date += timedelta(days=1)
+        # Fixed working day (Monday), leaves are refused on days off
+        leave_date = "2025-06-02"
         self.leave = self.Leave.create(
             {
                 "name": "Vacations",
