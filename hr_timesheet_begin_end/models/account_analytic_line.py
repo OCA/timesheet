@@ -5,7 +5,6 @@
 from datetime import timedelta
 
 from odoo import api, exceptions, fields, models
-from odoo.tools.float_utils import float_compare
 
 
 class AccountAnalyticLine(models.Model):
@@ -33,10 +32,8 @@ class AccountAnalyticLine(models.Model):
                     )
                 )
             hours = (stop - start).seconds / 3600
-            rounding = self.env.ref("uom.product_uom_hour").rounding
-            if hours and float_compare(
-                hours, line.unit_amount, precision_rounding=rounding
-            ):
+            hour_uom_id = self.env.ref("uom.product_uom_hour")
+            if hours and hour_uom_id.compare(hours, line.unit_amount):
                 raise exceptions.ValidationError(
                     self.env._(
                         "The duration (%(html_unit_amount)s) must be equal to "
