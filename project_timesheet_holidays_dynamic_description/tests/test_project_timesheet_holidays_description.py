@@ -1,6 +1,8 @@
 # © 2026 Solvos Consultoría Informática (<https://www.solvos.es>)
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
+from dateutil.relativedelta import MO, relativedelta
+
 from odoo import Command, fields
 from odoo.tests.common import TransactionCase, tagged
 
@@ -85,8 +87,9 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
                 "name": "Vacations",
                 "employee_id": self.employee.id,
                 "holiday_status_id": self.leave_type.id,
-                "request_date_from": fields.Date.today(),
-                "request_date_to": fields.Date.today(),
+                # a working day, also when the tests run on a weekend
+                "request_date_from": fields.Date.today() + relativedelta(weekday=MO),
+                "request_date_to": fields.Date.today() + relativedelta(weekday=MO),
             }
         )
 
