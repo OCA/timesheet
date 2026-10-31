@@ -11,15 +11,31 @@
                 expr="//field[@name='timesheet_ids']/list/field[@name='unit_amount']"
                 position="before"
             >
-                <field name="time_start" widget="float_time" />
-                <field name="time_stop" widget="float_time" />
+                <field
+                    name="time_start"
+                    widget="float_time"
+                    readonly="readonly_timesheet"
+                />
+                <field
+                    name="time_stop"
+                    widget="float_time"
+                    readonly="readonly_timesheet"
+                />
             </xpath>
             <xpath
                 expr="//field[@name='timesheet_ids']/form/sheet/group/field[@name='unit_amount']"
                 position="before"
             >
-                <field name="time_start" widget="float_time" />
-                <field name="time_stop" widget="float_time" />
+                <field
+                    name="time_start"
+                    widget="float_time"
+                    readonly="readonly_timesheet"
+                />
+                <field
+                    name="time_stop"
+                    widget="float_time"
+                    readonly="readonly_timesheet"
+                />
             </xpath>
         </field>
     </record>

@@ -4,13 +4,13 @@
 
 {
     "name": "Timesheet - Begin/End Hours",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "author": "Camptocamp, Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Human Resources",
     "depends": ["hr_timesheet"],
     "website": "https://github.com/OCA/timesheet",
-    "data": ["views/hr_analytic_timesheet.xml", "views/project_task.xml"],
+    "data": ["views/account_analytic_line_views.xml", "views/project_task_views.xml"],
     "installable": True,
     "auto_install": False,
 }

@@ -6,8 +6,18 @@
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
         <field name="arch" type="xml">
             <field name="unit_amount" position="before">
-                <field name="time_start" widget="float_time" optional="show" />
-                <field name="time_stop" widget="float_time" optional="show" />
+                <field
+                    name="time_start"
+                    widget="float_time"
+                    optional="show"
+                    readonly="readonly_timesheet"
+                />
+                <field
+                    name="time_stop"
+                    widget="float_time"
+                    optional="show"
+                    readonly="readonly_timesheet"
+                />
             </field>
         </field>
     </record>
@@ -19,8 +29,16 @@
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
         <field name="arch" type="xml">
             <field name="unit_amount" position="before">
-                <field name="time_start" widget="float_time" />
-                <field name="time_stop" widget="float_time" />
+                <field
+                    name="time_start"
+                    widget="float_time"
+                    readonly="readonly_timesheet"
+                />
+                <field
+                    name="time_stop"
+                    widget="float_time"
+                    readonly="readonly_timesheet"
+                />
             </field>
         </field>
     </record>
