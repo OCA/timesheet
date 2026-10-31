@@ -1036,3 +1036,20 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
             self.assertTrue(aal2.exists())
         # but be sure they are merged on save
         self.assertEqual(len((aal1 + aal2).exists()), 1)
+
+    def test_copy_line_of_submitted_sheet(self):
+        """A line of a submitted sheet can be duplicated"""
+        timesheet = self.aal_model.create(
+            {
+                "name": "Work",
+                "project_id": self.project_1.id,
+                "employee_id": self.employee.id,
+                "unit_amount": 2.0,
+            }
+        )
+        sheet = Form(self.sheet_model.with_user(self.user)).save()
+        self.assertEqual(timesheet.sheet_id, sheet)
+        sheet.action_timesheet_confirm()
+        new_timesheet = timesheet.copy()
+        self.assertFalse(new_timesheet.sheet_id)
+        self.assertEqual(timesheet.sheet_id, sheet)
