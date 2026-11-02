@@ -11,7 +11,11 @@
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='task_id']" position="after">
-                <field name="exclude_from_sale_order" optional="show" />
+                <field
+                    name="exclude_from_sale_order"
+                    optional="show"
+                    readonly="readonly_timesheet"
+                />
             </xpath>
         </field>
     </record>
@@ -21,7 +25,7 @@
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
         <field name="arch" type="xml">
             <field name="date" position="after">
-                <field name="exclude_from_sale_order" />
+                <field name="exclude_from_sale_order" readonly="readonly_timesheet" />
             </field>
         </field>
     </record>
