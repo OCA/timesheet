@@ -18,8 +18,18 @@
                 <attribute name="optional">hide</attribute>
             </field>
             <field name="unit_amount" position="before">
-                <field name="time_begin" widget="float_time" optional="show" />
-                <field name="time_end" widget="float_time" optional="show" />
+                <field
+                    name="time_begin"
+                    widget="float_time"
+                    optional="show"
+                    readonly="readonly_timesheet"
+                />
+                <field
+                    name="time_end"
+                    widget="float_time"
+                    optional="show"
+                    readonly="readonly_timesheet"
+                />
             </field>
         </field>
     </record>
@@ -41,8 +51,18 @@
                 <attribute name="invisible">1</attribute>
             </field>
             <field name="unit_amount" position="before">
-                <field name="time_begin" widget="float_time" optional="show" />
-                <field name="time_end" widget="float_time" optional="show" />
+                <field
+                    name="time_begin"
+                    widget="float_time"
+                    optional="show"
+                    readonly="readonly_timesheet"
+                />
+                <field
+                    name="time_end"
+                    widget="float_time"
+                    optional="show"
+                    readonly="readonly_timesheet"
+                />
             </field>
         </field>
     </record>

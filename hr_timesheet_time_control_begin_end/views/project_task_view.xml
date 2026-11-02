@@ -27,8 +27,18 @@
                 expr="//field[@name='timesheet_ids']/list/field[@name='unit_amount']"
                 position="before"
             >
-                <field name="time_begin" widget="float_time" optional="show" />
-                <field name="time_end" widget="float_time" optional="show" />
+                <field
+                    name="time_begin"
+                    widget="float_time"
+                    optional="show"
+                    readonly="readonly_timesheet"
+                />
+                <field
+                    name="time_end"
+                    widget="float_time"
+                    optional="show"
+                    readonly="readonly_timesheet"
+                />
             </xpath>
             <!-- Sub-kanban view for timesheet_ids -->
             <xpath
