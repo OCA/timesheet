@@ -12,6 +12,7 @@
                     class="alert alert-warning w-100 d-flex align-items-center gap-1"
                     role="alert"
                     invisible="not timesheet_pending_count or timesheet_alert_dismissed"
+                    groups="hr_timesheet.group_timesheet_manager"
                 >
                     <span>
                         There is/are

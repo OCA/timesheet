@@ -7,10 +7,17 @@ To use this module, you need to:
 
 Additionally, when you open an invoice that has timesheets linked to its sale
 order lines but not yet linked to the invoice itself, a warning alert will
-appear at the top of the invoice form. From there you can:
+appear at the top of the invoice form. Only timesheets dated up to the invoice
+date are offered, so the alert shows once the invoice has a date. From there you
+can:
 
 - Click **Link All** to automatically link all pending timesheets to this
   invoice.
 - Click **Select Manually** to open a filtered list of pending timesheets where
-  you can select specific ones and click **Link to Invoice**.
+  you can select the ones you want and set their *Invoice* column.
 - Click **Dismiss** to hide the alert for this invoice.
+
+Once a timesheet is linked to an invoice that is not cancelled, Odoo considers it
+invoiced, so its duration, date, employee, project, task, sale order item and
+partner can no longer be modified. To edit it, unlink it first (empty its
+*Invoice* column) or cancel the invoice.

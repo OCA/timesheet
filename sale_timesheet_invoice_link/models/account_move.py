@@ -8,9 +8,13 @@ from odoo.fields import Domain
 class AccountMove(models.Model):
     _inherit = "account.move"
 
+    # Computed as superuser so the count does not depend on the timesheets the
+    # current user can read, like core's invoice timesheet counters. The alert
+    # is only shown to timesheet administrators, who can link them all.
     timesheet_pending_ids = fields.One2many(
         comodel_name="account.analytic.line",
         compute="_compute_timesheet_pending_ids",
+        compute_sudo=True,
         string="Pending Timesheets",
         help="Timesheets linked to this invoice's SO lines that are not yet "
         "linked to any non-cancelled invoice",
@@ -18,6 +22,7 @@ class AccountMove(models.Model):
     timesheet_pending_count = fields.Integer(
         string="Pending Timesheets Count",
         compute="_compute_timesheet_pending_ids",
+        compute_sudo=True,
     )
     timesheet_alert_dismissed = fields.Boolean(
         default=False,
@@ -29,6 +34,10 @@ class AccountMove(models.Model):
         self.timesheet_pending_ids = False
         self.timesheet_pending_count = 0
         for invoice in self.filtered_domain([("move_type", "=", "out_invoice")]):
+            # Without a date there is no cutoff yet, and linking now could keep
+            # timesheets later than the date the invoice finally gets
+            if not invoice.invoice_date:
+                continue
             so_lines = invoice.invoice_line_ids.sale_line_ids.filtered(
                 lambda sol: (
                     sol.product_id and not sol.product_id._is_delivered_timesheet()
@@ -36,22 +45,17 @@ class AccountMove(models.Model):
             )
             if not so_lines:
                 continue
-            domain = Domain(
-                self.env["account.move.line"]._timesheet_domain_get_invoiced_lines(
-                    so_lines
-                )
-            )
-            if invoice.invoice_date:
-                domain = Domain.AND(
-                    [domain, Domain("date", "<=", invoice.invoice_date)]
-                )
+            domain = self.env["account.move"]._analytic_line_domain_get_invoiced_lines(
+                so_lines
+            ) & Domain("project_id", "!=", False)
+            domain &= Domain("date", "<=", invoice.invoice_date)
             pending = self.env["account.analytic.line"].search(domain)
             invoice.timesheet_pending_ids = pending
             invoice.timesheet_pending_count = len(pending)
 
     def action_link_timesheets(self):
         self.ensure_one()
-        self.timesheet_pending_ids.write({"timesheet_invoice_id": self.id})
+        self.timesheet_pending_ids.write({"reinvoice_move_id": self.id})
         self.timesheet_alert_dismissed = True
 
     def action_dismiss_timesheet_alert(self):
@@ -70,7 +74,7 @@ class AccountMove(models.Model):
             "view_mode": "list,form",
             "domain": [("id", "in", pending.ids)],
             "context": {
-                "default_timesheet_invoice_id": self.id,
+                "default_reinvoice_move_id": self.id,
             },
         }
 
