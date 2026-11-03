@@ -30,8 +30,9 @@ class AccountMove(models.Model):
         self.timesheet_pending_count = 0
         for invoice in self.filtered_domain([("move_type", "=", "out_invoice")]):
             so_lines = invoice.invoice_line_ids.sale_line_ids.filtered(
-                lambda sol: sol.product_id
-                and not sol.product_id._is_delivered_timesheet()
+                lambda sol: (
+                    sol.product_id and not sol.product_id._is_delivered_timesheet()
+                )
             )
             if not so_lines:
                 continue
