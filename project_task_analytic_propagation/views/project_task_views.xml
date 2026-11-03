@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2025 Moduon Team S.L. <info@moduon.team>
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record id="project_task_analytic__propagation_view_task_form2" model="ir.ui.view">
+        <field name="name">project.task.analytic.propagation.view.form.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='extra_info']//group" position="inside">
+                <group
+                    name="analytic"
+                    string="Analytic"
+                    groups="analytic.group_analytic_accounting"
+                >
+                    <field name="account_id" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
