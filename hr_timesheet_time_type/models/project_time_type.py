@@ -11,3 +11,9 @@ class ProjectTimeType(models.Model):
     name = fields.Char(required=True)
     code = fields.Char()
     description = fields.Text()
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        index=True,
+        default=lambda self: self.env.company,
+    )
+    active = fields.Boolean(default=True)
