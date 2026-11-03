@@ -11,11 +11,9 @@ class HrEmployeeTimesheetCostHistory(models.Model):
 
     employee_id = fields.Many2one(
         comodel_name="hr.employee",
-        string="Employee",
     )
     currency_id = fields.Many2one(
         comodel_name="res.currency",
-        string="Currency",
     )
     hourly_cost = fields.Monetary(currency_field="currency_id")
     starting_date = fields.Date(

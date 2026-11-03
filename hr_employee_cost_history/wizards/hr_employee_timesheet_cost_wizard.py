@@ -8,11 +8,9 @@ class HrEmployeeTimesheetCost(models.TransientModel):
     _description = "Employee timesheet cost wizard"
 
     employee_id = fields.Many2one(
-        comodel_name="hr.employee", string="Employee", ondelete="cascade", required=True
+        comodel_name="hr.employee", ondelete="cascade", required=True
     )
-    currency_id = fields.Many2one(
-        "res.currency", string="Currency", ondelete="cascade", required=True
-    )
+    currency_id = fields.Many2one("res.currency", ondelete="cascade", required=True)
     hourly_cost = fields.Monetary(currency_field="currency_id", required=True)
     starting_date = fields.Date(
         required=True,

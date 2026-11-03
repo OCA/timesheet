@@ -3,7 +3,7 @@
 {
     "name": "HR Employee Cost History",
     "summary": """Adds an history to employee's costs.""",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "development_status": "Beta",
     "category": "Human Resources",
     "website": "https://github.com/OCA/timesheet",
@@ -14,10 +14,10 @@
     "auto_install": False,
     "depends": [
         "hr_timesheet",
-        "hr_hourly_cost",
+        "hr",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "wizards/hr_employee_timesheet_cost_wizard_views.xml",
         "views/hr_employee_timesheet_cost_history_views.xml",
         "views/hr_employee_views.xml",
