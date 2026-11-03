@@ -28,8 +28,9 @@ class AccountAnalyticLine(models.Model):
 
     @api.depends("task_id.project_id")
     def _compute_project_id(self):
-        self = self.with_context(propagate_project_id=True)
-        return super()._compute_project_id()
+        return super(
+            AccountAnalyticLine, self.with_context(propagate_project_id=True)
+        )._compute_project_id()
 
     def _is_not_billed(self):
         if not self.env.context.get("propagate_project_id"):
@@ -37,9 +38,10 @@ class AccountAnalyticLine(models.Model):
         return True
 
     def write(self, values):
+        records = self
         if self.env.context.get("propagate_project_id"):
-            self = self.with_context(propagate_project_id_for_timesheet=True)
-        return super().write(values)
+            records = self.with_context(propagate_project_id_for_timesheet=True)
+        return super(AccountAnalyticLine, records).write(values)
 
     def _check_can_write(self, values):
         # Allow propagate project_id from task to all

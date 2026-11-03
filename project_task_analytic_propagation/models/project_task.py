@@ -7,7 +7,7 @@ from odoo import api, fields, models
 
 class ProjectTask(models.Model):
     _name = "project.task"
-    _inherit = ["project.task", "analytic.plan.fields.mixin"]
+    _inherit = ["project.task", "analytic.plan.fields.mixin"]  # noqa: RUF012
 
     account_id = fields.Many2one(
         compute="_compute_task_analytic_accounts",
