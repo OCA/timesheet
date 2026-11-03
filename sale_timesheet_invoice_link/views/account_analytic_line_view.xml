@@ -15,7 +15,7 @@
                 <field
                     domain="[('partner_id', 'child_of', commercial_partner_id), ('state', '!=', 'cancel'), ('move_type', '=', 'out_invoice')]"
                     groups="hr_timesheet.group_timesheet_manager"
-                    name="timesheet_invoice_id"
+                    name="reinvoice_move_id"
                     optional="hide"
                     options="{'no_create': True}"
                     readonly="False"

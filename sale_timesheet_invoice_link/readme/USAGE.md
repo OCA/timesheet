@@ -14,3 +14,8 @@ appear at the top of the invoice form. From there you can:
 - Click **Select Manually** to open a filtered list of pending timesheets where
   you can select specific ones and click **Link to Invoice**.
 - Click **Dismiss** to hide the alert for this invoice.
+
+Once a timesheet is linked to an invoice that is not cancelled, Odoo considers it
+invoiced, so its duration, date, employee, project, task, sale order item and
+partner can no longer be modified. To edit it, unlink it first (empty its
+*Invoice* column) or cancel the invoice.

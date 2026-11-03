@@ -36,11 +36,9 @@ class AccountMove(models.Model):
             )
             if not so_lines:
                 continue
-            domain = Domain(
-                self.env["account.move.line"]._timesheet_domain_get_invoiced_lines(
-                    so_lines
-                )
-            )
+            domain = self.env["account.move"]._analytic_line_domain_get_invoiced_lines(
+                so_lines
+            ) & Domain("project_id", "!=", False)
             if invoice.invoice_date:
                 domain = Domain.AND(
                     [domain, Domain("date", "<=", invoice.invoice_date)]
@@ -51,7 +49,7 @@ class AccountMove(models.Model):
 
     def action_link_timesheets(self):
         self.ensure_one()
-        self.timesheet_pending_ids.write({"timesheet_invoice_id": self.id})
+        self.timesheet_pending_ids.write({"reinvoice_move_id": self.id})
         self.timesheet_alert_dismissed = True
 
     def action_dismiss_timesheet_alert(self):
@@ -70,7 +68,7 @@ class AccountMove(models.Model):
             "view_mode": "list,form",
             "domain": [("id", "in", pending.ids)],
             "context": {
-                "default_timesheet_invoice_id": self.id,
+                "default_reinvoice_move_id": self.id,
             },
         }
 
