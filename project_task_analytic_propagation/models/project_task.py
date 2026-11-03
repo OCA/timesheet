@@ -45,8 +45,9 @@ class ProjectTask(models.Model):
         fnames = list(analytic_accounts.keys())
         # If the analytic accounts are not equal between the task and the timesheet
         timesheets = self.timesheet_ids.filtered(
-            lambda line: {fname: line[fname].id for fname in fnames}
-            != analytic_accounts
+            lambda line: (
+                {fname: line[fname].id for fname in fnames} != analytic_accounts
+            )
         )
         if timesheets:
             timesheets.with_context(project_task_analytic_propagation=True).write(
