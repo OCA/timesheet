@@ -21,13 +21,13 @@ Project Task Analytic Propagation
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ftimesheet-lightgray.png?logo=github
-    :target: https://github.com/OCA/timesheet/tree/19.0/project_task_analytic_propagation
+    :target: https://github.com/OCA/timesheet/tree/20.0/project_task_analytic_propagation
     :alt: OCA/timesheet
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/timesheet-19-0/timesheet-19-0-project_task_analytic_propagation
+    :target: https://translation.odoo-community.org/projects/timesheet-20-0/timesheet-20-0-project_task_analytic_propagation
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=19.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=20.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -89,7 +89,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/timesheet/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20project_task_analytic_propagation%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20project_task_analytic_propagation%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -133,6 +133,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-rafaelbn| |maintainer-chienandalu| 
 
-This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/19.0/project_task_analytic_propagation>`_ project on GitHub.
+This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/20.0/project_task_analytic_propagation>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

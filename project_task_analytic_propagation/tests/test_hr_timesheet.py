@@ -110,8 +110,9 @@ class HrTimesheet(TestCommonSaleTimesheet, MailCase):
                 }
             ]
         )
+        cls.so.action_confirm()
         cls.task1.sale_line_id = cls.so_line_1
-        cls.so._create_invoices()
+        cls.invoice = cls.so._create_invoices()
 
     @classmethod
     def _request_handler(cls, s, r, /, **kw):
@@ -120,6 +121,8 @@ class HrTimesheet(TestCommonSaleTimesheet, MailCase):
 
     def test_analytic_account_tracking(self):
         """Changes to primary and extra-plan task accounts are tracked."""
+        # Tracking assertions need a lang in the environment
+        self.env = self.env(context=dict(self.env.context, lang="en_US"))
         project_account = self.env["account.analytic.account"].create(
             {"name": "Other project", "plan_id": self.analytic_plan.id}
         )
@@ -155,6 +158,7 @@ class HrTimesheet(TestCommonSaleTimesheet, MailCase):
     def test_compute_account_id_01(self):
         """Test analytic account change if timesheets are invoiced."""
         plan2_fname = f"x_plan{self.plan2.id}_id"
+        self.assertEqual(self.task1.timesheet_ids.reinvoice_move_id, self.invoice)
         self.assertEqual(
             self.task1.timesheet_ids.mapped("account_id"),
             self.analytic_account_sale,
