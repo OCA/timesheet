@@ -1,0 +1,141 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * crm_timesheet_time_control
+#
+# Translators:
+# Quentin THEURET <odoo@kerpeo.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-18 00:44+0000\n"
+"PO-Revision-Date: 2026-08-29 00:00+0000\n"
+"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2017\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: crm_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.view_crm_lead_kanban
+msgid "<i class=\"fa fa-lg fa-play-circle\" title=\"Start\"/>"
+msgstr "<i class=\"fa fa-lg fa-play-circle\" title=\"Démarrer\"/>"
+
+#. module: crm_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.view_crm_lead_kanban
+msgid "<i class=\"fa fa-lg fa-stop-circle\" title=\"Stop\"/>"
+msgstr "<i class=\"fa fa-lg fa-stop-circle\" title=\"Arrêter\"/>"
+
+#. module: crm_timesheet_time_control
+#: model:ir.model,name:crm_timesheet_time_control.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Ligne analytique"
+
+#. module: crm_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.hr_timesheet_stop_view_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: crm_timesheet_time_control
+#: model:ir.model.fields,field_description:crm_timesheet_time_control.field_hr_timesheet_stop__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: crm_timesheet_time_control
+#: model:ir.model.fields,field_description:crm_timesheet_time_control.field_hr_timesheet_stop__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: crm_timesheet_time_control
+#: model:ir.model.fields,field_description:crm_timesheet_time_control.field_hr_timesheet_stop__name
+#: model:ir.model.fields,field_description:crm_timesheet_time_control.field_hr_timesheet_switch__name
+msgid "Description"
+msgstr "Description"
+
+#. module: crm_timesheet_time_control
+#: model:ir.model.fields,field_description:crm_timesheet_time_control.field_hr_timesheet_stop__display_name
+#: model:ir.model.fields,field_description:crm_timesheet_time_control.field_hr_timesheet_switch__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: crm_timesheet_time_control
+#: model:ir.model,name:crm_timesheet_time_control.model_hr_timesheet_switch
+msgid "Helper to quickly switch between timesheet lines"
+msgstr "Assistant pour changer rapidement de ligne de temps"
+
+#. module: crm_timesheet_time_control
+#: model:ir.model.fields,field_description:crm_timesheet_time_control.field_hr_timesheet_stop__id
+#: model:ir.model.fields,field_description:crm_timesheet_time_control.field_hr_timesheet_switch__id
+msgid "ID"
+msgstr "ID"
+
+#. module: crm_timesheet_time_control
+#: model:ir.model.fields,help:crm_timesheet_time_control.field_crm_lead__show_time_control
+msgid "Indicate which time control button to show, if any."
+msgstr "Indiquer quel bouton de contrôle du temps afficher, si applicable."
+
+#. module: crm_timesheet_time_control
+#: model:ir.model.fields,field_description:crm_timesheet_time_control.field_hr_timesheet_stop__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: crm_timesheet_time_control
+#: model:ir.model.fields,field_description:crm_timesheet_time_control.field_hr_timesheet_stop__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: crm_timesheet_time_control
+#: model:ir.model,name:crm_timesheet_time_control.model_crm_lead
+msgid "Lead"
+msgstr "Piste"
+
+#. module: crm_timesheet_time_control
+#: model:ir.model.fields,field_description:crm_timesheet_time_control.field_crm_lead__show_time_control
+msgid "Show Time Control"
+msgstr "Montrer les Minuteurs"
+
+#. module: crm_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.crm_case_tree_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.crm_case_tree_view_oppor
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.crm_lead_view_form
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.view_crm_lead_kanban
+msgid "Start work"
+msgstr "Démarrer le travail"
+
+#. module: crm_timesheet_time_control
+#: model:ir.model,name:crm_timesheet_time_control.model_hr_timesheet_stop
+msgid "Stop Timesheet Timer Wizard"
+msgstr "Assistant d'arrêt du minuteur de feuille de temps"
+
+#. module: crm_timesheet_time_control
+#. odoo-python
+#: code:addons/crm_timesheet_time_control/models/account_analytic_line.py:0
+#: model:ir.actions.act_window,name:crm_timesheet_time_control.hr_timesheet_stop_action
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.hr_timesheet_stop_view_form
+msgid "Stop Work"
+msgstr "Arrêter le travail"
+
+#. module: crm_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.crm_case_tree_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.crm_case_tree_view_oppor
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.crm_lead_view_form
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.hr_timesheet_stop_view_form
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.view_crm_lead_kanban
+msgid "Stop work"
+msgstr "Arrêter le travail"
+
+#. module: crm_timesheet_time_control
+#: model:ir.model.fields,field_description:crm_timesheet_time_control.field_hr_timesheet_stop__analytic_line_id
+msgid "Timesheet Line"
+msgstr "Ligne de feuille de temps"
+
+#. module: crm_timesheet_time_control
+#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.hr_timesheet_stop_view_form
+msgid "What did you do?"
+msgstr "Qu'avez-vous fait ?"

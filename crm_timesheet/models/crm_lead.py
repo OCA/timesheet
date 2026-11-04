@@ -7,8 +7,7 @@ from odoo import api, fields, models
 
 
 class CrmLead(models.Model):
-    _name = "crm.lead"
-    _inherit = ["crm.lead", "hr.timesheet.time_control.mixin"]
+    _inherit = "crm.lead"
 
     project_id = fields.Many2one(
         comodel_name="project.project",
@@ -40,16 +39,3 @@ class CrmLead(models.Model):
     def _compute_total_time_spent(self):
         for lead in self:
             lead.total_time_spent = sum(lead.timesheet_ids.mapped("unit_amount"))
-
-    @api.depends("timesheet_ids.employee_id", "timesheet_ids.unit_amount")
-    def _compute_show_time_control(self):
-        return super()._compute_show_time_control()
-
-    @api.model
-    def _relation_with_timesheet_line(self):
-        return "lead_id"
-
-    def button_start_work(self):
-        result = super().button_start_work()
-        result["context"].update({"default_project_id": self.project_id.id})
-        return result
