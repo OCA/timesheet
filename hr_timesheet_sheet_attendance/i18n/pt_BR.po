@@ -1,0 +1,128 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_sheet_attendance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-03-14 12:22+0000\n"
+"Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
+"Language-Team: none\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: hr_timesheet_sheet_attendance
+#: model:ir.model,name:hr_timesheet_sheet_attendance.model_hr_attendance
+msgid "Attendance"
+msgstr "Presença"
+
+#. module: hr_timesheet_sheet_attendance
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet__attendance_count
+msgid "Attendance Count"
+msgstr "Contagem de Presença"
+
+#. module: hr_timesheet_sheet_attendance
+#: model:ir.actions.act_window,name:hr_timesheet_sheet_attendance.hr_timesheet_sheet_action_sheet_attendance
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet__attendances_ids
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_attendance.hr_timesheet_sheet_form
+msgid "Attendances"
+msgstr "Presenças"
+
+#. module: hr_timesheet_sheet_attendance
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_attendance.hr_timesheet_sheet_form
+msgid "Check In"
+msgstr "Check-in"
+
+#. module: hr_timesheet_sheet_attendance
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_attendance.hr_timesheet_sheet_form
+msgid "Check Out"
+msgstr "Check-out"
+
+#. module: hr_timesheet_sheet_attendance
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet__attendance_state
+msgid "Current Status"
+msgstr "Situação Atual"
+
+#. module: hr_timesheet_sheet_attendance
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet__total_difference
+msgid "Difference"
+msgstr "Diferença"
+
+#. module: hr_timesheet_sheet_attendance
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_attendance__sheet_id
+msgid "Sheet"
+msgstr "Planilha"
+
+#. module: hr_timesheet_sheet_attendance
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_attendance/models/hr_timesheet_sheet.py:0
+#, python-format
+msgid ""
+"The timesheet cannot be validated as it does not contain an equal number of "
+"sign ins and sign outs."
+msgstr ""
+"A planilha de horas não pode ser validado como não contém um numero igual de "
+"entradas e saídas."
+
+#. module: hr_timesheet_sheet_attendance
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_attendance.hr_timesheet_sheet_form
+msgid "Timesheet"
+msgstr "Apontamento de hora"
+
+#. module: hr_timesheet_sheet_attendance
+#: model:ir.actions.act_window,name:hr_timesheet_sheet_attendance.hr_timesheet_sheet_action_sheet_activities
+msgid "Timesheet Activities"
+msgstr "Atividades do apontamento de hora"
+
+#. module: hr_timesheet_sheet_attendance
+#: model:ir.model,name:hr_timesheet_sheet_attendance.model_hr_timesheet_sheet
+msgid "Timesheet Sheet"
+msgstr "Planilha de horas"
+
+#. module: hr_timesheet_sheet_attendance
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_attendance.field_hr_timesheet_sheet__total_attendance
+msgid "Total Attendance"
+msgstr "Total de Presença"
+
+#. module: hr_timesheet_sheet_attendance
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:0
+#, python-format
+msgid ""
+"You can not enter an attendance date outside the current timesheet dates."
+msgstr ""
+"Você não pode inserir uma data de presença fora das atuais datas de "
+"apontamento de horas."
+
+#. module: hr_timesheet_sheet_attendance
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:0
+#, python-format
+msgid ""
+"You can not enter an attendance in a submitted timesheet. Ask your manager "
+"to reset it before adding attendance."
+msgstr ""
+"Você não pode inserir uma presença em um apontamento de horas enviado. "
+"Solicite ao seu gerente para reinicia-lo antes de adicionar presenças."
+
+#. module: hr_timesheet_sheet_attendance
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_attendance/models/hr_attendance.py:0
+#, python-format
+msgid "You cannot modify an entry in a confirmed timesheet"
+msgstr ""
+"Você não pode modificar um lançamento em um apontamento de horas confirmado"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome exibido"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima Modificação em"
