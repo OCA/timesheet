@@ -1,0 +1,174 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_sheet_warning
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_definition__active
+msgid "Active"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_definition__warning_domain
+msgid "Applicable Domain"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_item__company_id
+msgid "Company"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_definition__create_uid
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_item__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_definition__create_date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_item__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_definition__name
+msgid "Description"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_definition__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_item__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,help:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_definition__warning_domain
+msgid ""
+"Domain based on Timesheet Sheet, to define if the warning is applicable or "
+"not."
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#. odoo-python
+#: code:addons/hr_timesheet_sheet_warning/models/hr_timesheet_sheet_warning_definition.py:0
+msgid ""
+"Error evaluating %(name)s.\n"
+" %(error)s"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_warning.hr_timesheet_sheet_form
+msgid "Generate Warnings"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet__hr_timesheet_sheet_warning_item_ids
+msgid "Hr Timesheet Sheet Warning Item"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_definition__id
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_item__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_warning.hr_timesheet_sheet_warning_definition_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_warning.hr_timesheet_sheet_warning_definition_search
+msgid "Inactive"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_definition__write_uid
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_item__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_definition__write_date
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_item__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_item__name
+msgid "Name"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.ui.menu,name:hr_timesheet_sheet_warning.timesheet_menu_settings
+msgid "Settings"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_item__sheet_id
+msgid "Sheet"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model,name:hr_timesheet_sheet_warning.model_hr_timesheet_sheet
+msgid "Timesheet Sheet"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model,name:hr_timesheet_sheet_warning.model_hr_timesheet_sheet_warning_definition
+msgid "Timesheet Sheet Warning Definition"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model,name:hr_timesheet_sheet_warning.model_hr_timesheet_sheet_warning_item
+msgid "Timesheet Sheet Warning Item"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.actions.act_window,name:hr_timesheet_sheet_warning.hr_timesheet_sheet_warning_definition_action
+msgid "Timesheet Warning Definitions"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.constraint,message:hr_timesheet_sheet_warning.constraint_hr_timesheet_sheet_warning_item_unique_warning
+msgid "Timesheet warning has to be unique for timesheet sheet."
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_item__warning_definition_id
+msgid "Warning Definition"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,field_description:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_definition__python_code
+msgid "Warning Expression"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.ui.menu,name:hr_timesheet_sheet_warning.timesheet_menu_warning_definitions
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_warning.hr_timesheet_sheet_form
+msgid "Warnings"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_warning.view_hr_timesheet_sheet_filter
+msgid "With Warnings"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_sheet_warning.view_hr_timesheet_sheet_filter
+msgid "Without Warnings"
+msgstr ""
+
+#. module: hr_timesheet_sheet_warning
+#: model:ir.model.fields,help:hr_timesheet_sheet_warning.field_hr_timesheet_sheet_warning_definition__python_code
+msgid ""
+"Write Python code that defines when this warning should raise. The result of"
+" executing the expression must be a boolean."
+msgstr ""
