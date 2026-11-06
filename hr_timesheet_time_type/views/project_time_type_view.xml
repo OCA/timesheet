@@ -6,6 +6,7 @@
             <list>
                 <field name="name" />
                 <field name="code" />
+                <field name="company_id" groups="base.group_multi_company" />
             </list>
         </field>
     </record>
@@ -18,6 +19,7 @@
                     <group col="4" string="Task Activity">
                         <field name="name" />
                         <field name="code" />
+                        <field name="company_id" groups="base.group_multi_company" />
                     </group>
                     <div>
                         <field name="description" placeholder="Description..." />

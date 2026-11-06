@@ -12,6 +12,7 @@
     "depends": ["hr_timesheet"],
     "data": [
         "security/ir.model.access.csv",
+        "security/hr_timesheet_time_type_security.xml",
         "views/project_time_type_view.xml",
         "views/account_analytic_line_view.xml",
     ],
