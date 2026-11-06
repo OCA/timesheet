@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-timesheet"
-version = "19.0.20261102.0"
+version = "19.0.20261106.0"
 dependencies = [
     "odoo-addon-crm_timesheet==19.0.*",
     "odoo-addon-hr_timesheet_amount_security==19.0.*",
@@ -9,6 +9,7 @@ dependencies = [
     "odoo-addon-hr_timesheet_day_week==19.0.*",
     "odoo-addon-hr_timesheet_employee_analytic_tag==19.0.*",
     "odoo-addon-hr_timesheet_portal==19.0.*",
+    "odoo-addon-hr_timesheet_sheet==19.0.*",
     "odoo-addon-hr_timesheet_task_domain==19.0.*",
     "odoo-addon-hr_timesheet_task_required==19.0.*",
     "odoo-addon-hr_timesheet_task_stage==19.0.*",
