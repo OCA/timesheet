@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Allow free decimal day input instead of the 0 / 0.5 / 1 toggle. -->
+    <record id="uom.product_uom_day" model="uom.uom">
+        <field name="timesheet_widget">float_factor</field>
+    </record>
+</odoo>
