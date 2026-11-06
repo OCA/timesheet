@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_project_time_type_form_cost" model="ir.ui.view">
+        <field name="name">project.time.type.form.inherit.cost</field>
+        <field name="model">project.time.type</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet_time_type.view_project_time_type_form"
+        />
+        <field name="arch" type="xml">
+            <field name="description" position="before">
+                <group col="4" string="Cost">
+                    <field name="cost_type" />
+                    <field name="cost_ratio" invisible="cost_type != 'ratio'" />
+                    <field name="fixed_cost" invisible="cost_type != 'fixed'" />
+                    <field name="currency_id" invisible="1" />
+                </group>
+            </field>
+        </field>
+    </record>
+</odoo>
