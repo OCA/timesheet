@@ -444,8 +444,7 @@ class Sheet(models.Model):
     @api.onchange("date_start", "date_end")
     def _onchange_dates(self):
         if self.date_start and self.date_end:
-            if self.date_start > self.date_end:
-                self.date_end = self.date_start
+            self.date_end = max(self.date_end, self.date_start)
 
     @api.onchange("timesheet_ids")
     def _onchange_timesheets(self):
@@ -737,9 +736,11 @@ class Sheet(models.Model):
                 lambda aal, row=row: self._is_line_of_row(aal, row)
             )
             row_lines.filtered(
-                lambda t: t.name == empty_name
-                and not t.unit_amount
-                and not t.timesheet_invoice_id
+                lambda t: (
+                    t.name == empty_name
+                    and not t.unit_amount
+                    and not t.timesheet_invoice_id
+                )
             ).unlink()
             if self.timesheet_ids != self.timesheet_ids.exists():
                 self._sheet_write("timesheet_ids", self.timesheet_ids.exists())

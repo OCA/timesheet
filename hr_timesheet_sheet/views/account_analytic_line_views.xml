@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
     Copyright 2018 ForgeFlow, S.L.
     Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
@@ -90,15 +90,15 @@
         </field>
     </record>
     <menuitem
-        action="act_hr_timesheet_line_to_submit"
         id="menu_act_hr_timesheet_line_to_submit"
+        action="act_hr_timesheet_line_to_submit"
         parent="hr_timesheet.menu_hr_time_tracking"
         groups="hr_timesheet.group_timesheet_manager"
         sequence="6"
     />
     <menuitem
-        action="act_hr_timesheet_line_to_submit_my"
         id="menu_act_hr_timesheet_line_to_submit_my"
+        action="act_hr_timesheet_line_to_submit_my"
         parent="hr_timesheet_sheet.menu_hr_my_timesheets"
         sequence="5"
     />

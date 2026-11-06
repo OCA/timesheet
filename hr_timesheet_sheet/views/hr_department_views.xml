@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!--
         License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -27,10 +27,10 @@
             </xpath>
             <xpath expr="//div[@name='kanban_primary_right']" position="inside">
                 <button
+                    t-if="record.timesheet_sheet_to_approve_count.raw_value > 0"
+                    class="btn btn-secondary"
                     name="%(hr_timesheet_sheet.hr_timesheet_action_from_department)d"
                     type="action"
-                    class="btn btn-secondary"
-                    t-if="record.timesheet_sheet_to_approve_count.raw_value > 0"
                     groups="hr_timesheet.group_hr_timesheet_user"
                 >
                     <field name="timesheet_sheet_to_approve_count" /> Timesheets

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
     Copyright 2018 ForgeFlow, S.L.
     Copyright 2018-2020 Brainbean Apps (https://brainbeanapps.com)
@@ -32,7 +32,7 @@
         <field name="model">hr_timesheet.sheet</field>
         <field name="inherit_id" ref="hr_timesheet_sheet_tree" />
         <field name="mode">primary</field>
-        <field name="priority">1000</field>
+        <field name="priority" eval="1000" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='employee_id']" position="attributes">
                 <attribute name="column_invisible">1</attribute>
@@ -233,7 +233,7 @@
         <field name="model">hr_timesheet.sheet</field>
         <field name="inherit_id" ref="hr_timesheet_sheet_form" />
         <field name="mode">primary</field>
-        <field name="priority">1000</field>
+        <field name="priority" eval="1000" />
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('oe_title')]" position="attributes">
                 <attribute name="invisible">1</attribute>
@@ -256,43 +256,43 @@
                     <t t-name="menu">
                         <a
                             t-if="widget.editable"
+                            class="dropdown-item"
                             role="menuitem"
                             type="open"
-                            class="dropdown-item"
                         >Edit</a>
                         <a
                             t-if="widget.deletable"
+                            class="dropdown-item"
                             role="menuitem"
                             type="delete"
-                            class="dropdown-item"
                         >Delete</a>
                         <a
                             t-if="record.state.raw_value == 'draft'"
+                            class="dropdown-item"
                             role="menuitem"
                             name="action_timesheet_confirm"
                             type="object"
-                            class="dropdown-item"
                         >Submit to Reviewer</a>
                         <a
                             t-if="record.state.raw_value == 'confirm' and record.can_review.value"
+                            class="dropdown-item"
                             role="menuitem"
                             name="action_timesheet_done"
                             type="object"
-                            class="dropdown-item"
                         >Approve</a>
                         <a
                             t-if="record.state.raw_value == 'confirm' and record.can_review.value"
+                            class="dropdown-item"
                             role="menuitem"
                             name="action_timesheet_refuse"
                             type="object"
-                            class="dropdown-item"
                         >Refuse</a>
                         <a
                             t-if="record.state.raw_value == 'done' and record.can_review.value"
+                            class="dropdown-item"
                             role="menuitem"
                             name="action_timesheet_draft"
                             type="object"
-                            class="dropdown-item"
                         >Set to Draft</a>
                     </t>
                     <t t-name="card">
@@ -301,19 +301,19 @@
                             invisible="state not in ['new', 'draft', 'confirm', 'done']"
                         >
                             <field
-                                name="state"
                                 t-if="record.state.raw_value in ['new', 'draft']"
                                 class="text-bg-info"
+                                name="state"
                             />
                             <field
-                                name="state"
                                 t-if="record.state.raw_value == 'confirm'"
                                 class="text-bg-warning"
+                                name="state"
                             />
                             <field
-                                name="state"
                                 t-if="record.state.raw_value == 'done'"
                                 class="text-bg-success"
+                                name="state"
                             />
                         </div>
                         <a type="open">
@@ -326,7 +326,7 @@
                             readonly="1"
                             class="text-muted ms-2"
                         />
-                        <div class="row g-0 mt-3 mb-2 ms-2" t-if="!selection_mode">
+                        <div t-if="!selection_mode" class="row g-0 mt-3 mb-2 ms-2">
                             <div class="col-3">
                                 <span class="text-muted text-nowrap">Period</span>
                             </div>
@@ -469,22 +469,22 @@
         groups="hr_timesheet.group_hr_timesheet_user"
         sequence="4"
     />
-    <record model="ir.ui.menu" id="hr_timesheet.timesheet_menu_activity_mine">
+    <record id="hr_timesheet.timesheet_menu_activity_mine" model="ir.ui.menu">
         <field name="parent_id" ref="hr_timesheet_sheet.menu_hr_my_timesheets" />
     </record>
-    <record model="ir.ui.menu" id="hr_timesheet.timesheet_menu_activity_user">
+    <record id="hr_timesheet.timesheet_menu_activity_user" model="ir.ui.menu">
         <field name="parent_id" ref="hr_timesheet_sheet.menu_hr_my_timesheets" />
     </record>
 
     <menuitem
-        action="act_hr_timesheet_sheet_my_timesheets"
         id="menu_act_hr_timesheet_sheet_my_timesheets"
+        action="act_hr_timesheet_sheet_my_timesheets"
         parent="hr_timesheet_sheet.menu_hr_my_timesheets"
         sequence="3"
     />
     <menuitem
-        action="act_hr_timesheet_sheet_all_timesheets"
         id="menu_act_hr_timesheet_sheet_all_timesheets"
+        action="act_hr_timesheet_sheet_all_timesheets"
         parent="hr_timesheet.menu_hr_time_tracking"
         sequence="4"
         groups="hr_timesheet.group_timesheet_manager"
@@ -520,8 +520,8 @@
         sequence="7"
     />
     <menuitem
-        action="act_hr_timesheet_sheet_to_review"
         id="menu_act_hr_timesheet_sheet_to_review"
+        action="act_hr_timesheet_sheet_to_review"
         parent="menu_hr_to_review"
         sequence="11"
     />
