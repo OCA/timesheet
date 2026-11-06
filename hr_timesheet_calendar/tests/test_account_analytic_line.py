@@ -131,6 +131,27 @@ class TestAccountAnalyticLine(BaseCommon):
         )._get_default_start_time()
         self.assertEqual(default_start_time, datetime(2025, 4, 5, 12, 0, 0))
 
+    @freeze_time("2024-10-16 22:40:00")
+    def test_create_with_date_after_local_midnight(self):
+        """At 22:40 UTC it is already the next day in Brussels: the given
+        date must be kept and date_time must fall on it in local time."""
+        self.env["ir.config_parameter"].sudo().set_param(
+            "project_timesheet_time_control.timesheet_alignment", "now"
+        )
+        self.employee.tz = "Europe/Brussels"
+        line = self.analytic_line_model.with_context(tz="Europe/Brussels").create(
+            {
+                "name": "Test Line",
+                "date": date(2024, 6, 1),
+                "project_id": self.project.id,
+                "employee_id": self.employee.id,
+            }
+        )
+
+        self.assertEqual(line.date, date(2024, 6, 1))
+        # 00:40 in Brussels (UTC+2)
+        self.assertEqual(line.date_time, datetime(2024, 5, 31, 22, 40))
+
     @freeze_time("2025-04-02 12:00:00")
     def test_create_by_unit_amount(self):
         """Test the computation of date_time_end based on unit_amount."""
