@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_calendar_account_analytic_line_my_timesheets" model="ir.ui.view">
+        <field name="model">account.analytic.line</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet.view_calendar_account_analytic_line_my_timesheets"
+        />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <calendar position="attributes">
+                <attribute name="date_start">date_time</attribute>
+                <attribute name="date_stop">date_time_end</attribute>
+                <attribute name="scales">day,week,month</attribute>
+                <attribute name="mode">week</attribute>
+                <attribute name="event_open_popup">1</attribute>
+                <attribute name="quick_create">1</attribute>
+                <attribute
+                    name="quick_create_view_id"
+                >%(hr_timesheet.hr_timesheet_line_form)d</attribute>
+            </calendar>
+            <field name="project_id" position="attributes">
+                <attribute name="filters">1</attribute>
+            </field>
+            <field name="project_id" position="after">
+                <field name="partner_id" filters="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_timesheet_line_form" model="ir.ui.view">
+        <field name="name">account.analytic.line.form.inherit</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
+        <field name="arch" type="xml">
+            <field name="date" position="after">
+                <field name="product_uom_id" invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>
