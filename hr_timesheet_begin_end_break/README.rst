@@ -89,9 +89,9 @@ Authors
 Contributors
 ------------
 
--  Slivi-sliv <silvano999@gmail.com>
--  Stefano Consolaro (`Mymage <https://www.mymage.it>`__)
--  bosd <ebo@stefcy.com>
+- Slivi-sliv <silvano999@gmail.com>
+- Stefano Consolaro (`Mymage <https://www.mymage.it>`__)
+- bosd <ebo@stefcy.com>
 
 Maintainers
 -----------

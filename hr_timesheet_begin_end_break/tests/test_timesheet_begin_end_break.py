@@ -143,3 +143,21 @@ class TestBeginEndBreak(common.TransactionCase):
         vals.update({"time_start": 8.0, "time_stop": 8.0, "unit_amount": 0.0})
         line = self.timesheet_line_model.create(vals)
         self.assertEqual(line.unit_amount, 0.0)
+
+    def test_check_negative_break(self):
+        line = self.base_line.copy()
+        line.update({"break_duration": -0.5, "unit_amount": 2.5})
+        with self.assertRaisesRegex(exceptions.ValidationError, "The break"):
+            self.timesheet_line_model.create(line)
+
+    def test_check_break_longer_than_span(self):
+        line = self.base_line.copy()
+        line.update({"break_duration": 2.5, "unit_amount": -0.5})
+        with self.assertRaisesRegex(exceptions.ValidationError, "The break"):
+            self.timesheet_line_model.create(line)
+
+    def test_break_equal_to_span(self):
+        line = self.base_line.copy()
+        line.update({"break_duration": 2.0, "unit_amount": 0.0})
+        record = self.timesheet_line_model.create(line)
+        self.assertEqual(record.break_duration, 2.0)

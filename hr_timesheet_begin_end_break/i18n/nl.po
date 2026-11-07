@@ -47,8 +47,16 @@ msgid ""
 "The beginning hour (%(html_start)s) must precede the ending hour "
 "(%(html_stop)s)."
 msgstr ""
-"Het beginuur (%(html_start)s) moet voor het einduur (%(html_stop)s) "
-"liggen."
+"Het beginuur (%(html_start)s) moet voor het einduur (%(html_stop)s) liggen."
+
+#. module: hr_timesheet_begin_end_break
+#: code:addons/hr_timesheet_begin_end_break/models/account_analytic_line.py:0
+msgid ""
+"The break (%(html_break)s) must be between 0 and the time between the "
+"beginning and the ending hour."
+msgstr ""
+"De pauze (%(html_break)s) moet tussen 0 en de tijd tussen het begin- en "
+"einduur liggen."
 
 #. module: hr_timesheet_begin_end_break
 #: code:addons/hr_timesheet_begin_end_break/models/account_analytic_line.py:0
@@ -56,5 +64,5 @@ msgid ""
 "The duration (%(html_unit_amount)s) must be equal to the difference between "
 "the hours minus the break (%(html_hours)s)."
 msgstr ""
-"De duur (%(html_unit_amount)s) moet gelijk zijn aan het verschil tussen "
-"de uren min de pauze (%(html_hours)s)."
+"De duur (%(html_unit_amount)s) moet gelijk zijn aan het verschil tussen de "
+"uren min de pauze (%(html_hours)s)."

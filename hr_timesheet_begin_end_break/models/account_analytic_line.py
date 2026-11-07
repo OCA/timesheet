@@ -23,6 +23,25 @@ class AccountAnalyticLine(models.Model):
                 self.unit_amount = (stop - start).seconds / 3600 - self.break_duration
         return res
 
+    @api.constrains("time_start", "time_stop", "break_duration")
+    def _check_break_duration(self):
+        """A break can't be negative nor longer than the begin/end span."""
+        value_to_html = self.env["ir.qweb.field.float_time"].value_to_html
+        for line in self:
+            span = None
+            if line.time_start or line.time_stop:
+                span = line.time_stop - line.time_start
+            if line.break_duration < 0 or (
+                span is not None and span >= 0 and line.break_duration > span
+            ):
+                raise exceptions.ValidationError(
+                    self.env._(
+                        "The break (%(html_break)s) must be between 0 and the "
+                        "time between the beginning and the ending hour.",
+                        html_break=value_to_html(line.break_duration, None),
+                    )
+                )
+
     @api.constrains("time_start", "time_stop", "unit_amount", "break_duration")
     def _check_time_start_stop(self):
         # This overrides (does not extend) the base ``hr_timesheet_begin_end``
