@@ -32,7 +32,10 @@ msgstr ""
 
 #. module: hr_timesheet_begin_end_break
 #: code:addons/hr_timesheet_begin_end_break/models/account_analytic_line.py:0
-msgid "Lines can't overlap:\n"
+#, python-format
+msgid ""
+"Lines can't overlap:\n"
+"%s"
 msgstr ""
 
 #. module: hr_timesheet_begin_end_break
