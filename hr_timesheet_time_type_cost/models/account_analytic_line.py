@@ -57,19 +57,35 @@ class AccountAnalyticLine(models.Model):
             # The snapshot is derived data: drop direct writes to it.
             values = {k: v for k, v in values.items() if k not in SNAPSHOT_FIELDS}
             return super().write(values) if values else True
-        snapshot = self._time_type_cost_snapshot(values["time_type_id"])
-        # The fixed cost of the time type is restricted to HR and project
-        # managers. The line still has to carry it for every user, so it is
-        # written first with sudo; the user write below then triggers the
-        # amount recompute with the snapshotted value.
-        if not self.env.su and not self.env.user.has_groups(FIXED_COST_GROUPS):
-            # Bypass this write() so the guard above does not drop the
-            # snapshot value.
-            super(AccountAnalyticLine, self.sudo()).write(
-                {"time_type_fixed_cost": snapshot.pop("time_type_fixed_cost")}
-            )
-        values.update(snapshot)
-        return super().write(values)
+        # Only lines whose time type really changes take the current rule of
+        # the time type and are repriced. Writing the same time type again
+        # (mass edit, import, API) must not reprice historic lines.
+        time_type_id = values["time_type_id"] or False
+        unchanged = self.filtered(lambda line: line.time_type_id.id == time_type_id)
+        changed = self - unchanged
+        result = True
+        other_values = {
+            key: value
+            for key, value in values.items()
+            if key != "time_type_id" and key not in SNAPSHOT_FIELDS
+        }
+        if unchanged and other_values:
+            result = super(AccountAnalyticLine, unchanged).write(other_values)
+        if changed:
+            snapshot = self._time_type_cost_snapshot(time_type_id)
+            # The fixed cost of the time type is restricted to HR and project
+            # managers. The line still has to carry it for every user, so it
+            # is written first with sudo; the user write below then triggers
+            # the amount recompute with the snapshotted value.
+            if not self.env.su and not self.env.user.has_groups(FIXED_COST_GROUPS):
+                # Bypass this write() so the guard below does not drop the
+                # snapshot value; the user write then triggers the recompute.
+                super(AccountAnalyticLine, changed.sudo()).write(
+                    {"time_type_fixed_cost": snapshot.pop("time_type_fixed_cost")}
+                )
+            values.update(snapshot)
+            result = super(AccountAnalyticLine, changed).write(values) and result
+        return result
 
     def _timesheet_postprocess_values(self, values):
         # Core only recomputes the amount when one of its own cost inputs
