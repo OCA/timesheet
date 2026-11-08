@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * hr_timesheet_begin_end
+#
+# Translators:
+# Marco Calcagni <mcalcagni@dinamicheaziendali.it>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-31 04:45+0000\n"
+"PO-Revision-Date: 2018-10-28 23:03+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2.1\n"
+
+#. module: hr_timesheet_begin_end
+#: model:ir.model,name:hr_timesheet_begin_end.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Riga analitica"
+
+#. module: hr_timesheet_begin_end
+#: model:ir.model.fields,field_description:hr_timesheet_begin_end.field_account_analytic_line__time_start
+msgid "Begin Hour"
+msgstr "Ora inizio"
+
+#. module: hr_timesheet_begin_end
+#: model:ir.model.fields,field_description:hr_timesheet_begin_end.field_account_analytic_line__time_stop
+msgid "End Hour"
+msgstr "Ora fine"
+
+#. module: hr_timesheet_begin_end
+#. odoo-python
+#: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
+#, python-format
+msgid "Lines can't overlap:\n"
+msgstr "Le righe non possono sovrapporsi:\n"
+
+#. module: hr_timesheet_begin_end
+#. odoo-python
+#: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
+#, python-format
+msgid ""
+"The beginning hour (%(html_start)s) must precede the ending hour "
+"(%(html_stop)s)."
+msgstr ""
+"L'ora di inizio (%(html_start)s) deve essere antecedente all'ora di fine "
+"(%(html_stop)s)."
+
+#. module: hr_timesheet_begin_end
+#. odoo-python
+#: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
+#, python-format
+msgid ""
+"The duration (%(html_unit_amount)s) must be equal to the difference between "
+"the hours (%(html_hours)s)."
+msgstr ""
+"La durata (%(html_unit_amount)s) deve essere uguale alla differenza tra gli "
+"orari (%(html_hours)s)."
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
