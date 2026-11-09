@@ -20,7 +20,8 @@ class AccountAnalyticLine(models.Model):
             self.project_id = self.lead_id.project_id.id
 
     def button_end_work(self):
-        if self.env.context.get("skip_stop_wizard"):
+        # Timer switches must stop the previous line without a manual wizard.
+        if self.env.context.get("skip_stop_wizard") or self.env.context.get("stop_dt"):
             return super().button_end_work()
 
         # If it's a CRM lead timer, ask for description

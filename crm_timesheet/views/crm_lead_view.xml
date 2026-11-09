@@ -12,7 +12,8 @@
                     name="button_start_work"
                     string="Start work"
                     type="object"
-                    icon="fa-play-circle text-success"
+                    icon="play_circle"
+                    icon_class="oi-filled text-success"
                     invisible="show_time_control != 'start'"
                     class="oe_stat_button"
                     groups="hr_timesheet.group_hr_timesheet_user"
@@ -21,7 +22,8 @@
                     name="button_end_work"
                     string="Stop work"
                     type="object"
-                    icon="fa-stop-circle text-warning"
+                    icon="stop_circle"
+                    icon_class="oi-filled text-warning"
                     invisible="show_time_control != 'stop'"
                     class="oe_stat_button"
                     groups="hr_timesheet.group_hr_timesheet_user"
@@ -136,7 +138,11 @@
                     type="object"
                     groups="hr_timesheet.group_hr_timesheet_user"
                 >
-                    <i class="fa fa-lg fa-play-circle" title="Start" />
+                    <i
+                        class="oi oi-lg oi-filled"
+                        data-icon="play_circle"
+                        title="Start"
+                    />
                 </a>
                 <a
                     name="button_end_work"
@@ -147,7 +153,11 @@
                     type="object"
                     groups="hr_timesheet.group_hr_timesheet_user"
                 >
-                    <i class="fa fa-lg fa-stop-circle" title="Stop" />
+                    <i
+                        class="oi oi-lg oi-filled"
+                        data-icon="stop_circle"
+                        title="Stop"
+                    />
                 </a>
             </xpath>
         </field>
@@ -170,7 +180,8 @@
                     string="Start work"
                     tabindex="-1"
                     type="object"
-                    icon="fa-play-circle text-success"
+                    icon="play_circle"
+                    icon_class="oi-filled text-success"
                     invisible="show_time_control != 'start'"
                     class="oe_stat_button"
                     groups="hr_timesheet.group_hr_timesheet_user"
@@ -180,7 +191,8 @@
                     string="Stop work"
                     tabindex="-1"
                     type="object"
-                    icon="fa-stop-circle text-warning"
+                    icon="stop_circle"
+                    icon_class="oi-filled text-warning"
                     invisible="show_time_control != 'stop'"
                     class="oe_stat_button"
                     groups="hr_timesheet.group_hr_timesheet_user"
@@ -204,7 +216,11 @@
                     type="object"
                     groups="hr_timesheet.group_hr_timesheet_user"
                 >
-                    <i class="fa fa-lg fa-play-circle" title="Start" />
+                    <i
+                        class="oi oi-lg oi-filled"
+                        data-icon="play_circle"
+                        title="Start"
+                    />
                 </a>
                 <a
                     name="button_end_work"
@@ -215,7 +231,11 @@
                     type="object"
                     groups="hr_timesheet.group_hr_timesheet_user"
                 >
-                    <i class="fa fa-lg fa-stop-circle" title="Stop" />
+                    <i
+                        class="oi oi-lg oi-filled"
+                        data-icon="stop_circle"
+                        title="Stop"
+                    />
                 </a>
             </xpath>
         </field>
@@ -238,7 +258,8 @@
                     string="Start work"
                     tabindex="-1"
                     type="object"
-                    icon="fa-play-circle text-success"
+                    icon="play_circle"
+                    icon_class="oi-filled text-success"
                     invisible="show_time_control != 'start'"
                     class="oe_stat_button"
                     groups="hr_timesheet.group_hr_timesheet_user"
@@ -248,7 +269,8 @@
                     string="Stop work"
                     tabindex="-1"
                     type="object"
-                    icon="fa-stop-circle text-warning"
+                    icon="stop_circle"
+                    icon_class="oi-filled text-warning"
                     invisible="show_time_control != 'stop'"
                     class="oe_stat_button"
                     groups="hr_timesheet.group_hr_timesheet_user"

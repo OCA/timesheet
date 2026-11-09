@@ -5,6 +5,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
+from datetime import timedelta
+
 from odoo import exceptions, fields
 from odoo.tests.common import users
 
@@ -82,6 +84,33 @@ class AccountAnalyticLineCase(
         self.assertEqual(new_line.employee_id, self.env.user.employee_ids)
         self.assertEqual(new_line.project_id, self.project)
         self.assertEqual(new_line.lead_id, self.lead)
+
+    @users("test-user")
+    def test_switch_between_leads(self):
+        """Switching leads stops the old timer without a manual stop wizard."""
+        other_lead = self.env["crm.lead"].create(
+            {"name": "Other lead", "project_id": self.project.id}
+        )
+        start_action = other_lead.button_start_work()
+        wizard = self._create_wizard(start_action, other_lead)
+        self.assertEqual(wizard.running_timer_id, self.line)
+        wizard.date_time = self.line.date_time + timedelta(hours=2)
+        new_action = wizard.with_context(show_created_timer=True).action_switch()
+        new_line = self.env[new_action["res_model"]].browse(new_action["res_id"])
+
+        self.assertEqual(self.line.unit_amount, 2.0)
+        self.assertEqual(self.line.date_time_end, wizard.date_time)
+        self.assertEqual(self.line.lead_id, self.lead)
+        self.assertEqual(self.line.name, "Test line")
+        self.assertEqual(new_line.lead_id, other_lead)
+        self.assertEqual(new_line.project_id, self.project)
+        self.assertEqual(new_line.employee_id, self.line.employee_id)
+        self.assertEqual(new_line.date_time, wizard.date_time)
+        self.assertEqual(new_line.unit_amount, 0)
+        running_lines = self.env["account.analytic.line"].search(
+            self.env["account.analytic.line"]._running_domain()
+        )
+        self.assertEqual(running_lines, new_line)
 
     @users("test-user")
     def test_total_time_spent(self):
