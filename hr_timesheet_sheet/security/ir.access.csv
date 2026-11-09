@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+access_hr_timesheet_sheet_user,Timesheet sheet user,hr_timesheet.sheet,base.group_user,crud,
+timesheet_sheet_comp_rule,Timesheet sheet multi-company,hr_timesheet.sheet,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_hr_timesheet_sheet_line,Timesheet sheet line,hr_timesheet.sheet.line,hr_timesheet.group_hr_timesheet_user,crud,
+access_hr_timesheet_sheet_new_analytic_line,New timesheet analytic line,hr_timesheet.sheet.new.analytic.line,hr_timesheet.group_hr_timesheet_user,crud,

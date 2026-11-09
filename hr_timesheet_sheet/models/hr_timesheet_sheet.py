@@ -6,6 +6,7 @@
 import re
 from collections import namedtuple
 from datetime import datetime, time
+from typing import ClassVar
 
 import babel.dates
 from dateutil.relativedelta import SU, relativedelta
@@ -13,7 +14,7 @@ from dateutil.relativedelta import SU, relativedelta
 from odoo import api, fields, models
 from odoo.api import SUPERUSER_ID
 from odoo.exceptions import UserError, ValidationError
-from odoo.fields import Domain
+from odoo.fields import Command, Domain
 
 empty_name = "/"
 
@@ -21,7 +22,11 @@ empty_name = "/"
 class Sheet(models.Model):
     _name = "hr_timesheet.sheet"
     _description = "Timesheet Sheet"
-    _inherit = ["mail.thread", "mail.activity.mixin", "portal.mixin"]
+    _inherit: ClassVar[list[str]] = [
+        "mail.thread",
+        "mail.activity.mixin",
+        "portal.mixin",
+    ]
     _table = "hr_timesheet_sheet"
     _order = "id desc"
     _rec_name = "complete_name"
@@ -67,7 +72,6 @@ class Sheet(models.Model):
     name = fields.Char(compute="_compute_name")
     employee_id = fields.Many2one(
         comodel_name="hr.employee",
-        string="Employee",
         default=lambda self: self._default_employee(),
         required=True,
     )
@@ -119,7 +123,6 @@ class Sheet(models.Model):
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         default=lambda self: self.env.company,
         required=True,
     )
@@ -130,12 +133,9 @@ class Sheet(models.Model):
     )
     department_id = fields.Many2one(
         comodel_name="hr.department",
-        string="Department",
         default=lambda self: self._default_department_id(),
     )
-    reviewer_id = fields.Many2one(
-        comodel_name="hr.employee", string="Reviewer", tracking=True
-    )
+    reviewer_id = fields.Many2one(comodel_name="hr.employee", tracking=True)
     add_line_project_id = fields.Many2one(
         comodel_name="project.project",
         string="Select Project",
@@ -386,7 +386,7 @@ class Sheet(models.Model):
                     "hr_timesheet_sheet_clean_timesheets", True
                 ):
                     sheet.clean_timesheets(matrix[key])
-            sheet.line_ids = [(6, 0, SheetLine.create(vals_list).ids)]
+            sheet.line_ids = [Command.set(SheetLine.create(vals_list).ids)]
 
     @api.model
     def _matrix_key_attributes(self):
@@ -435,7 +435,7 @@ class Sheet(models.Model):
             domain = sheet._get_timesheet_sheet_lines_domain()
             timesheets = AccountAnalyticLines.search(domain)
             sheet.link_timesheets_to_sheet(timesheets)
-            sheet.timesheet_ids = [(6, 0, timesheets.ids)]
+            sheet.timesheet_ids = [Command.set(timesheets.ids)]
 
     @api.onchange("date_start", "date_end", "employee_id")
     def _onchange_scope(self):
@@ -508,7 +508,7 @@ class Sheet(models.Model):
         return res
 
     def _sheet_write(self, field, recs):
-        self.with_context(sheet_write=True).write({field: [(6, 0, recs.ids)]})
+        self.with_context(sheet_write=True).write({field: [Command.set(recs.ids)]})
 
     def write(self, vals):
         self._check_employee_user_link(vals)
@@ -698,7 +698,7 @@ class Sheet(models.Model):
 
     def clean_timesheets(self, timesheets):
         repeated = timesheets.filtered(
-            lambda t: t.name == empty_name and not t.timesheet_invoice_id
+            lambda t: t.name == empty_name and not t.reinvoice_move_id
         )
         if len(repeated) > 1 and self.id:
             return repeated.merge_timesheets()
@@ -727,9 +727,9 @@ class Sheet(models.Model):
                 continue
             row = next(iter(rows))
             if delete_empty_rows and self._is_add_line(row):
-                check = any([line.unit_amount for line in rows])
+                check = any(line.unit_amount for line in rows)
             else:
-                check = not all([line.unit_amount for line in rows])
+                check = not all(line.unit_amount for line in rows)
             if not check:
                 continue
             row_lines = self.timesheet_ids.filtered(
@@ -739,7 +739,7 @@ class Sheet(models.Model):
                 lambda t: (
                     t.name == empty_name
                     and not t.unit_amount
-                    and not t.timesheet_invoice_id
+                    and not t.reinvoice_move_id
                 )
             ).unlink()
             if self.timesheet_ids != self.timesheet_ids.exists():
