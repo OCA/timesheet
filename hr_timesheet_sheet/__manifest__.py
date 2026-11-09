@@ -6,7 +6,7 @@
 
 {
     "name": "HR Timesheet Sheet",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Human Resources",
     "sequence": 80,
     "summary": "Timesheet Sheets, Activities",
@@ -18,8 +18,7 @@
     "depends": ["hr_timesheet", "sale_timesheet", "web_widget_x2many_2d_matrix"],
     "data": [
         "data/hr_timesheet_sheet_data.xml",
-        "security/ir.model.access.csv",
-        "security/hr_timesheet_sheet_security.xml",
+        "security/ir.access.csv",
         "views/hr_timesheet_sheet_views.xml",
         "views/hr_department_views.xml",
         "views/hr_employee_views.xml",

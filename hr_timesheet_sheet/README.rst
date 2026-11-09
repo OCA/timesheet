@@ -21,13 +21,13 @@ HR Timesheet Sheet
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ftimesheet-lightgray.png?logo=github
-    :target: https://github.com/OCA/timesheet/tree/19.0/hr_timesheet_sheet
+    :target: https://github.com/OCA/timesheet/tree/20.0/hr_timesheet_sheet
     :alt: OCA/timesheet
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/timesheet-19-0/timesheet-19-0-hr_timesheet_sheet
+    :target: https://translation.odoo-community.org/projects/timesheet-20-0/timesheet-20-0-hr_timesheet_sheet
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=19.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/timesheet&target_branch=20.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -50,19 +50,19 @@ Installation
 
 This module relies on:
 
-- The OCA module '2D matrix for x2many fields', and can be downloaded
-  from Github:
-  https://github.com/OCA/web/tree/19.0/web_widget_x2many_2d_matrix
+-  The OCA module '2D matrix for x2many fields', and can be downloaded
+   from Github:
+   https://github.com/OCA/web/tree/20.0/web_widget_x2many_2d_matrix
 
 Configuration
 =============
 
 If you want other default ranges different from weekly, you need to go:
 
-- In the menu Configuration -> Settings -> **Timesheet Options**, and
-  select in **Timesheet Sheet Range** the default range you want.
-- When you have a weekly range you can also specify the **Week Start
-  Day**.
+-  In the menu Configuration -> Settings -> **Timesheet Options**, and
+   select in **Timesheet Sheet Range** the default range you want.
+-  When you have a weekly range you can also specify the **Week Start
+   Day**.
 
 To change who reviews submitted sheets, go to *Configuration > Settings
 > Timesheet Options* and configure **Timesheet Sheet Review Policy**
@@ -85,11 +85,11 @@ the Details tab, please save before.
 Known issues / Roadmap
 ======================
 
-- The timesheet grid is limited to display a max. of 1M cells, due to a
-  limitation of the tree view limit parameter not being able to
-  dynamically set a limit. Since default value of odoo, 40 records is
-  too small, we decided to set 1M, which should be good enough in the
-  majority of scenarios.
+-  The timesheet grid is limited to display a max. of 1M cells, due to a
+   limitation of the tree view limit parameter not being able to
+   dynamically set a limit. Since default value of odoo, 40 records is
+   too small, we decided to set 1M, which should be good enough in the
+   majority of scenarios.
 
 Bug Tracker
 ===========
@@ -97,7 +97,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/timesheet/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20hr_timesheet_sheet%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/timesheet/issues/new?body=module:%20hr_timesheet_sheet%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -114,19 +114,19 @@ Authors
 Contributors
 ------------
 
-- Miquel Raïch <miquel.raich@forgeflow.com>
-- Andrea Stirpe <a.stirpe@onestein.nl>
-- Lois Rilo <lois.rilo@forgeflow.com>
-- `CorporateHub <https://corporatehub.eu/>`__
+-  Miquel Raïch <miquel.raich@forgeflow.com>
+-  Andrea Stirpe <a.stirpe@onestein.nl>
+-  Lois Rilo <lois.rilo@forgeflow.com>
+-  `CorporateHub <https://corporatehub.eu/>`__
 
-  - Alexey Pelykh <alexey.pelykh@corphub.eu>
+   -  Alexey Pelykh <alexey.pelykh@corphub.eu>
 
-- Dennis Sluijk <d.sluijk@onestein.nl>
-- Sunanda Chhatbar <sunanda.chhatbar@initos.com>
-- `Sodexis <https://www.sodexis.com>`__
+-  Dennis Sluijk <d.sluijk@onestein.nl>
+-  Sunanda Chhatbar <sunanda.chhatbar@initos.com>
+-  `Sodexis <https://www.sodexis.com>`__
 
-  - SodexisTeam <dev@sodexis.com>
-  - Sowrirajan <sowrirajan@sodexis.com>
+   -  SodexisTeam <dev@sodexis.com>
+   -  Sowrirajan <sowrirajan@sodexis.com>
 
 Maintainers
 -----------
@@ -141,6 +141,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/19.0/hr_timesheet_sheet>`_ project on GitHub.
+This module is part of the `OCA/timesheet <https://github.com/OCA/timesheet/tree/20.0/hr_timesheet_sheet>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

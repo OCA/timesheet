@@ -4,12 +4,13 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from datetime import date
+from uuid import uuid4
 
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.fields import Domain
+from odoo.fields import Command, Domain
 from odoo.tests import Form, new_test_user
 from odoo.tools import mute_logger
 
@@ -19,13 +20,15 @@ from ..models.hr_timesheet_sheet import empty_name
 
 
 class TestHrTimesheetSheetCommon(BaseCommon):
+    _test_user_groups = None
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         # Remove global leaves from other modules to avoid test interference
         cls.env["resource.calendar.leaves"].search(
             Domain("resource_id", "=", False)
-        ).sudo().unlink()
+        ).unlink()
         cls.sheet_model = cls.env["hr_timesheet.sheet"]
         cls.sheet_line_model = cls.env["hr_timesheet.sheet.line"]
         cls.project_model = cls.env["project.project"]
@@ -34,6 +37,7 @@ class TestHrTimesheetSheetCommon(BaseCommon):
         cls.aaa_model = cls.env["account.analytic.account"]
         cls.employee_model = cls.env["hr.employee"]
         cls.department_model = cls.env["hr.department"]
+        cls.login_prefix = f"hr_timesheet_sheet_{uuid4().hex}"
         cls.company = cls.env["res.company"].create({"name": "Test company"})
         cls.company_2 = cls.env["res.company"].create(
             {"name": "Test company 2", "parent_id": cls.company.id}
@@ -42,27 +46,31 @@ class TestHrTimesheetSheetCommon(BaseCommon):
         cls.env.user.company_ids += cls.company_2
         cls.user = new_test_user(
             cls.env,
-            login="test_user",
+            login=f"{cls.login_prefix}_1",
             groups="hr.group_hr_user,hr_timesheet.group_hr_timesheet_user,project.group_project_user",
             company_id=cls.company.id,
+            company_ids=[Command.set([cls.company.id, cls.company_2.id])],
         )
         cls.user_2 = new_test_user(
             cls.env,
-            login="test_user_2",
+            login=f"{cls.login_prefix}_2",
             groups="hr.group_hr_user,hr_timesheet.group_hr_timesheet_user,project.group_project_user",
             company_id=cls.company_2.id,
+            company_ids=[Command.set([cls.company.id, cls.company_2.id])],
         )
         cls.user_3 = new_test_user(
             cls.env,
-            login="test_user_3",
+            login=f"{cls.login_prefix}_3",
             groups="hr_timesheet.group_hr_timesheet_user,project.group_project_user",
             company_id=cls.company.id,
+            company_ids=[Command.set([cls.company.id, cls.company_2.id])],
         )
         cls.user_4 = new_test_user(
             cls.env,
-            login="test_user_4",
+            login=f"{cls.login_prefix}_4",
             groups="hr.group_hr_user,hr_timesheet.group_hr_timesheet_user,project.group_project_user",
             company_id=cls.company.id,
+            company_ids=[Command.set([cls.company.id, cls.company_2.id])],
         )
         cls.employee_manager = cls.employee_model.create(
             {
@@ -178,7 +186,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         self.assertEqual(len(sheet_form.timesheet_ids), 1)
         self.assertEqual(len(sheet_form.line_ids), 7)
         self.assertFalse(
-            any([line.get("unit_amount") for line in sheet_form.line_ids._records])
+            any(line.get("unit_amount") for line in sheet_form.line_ids._records)
         )
         timesheet = sheet_form.timesheet_ids._records[0]
         self.assertEqual(timesheet.get("unit_amount"), 0)
@@ -188,7 +196,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         self.assertEqual(len(sheet_form.timesheet_ids), 1)
         self.assertEqual(len(sheet_form.line_ids), 7)
         self.assertTrue(
-            any([line.get("unit_amount") for line in sheet_form.line_ids._records])
+            any(line.get("unit_amount") for line in sheet_form.line_ids._records)
         )
 
         sheet = sheet_form.save()
@@ -268,10 +276,12 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         self.assertEqual(len(sheet.line_ids), 7)
         self.assertEqual(len(sheet.timesheet_ids), 1)
 
-        with Form(sheet.with_user(self.user)) as sheet_form:
-            with sheet_form.line_ids.edit(0) as line_form:
-                line_form.unit_amount = 2.0
-                self.assertEqual(len(sheet.new_line_ids), 1)
+        with (
+            Form(sheet.with_user(self.user)) as sheet_form,
+            sheet_form.line_ids.edit(0) as line_form,
+        ):
+            line_form.unit_amount = 2.0
+            self.assertEqual(len(sheet.new_line_ids), 1)
         line = next(iter(sheet.line_ids))
         self.assertEqual(line.unit_amount, 2.0)
         self.assertEqual(len(sheet.timesheet_ids), 1)
@@ -440,7 +450,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet_form = Form(self.sheet_model.with_user(self.user))
         timesheets = [x.get("id") for x in sheet_form.timesheet_ids._records]
         sheet = sheet_form.save()
-        sheet.timesheet_ids = [(6, 0, timesheets)]
+        sheet.timesheet_ids = [Command.set(timesheets)]
         with Form(sheet.with_user(self.user)):
             pass  # trigger edit and save
         self.assertEqual(len(sheet.line_ids), 7)
@@ -537,7 +547,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet_form = Form(self.sheet_model.with_user(self.user))
         timesheets = [x.get("id") for x in sheet_form.timesheet_ids._records]
         sheet = sheet_form.save()
-        sheet.timesheet_ids = [(6, 0, timesheets)]
+        sheet.timesheet_ids = [Command.set(timesheets)]
         with Form(sheet.with_user(self.user)):
             pass  # trigger edit and save
         self.assertEqual(len(sheet.line_ids), 7)
@@ -592,7 +602,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet_form = Form(sheet.with_user(self.user))
         timesheets = [x.get("id") for x in sheet_form.timesheet_ids._records]
         sheet = sheet_form.save()
-        sheet.timesheet_ids = [(6, 0, timesheets)]
+        sheet.timesheet_ids = [Command.set(timesheets)]
         with Form(sheet.with_user(self.user)):
             pass  # trigger edit and save
         self.assertEqual(len(sheet.timesheet_ids), 4)
@@ -667,14 +677,16 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
             }
         )
         sheet = Form(self.sheet_model.with_user(self.user)).save()
-        with self.assertRaises(ValidationError):
-            with Form(sheet.with_user(self.user)) as sheet_form:
-                with self.assertRaises(AssertionError):
-                    sheet_form.company_id = self.user_2.company_id.id
-                with self.assertRaises(AssertionError):
-                    sheet_form.department_id = department_2
-                sheet_form.add_line_project_id = project_3
-                sheet_form.add_line_task_id = task_3
+        with (
+            self.assertRaises(ValidationError),
+            Form(sheet.with_user(self.user)) as sheet_form,
+        ):
+            with self.assertRaises(AssertionError):
+                sheet_form.company_id = self.user_2.company_id.id
+            with self.assertRaises(AssertionError):
+                sheet_form.department_id = department_2
+            sheet_form.add_line_project_id = project_3
+            sheet_form.add_line_task_id = task_3
 
     @mute_logger("odoo.models.unlink")
     def test_9(self):
@@ -741,7 +753,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet_form = Form(self.sheet_model.with_user(self.user))
         timesheets = [x.get("id") for x in sheet_form.timesheet_ids._records]
         sheet = sheet_form.save()
-        sheet.timesheet_ids = [(6, 0, timesheets)]
+        sheet.timesheet_ids = [Command.set(timesheets)]
         with Form(sheet.with_user(self.user)):
             pass  # trigger edit and save
         self.assertEqual(len(sheet.timesheet_ids), 2)
@@ -793,7 +805,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet_form = Form(self.sheet_model.with_user(self.user))
         timesheets = [x.get("id") for x in sheet_form.timesheet_ids._records]
         sheet = sheet_form.save()
-        sheet.timesheet_ids = [(6, 0, timesheets)]
+        sheet.timesheet_ids = [Command.set(timesheets)]
         with Form(sheet.with_user(self.user)):
             pass  # trigger edit and save
         self.assertEqual(len(sheet.timesheet_ids), 1)
@@ -875,7 +887,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         sheet_form = Form(self.sheet_model.with_user(self.user))
         timesheets = [x.get("id") for x in sheet_form.timesheet_ids._records]
         sheet = sheet_form.save()
-        sheet.timesheet_ids = [(6, 0, timesheets)]
+        sheet.timesheet_ids = [Command.set(timesheets)]
         with Form(sheet.with_user(self.user)):
             pass  # trigger edit and save
         self.assertEqual(sheet.company_id, self.company)
@@ -893,7 +905,12 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
         department = self.department_model.create(
             {"name": "Department test", "company_id": False}
         )
-        self.user_16 = new_test_user(self.env, login="test_user_16")
+        self.user_16 = new_test_user(
+            self.env,
+            login=f"{self.login_prefix}_16",
+            company_id=self.company.id,
+            company_ids=[Command.set([self.company.id, self.company_2.id])],
+        )
         new_employee = self.employee_model.create(
             {
                 "name": "Test User",
@@ -946,10 +963,12 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
 
         # testing write
         sheet = Form(self.sheet_model.with_user(self.user)).save()
-        with self.assertRaises(UserError):
-            with Form(sheet.with_user(self.user)) as sheet_form:
-                sheet_form.employee_id = self.employee_no_user
-                sheet_form.save()
+        with (
+            self.assertRaises(UserError),
+            Form(sheet.with_user(self.user)) as sheet_form,
+        ):
+            sheet_form.employee_id = self.employee_no_user
+            sheet_form.save()
 
     @mute_logger("odoo.models.unlink")
     def test_workflow(self):
@@ -1020,7 +1039,7 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
     def test_onchange_project_id_merging_timesheets(self):
         """Test that we don't try merging timesheets when in onchange"""
         sheet = Form(self.sheet_model.with_user(self.user)).save()
-        aal1 = self.aal_model.create(
+        aal1 = self.aal_model.with_user(self.user).create(
             {
                 "project_id": self.project_1.id,
                 "date": sheet.date_start,
@@ -1029,11 +1048,11 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
                 "employee_id": self.employee.id,
             }
         )
-        with Form(sheet) as sheet_form:
-            aal2 = aal1.copy()
-            sheet_form.save()
+        with Form(sheet.with_user(self.user)) as sheet_form:
+            aal2 = aal1.copy({"name": empty_name})
             sheet_form.add_line_project_id = self.project_1
             self.assertTrue(aal1.exists())
             self.assertTrue(aal2.exists())
+            sheet_form.save()
         # but be sure they are merged on save
         self.assertEqual(len((aal1 + aal2).exists()), 1)

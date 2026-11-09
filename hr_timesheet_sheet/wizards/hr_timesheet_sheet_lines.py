@@ -14,11 +14,11 @@ class AbstractSheetLine(models.AbstractModel):
 
     sheet_id = fields.Many2one(comodel_name="hr_timesheet.sheet", ondelete="cascade")
     date = fields.Date()
-    project_id = fields.Many2one(comodel_name="project.project", string="Project")
-    task_id = fields.Many2one(comodel_name="project.task", string="Task")
+    project_id = fields.Many2one(comodel_name="project.project")
+    task_id = fields.Many2one(comodel_name="project.task")
     unit_amount = fields.Float(string="Quantity", default=0.0)
-    company_id = fields.Many2one(comodel_name="res.company", string="Company")
-    employee_id = fields.Many2one(comodel_name="hr.employee", string="Employee")
+    company_id = fields.Many2one(comodel_name="res.company")
+    employee_id = fields.Many2one(comodel_name="hr.employee")
 
     def get_unique_id(self):
         """Hook for extensions"""
