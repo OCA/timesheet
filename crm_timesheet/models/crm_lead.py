@@ -12,7 +12,6 @@ class CrmLead(models.Model):
 
     project_id = fields.Many2one(
         comodel_name="project.project",
-        string="Project",
         compute="_compute_project_id",
         store=True,
         readonly=False,
@@ -22,7 +21,6 @@ class CrmLead(models.Model):
     timesheet_ids = fields.One2many(
         comodel_name="account.analytic.line",
         inverse_name="lead_id",
-        string="Timesheet",
     )
     total_time_spent = fields.Float(
         compute="_compute_total_time_spent",

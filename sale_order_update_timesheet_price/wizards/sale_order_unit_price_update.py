@@ -12,7 +12,6 @@ class SaleOrderUnitPriceUpdate(models.TransientModel):
 
     order_line_id = fields.Many2one(
         comodel_name="sale.order.line",
-        string="Order Line",
         required=True,
         default=lambda self: self._default_order_line_id(),
     )
