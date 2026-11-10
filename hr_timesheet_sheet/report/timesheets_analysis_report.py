@@ -8,9 +8,7 @@ from odoo import api, fields, models
 class TimesheetsAnalysisReport(models.Model):
     _inherit = "timesheets.analysis.report"
 
-    sheet_id = fields.Many2one(
-        comodel_name="hr_timesheet.sheet", string="Sheet", readonly=True
-    )
+    sheet_id = fields.Many2one(comodel_name="hr_timesheet.sheet", readonly=True)
 
     @api.model
     def _select(self):

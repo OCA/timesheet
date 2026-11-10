@@ -67,7 +67,6 @@ class Sheet(models.Model):
     name = fields.Char(compute="_compute_name")
     employee_id = fields.Many2one(
         comodel_name="hr.employee",
-        string="Employee",
         default=lambda self: self._default_employee(),
         required=True,
     )
@@ -119,7 +118,6 @@ class Sheet(models.Model):
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         default=lambda self: self.env.company,
         required=True,
     )
@@ -130,12 +128,9 @@ class Sheet(models.Model):
     )
     department_id = fields.Many2one(
         comodel_name="hr.department",
-        string="Department",
         default=lambda self: self._default_department_id(),
     )
-    reviewer_id = fields.Many2one(
-        comodel_name="hr.employee", string="Reviewer", tracking=True
-    )
+    reviewer_id = fields.Many2one(comodel_name="hr.employee", tracking=True)
     add_line_project_id = fields.Many2one(
         comodel_name="project.project",
         string="Select Project",

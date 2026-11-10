@@ -10,7 +10,7 @@ from odoo.fields import Domain
 class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
 
-    sheet_id = fields.Many2one(comodel_name="hr_timesheet.sheet", string="Sheet")
+    sheet_id = fields.Many2one(comodel_name="hr_timesheet.sheet")
     sheet_state = fields.Selection(string="Sheet State", related="sheet_id.state")
 
     def _get_sheet_domain(self):
