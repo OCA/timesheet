@@ -32,6 +32,7 @@ addon | version | maintainers | summary
 [hr_timesheet_day_week](hr_timesheet_day_week/) | 18.0.1.0.0 |  | Timesheets - Day of Week
 [hr_timesheet_editable_top](hr_timesheet_editable_top/) | 18.0.1.0.0 |  | Add new timesheet entries to the top of the list
 [hr_timesheet_employee_analytic_tag](hr_timesheet_employee_analytic_tag/) | 18.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Hr Timesheet Employee Analytic Tag
+[hr_timesheet_manager_approver](hr_timesheet_manager_approver/) | 18.0.1.0.0 | <a href='https://github.com/EmilioPascual'><img src='https://github.com/EmilioPascual.png' width='32' height='32' style='border-radius:50%;' alt='EmilioPascual'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Allow timesheet approvers to manage subordinate timesheets
 [hr_timesheet_name_customer](hr_timesheet_name_customer/) | 18.0.1.0.0 |  | Add 'Description Customer' field for timesheets
 [hr_timesheet_portal](hr_timesheet_portal/) | 18.0.1.0.0 |  | Fill in timesheets via the portal
 [hr_timesheet_report](hr_timesheet_report/) | 18.0.1.0.0 | <a href='https://github.com/alexey-pelykh'><img src='https://github.com/alexey-pelykh.png' width='32' height='32' style='border-radius:50%;' alt='alexey-pelykh'/></a> | Generate Timesheet Report from Task Logs
