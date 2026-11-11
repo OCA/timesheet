@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-10 02:40+0000\n"
-"PO-Revision-Date: 2017-05-10 02:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2026-11-11 13:46+0000\n"
+"Last-Translator: leszekszczepkowski <leszekszczepkowski@gmail.com>\n"
 "Language-Team: Polish (https://www.transifex.com/oca/teams/23907/pl/)\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
 "(n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: hr_timesheet_time_control
 #. odoo-python
@@ -65,7 +66,7 @@ msgstr ""
 #. module: hr_timesheet_time_control
 #: model:ir.model,name:hr_timesheet_time_control.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Wiersz analityczny"
 
 #. module: hr_timesheet_time_control
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
@@ -88,12 +89,12 @@ msgstr ""
 #. module: hr_timesheet_time_control
 #: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Utworzył(a)"
 
 #. module: hr_timesheet_time_control
 #: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Data utworzenia"
 
 #. module: hr_timesheet_time_control
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.view_task_form2_inherited
@@ -112,7 +113,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_project__display_name
 #: model:ir.model.fields,field_description:hr_timesheet_time_control.field_project_task__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nazwa wyświetlana"
 
 #. module: hr_timesheet_time_control
 #: model:ir.model.fields,field_description:hr_timesheet_time_control.field_account_analytic_line__date_time_end
@@ -154,12 +155,12 @@ msgstr ""
 #. module: hr_timesheet_time_control
 #: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ostatnio aktualizowane przez"
 
 #. module: hr_timesheet_time_control
 #: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Data ostatniej aktualizacji"
 
 #. module: hr_timesheet_time_control
 #: model:ir.model,name:hr_timesheet_time_control.model_hr_timesheet_time_control_mixin
@@ -199,7 +200,7 @@ msgstr ""
 #: model:ir.model,name:hr_timesheet_time_control.model_project_project
 #: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__project_id
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #. module: hr_timesheet_time_control
 #: model:ir.model.fields.selection,name:hr_timesheet_time_control.selection__account_analytic_line__show_time_control__resume
@@ -293,7 +294,7 @@ msgstr ""
 #: model:ir.model,name:hr_timesheet_time_control.model_project_task
 #: model:ir.model.fields,field_description:hr_timesheet_time_control.field_hr_timesheet_switch__task_id
 msgid "Task"
-msgstr ""
+msgstr "Zadanie"
 
 #. module: hr_timesheet_time_control
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_time_control.hr_timesheet_switch_form
