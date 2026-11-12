@@ -1,0 +1,123 @@
+from datetime import datetime
+
+import pytz
+
+from odoo import api, fields, models
+from odoo.exceptions import UserError
+
+
+class HrTimesheetSheet(models.Model):
+    _inherit = "hr_timesheet.sheet"
+
+    def _compute_attendance_count(self):
+        """Compute total number of attendance records
+        linked to current timesheet"""
+
+        for attendances in self:
+            attendances.attendance_count = len(attendances.attendances_ids)
+
+    @api.depends(
+        "timesheet_ids",
+        "timesheet_ids.unit_amount",
+        "attendances_ids",
+        "attendances_ids.check_in",
+        "attendances_ids.check_out",
+        "attendances_ids.employee_id",
+    )
+    def _compute_attendance_time(self):
+        """Compute total attendance time and
+        difference in total attendance-time
+        and timesheet-entry"""
+
+        current_date = datetime.now()
+        for sheet in self:
+            atte_without_checkout = sheet.attendances_ids.filtered(
+                lambda attendance: not attendance.check_out
+            )
+            atte_with_checkout = sheet.attendances_ids - atte_without_checkout
+            total_time = sum(atte_with_checkout.mapped("worked_hours"))
+            for attendance in atte_without_checkout:
+                delta = current_date - attendance.check_in
+                total_time += delta.total_seconds() / 3600.0
+            sheet.total_attendance = total_time
+
+            # calculate total difference
+            total_working_time = sum(sheet.mapped("timesheet_ids.unit_amount"))
+            sheet.total_difference = total_time - total_working_time
+
+    total_attendance = fields.Float(
+        compute="_compute_attendance_time",
+    )
+    total_difference = fields.Float(
+        compute="_compute_attendance_time",
+        string="Difference",
+    )
+    attendances_ids = fields.One2many(
+        comodel_name="hr.attendance", inverse_name="sheet_id", string="Attendances"
+    )
+    attendance_state = fields.Selection(
+        related="employee_id.attendance_state",
+        related_sudo=True,
+        string="Current Status",
+        groups="hr_attendance.group_hr_attendance_own_reader,hr.group_hr_user",
+    )
+    attendance_count = fields.Integer(compute="_compute_attendance_count")
+
+    def attendance_action_change(self):
+        """Call attendance_action_change to
+        perform Check In/Check Out action
+        Returns last attendance record"""
+
+        return self.employee_id.sudo()._attendance_action_change()
+
+    def action_timesheet_confirm(self):
+        self.check_employee_attendance_state()
+        return super().action_timesheet_confirm()
+
+    def check_employee_attendance_state(self):
+        """Restrict to submit sheet contains
+        attendance without checkout"""
+        for sheet in self:
+            ids_not_checkout = sheet.attendances_ids.filtered(
+                lambda att: att.check_in and not att.check_out
+            )
+            if not ids_not_checkout:
+                continue
+            raise UserError(
+                sheet.env._(
+                    "The timesheet cannot be validated as it does "
+                    "not contain an equal number of sign ins and sign outs."
+                )
+            )
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        attendances = self.env["hr.attendance"]
+        for res in records:
+            employee_tz = pytz.timezone(res.employee_id._get_tz())
+            # Convert date_start to start of day in employee timezone, then to UTC
+            date_start_local = employee_tz.localize(
+                datetime.combine(res.date_start, datetime.min.time())
+            )
+            date_start_utc = date_start_local.astimezone(pytz.utc).replace(tzinfo=None)
+            # Convert date_end to end of day in employee timezone, then to UTC
+            date_end_local = employee_tz.localize(
+                datetime.combine(res.date_end, datetime.max.time())
+            )
+            date_end_utc = date_end_local.astimezone(pytz.utc).replace(tzinfo=None)
+            attendances |= self.env["hr.attendance"].search(
+                [
+                    ("employee_id", "=", res.employee_id.id),
+                    ("sheet_id", "=", False),
+                    ("check_in", ">=", date_start_utc),
+                    ("check_in", "<=", date_end_utc),
+                    "|",
+                    ("check_out", "=", False),
+                    "&",
+                    ("check_out", ">=", date_start_utc),
+                    ("check_out", "<=", date_end_utc),
+                ]
+            )
+        attendances.sudo()._compute_sheet_id()
+        return records
