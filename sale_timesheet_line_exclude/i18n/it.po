@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_timesheet_line_exclude
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-03-25 11:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.2\n"
+
+#. module: sale_timesheet_line_exclude
+#: model:ir.model,name:sale_timesheet_line_exclude.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Riga analitica"
+
+#. module: sale_timesheet_line_exclude
+#: model:ir.model.fields,help:sale_timesheet_line_exclude.field_account_analytic_line__exclude_from_sale_order
+msgid "Checking this would exclude this timesheet entry from Sale Order"
+msgstr ""
+"Con questa selezione la registrazione nel foglio ore verrà esclusa "
+"dall'ordine di vendita"
+
+#. module: sale_timesheet_line_exclude
+#: model:res.groups,name:sale_timesheet_line_exclude.group_exclude_from_sale_order
+msgid "Exclude timesheets from sale order"
+msgstr "Escludi fogli ore dagli ordini di vendita"
+
+#. module: sale_timesheet_line_exclude
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_line_exclude.account_analytic_line_search
+msgid "Excluded From Sale Order"
+msgstr "Esclusa dall'ordine di vendita"
+
+#. module: sale_timesheet_line_exclude
+#: model:res.groups,comment:sale_timesheet_line_exclude.group_exclude_from_sale_order
+msgid "Gives access to the Non-Billable field on timesheets."
+msgstr "Consenti accesso ai campi non fatturabili nei fogli ore."
+
+#. module: sale_timesheet_line_exclude
+#: model:ir.model.fields,field_description:sale_timesheet_line_exclude.field_account_analytic_line__exclude_from_sale_order
+msgid "Non-billable"
+msgstr "Non fatturabile"
+
+#. module: sale_timesheet_line_exclude
+#. odoo-python
+#: code:addons/sale_timesheet_line_exclude/models/account_analytic_line.py:0
+#, python-format
+msgid ""
+"You can not modify timesheets in a way that would affect invoices since "
+"these timesheets were already invoiced."
+msgstr ""
+"Non è possibile modificare i fogli ore in modo tale da influire sulle "
+"fatture poiché questi fogli ore sono già stati fatturati."
