@@ -1,0 +1,87 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * crm_timesheet
+#
+# Translators:
+# Marco Calcagni <mcalcagni@dinamicheaziendali.it>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-31 04:45+0000\n"
+"PO-Revision-Date: 2023-10-13 16:38+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: crm_timesheet
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
+msgid "<i class=\"fa fa-lg fa-play-circle\" title=\"Start\"/>"
+msgstr "<i class=\"fa fa-lg fa-play-circle\" title=\"Avvia\"/>"
+
+#. module: crm_timesheet
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
+msgid "<i class=\"fa fa-lg fa-stop-circle\" title=\"Stop\"/>"
+msgstr "<i class=\"fa fa-lg fa-stop-circle\" title=\"Ferma\"/>"
+
+#. module: crm_timesheet
+#: model:ir.model,name:crm_timesheet.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Riga analitica"
+
+#. module: crm_timesheet
+#: model:ir.model,name:crm_timesheet.model_hr_timesheet_switch
+msgid "Helper to quickly switch between timesheet lines"
+msgstr "Assistente per spostarsi velocemente tra righe del foglio ore"
+
+#. module: crm_timesheet
+#: model:ir.model.fields,help:crm_timesheet.field_crm_lead__show_time_control
+msgid "Indicate which time control button to show, if any."
+msgstr "Indica se e quale pulsante di controllo tempo visualizzare."
+
+#. module: crm_timesheet
+#: model:ir.model,name:crm_timesheet.model_crm_lead
+#: model:ir.model.fields,field_description:crm_timesheet.field_account_analytic_line__lead_id
+msgid "Lead/Opportunity"
+msgstr "Contatto/Opportunità"
+
+#. module: crm_timesheet
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__project_id
+msgid "Project"
+msgstr "Progetto"
+
+#. module: crm_timesheet
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__show_time_control
+msgid "Show Time Control"
+msgstr "Visualizza controllo orario"
+
+#. module: crm_timesheet
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
+msgid "Start work"
+msgstr "Avvia lavoro"
+
+#. module: crm_timesheet
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_case_tree_view_oppor
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.view_crm_lead_kanban
+msgid "Stop work"
+msgstr "Termine lavoro"
+
+#. module: crm_timesheet
+#: model:ir.model.fields,field_description:crm_timesheet.field_crm_lead__timesheet_ids
+#: model_terms:ir.ui.view,arch_db:crm_timesheet.crm_lead_view_form
+msgid "Timesheet"
+msgstr "Foglio ore"
