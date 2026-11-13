@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hr_timesheet_line_tree" model="ir.ui.view">
+        <field name="name">account.analytic.line.list.partner</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+        <field name="arch" type="xml">
+            <field name="task_id" position="after">
+                <field
+                    name="partner_id"
+                    optional="hidden"
+                    readonly="readonly_timesheet"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_timesheet_line_search" model="ir.ui.view">
+        <field name="name">account.analytic.line.search.partner</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search" />
+        <field name="arch" type="xml">
+            <field name="project_id" position="after">
+                <field name="partner_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
