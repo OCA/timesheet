@@ -3,3 +3,4 @@
 - Ammar Officewala \<<aofficewala@opensourceintegrators.com>\>
 - Murtaza Mithaiwala \<<mmithaiwala@opensourceintegrators.com>\>
 - Manuel Regidor \<<manuel.regidor@sygel.es>\>
+- Rolando Pérez Rebollo \<<r.perez@binhex.cloud>\>

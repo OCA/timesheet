@@ -6,6 +6,7 @@
             <list>
                 <field name="name" />
                 <field name="code" />
+                <field name="company_id" groups="base.group_multi_company" />
             </list>
         </field>
     </record>
@@ -15,15 +16,38 @@
         <field name="arch" type="xml">
             <form string="Time Type">
                 <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="text-bg-danger"
+                        invisible="active"
+                    />
                     <group col="4" string="Task Activity">
                         <field name="name" />
                         <field name="code" />
+                        <field name="company_id" groups="base.group_multi_company" />
                     </group>
                     <div>
                         <field name="description" placeholder="Description..." />
                     </div>
                 </sheet>
             </form>
+        </field>
+    </record>
+    <record id="project_time_type_view_search" model="ir.ui.view">
+        <field name="name">project.time.type.view.search</field>
+        <field name="model">project.time.type</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="code" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active', '=', False)]"
+                />
+            </search>
         </field>
     </record>
     <record id="open_project_time_type_tree" model="ir.actions.act_window">
