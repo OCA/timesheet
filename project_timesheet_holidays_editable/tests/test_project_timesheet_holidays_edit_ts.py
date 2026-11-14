@@ -3,6 +3,8 @@
 
 from datetime import date
 
+from dateutil.relativedelta import MO, relativedelta
+
 from odoo import Command
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase, tagged
@@ -112,8 +114,9 @@ class TestProjectTimesheetHolidays(TransactionCase):
                 "name": "Vacations",
                 "employee_id": self.employee.id,
                 "holiday_status_id": leave_type.id,
-                "request_date_from": date.today(),
-                "request_date_to": date.today(),
+                # a working day, also when the tests run on a weekend
+                "request_date_from": date.today() + relativedelta(weekday=MO),
+                "request_date_to": date.today() + relativedelta(weekday=MO),
             }
         )
 
