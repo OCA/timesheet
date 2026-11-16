@@ -234,7 +234,7 @@ class Sheet(models.Model):
         self.ensure_one()
         return Domain.AND(
             [
-                Domain("id", "!=", self.id),
+                Domain("id", "not in", self.ids),
                 Domain("date_start", "<=", self.date_end),
                 Domain("date_end", ">=", self.date_start),
                 Domain("employee_id", "=", self.employee_id.id),
