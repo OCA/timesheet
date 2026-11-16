@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_form_day_lock" model="ir.ui.view">
+        <field name="name">res.config.settings.form.inherit.day_lock</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr_timesheet.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='hr_timesheet']" position="inside">
+                <block
+                    title="Weekly Cutoff Control"
+                    name="weekly_cutoff_control"
+                    groups="hr_timesheet_weekly_cutoff.group_timesheet_lock_manager"
+                >
+                    <setting
+                        id="timesheet_lock_weekday"
+                        company_dependent="1"
+                        help="Define the weekly cut off day for time tracking."
+                    >
+                        <div class="content-group">
+                            <div class="mt16">
+                                <label
+                                    for="timesheet_lock_weekday"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="timesheet_lock_weekday" />
+                            </div>
+                            <div class="text-muted mt8">
+                                Select the day used as the weekly closing date
+                                for time tracking.
+                                <br />
+                                Once the configured day has passed, it will
+                                not be possible to register hours with dates
+                                prior to the weekly cutoff.
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
