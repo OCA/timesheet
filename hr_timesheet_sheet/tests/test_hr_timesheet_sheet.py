@@ -1123,3 +1123,20 @@ class TestHrTimesheetSheet(TestHrTimesheetSheetCommon):
             self.assertTrue(aal2.exists())
         # but be sure they are merged on save
         self.assertEqual(len((aal1 + aal2).exists()), 1)
+
+    def test_available_tasks_project_without_company(self):
+        """Tasks of a project without company are proposed on the sheet"""
+        project = self.project_model.create(
+            {"name": "Project without company", "allow_timesheets": True}
+        )
+        task = self.task_model.create(
+            {"name": "Task without company", "project_id": project.id}
+        )
+        self.assertFalse(project.company_id)
+        self.assertFalse(task.company_id)
+        sheet = Form(self.sheet_model.with_user(self.user)).save()
+        self.assertTrue(sheet.company_id)
+        with Form(sheet.with_user(self.user)) as sheet_form:
+            sheet_form.add_line_project_id = project
+            self.assertIn(task, sheet_form.available_task_ids)
+            sheet_form.add_line_task_id = task
