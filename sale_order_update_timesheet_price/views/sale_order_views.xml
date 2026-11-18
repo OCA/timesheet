@@ -6,16 +6,19 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <list position="inside">
-                <field name="show_update_price_button" invisible="1" />
-            </list>
-            <xpath expr="//list/field[@name='price_unit']" position="after">
+            <xpath expr="//field[@name='order_line']/list" position="inside">
+                <field name="show_update_price_button" column_invisible="True" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/list//column[@name='price_unit']"
+                position="after"
+            >
                 <button
                     name="%(action_sale_order_unit_price_update)d"
                     title="Update Unit Price"
                     type="action"
-                    icon="fa-money"
-                    attrs="{'invisible': [('show_update_price_button', '=', False)]}"
+                    icon="payments"
+                    invisible="not show_update_price_button"
                 />
             </xpath>
         </field>

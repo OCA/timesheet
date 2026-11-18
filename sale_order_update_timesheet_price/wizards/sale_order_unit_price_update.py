@@ -15,7 +15,7 @@ class SaleOrderUnitPriceUpdate(models.TransientModel):
         required=True,
         default=lambda self: self._default_order_line_id(),
     )
-    order_line_name = fields.Text(related="order_line_id.name", readonly=True)
+    order_line_name = fields.Text(related="order_line_id.label", readonly=True)
     old_unit_price = fields.Float(related="order_line_id.price_unit", readonly=True)
     new_unit_price = fields.Float(required=True, digits="Product Price")
     old_line_prefix = fields.Char(default="[Old Rate]")
