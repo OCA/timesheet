@@ -3,9 +3,7 @@
 
 {
     "name": "Project Timesheet Holidays Dynamic Description",
-    "summary": """
-        Use the time off description for the generated timesheet lines.
-    """,
+    "summary": "Use the time off description for the generated timesheet lines.",
     "category": "Human Resources",
     "version": "19.0.1.0.1",
     "depends": ["project_timesheet_holidays"],
