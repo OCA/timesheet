@@ -7,6 +7,12 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestHrTimesheetDayWeek(BaseCommon):
+    _test_user_groups = (
+        "base.group_user",
+        "hr_timesheet.group_hr_timesheet_user",
+        "analytic.group_analytic_accounting",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -21,7 +27,7 @@ class TestHrTimesheetDayWeek(BaseCommon):
                 "company_id": False,
             }
         )
-        cls.user = cls.env.ref("base.user_root")
+        cls.user = cls._test_user
         # 2024-10-14 was a Monday = day "0" of a week
         cls.base_date = date(2024, 10, 14)
         cls.base_line = {
