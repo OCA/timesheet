@@ -35,7 +35,7 @@ class TestHrTimesheetDayWeek(BaseCommon):
 
     def test_01_week_day(self):
         timesheet = self.timesheet_line_model.create(self.base_line)
-        for i in range(0, 7):
+        for i in range(7):
             timesheet.date = self.base_date + timedelta(days=i)
             self.assertEqual(timesheet.day_week, str(i))
 
