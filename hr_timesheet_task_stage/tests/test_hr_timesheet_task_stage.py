@@ -3,33 +3,61 @@
 # Copyright 2020 Tecnativa - Manuel Calero
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from odoo.fields import Command
+
 from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestHrTimesheetTaskStage(BaseCommon):
+    _test_user_groups = (
+        "base.group_user",
+        "hr_timesheet.group_hr_timesheet_user",
+        "project.group_project_user",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.project = cls.env["project.project"].create({"name": "Test project"})
-        cls.analytic_account = cls.project.account_id
+        cls.project = cls.env["project.project"].create(
+            {
+                "name": "Test project",
+                "allow_timesheets": True,
+            }
+        )
+        if not cls.project.account_id:
+            cls.analytic_plan = cls.env["account.analytic.plan"].create(
+                {"name": "Timesheet Plan Test"}
+            )
+            cls.analytic_account = cls.env["account.analytic.account"].create(
+                {
+                    "name": "Test Analytic Account",
+                    "plan_id": cls.analytic_plan.id,
+                }
+            )
+            cls.project.account_id = cls.analytic_account
+        else:
+            cls.analytic_account = cls.project.account_id
+
         cls.task = cls.env["project.task"].create(
             {"name": "Test task", "project_id": cls.project.id}
         )
         task_type_obj = cls.env["project.task.type"]
         cls.stage_open = task_type_obj.create(
-            {"name": "New", "fold": False, "project_ids": [(6, 0, cls.project.ids)]}
-        )
-        cls.stage_close = task_type_obj.create(
-            {"name": "Done", "fold": True, "project_ids": [(6, 0, cls.project.ids)]}
-        )
-        cls.test_user = cls.env["res.users"].create(
             {
-                "name": "Test User",
-                "login": "test_user",
-                "email": "testuser@example.com",
+                "name": "New",
+                "fold": False,
+                "project_ids": [Command.set(cls.project.ids)],
             }
         )
+        cls.stage_close = task_type_obj.create(
+            {
+                "name": "Done",
+                "fold": True,
+                "project_ids": [Command.set(cls.project.ids)],
+            }
+        )
+        cls.test_user = cls._test_user
         # Create an employee for the user
         cls.test_employee = cls.env["hr.employee"].create(
             {
