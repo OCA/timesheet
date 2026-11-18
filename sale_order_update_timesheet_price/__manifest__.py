@@ -3,8 +3,8 @@
 
 {
     "name": "Sale Order Update Timesheet Price",
-    "summary": """Update the unit price of already invoiced sale order lines
-    by creating a new line""",
+    "summary": "Update the unit price of already invoiced sale order lines "
+    "by creating a new line",
     "version": "19.0.1.0.1",
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/timesheet",
