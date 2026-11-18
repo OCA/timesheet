@@ -14,7 +14,7 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
         cls.Employee = cls.env["hr.employee"]
-        cls.LeaveType = cls.env["hr.leave.type"]
+        cls.LeaveType = cls.env["hr.work.entry.type"]
         cls.Leave = cls.env["hr.leave"]
         cls.AnalyticLine = cls.env["account.analytic.line"]
 
@@ -86,8 +86,10 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
         cls.leave_type = cls.LeaveType.create(
             {
                 "name": "Leave Test",
-                "requires_allocation": "yes",
-                "company_id": cls.Company.id,
+                "code": "LEAVETEST",
+                "requires_allocation": True,
+                "count_as": "absence",
+                "unit_of_measure": "day",
             }
         )
 
@@ -95,7 +97,7 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
             {
                 "name": "Test Allocation",
                 "employee_id": cls.employee.id,
-                "holiday_status_id": cls.leave_type.id,
+                "work_entry_type_id": cls.leave_type.id,
                 "number_of_days": 30,
                 "date_from": "2025-01-01",
                 "state": "confirm",
@@ -110,7 +112,7 @@ class TestProjectTimesheetHolidaysDescription(TransactionCase):
             {
                 "name": "Vacations",
                 "employee_id": self.employee.id,
-                "holiday_status_id": self.leave_type.id,
+                "work_entry_type_id": self.leave_type.id,
                 "request_date_from": leave_date,
                 "request_date_to": leave_date,
             }

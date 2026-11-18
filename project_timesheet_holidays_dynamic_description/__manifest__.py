@@ -5,7 +5,7 @@
     "name": "Project Timesheet Holidays Dynamic Description",
     "summary": "Use the time off description for the generated timesheet lines.",
     "category": "Human Resources",
-    "version": "19.0.1.0.1",
+    "version": "20.0.1.0.0",
     "depends": ["project_timesheet_holidays"],
     "data": ["views/res_config_settings_views.xml"],
     "author": "Solvos Consultoría Informática, Odoo Community Association (OCA)",
