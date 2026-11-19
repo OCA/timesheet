@@ -15,10 +15,20 @@ class AccountAnalyticLine(models.Model):
     def default_get(self, field_list):
         result = super().default_get(field_list)
         if (
-            not self.env.context.get("default_project_id")
+            "project_id" in field_list
+            and not self.env.context.get("default_project_id")
             and self.env.context.get("is_timesheet")
             and result.get("project_id", False)
         ):
-            result["project_id"] = False
-            _logger.debug("project_id set to False")
+            # The default project without the autofill from previous entries
+            default_project_id = (
+                self.with_context(is_timesheet=False)
+                .default_get(["project_id"])
+                .get("project_id", False)
+            )
+            if result["project_id"] != default_project_id:
+                _logger.debug(
+                    "Favourite project %s not autofilled", result["project_id"]
+                )
+                result["project_id"] = default_project_id
         return result
