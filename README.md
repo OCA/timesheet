@@ -23,6 +23,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [hr_employee_cost_history](hr_employee_cost_history/) | 20.0.1.0.1 | <a href='https://github.com/SabrinaRMArtin'><img src='https://github.com/SabrinaRMArtin.png' width='32' height='32' style='border-radius:50%;' alt='SabrinaRMArtin'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Adds an history to employee's costs.
+[hr_timesheet_amount_security](hr_timesheet_amount_security/) | 20.0.1.0.0 | <a href='https://github.com/EmilioPascual'><img src='https://github.com/EmilioPascual.png' width='32' height='32' style='border-radius:50%;' alt='EmilioPascual'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Add security restrictions to timesheet amount fields
 
 [//]: # (end addons)
 
