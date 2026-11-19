@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2024 ForgeFlow, S.L.
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="view_generated_attendances_selection_form" model="ir.ui.view">
+
+        <field
+            name="name"
+        >hr_timesheet.sheet.generated.attendances.selection.form</field>
+        <field name="model">hr_timesheet.sheet.generated.attendances.selection</field>
+        <field name="arch" type="xml">
+            <form string="Generated Attendances Selection">
+                <div>
+                    These are the attendances generated based on your
+                    predefined working hours, to improve coherence with the
+                    imputed hours in the timesheet. If you do not agree with
+                    one or more of them, simply remove them, and they will
+                    be deleted permanently.
+                </div><br />
+                <field name="attendance_ids" nolabel="1" options="{'link': False}">
+                    <tree editable="top" no_open="True">
+                        <field
+                            name="employee_id"
+                            options="{'no_open': True}"
+                            attrs="{'readonly': True}"
+                        />
+                        <field name="check_in" attrs="{'readonly': True}" />
+                        <field name="check_out" attrs="{'readonly': True}" />
+                    </tree>
+                </field>
+                <footer>
+                    <button
+                        name="action_save"
+                        string="Save"
+                        type="object"
+                        class="btn-primary"
+                    />
+                </footer>
+            </form>
+        </field>
+
+    </record>
+
+</odoo>
