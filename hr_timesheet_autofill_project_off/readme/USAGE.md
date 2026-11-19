@@ -11,3 +11,5 @@ With this module installed, this behaviour is disabled and the Project field mus
 ![Project autofill disabled after five entries on the same project](../static/img/02a_no_project_autofill_with_addon.png)
 
 ![Project autofill disabled with no project repeated](../static/img/02b_no_project_autofill_with_addon.png)
+
+Only the autofill described above is disabled. Default projects set in other ways, such as a default value set by an administrator, are still applied.
