@@ -64,6 +64,10 @@ selections, as shown below:
 
 |Project autofill disabled with no project repeated|
 
+Only the autofill described above is disabled. Default projects set in
+other ways, such as a default value set by an administrator, are still
+applied.
+
 .. |Project autofill enabled after five entries on the same project| image:: https://raw.githubusercontent.com/OCA/timesheet/19.0/hr_timesheet_autofill_project_off/static/img/01a_project_autofill_without_addon.png
 .. |Project autofill enabled with no project repeated| image:: https://raw.githubusercontent.com/OCA/timesheet/19.0/hr_timesheet_autofill_project_off/static/img/01b_project_autofill_without_addon.png
 .. |Project autofill disabled after five entries on the same project| image:: https://raw.githubusercontent.com/OCA/timesheet/19.0/hr_timesheet_autofill_project_off/static/img/02a_no_project_autofill_with_addon.png

@@ -42,3 +42,40 @@ class TestAccountAnalyticLineDefaultGet(TransactionCase):
         result = aal_model.default_get(["project_id"])
 
         self.assertEqual(result["project_id"], self.project.id)
+
+    def test_project_id_preserved_with_ir_default(self):
+        other_project = self.env["project.project"].create({"name": "Other Project"})
+        for _ in range(3):
+            self.aal_model.create(
+                {
+                    "name": "/",
+                    "project_id": other_project.id,
+                    "employee_id": self.employee.id,
+                    "unit_amount": 1,
+                }
+            )
+        self.env["ir.default"].set(
+            "account.analytic.line", "project_id", self.project.id
+        )
+
+        result = self.aal_model.default_get(["project_id"])
+
+        self.assertEqual(result["project_id"], self.project.id)
+
+    def test_project_id_kept_when_ir_default_is_the_favourite_project(self):
+        for _ in range(3):
+            self.aal_model.create(
+                {
+                    "name": "/",
+                    "project_id": self.project.id,
+                    "employee_id": self.employee.id,
+                    "unit_amount": 1,
+                }
+            )
+        self.env["ir.default"].set(
+            "account.analytic.line", "project_id", self.project.id
+        )
+
+        result = self.aal_model.default_get(["project_id"])
+
+        self.assertEqual(result["project_id"], self.project.id)
