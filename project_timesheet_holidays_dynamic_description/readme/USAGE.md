@@ -1,0 +1,1 @@
+Activate "Dynamic Descriptions" in the Timesheet settings. From that point on, whenever a timesheet line is generated from a time off, the description set in the leave will be assigned to the Timesheet Line.
