@@ -1,0 +1,18 @@
+- [Tecnativa](https://www.tecnativa.com)
+  - Antonio Espinosa
+  - Rafael Blasco
+  - Javier Iniesta
+  - David Vidal
+  - Vicent Cubells
+  - Jairo Llopis
+  - Carolina Fernandez
+  - Víctor Martínez
+- Foram Shah \<<foram.shah@initos.com>\>
+
+- [Sygel](https://www.sygel.es)
+  - Harald Panten
+  - Valentin Vinagre
+  - Roger Sans
+
+- [Studio73, S.L.](https://www.studio73.es)
+  - Pablo Cortés
