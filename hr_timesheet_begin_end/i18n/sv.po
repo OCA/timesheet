@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_begin_end
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-11-16 15:36+0000\n"
+"Last-Translator: Simon S <simon.stromberg@vertel.se>\n"
+"Language-Team: none\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: hr_timesheet_begin_end
+#: model:ir.model,name:hr_timesheet_begin_end.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Objektrad"
+
+#. module: hr_timesheet_begin_end
+#: model:ir.model.fields,field_description:hr_timesheet_begin_end.field_account_analytic_line__time_start
+msgid "Begin Hour"
+msgstr "Starttid"
+
+#. module: hr_timesheet_begin_end
+#: model:ir.model.fields,field_description:hr_timesheet_begin_end.field_account_analytic_line__time_stop
+msgid "End Hour"
+msgstr "Sluttid"
+
+#. module: hr_timesheet_begin_end
+#. odoo-python
+#: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
+#, python-format
+msgid "Lines can't overlap:\n"
+msgstr "Rader får inte överlappa varandra:\n"
+
+#. module: hr_timesheet_begin_end
+#. odoo-python
+#: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
+#, python-format
+msgid ""
+"The beginning hour (%(html_start)s) must precede the ending hour "
+"(%(html_stop)s)."
+msgstr "Starttiden (%(html_start)s) måste föregå sluttimmen (%(html_stop)s)."
+
+#. module: hr_timesheet_begin_end
+#. odoo-python
+#: code:addons/hr_timesheet_begin_end/models/account_analytic_line.py:0
+#, python-format
+msgid ""
+"The duration (%(html_unit_amount)s) must be equal to the difference between "
+"the hours (%(html_hours)s)."
+msgstr ""
+"Varaktigheten (%(html_unit_amount)s) måste vara lika med skillnaden mellan "
+"tiderna (%(html_hours)s)."
+
+#~ msgid "Display Name"
+#~ msgstr "Visningsnamn"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Senast ändrad den"
