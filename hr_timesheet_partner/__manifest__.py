@@ -3,7 +3,7 @@
 {
     "name": "HR Timesheet partner",
     "summary": """Adds UX improvements to handle timesheet partner""",
-    "version": "18.0.1.0.0",
+    "version": "20.0.1.0.0",
     "development_status": "Beta",
     "category": "Timesheet",
     "website": "https://github.com/OCA/timesheet",
