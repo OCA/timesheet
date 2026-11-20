@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t
+        t-name="timesheet.TimesheetCalendarCommonPopover.footer"
+        t-inherit="web.CalendarCommonPopover.footer"
+        t-inherit-mode="primary"
+    >
+        <xpath expr="//a[@t-on-click='onEditEvent']" position="after">
+            <a
+                class="btn btn-primary o_cw_popover_copy ms-2"
+                href="#"
+                t-on-click="onCopyEvent"
+            >Duplicate</a>
+        </xpath>
+    </t>
+</templates>
