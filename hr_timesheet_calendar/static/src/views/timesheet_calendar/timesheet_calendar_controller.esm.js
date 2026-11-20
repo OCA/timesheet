@@ -62,7 +62,6 @@ export class TimesheetCalendarController extends CalendarController {
                                         this.model.load();
                                     })
                                     .catch((error) => {
-                                        this.logger.error("Unlink error:", error);
                                         reject(error);
                                     });
                             } else {

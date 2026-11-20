@@ -3,6 +3,7 @@ from datetime import datetime, time, timedelta
 import pytz
 
 from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 
 class AccountAnalyticLine(models.Model):
@@ -103,9 +104,13 @@ class AccountAnalyticLine(models.Model):
         if "date" in vals:
             self = self.with_context(default_date=vals["date"])
         elif "date_time" in vals:
-            self = self.with_context(default_date=vals["date_time"].date())
+            self = self.with_context(
+                default_date=fields.Datetime.to_datetime(vals["date_time"]).date()
+            )
         elif "date_time_end" in vals:
-            self = self.with_context(default_date=vals["date_time_end"].date())
+            self = self.with_context(
+                default_date=fields.Datetime.to_datetime(vals["date_time_end"]).date()
+            )
         return super()._add_missing_default_values(vals)
 
     @api.onchange("product_uom_id", "date_time", "date_time_end")
@@ -155,8 +160,8 @@ class AccountAnalyticLine(models.Model):
                 duration = date_time_end - date_time
                 hours = duration.total_seconds() / 3600
                 vals["unit_amount"] = max(0, hours)
-        if date_time:
-            vals["date"] = date_time.date()
+        if date_time and "date" in fields_list:
+            vals["date"] = self._convert_datetime_to_date(date_time)
         if (
             self.env.context.get("is_timesheet", False)
             and "product_uom_id" in fields_list
@@ -183,6 +188,12 @@ class AccountAnalyticLine(models.Model):
     @api.model
     def duplicate_today(self, record_id):
         record = self.browse(record_id)
+        if not record.date_time:
+            raise UserError(
+                self.env._(
+                    "The timesheet line %s has no start time.", record.display_name
+                )
+            )
         date_today = fields.Date.context_today(self)
         date_time_today = datetime.combine(date_today, record.date_time.time())
         date_time_end_today = datetime.combine(

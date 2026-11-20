@@ -9,7 +9,6 @@ export class TimesheetCalendarCommonPopover extends CalendarCommonPopover {
 
 TimesheetCalendarCommonPopover.subTemplates = {
     ...CalendarCommonPopover.subTemplates,
-    body: "timesheet.TimesheetCalendarCommonPopover.body",
     footer: "timesheet.TimesheetCalendarCommonPopover.footer",
 };
 

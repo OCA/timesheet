@@ -85,6 +85,8 @@ Contributors
 
 -  Christopher Rogos <crogos@gmail.com>
 
+-  Florent THOMAS <mailinglist@tdeo.fr>
+
 Maintainers
 -----------
 
