@@ -46,7 +46,7 @@ addon | version | maintainers | summary
 [hr_timesheet_task_domain](hr_timesheet_task_domain/) | 18.0.1.0.0 |  | Limit task selection to tasks on currently-selected project
 [hr_timesheet_task_required](hr_timesheet_task_required/) | 18.0.1.0.0 |  | Set task on timesheet as a mandatory field
 [hr_timesheet_task_stage](hr_timesheet_task_stage/) | 18.0.1.0.1 |  | Open/Close task from corresponding Task Log entry
-[hr_timesheet_time_control_begin_end](hr_timesheet_time_control_begin_end/) | 18.0.1.0.1 | <a href='https://github.com/CRogos'><img src='https://github.com/CRogos.png' width='32' height='32' style='border-radius:50%;' alt='CRogos'/></a> | HR Timesheet Time Control begin/end
+[hr_timesheet_time_control_begin_end](hr_timesheet_time_control_begin_end/) | 18.0.1.0.2 | <a href='https://github.com/CRogos'><img src='https://github.com/CRogos.png' width='32' height='32' style='border-radius:50%;' alt='CRogos'/></a> | HR Timesheet Time Control begin/end
 [hr_timesheet_time_type](hr_timesheet_time_type/) | 18.0.1.0.0 |  | Ability to add time type in timesheet lines.
 [hr_timesheet_type_non_billable](hr_timesheet_type_non_billable/) | 18.0.1.0.0 | <a href='https://github.com/mpascuall'><img src='https://github.com/mpascuall.png' width='32' height='32' style='border-radius:50%;' alt='mpascuall'/></a> | HR Timesheet Type Non Billable
 [hr_timesheet_unusual_days](hr_timesheet_unusual_days/) | 18.0.1.0.0 | <a href='https://github.com/CRogos'><img src='https://github.com/CRogos.png' width='32' height='32' style='border-radius:50%;' alt='CRogos'/></a> | HR Timesheet Calendar Unusual Days
