@@ -4,7 +4,7 @@
 {
     "name": "Time Type in Timesheet",
     "summary": "Ability to add time type in timesheet lines.",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.1.0",
     "license": "AGPL-3",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "category": "Timesheet",
@@ -12,6 +12,7 @@
     "depends": ["hr_timesheet"],
     "data": [
         "security/ir.model.access.csv",
+        "security/hr_timesheet_time_type_security.xml",
         "views/project_time_type_view.xml",
         "views/account_analytic_line_view.xml",
     ],

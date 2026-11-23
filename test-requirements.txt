@@ -1,0 +1,2 @@
+odoo-addon-hr_timesheet_time_control_begin_end @ git+https://github.com/OCA/timesheet.git@refs/pull/973/head#subdirectory=hr_timesheet_time_control_begin_end
+odoo-addon-hr_timesheet_calendar @ git+https://github.com/OCA/timesheet.git@refs/pull/973/head#subdirectory=hr_timesheet_calendar
