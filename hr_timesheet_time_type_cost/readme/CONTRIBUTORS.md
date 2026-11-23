@@ -1,0 +1,3 @@
+- [Binhex](https://binhex.cloud):
+  - Rolando Pérez Rebollo \<<r.perez@binhex.cloud>\>
+- Nik ([weinni2000](https://github.com/weinni2000))
