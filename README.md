@@ -24,7 +24,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [crm_timesheet](crm_timesheet/) | 19.0.1.1.1 |  | CRM Timesheet
 [hr_timesheet_amount_security](hr_timesheet_amount_security/) | 19.0.1.0.0 | <a href='https://github.com/EmilioPascual'><img src='https://github.com/EmilioPascual.png' width='32' height='32' style='border-radius:50%;' alt='EmilioPascual'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Add security restrictions to timesheet amount fields
-[hr_timesheet_autofill_project_off](hr_timesheet_autofill_project_off/) | 19.0.1.0.1 | <a href='https://github.com/innovara'><img src='https://github.com/innovara.png' width='32' height='32' style='border-radius:50%;' alt='innovara'/></a> | Timesheet - Autofill project off
+[hr_timesheet_autofill_project_off](hr_timesheet_autofill_project_off/) | 19.0.1.0.2 | <a href='https://github.com/innovara'><img src='https://github.com/innovara.png' width='32' height='32' style='border-radius:50%;' alt='innovara'/></a> | Timesheet - Autofill project off
 [hr_timesheet_begin_end](hr_timesheet_begin_end/) | 19.0.1.0.0 |  | Timesheet - Begin/End Hours
 [hr_timesheet_day_week](hr_timesheet_day_week/) | 19.0.1.0.0 |  | Timesheets - Day of Week
 [hr_timesheet_employee_analytic_tag](hr_timesheet_employee_analytic_tag/) | 19.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Hr Timesheet Employee Analytic Tag

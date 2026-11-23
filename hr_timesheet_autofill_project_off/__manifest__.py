@@ -3,7 +3,7 @@
 
 {
     "name": "Timesheet - Autofill project off",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "author": "Innovara, Odoo Community Association (OCA)",
     "maintainers": ["innovara"],
     "license": "AGPL-3",
