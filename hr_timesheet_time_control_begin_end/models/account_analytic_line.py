@@ -198,7 +198,7 @@ class AccountAnalyticLine(models.Model):
                 self, datetime.fromisoformat(self.env.context.get("default_date_time"))
             )
         vals = super(AccountAnalyticLine, self.with_context(**ctx)).default_get(
-            fields_list + ["product_uom_id"]
+            list(fields_list) + ["product_uom_id"]
         )
         if (
             vals.get("date_time")
