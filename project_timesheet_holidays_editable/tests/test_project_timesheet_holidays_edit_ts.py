@@ -103,17 +103,20 @@ class TestProjectTimesheetHolidays(TransactionCase):
                 "employee_id": self.employee.id,
                 "holiday_status_id": leave_type.id,
                 "number_of_days": 10,
+                "date_from": "2025-01-01",
             }
         )
         allocation.action_approve()
 
+        # Fixed working day (Monday), leaves are refused on days off
+        leave_date = "2025-06-02"
         leave = self.Leave.create(
             {
                 "name": "Vacations",
                 "employee_id": self.employee.id,
                 "holiday_status_id": leave_type.id,
-                "request_date_from": date.today(),
-                "request_date_to": date.today(),
+                "request_date_from": leave_date,
+                "request_date_to": leave_date,
             }
         )
 
