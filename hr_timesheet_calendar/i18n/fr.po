@@ -1,0 +1,83 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_timesheet_calendar
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-06-15 09:13+0000\n"
+"Last-Translator: Yann Papouin <ypa@decgroupe.com>\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: hr_timesheet_calendar
+#: model:ir.model.fields.selection,name:hr_timesheet_calendar.selection__res_config_settings__timesheet_alignment__no-gap
+msgid "Align to previous entry"
+msgstr "Aligner sur l'entrée précédente"
+
+#. module: hr_timesheet_calendar
+#: model:ir.model,name:hr_timesheet_calendar.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Ligne analytique"
+
+#. module: hr_timesheet_calendar
+#: model:ir.model.fields,help:hr_timesheet_calendar.field_res_config_settings__timesheet_alignment
+msgid "Choose the alignment of new timesheet entries without start time."
+msgstr ""
+"Choisissez l'alignement des nouvelles entrées de feuille de temps sans heure "
+"de début."
+
+#. module: hr_timesheet_calendar
+#: model:ir.model,name:hr_timesheet_calendar.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: hr_timesheet_calendar
+#. odoo-javascript
+#: code:addons/hr_timesheet_calendar/static/src/views/timesheet_calendar/common/timesheet_calendar_common_popover.xml:0
+msgid "Duplicate"
+msgstr "Dupliquer"
+
+#. module: hr_timesheet_calendar
+#. odoo-javascript
+#: code:addons/hr_timesheet_calendar/static/src/views/timesheet_calendar/timesheet_calendar_controller.esm.js:0
+msgid "New Timesheet Entry"
+msgstr "Nouvelle saisie de feuille de temps"
+
+#. module: hr_timesheet_calendar
+#: model:ir.model.fields.selection,name:hr_timesheet_calendar.selection__res_config_settings__timesheet_alignment__now
+msgid "Set Start Date to Now"
+msgstr "Définir la date de début sur « Maintenant »"
+
+#. module: hr_timesheet_calendar
+#: model:ir.model.fields,field_description:hr_timesheet_calendar.field_account_analytic_line__date_time
+msgid "Start Time"
+msgstr "Heure de début"
+
+#. module: hr_timesheet_calendar
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_calendar.res_config_settings_view_form
+msgid "Start the next entry now or without a gap to the previous one."
+msgstr ""
+"Commencer la prochaine entrée maintenant ou sans laisser d'espace par "
+"rapport à la précédente."
+
+#. module: hr_timesheet_calendar
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_calendar.res_config_settings_view_form
+msgid "Time Connecting"
+msgstr "Liaison horaire"
+
+#. module: hr_timesheet_calendar
+#: model:ir.model.fields,field_description:hr_timesheet_calendar.field_res_config_settings__timesheet_alignment
+msgid "Timesheet Alignment"
+msgstr "Harmonisation des feuilles de temps"
+
+#. module: hr_timesheet_calendar
+#: model_terms:ir.ui.view,arch_db:hr_timesheet_calendar.hr_timesheet_line_calendar
+msgid "Timesheets"
+msgstr "Feuilles de temps"
