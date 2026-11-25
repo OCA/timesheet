@@ -1,0 +1,1 @@
+Go to Timesheets > Configuration > Timesheet Options > Timesheet Sheet Review Policy and select the option "By Project Manager".
