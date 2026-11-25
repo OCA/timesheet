@@ -1,0 +1,76 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * crm_phonecall_timesheet
+#
+# Translators:
+# Marco Calcagni <mcalcagni@dinamicheaziendali.it>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-31 04:45+0000\n"
+"PO-Revision-Date: 2018-10-28 23:02+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2.1\n"
+
+#. module: crm_phonecall_timesheet
+#: model:ir.model,name:crm_phonecall_timesheet.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Riga analitica"
+
+#. module: crm_phonecall_timesheet
+#: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:36
+#, python-format
+msgid "Date field must be filled."
+msgstr "Il campo data deve essere valorizzato."
+
+#. module: crm_phonecall_timesheet
+#: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:98
+#, python-format
+msgid "End date must be datetime."
+msgstr "La data fine deve essere datetime."
+
+#. module: crm_phonecall_timesheet
+#: model:ir.model.fields,field_description:crm_phonecall_timesheet.field_account_analytic_line__phonecall_id
+msgid "Phone Call"
+msgstr "Telefonata"
+
+#. module: crm_phonecall_timesheet
+#: model:ir.model,name:crm_phonecall_timesheet.model_crm_phonecall
+msgid "Phonecall"
+msgstr "Telefonata"
+
+#. module: crm_phonecall_timesheet
+#: model:ir.model.fields,field_description:crm_phonecall_timesheet.field_crm_phonecall__project_id
+msgid "Project"
+msgstr ""
+
+#. module: crm_phonecall_timesheet
+#: code:addons/crm_phonecall_timesheet/models/crm_phonecall.py:96
+#, python-format
+msgid "Start date must be datetime."
+msgstr "La data inizio deve essere datetime."
+
+#. module: crm_phonecall_timesheet
+#: model_terms:ir.ui.view,arch_db:crm_phonecall_timesheet.crm_case_inbound_phone_tree_view
+#: model_terms:ir.ui.view,arch_db:crm_phonecall_timesheet.crm_case_phone_tree_view
+msgid "Stop"
+msgstr "Stop"
+
+#. module: crm_phonecall_timesheet
+#: model:ir.model.fields,field_description:crm_phonecall_timesheet.field_crm_phonecall__timesheet_ids
+#: model_terms:ir.ui.view,arch_db:crm_phonecall_timesheet.crm_case_phone_form_view
+msgid "Timesheet"
+msgstr "Foglio ore"
+
+#~ msgid "Analytic account id"
+#~ msgstr "ID conto analitico"
+
+#~ msgid "Timesheet ids"
+#~ msgstr "ID fogli ore"
