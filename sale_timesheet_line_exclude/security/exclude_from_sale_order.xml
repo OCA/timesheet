@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright ACSONE SA/NV (https://acsone.eu)
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="group_exclude_from_sale_order" model="res.groups">
+        <field name="name">Exclude timesheets from sale order</field>
+        <field
+            name="comment"
+        >Gives access to the Non-Billable field on timesheets.</field>
+        <field
+            name="user_ids"
+            eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"
+        />
+    </record>
+</odoo>
