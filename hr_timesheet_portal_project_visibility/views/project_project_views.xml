@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record id="project_invoice_form" model="ir.ui.view">
+        <field
+            name="name"
+        >Inherit project form : Invoicing Data - hr_timesheet_portal_project_visibility</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="hr_timesheet.project_invoice_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='timesheet_settings']" position="after">
+                <setting
+                    class="col-lg-12"
+                    id="timesheet_portal_settings"
+                    help="Show the timesheets and the time spent on tasks to portal users"
+                    invisible="not allow_timesheets or privacy_visibility != 'portal'"
+                >
+                    <field name="show_timesheets_in_portal" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
