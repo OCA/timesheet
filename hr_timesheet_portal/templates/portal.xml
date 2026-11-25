@@ -19,7 +19,8 @@
             position="inside"
         >
             <i
-                class="fa fa-plus"
+                class="oi hr_timesheet_portal_add"
+                data-icon="add"
                 groups="hr_timesheet_portal.group_hr_timesheet_portal"
             />
         </xpath>
@@ -35,8 +36,11 @@
                 t-att-data-task-id="task.id"
                 groups="hr_timesheet_portal.group_hr_timesheet_portal"
             >
-                <h5 class="mt-2 mb-2">Timesheets <i class="fa fa-plus" /></h5>
-                <t t-call="hr_timesheet.portal_timesheet_table" />
+                <h5 class="mt-2 mb-2">Timesheets <i
+                    class="oi hr_timesheet_portal_add"
+                    data-icon="add"
+                /></h5>
+                <t t-call="hr_timesheet.portal_timesheet_table_with_total" />
             </div>
         </xpath>
     </template>
@@ -50,22 +54,39 @@
                 name="t-att-class"
             >(timesheet.user_id == request.env.user and request.env.user.has_group('hr_timesheet_portal.group_hr_timesheet_portal')) and 'editable'</attribute>
         </tr>
-        <xpath expr="//tr[@t-foreach='timesheets']/td" position="inside">
-            <i t-if="timesheet.user_id == request.env.user" class="fa fa-edit" />
+        <xpath
+            expr="//tr[@t-foreach='timesheets']/t[@id='timesheet_line']/td"
+            position="inside"
+        >
+            <i
+                t-if="timesheet.user_id == request.env.user"
+                class="oi hr_timesheet_portal_edit"
+                data-icon="edit"
+            />
         </xpath>
-        <xpath expr="//tr[@t-foreach='timesheets']/td[last()]" position="inside">
-            <i t-if="timesheet.user_id == request.env.user" class="fa fa-remove" />
+        <xpath
+            expr="//tr[@t-foreach='timesheets']/t[@id='timesheet_line']/td[last()]"
+            position="inside"
+        >
+            <i
+                t-if="timesheet.user_id == request.env.user"
+                class="oi hr_timesheet_portal_delete"
+                data-icon="close"
+            />
         </xpath>
-        <xpath expr="//t[@t-esc='timesheet.name']/parent::td" position="attributes">
+        <xpath expr="//t[@t-out='timesheet.name']/parent::td" position="attributes">
             <attribute name="data-field-name">name</attribute>
         </xpath>
-        <xpath expr="//t[@t-esc='timesheet.date']/parent::td" position="attributes">
+        <xpath
+            expr="//t[@t-call='project.portal_format_date']/parent::td"
+            position="attributes"
+        >
             <attribute name="data-field-name">date</attribute>
             <attribute name="data-field-type">date</attribute>
             <attribute name="t-att-data-field-value">timesheet.date</attribute>
         </xpath>
         <xpath
-            expr="//span[@t-field='timesheet.unit_amount']/parent::td"
+            expr="//span[@t-out='timesheets._format_portal_hours(timesheet.unit_amount)']/parent::td"
             position="attributes"
         >
             <attribute name="data-field-name">unit_amount</attribute>

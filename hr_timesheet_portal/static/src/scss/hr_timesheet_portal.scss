@@ -21,14 +21,20 @@ div.hr_timesheet_portal tr[data-line-id].editable:hover i {
     background: #fff;
     padding: 0.3em;
 }
-div.hr_timesheet_portal tr[data-line-id]:hover i.fa-remove {
+div.hr_timesheet_portal tr[data-line-id]:hover i.hr_timesheet_portal_delete {
     right: 0.2em;
 }
-div.hr_timesheet_portal tr[data-line-id]:hover i.fa-edit {
+div.hr_timesheet_portal tr[data-line-id]:hover i.hr_timesheet_portal_edit {
     left: 0.2em;
 }
 div.hr_timesheet_portal tr[data-line-id] td {
     position: relative;
+}
+/* Portal table cells are truncated by default, which would hide the inputs
+ * and buttons of the line being edited */
+div.hr_timesheet_portal tr.edit td {
+    max-width: none;
+    overflow: visible;
 }
 div.hr_timesheet_portal tr form {
     display: inline-block;
