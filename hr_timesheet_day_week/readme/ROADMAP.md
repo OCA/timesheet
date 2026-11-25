@@ -1,0 +1,1 @@
+- Make weekend definition parametrized, as there are countries around the world that their weekend days are different than usual western Saturday and Sunday days.
