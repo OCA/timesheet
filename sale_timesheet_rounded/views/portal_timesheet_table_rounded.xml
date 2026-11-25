@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="portal_timesheet_table_rounded">
+        <field name="name">portal_timesheet_table_rounded</field>
+        <field name="inherit_id" ref="hr_timesheet.portal_timesheet_table" />
+        <field name="arch" type="xml">
+            <!-- Update the header in the table -->
+            <!-- oca-hooks:disable=xml-view-dangerous-replace-low-priority -->
+            <xpath expr="//thead/tr/th[@name='t_label']" position="replace">
+                <th class="text-end" name="t_label">Time</th>
+            </xpath>
+            <!-- On each line, only display the rounded amount -->
+            <xpath
+                expr="//span[@t-field='timesheet.unit_amount']"
+                position="attributes"
+            >
+                <attribute name="t-field" />
+                <attribute name="t-out">timesheet.unit_amount_rounded</attribute>
+            </xpath>
+            <xpath
+                expr="//div[hasclass('container_subtotal')]//table/tr/td[1]/strong"
+                position="replace"
+            >
+                <strong>Total time: </strong>
+            </xpath>
+            <!-- Update the partial sums 'Total Time spent:' when grouped -->
+            <xpath
+                expr="//div[hasclass('container_subtotal')]//table/tr[1]/td[hasclass('text-end')]/span[@t-if='is_uom_day']"
+                position="attributes"
+            >
+                <attribute name="t-esc" />
+                <attribute name="t-out">
+                    timesheets._convert_hours_to_days(
+                    sum(task.timesheet_ids.mapped('unit_amount_rounded'))
+                    )
+                </attribute>
+            </xpath>
+            <xpath
+                expr="//div[hasclass('container_subtotal')]//table/tr[1]/td[hasclass('text-end')]/span[@t-else='']"
+                position="attributes"
+            >
+                <attribute name="t-esc" />
+                <attribute name="t-out">
+                    sum(task.timesheet_ids.mapped('unit_amount_rounded'))
+                </attribute>
+            </xpath>
+            <!-- For tasks with an 'allocated_hours' -->
+            <xpath
+                expr="//div[hasclass('container_subtotal')]//table/tr//div[@name='allocated_time']"
+                position="attributes"
+            >
+                <attribute name="t-if">
+                    task.allocated_hours -
+                    sum(task.timesheet_ids.mapped('unit_amount_rounded')) &gt; 0
+                </attribute>
+            </xpath>
+            <xpath
+                expr="//div[hasclass('container_subtotal')]//table/tr//div[@name='allocated_time']//span[@t-if='is_uom_day']"
+                position="attributes"
+            >
+                <attribute name="t-esc" />
+                <attribute name="t-out">
+                    timesheets._convert_hours_to_days(
+                    task.allocated_hours - sum(task.timesheet_ids.mapped('unit_amount_rounded'))
+                    )
+                </attribute>
+            </xpath>
+            <xpath
+                expr="//div[hasclass('container_subtotal')]//table/tr//div[@name='allocated_time']//span[@t-else='']"
+                position="attributes"
+            >
+                <attribute name="t-esc" />
+                <attribute name="t-out">
+                    task.allocated_hours - sum(task.timesheet_ids.mapped('unit_amount_rounded'))
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
