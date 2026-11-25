@@ -38,6 +38,12 @@
                             required="1"
                         />
                     </setting>
+                    <setting
+                        help="Choose an employee field pointing to a user. That user can review the employee's timesheet sheets."
+                        company_dependent="1"
+                    >
+                        <field name="timesheet_sheet_approver_field_id" />
+                    </setting>
                 </block>
             </xpath>
         </field>

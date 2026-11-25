@@ -8,3 +8,5 @@
 - [Sodexis](https://www.sodexis.com)
   - SodexisTeam \<<dev@sodexis.com>\>
   - Sowrirajan \<<sowrirajan@sodexis.com>\>
+- [Quartile](https://www.quartile.co):
+  - Shinnosuke Morita
