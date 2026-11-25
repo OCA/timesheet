@@ -28,5 +28,8 @@
         "web.assets_frontend": [
             "hr_timesheet_portal/static/src/**/*",
         ],
+        "web.assets_tests": [
+            "hr_timesheet_portal/static/tests/tours/**/*",
+        ],
     },
 }
