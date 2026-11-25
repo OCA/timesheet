@@ -8,6 +8,7 @@
     "category": "Website",
     "website": "https://github.com/OCA/timesheet",
     "author": "Hunki Enterprises BV, Odoo Community Association (OCA)",
+    "maintainers": ["innovara"],
     "license": "AGPL-3",
     "depends": [
         "hr_timesheet",
