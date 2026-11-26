@@ -1,0 +1,10 @@
+id,name,model_id,group_id/id,operation,domain
+rule_account_analytic_line,Timesheets editable through the portal,account.analytic.line,group_hr_timesheet_portal,crud,"[
+    '|',
+        '&',
+            ('task_id.project_id.privacy_visibility', '=', 'portal'),
+            ('task_id.project_id.message_partner_ids', 'child_of', [user.partner_id.commercial_partner_id.id]),
+        '&',
+            ('task_id.project_id.privacy_visibility', '=', 'portal'),
+            ('task_id.message_partner_ids', 'child_of', [user.partner_id.commercial_partner_id.id]),
+]"
