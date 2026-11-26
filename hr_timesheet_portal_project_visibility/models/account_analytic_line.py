@@ -8,9 +8,12 @@ class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
 
     def _timesheet_get_portal_domain(self):
+        domain = super()._timesheet_get_portal_domain()
+        if not self.env.user.share:
+            return domain
         return expression.AND(
             [
-                super()._timesheet_get_portal_domain(),
+                domain,
                 [
                     "|",
                     ("project_id.show_timesheets_in_portal", "=", True),

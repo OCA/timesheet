@@ -75,6 +75,19 @@ class TestPortalProjectVisibility(TestProjectSharingCommon, HttpCase):
         )
         self.assertEqual(timesheets, self.timesheet)
 
+    def test_internal_portal_domain(self):
+        self.user_projectuser.groups_id += self.env.ref(
+            "hr_timesheet.group_hr_timesheet_approver"
+        )
+        self.project_portal.show_timesheets_in_portal = False
+        domain = self.AnalyticLine.with_user(
+            self.user_projectuser
+        )._timesheet_get_portal_domain()
+        timesheets = self.AnalyticLine.sudo().search(
+            expression.AND([domain, [("project_id", "=", self.project_portal.id)]])
+        )
+        self.assertEqual(timesheets, self.timesheet)
+
     def test_own_timesheets(self):
         employee = self.env["hr.employee"].create(
             {"name": "Portal Employee", "user_id": self.user_portal.id}
