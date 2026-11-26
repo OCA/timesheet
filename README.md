@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [hr_timesheet_amount_security](hr_timesheet_amount_security/) | 20.0.1.0.0 | <a href='https://github.com/EmilioPascual'><img src='https://github.com/EmilioPascual.png' width='32' height='32' style='border-radius:50%;' alt='EmilioPascual'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Add security restrictions to timesheet amount fields
 [hr_timesheet_autofill_project_off](hr_timesheet_autofill_project_off/) | 20.0.1.0.0 | <a href='https://github.com/innovara'><img src='https://github.com/innovara.png' width='32' height='32' style='border-radius:50%;' alt='innovara'/></a> | Timesheet - Autofill project off
 [hr_timesheet_task_domain](hr_timesheet_task_domain/) | 20.0.1.0.0 |  | Limit task selection to tasks on currently-selected project
+[sale_timesheet_invoice_link](sale_timesheet_invoice_link/) | 20.0.1.0.0 | <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> <a href='https://github.com/yajo'><img src='https://github.com/yajo.png' width='32' height='32' style='border-radius:50%;' alt='yajo'/></a> | Link invoices with timesheet lines
 
 [//]: # (end addons)
 

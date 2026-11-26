@@ -1,11 +1,12 @@
 [project]
 name = "odoo-addons-oca-timesheet"
-version = "20.0.20261123.1"
+version = "20.0.20261126.0"
 dependencies = [
     "odoo-addon-hr_employee_cost_history==20.0.*",
     "odoo-addon-hr_timesheet_amount_security==20.0.*",
     "odoo-addon-hr_timesheet_autofill_project_off==20.0.*",
     "odoo-addon-hr_timesheet_task_domain==20.0.*",
+    "odoo-addon-sale_timesheet_invoice_link==20.0.*",
 ]
 classifiers=[
     "Programming Language :: Python",
