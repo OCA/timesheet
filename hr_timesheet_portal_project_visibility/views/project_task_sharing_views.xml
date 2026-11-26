@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record id="project_sharing_inherit_project_task_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >project.sharing.project.task.view.form.inherit - hr_timesheet_portal_project_visibility</field>
+        <field name="model">project.task</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet.project_sharing_inherit_project_task_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='child_ids']/list/field[@name='allow_timesheets']"
+                position="after"
+            >
+                <field name="show_timesheets_in_portal" column_invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='child_ids']/list/field[@name='allocated_hours']"
+                position="attributes"
+            >
+                <attribute
+                    name="column_invisible"
+                    add="not parent.show_timesheets_in_portal"
+                    separator=" or "
+                />
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='child_ids']/list/field[@name='effective_hours']"
+                position="attributes"
+            >
+                <attribute
+                    name="column_invisible"
+                    add="not parent.show_timesheets_in_portal"
+                    separator=" or "
+                />
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='child_ids']/list/field[@name='subtask_effective_hours']"
+                position="attributes"
+            >
+                <attribute
+                    name="column_invisible"
+                    add="not parent.show_timesheets_in_portal"
+                    separator=" or "
+                />
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='child_ids']/list/field[@name='total_hours_spent']"
+                position="attributes"
+            >
+                <attribute
+                    name="column_invisible"
+                    add="not parent.show_timesheets_in_portal"
+                    separator=" or "
+                />
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='child_ids']/list/field[@name='remaining_hours']"
+                position="attributes"
+            >
+                <attribute
+                    name="column_invisible"
+                    add="not parent.show_timesheets_in_portal"
+                    separator=" or "
+                />
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='child_ids']/list/field[@name='progress']"
+                position="attributes"
+            >
+                <attribute
+                    name="column_invisible"
+                    add="not parent.show_timesheets_in_portal"
+                    separator=" or "
+                />
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='depend_on_ids']/list/field[@name='allow_timesheets']"
+                position="after"
+            >
+                <field name="show_timesheets_in_portal" column_invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='depend_on_ids']/list/field[@name='allocated_hours']"
+                position="attributes"
+            >
+                <attribute
+                    name="column_invisible"
+                    add="not parent.show_timesheets_in_portal"
+                    separator=" or "
+                />
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='depend_on_ids']/list/field[@name='effective_hours']"
+                position="attributes"
+            >
+                <attribute
+                    name="column_invisible"
+                    add="not parent.show_timesheets_in_portal"
+                    separator=" or "
+                />
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='depend_on_ids']/list/field[@name='subtask_effective_hours']"
+                position="attributes"
+            >
+                <attribute
+                    name="column_invisible"
+                    add="not parent.show_timesheets_in_portal"
+                    separator=" or "
+                />
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='depend_on_ids']/list/field[@name='total_hours_spent']"
+                position="attributes"
+            >
+                <attribute
+                    name="column_invisible"
+                    add="not parent.show_timesheets_in_portal"
+                    separator=" or "
+                />
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='depend_on_ids']/list/field[@name='remaining_hours']"
+                position="attributes"
+            >
+                <attribute
+                    name="column_invisible"
+                    add="not parent.show_timesheets_in_portal"
+                    separator=" or "
+                />
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='depend_on_ids']/list/field[@name='progress']"
+                position="attributes"
+            >
+                <attribute
+                    name="column_invisible"
+                    add="not parent.show_timesheets_in_portal"
+                    separator=" or "
+                />
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath expr="//page[@name='page_timesheets']" position="before">
+                <field name="show_timesheets_in_portal" invisible="1" />
+            </xpath>
+            <xpath expr="//label[@for='allocated_hours']" position="attributes">
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath
+                expr="//div[hasclass('text-nowrap')][field[@name='allocated_hours']]"
+                position="attributes"
+            >
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+            <xpath expr="//page[@name='page_timesheets']" position="attributes">
+                <attribute
+                    name="invisible"
+                    add="not show_timesheets_in_portal"
+                    separator=" or "
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record
+        id="project_sharing_kanban_inherit_project_task_view_kanban"
+        model="ir.ui.view"
+    >
+        <field
+            name="name"
+        >project.sharing.project.task.timesheet.kanban.inherited - hr_timesheet_portal_project_visibility</field>
+        <field name="model">project.task</field>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet.project_sharing_kanban_inherit_project_task_view_kanban"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='allow_timesheets']" position="after">
+                <field name="show_timesheets_in_portal" />
+            </xpath>
+            <xpath expr="//t[@name='allocated_hours']" position="attributes">
+                <attribute
+                    name="t-if"
+                    add="record.show_timesheets_in_portal.raw_value"
+                    separator=" and "
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

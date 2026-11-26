@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <template id="portal_my_task" inherit_id="project.portal_my_task">
+        <xpath
+            expr="//div[@name='portal_my_task_allocated_hours']"
+            position="attributes"
+        >
+            <attribute name="t-if">task.show_timesheets_in_portal</attribute>
+        </xpath>
+    </template>
+
+    <template
+        id="portal_tasks_list_inherit"
+        inherit_id="hr_timesheet.portal_tasks_list_inherit"
+    >
+        <xpath expr="//t[@t-set='allow_timesheets']" position="attributes">
+            <attribute
+                name="t-value"
+            >any(task.allow_timesheets and task.show_timesheets_in_portal for group in grouped_tasks for task in group)</attribute>
+        </xpath>
+        <xpath
+            expr="//thead/tr/t[@t-if='not project or project.allow_timesheets']"
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+            >not project or (project.allow_timesheets and project.show_timesheets_in_portal)</attribute>
+        </xpath>
+        <xpath
+            expr="//tbody/t/tr/td[@t-if='not project or project.allow_timesheets']"
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+            >not project or (project.allow_timesheets and project.show_timesheets_in_portal)</attribute>
+        </xpath>
+        <xpath
+            expr="//tbody/t/tr/td/t[@t-if='task.allow_timesheets']"
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+                add="task.show_timesheets_in_portal"
+                separator=" and "
+            />
+        </xpath>
+    </template>
+</odoo>
