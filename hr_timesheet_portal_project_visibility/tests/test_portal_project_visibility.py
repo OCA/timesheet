@@ -100,6 +100,18 @@ class TestPortalProjectVisibility(TestProjectSharingCommon, HttpCase):
         self.assertNotIn("task_timesheets", response.text)
         self.assertNotIn("Allocated Time", response.text)
 
+    def test_portal_tasks_page(self):
+        self.authenticate("chell", "chell")
+        response = self.url_open("/my/tasks")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(self.task_portal.name, response.text)
+        self.assertIn("10:00", response.text)
+        self.project_portal.show_timesheets_in_portal = False
+        response = self.url_open("/my/tasks")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(self.task_portal.name, response.text)
+        self.assertNotIn("10:00", response.text)
+
     def test_portal_timesheets_page(self):
         self.authenticate("chell", "chell")
         response = self.url_open("/my/timesheets")

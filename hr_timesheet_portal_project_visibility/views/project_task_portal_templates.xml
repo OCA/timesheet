@@ -26,9 +26,7 @@
         >
             <attribute
                 name="t-if"
-                add="project.show_timesheets_in_portal"
-                separator=" and "
-            />
+            >not project or (project.allow_timesheets and project.show_timesheets_in_portal)</attribute>
         </xpath>
         <xpath
             expr="//tbody/t/tr/td[@t-if='not project or project.allow_timesheets']"
@@ -36,9 +34,7 @@
         >
             <attribute
                 name="t-if"
-                add="project.show_timesheets_in_portal"
-                separator=" and "
-            />
+            >not project or (project.allow_timesheets and project.show_timesheets_in_portal)</attribute>
         </xpath>
         <xpath
             expr="//tbody/t/tr/td/t[@t-if='task.allow_timesheets']"
