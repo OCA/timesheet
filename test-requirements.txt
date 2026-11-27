@@ -1,0 +1,1 @@
+odoo-addon-hr_timesheet_sheet_attendance @ git+https://github.com/OCA/timesheet.git@refs/pull/954/head#subdirectory=hr_timesheet_sheet_attendance
