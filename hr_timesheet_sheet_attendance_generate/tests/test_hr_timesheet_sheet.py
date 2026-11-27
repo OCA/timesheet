@@ -10,6 +10,7 @@ class TestHrTimesheetSheet(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.user_model = cls.env["res.users"]
         cls.employee_model = cls.env["hr.employee"]
         cls.timesheet_model = cls.env["hr_timesheet.sheet"]
@@ -147,8 +148,6 @@ class TestHrTimesheetSheet(TransactionCase):
             {
                 "name": "TestEmployee",
                 "user_id": cls.user.id,
-                "department_id": cls.env.ref("hr.dep_rd").id,
-                "job_id": cls.env.ref("hr.job_developer").id,
                 "work_email": "test@test.com",
                 "work_phone": "+3281813700",
                 "resource_calendar_id": cls.calendar.id,

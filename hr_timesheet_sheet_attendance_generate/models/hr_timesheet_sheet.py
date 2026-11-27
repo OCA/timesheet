@@ -5,7 +5,7 @@ from datetime import datetime
 
 import pytz
 
-from odoo import _, models
+from odoo import models
 
 
 class Sheet(models.Model):
@@ -22,7 +22,7 @@ class Sheet(models.Model):
                 "view_generated_attendances_selection_form"
             )
             return {
-                "name": _("Generated Attendances Selection"),
+                "name": self.env._("Generated Attendances Selection"),
                 "type": "ir.actions.act_window",
                 "res_model": "hr_timesheet.sheet.generated.attendances.selection",
                 "view_mode": "form",
@@ -33,10 +33,7 @@ class Sheet(models.Model):
 
     def action_generate_attendances(self):
         # Check if the user has permission to generate attendances
-        if self.env["hr.attendance"].check_access_rights(
-            "create",
-            raise_exception=False,
-        ):
+        if self.env["hr.attendance"].has_access("create"):
             return self.generate_attendances()
 
     def _generate_attendances_on_date(self, date):

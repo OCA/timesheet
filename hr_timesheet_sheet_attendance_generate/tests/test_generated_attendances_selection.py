@@ -10,6 +10,7 @@ class TestSheetGeneratedAttendancesSelection(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.user_model = cls.env["res.users"]
         cls.employee_model = cls.env["hr.employee"]
         cls.attendance_model = cls.env["hr.attendance"]
